@@ -1,0 +1,130 @@
+[
+	{
+		"serialno":"1",
+		"title":"Main Gate Front",		
+		"status":"Active",
+		"device":"Elika-Doorbell",
+		"facility":"USA Corporate Services",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"2",
+		"title":"Main Gate Back",		
+		"status":"Active",
+		"device":"Elika-76(s)",
+		"facility":"Aerzen USA Corporation",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"3",
+		"title":"Exit Gate Front",		
+		"status":"Inactive",
+		"device":"Elika-92(s)",
+		"facility":"Insight Direct USA Inc",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"4",
+		"title":"Exit Gate Back",		
+		"status":"Active",
+		"device":"Elika-460",
+		"facility":"Belfor Property Restoration",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"5",
+		"title":"Parking Entry Gate",		
+		"status":"Active",
+		"device":"Elika-918",
+		"facility":"G4S Secure Solutions USA",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"6",
+		"title":"Parking Exit Gate",		
+		"status":"Inactive",
+		"device":"Elika-Intercom",
+		"facility":"Nestle USA LLC",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"7",
+		"title":"Pool Gate",		
+		"status":"Active",
+		"device":"Elika-2101",
+		"facility":"Board Finance Solution USA",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"8",
+		"title":"Gym Gate",		
+		"status":"Inactive",
+		"device":"Elika-Doorbell",
+		"facility":"Financial Services USA LLC",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"9",
+		"title":"Main Gate Front",		
+		"status":"Active",
+		"device":"Elika-Doorbell",
+		"facility":"Bushmaster Firearms International",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"10",
+		"title":"Main Gate Back",		
+		"status":"Active",
+		"device":"Elika-76(s)",
+		"facility":"American Financial Group",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"11",
+		"title":"Exit Gate Front",		
+		"status":"Active",
+		"device":"Elika-92(s)",
+		"facility":"USA Corporate Services",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"12",
+		"title":"Exit Gate Back",		
+		"status":"Active",
+		"device":"Elika-460",
+		"facility":"Aerzen USA Corporation",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"13",
+		"title":"Parking Entry Gate",		
+		"status":"Inactive",
+		"device":"Elika-918",
+		"facility":"Insight Direct USA Inc",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"14",
+		"title":"Parking Exit Gate",		
+		"status":"Active",
+		"device":"Elika-2101",
+		"facility":"Belfor Property Restoration",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"15",
+		"title":"Pool Gate",		
+		"status":"Inactive",
+		"device":"Elika-76(s)",
+		"facility":"Financial Services USA LLC",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+	{
+		"serialno":"16",
+		"title":"Gym Gate",		
+		"status":"Active",
+		"device":"Elika-Doorbell",
+		"facility":"Westin Hotel USA",
+		"description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    }
+]

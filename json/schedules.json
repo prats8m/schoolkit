@@ -1,0 +1,39 @@
+[
+	{
+		"serialno":"1",
+		"facility":"USA Corporate Services",
+		"title":"Office-Weekdays",
+		"starttime":"11:00 AM",
+		"endtime":"05:00 PM",
+		"days":"Mon",
+		"expirationdate":"11/05/2017",
+		"status":"Active"
+	},{
+		"serialno":"2",
+		"facility":"Aerzen USA Corporation",
+		"title":"Office-Weekend",
+		"starttime":"12:00 AM",
+		"endtime":"03:00 PM",
+		"days":"Sat, Sun",
+		"expirationdate":"15/01/2017",
+		"status":"Active"
+	},{
+		"serialno":"3",
+		"facility":"Insight Direct USA Inc",
+		"title":"Cleaning-Weekdays",
+		"starttime":"08:00 AM",
+		"endtime":"10:00 AM",
+		"days":"Mon, Tue, Wed",
+		"expirationdate":"11/05/2019",
+		"status":"Active"
+	},{
+		"serialno":"4",
+		"facility":"Belfor Property Restoration",
+		"title":"Cleaning-Weekend",
+		"starttime":"09:00 AM",
+		"endtime":"11:00 AM",
+		"days":"Sat, Sun",
+		"expirationdate":"11/05/2017",
+		"status":"Inactive"
+	}	
+]

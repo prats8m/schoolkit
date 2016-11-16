@@ -1,0 +1,278 @@
+<div class="page page-dashboard">
+	<div class="pagecontent">
+		<div class="row">
+		
+			<div class="card-container col-lg-6 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+								<div class="tile-body p-0 realtimeloader" ng-controller="RealtimeLoadCtrl">
+									<rickshaw rickshaw-options="options1" rickshaw-features="features1" rickshaw-series="series1"></rickshaw>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="front bg-greensea">						
+						<div class="row">
+							<div class="col-xs-5 ta-r">
+								<i class="fa fa-map-marker fa-5x"></i>
+							</div>
+							<div class="col-xs-7">								
+								<p class="text-elg text-strong mt-5 mb-5">2</p>
+								<span class="text-lg">Facility</span>
+							</div>
+						</div>
+					</div>
+					<div class="back bg-greensea">
+						<div class="row">         
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.facility.facility"><i class="fa fa-map-marker fa-2x"></i> Facility</a>
+							</div>
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.settings"><i class="fa fa-cog fa-2x"></i> Settings</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="front bg-lightred">						
+						<div class="row">
+							<div class="col-xs-5 ta-r">
+								<i class="fa fa-users fa-5x"></i>
+							</div>
+							<div class="col-xs-7">								
+								<p class="text-elg text-strong mt-5 mb-5">145</p>
+								<span class="text-lg">Users</span>
+							</div>
+						</div>
+					</div>
+					<div class="back bg-lightred">
+						<div class="row">             
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.user.users"><i class="fa fa-user fa-2x"></i> Users</a>
+							</div>
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.user.user-groups"><i class="fa fa-users fa-2x"></i> User Groups</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="front bg-blue">						
+						<div class="row">
+							<div class="col-xs-5 ta-r">
+								<i class="fa fa-fax fa-5x"></i>
+							</div>
+							<div class="col-xs-7">								
+								<p class="text-elg text-strong mt-5 mb-5">35</p>
+								<span class="text-lg">Devices</span>
+							</div>
+						</div>
+					</div>
+					<div class="back bg-blue">
+						<div class="row">             
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.device.devices"><i class="fa fa-fax fa-2x"></i> Devices</a>
+							</div>
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.settings"><i class="fa fa-cog fa-2x"></i> Settings</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="front bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-5 ta-r">
+								<i class="fa fa-pause fa-5x"></i>
+							</div>
+							<div class="col-xs-7">								
+								<p class="text-elg text-strong mt-5 mb-5">50</p>
+								<span class="text-lg">Doors</span>
+							</div>
+						</div>
+					</div>
+					<div class="back bg-slategray">
+						<div class="row">         
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.door.doors"><i class="fa fa-pause fa-2x"></i> Doors</a>
+							</div>
+							<div class="col-xs-6">
+								<a ui-sref="app.subadmin.door.door-groups"><i class="fa fa-pause fa-2x"></i> Door Groups</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="card-container col-lg-4 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-cyan text-center p-30">
+						<i class="fa fa-key fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="b-r tcol">
+								<a ui-sref="app.subadmin.permissions.roles">
+									<h3>Roles</h3>
+									<span class="text-muted">Administration</span>
+								</a>
+							</li>
+							<li class="tcol">
+								<a ui-sref="app.subadmin.permissions.admin">
+									<h3>Admin</h3>
+									<span class="text-muted">Administration</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-dutch text-center p-30">
+						<i class="fa fa-wrench fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="tcol">
+								<a ui-sref="app.subadmin.support.technician">
+									<h3>Technician</h3>
+									<span class="text-muted">Customer support Elika</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+			<div class="card-container col-lg-5 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-drank text-center p-30">
+						<i class="fa fa-calendar fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="b-r tcol">
+								<a ui-sref="app.subadmin.schedule.schedules">
+									<h3>Schedule</h3>
+									<span class="text-muted">Management</span>
+								</a>
+							</li>
+							<li class="b-r tcol">
+								<a ui-sref="app.subadmin.schedule.schedule-groups">
+									<h3>Schedule Groups</h3>
+									<span class="text-muted">Management</span>
+								</a>
+							</li>
+							<li class="tcol">
+								<a ui-sref="app.subadmin.schedule.holiday-schedule">
+									<h3>Holiday Schedule</h3>
+									<span class="text-muted">Management</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-warning text-center p-30">
+						<i class="fa fa-bullhorn fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="tcol">
+								<a ui-sref="app.subadmin.help.message-notification">
+									<h3>Message &amp; Notification</h3>
+									<span class="text-muted">Meet with next door</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-slategray text-center p-30">
+						<i class="fa fa-user-md fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="tcol">
+								<a ui-sref="app.subadmin.help.diagnostics-help">
+									<h3>Diagnostics and Help</h3>
+									<span class="text-muted">Filter and solve your problem</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-lightred text-center p-30">
+						<i class="fa fa-history fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="tcol">
+								<a ui-sref="app.subadmin.help.history-events">
+									<h3>History and Events</h3>
+									<span class="text-muted">Get in touch with all steps</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<div class="tile-widget bg-greensea text-center p-30">
+						<i class="fa fa-video-camera fa-3x"></i>
+					</div>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="tcol">
+								<a ui-sref="app.subadmin.camera.camera-dvr">
+									<h3>Camera DVR</h3>
+									<span class="text-muted">See live and recorded stream</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+		</div>
+	</div>
+</div>

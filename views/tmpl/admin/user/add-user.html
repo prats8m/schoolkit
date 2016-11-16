@@ -1,0 +1,385 @@
+<ul class="controls">
+	<li class="addpopup">
+		<div ng-controller="ModalDemoCtrl">
+			<script type="text/ng-template" id="myModalContent.html">
+				<div class="usergrouplist overflow" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
+					<div class="overflow mb-10">
+						<strong>Select User Groups</strong>  <a href="" class="pull-right "><i class="fa fa-times text-lg" aria-hidden="true" ng-click="visibiltyUserGroup=true"></i></a>
+					</div>
+					<div class="row groupslist">
+						<div class="col-md-12">
+							<ul>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence Guest</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence Guest</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff</label>
+								</li>
+								<li>
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-12 legend">
+							<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="visibiltyUserGroup=true">Cancel</button>
+							<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="visibiltyUserGroup=true">Save</button>
+							<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15">Create User Group</a>
+						</div>
+					</div>
+				</div>
+			
+				<div class="modal-header"><h4 class="modal-title custom-font">Add User</h4></div>
+				<div class="hometabs">											
+					<md-content class="md-padding tabsdemoDynamicHeight">
+						<md-tabs md-dynamic-height md-border-bottom>		
+							<md-tab label="Account">
+								<md-content>								
+									<div class="account">
+										<div class="overflow">
+											<div class="col-md-6 first">
+												<div class="form-group">
+													<label for="">First Name</label>
+													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+												</div>
+											</div>
+											<div class="col-md-6 last">
+												<div class="form-group">
+													<label for="">Last Name</label>
+													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+												</div>
+											</div>
+										</div>
+										<div class="overflow">
+											<div class="col-md-6 first">
+												<div class="form-group">
+													<label for="">Email Address</label>
+													<input type="emial" name="" id="" class="form-control mb-10" placeholder="">
+												</div>
+											</div>
+											<div class="col-md-6 last">
+												<div class="form-group">
+													<label for="">Profile Photo</label>
+													<div class="profilephoto">
+														<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="overflow">
+											<div class="col-md-6 first">
+												<div class="form-group">
+													<label for="">Phone Number</label>
+													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+												</div>
+											</div>
+											<div class="col-md-6 last">
+												<div class="form-group">
+													<label for="">Address</label>
+													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+												</div>
+											</div>
+										</div>
+										<div class="overflow">
+											<div class="form-group">
+												<label for="">Description</label>
+												<textarea name="" id="" class="form-control mb-10" placeholder=""></textarea>
+											</div>
+										</div>
+										<div class="overflow" ng-controller="ActivebtnCtrl">
+											<div class="col-md-6 first">
+												<label for="">Status</label><br/>
+												<div class="btn-group btnrounded">
+													<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+													<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+												</div>
+											</div>
+											<div class="col-md-6 last" ng-hide="radioModel=='Inactive'">
+												<div ng-controller="DatepickerDemoCtrl">
+													<label for="">Expiration Date</label>
+													<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+												</div>
+											</div>
+										</div>				
+									</div>							   
+								</md-content>
+							</md-tab>
+							
+							<md-tab label="Credentials">
+								<md-content>														
+									<div class="credintials" ng-controller="AccordionDemoCtrl">
+										<uib-accordion close-others="oneAtATime">
+																											
+											<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
+												<uib-accordion-heading>
+													Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i>
+												</uib-accordion-heading>
+												
+												<div class="credintials">
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Code</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="016201" disabled>
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Status</label>
+														</div>
+														<div class="col-md-8 last">
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															</div>
+														</div>
+													</div>
+													<div class="overflow ta-c">
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+													</div>
+												</div>
+												
+											</uib-accordion-group>
+											
+											<uib-accordion-group is-open="status.open1" class="panel-default">
+												<uib-accordion-heading>
+													Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i>
+												</uib-accordion-heading>
+												
+												<div class="credintials">
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Code</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="161553" disabled>
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Status</label>
+														</div>
+														<div class="col-md-8 last">
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															</div>
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Phone</label>
+														</div>
+														<div class="col-md-8 last">
+															<div class="widget-todo" ng-controller="TodoWidgetCtrl">
+																<form class="form-horizontal" role="form" ng-submit="addTodo()">
+																	<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="todo" placeholder="" required>
+																	<button type="submit" class="btn addpost"><i class="fa fa-plus text-lg"></i></button>
+																</form>
+
+																<ul class="todo-list list-unstyled">
+																  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+																	<div class="view">					 
+																		<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
+																		<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
+																	</div>
+																	<form ng-submit="doneEditing(todo)">
+																		<input class="form-control edit mb-0" ng-trim="false" ng-model="todo.text" ng-blur="doneEditing(todo)" todo-escape="revertEditing(todo)" todo-focus="todo == editedTodo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}">
+																	</form>
+																  </li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<div class="overflow ta-c">
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+													</div>
+												</div>
+												
+											</uib-accordion-group>
+											
+											<uib-accordion-group is-open="status.open2" class="panel-default">
+												<uib-accordion-heading>
+													RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i>
+												</uib-accordion-heading>
+												
+												<div class="credintials">
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Card Number</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Facility Code</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Status</label>
+														</div>
+														<div class="col-md-8 last">
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															</div>
+														</div>
+													</div>
+													<div class="overflow ta-c">
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+													</div>
+												</div>
+												
+											</uib-accordion-group>
+											
+											<uib-accordion-group is-open="status.open3" class="panel-default">
+												<uib-accordion-heading>
+													BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
+												</uib-accordion-heading>
+												
+												<div class="credintials">
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Username</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Password</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Confirm Password</label>
+														</div>
+														<div class="col-md-8 last">
+															<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="overflow">
+														<div class="col-md-4 first">
+															<label for="">Status</label>
+														</div>
+														<div class="col-md-8 last">
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															</div>
+														</div>
+													</div>
+													<div class="overflow ta-c">
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+													</div>
+												</div>
+												
+											</uib-accordion-group>
+										</uib-accordion>
+									</div>														
+								</md-content>
+							</md-tab>
+
+							<md-tab label="User Groups">
+								<md-content>														
+									<div class="usergroup">
+										<section class="tile" fullscreen="isFullscreen02">
+											<div class="tile-header">
+												<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
+												<ul class="controls">
+													<li class="addpopup">
+														<a ng-click="visibiltyUserGroup=false" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+													</li>
+												</ul>
+											</div>
+											<div class="tile-body p-0">
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>Group Name</th>
+															<th width="75">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>24x7</td>
+															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+														</tr>
+														<tr>
+															<td>Office Admin</td>
+															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+														</tr>
+														<tr>
+															<td>Housekeeping Staff</td>
+															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</section>
+									</div>														
+								</md-content>
+							</md-tab>
+
+						</md-tabs>
+					</md-content>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+					<button class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="next()"><i class="fa fa-arrow-right"></i> Next</button>	
+				</div>											
+			</script>
+			<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User</span></a>
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,352 @@
+<div class="page admin">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">	
+		<div class="row">		
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<a ui-sref="app.subadmin.facility.facility">
+						<div class="noback bg-greensea">
+							<div class="row">
+								<div class="col-xs-4 ta-c">
+									<i class="fa fa-map-marker fa-5x"></i>
+								</div>
+								<div class="col-xs-8">								
+									<p class="text-elg text-strong mt-5 mb-5">Facility</p>
+									<span class="text-lg">2</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<a ui-sref="app.subadmin.device.devices">
+						<div class="noback bg-blue">						
+							<div class="row">
+								<div class="col-xs-4 ta-c">
+									<i class="fa fa-fax fa-5x"></i>
+								</div>
+								<div class="col-xs-8">								
+									<p class="text-elg text-strong mt-5 mb-5">Devices</p>
+									<span class="text-lg">35</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<a ui-sref="app.subadmin.user.users">
+						<div class="noback bg-lightred">						
+							<div class="row">
+								<div class="col-xs-4 ta-c">
+									<i class="fa fa-users fa-5x"></i>
+								</div>
+								<div class="col-xs-8">								
+									<p class="text-elg text-strong mt-5 mb-5">Users</p>
+									<span class="text-lg">145</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row" ng-controller="DiagnosticsHelpCtrl">
+			<div class="col-md-12">
+				<section class="tile box-shadow" fullscreen="isFullscreen06">
+					<!--div class="tile-header dvd dvd-btm">
+						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
+					</div-->
+					
+					<div class="hometabs">
+						<div class="title-body table-custom">
+							<uib-tabset class="tabs-dark">
+								<uib-tab heading="Diagnostics">
+									<div class="wrap-reset"> 
+										<div class="row">
+											<div class="col-sm-7">
+												<div class="form-group">													
+													<label for="address1">Filter</label>
+													<input type="text" class="form-control" id="mask02" style="width:73.5%">
+												</div>												
+												<div class="form-group">
+													<div class="row">
+														<div class="form-group col-sm-6 validtime">
+															<label for="">Start Time <small>(HH:MM)</small></label>
+															<span ng-controller="TimepickerDemoCtrl">
+																<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+															</span>
+														</div>
+														<div class="form-group col-sm-6 validtime">
+															<label for="">End Time <small>(HH:MM)</small></label>
+															<span ng-controller="TimepickerDemoCtrl">
+																<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group col-sm-5">
+												<label for="address1">Description/Details of the diagnostic event</label>
+												<textarea class="form-control" style="height:120px; width:90%" ></textarea>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-12 legend ta-c">			
+												<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Search</button>
+												<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Export to Excel</button>
+											</div>
+										</div>
+										<div class="row">
+											<div class="table-responsive filteritems">
+												<table class="table table-custom b-a">
+													<thead>
+														<tr style="background-color: #798992; color: #fff;">
+															<th>Date/Time</th>
+															<th>Error Code</th>
+															<th>Description</th>
+															<th>Details</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>08.11.2016, 16:54</td>
+															<td>C1525</td>
+															<td>Eu deserunt cillum</td>
+															<td>Commodo sunt minim incididunt ipsum dolore veniam nulla Lorem reprehenderit officia.</td>
+														</tr>
+														<tr>
+															<td>06.11.2016, 14:54</td>
+															<td>C1528</td>
+															<td>Et est aliqua</td>
+															<td>Incididunt magna magna aute adipisicing incididunt ullamco sint velit quis irure cillum.</td>
+														</tr>
+														<tr>
+															<td>01.11.2016, 12:15</td>
+															<td>C1581</td>
+															<td>Fugiat irure id</td>
+															<td>Ut esse cillum quis deserunt.</td>
+														</tr>
+														<tr>
+															<td>08.11.2016, 16:54</td>
+															<td>C1525</td>
+															<td>Eu deserunt cillum</td>
+															<td>Commodo sunt minim incididunt ipsum dolore veniam nulla Lorem reprehenderit officia.</td>
+														</tr>
+														<tr>
+															<td>06.11.2016, 14:54</td>
+															<td>C1528</td>
+															<td>Et est aliqua</td>
+															<td>Incididunt magna magna aute adipisicing incididunt ullamco sint velit quis irure cillum.</td>
+														</tr>
+														<tr>
+															<td>01.11.2016, 12:15</td>
+															<td>C1581</td>
+															<td>Fugiat irure id</td>
+															<td>Ut esse cillum quis deserunt.</td>
+														</tr>
+														<tr>
+															<td>08.11.2016, 16:54</td>
+															<td>C1525</td>
+															<td>Eu deserunt cillum</td>
+															<td>Commodo sunt minim incididunt ipsum dolore veniam nulla Lorem reprehenderit officia.</td>
+														</tr>
+														<tr>
+															<td>06.11.2016, 14:54</td>
+															<td>C1528</td>
+															<td>Et est aliqua</td>
+															<td>Incididunt magna magna aute adipisicing incididunt ullamco sint velit quis irure cillum.</td>
+														</tr>
+														<tr>
+															<td>01.11.2016, 12:15</td>
+															<td>C1581</td>
+															<td>Fugiat irure id</td>
+															<td>Ut esse cillum quis deserunt.</td>
+														</tr>
+														<tr>
+															<td>08.11.2016, 16:54</td>
+															<td>C1525</td>
+															<td>Eu deserunt cillum</td>
+															<td>Commodo sunt minim incididunt ipsum dolore veniam nulla Lorem reprehenderit officia.</td>
+														</tr>
+														<tr>
+															<td>06.11.2016, 14:54</td>
+															<td>C1528</td>
+															<td>Et est aliqua</td>
+															<td>Incididunt magna magna aute adipisicing incididunt ullamco sint velit quis irure cillum.</td>
+														</tr>
+														<tr>
+															<td>01.11.2016, 12:15</td>
+															<td>C1581</td>
+															<td>Fugiat irure id</td>
+															<td>Ut esse cillum quis deserunt.</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab heading="Help/FAQ's">
+									<div class="wrap-reset helpfaqs"> 
+										<div class="row">
+											<div class="form-group col-sm-5">
+												<h4 class="hfhead">How to Guide</h4>
+												<div class="credintials" ng-controller="AccordionDemoCtrl">
+													<uib-accordion close-others="oneAtATime">							
+														<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
+															<uib-accordion-heading>
+																How to Adding Cards? <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i>
+															</uib-accordion-heading>															
+															<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+															<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+															<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+														</uib-accordion-group>
+														
+														<uib-accordion-group is-open="status.open1" class="panel-default">
+															<uib-accordion-heading>
+																How to Adding Doors? <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i>
+															</uib-accordion-heading>
+															<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+															<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+														</uib-accordion-group>
+														
+														<uib-accordion-group is-open="status.open2" class="panel-default">
+															<uib-accordion-heading>
+																How to Create Schedules? <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i>
+															</uib-accordion-heading>
+															<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+														</uib-accordion-group>
+														
+														<uib-accordion-group is-open="status.open3" class="panel-default">
+															<uib-accordion-heading>
+																What is the Schedule Exception? <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
+															</uib-accordion-heading>
+															<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+														</uib-accordion-group>
+														
+														<uib-accordion-group is-open="status.open4" class="panel-default">
+															<uib-accordion-heading>
+																How to change password? <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i>
+															</uib-accordion-heading>
+															<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+														</uib-accordion-group>
+														
+														<uib-accordion-group is-open="status.open5" class="panel-default">
+															<uib-accordion-heading>
+																How to Create Devices? <i class="pull-right fa" ng-class="{'fa-minus': status.open5, 'fa-plus': !status.open5}"></i>
+															</uib-accordion-heading>
+															<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+														</uib-accordion-group>
+														
+														<uib-accordion-group is-open="status.open6" class="panel-default">
+															<uib-accordion-heading>
+																How to Create New User? <i class="pull-right fa" ng-class="{'fa-minus': status.open6, 'fa-plus': !status.open6}"></i>
+															</uib-accordion-heading>
+															<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+														</uib-accordion-group>
+													</uib-accordion>
+												</div>
+
+											</div>
+											<div class="form-group col-sm-7 legend">
+												<h4 class="hfhead">How to Video</h4>
+												<div class="row howtovideo">
+													<div class="rvideos">
+														<video width="350" controls>
+															<source src="http://localhost/elika_admin/videos/mov_bbb.mp4" type="video/mp4">
+															<source src="http://localhost/elika_admin/videos/mov_bbb.ogg" type="video/ogg">
+															Your browser does not support HTML5 video.
+														</video>
+														<span class="devicecamname">
+															How to Adding Cards?
+														</span>
+													</div>
+													<div class="rvideos">
+														<video width="350" controls>
+															<source src="http://localhost/elika_admin/videos/mov_bbb.mp4" type="video/mp4">
+															<source src="http://localhost/elika_admin/videos/mov_bbb.ogg" type="video/ogg">
+															Your browser does not support HTML5 video.
+														</video>
+														<span class="devicecamname">
+															How to Adding Doors?
+														</span>
+													</div>													
+													<div class="rvideos">
+														<video width="350" controls>
+															<source src="http://localhost/elika_admin/videos/mov_bbb.mp4" type="video/mp4">
+															<source src="http://localhost/elika_admin/videos/mov_bbb.ogg" type="video/ogg">
+															Your browser does not support HTML5 video.
+														</video>
+														<span class="devicecamname">
+															How to Create Schedules?
+														</span>
+													</div>
+													<div class="rvideos">
+														<video width="350" controls>
+															<source src="http://localhost/elika_admin/videos/mov_bbb.mp4" type="video/mp4">
+															<source src="http://localhost/elika_admin/videos/mov_bbb.ogg" type="video/ogg">
+															Your browser does not support HTML5 video.
+														</video>
+														<span class="devicecamname">
+															What is the Schedule Exception?
+														</span>
+													</div>
+													<div class="rvideos">
+														<video width="350" controls>
+															<source src="http://localhost/elika_admin/videos/mov_bbb.mp4" type="video/mp4">
+															<source src="http://localhost/elika_admin/videos/mov_bbb.ogg" type="video/ogg">
+															Your browser does not support HTML5 video.
+														</video>
+														<span class="devicecamname">
+															How to Create Devices?
+														</span>
+													</div>
+													<div class="rvideos">
+														<video width="350" controls>
+															<source src="http://localhost/elika_admin/videos/mov_bbb.mp4" type="video/mp4">
+															<source src="http://localhost/elika_admin/videos/mov_bbb.ogg" type="video/ogg">
+															Your browser does not support HTML5 video.
+														</video>
+														<span class="devicecamname">
+															How to Create New User?
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+							</uib-tabset>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>	
+		
+	</div>
+</div>

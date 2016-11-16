@@ -1,0 +1,22 @@
+<div class="page page-core page-login">
+	<div class="text-center logo-login"></div>
+	<div class="container w-360 p-15 bg-white mt-40 text-center login-box-shadow">
+
+		<h2 class="login-h2 text-greensea">One Time Password?</h2>
+
+		<form name="form" class="form-validation mt-20" novalidate>
+			<p class="help-block text-left">The OTP has been send on your e-mail address.</p>
+
+			<div class="form-group">
+				<input type="text" class="form-control underline-input" placeholder="OTP" maxlength="6" ng-model="user.otp" required>
+			</div>
+	  
+			<button type="submit" class="btn btn-greensea b-0 br-2" ng-click="login()" ng-disabled='form.$invalid'>Submit</button>
+		</form>
+
+		<div class="bg-slategray lt wrap-reset mt-20">
+			<p class="m-0"><a ui-sref="core.login">Back to login</a></p>
+		</div>
+
+	</div>
+</div>
