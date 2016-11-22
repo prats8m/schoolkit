@@ -98,6 +98,13 @@ var app = angular
     $translateProvider.preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy(null);
   }])
+  
+  /* .config(function ($httpProvider) {
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+}) */
 
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     
@@ -524,20 +531,13 @@ var app = angular
 				  controller: 'DeviceDetailsCtrl',
 				  templateUrl: 'views/tmpl/admin/device/device-details.html'
 				})
-				
-			//admin device dependent-devices
-			.state('app.admin.device.dependent-devices', {
-			  url: '/dependent-devices',
-			  controller: 'DependentDeviceCtrl',
-			  templateUrl: 'views/tmpl/admin/device/dependent-devices.html'
-			})
 			
-				//admin device dependent-devices-details
-				.state('app.admin.device.dependent-devices-details', {
-				  url: '/dependent-devices-details',
-				  controller: 'DependentDevicesDetailsCtrl',
-				  templateUrl: 'views/tmpl/admin/device/dependent-devices-details.html'
-				})
+			//admin device dependent-devices-details
+			.state('app.admin.device.dependent-devices-details', {
+			  url: '/dependent-devices-details',
+			  controller: 'DependentDevicesDetailsCtrl',
+			  templateUrl: 'views/tmpl/admin/device/dependent-devices-details.html'
+			})
 			
 		//admin door
 		.state('app.admin.door', {
@@ -630,10 +630,10 @@ var app = angular
 			})
 			
 			//admin schedule holiday-schedule
-			.state('app.admin.schedule.holiday-schedules', {
-			  url: '/holiday-schedules',
+			.state('app.admin.schedule.holiday-schedule', {
+			  url: '/holiday-schedule',
 			  controller: 'HolidayScheduleCtrl',
-			  templateUrl: 'views/tmpl/admin/schedule/holiday-schedules.html'
+			  templateUrl: 'views/tmpl/admin/schedule/holiday-schedule.html'
 			})
 			
 				//admin schedule view-holiday-schedule
@@ -763,19 +763,35 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state) {
-    $scope.login = function() {
-		if ($scope.user.email=="superadmin@vvdntech.com" && $scope.user.password=="superadmin@123") {
-			$state.go('app.subadmin.dashboard');
-		} else if ($scope.user.email=="subadmin@vvdntech.com" && $scope.user.password=="subadmin@123") {
-			$state.go('app.subadmin.dashboard');
-		} else if ($scope.user.email=="admin@vvdntech.com" && $scope.user.password=="admin@123") {
-			$state.go('app.admin.dashboard');			
-		} else {
-			$state.go('core.login');
-			$scope.message= "Please enter valid email and password.";
-		}
-    };
+  .controller('LoginCtrl', function ($scope, $state,$http) {
+
+	$scope.loginFunction = function(){
+		
+		$http({
+			url: 'http://35.160.142.158:8080/login',
+			method: 'POST',
+			data: $scope.user,
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				if(response.msg == 'Login_Success'){
+					$state.go('app.admin.dashboard');
+				}
+			}else{
+				if(response.msg == 'Invalid_Credentials'){
+					$scope.message = 'Please enter correct email id and password.';
+				}
+			}
+		})
+		.error(function(){
+			
+		})
+
+	}
 });
 
 'use strict';
@@ -788,9 +804,9 @@ app
  */
 app
   .controller('SignupCtrl', function ($scope, $state) {
-    $scope.login = function() {
+    /* $scope.login = function() {
 		$state.go('core.login');
-    };
+    }; */
 });
 
 'use strict';
@@ -916,8 +932,15 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/facility.json').success(function(response){
-		$scope.facilities = response;
+	$http({
+			url: 'http://35.160.142.158:8080/facility/list?limit=20&page_no=1',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+			}
+		}).success(function(response){
+		$scope.facilities = response["data"]["data"];
 		$scope.totalDisplayed = 8;
 		
 		if($scope.facilities.length > $scope.totalDisplayed) {
@@ -944,7 +967,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images/';
+	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
 });
 
@@ -994,7 +1017,7 @@ app
 		$scope.layout = 'grid';
 	};	
 	
-	$http.get('http://localhost/elika/json/subadmin/facility/devices.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/facility/devices.json').success(function(response){
 		$scope.devices = response;
 		$scope.totalDisplayed = 6;
 		
@@ -1018,7 +1041,7 @@ app
 		};		
 	});
 	
-	$http.get('http://localhost/elika/json/subadmin/facility/users.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/facility/users.json').success(function(response){
 		$scope.users = response;
 		$scope.totalDisplayed1 = 6;
 		
@@ -1046,7 +1069,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images/';
+	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
 });
 
@@ -1068,16 +1091,16 @@ app
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete user?')
+		.title('Would you like to delete User?')
 		.content('The standard chunk of Lorem Ipsum used.')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your user has been deleted successfully.';
+			$scope.result = 'Your User has been deleted successfully.';
 			$scope.statusclass = 'alert alert-danger alert-dismissable';
 		}, function() {
-			$scope.result = 'You decided to keep user.';
+			$scope.result = 'You decided to keep User.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
@@ -1096,9 +1119,10 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/users.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/users.json').success(function(response){
 		$scope.users = response;
 		$scope.totalDisplayed = 8;
+		
 		
 		if($scope.users.length > $scope.totalDisplayed) {
 			$scope.lmbtn = {
@@ -1120,35 +1144,11 @@ app
 		};		
 	});
 	
-	$http.get('http://localhost/elika/json/admin/facility/users.json').success(function(response){
-		$scope.ausers = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.ausers.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.ausers.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
-    }	
+    }
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -1235,7 +1235,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -1257,16 +1257,16 @@ app
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete device?')
+		.title('Would you like to delete Doors?')
 		.content('The standard chunk of Lorem Ipsum used.')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your device has been deleted successfully.';
+			$scope.result = 'Your Doors has been deleted successfully.';
 			$scope.statusclass = 'alert alert-danger alert-dismissable';
 		}, function() {
-			$scope.result = 'You decided to keep d.';
+			$scope.result = 'You decided to keep Doors.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
@@ -1285,7 +1285,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/devices.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/devices.json').success(function(response){
 		$scope.devices = response;
 		$scope.totalDisplayed = 8;
 		
@@ -1307,37 +1307,13 @@ app
 				};	
 			}			
 		};
-	});
-
-	$http.get('http://localhost/elika/json/admin/facility/devices.json').success(function(response){
-		$scope.adevices = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.adevices.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.adevices.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
+	});	
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images/';
+	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
 });
 
@@ -1359,13 +1335,13 @@ app
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to remove device?')
+		.title('Would you like to delete device?')
 		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Remove')
+		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your device has been removed successfully.';
+			$scope.result = 'Your device has been deleted successfully.';
 			$scope.statusclass = 'alert alert-danger alert-dismissable';
 		}, function() {
 			$scope.result = 'You decided to keep device.';
@@ -1387,7 +1363,7 @@ app
 		$scope.layout = 'grid';
 	};	
 	
-	$http.get('http://localhost/elika/json/subadmin/devices/dependent-devices.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/devices/dependent-devices.json').success(function(response){
 		$scope.devices = response;
 		$scope.totalDisplayed = 6;
 		
@@ -1411,7 +1387,7 @@ app
 		};		
 	});
 	
-	$http.get('http://localhost/elika/json/subadmin/devices/users.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/devices/users.json').success(function(response){
 		$scope.users = response;
 		$scope.totalDisplayed1 = 6;
 		
@@ -1439,85 +1415,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images/';
-	
-});
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:DependentDeviceCtrl
- * @description
- * # DependentDeviceCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http) {
-    $scope.page = {
-		title: 'Dependent Devices',
-		subtitle: 'So much more to see at a glance.'
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete dependent device?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your dependent device has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.result = 'You decided to keep dependent device.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
-	$http.get('http://localhost/elika/json/admin/facility/dependent-devices.json').success(function(response){
-		$scope.devices = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.devices.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.devices.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-	$scope.imagePath = 'http://localhost/elika/images/';
+	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
 });
 
@@ -1539,13 +1437,13 @@ app
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to remove user?')
+		.title('Would you like to delete user?')
 		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Remove')
+		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your user has been remove successfully.';
+			$scope.result = 'Your user has been deleted successfully.';
 			$scope.statusclass = 'alert alert-danger alert-dismissable';
 		}, function() {
 			$scope.result = 'You decided to keep user.';
@@ -1579,7 +1477,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';
+	$scope.imagePath = 'http://localhost:8080/elika/images';
 });
 
 'use strict';
@@ -1628,7 +1526,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/doors.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/doors.json').success(function(response){
 		$scope.doors = response;
 		$scope.totalDisplayed = 8;
 		
@@ -1652,35 +1550,11 @@ app
 		};				
 	});
 	
-	$http.get('http://localhost/elika/json/admin/doors.json').success(function(response){
-		$scope.adoors = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.adoors.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {				
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed >= $scope.adoors.length) {
-				$scope.lmbtn = {
-					"display" : "none"
-				};				
-			}
-		};				
-	});
-	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';
+	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
 });
 
@@ -1699,7 +1573,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -1801,7 +1675,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/roles.json').success(function(response){
+	$http.get('http://localhost:8080:8080/elika/json/admin/roles.json').success(function(response){
 		$scope.roles = response;
 		$scope.totalDisplayed = 8;
 		
@@ -1825,35 +1699,11 @@ app
 		};				
 	});
 	
-	$http.get('http://localhost/elika/json/admin/roles.json').success(function(response){
-		$scope.aroles = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.aroles.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {				
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed >= $scope.aroles.length) {
-				$scope.lmbtn = {
-					"display" : "none"
-				};				
-			}
-		};				
-	});
-	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -1872,7 +1722,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -1922,7 +1772,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/users.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/users.json').success(function(response){
 		$scope.users = response;
 		$scope.totalDisplayed = 8;
 		
@@ -1946,35 +1796,11 @@ app
 		};		
 	});
 	
-	$http.get('http://localhost/elika/json/admin/admin.json').success(function(response){
-		$scope.admin = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.admin.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.admin.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -1993,7 +1819,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -2043,7 +1869,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/schedules.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/schedules.json').success(function(response){
 		$scope.schedules = response;
 		$scope.totalDisplayed = 8;
 		
@@ -2071,7 +1897,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -2090,7 +1916,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
 
@@ -2140,7 +1966,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/schedules.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/schedules.json').success(function(response){
 		$scope.schedules = response;
 		$scope.totalDisplayed = 8;
 		
@@ -2168,7 +1994,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';
+	$scope.imagePath = 'http://localhost:8080/elika/images';
 		
 });
 
@@ -2184,7 +2010,7 @@ app
 app
   .controller('HolidayScheduleCtrl', function ($scope, $mdDialog, $http) {
      $scope.page = {
-      title: 'Holiday Schedules',
+      title: 'Holiday Schedule',
       subtitle: 'So much more to see at a glance.'
     };
 	
@@ -2219,7 +2045,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/schedules.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/schedules.json').success(function(response){
 		$scope.schedules = response;
 		$scope.totalDisplayed = 8;
 		
@@ -2247,7 +2073,7 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';
+	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
 });
 
@@ -2266,7 +2092,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
   
@@ -2316,7 +2142,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost/elika/json/subadmin/technician-users.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/technician-users.json').success(function(response){
 		$scope.users = response;
 		$scope.totalDisplayed = 8;
 		
@@ -2340,35 +2166,11 @@ app
 		};		
 	});
 	
-	$http.get('http://localhost/elika/json/admin/technician-users.json').success(function(response){
-		$scope.tusers = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.tusers.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.tusers.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost/elika/images';
+	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
 });
 
@@ -2387,7 +2189,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
   
@@ -2424,7 +2226,7 @@ app
       });
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 });
   
@@ -2443,7 +2245,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 }); 
   
@@ -2462,7 +2264,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 }); 
 
@@ -2481,7 +2283,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/videos';	
+	$scope.imagePath = 'http://localhost:8080/elika/videos';	
 	
 }); 
   
@@ -3317,10 +3119,24 @@ app
 
   .controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
 
+  	$scope.timezones = {
+    availableOptions: [
+      {id: '1', name: 'USA (Samoa)'},
+      {id: '2', name: 'USA (Pacific)'},
+      {id: '3', name: 'USA (Eastern)'},
+      {id: '2', name: 'USA (Hawaii-Aleutian)'},
+      {id: '3', name: 'USA (Mountain)'},
+      {id: '2', name: 'USA (Atlantic)'},
+      {id: '3', name: 'USA (Central)'},
+      {id: '2', name: 'USA (Chamorro)'}
+    ]
+   };
+
+
     $scope.items = ['item1', 'item2', 'item3'];
 
     $scope.open = function(size) {
-
+	
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
@@ -3338,6 +3154,35 @@ app
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
+	
+	
+  })
+  
+  
+  .controller('ModalAddUser', function ($scope, $uibModal, $log, $http) {
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function(size) {
+	
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceAddUserCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+	
   })
 
   .controller('ModalDemo1Ctrl', function ($scope, $uibModal, $log) {
@@ -3433,7 +3278,32 @@ app
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
+	
+	
   })
+  
+  
+  .controller('ModalInstanceAddUserCtrl', function ($scope, $uibModalInstance, items) {
+
+    $scope.items = items;
+    $scope.selected = {
+      item: $scope.items[0]
+    };
+
+    $scope.ok = function () {
+      $uibModalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+	
+	$scope.next = function(){
+		
+	}
+	
+  })
+  
 
   .controller('SplashDemoCtrl', function ($scope, $uibModal, $log) {
     $scope.items = ['item1', 'item2', 'item3'];
@@ -3788,57 +3658,28 @@ app
       Active: true,
       Inactive: false
     };
-	
-	$scope.$watch('radioModel', function (newValue, oldValue) {
-		
-	});
   })
   
   .controller('AccessbtnCtrl', function ($scope) {
     $scope.singleModel = 1;
 
-    $scope.radioModel = 'Full';
+    $scope.radioModel = 'Restricted';
 
     $scope.checkModel = {
-      Full: true,
-      Restricted: false
+      Full: false,
+      Restricted: true
     };
-	
-	$scope.$watch('radioModel', function (newValue, oldValue) {
-		
-	});
-	
   })
   
-  .controller('PrimarybtnCtrl', function ($scope) {
+  .controller('MasterbtnCtrl', function ($scope) {
     $scope.singleModel = 1;
 
-    $scope.radioModel = 'Primary';
+    $scope.radioModel = 'Slave';
 
     $scope.checkModel = {
-      Primary: true,
-      Dependent: false
+      Slave: true,
+      Master: false
     };
-	
-	$scope.$watch('radioModel', function (newValue, oldValue) {
-		
-	});
-	
-  })
-  
-  .controller('DependentbtnCtrl', function ($scope) {
-    $scope.singleModel = 1;
-
-    $scope.radioModel = 'Dependent';
-
-    $scope.checkModel = {
-      Primary: false,
-      Dependent: true
-    };
-	
-	$scope.$watch('radioModel', function (newValue, oldValue) {
-		
-	});
 	
   })
   
@@ -7724,7 +7565,7 @@ app
 	  imagename: 1,
     }];
 	
-	$scope.imagePath = 'http://localhost/elika/images/';
+	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
   });
 
@@ -7771,7 +7612,7 @@ app
       subtitle: 'Place subtitle here...'
     };
 	
-	$scope.imagePath = 'http://localhost/elika/images/';
+	$scope.imagePath = 'http://localhost:8080:8080/elika/images/';
 	
 	
   });
@@ -10203,4 +10044,43 @@ app
 
   });
 
+  
+ app.directive('addUser', function() {
+  return {
+    restrict: 'E',
+	replace : true,
+	controller : "AddUserCtrl",
+    templateUrl: '/elika/views/tmpl/admin/user/add-user.html',
+	
+  };
+});
 
+app.controller('AddUserCtrl',function($scope){
+		
+	$scope.AddUserFunction = function(){
+		$http({
+			url: 'http://35.160.142.158:8080/user/add',
+			method: 'POST',
+			data: $scope.user,
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				if(response.msg == 'Login_Success'){
+					$state.go('app.admin.dashboard');
+				}
+			}else{
+				if(response.msg == 'Invalid_Credentials'){
+					$scope.message = 'Please enter correct email id and password.';
+				}
+			}
+		})
+		.error(function(){
+			
+		})
+
+	}
+});
