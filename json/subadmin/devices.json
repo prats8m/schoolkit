@@ -1,0 +1,317 @@
+[
+	{
+		"serialno":"1",
+		"facility":"USA Corporate Services",
+		"title":"Reception Room",
+		"model":"Elika-Doorbell",
+		"noofslaves":"3 Dependent Devices",
+		"noofuser":"3",
+		"imagename":"1"
+	},
+	{
+		"serialno":"2",
+		"facility":"Aerzen USA Corporation",
+		"title":"Conference Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"2",
+		"imagename":"2"
+	},
+	{
+		"serialno":"3",
+		"facility":"USA Corporate Services",
+		"title":"Server Room",
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"1"
+	},
+	{
+		"serialno":"4",
+		"facility":"USA Corporate Services",
+		"title":"Meeting Room",
+		"model":"Elika-460",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"25",
+		"imagename":"2"
+	},
+	{
+		"serialno":"5",
+		"facility":"USA Corporate Services",
+		"title":"Development Room",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"6",
+		"facility":"Aerzen USA Corporation",
+		"title":"Waiting Room",
+		"model":"Elika-Intercom",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"2"
+	},
+	{
+		"serialno":"7",
+		"facility":"USA Corporate Services",
+		"title":"Boardroom",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"8",
+		"facility":"USA Corporate Services",
+		"title":"Management Area",
+		"model":"Elika-Doorbell",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"15",
+		"imagename":"2"
+	},
+	{
+		"serialno":"9",		
+		"facility":"Aerzen USA Corporation",
+		"title":"Director Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"10",
+		"facility":"Aerzen USA Corporation",
+		"title":"Inventory Room",		
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"15",
+		"imagename":"2"
+	},
+	{
+		"serialno":"11",
+		"facility":"USA Corporate Services",
+		"title":"Reception Room",
+		"model":"Elika-Doorbell",
+		"noofslaves":"1 Dependent Device",
+		"noofuser":"2",
+		"imagename":"1"
+	},
+	{
+		"serialno":"12",
+		"facility":"Aerzen USA Corporation",
+		"title":"Conference Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"2",
+		"imagename":"2"
+	},
+	{
+		"serialno":"13",
+		"facility":"Aerzen USA Corporation",
+		"title":"Server Room",
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"1"
+	},
+	{
+		"serialno":"14",
+		"facility":"USA Corporate Services",
+		"title":"Meeting Room",
+		"model":"Elika-460",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"25",
+		"imagename":"2"
+	},
+	{
+		"serialno":"15",
+		"facility":"USA Corporate Services",
+		"title":"Development Room",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"16",
+		"facility":"USA Corporate Services",
+		"title":"Waiting Room",
+		"model":"Elika-Intercom",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"2"
+	},
+	{
+		"serialno":"17",
+		"facility":"Aerzen USA Corporation",
+		"title":"Boardroom",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"18",
+		"facility":"USA Corporate Services",
+		"title":"Management Area",
+		"model":"Elika-Doorbell",
+		"noofslaves":"2 Dependent Devices",
+		"noofuser":"15",
+		"imagename":"2"
+	},
+	{
+		"serialno":"19",
+		"facility":"Aerzen USA Corporation",
+		"title":"Director Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"20",
+		"facility":"USA Corporate Services",
+		"title":"Inventory Room",
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"15",
+		"imagename":"2"
+	},
+	{
+		"serialno":"21",
+		"facility":"USA Corporate Services",
+		"title":"Reception Room",
+		"model":"Elika-Doorbell",
+		"noofslaves":"1 Dependent Device",
+		"noofuser":"2",
+		"imagename":"1"
+	},
+	{
+		"serialno":"22",
+		"facility":"USA Corporate Services",
+		"title":"Conference Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"2",
+		"imagename":"2"
+	},
+	{
+		"serialno":"23",
+		"facility":"Aerzen USA Corporation",
+		"title":"Server Room",
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"1"
+	},
+	{
+		"serialno":"24",
+		"facility":"USA Corporate Services",
+		"title":"Meeting Room",
+		"model":"Elika-460",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"25",
+		"imagename":"2"
+	},
+	{
+		"serialno":"25",
+		"facility":"USA Corporate Services",
+		"title":"Development Room",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"26",
+		"facility":"Aerzen USA Corporation",
+		"title":"Waiting Room",
+		"model":"Elika-Intercom",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"2"
+	},
+	{
+		"serialno":"27",
+		"facility":"Aerzen USA Corporation",
+		"title":"Boardroom",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"28",
+		"facility":"USA Corporate Services",
+		"title":"Management Area",
+		"model":"Elika-Doorbell",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"15",
+		"imagename":"2"
+	},
+	{
+		"serialno":"29",
+		"facility":"USA Corporate Services",
+		"title":"Director Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	},
+	{
+		"serialno":"30",
+		"facility":"USA Corporate Services",
+		"title":"Inventory Room",		
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"15",
+		"imagename":"2"
+	},
+	{
+		"serialno":"31",
+		"facility":"Aerzen USA Corporation",
+		"title":"Reception Room",
+		"model":"Elika-Doorbell",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"2",
+		"imagename":"1"
+	},
+	{
+		"serialno":"32",
+		"facility":"USA Corporate Services",
+		"title":"Conference Room",
+		"model":"Elika-76(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"2",
+		"imagename":"2"
+	},
+	{
+		"serialno":"33",
+		"facility":"USA Corporate Services",
+		"title":"Server Room",
+		"model":"Elika-92(s)",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"3",
+		"imagename":"1"
+	},
+	{
+		"serialno":"34",
+		"facility":"USA Corporate Services",
+		"title":"Meeting Room",
+		"model":"Elika-460",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"25",
+		"imagename":"2"
+	},
+	{
+		"serialno":"35",
+		"facility":"Aerzen USA Corporation",
+		"title":"Development Room",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
+		"noofuser":"22",
+		"imagename":"1"
+	}	
+]

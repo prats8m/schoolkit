@@ -29,8 +29,26 @@
 									<i class="fa fa-fax fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">35</p>
-									<span class="text-lg">Devices</span>
+									<p class="text-elg text-strong mt-5 mb-5">15</p>
+									<span class="text-lg">Primary Devices</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">					
+					<a ui-sref="app.admin.device.dependent-devices">
+						<div class="noback bg-greensea">
+							<div class="row">
+								<div class="col-xs-4 ta-c">
+									<i class="fa fa-mobile fa-5x"></i>
+								</div>
+								<div class="col-xs-8">								
+									<p class="text-elg text-strong mt-5 mb-5">7</p>
+									<span class="text-lg">Dependent Devices</span>
 								</div>
 							</div>
 						</div>
@@ -40,35 +58,19 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.user.users">
+						<div class="noback bg-lightred">						
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
+									<i class="fa fa-users fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">3</p>
-									<span class="text-lg">Dependent Devices</span>
+									<p class="text-elg text-strong mt-5 mb-5">95</p>
+									<span class="text-lg">Users</span>
 								</div>
 							</div>
 						</div>
-					
-				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<div class="noback bg-lightred">						
-						<div class="row">
-							<div class="col-xs-5 ta-c">
-								<i class="fa fa-users fa-5x"></i>
-							</div>
-							<div class="col-xs-7">								
-								<p class="text-elg text-strong mt-5 mb-5">3</p>
-								<span class="text-lg">Users</span>
-							</div>
-						</div>
-					</div>
+					</a>
 				</div>
 			</div>			
 		</div>
@@ -88,7 +90,7 @@
 						<ul class="list-inline tbox m-0">
 							<li class="tcol bg-blue dker p-10">
 								<h2 class="m-0">1</h2>
-								<span class="text-transparent-white">Users</span>
+								<span class="text-transparent-white">User</span>
 							</li>
 						</ul>
 					</div>  
@@ -110,8 +112,7 @@
 						<uib-tabset class="tabs-dark"> 
 							<uib-tab heading="Device Detail">
 								<div class="wrap-reset"> 
-									<div class="profile-settings"> 
-									
+									<div class="profile-settings">
 										<div class="row">
 											<div class="form-group col-md-12 legend">
 												<h4><strong>Device</strong> Details</h4>
@@ -120,13 +121,14 @@
 										
 										<div class="row">
 											<div class="form-group col-sm-12 profiledetail">
-												<p><label>Name</label> Reception 460S</p>
-												<p><label>Model</label> Elika-460(s)</p>
+												<p><label>Facility Name</label> USA Corporate Services</p>
+												<p><label>Device Name</label> Reception 460S</p>
+												<p><label>Model Name</label> Elika-460(s)</p>
 												<p><label>Serial No.</label> eliak46010192016s</p>
-												<p><label>Registration No.</label> 10192016eliak460s</p>
-												<p><label>Manufacturing Date</label> 21/01/2015</p>
-												<p><label>Modification Date</label> 15/06/2017</p>
-												<p><label>Features</label> RFID &nbsp;|&nbsp; BLE</p>												
+												<p><label>Device Type</label> Dependent Device</p>
+												<p><label>Technician</label> Peter</p>
+												<p><label>Door</label> Main Gate Front</p>
+												<p><label>Features</label> RFID &nbsp;|&nbsp; BLE</p>
 											</div>											
 										</div>
 										
@@ -179,8 +181,8 @@
 							<uib-tab heading="Users">
 								<div class="wrap-reset"> 
 									<div class="table-custom">
-										<div class="row pos-r">
-											<div class="col-md-6 filterorder">
+										<div class="row pos-r mb-20">
+											<div class="col-md-3 filterorder">
 												<label class="control-label" ng-init="filtershow=true">
 													<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 												</label>
@@ -193,6 +195,336 @@
 												</label>
 											</div>
 											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-8 search">
+														<input type="text" class="form-control" placeholder="Search by text....">
+														<button class="btn btn-default br-2-r" type="button">Search</button>
+													</div>
+													<div class="col-md-4 ta-r">
+														<div ng-controller="ModalDemo1Ctrl">
+															<script type="text/ng-template" id="myModalContent1.html">
+																<div class="modal-header"><h4 class="modal-title custom-font">Add User</h4></div>
+																<div class="hometabs">
+																	<md-content class="md-padding tabsdemoDynamicHeight">
+																		<md-tabs md-dynamic-height md-border-bottom>
+																		
+																			<md-tab label="Account">
+																				<md-content>								
+																					<div class="account">
+																						<div class="overflow">
+																							<div class="col-md-6 first">
+																								<div class="form-group">
+																									<label for="">First Name</label>
+																									<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																							<div class="col-md-6 last">
+																								<div class="form-group">
+																									<label for="">Last Name</label>
+																									<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																						</div>
+																						<div class="overflow">
+																							<div class="col-md-6 first">
+																								<div class="form-group">
+																									<label for="">Email Address</label>
+																									<input type="emial" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																							<div class="col-md-6 last">
+																								<div class="form-group">
+																									<label for="">Profile Photo</label>
+																									<div class="profilephoto">
+																										<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																										<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																						<div class="overflow">
+																							<div class="col-md-6 first">
+																								<div class="form-group">
+																									<label for="">Phone Number</label>
+																									<input type="tel" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																							<div class="col-md-6 last">
+																								<div class="form-group">
+																									<label for="">Address</label>
+																									<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																						</div>
+																						<div class="overflow">
+																							<div class="form-group">
+																								<label for="">Description</label>
+																								<textarea name="" id="" class="form-control mb-10" placeholder=""></textarea>
+																							</div>
+																						</div>
+																						<div class="overflow" ng-controller="ActivebtnCtrl">
+																							<div class="col-md-6 first">
+																								<label for="">Status</label><br/>
+																								<div class="btn-group btnrounded">
+																									<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																									<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																								</div>
+																							</div>
+																							<div class="col-md-6 last" ng-hide="radioModel=='Inactive'">
+																								<div ng-controller="DatepickerDemoCtrl">
+																									<label for="">Expiration Date</label>
+																									<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+																								</div>
+																							</div>
+																						</div>				
+																					</div>							   
+																				</md-content>
+																			</md-tab>
+																			
+																			<md-tab label="Credentials">
+																				<md-content>														
+																					<div class="credintials" ng-controller="AccordionDemoCtrl">
+																						<uib-accordion close-others="oneAtATime">
+																																							
+																							<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
+																								<uib-accordion-heading>
+																									Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Code</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="016201" disabled>
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																							
+																							<uib-accordion-group is-open="status.open1" class="panel-default">
+																								<uib-accordion-heading>
+																									Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Code</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="161553" disabled>
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Phone</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="widget-todo" ng-controller="TodoWidgetCtrl">
+																												<form class="form-horizontal" role="form" ng-submit="addTodo()">
+																													<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="todo" placeholder="" required>
+																													<button type="submit" class="btn addpost"><i class="fa fa-plus text-lg"></i></button>
+																												</form>
+
+																												<ul class="todo-list list-unstyled">
+																												  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+																													<div class="view">					 
+																														<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
+																														<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
+																													</div>
+																													<form ng-submit="doneEditing(todo)">
+																														<input class="form-control edit mb-0" ng-trim="false" ng-model="todo.text" ng-blur="doneEditing(todo)" todo-escape="revertEditing(todo)" todo-focus="todo == editedTodo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}">
+																													</form>
+																												  </li>
+																												</ul>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																							
+																							<uib-accordion-group is-open="status.open2" class="panel-default">
+																								<uib-accordion-heading>
+																									RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Card Number</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Facility Code</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																							
+																							<uib-accordion-group is-open="status.open3" class="panel-default">
+																								<uib-accordion-heading>
+																									BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Username</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Password</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Confirm Password</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																						</uib-accordion>
+																					</div>														
+																				</md-content>
+																			</md-tab>
+
+																			<md-tab label="User Groups">
+																				<md-content>														
+																					<div class="usergroup">
+																						<section class="tile" fullscreen="isFullscreen02">
+																							<div class="tile-header">
+																								<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
+																								<ul class="controls">
+																									<li class="addpopup">
+																										<a class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+																									</li>
+																								</ul>
+																							</div>
+																							<div class="tile-body p-0">
+																								<table class="table table-bordered">
+																									<thead>
+																										<tr>
+																											<th>Group Name</th>
+																											<th width="75">Action</th>
+																										</tr>
+																									</thead>
+																									<tbody>
+																										<tr>
+																											<td>24x7</td>
+																											<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																										</tr>
+																										<tr>
+																											<td>Office Hrs</td>
+																											<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																										</tr>
+																										<tr>
+																											<td>Housekeeping Hrs</td>
+																											<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</div>
+																						</section>
+																					</div>														
+																				</md-content>
+																			</md-tab>
+																		</md-tabs>
+																	</md-content>
+																</div>
+																<div class="modal-footer">
+																	<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																	<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
+																</div>											
+															</script>
+															<button ng-click="open()" class="btn btn-default br-2 btnh-38">Add User</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
 												<div class="gridlistbar ta-r pull-right">
 													<label class="control-label">View by</label>
 													<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
@@ -226,19 +558,100 @@
 														<a ui-sref="app.admin.user.user-profile"><img ng-src="{{imagePath}}/users/{{ user.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
 														<md-card-content>
 															<h2 class="md-title">{{ user.name }}</h2>
-															<p>{{ user.group }}</p>
 															<p>{{ user.phone }}</p>
 														</md-card-content>
 														<div class="md-actions" layout="row" layout-align="center center">
 															<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.user-profile">View</a>
 															<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.user.user-profile">Edit</a>
-															<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+															<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Remove</a>
 														</div>
 													</md-card>
 												</md-content>
 											</div>
 										</div>
 									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Edit Device">
+								<div class="wrap-reset"> 
+									<form name="form1" role="form">
+										<div class="modal-body">											
+											<div class="row">
+												<div class="form-group col-sm-6">
+													<label for="">Device Name</label>
+													<input type="text" name="" id="" class="form-control mb-10" value="Reception 460S">
+												</div>
+												<div class="form-group col-sm-6">
+													<label for="">Model Name</label>
+													<input type="text" name="" id="" class="form-control mb-10" value="Elika-460(s)" disabled>
+													
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-sm-6">
+													<label for="">Serial Number</label>
+													<input type="text" name="" id="" class="form-control mb-10" value="eliak46010192016s" disabled>
+												</div>
+												<div class="form-group col-sm-6">
+													<label for="">Technician</label><br/>
+													<select class="form-control">
+														<option>Arnold</option>
+														<option selected>Peter</option>
+														<option>Paracosm</option>
+														<option>Jason</option>
+														<option>Paul</option>
+														<option>Vin</option>
+														<option>Dwayne</option>
+													</select>
+													<small class="pull-right" style="margin-bottom:-5px;"><a ui-sref="app.admin.support.technician">Add Technician</a></small>
+												</div>
+											</div>											
+											<div class="row">
+												<div class="form-group col-sm-6" ng-controller="DependentbtnCtrl">
+													<label for="">Device Type</label><br/>
+													<div class="btn-group btnrounded" >
+														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Primary'">Primary</label>
+														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Dependent'">Dependent</label>
+													</div>
+													<div class="slavevalues" ng-hide="radioModel=='Primary'">
+														<select class="form-control mb-10">
+															<option>Select Primary Device</option>
+															<option selected>Reception Room</option>
+															<option>Conference Room</option>
+															<option>Server Room</option>
+															<option>Meeting Room</option>
+															<option>Development Room</option>
+															<option>Boardroom</option>
+															<option>Managers Room</option>
+															<option>Director Room</option>
+															<option>Inventory Room</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group col-sm-6">
+													<label for="">Doors</label><br/>
+													<select multiple chosen="{width: '100%'}">
+														<option selected>Main Gate Front</option>
+														<option>Main Gate Back</option>
+														<option>Exit Gate Front</option>
+														<option>Exit Gate Back</option>
+														<option>Parking Entry Gate</option>
+														<option>Parking Exit Gate</option>
+														<option>Pool Gate</option>
+														<option>Gym Gate</option>
+													</select>
+													<small class="pull-right"><a ui-sref="app.admin.door.doors">Add Door</a></small>
+												</div>
+											</div>											
+										</div>
+										<div class="row">
+											<div class="form-group col-md-12 legend mt-20">
+												<p></p>
+												<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+												<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+											</div>
+										</div>
+									</form>
 								</div>
 							</uib-tab>
 						</uib-tabset>

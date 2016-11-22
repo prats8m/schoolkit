@@ -16,7 +16,8 @@
   width: 100%;
   height: 100%;
   padding: 60px 10px;
-  background-color: #3f4e62; }
+  background:#3f4e62 url(../images/bg.jpg);
+    background-size: cover;  }
 
 .page-tree {
   height: 100%;
@@ -1789,7 +1790,7 @@ html.boxed-layout {
     left: 80px; } }
 @media only screen and (max-width: 768px) {
   .appWrapper.header-fixed.aside-fixed #content {
-    top: 90px; }
+    top: 45px; }
   .appWrapper.header-fixed.aside-fixed:not(.sidebar-sm):not(.sidebar-xs) #content {
     left: 40px; }
   .appWrapper.aside-static #content {
@@ -1916,7 +1917,7 @@ html.boxed-layout {
       #header .nav-left > li > a {
         color: rgba(255, 255, 255, 0.7);
         line-height: 42px;
-        padding: 0 10px;
+        padding: 0 5px;
         display: inline-block;
         position: relative; }
         #header .nav-right > li > a:hover,
@@ -10438,6 +10439,9 @@ body {
 .mt-20 {
   margin-top: 20px !important; }
 
+.mt-15 {
+  margin-top: 15px !important; }
+  
 .mt-10 {
   margin-top: 10px !important; }
 

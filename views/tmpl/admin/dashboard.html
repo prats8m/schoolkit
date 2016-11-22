@@ -8,11 +8,8 @@
 						<div class="bg-transparent">
 							<div class="row">
 								<div class="col-md-12">
-									<h3 class="custom-font"><a ui-sref="app.admin.facility.facility-details">USA Corporate Services</a></h3>
+									<h3 class="custom-font h3link"><a ui-sref="app.admin.facility.facility-details">USA Corporate Services</a></h3>
 									<p>{{page.subtitle}}</p>									
-								</div>
-								<div class="tile-body p-0 realtimeloader" ng-controller="RealtimeLoadCtrl">
-									<rickshaw rickshaw-options="options1" rickshaw-features="features1" rickshaw-series="series1"></rickshaw>
 								</div>
 							</div>
 						</div>
@@ -36,10 +33,10 @@
 					<div class="back bg-blue">
 						<div class="row">             
 							<div class="col-xs-6">
-								<a ui-sref="app.admin.device.devices"><i class="fa fa-fax fa-2x"></i> Devices</a>
+								<a ui-sref="app.admin.device.devices"><i class="fa fa-fax fa-2x"></i> Primary</a>
 							</div>
 							<div class="col-xs-6">
-								<a ui-sref="app.admin.settings"><i class="fa fa-cog fa-2x"></i> Settings</a>
+								<a ui-sref="app.admin.device.dependent-devices"><i class="fa fa-mobile fa-2x"></i> Dependent</a>
 							</div>
 						</div>
 					</div>
@@ -100,13 +97,15 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-greensea text-center p-20">
-						<i class="fa fa-video-camera fa-3x"></i> 
-					</div>
+					<a ui-sref="app.admin.camera.camera-dvr">
+						<div class="tile-widget bg-greensea text-center p-20">
+							<i class="fa fa-video-camera fa-3x"></i> 
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mb-0">
 							<li class="tcol">
-								<a ui-sref="app.subadmin.camera.camera-dvr">
+								<a ui-sref="app.admin.camera.camera-dvr">
 									<h3>Camera DVR</h3>
 									<span class="text-muted">See live and recorded stream</span>
 								</a>
@@ -121,9 +120,11 @@
 		<div class="row">
 			<div class="card-container col-lg-4 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-cyan text-center p-30">
-						<i class="fa fa-key fa-3x"></i>
-					</div>
+					<a ui-sref="app.admin.permissions.roles">
+						<div class="tile-widget bg-cyan text-center p-30">
+							<i class="fa fa-key fa-3x"></i>
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mt-10">
 							<li class="b-r tcol">
@@ -145,14 +146,16 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-dutch text-center p-30">
-						<i class="fa fa-wrench fa-3x"></i>
-					</div>
+					<a ui-sref="app.admin.support.technician">
+						<div class="tile-widget bg-dutch text-center p-30">
+							<i class="fa fa-wrench fa-3x"></i>
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mt-10">
 							<li class="tcol">
 								<a ui-sref="app.admin.support.technician">
-									<h3>Technician</h3>
+									<h3>Technicians</h3>
 									<span class="text-muted">Customer support Elika</span>
 								</a>
 							</li>
@@ -163,17 +166,13 @@
 			
 			<div class="card-container col-lg-5 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-drank text-center p-30">
-						<i class="fa fa-calendar fa-3x"></i>
-					</div>
+					<a ui-sref="app.admin.schedule.schedules">
+						<div class="tile-widget bg-drank text-center p-30">
+							<i class="fa fa-calendar fa-3x"></i>
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mt-10">
-							<li class="b-r tcol">
-								<a ui-sref="app.admin.schedule.schedules">
-									<h3>Schedule</h3>
-									<span class="text-muted">Management</span>
-								</a>
-							</li>
 							<li class="b-r tcol">
 								<a ui-sref="app.admin.schedule.schedule-groups">
 									<h3>Schedule Groups</h3>
@@ -181,8 +180,8 @@
 								</a>
 							</li>
 							<li class="tcol">
-								<a ui-sref="app.admin.schedule.holiday-schedule">
-									<h3>Holiday Schedule</h3>
+								<a ui-sref="app.admin.schedule.holiday-schedules">
+									<h3>Holiday Schedules</h3>
 									<span class="text-muted">Management</span>
 								</a>
 							</li>
@@ -191,19 +190,18 @@
 				</section>
 			</div>
 			
-		</div>
-		
-		<div class="row">
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-warning text-center p-30">
-						<i class="fa fa-bullhorn fa-3x"></i>
-					</div>
+					<a ui-sref="app.admin.help.message-notification">
+						<div class="tile-widget bg-warning text-center p-30">
+							<i class="fa fa-bullhorn fa-3x"></i>
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mt-10">
 							<li class="tcol">
 								<a ui-sref="app.admin.help.message-notification">
-									<h3>Message &amp; Notification</h3>
+									<h3>Messages &amp; Notifications</h3>
 									<span class="text-muted">Meet with next door</span>
 								</a>
 							</li>
@@ -214,14 +212,16 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-slategray text-center p-30">
-						<i class="fa fa-user-md fa-3x"></i>
-					</div>
+					<a ui-sref="app.admin.help.diagnostics-help">
+						<div class="tile-widget bg-slategray text-center p-30">
+							<i class="fa fa-user-md fa-3x"></i>
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mt-10">
 							<li class="tcol">
 								<a ui-sref="app.admin.help.diagnostics-help">
-									<h3>Diagnostics and Help</h3>
+									<h3>Diagnostics and Helps</h3>
 									<span class="text-muted">Filter and solve your problem</span>
 								</a>
 							</li>
@@ -232,9 +232,11 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<section class="tile tile-simple hovershadow">
-					<div class="tile-widget bg-lightred text-center p-30">
-						<i class="fa fa-history fa-3x"></i>
-					</div>
+					<a ui-sref="app.admin.help.history-events">
+						<div class="tile-widget bg-lightred text-center p-30">
+							<i class="fa fa-history fa-3x"></i>
+						</div>
+					</a>
 					<div class="text-center overflow">
 						<ul class="list-inline tbox mt-10">
 							<li class="tcol">
@@ -248,8 +250,25 @@
 				</section>
 			</div>
 			
-			
-			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<section class="tile tile-simple hovershadow">
+					<a ui-sref="app.admin.settings">
+						<div class="tile-widget bg-blue text-center p-30">
+							<i class="fa fa-cog fa-3x"></i>
+						</div>
+					</a>
+					<div class="text-center overflow">
+						<ul class="list-inline tbox mt-10">
+							<li class="tcol">
+								<a ui-sref="app.admin.settings">
+									<h3>Settings</h3>
+									<span class="text-muted">Modify web/app features and behaviours</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
 		</div>
 	</div>
 </div>

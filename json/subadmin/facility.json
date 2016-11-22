@@ -1,0 +1,18 @@
+[
+	{
+		"serialno":"1",
+		"title":"USA Corporate Services",
+		"location":"19 W 34th St #1018, NY 10001, USA",
+		"noofdevices":"22",
+		"noofuser":"95",
+		"imagename":"1"
+	},
+	{
+		"serialno":"2",
+		"title":"Aerzen USA Corporation",
+		"location":"108 IndWay, Coatesville, PA 19320, USA",
+		"noofdevices":"13",
+		"noofuser":"50",
+		"imagename":"2"
+	}	
+]

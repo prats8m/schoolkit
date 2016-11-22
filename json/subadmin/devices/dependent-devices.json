@@ -1,0 +1,23 @@
+[
+	{
+		"serialno":"1",
+		"title":"Reception 460S",
+		"model":"Elika-460(s)",
+		"noofuser":"1",
+		"imagename":"3"
+	},
+	{
+		"serialno":"2",
+		"title":"Reception 460K",
+		"model":"Elika-460(k)",
+		"noofuser":"1",
+		"imagename":"4"
+	},
+	{
+		"serialno":"3",
+		"title":"Reception 460KS",
+		"model":"Elika-460(ks)",
+		"noofuser":"1",
+		"imagename":"5"
+	}
+]

@@ -22,15 +22,15 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					<a ui-sref="app.admin.facility.facility">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.device.devices">
+						<div class="noback bg-blue">						
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-map-marker fa-5x"></i>
+									<i class="fa fa-fax fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Facility</p>
-									<span class="text-lg">2</span>
+									<p class="text-elg text-strong mt-5 mb-5">15</p>
+									<span class="text-lg">Primary Devices</span>
 								</div>
 							</div>
 						</div>
@@ -39,16 +39,16 @@
 			</div>
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
+				<div class="card">					
+					<a ui-sref="app.admin.device.dependent-devices">
+						<div class="noback bg-greensea">
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+									<i class="fa fa-mobile fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Devices</p>
-									<span class="text-lg">35</span>
+									<p class="text-elg text-strong mt-5 mb-5">7</p>
+									<span class="text-lg">Dependent Devices</span>
 								</div>
 							</div>
 						</div>
@@ -65,8 +65,8 @@
 									<i class="fa fa-users fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Users</p>
-									<span class="text-lg">145</span>
+									<p class="text-elg text-strong mt-5 mb-5">95</p>
+									<span class="text-lg">Users</span>
 								</div>
 							</div>
 						</div>
@@ -86,35 +86,214 @@
 									<script type="text/ng-template" id="myModalContent.html">
 										<div class="modal-header"><h4 class="modal-title custom-font">Create Schedule Groups</h4></div>
 										<div class="modal-body">
-											<div class="overflow">												
-												<div class="form-group">
-													<label for="">Schedule Name</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
-												</div>												
-											</div>
-											<div class="form-group">
-												<label for="">Facility</label><br/>
-												<select chosen="{width: '100%'}">
-													<option value="WS">USA Corporate Services</option>
-													<option value="RP">Aerzen USA Corporate</option>
-												</select>
-											</div>
-											<div class="overflow" >
-												<div class="form-group">
-													<label for="">Status</label><br/>
-													<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+											<div class="account">
+												<div class="overflow">												
+													<div class="form-group">
+														<label for="">Timer Name</label>
+														<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+													</div>												
+												</div>
+												<div class="overflow">
+													<div class="col-md-6 first">
+														<div class="form-group" ng-controller="DatepickerDemoCtrl">
+															<label for="">Start Date <small>(mm/dd/yyyy)</small></label>
+															<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+														</div>
+													</div>
+													<div class="col-md-6 last">
+														<div class="form-group" ng-controller="DatepickerDemoCtrl">
+															<label for="">End Date <small>(mm/dd/yyyy)</small></label>
+															<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+														</div>
+													</div>
+												</div>
+												<div class="overflow">
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Start Time <small>(HH:MM)</small></label>
+															<span ng-controller="TimepickerDemoCtrl">
+																<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+															</span>
+														</div>
+													</div>
+													<div class="col-md-6 last">
+														<div class="form-group">
+															<label for="">End Time <small>(HH:MM)</small></label>
+															<span ng-controller="TimepickerDemoCtrl">
+																<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+															</span>
+														</div>
+													</div>
+												</div>
+												<div class="overflow">
+													<div class="form-group">
+														<label for="">Days</label><br/>
+														<div class="btn-group btnrounded" ng-controller="DaysCtrl">
+															<label class="btn btn-default" ng-model="checkModel.Mo" uib-btn-checkbox>Mon</label>
+															<label class="btn btn-default" ng-model="checkModel.Tu" uib-btn-checkbox>Tue</label>
+															<label class="btn btn-default" ng-model="checkModel.We" uib-btn-checkbox>Wed</label>
+															<label class="btn btn-default" ng-model="checkModel.Th" uib-btn-checkbox>Thr</label>
+															<label class="btn btn-default" ng-model="checkModel.Fr" uib-btn-checkbox>Fri</label>
+															<label class="btn btn-default" ng-model="checkModel.Sa" uib-btn-checkbox>Sat</label>
+															<label class="btn btn-default" ng-model="checkModel.Su" uib-btn-checkbox>Sun</label>
+														</div>
+													</div>
+												</div>
+												<div class="overflow" >
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Access</label><br/>
+															<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Allowed</label>
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Denied</label>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6 last">
+														<div class="form-group" ng-controller="DatepickerDemoCtrl">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="overflow">
+													<div class="form-group" ng-controller="DatepickerDemoCtrl">
+														<label for="">Expiration Date</label>
+														<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
 													</div>
 												</div>
 											</div>
 										</div>
+										<!--div class="hometabs">
+											<md-content class="md-padding tabsdemoDynamicHeight">
+												<md-tabs md-dynamic-height md-border-bottom>												
+													<md-tab label="Configuration">
+														<md-content>								
+															<div class="account">
+																<div class="overflow">
+																	<div class="form-group">
+																		<label for="">Timer Name</label>
+																		<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																	</div>
+																</div>
+																<div class="overflow">
+																	<div class="col-md-6 first">
+																		<div class="form-group">
+																			<label for="">Start Time <small>(HH:MM)</small></label>
+																			<span ng-controller="TimepickerDemoCtrl">
+																				<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			</span>
+																		</div>
+																	</div>
+																	<div class="col-md-6 last">
+																		<div class="form-group">
+																			<label for="">End Time <small>(HH:MM)</small></label>
+																			<span ng-controller="TimepickerDemoCtrl">
+																				<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																<div class="overflow">
+																	<div class="form-group">
+																		<label for="">Days</label><br/>
+																		<div class="btn-group btnrounded" ng-controller="DaysCtrl">
+																			<label class="btn btn-default" ng-model="checkModel.Mo" uib-btn-checkbox>Mon</label>
+																			<label class="btn btn-default" ng-model="checkModel.Tu" uib-btn-checkbox>Tue</label>
+																			<label class="btn btn-default" ng-model="checkModel.We" uib-btn-checkbox>Wed</label>
+																			<label class="btn btn-default" ng-model="checkModel.Th" uib-btn-checkbox>Thr</label>
+																			<label class="btn btn-default" ng-model="checkModel.Fr" uib-btn-checkbox>Fri</label>
+																			<label class="btn btn-default" ng-model="checkModel.Sa" uib-btn-checkbox>Sat</label>
+																			<label class="btn btn-default" ng-model="checkModel.Su" uib-btn-checkbox>Sun</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="overflow">
+																	<div class="form-group" ng-controller="DatepickerDemoCtrl">
+																		<label for="">Expiration Date</label>
+																		<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+																	</div>
+																</div>
+																<div class="overflow" >
+																	<div class="col-md-6 first">
+																		<div class="form-group">
+																			<label for="">Access</label><br/>
+																			<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Allowed</label>
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Denied</label>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-md-6 last">
+																		<div class="form-group" ng-controller="DatepickerDemoCtrl">
+																			<label for="">Status</label><br/>
+																			<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																			</div>
+																		</div>
+																	</div>
+																</div>				
+															</div>							   
+														</md-content>
+													</md-tab>
+							
+													<md-tab label="Schedule Groups">
+														<md-content>														
+															<div class="usergroup">
+																<section class="tile" fullscreen="isFullscreen02">
+																	<div class="tile-header">
+																		<h3 class="custom-font"><strong>Assigned Schedule Groups</strong></h3>
+																		<ul class="controls">
+																			<li class="addpopup">
+																				<a class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+																			</li>
+																		</ul>
+																	</div>
+																	<div class="tile-body p-0">
+																		<table class="table table-bordered">
+																			<thead>
+																				<tr>
+																					<th>Schedule Name</th>
+																					<th>Facility</th>
+																					<th>Action</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr>
+																					<td>Office Schedule</td>
+																					<td>USA Corporate Services</td>
+																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																				</tr>
+																				<tr>
+																					<td>Cleaning Schedule</td>
+																					<td>Finance Corporate of USA</td>
+																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																				</tr>
+																				<tr>
+																					<td>Meeting Schedule</td>
+																					<td>Corporate Services USA</td>
+																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</section>																
+															</div>														
+														</md-content>
+													</md-tab>							
+												</md-tabs>
+											</md-content>											
+										</div-->
 										<div class="modal-footer">
 											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 										</div>
 									</script>
-									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Schedule Groups</span></a>
+									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Schedule</span></a>
 								</div>
 							</li>
 						</ul>
@@ -122,8 +301,8 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r">
-								<div class="col-md-6 filterorder">
+							<div class="row pos-r mb-20">
+								<div class="col-md-4 filterorder">
 									<label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
@@ -131,12 +310,17 @@
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
 											<li><a href="" ng-click="orderByMe('title')">Title</a></li>
-											<li><a href="" ng-click="orderByMe('facility')">Facility</a></li>
 											<li><a href="" ng-click="orderByMe('status')">Status</a></li>
+											<li><a href="" ng-click="orderByMe('starttime')">Time</a></li>
+											<li><a href="" ng-click="orderByMe('expirationdate')">Expire Date</a></li>
 										</ul>
 									</label>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4 search">
+									<input type="text" class="form-control" placeholder="Search by text....">
+									<button class="btn btn-default br-2-r" type="button">Search</button>
+								</div>
+								<div class="col-md-4">
 									<div class="gridlistbar ta-r pull-right">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
@@ -153,8 +337,8 @@
 										<input type="text" class="form-control" id="fbtitle" ng-model="title">
 									</div>
 									<div class="col-md-3">
-										<label for="fblocation" class="control-label">Search by Facility</label>
-										<input type="text" class="form-control" id="fblocation" ng-model="facility">
+										<label for="fblocation" class="control-label">Search by Roles</label>
+										<input type="text" class="form-control" id="fblocation" ng-model="role">
 									</div>
 								</div>
 							</div>
@@ -166,11 +350,12 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
+										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy">
 											<md-card-content>
 												<h2 class="md-title">{{ schedule.title }}</h2>
-												<p>{{ schedule.facility }}</p>
 												<p>{{ schedule.status }}</p>
+												<p>{{ schedule.starttime }} - {{ schedule.endtime }}</p>
+												<p>{{ schedule.expirationdate }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-schedule">View</a>

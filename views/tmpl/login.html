@@ -4,10 +4,11 @@
 		
 		<h2 class="login-h2 text-greensea">Welcome back!</h2>
 		
-		<form name="form" class="form-validation mt-20" ng-submit="loginFunction()" novalidate >
+		<form name="form" class="form-validation mt-20" novalidate ng-controller="LoginCtrl">
 			<div class="form-group">
-				<input type="email" class="form-control underline-input" placeholder="Email" ng-model="user.username" required>
+				<input type="email" class="form-control underline-input" placeholder="Email" ng-model="user.email" required>
 			</div>
+
 			<div class="form-group">
 				<input type="password" placeholder="Password" class="form-control underline-input" ng-model="user.password" required>
 			</div>
@@ -19,7 +20,7 @@
 					<input type="checkbox"><i></i> Remember me
 				</label>
 				<a ui-sref="core.forgot-password" class="pull-right mt-10">Forgot Password?</a><br/>
-				<button type="submit" class="btn btn-greensea b-0 br-2 mt-10 m-0-auto" ng-disabled='form.$invalid'>Sign In</button>
+				<button type="submit" class="btn btn-greensea b-0 br-2 mt-10 m-0-auto" ng-click="login()" ng-disabled='form.$invalid'>Sign In</button>
 			</div>
 		</form>
 		

@@ -1,0 +1,23 @@
+[
+	{
+		"serialno":"1",
+		"name":"Arnold",
+		"group":"Office Hours",
+		"phone":"+1 212 1467 8920",
+		"imagename":"2"
+    },
+	{
+		"serialno":"2",
+		"name":"Peter",
+		"group":"24X7 Hours",
+		"phone":"+1 212 1467 5614",
+		"imagename":"1"
+    },
+	{
+		"serialno":"3",
+		"name":"Paracosm",
+		"group":"Housekeeping Hours",
+		"phone":"+1 212 1467 6456",
+		"imagename":"3"
+    }
+]

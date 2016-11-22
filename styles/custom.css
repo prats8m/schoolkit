@@ -12,7 +12,11 @@
 .hovershadow:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.25); }
 textarea.form-control { height: 75px; }
 .profilephoto { position: relative; overflow: hidden; }
-.profilephoto #profilep-2 { font-size: 13px; position: absolute; left: -85px; top: 0; padding: 8px 0px; width: 101%; background-color: #eee; }
+.profilephoto #profilep-2 { font-size: 13px; position: absolute; left: -75px; top: 0; padding: 8px 0px; width: 101%; background-color: #eee; }
+/* saf3+, chrome1+ */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ .profilephoto #profilep-2 { left: -85px; }
+}
 .profilephoto .form-control  { background: transparent; }
 .profilephoto .input-group-btn .btn { padding: 8px 12px; border: 1px solid #dbe0e2; }
 .account .ng-valid-time .btn, .validtime .ng-valid-time .btn { padding: 8px 12px; border-radius:2px; margin-left: 2px; border-color: #dbe0e2; }
@@ -21,13 +25,14 @@ tr[ng-show="::showSpinners"] { display: none;}
 .addpopup a.add { margin: 8px 8px 0 0 !important; padding: 10px 15px 8px !important; text-transform: uppercase; }
 .addpopup a.add  i { font-size: 125% !important; line-height: 40px !important; background: #b3b3b3; color: #fff; }
 .backpage a { font-size: 18px; }
-.gridlistbar { display: block; text-align: right; margin-bottom: 15px; }
+.gridlistbar { display: block; text-align: right; margin: 3px 0 0;}
 .gridlistbar a { background:#f9f9f9; color:#888888; width:32px; height:32px; display:inline-block; text-decoration:none !important; margin-left:5px; border-radius:2px; text-align: center; line-height: 32px; border: 1px solid #c2c2c2; font-size: 14px; }
 .gridlistbar a.active{ background:#3c8719; border: 1px solid #3c8719; color: #ffffff; }
 md-content { background: transparent; }
-
+.pull-left { float: left; }
 .close.displayblock { display: block !important; }
-
+.modal-lg { width: 1140px !important; }
+.small, small { font-size: 11px !important; font-weight: 400;}
 /*#header .branding, #sidebar { width: 200px; }
 .appWrapper.header-fixed.aside-fixed #content { left: 200px; }*/
 #header .dropdown > .dropdown-menu  { margin-top: -1px; }
@@ -62,7 +67,7 @@ md-content { background: transparent; }
 .usergroups .tabs-dark .nav-tabs > li > a:hover { background-color: rgba(0, 0, 0, 0.1); }
 .usergroups .text-lightred { color: #d5d5d5; }
 
-.slavevalues { float: right; width: 50%; }
+.slavevalues { float: right; width: 46.75%; }
 
 
 
@@ -105,7 +110,7 @@ a.serplan { color: #4a555b; cursor: pointer; display: block; padding: 5px 15px; 
 a.serplan:hover, a.serplan:focus { color: #262626; text-decoration: none; background-color: #f5f5f5 }
 
 
-.profile-settings h4 { font-size: 18px; margin: 0 0 20px 0; border-bottom: 1px dotted #cacaca; padding-bottom: 10px; }
+.profile-settings h4 { font-size: 18px; margin: 0 0 20px; border-bottom: 1px dotted #cacaca; padding-bottom: 10px; }
 
 /******* CSS For Dashboard **********/
 .appWrapper.header-fixed.sidebar-sm #content { left: 0px !important; }
@@ -115,8 +120,9 @@ a.serplan:hover, a.serplan:focus { color: #262626; text-decoration: none; backgr
 
 .card-container .card .bg-dashboard .bg-transparent { background: url(../images/linear_gradient.png) top left repeat-x; width: 100%; height: 100%; padding: 28px; position: relative; cursor: default; background-size: contain; }
 .card-container .card .bg-dashboard .bg-transparent h3 { margin: 0; background: rgba(0,147,255,0.85) !important; display: inline-block; padding: 12px 10px 10px; color: #fff; border-radius: 3px; font-size: 18px; color: #fff !important; font-family: 'roboto condensed', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 400; }
-.card-container .card .bg-dashboard .bg-transparent h3:hover { background: rgba(255,255,255,1) !important; }
-.card-container .card .bg-dashboard .bg-transparent h3:hover  a { color: rgba(0,147,255,0.85) !important; }
+.card-container .card .bg-dashboard .bg-transparent h3.h3link { padding: 0; }
+.card-container .card .bg-dashboard .bg-transparent h3.h3link a { padding: 12px 10px 10px; display: block; border-radius: 3px; }
+.card-container .card .bg-dashboard .bg-transparent h3.h3link a:hover { background: rgba(255,255,255,1) !important; color: rgba(0,147,255,0.85) !important; }
 .card-container .card .bg-dashboard .bg-transparent p { margin: 20px 0 5px; font-size: 16px; color: #fff; }
 .card-container .card .bg-dashboard .bg-transparent .realtimeloader { position: absolute; left: 0; bottom: 0; width: 100.10%; opacity:0.5; }
 
@@ -142,18 +148,19 @@ a.serplan:hover, a.serplan:focus { color: #262626; text-decoration: none; backgr
 .glview md-card .facilityname a { font-weight: 500; }
 
 .listview .glview { padding: 0 12px; }
-.listview .glview md-card { margin: 0 0 15px; width: 100%; padding: 0; float: none; border: 0; box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12); transition: 0.5s; background: #fefefe; overflow: hidden; border-bottom: 1px solid #f6f6f6; }
+.listview .glview md-card { margin: 0 0 15px; width: 100%; padding: 0; float: none; border: 0; box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12); transition: 0.5s; background: #fefefe; overflow: hidden; border-bottom: 1px solid #f6f6f6;  padding-bottom: 15px; }
 .listview .glview md-card:last-child { border-bottom: 0 none; }
-.listview .glview md-card .md-card-image { width: 125px; height: 125px; border-radius: 0; margin: 0px 25px 15px 0; box-shadow: 0 0 0px rgba(0,0,0,0); float: left; border: 1px solid #d5d5d5; padding: 5px; background: #f9f9f9; }
-.listview .glview md-card md-card-content { text-align: left; float: left; width: 85%; }
+.listview .glview md-card .md-card-image { width: 125px; height: 125px; border-radius: 0; margin: 0px 15px 0 0; box-shadow: 0 0 0px rgba(0,0,0,0); float: left; border: 1px solid #d5d5d5; padding: 5px; background: #f9f9f9; }
+.listview .glview md-card md-card-content { float: none; display: inline-block; width: auto !important; vertical-align: top; text-align: left; }
+.listview .glview md-card md-card-content p { margin: 0; }
 .listview .glview md-card.slaveusers md-card-content { width: 80%; }
-.listview .glview md-card .md-actions { margin: 0 0 15px 0; float: right; } 
+.listview .glview md-card .md-actions { position: absolute; right: 0; bottom: 15px; } 
 .listview .glview md-card .md-actions a { margin: 0 0 0 10px; }
 .listview .glview md-card md-card-content .md-title { margin-top: 0; }
 .listview .glview md-card .facilityname { border-radius: 0; position: relative; float: right; margin-bottom: -26px; background: transparent;}
 
 .filterorder  label > a { position: relative;
-    color: #666;
+    color: #616f77;
     padding-right: 15px;
     border-right: 1px solid #e5e5e5;
     margin-right: 10px;}
@@ -165,7 +172,7 @@ a.serplan:hover, a.serplan:focus { color: #262626; text-decoration: none; backgr
     top: 0; }
 .filterfields {
     position: absolute;
-    top: 26px;
+    top: 100%;
     left: 15px;
 	right: 15px;
     z-index: 99999;
@@ -197,7 +204,7 @@ a.serplan:hover, a.serplan:focus { color: #262626; text-decoration: none; backgr
     border-right: 8px solid transparent;
 }
 
-.filterfields label { font-weight: 400; }
+.filterfields label { font-weight: 600; }
 
 .devicename { position: absolute; left: 0; top: 0; background: #e2e2e2; padding: 5px 15px; font-size: 14px; color: #252525; border-radius: 0 0 5px 0; font-weight: 500; }
 
@@ -285,15 +292,41 @@ font-size: 18px;
     border-bottom: 1px dotted #cacaca;
     padding-bottom: 10px;
 	    color: #3c8719;}
+		
+.search {
+	position: relative;
+}
+
+.search .btn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    padding: 8px 10px;
+	}
+.search .form-control:focus, .search .form-control:focus:hover, .search .form-control:hover { border-color: #cdd3d7; }
+
+.filterorder { margin: 7px 0 0; }
+
+.tcol a { display: block; }
+
+.usergrouplist {overflow: hidden;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    height: 100%;
+	padding: 15px; }
+	.groupslist {     height: 82%;
+    overflow: hidden;
+    overflow-y: auto;}
+	
+.groupslist ul, .groupslists ul  { margin: 0; list-style: none; padding: 0;  }
+.groupslist ul li, .groupslists ul li { list-style: none; float: left;
+    width: 50%; }
+.groupslist ul li  label, .groupslists ul li  label { font-weight: 400; }
 
 
 
-
-
-
-
-
-
-
-
-
+.cameradvr h4 { margin-bottom: 25px !important; }

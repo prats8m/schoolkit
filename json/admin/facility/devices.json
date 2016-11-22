@@ -3,23 +3,23 @@
 		"serialno":"1",
 		"title":"Reception Room",
 		"model":"Elika-Doorbell",
-		"noofslaves":"3",
+		"noofslaves":"3 Dependent Devices",
 		"noofuser":"3",
 		"imagename":"1"
 	},
 	{
 		"serialno":"2",
 		"title":"Conference Room",
-		"model":"Elika-76(s)",
-		"noofslaves":"0",
+		"model":"Elika-76",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"2",
 		"imagename":"2"
 	},
 	{
 		"serialno":"3",
 		"title":"Server Room",
-		"model":"Elika-92(s)",
-		"noofslaves":"0",
+		"model":"Elika-92",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"3",
 		"imagename":"1"
 	},
@@ -27,15 +27,15 @@
 		"serialno":"4",
 		"title":"Meeting Room",
 		"model":"Elika-460",
-		"noofslaves":"0",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"25",
 		"imagename":"2"
 	},
 	{
 		"serialno":"5",
 		"title":"Development Room",
-		"model":"Elika-918",
-		"noofslaves":"1",
+		"model":"Elika-2101",
+		"noofslaves":"1 Dependent Device",
 		"noofuser":"22",
 		"imagename":"1"
 	},
@@ -43,7 +43,7 @@
 		"serialno":"6",
 		"title":"Waiting Room",
 		"model":"Elika-Intercom",
-		"noofslaves":"0",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"3",
 		"imagename":"2"
 	},
@@ -51,7 +51,7 @@
 		"serialno":"7",
 		"title":"Boardroom",
 		"model":"Elika-2101",
-		"noofslaves":"0",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"22",
 		"imagename":"1"
 	},
@@ -59,23 +59,23 @@
 		"serialno":"8",
 		"title":"Management Area",
 		"model":"Elika-Doorbell",
-		"noofslaves":"0",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"15",
 		"imagename":"2"
 	},
 	{
 		"serialno":"9",
 		"title":"Director Room",
-		"model":"Elika-76(s)",
-		"noofslaves":"0",
+		"model":"Elika-76",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"22",
 		"imagename":"1"
 	},
 	{
 		"serialno":"10",
 		"title":"Inventory Room",		
-		"model":"Elika-92(s)",
-		"noofslaves":"0",
+		"model":"Elika-92",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"15",
 		"imagename":"2"
 	},
@@ -83,23 +83,23 @@
 		"serialno":"11",
 		"title":"Reception Room",
 		"model":"Elika-Doorbell",
-		"noofslaves":"0",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"2",
 		"imagename":"1"
 	},
 	{
 		"serialno":"12",
 		"title":"Conference Room",
-		"model":"Elika-76(s)",
-		"noofslaves":"0",
+		"model":"Elika-76",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"2",
 		"imagename":"2"
 	},
 	{
 		"serialno":"13",
 		"title":"Server Room",
-		"model":"Elika-92(s)",
-		"noofslaves":"1",
+		"model":"Elika-92",
+		"noofslaves":"1 Dependent Device",
 		"noofuser":"3",
 		"imagename":"1"
 	},
@@ -107,15 +107,15 @@
 		"serialno":"14",
 		"title":"Meeting Room",
 		"model":"Elika-460",
-		"noofslaves":"2",
+		"noofslaves":"2 Dependent Devices",
 		"noofuser":"25",
 		"imagename":"2"
 	},
 	{
 		"serialno":"15",
 		"title":"Development Room",
-		"model":"Elika-918",
-		"noofslaves":"0",
+		"model":"Elika-2101",
+		"noofslaves":"0 Dependent Device",
 		"noofuser":"22",
 		"imagename":"1"
 	}	

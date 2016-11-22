@@ -22,15 +22,15 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					<a ui-sref="app.admin.facility.facility">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.device.devices">
+						<div class="noback bg-blue">						
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-map-marker fa-5x"></i>
+									<i class="fa fa-fax fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Facility</p>
-									<span class="text-lg">2</span>
+									<p class="text-elg text-strong mt-5 mb-5">15</p>
+									<span class="text-lg">Primary Devices</span>
 								</div>
 							</div>
 						</div>
@@ -39,16 +39,16 @@
 			</div>
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
+				<div class="card">					
+					<a ui-sref="app.admin.device.dependent-devices">
+						<div class="noback bg-greensea">
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+									<i class="fa fa-mobile fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Devices</p>
-									<span class="text-lg">35</span>
+									<p class="text-elg text-strong mt-5 mb-5">7</p>
+									<span class="text-lg">Dependent Devices</span>
 								</div>
 							</div>
 						</div>
@@ -65,8 +65,8 @@
 									<i class="fa fa-users fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Users</p>
-									<span class="text-lg">145</span>
+									<p class="text-elg text-strong mt-5 mb-5">95</p>
+									<span class="text-lg">Users</span>
 								</div>
 							</div>
 						</div>
@@ -86,10 +86,23 @@
 									<script type="text/ng-template" id="myModalContent.html">
 										<form name="form1" role="form">
 											<div class="modal-header"><h4 class="modal-title custom-font">Create Door</h4></div>
-											<div class="modal-body">							
-												<div class="form-group">
-													<label for="">Name</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+											<div class="modal-body">	
+												<div class="row">
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Name</label>
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="col-md-6 last">
+														<div class="form-group">
+															<label for="">Facility</label><br/>
+															<select class="form-control" disabled>
+																<option selected>USA Corporate Services</option>
+																<option>Aerzen USA Corporation</option>
+															</select>
+														</div>
+													</div>
 												</div>
 												<div class="form-group">
 													<label for="">Description</label>
@@ -97,9 +110,9 @@
 												</div>
 												<div class="form-group">
 													<label for="">Device Type</label><br/>
-													<div class="btn-group btnrounded" ng-controller="MasterbtnCtrl">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Master'">Active</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Slave'">Inactive</label>
+													<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
 													</div>
 												</div>
 											</div>
@@ -117,8 +130,8 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r">
-								<div class="col-md-6 filterorder">
+							<div class="row pos-r mb-20">
+								<div class="col-md-4 filterorder">
 									<label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
@@ -131,7 +144,11 @@
 										</ul>
 									</label>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4 search">
+									<input type="text" class="form-control" placeholder="Search by text....">
+									<button class="btn btn-default br-2-r" type="button">Search</button>
+								</div>
+								<div class="col-md-4">
 									<div class="gridlistbar ta-r pull-right">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
@@ -165,8 +182,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="door in doors | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy">
-											<span class="facilityname"><a ui-sref="app.admin.facility.facility-details">{{ door.facility }}</a></span>
+										<md-card ng-repeat="door in adoors | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy">
 											<md-card-content>
 												<h2 class="md-title mt-40">{{ door.title }}</h2>
 												<p>{{ door.status }}</p>

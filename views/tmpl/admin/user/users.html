@@ -83,7 +83,7 @@
 						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
 						<ul class="controls">
 							<li class="addpopup">
-								<div ng-controller="ModalAddUser">
+								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
 										<div class="usergrouplist overflow" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
 											<div class="overflow mb-10">
@@ -459,7 +459,7 @@
 										</div>
 										<div class="modal-footer">
 											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-											<button type="button" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click=""><i class="fa fa-arrow-right"></i> Next</button>	
+											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 										</div>											
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User</span></a>
@@ -523,7 +523,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
+										<md-card ng-repeat="user in ausers | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
 											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{imagePath}}/users/{{user.imagename}}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ user.name }}</h2>

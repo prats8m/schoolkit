@@ -22,15 +22,15 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					<a ui-sref="app.admin.facility.facility">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.device.devices">
+						<div class="noback bg-blue">						
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-map-marker fa-5x"></i>
+									<i class="fa fa-fax fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Facility</p>
-									<span class="text-lg">2</span>
+									<p class="text-elg text-strong mt-5 mb-5">15</p>
+									<span class="text-lg">Primary Devices</span>
 								</div>
 							</div>
 						</div>
@@ -39,16 +39,16 @@
 			</div>
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
+				<div class="card">					
+					<a ui-sref="app.admin.device.dependent-devices">
+						<div class="noback bg-greensea">
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+									<i class="fa fa-mobile fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Devices</p>
-									<span class="text-lg">35</span>
+									<p class="text-elg text-strong mt-5 mb-5">7</p>
+									<span class="text-lg">Dependent Devices</span>
 								</div>
 							</div>
 						</div>
@@ -65,8 +65,8 @@
 									<i class="fa fa-users fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Users</p>
-									<span class="text-lg">145</span>
+									<p class="text-elg text-strong mt-5 mb-5">95</p>
+									<span class="text-lg">Users</span>
 								</div>
 							</div>
 						</div>
@@ -86,43 +86,91 @@
 									<script type="text/ng-template" id="myModalContent.html">
 										<form name="form1" role="form">
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
-											<div class="modal-body">							
-												<div class="form-group">
-													<label for="">Device Name</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
-												</div>
-												<div class="form-group">
-													<label for="">Serial Number</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
-												</div>
-												<div class="form-group">
-													<label for="">Registration Code</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
-												</div>
-												<div class="form-group">
-													<label for="">Device Type</label><br/>
-													<div class="btn-group btnrounded" ng-controller="MasterbtnCtrl">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Master'">Master</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Slave'">Dependent</label>
+											<div class="modal-body">
+												<div class="row overflow">
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Device Name</label>
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
 													</div>
-													<div class="slavevalues">
+													<div class="col-md-6 last">
+														<div class="form-group">
+															<label for="">Model Name</label>
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Serial Number</label>
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="col-md-6 last">
+														<div class="form-group">
+															<label for="">Facility</label><br/>
+															<select class="form-control" disabled>
+																<option selected>USA Corporate Services</option>
+																<option>Aerzen USA Corporation</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="form-group" ng-controller="PrimarybtnCtrl">
+													<label for="">Device Type</label><br/>
+													<div class="btn-group btnrounded">
+														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Primary'">Primary</label>
+														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Dependent'">Dependent</label>
+													</div>
+													<div class="slavevalues" ng-hide="radioModel=='Primary'">
 														<select class="form-control mb-10">
+															<option>Select Primary Device</option>
+															<option>Reception Room</option>
 															<option>Conference Room</option>
-															<option>Reception</option>
-															<option>Waiting Room</option>
+															<option>Server Room</option>
+															<option>Meeting Room</option>
+															<option>Development Room</option>
+															<option>Boardroom</option>
+															<option>Managers Room</option>
+															<option>Director Room</option>
+															<option>Inventory Room</option>
 														</select>
 													</div>
-												</div>							  
-												<div class="form-group">
-													<label for="">Technician</label><br/>
-													<select multiple chosen="{width: '100%'}">
-														<option value="WS">Will Smith</option>
-														<option value="RP">Robert Pattinson</option>
-														<option value="ZE">Zac Efron</option>
-														<option value="JD">Johny Depp</option>
-														<option value="KH">Kevin Hart</option>
-														<option value="BA">Ben Affleck</option>
-													</select>  
+												</div>
+												<div class="row">
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Technician</label><br/>
+															<select class="form-control">
+																<option>Arnold</option>
+																<option>Peter</option>
+																<option>Paracosm</option>
+																<option>Jason</option>
+																<option>Paul</option>
+																<option>Vin</option>
+																<option>Dwayne</option>
+															</select>
+															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
+														</div>
+													</div>
+													<div class="col-md-6 last">
+														<div class="form-group">
+															<label for="">Doors</label><br/>
+															<select class="form-control">
+																<option>Main Gate Front</option>
+																<option>Main Gate Back</option>
+																<option>Exit Gate Front</option>
+																<option>Exit Gate Back</option>
+																<option>Parking Entry Gate</option>
+																<option>Parking Exit Gate</option>
+																<option>Pool Gate</option>
+																<option>Gym Gate</option>
+															</select>
+															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.door.doors">Add Door</a></small>
+														</div>
+													</div>
 												</div>
 											</div>
 											<div class="modal-footer">
@@ -139,8 +187,8 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r">
-								<div class="col-md-6 filterorder">
+							<div class="row pos-r mb-20">
+								<div class="col-md-4 filterorder">
 									<label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
@@ -153,7 +201,11 @@
 										</ul>
 									</label>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4 search">
+									<input type="text" class="form-control" placeholder="Search by text....">
+									<button class="btn btn-default br-2-r" type="button">Search</button>
+								</div>
+								<div class="col-md-4">
 									<div class="gridlistbar ta-r pull-right">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
@@ -183,13 +235,12 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="device in devices | limitTo:totalDisplayed | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
-											<span class="facilityname"><a ui-sref="app.admin.facility.facility-details">{{ device.facility }}</a></span>
+										<md-card ng-repeat="device in adevices | limitTo:totalDisplayed | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
 											<a ui-sref="app.admin.device.device-details"><img ng-src="{{imagePath}}/device/{{ device.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ device.title }}</h2>
 												<p>{{ device.model }}</p>
-												<p>{{ device.noofslaves }} Dependent &nbsp;|&nbsp; {{ device.noofuser }} Users</p>
+												<p>{{ device.noofslaves }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.device-details">View</a>

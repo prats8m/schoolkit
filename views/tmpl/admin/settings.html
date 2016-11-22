@@ -45,21 +45,13 @@
 													</div>
 													
 													<div class="tab-pane fade" id="gstab2">
-														<h4><strong>Relay &amp; Door Setup</strong></h4>
-														<div class="row">
-															<div class="form-group col-sm-6">
-																<label for="address1">Relay 1 strike time in the range 500 – 4500 ms</label>
-																<input type="text" class="form-control" id="address1" value="">
-																<small> (default 1000 ms)</small>
+														<h4><strong>Relay &amp; Door Setup</strong> <small>(Range from 500 to 4500 ms - default 1000 ms)</small></h4>
+														<div class="form-group row">
+															<div class="col-sm-3">						
+																<label for="address1">Relay 1 strike time</label>
+																<input type="text" class="form-control" id="address1" value="1000">
 															</div>
-															<div class="form-group col-sm-6">
-																<label for="address1">Relay 2 strike time in the range 500 – 4500 ms</label>
-																<input type="text" class="form-control" id="address1" value="">
-																<small> (default 1000 ms)</small>
-															</div>
-														</div>
-														<div class="row">
-															<div class="form-group col-sm-6">
+															<div class="col-sm-3">
 																<label for="">Door</label><br/>
 																<select chosen="{width: '100%'}">
 																	<option value="">Main Gate Front</option>
@@ -69,50 +61,129 @@
 																	<option value="">Pool Gate</option>
 																</select>
 															</div>
-															<div class="form-group col-sm-6">
-																<label for="">Relay</label><br/>
-																<select chosen="{width: '100%'}">
-																	<option value="">Relay 1</option>
-																	<option value="">Relay 2</option>
-																</select>
-															</div>
-														</div>
-														<div class="row">
-															<div class="form-group col-sm-6">
-																<label for="">Door</label><br/>
-																<select chosen="{width: '100%'}">
-																	<option value="">Main Gate Front</option>
-																	<option value="">Main Gate Back</option>
-																	<option value="">Pedestrian Gate</option>
-																	<option value="">Parking Gate</option>
-																	<option value="">Pool Gate</option>
-																</select>
-															</div>
-															<div class="form-group col-sm-6">
-																<label for="">Relay</label><br/>
-																<select chosen="{width: '100%'}">
-																	<option value="">Relay 1</option>
-																	<option value="">Relay 2</option>
-																</select>
-															</div>
-														</div>
-														<div class="row">
-															<div class="form-group col-sm-3">
-																<label for="">Door Ajar</label><br/>
-																<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
+																<div class="col-sm-5">
+																	<label for="">Door Ajar</label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																	</div>
+																</div>
+																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
+																	<label for="">&nbsp;</label><br/>
+																	<select chosen="{width: '100%'}">
+																		<option value="">Sound alarm using Beeper</option>
+																		<option value="">Call/Text technician</option>
+																		<option value="">Call/Text/Email Notification to owner</option>
+																		<option value="">Take a snapshot through camera</option>
+																		<option value="">Record a short video using camera</option>
+																	</select>
 																</div>
 															</div>
-															<div class="form-group col-sm-3">
-																<label for="">&nbsp;</label><br/>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-3">						
+																<label for="address1">Relay 2 strike time</label>
+																<input type="text" class="form-control" id="address1" value="1000">
+															</div>
+															<div class="col-sm-3">
+																<label for="">Door</label><br/>
 																<select chosen="{width: '100%'}">
-																	<option value="">Sound alarm using Beeper</option>
-																	<option value="">Call/Text technician</option>
-																	<option value="">Call/Text/Email Notification to owner</option>
-																	<option value="">Take a snapshot through camera</option>
-																	<option value="">Record a short video using camera</option>
+																	<option value="">Main Gate Front</option>
+																	<option value="">Main Gate Back</option>
+																	<option value="">Pedestrian Gate</option>
+																	<option value="">Parking Gate</option>
+																	<option value="">Pool Gate</option>
 																</select>
+															</div>
+															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
+																<div class="col-sm-5">
+																	<label for="">Door Ajar</label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																	</div>
+																</div>
+																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
+																	<label for="">&nbsp;</label><br/>
+																	<select chosen="{width: '100%'}">
+																		<option value="">Sound alarm using Beeper</option>
+																		<option value="">Call/Text technician</option>
+																		<option value="">Call/Text/Email Notification to owner</option>
+																		<option value="">Take a snapshot through camera</option>
+																		<option value="">Record a short video using camera</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-3">						
+																<label for="address1">Relay 3 strike time</label>
+																<input type="text" class="form-control" id="address1" value="1000">
+															</div>
+															<div class="col-sm-3">
+																<label for="">Door</label><br/>
+																<select chosen="{width: '100%'}">
+																	<option value="">Main Gate Front</option>
+																	<option value="">Main Gate Back</option>
+																	<option value="">Pedestrian Gate</option>
+																	<option value="">Parking Gate</option>
+																	<option value="">Pool Gate</option>
+																</select>
+															</div>
+															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
+																<div class="col-sm-5">
+																	<label for="">Door Ajar</label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																	</div>
+																</div>
+																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
+																	<label for="">&nbsp;</label><br/>
+																	<select chosen="{width: '100%'}">
+																		<option value="">Sound alarm using Beeper</option>
+																		<option value="">Call/Text technician</option>
+																		<option value="">Call/Text/Email Notification to owner</option>
+																		<option value="">Take a snapshot through camera</option>
+																		<option value="">Record a short video using camera</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-3">						
+																<label for="address1">Relay 4 strike time</label>
+																<input type="text" class="form-control" id="address1" value="1000">
+															</div>
+															<div class="col-sm-3">
+																<label for="">Door</label><br/>
+																<select chosen="{width: '100%'}">
+																	<option value="">Main Gate Front</option>
+																	<option value="">Main Gate Back</option>
+																	<option value="">Pedestrian Gate</option>
+																	<option value="">Parking Gate</option>
+																	<option value="">Pool Gate</option>
+																</select>
+															</div>
+															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
+																<div class="col-sm-5">
+																	<label for="">Door Ajar</label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																		<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																	</div>
+																</div>
+																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
+																	<label for="">&nbsp;</label><br/>
+																	<select chosen="{width: '100%'}">
+																		<option value="">Sound alarm using Beeper</option>
+																		<option value="">Call/Text technician</option>
+																		<option value="">Call/Text/Email Notification to owner</option>
+																		<option value="">Take a snapshot through camera</option>
+																		<option value="">Record a short video using camera</option>
+																	</select>
+																</div>
 															</div>
 														</div>
 														<div class="row">
@@ -125,15 +196,15 @@
 													
 													<div class="tab-pane fade" id="gstab3">
 														<h4><strong>Camera Setup</strong></h4>
-														<div class="row">
+														<div class="row" ng-controller="ActivebtnCtrl">
 															<div class="form-group col-sm-3">
 																<label for="address1">Picture Snapshots</label><br/>
-																<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+																<div class="btn-group btnrounded">
 																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
 																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
 																</div>
 															</div>
-															<div class="form-group col-sm-4">
+															<div class="form-group col-sm-4" ng-hide="radioModel=='Inactive'">
 																<label for="">&nbsp;</label><br/>
 																<select chosen="{width: '100%'}">
 																	<option value="">Access Granted</option>
@@ -143,15 +214,15 @@
 																</select>
 															</div>
 														</div>
-														<div class="row">
+														<div class="row" ng-controller="ActivebtnCtrl">
 															<div class="form-group col-sm-3">
 																<label for="address1">Video Recording</label><br/>
-																<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
+																<div class="btn-group btnrounded">
 																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
 																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
 																</div>
 															</div>
-															<div class="form-group col-sm-4">
+															<div class="form-group col-sm-4" ng-hide="radioModel=='Inactive'">
 																<label for="">&nbsp;</label><br/>
 																<select chosen="{width: '100%'}">
 																	<option value="">Access Granted</option>

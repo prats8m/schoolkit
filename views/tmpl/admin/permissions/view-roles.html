@@ -22,15 +22,15 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					<a ui-sref="app.admin.facility.facility">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.device.devices">
+						<div class="noback bg-blue">						
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-map-marker fa-5x"></i>
+									<i class="fa fa-fax fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Facility</p>
-									<span class="text-lg">2</span>
+									<p class="text-elg text-strong mt-5 mb-5">15</p>
+									<span class="text-lg">Primary Devices</span>
 								</div>
 							</div>
 						</div>
@@ -39,16 +39,16 @@
 			</div>
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
+				<div class="card">					
+					<a ui-sref="app.admin.device.dependent-devices">
+						<div class="noback bg-greensea">
 							<div class="row">
 								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+									<i class="fa fa-mobile fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Devices</p>
-									<span class="text-lg">35</span>
+									<p class="text-elg text-strong mt-5 mb-5">7</p>
+									<span class="text-lg">Dependent Devices</span>
 								</div>
 							</div>
 						</div>
@@ -65,8 +65,8 @@
 									<i class="fa fa-users fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Users</p>
-									<span class="text-lg">145</span>
+									<p class="text-elg text-strong mt-5 mb-5">95</p>
+									<span class="text-lg">Users</span>
 								</div>
 							</div>
 						</div>
@@ -136,39 +136,35 @@
 										</div>
 										
 										<div class="row">
-											<div class="form-group col-sm-6">
+											<div class="form-group col-sm-5">
 												<label for="first-name">Roles Name</label>
 												<input type="text" class="form-control" id="first-name" value="">
-											</div>											
-											<div class="col-sm-6">
+											</div>
+										</div>
+										
+										<div class="row">																					
+											<div class="form-group col-sm-3">
 												<label for="">Status</label><br/>
 												<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
 													<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
 													<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
 												</div>
 											</div>
-										</div>
 										
-										<div class="row">
-											<div class="form-group col-sm-6">
-												<div class="row">
-													<div class="form-group col-sm-12">
-														<label for="">Access</label><br/>
-														<div class="btn-group btnrounded" ng-controller="AccessbtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Full'" style="padding:8px 18px;">Full Access</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Restricted'" style="padding:8px 18px;">Restricted Access</label>
-														</div>
-													</div>
-													<div class="form-group col-sm-8 editprofile">
-														<label for="profile">&nbsp;</label>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="users">Users</option>
-															<option value="tenants">Tenants</option>
-															<option value="devices">Devices</option>
-														</select>
-													</div>
+											<div class="form-group col-sm-9" ng-controller="AccessbtnCtrl">
+												<label for="">Access</label><br/>
+												<div class="btn-group btnrounded">
+													<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Full'">Full Access</label>
+													<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Restricted'">Restricted Access</label>
 												</div>
-											</div>											
+												<div class="slavevalues" style="width: 49.5%;" ng-hide="radioModel=='Full'">
+													<select Multiple chosen="{width: '100%'}">
+														<option value="users">Users</option>
+														<option value="tenants">Tenants</option>
+														<option value="devices">Devices</option>
+													</select>
+												</div>
+											</div>
 										</div>
 										
 										<div class="row">	
