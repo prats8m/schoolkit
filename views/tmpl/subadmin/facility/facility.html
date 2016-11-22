@@ -84,14 +84,14 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form">
+										<form name="form1" role="form" ng-submit="save(facility)">
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Facility</h4></div>
 											<div class="modal-body">
 												<div class="row overflow">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="">Facility Name</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="facility.facility_name">
 														</div>
 													</div>
 													<div class="col-md-6">
@@ -112,16 +112,8 @@
 													<div class="col-md-6">
 														<div class="form-group">
 															<label for="">Time Zone</label>
-															<select class="form-control mb-10">
-																<option>USA (Alaska )</option>
-																<option>USA (Samoa)</option>
-																<option>USA (Pacific)</option>
-																<option>USA (Eastern)</option>
-																<option>USA (Hawaii-Aleutian)</option>
-																<option>USA (Mountain)</option>
-																<option>USA (Atlantic)</option>
-																<option>USA (Central)</option>
-																<option>USA (Chamorro)</option>
+															<select class="form-control mb-10" ng-model="facility.timezones.model">
+																<option ng-repeat="option in timezones.availableOptions" value="{{option.id}}">{{option.name}}</option>
 															</select>
 														</div>
 													</div>

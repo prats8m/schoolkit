@@ -763,10 +763,8 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state,$http) {
-
+  .controller('LoginCtrl', function ($scope, $state,$http,$cookies) {
 	$scope.loginFunction = function(){
-		
 		$http({
 			url: 'http://35.160.142.158:8080/login',
 			method: 'POST',
@@ -779,6 +777,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				if(response.msg == 'Login_Success'){
+					$cookies.put('token', response.data.token);
 					$state.go('app.admin.dashboard');
 				}
 			}else{
@@ -895,12 +894,33 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityCtrl', function ($scope, $mdDialog, $http) {
+  .controller('FacilityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies) {
+  	
     $scope.page = {
 		title: 'Facility',
 		subtitle: 'So much more to see at a glance.'
     };
 	
+    $rootScope.save = function(facility){
+    	$http({
+			url: 'http://35.160.142.158:8080/facility/add',
+			method: 'POST',
+			data: facility,
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				"token": $cookies.get("token")
+			}
+		})
+		.success(function(response) {
+			var n = [];
+			var arr = response.error;
+			$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+			$rootScope.masters = n;
+			
+		});
+    }
+
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
@@ -3117,9 +3137,10 @@ app
     };
   })
 
-  .controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
+  .controller('ModalDemoCtrl', function ($scope, $uibModal, $log, $rootScope) {
 
-  	$scope.timezones = {
+  	$rootScope.timezones = {
+  	model: null,
     availableOptions: [
       {id: '1', name: 'USA (Samoa)'},
       {id: '2', name: 'USA (Pacific)'},
