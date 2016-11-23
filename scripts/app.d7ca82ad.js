@@ -908,16 +908,20 @@ app
 			data: facility,
 			dataType : 'JSON',
 			headers: {
-				"Content-type": "application/json",
-				"token": $cookies.get("token")
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
 			}
 		})
 		.success(function(response) {
+			alert(response);
 			var n = [];
 			var arr = response.error;
 			$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 			$rootScope.masters = n;
 			
+		})
+		.error(function (data, status, headers, config) {
+			console.log(data);
 		});
     }
 
@@ -954,11 +958,12 @@ app
 	
 	$http({
 			url: 'http://35.160.142.158:8080/facility/list?limit=20&page_no=1',
-			method: 'GET',
-			dataType : 'JSON',
 			headers: {
-				"Content-type": "application/json",
-			}
+				'Content-type': 'application/json',
+    			'Authorization': $cookies.get("token")
+			},
+			method: 'GET',
+			dataType : 'JSON'
 		}).success(function(response){
 		$scope.facilities = response["data"]["data"];
 		$scope.totalDisplayed = 8;
