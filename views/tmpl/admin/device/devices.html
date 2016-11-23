@@ -84,20 +84,20 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form">
+										<form name="form1" role="form" ng-submit="formSubmit(devices)">
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
 											<div class="modal-body">
 												<div class="row overflow">
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Device Name</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" id="" ng-model="devices.device_name" class="form-control mb-10" placeholder="">
 														</div>
 													</div>
 													<div class="col-md-6 last">
 														<div class="form-group">
 															<label for="">Model Name</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" id="" ng-model="devices.model_name" class="form-control mb-10" placeholder="">
 														</div>
 													</div>
 												</div>
@@ -105,37 +105,37 @@
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Serial Number</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" id="" ng-model="devices.serial_no" class="form-control mb-10" placeholder="">
 														</div>
 													</div>
 													<div class="col-md-6 last">
 														<div class="form-group">
 															<label for="">Facility</label><br/>
-															<select class="form-control" disabled>
-																<option selected>USA Corporate Services</option>
-																<option>Aerzen USA Corporation</option>
+															<select class="form-control" ng-model="devices.facility_id" disabled>
+																<option value=3 selected>USA Corporate Services</option>
+																<option value=1>Aerzen USA Corporation</option>
 															</select>
 														</div>
 													</div>
 												</div>
-												<div class="form-group" ng-controller="PrimarybtnCtrl">
+												<div class="form-group" >
 													<label for="">Device Type</label><br/>
 													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Primary'">Primary</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Dependent'">Dependent</label>
+														<label class="btn btn-default" ng-model="devices.device_type" uib-btn-radio="'Primary'">Primary</label>
+														<label class="btn btn-default" ng-model="devices.device_type" uib-btn-radio="'Dependent'">Dependent</label>
 													</div>
-													<div class="slavevalues" ng-hide="radioModel=='Primary'">
+													<div class="slavevalues" ng-model="devices.slave" ng-hide="devices.device_type=='Primary'">
 														<select class="form-control mb-10">
-															<option>Select Primary Device</option>
-															<option>Reception Room</option>
-															<option>Conference Room</option>
-															<option>Server Room</option>
-															<option>Meeting Room</option>
-															<option>Development Room</option>
-															<option>Boardroom</option>
-															<option>Managers Room</option>
-															<option>Director Room</option>
-															<option>Inventory Room</option>
+															<option value=1>Select Primary Device</option>
+															<option value=2>Reception Room</option>
+															<option value=3>Conference Room</option>
+															<option value=4>Server Room</option>
+															<option value=5>Meeting Room</option>
+															<option value=6>Development Room</option>
+															<option value=7>Boardroom</option>
+															<option value=8>Managers Room</option>
+															<option value=9>Director Room</option>
+															<option value=10>Inventory Room</option>
 														</select>
 													</div>
 												</div>
@@ -143,14 +143,14 @@
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Technician</label><br/>
-															<select class="form-control">
-																<option>Arnold</option>
-																<option>Peter</option>
-																<option>Paracosm</option>
-																<option>Jason</option>
-																<option>Paul</option>
-																<option>Vin</option>
-																<option>Dwayne</option>
+															<select class="form-control" ng-model="devices.technician_id">
+																<option value=1>Arnold</option>
+																<option value=2>Peter</option>
+																<option value=3>Paracosm</option>
+																<option value=4>Jason</option>
+																<option value=5>Paul</option>
+																<option value=6>Vin</option>
+																<option value=7>Dwayne</option>
 															</select>
 															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
 														</div>
@@ -158,15 +158,15 @@
 													<div class="col-md-6 last">
 														<div class="form-group">
 															<label for="">Doors</label><br/>
-															<select class="form-control">
-																<option>Main Gate Front</option>
-																<option>Main Gate Back</option>
-																<option>Exit Gate Front</option>
-																<option>Exit Gate Back</option>
-																<option>Parking Entry Gate</option>
-																<option>Parking Exit Gate</option>
-																<option>Pool Gate</option>
-																<option>Gym Gate</option>
+															<select class="form-control" ng-model="devices.door_id">
+																<option value=1>Main Gate Front</option>
+																<option value=2>Main Gate Back</option>
+																<option value=3>Exit Gate Front</option>
+																<option value=4>Exit Gate Back</option>
+																<option value=5>Parking Entry Gate</option>
+																<option value=6>Parking Exit Gate</option>
+																<option value=7>Pool Gate</option>
+																<option value=8>Gym Gate</option>
 															</select>
 															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.door.doors">Add Door</a></small>
 														</div>
@@ -235,7 +235,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="device in adevices | limitTo:totalDisplayed | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
+										<md-card ng-repeat="device in data | limitTo:totalDisplayed | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
 											<a ui-sref="app.admin.device.device-details"><img ng-src="{{imagePath}}/device/{{ device.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ device.title }}</h2>
