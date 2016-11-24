@@ -900,8 +900,19 @@ app
 		title: 'Facility',
 		subtitle: 'So much more to see at a glance.'
     };
+
+    $rootScope.singleModel = 1;
+    $rootScope.facility = {};
+    $rootScope.facility.status = 'Active';
+
+    $rootScope.checkModel = {
+      Active: true,
+      Inactive: false
+    };
+
 	
     $rootScope.save = function(facility){
+    	(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
     	$http({
 			url: 'http://35.160.142.158:8080/facility/add',
 			method: 'POST',
@@ -911,18 +922,17 @@ app
 				"Authorization": $cookies.get("token"),
 				"Content-type": "application/json"
 			}
-		})
-		.success(function(response) {
-			alert(response);
-			var n = [];
-			var arr = response.error;
-			$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-			$rootScope.masters = n;
-			
-		})
-		.error(function (data, status, headers, config) {
-			console.log(data);
-		});
+			})
+			.success(function(response) {
+				var n = [];
+				var arr = response.error;
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.masters = n;
+				
+			})
+			.error(function (data, status, headers, config) {
+				console.log(data);
+			});
     }
 
 	$scope.result = '';
