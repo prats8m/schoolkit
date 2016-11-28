@@ -765,6 +765,7 @@ app
 app
   .controller('LoginCtrl', function ($scope, $state,$http,$cookies) {
 	$scope.loginFunction = function(){
+		$scope.user.type = "web";
 		$http({
 			url: 'http://35.160.142.158:8080/login',
 			method: 'POST',
