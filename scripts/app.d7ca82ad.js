@@ -527,7 +527,7 @@ var app = angular
 			
 				//admin device device details
 				.state('app.admin.device.device-details', {
-				  url: '/device-details',
+				  url: '/device-details/:device_id',
 				  controller: 'DeviceDetailsCtrl',
 				  templateUrl: 'views/tmpl/admin/device/device-details.html'
 				})
@@ -764,7 +764,9 @@ app
  */
 app
   .controller('LoginCtrl', function ($scope, $state,$http,$cookies) {
+
 	$scope.loginFunction = function(){
+		$scope.user.type = 'web';
 		$http({
 			url: 'http://35.160.142.158:8080/login',
 			method: 'POST',
@@ -1259,108 +1261,6 @@ app
 	
 });
 
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:DeviceDetailsCtrl
- * @description
- * # DeviceDetailsCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('DeviceDetailsCtrl', function ($scope, $mdDialog, $http) {
-     $scope.page = {
-      title: 'Device Details',
-      subtitle: 'So much more to see at a glance.'
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete device?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your device has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.result = 'You decided to keep device.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};	
-	
-	$http.get('http://localhost:8080/elika/json/admin/devices/dependent-devices.json').success(function(response){
-		$scope.devices = response;
-		$scope.totalDisplayed = 6;
-		
-		if($scope.devices.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 6;
-			if($scope.totalDisplayed > $scope.devices.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
-	$http.get('http://localhost:8080/elika/json/admin/devices/users.json').success(function(response){
-		$scope.users = response;
-		$scope.totalDisplayed1 = 6;
-		
-		if($scope.users.length > $scope.totalDisplayed1) {
-			$scope.lmbtn1 = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn1 = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore1 = function () {
-			$scope.totalDisplayed1 += 6;
-			if($scope.totalDisplayed1 > $scope.users.length) {				
-				$scope.lmbtn1 = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images/';
-	
-});
 
 'use strict';
 /**
@@ -10027,4 +9927,35 @@ app.controller('AddUserCtrl',function($scope){
 		})
 
 	}
+});
+
+app.service('arrayPushService', function arrayPushService() {
+	this.arrayPush = function(response_data , parent_array) {
+        try
+		{
+			if(response_data.length > 0 )
+			{	
+				for(var cnt_i=0; cnt_i < response_data.length; cnt_i++ )
+				{
+					parent_array.push(response_data[cnt_i]);
+					
+				}
+				return parent_array ;
+			}
+			else
+			{
+				return parent_array ;
+			}	
+		}
+		catch(e)
+		{
+			console.log(e);
+		}
+    }
+   
+});
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
 });
