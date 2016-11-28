@@ -7,7 +7,7 @@
 		<div class="row">		
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					<div class="bg-dashboard">
+					<div class="bg-dashboard pdevicebg">
 						<div class="bg-transparent">
 							<div class="row">
 								<div class="col-md-12">
@@ -84,58 +84,67 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form">
+										<form name="form1" role="form" ng-submit="formSubmit(device)">
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
 											<div class="modal-body">
 												<div class="row overflow">
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Device Name</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" ng-model="device.device_name" id="" class="form-control mb-10" placeholder="">
 														</div>
 													</div>
-													<div class="col-md-6 last">
-														<div class="form-group">
-															<label for="">Model Name</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
-														</div>
-													</div>
-												</div>
-												<div class="row">
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Serial Number</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" id="" ng-model="device.serial_no" class="form-control mb-10" placeholder="">
 														</div>
 													</div>
-													<div class="col-md-6 last">
+													<!--<div class="col-md-6 last">
 														<div class="form-group">
-															<label for="">Facility</label><br/>
-															<select class="form-control" disabled>
-																<option selected>USA Corporate Services</option>
-																<option>Aerzen USA Corporation</option>
-															</select>
+															<label for="">Model Name</label>
+															<input type="text" name="" id="" ng-model="device.model_name" class="form-control mb-10" placeholder="">
 														</div>
+													</div>-->
+												</div>
+												<div class="row">
+													
+													<div class="col-md-6 first">
+														<div class="form-group">
+															<label for="">Registration Code</label>
+															<input type="text" name="" id="" ng-model="device.registration_code" class="form-control mb-10" placeholder="">
+														</div>
+													</div>
+													<div class="col-md-6 first">
+													<div class="form-group">
+														<label for="">Facility</label><br/>
+														<div class="form-control">{{device.facility_id}}</div>
+														<!--select class="form-control" ng-model="device.facility_id" disabled>
+															<option selected>USA Corporate Services</option>
+															<option>Aerzen USA Corporation</option>
+														</select-->
+													</div>
 													</div>
 												</div>
-												<div class="form-group" ng-controller="PrimarybtnCtrl">
+												
+												<div class="form-group">
 													<label for="">Device Type</label><br/>
 													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Primary'">Primary</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Dependent'">Dependent</label>
+														<label class="btn btn-default" ng-model="device.device_type" uib-btn-radio="'master'">Primary</label>
+														<label class="btn btn-default" ng-model="device.device_type" uib-btn-radio="'slave'">Dependent</label>
 													</div>
-													<div class="slavevalues" ng-hide="radioModel=='Primary'">
+													<div class="slavevalues" ng-hide="device.device_type=='master'">
 														<select class="form-control mb-10">
 															<option>Select Primary Device</option>
-															<option>Reception Room</option>
-															<option>Conference Room</option>
-															<option>Server Room</option>
-															<option>Meeting Room</option>
-															<option>Development Room</option>
-															<option>Boardroom</option>
-															<option>Managers Room</option>
-															<option>Director Room</option>
-															<option>Inventory Room</option>
+															<option value=2>Reception Room</option>
+															<option value=3>Conference Room</option>
+															<option value=4>Server Room</option>
+															<option value=5>Meeting Room</option>
+															<option value=6>Development Room</option>
+															<option value=7>Boardroom</option>
+															<option value=8>Managers Room</option>
+															<option value=9>Director Room</option>
+															<option value=10>Inventory Room</option>
 														</select>
 													</div>
 												</div>
@@ -143,32 +152,16 @@
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Technician</label><br/>
-															<select class="form-control">
-																<option>Arnold</option>
-																<option>Peter</option>
-																<option>Paracosm</option>
-																<option>Jason</option>
-																<option>Paul</option>
-																<option>Vin</option>
-																<option>Dwayne</option>
+															<select class="form-control" ng-model="device.technician_id">
+																<option value=1>Arnold</option>
+																<option value=2>Peter</option>
+																<option value=3>Paracosm</option>
+																<option value=4>Jason</option>
+																<option value=5>Paul</option>
+																<option value=6>Vin</option>
+																<option value=7>Dwayne</option>
 															</select>
 															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
-														</div>
-													</div>
-													<div class="col-md-6 last">
-														<div class="form-group">
-															<label for="">Doors</label><br/>
-															<select class="form-control">
-																<option>Main Gate Front</option>
-																<option>Main Gate Back</option>
-																<option>Exit Gate Front</option>
-																<option>Exit Gate Back</option>
-																<option>Parking Entry Gate</option>
-																<option>Parking Exit Gate</option>
-																<option>Pool Gate</option>
-																<option>Gym Gate</option>
-															</select>
-															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.door.doors">Add Door</a></small>
 														</div>
 													</div>
 												</div>
@@ -235,21 +228,21 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="device in adevices | limitTo:totalDisplayed | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
-											<a ui-sref="app.admin.device.device-details"><img ng-src="{{imagePath}}/device/{{ device.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
+										<md-card ng-repeat="device in data | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
+											<a ui-sref="app.admin.device.device-details({device_id:device.device_id})"><img ng-src="{{imagePath}}/device/{{ device.device_image }}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
-												<h2 class="md-title">{{ device.title }}</h2>
-												<p>{{ device.model }}</p>
-												<p>{{ device.noofslaves }}</p>
+												<h2 class="md-title">{{ device.device_name }}</h2>
+												<p>{{ device.device_model }}</p>
+												<p>Dependent {{ device.device_slave_count }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.device-details">View</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.device-details({device_id:device.device_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.device.device-details">Edit</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="deleteDevice(device.device_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="deviceInit()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
