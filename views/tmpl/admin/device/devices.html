@@ -40,7 +40,7 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices">
+					<a ui-sref="app.admin.device.dependent-devices" href="#/app/admin/device/dependent-devices">
 						<div class="noback bg-greensea">
 							<div class="row">
 								<div class="col-xs-4 ta-c">
@@ -188,15 +188,15 @@
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
-											<li><a href="" ng-click="orderByMe('title')">Title</a></li>
-											<li><a href="" ng-click="orderByMe('facility')">Facility</a></li>
-											<li><a href="" ng-click="orderByMe('model')">Model</a></li>
+											<li><a href="" ng-click="orderByMe('device_name')">Name</a></li>
+											<!-- <li><a href="" ng-click="orderByMe('device_model')">Facility</a></li> -->
+											<li><a href="" ng-click="orderByMe('device_model')">Model</a></li>
 										</ul>
 									</label>
 								</div>
 								<div class="col-md-4 search">
-									<input type="text" class="form-control" placeholder="Search by text....">
-									<button class="btn btn-default br-2-r" type="button">Search</button>
+									<input type="text" class="form-control" ng-model="searchText" placeholder="Search by text...." ng-keyup="searchFunction($event)">
+									<button class="btn btn-default br-2-r" type="button" ng-click="searchFunction()">Search</button>
 								</div>
 								<div class="col-md-4">
 									<div class="gridlistbar ta-r pull-right">
@@ -207,17 +207,17 @@
 								</div>
 								<div class="filterfields" ng-hide="filtershow">
 									<div class="col-md-3">
-										<label for="fbtext" class="control-label">Search by text</label> 
-										<input type="text" class="form-control" id="fbtext" ng-model="text">
+										<label for="fbtext" class="control-label">Search by Name</label> 
+										<input type="text" class="form-control" id="fbtext" ng-model="text" >
 									</div>
 									<div class="col-md-3">
 										<label for="fbtitle" class="control-label">Search by title</label>
 										<input type="text" class="form-control" id="fbtitle" ng-model="title">
 									</div>
-									<div class="col-md-3">
+									<!-- <div class="col-md-3">
 										<label for="fblocation" class="control-label">Search by facility</label>
 										<input type="text" class="form-control" id="fblocation" ng-model="facility">
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div ng-if="result">									
@@ -237,8 +237,8 @@
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.device-details({device_id:device.device_id})">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.device.device-details">Edit</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="deleteDevice(device.device_id)">Delete</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.device.device-details({device_id:device.device_id})">Edit</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm(device.device_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
