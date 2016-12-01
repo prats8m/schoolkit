@@ -210,7 +210,8 @@ var app = angular
 				.state('app.subadmin.facility.facility-details', {
 				  url: '/facility-details',
 				  controller: 'FacilityDetailsCtrl',
-				  templateUrl: 'views/tmpl/subadmin/facility/facility-details.html'
+				  templateUrl: 'views/tmpl/subadmin/facility/facility-details.html',
+				  params: {facility_id: null}
 				})
 				
 
@@ -768,7 +769,7 @@ app
 	$scope.loginFunction = function(){
 		$scope.user.type = "web";
 		$http({
-			url: 'http://35.160.142.158:8080/login',
+			url: 'http://35.160.142.158:8080/login-web',
 			method: 'POST',
 			data: $scope.user,
 			dataType : 'JSON',
@@ -896,7 +897,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies) {
+  .controller('FacilityCtrl',function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload) {
   	
     $scope.page = {
 		title: 'Facility',
@@ -915,6 +916,7 @@ app
 	
     $rootScope.save = function(facility){
     	(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
+    	// $scope.fileupload = fileUpload.uploadFileToUrl(facility.profile_pic, "")
     	$http({
 			url: 'http://35.160.142.158:8080/facility/add',
 			method: 'POST',
@@ -967,13 +969,28 @@ app
 		$scope.class = 'gridview';
 		$scope.layout = 'grid';
 	};
-	
-	$http({
-			url: 'http://35.160.142.158:8080/facility/list?limit=20&page_no=1',
+
+	$rootScope.search_facility = function(search){
+		$http({
+			url: 'http://35.160.142.158:8080/facility/list',
 			headers: {
 				'Content-type': 'application/json',
-    			'Authorization': $cookies.get("token")
+    		'Authorization': $cookies.get("token")
 			},
+			params:{limit: 20, page_no: 1, search_val: search.search_val},
+			method: 'GET',
+			dataType : 'JSON'
+		}).success(function(response){
+		$scope.facilities = response["data"]["data"];
+		});
+	};
+	$http({
+			url: 'http://35.160.142.158:8080/facility/list',
+			headers: {
+				'Content-type': 'application/json',
+    		'Authorization': $cookies.get("token")
+			},
+			params:{limit: 20, page_no: 1, search_val: $rootScope.search_val},
 			method: 'GET',
 			dataType : 'JSON'
 		}).success(function(response){
@@ -1017,12 +1034,35 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http) {
+  .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal) {
     $scope.page = {
 		title: 'Facility Details',
 		subtitle: 'So much more to see at a glance.'
     };
-	
+
+    $scope.timezones = {
+  	model: null,
+    availableOptions: [
+      {id: 'AKST', name: 'USA (Alaska)'},
+      {id: 'UTC-11', name: 'USA (Samoa)'},
+      {id: 'PST', name: 'USA (Pacific)'},
+      {id: 'EST', name: 'USA (Eastern)'},
+      {id: 'HST', name: 'USA (Hawaii-Aleutian)'},
+      {id: 'MST', name: 'USA (Mountain)'},
+      {id: 'AST', name: 'USA (Atlantic)'},
+      {id: 'CST', name: 'USA (Central)'},
+      {id: 'UTC+10', name: 'USA (Chamorro)'}
+    ]
+   };
+
+    $scope.singleModel = 1;
+    $scope.facility = {};
+    $scope.facility.facility_status = 'Active';
+    $scope.checkModel = {
+      Active: true,
+      Inactive: false
+    };
+
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
@@ -1105,6 +1145,66 @@ app
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
+
+    $http({
+			url: 'http://35.160.142.158:8080/facility/view/'+$stateParams.facility_id,
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token"),
+			}
+		})
+		.success(function(response) {
+			$scope.facility = "";
+			$scope.facility = response.data;
+			$scope.facility.timeZone = response.data.facility_timezone;
+			if(response.status == true){
+				if(response.msg == 'Login_Success'){
+					$state.go('app.admin.dashboard');
+				}
+			}else{
+				if(response.msg == 'Invalid_Credentials'){
+					$scope.message = 'Please enter correct email id and password.';
+				}
+			}
+		})
+		.error(function(response){
+			console.log(response);
+		});
+
+	$scope.edit_facility = function(facility){
+		facility.timeZone = facility.facility_timezone;
+		facility.zip_code = ""+facility.facility_zipcode;
+		facility.status = 1; //facility.facility_status
+		$http({
+			url: 'http://35.160.142.158:8080/facility/edit',
+			method: 'PUT',
+			data: facility,
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			$scope.facility = "";
+			$scope.facility = response.data;
+			$scope.facility.timeZone = response.data.facility_timezone;
+			if(response.status == true){
+				if(response.msg == 'Facility_Edited'){
+					$state.go('app.subadmin.facility.facility-details facility_id:  '+facility.facility_id );
+				}
+			}else{
+				if(response.msg == 'Invalid_Credentials'){
+					$scope.message = 'Please enter correct email id and password.';
+				}
+			}
+		})
+		.error(function(){
+		});
+	};	
+
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
@@ -2980,14 +3080,15 @@ app
   	$rootScope.timezones = {
   	model: null,
     availableOptions: [
-      {id: '1', name: 'USA (Samoa)'},
-      {id: '2', name: 'USA (Pacific)'},
-      {id: '3', name: 'USA (Eastern)'},
-      {id: '2', name: 'USA (Hawaii-Aleutian)'},
-      {id: '3', name: 'USA (Mountain)'},
-      {id: '2', name: 'USA (Atlantic)'},
-      {id: '3', name: 'USA (Central)'},
-      {id: '2', name: 'USA (Chamorro)'}
+      {id: 'AKST', name: 'USA (Alaska)'},
+      {id: 'UTC-11', name: 'USA (Samoa)'},
+      {id: 'PST', name: 'USA (Pacific)'},
+      {id: 'EST', name: 'USA (Eastern)'},
+      {id: 'HST', name: 'USA (Hawaii-Aleutian)'},
+      {id: 'MST', name: 'USA (Mountain)'},
+      {id: 'AST', name: 'USA (Atlantic)'},
+      {id: 'CST', name: 'USA (Central)'},
+      {id: 'UTC+10', name: 'USA (Chamorro)'}
     ]
    };
 
@@ -9974,3 +10075,36 @@ app.filter('capitalize', function() {
       return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
     }
 });
+
+app.directive('fileModel', ['$parse', function ($parse) {
+            return {
+               restrict: 'A',
+               link: function(scope, element, attrs) {
+                  var model = $parse(attrs.fileModel);
+                  var modelSetter = model.assign;
+                  
+                  element.bind('change', function(){
+                     scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                     });
+                  });
+               }
+            };
+         }]);
+app.service('fileUpload', ['$http', function ($http) {
+            this.uploadFileToUrl = function(file, uploadUrl){
+               var fd = new FormData();
+               fd.append('file', file);
+            
+               $http.post(uploadUrl, fd, {
+                  transformRequest: angular.identity,
+                  headers: {'Content-Type': undefined}
+               })
+            
+               .success(function(){
+               })
+            
+               .error(function(){
+               });
+            }
+         }]);

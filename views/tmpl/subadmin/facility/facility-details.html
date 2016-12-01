@@ -138,12 +138,12 @@
 										</div>
 										
 										<div class="row">
-											<div class="form-group col-sm-12 profiledetail">
-												<p><label>Name</label> USA Corporate Services</p>
-												<p><label>Location</label> 19 W 34th St #1018, NY 10001, USA</p>
-												<p><label>Time Zone</label> USA (Alaska)</p>
-												<p><label>Zip Code</label> 10001</p>
-												<p><label>Status</label> Active</p>											
+											<div class="form-group col-sm-12 profiledetail" >
+												<p><label>Name</label> {{ facility.facility_name }}</p>
+												<p><label>Location</label> {{ facility.facility_location }}</p>
+												<p><label>Time Zone</label> {{ facility.facility_timezone }}</p>
+												<p><label>Zip Code</label> {{ facility.facility_zipcode }}</p>
+												<p><label>Status</label> {{ facility.facility_status ? "Active" : "Inactive"}}</p>											
 											</div>											
 										</div>										
 									</div>
@@ -698,12 +698,12 @@
 							</uib-tab>
 							<uib-tab heading="Edit Facility">
 								<div class="wrap-reset"> 
-									<form name="form1" role="form">
+									<form name="form1" role="form" ng-submit="edit_facility(facility)">
 										<div class="modal-body">											
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="">Facility Name</label>
-													<input type="text" name="" id="" class="form-control mb-10" value="USA Corporate Services">
+													<input type="text" name="" id="" class="form-control mb-10" ng-model="facility.facility_name" value="{{facility.facility_name}}">
 												</div>
 												<div class="form-group col-md-6">
 													<div class="form-group">
@@ -719,11 +719,14 @@
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="">Facility Location</label>
-													<input type="text" name="" id="" class="form-control mb-10" value="19 W 34th St #1018, NY 10001, USA">
+													<input type="text" name="" id="" class="form-control mb-10" ng-model="facility.facility_location" value="{{facility.facility_location}}">
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Time Zone</label>
-													<select class="form-control mb-10">
+													<select name="timeZone" class="form-control mb-10" ng-model="facility.facility_timezone" required>
+																<option ng-repeat="option in timezones.availableOptions" value="{{option.id}}">{{option.name}}</option>
+															</select>
+													<!-- <select class="form-control mb-10">
 														<option>USA (Alaska)</option>
 														<option>USA (Samoa)</option>
 														<option>USA (Pacific)</option>
@@ -733,21 +736,23 @@
 														<option>USA (Atlantic)</option>
 														<option>USA (Central)</option>
 														<option>USA (Chamorro)</option>
-													</select>
+													</select> -->
 												</div>
 											</div>
 											
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="">Zip Code</label>
-													<input type="text" name="" id="" class="form-control mb-10" value="10001">
+													<input type="text" name="" id="" class="form-control mb-10" ng-model="facility.facility_zipcode" value="{{facility.facility_zipcode}}">
 													</select>
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Status</label><br/>
-													<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+													<div class="btn-group btnrounded">
+														<!-- <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label> -->
+														<!-- <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label> -->
+														<label class="btn btn-default" name="status" ng-model="facility.facility_status" uib-btn-radio="'Active'" value=1>Active</label>
+														<label class="btn btn-default" ng-model="facility.facility_status" name="status" uib-btn-radio="'Inactive'" value=0>Inactive</label>
 													</div>
 												</div>
 											</div>			
