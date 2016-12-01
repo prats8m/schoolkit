@@ -61,7 +61,8 @@ var app = angular
     'wu.masonry',
     'ipsum',
     'angular-intro',
-    'dragularModule'
+    'dragularModule',
+	'toaster'
   ])
   .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
@@ -534,8 +535,15 @@ var app = angular
 				})
 			
 			//admin device dependent-devices-details
+			.state('app.admin.device.dependent-devices', {
+			  url: '/dependent-devices',
+			  controller: 'DependentDeviceCtrl',
+			  templateUrl: 'views/tmpl/admin/device/dependent-devices.html'
+			})
+			
+			//admin device dependent-devices-details
 			.state('app.admin.device.dependent-devices-details', {
-			  url: '/dependent-devices-details',
+			  url: '/dependent-devices-details/:device_id',
 			  controller: 'DependentDevicesDetailsCtrl',
 			  templateUrl: 'views/tmpl/admin/device/dependent-devices-details.html'
 			})
@@ -780,7 +788,13 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				if(response.msg == 'Login_Success'){
-					$cookies.put('token', response.data.token);
+					
+					var now = new Date();
+					var time = now.getTime();
+					var expireTime = time + 1000*60;
+					now.setTime(expireTime);
+					
+					$cookies.put('token', response.data.token,{expiry:now});
 					$state.go('app.admin.dashboard');
 				}
 			}else{
@@ -1377,66 +1391,7 @@ app
 });
 
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:DependentDevicesDetailsCtrl
- * @description
- * # DependentDevicesDetailsCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog){
-    $scope.page = {
-      title: 'Dependent Device',
-      subtitle: 'So much more to see at a glance.'
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete user?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your user has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.result = 'You decided to keep user.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
-	$scope.users = [{
-		serialno:'1',
-		name:'Arnold',
-		group:'Office Hours',
-		phone:'+1 212 1467 8920',
-		imagename:'2'
-    }];
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
-});
+
 
 'use strict';
 /**
