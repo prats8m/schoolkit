@@ -793,7 +793,6 @@ app
 					var time = now.getTime();
 					var expireTime = time + 1000*60;
 					now.setTime(expireTime);
-					
 					$cookies.put('token', response.data.token,{expiry:now});
 					$state.go('app.admin.dashboard');
 				}
@@ -911,7 +910,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityCtrl',function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload) {
+  .controller('FacilityCtrl',function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL) {
   	
     $scope.page = {
 		title: 'Facility',
@@ -944,8 +943,14 @@ app
 			.success(function(response) {
 				var n = [];
 				var arr = response.error;
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.masters = n;
+				if(response.error != ""){
+					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.masters = n;
+				}
+				else{
+					$rootScope.masters = []
+					$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}
 				
 			})
 			.error(function (data, status, headers, config) {
@@ -999,17 +1004,17 @@ app
 		});
 	};
 	$http({
-			url: 'http://35.160.142.158:8080/facility/list',
+			url: baseURL+'facility/list',
+			params:{limit: 200, page_no: 1, search_val: $rootScope.search_val},
+			method: 'GET',
+			dataType : 'JSON',
 			headers: {
 				'Content-type': 'application/json',
     		'Authorization': $cookies.get("token")
-			},
-			params:{limit: 20, page_no: 1, search_val: $rootScope.search_val},
-			method: 'GET',
-			dataType : 'JSON'
+			}
 		}).success(function(response){
 		$scope.facilities = response["data"]["data"];
-		$scope.totalDisplayed = 8;
+		$scope.totalDisplayed = 9;
 		
 		if($scope.facilities.length > $scope.totalDisplayed) {
 			$scope.lmbtn = {
@@ -1022,7 +1027,7 @@ app
 		}
 		
 		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
+			$scope.totalDisplayed += 9;
 			if($scope.totalDisplayed > $scope.facilities.length) {				
 				$scope.lmbtn = {
 					"display" : "none"
@@ -1048,12 +1053,11 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal) {
+  .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster) {
     $scope.page = {
 		title: 'Facility Details',
 		subtitle: 'So much more to see at a glance.'
     };
-
     $scope.timezones = {
   	model: null,
     availableOptions: [
@@ -1068,14 +1072,6 @@ app
       {id: 'UTC+10', name: 'USA (Chamorro)'}
     ]
    };
-
-    $scope.singleModel = 1;
-    $scope.facility = {};
-    $scope.facility.facility_status = 'Active';
-    $scope.checkModel = {
-      Active: true,
-      Inactive: false
-    };
 
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
@@ -1108,30 +1104,6 @@ app
 		$scope.layout = 'grid';
 	};	
 	
-	$http.get('http://localhost:8080/elika/json/admin/facility/devices.json').success(function(response){
-		$scope.devices = response;
-		$scope.totalDisplayed = 6;
-		
-		if($scope.devices.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 6;
-			if($scope.totalDisplayed > $scope.devices.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
 	$http.get('http://localhost:8080/elika/json/admin/facility/users.json').success(function(response){
 		$scope.users = response;
 		$scope.totalDisplayed1 = 6;
@@ -1160,8 +1132,13 @@ app
         $scope.myOrderBy = x;
     }
 
+    if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
+    {
+    	$stateParams = {};
+    	$stateParams.facility_id = jQuery.parseJSON($cookies.get("facility")).facility_id;
+    }
     $http({
-			url: 'http://35.160.142.158:8080/facility/view/'+$stateParams.facility_id,
+			url: baseURL+'facility/view/'+$stateParams.facility_id,
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {
@@ -1170,29 +1147,123 @@ app
 			}
 		})
 		.success(function(response) {
+			var arr = {};
+			$.each(response.data, function(index, value){
+				arr[index] = value;
+			});
+			$cookies.put("facility", JSON.stringify(arr));
 			$scope.facility = "";
+
 			$scope.facility = response.data;
 			$scope.facility.timeZone = response.data.facility_timezone;
-			if(response.status == true){
-				if(response.msg == 'Login_Success'){
-					$state.go('app.admin.dashboard');
-				}
-			}else{
-				if(response.msg == 'Invalid_Credentials'){
-					$scope.message = 'Please enter correct email id and password.';
-				}
-			}
+			$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
+
+			$scope.checkModel = {
+				Active: true,
+				Inactive: false
+			};
+			
 		})
 		.error(function(response){
 			console.log(response);
 		});
 
+	// Code starts for facility master device
+
+	$http({
+			url: baseURL+'device/list-master-device',
+			method: 'GET',
+			dataType : 'JSON',
+			params:{limit: 20, pageNo: 1, facilityId: jQuery.parseJSON($cookies.get("facility")).facility_id},
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token"),
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.devices = response.data.data;
+				$scope.totalDisplayed = 6;
+			}
+			else{
+				$scope.result = response.msg.replace(/_/g,' ');
+			}
+		
+		if($scope.devices.length > $scope.totalDisplayed) {
+			$scope.lmbtn = {
+				"display" : "block"
+			};			
+		} else {
+			$scope.lmbtn = {
+				"display" : "none"
+			};
+		}
+		
+		$scope.loadMore = function () {
+			$scope.totalDisplayed += 6;
+			if($scope.totalDisplayed > $scope.devices.length) {				
+				$scope.lmbtn = {
+					"display" : "none"
+				};	
+			}			
+		};		
+	});
+
+	//Code ends for facility master device 
+
+
+	//Code starts to search facility device by text
+	$scope.search_facility_device = function(facility){
+		$http({
+			url: baseURL+'device/list-master-device',
+			method: 'GET',
+			dataType : 'JSON',
+			params:{limit: 20, pageNo: 1, facilityId: jQuery.parseJSON($cookies.get("facility")).facility_id, searchVal: facility.search_val},
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token"),
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.devices = response.data.data;
+				$scope.totalDisplayed = 6;
+				$scope.result =  "";
+			}
+			else{
+				$scope.result = response.msg.replace(/_/g,' ');
+			}
+		
+		if($scope.devices.length > $scope.totalDisplayed) {
+			$scope.lmbtn = {
+				"display" : "block"
+			};			
+		} else {
+			$scope.lmbtn = {
+				"display" : "none"
+			};
+		}
+		
+		$scope.loadMore = function () {
+			$scope.totalDisplayed += 6;
+			if($scope.totalDisplayed > $scope.devices.length) {				
+				$scope.lmbtn = {
+					"display" : "none"
+				};	
+			}			
+		};		
+	});
+	}
+
+	//Code ends to search facility device by text
+
+
 	$scope.edit_facility = function(facility){
 		facility.timeZone = facility.facility_timezone;
 		facility.zip_code = ""+facility.facility_zipcode;
-		facility.status = 1; //facility.facility_status
+		facility.status = facility.facility_status == 'Active' ? 1 : 0
 		$http({
-			url: 'http://35.160.142.158:8080/facility/edit',
+			url: baseURL+'facility/edit',
 			method: 'PUT',
 			data: facility,
 			dataType : 'JSON',
@@ -1202,25 +1273,19 @@ app
 			}
 		})
 		.success(function(response) {
-			$scope.facility = "";
-			$scope.facility = response.data;
-			$scope.facility.timeZone = response.data.facility_timezone;
+
 			if(response.status == true){
-				if(response.msg == 'Facility_Edited'){
-					$state.go('app.subadmin.facility.facility-details facility_id:  '+facility.facility_id );
-				}
+				toaster.pop('success','Facility Edited Successfully');
 			}else{
-				if(response.msg == 'Invalid_Credentials'){
-					$scope.message = 'Please enter correct email id and password.';
-				}
+				toaster.pop('error',response.msg.replace(/_/g,' '));
 			}
 		})
-		.error(function(){
+		.error(function(response){
+			console.log(response);
 		});
 	};	
-
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images/';
+	$scope.imagePath = baseURL+'elika/images/';
 	
 });
 
@@ -10063,3 +10128,4 @@ app.service('fileUpload', ['$http', function ($http) {
                });
             }
          }]);
+app.constant('baseURL', 'http://35.160.142.158:8080/');

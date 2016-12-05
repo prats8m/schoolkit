@@ -143,7 +143,7 @@
 												<p><label>Location</label> {{ facility.facility_location }}</p>
 												<p><label>Time Zone</label> {{ facility.facility_timezone }}</p>
 												<p><label>Zip Code</label> {{ facility.facility_zipcode }}</p>
-												<p><label>Status</label> {{ facility.facility_status ? "Active" : "Inactive"}}</p>											
+												<p><label>Status</label> {{ facility.facility_status}}</p>											
 											</div>											
 										</div>										
 									</div>
@@ -168,8 +168,8 @@
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-8 search">
-														<input type="text" class="form-control" placeholder="Search by text....">
-														<button class="btn btn-default br-2-r" type="button">Search</button>
+														<input type="text" class="form-control" placeholder="Search by text...." ng-model="facility.search_val" ng-keypress="search_facility_device(facility)">
+														<button class="btn btn-default br-2-r" type="button" ng-click="search_facility_device(facility)">Search</button>
 													</div>
 													<div class="col-md-4 ta-r">
 														<div ng-controller="ModalDemoCtrl">
@@ -285,6 +285,7 @@
 										<div ng-if="result">									
 											<div layout="row" ng-class="statusclass">									
 												{{result}}
+											
 											</div>
 										</div>
 										<div ng-class="class">
@@ -293,9 +294,9 @@
 													<md-card class="slaveusers" ng-repeat="device in devices | limitTo:totalDisplayed | filter:text | filter:title | filter:model | orderBy:myOrderBy">
 														<a ui-sref="app.subadmin.device.device-details"><img ng-src="{{imagePath}}/device/{{ device.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
 														<md-card-content>
-															<h2 class="md-title">{{ device.title }}</h2>
-															<p>{{ device.model }}</p>
-															<p>{{ device.noofslaves }} Dependent &nbsp;|&nbsp; {{ device.noofuser }} Users</p>
+															<h2 class="md-title">{{device.device_name}}</h2>
+															<p>{{ device.device_model }}</p>
+															<p>{{ device.device_slave_count }} Dependent &nbsp;|&nbsp; {{ device.noofuser }} Users</p>
 														</md-card-content>
 														<div class="md-actions" layout="row" layout-align="center center">
 															<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.subadmin.device.device-details">View</a>
