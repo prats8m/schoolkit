@@ -1053,7 +1053,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster) {
+  .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
     $scope.page = {
 		title: 'Facility Details',
 		subtitle: 'So much more to see at a glance.'
@@ -1072,6 +1072,13 @@ app
       {id: 'UTC+10', name: 'USA (Chamorro)'}
     ]
    };
+
+   $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
+
+  //Code to default select device type
+  $rootScope.facility_device = {};
+  $rootScope.facility_device.device_type = 'Primary';
+  //Code ends to default select device type
 
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
@@ -1285,6 +1292,36 @@ app
 		});
 	};	
 	
+	//Code starts to save facility device
+	$rootScope.saveFacilityDevice = function(facility_device){
+		facility_device.facility_id = jQuery.parseJSON($cookies.get("facility")).facility_id; 
+		facility_device.serial_no = parseInt(facility_device.serial_no);
+		facility_device.technician_id = parseInt(facility_device.technician_id);
+		facility_device.registration_code = "1234";
+		$http({
+			url: baseURL+'device/add',
+			method: 'POST',
+			data: facility_device,
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				toaster.pop('success','Facility Added Successfully');
+			}else{
+				toaster.pop('error',response.msg.replace(/_/g,' '));
+			}
+		})
+		.error(function(response){
+			console.log(response);
+		});
+
+	}
+	//Code ends to save facility device
+
 	$scope.imagePath = baseURL+'elika/images/';
 	
 });

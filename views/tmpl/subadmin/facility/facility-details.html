@@ -174,31 +174,31 @@
 													<div class="col-md-4 ta-r">
 														<div ng-controller="ModalDemoCtrl">
 															<script type="text/ng-template" id="myModalContent.html">
-																<form name="form1" role="form">
+																<form name="form1" role="form" ng-submit="saveFacilityDevice(facility_device)">
 																	<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
 																	<div class="modal-body">							
 																		<div class="overflow form-group">
-																			<label for="">Facility Name:</label> USA Corporate Services
+																			<label for="">Facility Name:</label> {{facilityName}}
 																		</div>
 																		<div class="row overflow">
 																			<div class="col-md-6 first">
 																				<div class="form-group">
 																					<label for="">Device Name</label>
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="facility_device.device_name">
 																				</div>
 																			</div>
 																			<div class="col-md-6 last">
 																				<div class="form-group">
 																					<label for="">Serial Number</label>
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="facility_device.serial_no">
 																				</div>
 																			</div>
 																		</div>
-																		<div class="form-group" ng-controller="PrimarybtnCtrl">
+																		<div class="form-group">
 																			<label for="">Device Type</label><br/>
 																			<div class="btn-group btnrounded">
-																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Primary'">Primary</label>
-																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Dependent'">Dependent</label>
+																				<label class="btn btn-default" ng-model="facility_device.device_type" uib-btn-radio="'Primary'">Primary</label>
+																				<label class="btn btn-default" ng-model="facility_device.device_type" uib-btn-radio="'Dependent'">Dependent</label>
 																			</div>
 																			<div class="slavevalues" ng-hide="radioModel=='Primary'">
 																				<select class="form-control mb-10">
@@ -219,14 +219,14 @@
 																			<div class="col-md-6 first">
 																				<div class="form-group">
 																					<label for="">Technician</label><br/>
-																					<select class="form-control">
-																						<option>Arnold</option>
-																						<option>Peter</option>
-																						<option>Paracosm</option>
-																						<option>Jason</option>
-																						<option>Paul</option>
-																						<option>Vin</option>
-																						<option>Dwayne</option>
+																					<select class="form-control" ng-model="facility_device.technician_id">
+																						<option value="1">Arnold</option>
+																						<option value="2">Peter</option>
+																						<option value="3">Paracosm</option>
+																						<option value="4">Jason</option>
+																						<option value="5">Paul</option>
+																						<option value="6">Vin</option>
+																						<option value="7">Dwayne</option>
 																					</select>
 																					<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
 																				</div>
