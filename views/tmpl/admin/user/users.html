@@ -151,19 +151,20 @@
 											<md-content class="md-padding tabsdemoDynamicHeight">
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Account">
-														<md-content>								
+														<md-content>
+															<form ng-submit="submitUserData(userData)">
 															<div class="account">
 																<div class="overflow">
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">First Name</label>
-																			<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																			<input type="text" name="" id="" ng-model="userData.first_name" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
 																		<div class="form-group">
 																			<label for="">Last Name</label>
-																			<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																			<input type="text" name="" id="" ng-model="userData.last_name" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																</div>
@@ -171,7 +172,7 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Email Address</label>
-																			<input type="emial" name="" id="" class="form-control mb-10" placeholder="">
+																			<input type="email" name="" id="" ng-model="userData.email" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
@@ -188,38 +189,56 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Phone Number</label>
-																			<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																			<input type="text" name="" id="" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
 																		<div class="form-group">
 																			<label for="">Address</label>
-																			<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																			<input type="text" name="" id="" ng-model="userData.address" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																</div>
+																
+																<div class="overflow">
+																	<div class="col-md-6 first">
+																		<div class="form-group">
+																			<label for="">Password</label>
+																			<input type="password" name="" id="" ng-model="userData.password" class="form-control mb-10" placeholder="">
+																		</div>
+																	</div>
+																	<div class="col-md-6 last">
+																		<div class="form-group">
+																			<label for="">Confirm Password</label>
+																			<input type="password" name="" id="" ng-model="userData.cpassword" class="form-control mb-10" placeholder="">
+																		</div>
+																	</div>
+																</div>
+																
 																<div class="overflow">
 																	<div class="form-group">
 																		<label for="">Description</label>
-																		<textarea name="" id="" class="form-control mb-10" placeholder=""></textarea>
+																		<textarea name="" id="" ng-model="userData.description" class="form-control mb-10" placeholder=""></textarea>
 																	</div>
 																</div>
-																<div class="overflow" ng-controller="ActivebtnCtrl">
+																<div class="overflow">
 																	<div class="col-md-6 first">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded">
-																			<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																			<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																			<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="1">Active</label>
+																			<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
 																		</div>
 																	</div>
-																	<div class="col-md-6 last" ng-hide="radioModel=='Inactive'">
+																	<div class="col-md-6 last" ng-hide="userData.status==1">
 																		<div ng-controller="DatepickerDemoCtrl">
 																			<label for="">Expiration Date</label>
-																			<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+																			<input type="text" class="form-control" ng-model="userData.expiration_date" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
 																		</div>
 																	</div>
-																</div>				
-															</div>							   
+																</div>
+																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>																
+															</div>
+															</form>															
 														</md-content>
 													</md-tab>
 													
@@ -478,16 +497,16 @@
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
-											<li><a href="" ng-click="orderByMe('name')">Name</a></li>
-											<li><a href="" ng-click="orderByMe('group')">Group</a></li>
-											<li><a href="" ng-click="orderByMe('facility')">Facility</a></li>
-											<li><a href="" ng-click="orderByMe('phone')">Phone</a></li>
+											<li><a href="" ng-click="orderByMe('user_first_name')">Name</a></li>
+											<!-- <li><a href="" ng-click="orderByMe('group')">Group</a></li> -->
+											<!-- <li><a href="" ng-click="orderByMe('facility')">Facility</a></li> -->
+											<li><a href="" ng-click="orderByMe('user_phone_no')">Phone</a></li>
 										</ul>
 									</label>
 								</div>
 								<div class="col-md-4 search">
-									<input type="text" class="form-control" placeholder="Search by text....">
-									<button class="btn btn-default" type="button">Search</button>
+									<input type="text" class="form-control" ng-model="searchText" ng-keyup="searchFunction($event)" placeholder="Search by text....">
+									<button class="btn btn-default" type="button" ng-click="searchFunction()">Search</button>
 								</div>
 								<div class="col-md-4">
 									<div class="gridlistbar ta-r pull-right">
@@ -505,10 +524,10 @@
 										<label for="fbtitle" class="control-label">Search by name</label>
 										<input type="text" class="form-control" id="fbtitle" ng-model="name">
 									</div>
-									<div class="col-md-3">
+									<!-- <div class="col-md-3">
 										<label for="fblocation" class="control-label">Search by group</label>
 										<input type="text" class="form-control" id="fblocation" ng-model="group">
-									</div>
+									</div> -->
 									<div class="col-md-3">
 										<label for="fblocation" class="control-label">Search by phone</label>
 										<input type="text" class="form-control" id="fblocation" ng-model="phone">
@@ -523,20 +542,20 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in ausers | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
+										<md-card ng-repeat="user in users | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
 											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{imagePath}}/users/{{user.imagename}}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
-												<h2 class="md-title">{{ user.name }}</h2>
-												<p>{{ user.phone }}</p>
+												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
+												<p>{{ user.user_phone_no }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.user-profile">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.user.user-profile">Edit</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.user-profile({user_id:user.user_id})">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.user.user-profile({user_id:user.user_id})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="usersInit()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
