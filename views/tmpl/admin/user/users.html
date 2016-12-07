@@ -286,14 +286,14 @@
 																		<uib-accordion-heading>
 																			Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i>
 																		</uib-accordion-heading>
-																		
 																		<div class="credintials">
+																		<form ng-init="phoneCode={}">
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="161553" disabled>
+																					<input type="text" name="" id="" ng-model="phoneCode.phone_code" class="form-control mb-10" value="161553" disabled>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -302,21 +302,22 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																						<label class="btn btn-default" ng-model="phoneCode.phone_code_status" uib-btn-radio="1">Active</label>
+																						<label class="btn btn-default" ng-model="phoneCode.phone_code_status" uib-btn-radio="0">Inactive</label>
 																					</div>
 																				</div>
 																			</div>
+																			
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Phone</label>
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="widget-todo" ng-controller="TodoWidgetCtrl">
-																						<form class="form-horizontal" role="form" ng-submit="addTodo()">
-																							<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="todo" placeholder="" required>
-																							<button type="submit" class="btn addpost"><i class="fa fa-plus text-lg"></i></button>
-																						</form>
+																						<div class="form-horizontal" role="form">
+																							<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="phoneCode.phone_numbers" placeholder="" required>
+																							<button type="button" class="btn addpost"><i class="fa fa-plus text-lg"></i></button>
+																						</div>
 
 																						<ul class="todo-list list-unstyled">
 																						  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
@@ -332,10 +333,12 @@
 																					</div>
 																				</div>
 																			</div>
-																			<div class="overflow ta-c">
-																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																			<div  class="overflow ta-c">
+																				<button type="submit" ng-click="submitPhoneCode(phoneCode)" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
 																			</div>
+																			
+																		</form>
 																		</div>
 																		
 																	</uib-accordion-group>
