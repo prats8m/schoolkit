@@ -8,12 +8,12 @@
  * Controller of the minovateApp
  */
 app
-  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster) {
+  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL) {
      $scope.page = {
       title: 'Users',
       subtitle: 'So much more to see at a glance.'
     };
-	
+
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
@@ -110,6 +110,7 @@ app
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 
+	$rootScope.accessCode = Date.now();
 	
 	$rootScope.submitUserData = function(userData){
 		userData.user_phone_no = parseInt(userData.user_phone_no);
@@ -122,7 +123,7 @@ app
 		$http(
 		{
 			method: 'POST', 
-			url: 'http://35.160.142.158:8080/user/add',
+			url: baseURL+'user/add',
 			dataType : 'JSON', 
 			data:userData,
 			headers: {
@@ -131,10 +132,45 @@ app
 			}
 		})
 		.success(function(response){
+			$rootScope.accessCode = Date.now();
+			$cookies.put("token", response.data.user_id)
 			if(response.status == true){
 				
 			}else{
 				
+			}
+		}).error(function(){
+
+		});
+	}
+
+	$rootScope.saveRFID = function(rfid){
+		rfid.user_id = 1;
+		rfid.rfid_facility_code = parseInt(rfid.rfid_facility_code);
+		rfid.rfid_card_no = parseInt(rfid.rfid_card_no);
+		rfid.rfid_status = (rfid.rfid_status == "Active" ? 1 : 0)
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/assign-rfid-code/',
+			dataType : 'JSON', 
+			data:rfid,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			$rootScope.rfid_error = "";
+			if(response.status == true){
+				toaster.pop('success','RFID Added Successfully');
+			}else{
+				var n = [];
+				var arr = response.error;
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.rfid_error = n.join(", ");
+				if (n.length == 0)
+				$rootScope.rfid_error = response.msg.replace(/_/g,' ');
 			}
 		}).error(function(){
 

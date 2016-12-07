@@ -251,14 +251,15 @@
 																		<uib-accordion-heading>
 																			Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i>
 																		</uib-accordion-heading>
-																		
+																		<span class="error">{{ accesscode_error}}</span>
 																		<div class="credintials">
+																		<form ng-submit="saveAccessCode(accesscode)">
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="016201" disabled>
+																					<input type="text" name="" id="access_code" class="form-control mb-10" placeholder="{{ accessCode }}" disabled value="{{ accessCode }}">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -276,6 +277,7 @@
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
 																			</div>
+																			</form>
 																		</div>
 																		
 																	</uib-accordion-group>
@@ -342,14 +344,15 @@
 																		<uib-accordion-heading>
 																			RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i>
 																		</uib-accordion-heading>
-																		
+																			<div class="error">{{ rfid_error }}</div>
 																		<div class="credintials">
+																			<form ng-submit="saveRFID(rfid)">
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Card Number</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_card_no">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -357,7 +360,7 @@
 																					<label for="">Facility Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_facility_code">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -366,8 +369,8 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																						<label class="btn btn-default" ng-model="rfid.rfid_status" uib-btn-radio="'Active'">Active</label>
+																						<label class="btn btn-default" ng-model="rfid.rfid_status" uib-btn-radio="'Inactive'">Inactive</label>
 																					</div>
 																				</div>
 																			</div>
@@ -375,6 +378,7 @@
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
 																			</div>
+																			</form>
 																		</div>
 																		
 																	</uib-accordion-group>
