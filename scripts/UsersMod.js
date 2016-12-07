@@ -141,6 +141,30 @@ app
 		});
 	}
 	
+	$rootScope.submitPhoneCode = function(phoneCode){
+		// http://[base_url]/user/assign-phone-code
+		$http(
+		{
+			method: 'POST', 
+			url: 'http://35.160.142.158:8080/user/assign-phone-code',
+			dataType : 'JSON', 
+			data:phoneCode,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	
 });
 
 'use strict';
@@ -179,6 +203,55 @@ app
 		});
 	}
 	$scope.profileInit();
+	// http://[base_url]/user/usergroup-assigned-to-user
+	$scope.userGroup = [];
+	$scope.profileInit1 = function(){
+		$http(
+		{
+			method: 'POST', 
+			url: 'http://35.160.142.158:8080/user/usergroup-assigned-to-user',
+			dataType : 'JSON', 
+			data:{'user_id':parseInt($stateParams.user_id)},
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			if(response.status == true){
+				$scope.userGroup = response.data;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	$scope.profileInit1();
+	
+	$scope.deleteGroup = function(id){
+		if(!confirm("Are you sure you want to Delete This User Group.")){return false;}
+		$http(
+		{
+			method: 'GET', 
+			url: 'http://35.160.142.158:8080/usergroup/delete?usergroup_id='+id,
+			dataType : 'JSON', 
+			//data:{'user_id':parseInt($stateParams.user_id)},
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			if(response.status == true){
+				//$scope.userGroup = response.data;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
 	
 });
 
