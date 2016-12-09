@@ -92,48 +92,10 @@
 											<div class="row groupslist">
 												<div class="col-md-12">
 													<ul>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence</label>
+														<li ng-repeat="user_group in usergroups">
+															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> {{user_group.usergroupName}}</label>
 														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence Guest</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence Guest</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff</label>
-														</li>
-														<li>
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services</label>
-														</li>
+														
 													</ul>
 												</div>
 											</div>
@@ -152,6 +114,7 @@
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Account">
 														<md-content>
+														<span class="error">{{user_error}}</span>
 															<form ng-submit="submitUserData(userData)">
 															<div class="account">
 																<div class="overflow">
@@ -189,7 +152,7 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Phone Number</label>
-																			<input type="text" name="" id="" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="">
+																			<input type="text" name="" id="" ng-model="userData.user_phone" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
@@ -259,7 +222,7 @@
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="access_code" class="form-control mb-10" placeholder="{{ accessCode }}" disabled value="{{ accessCode }}">
+																					<input type="text" name="access_code" id="access_code" class="form-control mb-10"  disabled ng-model="accesscode.access_code">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -268,8 +231,8 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																						<label class="btn btn-default" ng-model="accesscode.access_code_status" uib-btn-radio="'Active'">Active</label>
+																						<label class="btn btn-default" ng-model="accesscode.access_code_status" uib-btn-radio="'Inactive'">Inactive</label>
 																					</div>
 																				</div>
 																			</div>
@@ -286,14 +249,15 @@
 																		<uib-accordion-heading>
 																			Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i>
 																		</uib-accordion-heading>
+																		<span class="error">{{ phone_error }}</span>
 																		<div class="credintials">
-																		<form ng-init="phoneCode={}">
+																		<form>
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" ng-model="phoneCode.phone_code" class="form-control mb-10" value="161553" disabled>
+																					<input type="text" name="phone_code" id="phone_code" ng-model="phoneCode.phone_code" class="form-control mb-10" disabled>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -314,10 +278,10 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="widget-todo" ng-controller="TodoWidgetCtrl">
-																						<div class="form-horizontal" role="form">
-																							<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="phoneCode.phone_numbers" placeholder="" required>
-																							<button type="button" class="btn addpost"><i class="fa fa-plus text-lg"></i></button>
-																						</div>
+																						<form class="form-horizontal" role="form" >
+                       												<input type="text" class="form-control" id="todo" ng-model="todo" placeholder="" required ng-model="phoneCode.phone_numbers">
+                       												<button type="submit" class="btn addpost" ng-click="addTodo()"><i class="fa fa-plus"></i></button>
+                      											</form>
 
 																						<ul class="todo-list list-unstyled">
 																						  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
@@ -347,7 +311,7 @@
 																		<uib-accordion-heading>
 																			RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i>
 																		</uib-accordion-heading>
-																			<div class="error">{{ rfid_error }}</div>
+																			<span class="error">{{ rfid_error }}</span>
 																		<div class="credintials">
 																			<form ng-submit="saveRFID(rfid)">
 																			<div class="overflow">
@@ -392,12 +356,13 @@
 																		</uib-accordion-heading>
 																		
 																		<div class="credintials">
+																			<form ng-submit="saveBLEcode(ble_code)">
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Username</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_name">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -405,7 +370,7 @@
 																					<label for="">Password</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="password" name="" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_pass">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -422,8 +387,8 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																						<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																						<label class="btn btn-default" ng-model="ble_code.ble_status" uib-btn-radio="'Active'">Active</label>
+																						<label class="btn btn-default" ng-model="ble_code.ble_status" uib-btn-radio="'Inactive'">Inactive</label>
 																					</div>
 																				</div>
 																			</div>
@@ -431,6 +396,7 @@
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
 																				<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
 																			</div>
+																			</form>
 																		</div>
 																		
 																	</uib-accordion-group>

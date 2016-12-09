@@ -8,7 +8,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL) {
+  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $timeout) {
      $scope.page = {
       title: 'Users',
       subtitle: 'So much more to see at a glance.'
@@ -109,11 +109,10 @@ app
     }
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
-
-	$rootScope.accessCode = Date.now();
 	
 	$rootScope.submitUserData = function(userData){
-		userData.user_phone_no = parseInt(userData.user_phone_no);
+		$rootScope.user_error = "";
+		userData.user_phone_no = parseInt(userData.user_phone);
 		userData.user_type = 'admin';
 		userData.facility_id = 3;
 		if(userData.password != userData.cpassword){
@@ -132,20 +131,29 @@ app
 			}
 		})
 		.success(function(response){
-			$rootScope.accessCode = Date.now();
-			$cookies.put("token", response.data.user_id)
+			$rootScope.accesscode = {};
+			$rootScope.accesscode.access_code = Date.now();
+			$rootScope.accesscode.access_code_status = 'Active';
+			$cookies.put("user_id", response.data.user_id);
 			if(response.status == true){
-				
+				$timeout(function() {
+				$(".ng-scope:contains(Credentials)").trigger( "click" );
+				});
 			}else{
+			var n = [];
+			var arr = response.error;
+			$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+			$rootScope.user_error = n.join(", ");
+			if (n.length == 0)
+			$rootScope.user_error = response.msg.replace(/_/g,' ');
 				
 			}
 		}).error(function(){
-
 		});
 	}
 
 	$rootScope.saveRFID = function(rfid){
-		rfid.user_id = 1;
+		rfid.user_id = parseInt($cookies.get("user_id"));
 		rfid.rfid_facility_code = parseInt(rfid.rfid_facility_code);
 		rfid.rfid_card_no = parseInt(rfid.rfid_card_no);
 		rfid.rfid_status = (rfid.rfid_status == "Active" ? 1 : 0)
@@ -163,6 +171,9 @@ app
 		.success(function(response){
 			$rootScope.rfid_error = "";
 			if(response.status == true){
+				$timeout(function() {
+					$(".accordion-toggle")[3].click();
+				});
 				toaster.pop('success','RFID Added Successfully');
 			}else{
 				var n = [];
@@ -176,15 +187,27 @@ app
 
 		});
 	}
-	
+
+	$rootScope.phoneCode = {};
+	var x = Math.floor(Math.random()*9999999999) + 10000;
+	$rootScope.phoneCode.phone_code = (""+x).substring(8, length);
+
 	$rootScope.submitPhoneCode = function(phoneCode){
 		// http://[base_url]/user/assign-phone-code
+		phoneCode.user_id = parseInt($cookies.get("user_id"));
+		phoneCode.phone_code = "" + phoneCode.phone_code;
+		phoneCode.phone_numbers = [];
+		phoneCode.phone_numbers[0] = $("#todo").val();
+		$.each($(".todo-list .ng-binding"), function(index, value){ 
+			phoneCode.phone_numbers[index+1] = $(this).text();
+		});
+
 		$http(
 		{
 			method: 'POST', 
-			url: 'http://35.160.142.158:8080/user/assign-phone-code',
+			url: baseURL+'user/assign-phone-code',
 			dataType : 'JSON', 
-			data:phoneCode,
+			data: phoneCode,
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -192,14 +215,116 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
+				$timeout(function() {
+					$(".accordion-toggle")[2].click();
+				});
+				toaster.pop('success','Phone Code Added Successfully');
+			}else{
+				var n = [];
+				var arr = response.error;
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.phone_error = n.join(", ");
+				if (n.length == 0)
+				$rootScope.phone_error = response.msg.replace(/_/g,' ');	
+			}
+		}).error(function(){
+
+		});
+	}
+
+	$rootScope.saveBLEcode = function(ble_code){
+		ble_code.ble_status = ("Active" ? 1 : 0)
+		ble_code.user_id = parseInt($cookies.get("user_id"));
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/assign-ble-code',
+			dataType : 'JSON', 
+			data: ble_code,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$timeout(function() {
+				$(".ng-scope:contains(User Groups)").trigger( "click" );
+				});
+				toaster.pop('success','BLE Code Added Successfully');
 				
 			}else{
+
+				var n = [];
+				var arr = response.error;
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.accesscode_error = n.join(", ");
+				if (n.length == 0)
+				$rootScope.accesscode_error = response.msg.replace(/_/g,' ');
 				
 			}
 		}).error(function(){
 
 		});
 	}
+
+		$rootScope.saveAccessCode = function(accesscode){
+		$rootScope.accesscode.access_code_status = ("Active" ? 1 : 0)
+		$rootScope.accesscode.user_id = parseInt($cookies.get("user_id"));
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/assign-access-code',
+			dataType : 'JSON', 
+			data: accesscode,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$timeout(function() {
+				$(".accordion-toggle")[1].click();
+				});
+				toaster.pop('success','Access Code Added Successfully');
+				
+			}else{
+
+				var n = [];
+				var arr = response.error;
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.accesscode_error = n.join(", ");
+				if (n.length == 0)
+				$rootScope.accesscode_error = response.msg.replace(/_/g,' ');
+				
+			}
+		}).error(function(){
+
+		});
+	}
+
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/usergroup-not-assigned-to-user',
+			dataType : 'JSON', 
+			data: { "user_id": 1 },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.usergroups = response.data;
+			}else{	
+				
+			}
+		}).error(function(){
+
+		});
+	
 	
 });
 
