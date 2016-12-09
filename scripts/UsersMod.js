@@ -54,7 +54,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -85,7 +85,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -182,7 +182,7 @@ app
 		$http(
 		{
 			method: 'POST', 
-			url: 'http://35.160.142.158:8080/user/assign-phone-code',
+			url: baseURL + 'user/assign-phone-code',
 			dataType : 'JSON', 
 			data:phoneCode,
 			headers: {
@@ -212,16 +212,18 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams) {
+  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope) {
      $scope.page = {
       title: 'Arnold',
       subtitle: 'So much more to see at a glance.'
     };
+	$scope.editUser = {};
+	
 	$scope.profileInit = function(){
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/user/view-user-details?user_id='+$stateParams.user_id,
+			url: baseURL + 'user/view-user-details?user_id='+$stateParams.user_id,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -231,6 +233,15 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$scope.userData = response.data;
+				
+				
+				$scope.editUser.first_name = angular.copy($scope.userData.user_first_name);
+				$scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
+				$scope.editUser.address = angular.copy($scope.userData.user_address);
+				$scope.editUser.email = angular.copy($scope.userData.user_email);
+				$scope.editUser.expiration_date = angular.copy($scope.userData.user_expiration_date);
+				$scope.editUser.status = angular.copy($scope.userData.user_status);
+
 			}else{
 				
 			}
@@ -245,7 +256,7 @@ app
 		$http(
 		{
 			method: 'POST', 
-			url: 'http://35.160.142.158:8080/user/usergroup-assigned-to-user',
+			url: baseURL + 'user/usergroup-assigned-to-user',
 			dataType : 'JSON', 
 			data:{'user_id':parseInt($stateParams.user_id)},
 			headers: {
@@ -270,7 +281,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/usergroup/delete?usergroup_id='+id,
+			url: baseURL + 'usergroup/delete?usergroup_id='+id,
 			dataType : 'JSON', 
 			//data:{'user_id':parseInt($stateParams.user_id)},
 			headers: {
@@ -289,6 +300,125 @@ app
 		});
 	}
 	
+	var n = [];
+	$scope.submitEditUser = function(submitData){
+		submitData.user_id = parseInt($stateParams.user_id);
+		submitData.user_phone_no = parseInt(submitData.user_phone_no);
+		submitData.user_type = 'admin';
+		submitData.facility_id = 3;
+		$rootScope.masters = []
+		
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			
+			var arr = response.error;
+			if(response.error != ""){
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.masters = n;
+			}
+			else{
+				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+			}
+			$scope.submitEditAccessCode(submitData);
+		}).error(function(){
+
+		});
+	}
+	
+	$scope.submitEditAccessCode = function(submitData){
+		submitData.access_code = parseInt(submitData.access_code);
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-access-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			
+			var arr = response.error;
+			if(response.error != ""){
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.masters = n;
+			}
+			else{
+				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+			}
+			$scope.submitEditPhoneCode(submitData);
+		}).error(function(){
+
+		});
+	}
+	
+	$scope.submitEditPhoneCode = function(submitData){
+		submitData.phone_code = parseInt(submitData.phone_code);
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-phone-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			
+			var arr = response.error;
+			if(response.error != ""){
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.masters = n;
+			}
+			else{
+				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+			}
+		}).error(function(){
+
+		});
+	}
+	
+	$scope.submitEditPhoneCode = function(submitData){
+		submitData.phone_code = parseInt(submitData.phone_code);
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-phone-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			
+			var arr = response.error;
+			if(response.error != ""){
+				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.masters = n;
+			}
+			else{
+				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+			}
+		}).error(function(){
+
+		});
+	}
 });
 
 'use strict';
@@ -300,7 +430,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http) {
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL) {
      $scope.page = {
       title: 'User Groups',
       subtitle: 'So much more to see at a glance.'
