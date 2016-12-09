@@ -76,6 +76,10 @@ md-content { background: transparent; }
 .account .last { padding: 0 0 0 5px; position: static; }
 .account .bootstrap-filestyle .btn { padding: 8px 12px; }
 
+.hometabs .md-tab {pointer-events: none;opacity: 0.5;}
+.hometabs .md-tab.md-active {pointer-events: visible;opacity: 1;}
+
+/*.ng-isolate-scope {pointer-events: none;opacity: 0.5;}*/
 
 .credintials .first { padding: 0 5px 0 0;}
 .credintials .last { padding: 0 0 0 5px; }

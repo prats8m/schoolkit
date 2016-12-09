@@ -113,9 +113,9 @@
 											<md-content class="md-padding tabsdemoDynamicHeight">
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Account">
-														<md-content>
 														<span class="error">{{user_error}}</span>
-															<form ng-submit="submitUserData(userData)">
+														<form ng-submit="submitUserData(userData)" id="user_form">
+														<md-content>
 															<div class="account">
 																<div class="overflow">
 																	<div class="col-md-6 first">
@@ -152,7 +152,7 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Phone Number</label>
-																			<input type="text" name="" id="" ng-model="userData.user_phone" class="form-control mb-10" placeholder="">
+																			<input type="text" name="" id="" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="">
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
@@ -198,14 +198,13 @@
 																			<input type="text" class="form-control" ng-model="userData.expiration_date" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
 																		</div>
 																	</div>
-																</div>
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>																
+																</div>															
 															</div>
-															</form>															
 														</md-content>
+														</form>															
 													</md-tab>
 													
-													<md-tab label="Credentials">
+													<md-tab label="Credentials" >
 														<md-content>														
 															<div class="credintials" ng-controller="AccordionDemoCtrl">
 																<uib-accordion close-others="oneAtATime">
@@ -451,7 +450,7 @@
 										</div>
 										<div class="modal-footer">
 											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
+											<button type="submit" ng-click="submitUserData(userData)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 										</div>											
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User</span></a>
