@@ -475,6 +475,7 @@ var app = angular
 			.state('app.admin.facility.facility', {
 			  url: '/facility',
 			  controller: 'FacilityCtrl',
+			  params: {facility_id: null},
 			  templateUrl: 'views/tmpl/admin/facility/facility.html'
 			})
 			
@@ -772,12 +773,12 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state,$http,$cookies) {
+  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL) {
 
 	$scope.loginFunction = function(){
 		$scope.user.type = "web";
 		$http({
-			url: 'http://35.160.142.158:8080/login-web',
+			url: baseURL+'login-web',
 			method: 'POST',
 			data: $scope.user,
 			dataType : 'JSON',
@@ -1054,6 +1055,7 @@ app
  */
 app
   .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+
     $scope.page = {
 		title: 'Facility Details',
 		subtitle: 'So much more to see at a glance.'
@@ -1072,8 +1074,6 @@ app
       {id: 'UTC+10', name: 'USA (Chamorro)'}
     ]
    };
-
-   $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
 
   //Code to default select device type
   $rootScope.facility_device = {};
@@ -1138,7 +1138,7 @@ app
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
-
+    
     if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
     {
     	$stateParams = {};
@@ -1174,6 +1174,8 @@ app
 		.error(function(response){
 			console.log(response);
 		});
+
+		 $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
 
 	// Code starts for facility master device
 

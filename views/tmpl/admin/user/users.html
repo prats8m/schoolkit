@@ -86,26 +86,28 @@
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
 										<div class="usergrouplist overflow" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
-											<div class="overflow mb-10">
-												<strong>Select User Groups</strong>  <a href="" class="pull-right "><i class="fa fa-times text-lg" aria-hidden="true" ng-click="visibiltyUserGroup=true"></i></a>
-											</div>
-											<div class="row groupslist">
-												<div class="col-md-12">
-													<ul>
-														<li ng-repeat="user_group in usergroups">
-															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> {{user_group.usergroupName}}</label>
-														</li>
-														
-													</ul>
+											<form ng-submit="assignUserGroup(usergroup)">
+												<div class="overflow mb-10">
+													<strong>Select User Groups</strong>  <a href="" class="pull-right "><i class="fa fa-times text-lg" aria-hidden="true" ng-click="visibiltyUserGroup=true"></i></a>
 												</div>
-											</div>
-											<div class="row">
-												<div class="form-group col-md-12 legend">
-													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="visibiltyUserGroup=true">Cancel</button>
-													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="visibiltyUserGroup=true">Save</button>
-													<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15">Create User Group</a>
+												<div class="row groupslist">
+													<div class="col-md-12">
+														<ul>
+															<li ng-repeat="user_group in usergroups">
+																<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="user_group_id[]" ng-model="usergroup.usergroup_id" ng-true-value="{{user_group.usergroup_id}}" ><i></i> {{user_group.usergroupName}}</label>
+															</li>
+															
+														</ul>
+													</div>
 												</div>
-											</div>
+												<div class="row">
+													<div class="form-group col-md-12 legend">
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="visibiltyUserGroup=true">Cancel</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="visibiltyUserGroup=true">Save</button>
+														<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15">Create User Group</a>
+													</div>
+												</div>
+											</form>
 										</div>
 									
 										<div class="modal-header"><h4 class="modal-title custom-font">Add User</h4></div>

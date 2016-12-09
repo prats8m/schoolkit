@@ -322,7 +322,7 @@ app
 			method: 'POST', 
 			url: baseURL+'user/usergroup-not-assigned-to-user',
 			dataType : 'JSON', 
-			data: { "user_id": 1 },
+			data: { "user_id": parseInt($cookies.get("user_id")) },
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
