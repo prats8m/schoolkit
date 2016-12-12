@@ -90,11 +90,11 @@
 												<div class="overflow mb-10">
 													<strong>Select User Groups</strong>  <a href="" class="pull-right "><i class="fa fa-times text-lg" aria-hidden="true" ng-click="visibiltyUserGroup=true"></i></a>
 												</div>
-												<div class="row groupslist">
+												<div class="row groupslist" style="height: 215px;">
 													<div class="col-md-12">
 														<ul>
 															<li ng-repeat="user_group in usergroups">
-																<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="user_group_id[]" ng-model="usergroup.usergroup_id" ng-true-value="{{user_group.usergroup_id}}" ><i></i> {{user_group.usergroupName}}</label>
+																<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}}</label>
 															</li>
 															
 														</ul>
@@ -194,7 +194,7 @@
 																			<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
 																		</div>
 																	</div>
-																	<div class="col-md-6 last" ng-hide="userData.status==1">
+																	<div class="col-md-6 last" ng-hide="userData.status==0">
 																		<div ng-controller="DatepickerDemoCtrl">
 																			<label for="">Expiration Date</label>
 																			<input type="text" class="form-control" ng-model="userData.expiration_date" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
@@ -324,7 +324,7 @@
 																				</div>
 																			</div>
 																			<div class="overflow">
-																				<div class="col-md-4 first">
+																				<div class="col-md-4 first`">
 																					<label for="">Facility Code</label>
 																				</div>
 																				<div class="col-md-8 last">
@@ -355,7 +355,7 @@
 																		<uib-accordion-heading>
 																			BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
 																		</uib-accordion-heading>
-																		
+																		<span class="error">{{ blecode_error }}</span>
 																		<div class="credintials">
 																			<form ng-submit="saveBLEcode(ble_code)">
 																			<div class="overflow">
@@ -379,7 +379,7 @@
 																					<label for="">Confirm Password</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+																					<input type="password" name="" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.cnf_ble_pass">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -427,16 +427,8 @@
 																				</tr>
 																			</thead>
 																			<tbody>
-																				<tr>
-																					<td>24x7</td>
-																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
-																				</tr>
-																				<tr>
-																					<td>Office Admin</td>
-																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
-																				</tr>
-																				<tr>
-																					<td>Housekeeping Staff</td>
+																				<tr ng-repeat="assign_usergroup in assingned_usergroups">
+																					<td>{{assign_usergroup.usergroup_name}}</td>
 																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 																				</tr>
 																			</tbody>

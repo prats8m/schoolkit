@@ -9,6 +9,7 @@
  */
 app
   .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout) {
+
      $scope.page = {
       title: 'Users',
       subtitle: 'So much more to see at a glance.'
@@ -152,14 +153,17 @@ app
 			$rootScope.accesscode = {};
 			$rootScope.accesscode.access_code = Date.now();
 			$rootScope.accesscode.access_code_status = 'Active';
-			$cookies.put("user_id", response.data.user_id);
 			if(response.status == true){
+				$cookies.put("user_id", response.data.user_id);
 				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");	
 				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
 				$("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
 				$timeout(function() {
 				$(".ng-scope:contains(Credentials)").trigger( "click" );
 				});
+				$timeout(function() {
+					$scope.assignedGroup();
+				}, 1000);
 			}else{
 
 				if(response.msg == 'Invalid_Token'){
@@ -170,10 +174,13 @@ app
 				
 				var n = [];
 				var arr = response.error;
+				if(arr != null){
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.user_error = n.join(", ");
-				if (n.length == 0)
-				$rootScope.user_error = response.msg.replace(/_/g,' ');
+				}
+				else{
+					$rootScope.user_error = response.msg.replace(/_/g,' ');
+				}
 				
 			}
 		}).error(function(){
@@ -181,6 +188,10 @@ app
 	}
 
 	$rootScope.saveRFID = function(rfid){
+		if(rfid == undefined){
+			$rootScope.rfid_error = "Please fill form.";
+			return false;
+		}
 		rfid.user_id = parseInt($cookies.get("user_id"));
 		rfid.rfid_facility_code = parseInt(rfid.rfid_facility_code);
 		rfid.rfid_card_no = parseInt(rfid.rfid_card_no);
@@ -212,10 +223,13 @@ app
 				
 				var n = [];
 				var arr = response.error;
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				if(arr != null){
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.rfid_error = n.join(", ");
-				if (n.length == 0)
-				$rootScope.rfid_error = response.msg.replace(/_/g,' ');
+				}
+				else{
+					$rootScope.rfid_error = response.msg.replace(/_/g,' ');
+				}
 			}
 		}).error(function(){
 
@@ -262,10 +276,13 @@ app
 				
 				var n = [];
 				var arr = response.error;
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				if(arr != null){
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.phone_error = n.join(", ");
-				if (n.length == 0)
-				$rootScope.phone_error = response.msg.replace(/_/g,' ');	
+				}
+				else{
+					$rootScope.phone_error = response.msg.replace(/_/g,' ');
+				}	
 			}
 		}).error(function(){
 
@@ -273,6 +290,14 @@ app
 	}
 
 	$rootScope.saveBLEcode = function(ble_code){
+		if(ble_code == undefined){
+			$rootScope.blecode_error = "Please fill form.";
+			return false;
+		}
+		if(ble_code.ble_pass != ble_code.cnf_ble_pass){
+			$rootScope.blecode_error = "Password must match to confirm password.";
+			return false;
+		}
 		ble_code.ble_status = ("Active" ? 1 : 0)
 		ble_code.user_id = parseInt($cookies.get("user_id"));
 		$http(
@@ -302,11 +327,13 @@ app
 
 				var n = [];
 				var arr = response.error;
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.accesscode_error = n.join(", ");
-				if (n.length == 0)
-				$rootScope.accesscode_error = response.msg.replace(/_/g,' ');
-				
+				if(arr != null){
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.blecode_error = n.join(", ");
+				}
+				else{
+					$rootScope.blecode_error = response.msg.replace(/_/g,' ');
+				}
 			}
 		}).error(function(){
 
@@ -349,6 +376,74 @@ app
 				if (n.length == 0)
 				$rootScope.accesscode_error = response.msg.replace(/_/g,' ');
 				
+			}
+		}).error(function(){
+
+		});
+	}
+	$rootScope.usergroup = {};
+	$rootScope.usergroup.usergrouparr = [];
+
+	$rootScope.assignUserGroup = function(user_group){
+		var arr  = [];
+		$.each(user_group.usergrouparr, function(index, value){ 
+			if(value == true){
+				arr.push(index);
+			}
+		 })
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/assign-usergroup',
+			dataType : 'JSON', 
+			data: { "user_id": parseInt($cookies.get("user_id")), "user_group_id": arr },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.usergroupmsg = response.msg;
+			}else{	
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+				$rootScope.usergroupmsg = response.msg;
+
+			}
+			$timeout(function() {
+				$scope.assignedGroup();
+			}, 1000);
+		}).error(function(){
+
+		});
+
+	}
+
+	$scope.assignedGroup = function(){
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/usergroup-assigned-to-user',
+			dataType : 'JSON', 
+			data: { "user_id": parseInt($cookies.get("user_id")) },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.assingned_usergroups = response.data;
+			}else{	
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
