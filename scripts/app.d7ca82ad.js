@@ -204,7 +204,8 @@ var app = angular
 			.state('app.subadmin.facility.facility', {
 			  url: '/facility',
 			  controller: 'FacilityCtrl',
-			  templateUrl: 'views/tmpl/subadmin/facility/facility.html'
+			  templateUrl: 'views/tmpl/subadmin/facility/facility.html',
+			  params: {facility_id: null}
 			})
 			
 				//subadmin facility facility details
@@ -475,8 +476,8 @@ var app = angular
 			.state('app.admin.facility.facility', {
 			  url: '/facility',
 			  controller: 'FacilityCtrl',
-			  params: {facility_id: null},
-			  templateUrl: 'views/tmpl/admin/facility/facility.html'
+			  templateUrl: 'views/tmpl/admin/facility/facility.html',
+			  params: {facility_id: null}
 			})
 			
 				//admin facility facility details

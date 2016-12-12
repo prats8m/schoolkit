@@ -155,7 +155,8 @@ app
 			}else{
 			var n = [];
 			var arr = response.error;
-			$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+			$.each(arr, function(index, value){ 
+				n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 			$rootScope.user_error = n.join(", ");
 			if (n.length == 0)
 			$rootScope.user_error = response.msg.replace(/_/g,' ');
