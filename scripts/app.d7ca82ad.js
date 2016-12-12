@@ -796,6 +796,8 @@ app
 					var expireTime = time + 1000*60;
 					now.setTime(expireTime);
 					$cookies.put('token', response.data.token,{expiry:now});
+					if(response.data.userType == 'admin')
+						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
 					$state.go('app.admin.dashboard');
 				}
 			}else{
@@ -9853,4 +9855,12 @@ app.service('fileUpload', ['$http', function ($http) {
                });
             }
          }]);
+app.service('errorHandler',  function ($http,$location,toaster,$cookies) {
+	this.sessionExpired = function(){
+		toaster.pop('error','Session Expired');
+		$cookies.remove("token");
+		$location.path('/core/login');
+		return true;
+	}
+ });
 app.constant('baseURL', 'http://35.162.244.123:8080/');
