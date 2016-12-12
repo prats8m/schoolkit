@@ -13,6 +13,7 @@ app
       title: 'Users',
       subtitle: 'So much more to see at a glance.'
     };
+	$rootScope.facilityId = $cookies.get("facilityId");
 
     if($cookies.get("user_id") == undefined)
     {
@@ -21,7 +22,7 @@ app
     }
 
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete User?')
 		.content('The standard chunk of Lorem Ipsum used.')
@@ -29,8 +30,44 @@ app
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your User has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			
+			
+			$http(
+			{
+				method: 'DELETE', 
+				url: baseURL + 'user/delete?user_id='+id,
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == true){
+					$scope.result = 'Your User has been deleted successfully.';
+					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					toaster.pop('success',$scope.result);
+					var users = $scope.users;
+					var tempUser = [];
+					for(var i=0;i<users.length;i++){
+						if(id != users[i].user_id){
+							tempUser.push(users[i]);
+						}
+					}
+					$scope.users = tempUser;
+				}else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					toaster.pop('error',response.msg.replace(/_/g,' '));
+				}
+			}).error(function(){
+
+			});
+			
+			
 		}, function() {
 			$scope.result = 'You decided to keep User.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
@@ -60,7 +97,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -91,11 +128,12 @@ app
 			$scope.searchText = '';
 		}
 		$scope.pageNo = 1;
+		$scope.users =[];
 		
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -425,7 +463,7 @@ app
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
-				$scope.editUser.phone_no[0] = angular.copy($scope.userData.phone_number_1);
+				// $scope.editUser.phone_no[0] = angular.copy($scope.userData.phone_number_1);
 				$scope.editUser.rfid_facility_code = angular.copy($scope.userData.rfid_facility_code);
 				$scope.editUser.rfid_status = angular.copy($scope.userData.rfid_sttaus);
 				$scope.editUser.ble_name = angular.copy($scope.userData.ble_name);
