@@ -531,7 +531,7 @@ app.filter('deviceFeatureFilter', function() {
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler){
+  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler,baseURL){
     $scope.page = {
       title: 'Dependent Device',
       subtitle: 'So much more to see at a glance.'
@@ -680,7 +680,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler) {
+  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler,baseURL) {
     $scope.page = {
 		title: 'Dependent Devices',
 		subtitle: 'So much more to see at a glance.'
