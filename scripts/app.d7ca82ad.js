@@ -475,6 +475,7 @@ var app = angular
 			.state('app.admin.facility.facility', {
 			  url: '/facility',
 			  controller: 'FacilityCtrl',
+			  params: {facility_id: null},
 			  templateUrl: 'views/tmpl/admin/facility/facility.html'
 			})
 			
@@ -1056,6 +1057,7 @@ app
  */
 app
   .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+
     $scope.page = {
 		title: 'Facility Details',
 		subtitle: 'So much more to see at a glance.'
@@ -1074,8 +1076,6 @@ app
       {id: 'UTC+10', name: 'USA (Chamorro)'}
     ]
    };
-
-   $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
 
   //Code to default select device type
   $rootScope.facility_device = {};
@@ -1140,7 +1140,7 @@ app
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
-
+    
     if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
     {
     	$stateParams = {};
@@ -1176,6 +1176,8 @@ app
 		.error(function(response){
 			console.log(response);
 		});
+
+		 $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
 
 	// Code starts for facility master device
 

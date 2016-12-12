@@ -14,6 +14,12 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 
+    if($cookies.get("user_id") == undefined)
+    {
+    	$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");	
+    	$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
+    }
+
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
@@ -119,8 +125,11 @@ app
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
 	$rootScope.submitUserData = function(userData){
-		$rootScope.user_error = "";
-		userData.user_phone_no = parseInt(userData.user_phone);
+		if(userData == undefined){
+			$rootScope.user_error = "Please fill form.";
+			return false;
+		}
+		userData.user_phone_no = parseInt(userData.user_phone_no);
 		userData.user_type = 'admin';
 		userData.facility_id = 3;
 		if(userData.password != userData.cpassword){
@@ -139,11 +148,15 @@ app
 			}
 		})
 		.success(function(response){
+			$rootScope.user_error = "";
 			$rootScope.accesscode = {};
 			$rootScope.accesscode.access_code = Date.now();
 			$rootScope.accesscode.access_code_status = 'Active';
 			$cookies.put("user_id", response.data.user_id);
 			if(response.status == true){
+				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");	
+				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
+				$("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
 				$timeout(function() {
 				$(".ng-scope:contains(Credentials)").trigger( "click" );
 				});
@@ -346,7 +359,7 @@ app
 			method: 'POST', 
 			url: baseURL+'user/usergroup-not-assigned-to-user',
 			dataType : 'JSON', 
-			data: { "user_id": 1 },
+			data: { "user_id": parseInt($cookies.get("user_id")) },
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
