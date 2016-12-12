@@ -152,16 +152,11 @@
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Technician</label><br/>
-															<select class="form-control" ng-model="device.technician_id">
-																<option value=1>Arnold</option>
-																<option value=2>Peter</option>
-																<option value=3>Paracosm</option>
-																<option value=4>Jason</option>
-																<option value=5>Paul</option>
-																<option value=6>Vin</option>
-																<option value=7>Dwayne</option>
+															
+															<select class="form-control" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id">
+																<option value="">Select</option>
 															</select>
-															<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
+															<!-- <small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small> -->
 														</div>
 													</div>
 												</div>

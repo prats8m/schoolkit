@@ -8,13 +8,14 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster) {
+  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler) {
     $scope.page = {
 		title: 'Devices',
 		subtitle: 'So much more to see at a glance.'
     };
 	
 	$scope.result = '';
+	$rootScope.facilityId = $cookies.get("facilityId");
     $scope.showConfirm = function(id,ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete Doors?')
@@ -27,8 +28,8 @@ app
 			$http(
 			{
 				method: 'POST', 
-				url: 'http://35.160.142.158:8080/device/delete',
-				data: {device_id:id , facility_id:3},
+				url: baseURL+'device/delete',
+				data: {device_id:id , facility_id:parseInt($rootScope.facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -42,6 +43,7 @@ app
 				}else{
 					$scope.result = response.msg.replace(/_/g,' ');
 					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					
 				}
 			}).error(function(){
 
@@ -71,13 +73,13 @@ app
 	$rootScope.formSubmit = function(device){
 		//alert(device);
 		device.technician_id = parseInt(device.technician_id);
-		device.facility_id = parseInt(device.facility_id);
+		//device.facility_id = parseInt(device.facility_id);
 		device.serial_no = parseInt(device.serial_no);
-		device.facility_id = 3;
+		device.facility_id = parseInt($rootScope.facilityId);
 		//device.registration_code = '1223';
 		
 		$http({
-			url: 'http://35.160.142.158:8080/device/add',
+			url: baseURL+'device/add',
 			method: 'POST',
 			data: device,
 			dataType : 'JSON',
@@ -88,11 +90,24 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				
+				toaster.pop('success',response.msg.replace(/_/g,' '));
 			}else{
+				toaster.pop('error',response.msg.replace(/_/g,' '));
 				if(response.msg == 'Validation_Error'){
-					var error = response;
-					console.log(error);
+					if(response.error != ""){
+						var n = [];
+						$rootScope.masters = [];
+						$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+						$rootScope.masters = n;
+					}
+					else{
+						$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+					}
+				}
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
 				}
 			}
 		})
@@ -111,7 +126,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -123,7 +138,11 @@ app
 				$scope.data =  arrayPushService.arrayPush(response.data.data, $scope.data);
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
@@ -142,7 +161,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -154,14 +173,41 @@ app
 				$scope.data =  response.data.data;
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
 		});	
 	}	
 	
-	
+	$scope.getTechnicianList = function(device){
+		
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'technician/list',
+			dataType : 'JSON', 
+			data: device,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.technicianList = response.data;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	$scope.getTechnicianList();
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
@@ -181,7 +227,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceDetailsCtrl', function ($scope, $mdDialog, $http,$stateParams,$cookies,toaster,$rootScope) {
+  .controller('DeviceDetailsCtrl', function ($scope, $mdDialog, $http,$stateParams,$cookies,toaster,$rootScope,baseURL,errorHandler) {
      $scope.page = {
       title: 'Device Details',
       subtitle: 'So much more to see at a glance.'
@@ -193,11 +239,11 @@ app
 		console.log(device);
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		device.facility_id = 3;
+		device.facility_id = parseInt($rootScope.facilityId);
 		$http(
 		{
 			method: 'POST', 
-			url: 'http://35.160.142.158:8080/device/add',
+			url: baseURL+'device/add',
 			dataType : 'JSON', 
 			data: device,
 			headers: {
@@ -209,7 +255,11 @@ app
 			if(response.status == true){
 				toaster.pop('success','Submit Successfully');
 			}else{
-				toaster.pop('error',response.msg.replace(/_/g,' '));
+				if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}else{toaster.pop('error',response.msg.replace(/_/g,' '));}
 			}
 		}).error(function(){
 
@@ -229,8 +279,8 @@ app
 			$http(
 			{
 				method: 'POST', 
-				url: 'http://35.160.142.158:8080/device/delete',
-				data: {device_id:parseInt($stateParams.device_id) , facility_id:3},
+				url: baseURL+'device/delete',
+				data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt($rootScope.facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -275,7 +325,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/view?device_id='+device_id,
+			url: baseURL+'device/view?device_id='+device_id,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -288,7 +338,11 @@ app
 				$scope.editDevice = response.data;
 				$scope.editDevice.device_technician_id = $scope.editDevice.device_technician_id.toString();
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
@@ -302,7 +356,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -313,7 +367,11 @@ app
 			if(response.status == true){
 				$scope.dependent_devices = response.data.data;
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
@@ -325,7 +383,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/user-details-by-device/1',
+			url: baseURL+'device/user-details-by-device/1',
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -336,7 +394,11 @@ app
 			if(response.status == true){
 				//$scope.dependent_devices = response.data.data;
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
@@ -355,12 +417,12 @@ app
 		device.registration_code = device.device_registration_code;
 		device.technician_id = device.device_technician_id;
 		device.serial_no = parseInt(device.device_serial_no);
-		device.facility_id = device.device_facility_id;
+		device.facility_id = parseInt($rootScope.facilityId);
 		
 		$http(
 		{
 			method: 'PUT', 
-			url: 'http://35.160.142.158:8080/device/edit',
+			url: baseURL+'device/edit',
 			dataType : 'JSON', 
 			data: device,
 			headers: {
@@ -372,7 +434,11 @@ app
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully!');
 			}else{
-				toaster.pop('success',response.msg.replace(/_/g, " "));
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}else{toaster.pop('success',response.msg.replace(/_/g, " "));}
 			}
 		}).error(function(){
 
@@ -384,7 +450,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/technician/list',
+			url: baseURL+'technician/list',
 			dataType : 'JSON', 
 			data: device,
 			headers: {
@@ -415,7 +481,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -427,7 +493,11 @@ app
 				$scope.data =  response.data.data;
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
@@ -461,7 +531,7 @@ app.filter('deviceFeatureFilter', function() {
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $stateParams, $cookies, toaster){
+  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler){
     $scope.page = {
       title: 'Dependent Device',
       subtitle: 'So much more to see at a glance.'
@@ -518,7 +588,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/view?device_id='+device_id,
+			url: baseURL+'device/view?device_id='+device_id,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -531,7 +601,11 @@ app
 				$scope.editDevice = response.data;
 				$scope.editDevice.device_technician_id = $scope.editDevice.device_technician_id.toString();
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
@@ -548,7 +622,7 @@ app
 		$http(
 		{
 			method: 'PUT', 
-			url: 'http://35.160.142.158:8080/device/edit',
+			url: baseURL+'device/edit',
 			dataType : 'JSON', 
 			data: device,
 			headers: {
@@ -560,7 +634,11 @@ app
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully!');
 			}else{
-				toaster.pop('success',response.msg.replace(/_/g, " "));
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}else{toaster.pop('success',response.msg.replace(/_/g, " "));}
 			}
 		}).error(function(){
 
@@ -572,7 +650,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/technician/list',
+			url: baseURL+'technician/list',
 			dataType : 'JSON', 
 			data: device,
 			headers: {
@@ -602,7 +680,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster) {
+  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler) {
     $scope.page = {
 		title: 'Dependent Devices',
 		subtitle: 'So much more to see at a glance.'
@@ -621,8 +699,8 @@ app
 			$http(
 			{
 				method: 'POST', 
-				url: 'http://35.160.142.158:8080/device/delete',
-				data: {device_id:parseInt(id) , facility_id:3},
+				url: baseURL+'device/delete',
+				data: {device_id:parseInt(id) , facility_id:parseInt($rootScope.facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -667,7 +745,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: 'http://35.160.142.158:8080/device/list-slave-of-master-device?device_master_id=1',
+			url: baseURL+'device/list-slave-of-master-device?device_master_id=1',
 			dataType : 'JSON', 
 			// data: device,
 			headers: {
@@ -679,7 +757,11 @@ app
 			if(response.status == true){
 				$scope.dependentDevice = response.data;
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
 			}
 		}).error(function(){
 
