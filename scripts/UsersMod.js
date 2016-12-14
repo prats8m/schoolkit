@@ -163,7 +163,10 @@ app
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
-	$rootScope.submitUserData = function(userData){
+	$rootScope.submitUserData = function(userData, user_form){
+		if(!user_form.validate()){
+			return false;
+		}
 		if(userData == undefined){
 			$rootScope.user_error = "Please fill form.";
 			return false;
@@ -201,6 +204,7 @@ app
 				});
 				$timeout(function() {
 					$scope.assignedGroup();
+					$scope.unassignedGroup();
 				}, 1000);
 			}else{
 
@@ -213,7 +217,7 @@ app
 				var n = [];
 				var arr = response.error;
 				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.user_error = n.join(", ");
 				}
 				else{
@@ -461,6 +465,37 @@ app
 
 	}
 
+
+	$rootScope.unassignUserToUsergroup = function(user_group_id){
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/remove-usergroup',
+			dataType : 'JSON', 
+			data: { "user_id": parseInt($cookies.get("user_id")), "user_group_id": user_group_id },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.unassignedUserGroup = "User group removed.";
+			}else{	
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+			}
+			$timeout(function() {
+				$scope.assignedGroup();
+			}, 1000);
+		}).error(function(){
+
+		});
+	}
+
 	$scope.assignedGroup = function(){
 		$http(
 		{
@@ -488,6 +523,7 @@ app
 		});
 	}
 
+	$scope.unassignedGroup = function(){
 		$http(
 		{
 			method: 'POST', 
@@ -512,7 +548,7 @@ app
 		}).error(function(){
 
 		});
-	
+	}
 	
 });
 

@@ -334,3 +334,9 @@ font-size: 18px;
 
 
 .cameradvr h4 { margin-bottom: 25px !important; }
+ 
+span.error {
+ font-size: 14px;
+ color: #ff0000;
+ line-height: 22px;
+}

@@ -116,20 +116,20 @@
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Account">
 														<span class="error">{{user_error}}</span>
-														<form ng-submit="submitUserData(userData)" id="user_form">
+														<form  ng-validate="validationOptions" id="user_form" name="user_form">
 														<md-content>
 															<div class="account">
 																<div class="overflow">
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">First Name</label>
-																			<input type="text" name="" id="" ng-model="userData.first_name" class="form-control mb-10" placeholder="">
+																			<input type="text" name="first_name" id="first_name" ng-model="userData.first_name" class="form-control mb-10" placeholder="" required>
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
 																		<div class="form-group">
 																			<label for="">Last Name</label>
-																			<input type="text" name="" id="" ng-model="userData.last_name" class="form-control mb-10" placeholder="">
+																			<input type="text" name="last_name" id="last_name" ng-model="userData.last_name" class="form-control mb-10" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -137,14 +137,14 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Email Address</label>
-																			<input type="email" name="" id="" ng-model="userData.email" class="form-control mb-10" placeholder="">
+																			<input type="email" name="email" id="email" ng-model="userData.email" class="form-control mb-10" placeholder="" required>
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
 																		<div class="form-group">
 																			<label for="">Profile Photo</label>
 																			<div class="profilephoto">
-																				<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																				<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1" file-model="userData.photo">
 																				<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 																			</div>
 																		</div>
@@ -154,13 +154,13 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Phone Number</label>
-																			<input type="text" name="" id="" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="">
+																			<input type="text" name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="" >
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
 																		<div class="form-group">
 																			<label for="">Address</label>
-																			<input type="text" name="" id="" ng-model="userData.address" class="form-control mb-10" placeholder="">
+																			<input type="text" name="address" id="address" ng-model="userData.address" class="form-control mb-10" placeholder="" required>
 																		</div>
 																	</div>
 																</div>
@@ -169,7 +169,7 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="">Password</label>
-																			<input type="password" name="" id="" ng-model="userData.password" class="form-control mb-10" placeholder="">
+																			<input type="password" name="password" id="password" ng-model="userData.password" class="form-control mb-10" placeholder="" required>
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
@@ -183,7 +183,7 @@
 																<div class="overflow">
 																	<div class="form-group">
 																		<label for="">Description</label>
-																		<textarea name="" id="" ng-model="userData.description" class="form-control mb-10" placeholder=""></textarea>
+																		<textarea name="" id="" ng-model="userData.description" class="form-control mb-10" placeholder="" required></textarea>
 																	</div>
 																</div>
 																<div class="overflow">
@@ -419,6 +419,7 @@
 																		</ul>
 																	</div>
 																	<div class="tile-body p-0">
+																	{{unassignedUserGroup}}
 																		<table class="table table-bordered">
 																			<thead>
 																				<tr>
@@ -429,7 +430,7 @@
 																			<tbody>
 																				<tr ng-repeat="assign_usergroup in assingned_usergroups">
 																					<td>{{assign_usergroup.usergroup_name}}</td>
-																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																					<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"	ng-click="unassignUserToUsergroup(assign_usergroup.usergroup_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 																				</tr>
 																			</tbody>
 																		</table>
@@ -444,7 +445,7 @@
 										</div>
 										<div class="modal-footer">
 											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-											<button type="submit" ng-click="submitUserData(userData)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
+											<button type="submit" ng-click="submitUserData(userData, user_form)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 										</div>											
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User</span></a>

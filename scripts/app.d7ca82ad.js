@@ -62,7 +62,8 @@ var app = angular
     'ipsum',
     'angular-intro',
     'dragularModule',
-	'toaster'
+    'ngValidate',
+		'toaster'
   ])
   .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
@@ -88,6 +89,8 @@ var app = angular
   .config(['uiSelectConfig', function (uiSelectConfig) {
     uiSelectConfig.theme = 'bootstrap';
   }])
+
+  
 
   //angular-language
   .config(['$translateProvider', function($translateProvider) {
