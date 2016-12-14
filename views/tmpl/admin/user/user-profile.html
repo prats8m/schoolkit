@@ -214,9 +214,9 @@
 							</uib-tab>
 							<uib-tab heading="Edit Profile">
 								<div class="wrap-reset"> 
-									<form ng-submit="submitEditUser(editUser)">
+									<!-- <form ng-submit="submitEditUser(editUser)"> -->
 										<div class="profile-settings"> 
-										
+										<form ng-submit="submitEditUser(editUser)">
 											<div class="row">
 												<div class="form-group col-md-12 legend">
 													<h4><strong>Account</strong></h4>
@@ -251,7 +251,7 @@
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="first-name">Phone Number</label>
-													<input type="text" class="form-control" id="first-name" ng-model="editUser.user_phone_no" ng-value="userData.phone_number_1">
+													<input type="number" class="form-control" ng-keypress="onlyNumber($event)" id="first-name" ng-model="editUser.user_phone_no">
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="address1">Address</label>
@@ -275,13 +275,25 @@
 													</div>
 												</div>
 												<div class="form-group col-sm-6 editprofile" ng-hide="userData.user_status==0">
+												<div ng-controller="DatepickerDemoCtrl">
 													<label for="">Expiration Date</label>
-													<div ng-controller="DatepickerDemoCtrl">
-														<input type="text" class="form-control" ng-model="editUser.expiration_date" ng-value="userData.user_expiration_date" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+													<div class="input-group userexp">
+														<input type="text" class="form-control" ng-model="editUser.expiration_date" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+														<span class="input-group-btn">
+														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+														</span>
 													</div>
 												</div>
+													
+												</div>
 											</div>
-											
+											<div>
+												<p ng-repeat="e in editUserMessage">{{e}}</p>
+											</div>
+											<button type="submit">Submit</button>
+										</form>
+										
+										<form ng-submit="submitEditAccessCode(editUser)">
 											<div class="row">
 											  <div class="form-group col-md-12 legend">
 												<h4><strong><br/>Credentials</strong></h4>
@@ -297,7 +309,7 @@
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Code</label>
-													<input type="text" class="form-control" id="" ng-model="editUser.access_code">
+													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.access_code">
 												</div>
 												<div class="form-group col-sm-6 editprofile">
 													<label for="">Status</label><br/>
@@ -307,7 +319,11 @@
 													</div>
 												</div>
 											</div>
-											
+											<div ng-repeat="x in AccessCodeMessage">{{x}}</div>
+											<button type="submit">Submit</button>
+										</form>
+										
+										<form ng-submit="submitEditPhoneCode(editUser)">
 											<div class="row">
 											  <div class="form-group col-md-12 legend">
 												<h5><strong>Phone Code</strong></h5>
@@ -318,7 +334,7 @@
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Code</label>
-													<input type="text" class="form-control" id="" ng-value="editUser.phone_code">
+													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-value="editUser.phone_code">
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Status</label><br/>
@@ -329,6 +345,7 @@
 												</div>
 											</div>
 											
+										
 											<!-- <div class="row">										
 												<div class="form-group col-sm-6 editaddphone">
 													<label for="">Phone</label>
@@ -341,6 +358,7 @@
 													
 												</div>
 											</div> -->
+										
 											<div class="row">										
 												<div class="form-group col-sm-6 editaddphone">
 													<label for="">Phone</label>
@@ -348,8 +366,10 @@
 													
 												</div>
 											</div>
-											
-											
+											<div ng-repeat="y in PhoneCodeMessage">{{y}}</div>
+											<button type="submit">Submit</button>
+										</form>
+										<form ng-submit="submitEditRFIDCode(editUser)">
 											<div class="row">
 											  <div class="form-group col-md-12 legend">
 												<h5><strong>RFID Code</strong></h5>
@@ -359,11 +379,11 @@
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Card Number</label>
-													<input type="text" class="form-control" id="" ng-model="editUser.rfid_card_no">
+													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.rfid_card_no">
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Facility Code</label>
-													<input type="text" class="form-control" id="" ng-model="editUser.rfid_facility_code">
+													<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editUser.rfid_facility_code">
 												</div>
 											</div>
 											
@@ -407,7 +427,9 @@
 													</div>
 												</div>
 											</div>
-											
+											<div ng-repeat="x in EditRFIDCodeMsg">{{x}}</div>
+											<button type="submit">Submit</button>
+										</form>
 											<div class="row">
 												<div class="form-group col-md-12 legend">
 													<h4><strong><br/>User</strong> Groups</h4>												
@@ -420,51 +442,13 @@
 													<div ng-controller="ModalDemoCtrl">
 														<script type="text/ng-template" id="myModalContent.html">
 															<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
+															<form ng-submit="assignUserGroup(usergroup)">
 															<div class="hometabs">
 																<div class="overflow groupslists">
 																	<div class="col-md-12">
 																		<ul>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence Guest</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence Guest</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff</label>
-																			</li>
-																			<li>
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services</label>
+																			<li ng-repeat="user_group in usergroups">
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}}</label>
 																			</li>
 																		</ul>
 																		<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
@@ -474,7 +458,8 @@
 															<div class="modal-footer">
 																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
-															</div>											
+															</div>
+															</form>															
 														</script>
 														<button ng-click="open()" class="btn btn-default btn-rounded btn-ef btn-ef-5 btn-ef-5b mb-10 pull-right"><i class="fa fa-plus"></i> <span>Add Groups</span></button>
 													</div>
@@ -507,14 +492,14 @@
 											
 										<div class="row">
 											<div class="form-group col-md-12 legend mt-20">
-												<button onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
-												<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+												<button onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Back</button>
+												<!-- <button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button> -->
 											</div>
 										</div>
 										<div class="row">
 											<p ng-repeat="m in masters">{{m}}</p>
 										</div>
-									</form>	
+									<!-- </form>	 -->
 								</div>
 
 								</div>

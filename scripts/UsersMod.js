@@ -531,6 +531,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	$scope.editUser = {};
+	$("#mask02").datepicker();
 	
 	$scope.profileInit = function(){
 		$http(
@@ -563,6 +564,8 @@ app
 				$scope.editUser.rfid_status = angular.copy($scope.userData.rfid_sttaus);
 				$scope.editUser.ble_name = angular.copy($scope.userData.ble_name);
 				$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
+				$scope.editUser.description = angular.copy($scope.userData.user_description);
+				$scope.editUser.user_phone_no = angular.copy($scope.userData.user_phone_no);
 				
 				
 			}else{
@@ -577,24 +580,67 @@ app
 		});
 	}
 	$scope.profileInit();
-	// http://[base_url]/user/usergroup-assigned-to-user
-	$scope.userGroup = [];
-	$scope.profileInit1 = function(){
+	
+	$rootScope.usergroup = {};
+	$rootScope.usergroup.usergrouparr = [];
+
+	$rootScope.assignUserGroup = function(user_group){
+		var arr  = [];
+		$.each(user_group.usergrouparr, function(index, value){ 
+			if(value == true){
+				arr.push(index);
+			}
+		 })
 		$http(
 		{
 			method: 'POST', 
-			url: baseURL + 'user/usergroup-assigned-to-user',
+			url: baseURL+'user/assign-usergroup',
 			dataType : 'JSON', 
-			data:{'user_id':parseInt($stateParams.user_id)},
+			data: { "user_id": parseInt($stateParams.user_id), "user_group_id": arr },
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
 			}
-			
-		}).success(function(response){
+		})
+		.success(function(response){
 			if(response.status == true){
-				$scope.userGroup = response.data;
-			}else{
+				$rootScope.usergroupmsg = response.msg;
+				toaster.pop('success',response.msg.replace(/_/g," "));
+			}else{	
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+				$rootScope.usergroupmsg = response.msg;
+				$rootScope.cancel();
+				toaster.pop('error',response.msg.replace(/_/g," "));
+			}
+			$timeout(function() {
+				$scope.assignedGroup();
+			}, 1000);
+		}).error(function(){
+
+		});
+
+	}
+
+	$scope.assignedGroup = function(){
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/usergroup-assigned-to-user',
+			dataType : 'JSON', 
+			data: { "user_id": parseInt($stateParams.user_id) },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.userGroup = response.data;
+			}else{	
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
@@ -605,7 +651,34 @@ app
 
 		});
 	}
-	$scope.profileInit1();
+	
+	$scope.assignedGroup();
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/usergroup-not-assigned-to-user',
+			dataType : 'JSON', 
+			data: { "user_id": parseInt($stateParams.user_id) },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.usergroups = response.data;
+			}else{	
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+			}
+		}).error(function(){
+
+		});
+		
+	//$rootScope.assignUserGroup();
 	
 	$scope.deleteGroup = function(id){
 		if(!confirm("Are you sure you want to Delete This User Group.")){return false;}
@@ -655,27 +728,34 @@ app
 			}
 		}).success(function(response){
 			
-			var arr = response.error;
-			if(response.error != ""){
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.masters = n;
-			}
-			else{
-				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
+			}else{
+				toaster.pop('error',response.msg);
+				var arr = response.error;
+				if(response.error != ""){
+					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$scope.editUserMessage = n;
 				}
-				
-				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+					
+				}
 			}
-			$scope.submitEditAccessCode(submitData);
+			//$scope.submitEditAccessCode(submitData);
 		}).error(function(){
-
+			toaster.pop('success','Something went wrong!');
 		});
 	}
 	
 	$scope.submitEditAccessCode = function(submitData){
+		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.access_code = parseInt(submitData.access_code);
 		$http(
 		{
@@ -689,22 +769,30 @@ app
 			}
 			
 		}).success(function(response){
-			
-			var arr = response.error;
-			if(response.error != ""){
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.masters = n;
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
 			}
 			else{
-				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+				$rootScope.AccessCodeMessage = [];
+				var arr = response.error;
+				toaster.pop('error',response.msg);
+				if(response.error != "" && response.error != null){
+					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.AccessCodeMessage = n;
 				}
-				
-				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}
 			}
-			$scope.submitEditPhoneCode(submitData);
+			
+			
+			//$scope.submitEditPhoneCode(submitData);
 		}).error(function(){
 
 		});
@@ -725,21 +813,28 @@ app
 			
 		}).success(function(response){
 			
-			var arr = response.error;
-			if(response.error != ""){
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.masters = n;
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
 			}
 			else{
-				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+				var arr = response.error;
+				if(response.error != "" && response.error != null){
+					toaster.pop('error',response.msg);
+					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$scope.PhoneCodeMessage = n;
 				}
-				
-				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}	
 			}
-			$scope.submitEditRFIDCode(submitData);
+			
+			//$scope.submitEditRFIDCode(submitData);
 		}).error(function(){
 
 		});
@@ -760,21 +855,29 @@ app
 			}
 			
 		}).success(function(response){
-			var arr = response.error;
-			if(response.error != ""){
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.masters = n;
+			if(response.status == true){
+				toaster.pop('success',"Submitted Successfully");
 			}
 			else{
-				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+				var arr = response.error;
+				if(response.error != "" && response.error != null){
+					toaster.pop('error',response.msg);
+					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$scope.EditRFIDCodeMsg = n;
+				}
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 				}
 				
-				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 			}
-			$scope.submitEditBLECode(submitData);
+			
+			//$scope.submitEditBLECode(submitData);
 		}).error(function(){
 
 		});
@@ -812,6 +915,17 @@ app
 
 		});
 	}
+	
+	$scope.onlyNumber = function(e){
+		console.log(e);
+		if(e.keyCode>=48 && e.keyCode<=57){
+			//return true;
+		}else{
+			e.preventDefault();
+		}
+	}
+	
+	$("#mask02").datepicker();
 });
 
 'use strict';
