@@ -859,7 +859,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL) {
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster) {
      $scope.page = {
       title: 'User Groups',
       subtitle: 'So much more to see at a glance.'
@@ -912,6 +912,47 @@ app
 	  facility: 'Mitsui & Company Inc',
 	  noofusers: '15',
     }];		
+
+    $rootScope.saveUserGroup = function(usergroup, group_form){
+    	if(!group_form.validate()){
+			return false;
+		}
+		usergroup.facility_id = parseInt($cookies.get("facilityId"));
+		$http({
+			method: 'POST', 
+			url: baseURL + 'usergroup/add',
+			dataType : 'JSON',
+			data:usergroup,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+
+		})
+		.success(function(response){
+			if(response.status == true){
+				toaster.pop('success','User Group Added Successfully');
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+				
+				var n = [];
+				var arr = response.error;
+				if(arr != null){
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$rootScope.user_group_error = n.join(", ");
+				}
+				else{
+					$rootScope.user_group_error = response.msg.replace(/_/g,' ');
+				}	
+			}
+		}).error(function(){
+
+		});
+    }
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
