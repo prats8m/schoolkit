@@ -75,7 +75,7 @@
 			</div>			
 		</div>
 		
-		<div class="row" ng-controller="DoorCtrl">
+		<div class="row">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="tile-header dvd dvd-btm">
@@ -84,35 +84,34 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form">
+										<form name="form1" role="form" ng-submit="submitAddDoor(addDoors)">
 											<div class="modal-header"><h4 class="modal-title custom-font">Create Door</h4></div>
 											<div class="modal-body">	
 												<div class="row">
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Name</label>
-															<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="" ng-model="addDoors.name" id="" class="form-control mb-10" placeholder="" required>
 														</div>
 													</div>
 													<div class="col-md-6 last">
 														<div class="form-group">
 															<label for="">Facility</label><br/>
-															<select class="form-control" disabled>
-																<option selected>USA Corporate Services</option>
-																<option>Aerzen USA Corporation</option>
+															<select class="form-control" ng-model="addDoors.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList track by item.facility_id" >															
+																<option value="">Select</option>
 															</select>
 														</div>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="">Description</label>
-													<textarea name="" id="" class="form-control mb-10" placeholder=""></textarea>
+													<textarea name="" id="" class="form-control mb-10" ng-model="addDoors.description" placeholder=""></textarea>
 												</div>
 												<div class="form-group">
 													<label for="">Device Type</label><br/>
-													<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+													<div class="btn-group btnrounded">
+														<label class="btn btn-default" ng-model="addDoors.status" uib-btn-radio="1">Active</label>
+														<label class="btn btn-default" ng-model="addDoors.status" uib-btn-radio="0">Inactive</label>
 													</div>
 												</div>
 											</div>

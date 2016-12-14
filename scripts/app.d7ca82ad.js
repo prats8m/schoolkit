@@ -780,9 +780,9 @@ app
   .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL) {
 	  
 		
-	if($cookies.get('token')){
+	/* if($cookies.get('token')){
 		$state.go('app.admin.dashboard');
-	}
+	} */
 	
 
 	$scope.loginFunction = function(){
