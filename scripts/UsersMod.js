@@ -561,7 +561,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster) {
+  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout) {
      $scope.page = {
       title: 'Arnold',
       subtitle: 'So much more to see at a glance.'
@@ -595,7 +595,14 @@ app
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
-				// $scope.editUser.phone_no[0] = angular.copy($scope.userData.phone_number_1);
+				// $rootScope.todos = [];
+				// var todos = $rootScope.todos;
+				
+	   //    $rootScope.todos.push({
+	   //      text: $scope.userData.phone_number_1,
+	   //      completed: false
+	   //    });
+				$scope.editUser.phone_numbers = angular.copy($scope.userData.phone_number_1);
 				$scope.editUser.rfid_facility_code = angular.copy($scope.userData.rfid_facility_code);
 				$scope.editUser.rfid_status = angular.copy($scope.userData.rfid_sttaus);
 				$scope.editUser.ble_name = angular.copy($scope.userData.ble_name);
@@ -745,7 +752,10 @@ app
 	}
 	
 	var n = [];
-	$scope.submitEditUser = function(submitData){
+	$scope.submitEditUser = function(submitData, user_edit){
+		if(!user_edit.validate()){
+			return false;
+		}
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.user_phone_no = parseInt(submitData.user_phone_no);
 		submitData.user_type = 'admin';
@@ -766,11 +776,12 @@ app
 			
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
+				$scope.editUserMessage = "";
 			}else{
-				toaster.pop('error',response.msg);
+				// toaster.pop('error',response.msg);
 				var arr = response.error;
 				if(response.error != ""){
-					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 					$scope.editUserMessage = n;
 				}
 				else{
@@ -813,7 +824,7 @@ app
 				var arr = response.error;
 				toaster.pop('error',response.msg);
 				if(response.error != "" && response.error != null){
-					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 					$rootScope.AccessCodeMessage = n;
 				}
 				else{
@@ -835,7 +846,13 @@ app
 	}
 	
 	$scope.submitEditPhoneCode = function(submitData){
-		submitData.phone_code = parseInt(submitData.phone_code);
+		submitData.user_id = parseInt($stateParams.user_id);
+		submitData.phone_code = ""+submitData.phone_code;
+		submitData.phone_numbers = [];
+		submitData.phone_numbers[0] = $("#todo").val();
+		$.each($(".todo-list .ng-binding"), function(index, value){ 
+			submitData.phone_numbers[index+1] = $(this).text();
+		})
 		$http(
 		{
 			method: 'PUT', 
@@ -856,8 +873,8 @@ app
 				var arr = response.error;
 				if(response.error != "" && response.error != null){
 					toaster.pop('error',response.msg);
-					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$scope.PhoneCodeMessage = n;
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$scope.PhoneCodeMessage = n.join(", ");
 				}
 				else{
 					if(response.msg == 'Invalid_Token'){
@@ -947,6 +964,37 @@ app
 				
 				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 			}
+		}).error(function(){
+
+		});
+	}
+
+
+	$scope.unassignUserGroupEdit = function(user_group_id){
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL+'user/remove-usergroup',
+			dataType : 'JSON', 
+			data: { "user_id": parseInt($stateParams.user_id), "user_group_id": user_group_id },
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				toaster.pop('success','User group removed.');
+			}else{	
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+			}
+			$timeout(function() {
+				$scope.assignedGroup();
+			}, 1000);
 		}).error(function(){
 
 		});
