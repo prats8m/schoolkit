@@ -595,13 +595,16 @@ app
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
-				// $rootScope.todos = [];
-				// var todos = $rootScope.todos;
+
+				$rootScope.todos = [];
+				var todos = $rootScope.todos;
 				
-	   //    $rootScope.todos.push({
-	   //      text: $scope.userData.phone_number_1,
-	   //      completed: false
-	   //    });
+	      $rootScope.todos.push({
+	        text: $scope.userData.phone_number_1,
+	        completed: false
+	      });
+
+
 				$scope.editUser.phone_numbers = angular.copy($scope.userData.phone_number_1);
 				$scope.editUser.rfid_facility_code = angular.copy($scope.userData.rfid_facility_code);
 				$scope.editUser.rfid_status = angular.copy($scope.userData.rfid_sttaus);
@@ -609,8 +612,28 @@ app
 				$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
 				$scope.editUser.description = angular.copy($scope.userData.user_description);
 				$scope.editUser.user_phone_no = angular.copy($scope.userData.user_phone_no);
-				
-				
+				$scope.editUser.user_status = angular.copy($scope.userData.user_status);
+				if($scope.userData.access_status == undefined)
+				{
+					$scope.editUser.access_code_status = 1;
+				}
+				else{
+					$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
+				}
+				if($scope.userData.rfid_status == undefined)
+				{
+					$scope.editUser.rfid_status = 1;
+				}
+				else{
+					$scope.editUser.rfid_status = angular.copy($scope.userData.rfid_status);
+				}
+				if($scope.userData.ble_status == undefined)
+				{
+					$scope.editUser.ble_status = 1;
+				}
+				else{
+					$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
+				}
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -756,12 +779,12 @@ app
 		if(!user_edit.validate()){
 			return false;
 		}
+		submitData.status = submitData.user_status
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.user_phone_no = parseInt(submitData.user_phone_no);
 		submitData.user_type = 'admin';
 		submitData.facility_id = 3;
 		$rootScope.masters = []
-		
 		$http(
 		{
 			method: 'PUT', 
@@ -800,8 +823,20 @@ app
 			toaster.pop('success','Something went wrong!');
 		});
 	}
+
+	$scope.generateAccessCode = function(){ 
+			$scope.editUser.access_code = Date.now();
+	}
+
+	$scope.generatePhoneCode = function(){
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		$scope.editUser.phone_code = (""+x).substring(8, length);
+	}
 	
-	$scope.submitEditAccessCode = function(submitData){
+	$scope.submitEditAccessCode = function(submitData, access_edit_form){
+		if(!access_edit_form.validate()){
+			return false;
+		}
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.access_code = parseInt(submitData.access_code);
 		$http(
@@ -820,12 +855,10 @@ app
 				toaster.pop('success','Submitted Successfully');
 			}
 			else{
-				$rootScope.AccessCodeMessage = [];
 				var arr = response.error;
-				toaster.pop('error',response.msg);
 				if(response.error != "" && response.error != null){
 					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$rootScope.AccessCodeMessage = n;
+					$rootScope.AccessCodeMessage = n.join(", ");
 				}
 				else{
 					if(response.msg == 'Invalid_Token'){
@@ -893,7 +926,11 @@ app
 		});
 	}
 	
-	$scope.submitEditRFIDCode = function(submitData){
+	$scope.submitEditRFIDCode = function(submitData, rfid_form){
+		if(!rfid_form.validate()){
+			return false;
+		}
+		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.rfid_card_no = parseInt(submitData.rfid_card_no);
 		submitData.rfid_facility_code = parseInt(submitData.rfid_facility_code);
 		$http(
@@ -914,9 +951,9 @@ app
 			else{
 				var arr = response.error;
 				if(response.error != "" && response.error != null){
-					toaster.pop('error',response.msg);
-					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$scope.EditRFIDCodeMsg = n;
+					//toaster.pop('error',response.msg);
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$scope.EditRFIDCodeMsg = n.join(", ");
 				}
 				else{
 					if(response.msg == 'Invalid_Token'){
@@ -936,14 +973,21 @@ app
 		});
 	}
 	
-	$scope.submitEditBLECode = function(submitData){
-		
+	$scope.submitEditBLECode = function(submitData, ble_edit_form){
+		if(!ble_edit_form.validate()){
+			return false;
+		}
+		$scope.submitd = {};
+		$scope.submitd.user_id = parseInt($stateParams.user_id);
+		$scope.submitd.ble_name = submitData.ble_name;
+		$scope.submitd.ble_status = submitData.ble_status;
+		$scope.submitd.ble_pass = submitData.ble_pass;
 		$http(
 		{
 			method: 'PUT', 
 			url: baseURL + 'user/edit-ble-code',
 			dataType : 'JSON',
-			data:submitData,
+			data: $scope.submitd,
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -952,8 +996,8 @@ app
 		}).success(function(response){
 			var arr = response.error;
 			if(response.error != ""){
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.masters = n;
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$scope.bleerror = n.join(", ");
 			}
 			else{
 				if(response.msg == 'Invalid_Token'){
