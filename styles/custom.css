@@ -8,6 +8,16 @@
 .ff-rc {  font-family: 'Roboto Condensed', sans-serif; }
 .pos-r { position: relative; }
 .f-wm { font-weight: 500; }
+input.ng-invalid-required.error { border: 1px solid #ff0000; }
+label.error {
+    font-size: 14px;
+    font-weight: 100;
+    font-style: italic;
+    color: #ff0000;
+}
+
+
+
 .hovershadow { transition: 0.75s; }
 .hovershadow:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.25); }
 textarea.form-control { height: 75px; }
