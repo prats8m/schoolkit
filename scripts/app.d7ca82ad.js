@@ -6533,12 +6533,16 @@ app
     };
   })
 
-  .controller('TodoWidgetCtrl', function($scope) {
+  .controller('TodoWidgetCtrl', function($scope, $rootScope) {
     $scope.todos = [];
 
     var todos = $scope.todos;
-
     $scope.addTodo = function() {
+	    if($scope.todos.length > 1){
+	    	$rootScope.phone_length = "Can't add more than three phone numbers.";
+	    	return false;
+	    }
+	  $rootScope.phone_length = "";
       $scope.todos.push({
         text: $scope.todo,
         completed: false

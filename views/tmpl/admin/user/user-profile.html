@@ -215,22 +215,25 @@
 							<uib-tab heading="Edit Profile">
 								<div class="wrap-reset"> 
 									<!-- <form ng-submit="submitEditUser(editUser)"> -->
+
+										
 										<div class="profile-settings"> 
-										<form ng-submit="submitEditUser(editUser)">
+										<form ng-submit="submitEditUser(editUser, user_edit)" name="user_edit" ng-validate="validationOptions">
 											<div class="row">
 												<div class="form-group col-md-12 legend">
 													<h4><strong>Account</strong></h4>
 												</div>
 											</div>
+											<span ng-repeat="e in editUserMessage" class="error">{{e}}</span>
 											
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="first-name">First Name</label>
-													<input type="text" class="form-control" id="first-name" ng-model="editUser.first_name" ng-value="userData.user_first_name">
+													<input type="text" class="form-control" id="first-name" ng-model="editUser.first_name" ng-value="userData.user_first_name" name="first-name" required>
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="last-name">Last Name</label>
-													<input type="text" class="form-control" id="last-name" ng-model="editUser.last_name" ng-value="userData.user_last_name">
+													<input type="text" class="form-control" id="last-name" ng-model="editUser.last_name" ng-value="userData.user_last_name" name="last-name" required>
 												</div>
 											</div>
 											
@@ -242,7 +245,7 @@
 												<div class="form-group col-sm-6 editprofile">
 													<label for="profile">Profile Photo</label>
 													<div class="profilephoto">
-														<input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+														<!-- <input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1"> -->
 														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 													</div>
 												</div>
@@ -255,30 +258,30 @@
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="address1">Address</label>
-													<input type="text" class="form-control" id="address1" ng-model="editUser.address" ng-value="userData.user_address">
+													<input type="text" class="form-control" id="address1" ng-model="editUser.address" ng-value="userData.user_address" name="address1" required>
 												</div>
 											</div>
 											
 											<div class="row">
 												<div class="form-group col-sm-12">
 													<label for="bio">Description</label>
-													<textarea class="form-control" id="bio" ng-model="editUser.description" style="height:125px;">{{userData.description}}</textarea>
+													<textarea class="form-control" id="bio" ng-model="editUser.description" style="height:125px;" name="bio" required>{{userData.description}}</textarea>
 												</div>
 											</div>
 											
-											<div class="row" ng-controller="ActivebtnCtrl">										
+											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Status</label><br/>
 													<div class="btn-group btnrounded" >
-														<label class="btn btn-default" ng-model="userData.user_status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="userData.user_status" uib-btn-radio="0">Inactive</label>
+														<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="1">Active</label>
+														<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="0">Inactive</label>
 													</div>
 												</div>
-												<div class="form-group col-sm-6 editprofile" ng-hide="userData.user_status==0">
+												<div class="form-group col-sm-6 editprofile" ng-hide="editUser.user_status==0">
 												<div ng-controller="DatepickerDemoCtrl">
 													<label for="">Expiration Date</label>
 													<div class="input-group userexp">
-														<input type="text" class="form-control" ng-model="editUser.expiration_date" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+														<input type="text" class="form-control" ng-model="editUser.expiration_date" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-value="editUser.expiration_date"/>
 														<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -287,13 +290,10 @@
 													
 												</div>
 											</div>
-											<div>
-												<p ng-repeat="e in editUserMessage">{{e}}</p>
-											</div>
 											<button type="submit">Submit</button>
 										</form>
 										
-										<form ng-submit="submitEditAccessCode(editUser)">
+										<form ng-submit="submitEditAccessCode(editUser, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
 											<div class="row">
 											  <div class="form-group col-md-12 legend">
 												<h4><strong><br/>Credentials</strong></h4>
@@ -305,36 +305,36 @@
 												<h5><strong>Access Code</strong></h5>
 											  </div>
 											</div>
-											
+											<span class="error">{{AccessCodeMessage}}</span>
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Code</label>
-													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.access_code">
+													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="access_code" ng-model="editUser.access_code" name="access_code" required><img class="img-circle" src="images/refresh.png" alt="" ng-click="generateAccessCode()">
 												</div>
 												<div class="form-group col-sm-6 editprofile">
-													<label for="">Status</label><br/>
+													<label for="access_code_status">Status</label><br/>
 													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="editUser.access_code_status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="editUser.access_code_status" uib-btn-radio="0">Inactive</label>
+														<label class="btn btn-default" ng-model="editUser.access_code_status" uib-btn-radio="1" name="access_code_status">Active</label>
+														<label class="btn btn-default" ng-model="editUser.access_code_status" uib-btn-radio="0" name="access_code_status">Inactive</label>
 													</div>
 												</div>
 											</div>
-											<div ng-repeat="x in AccessCodeMessage">{{x}}</div>
 											<button type="submit">Submit</button>
 										</form>
 										
-										<form ng-submit="submitEditPhoneCode(editUser)">
+										<form>
 											<div class="row">
 											  <div class="form-group col-md-12 legend">
 												<h5><strong>Phone Code</strong></h5>
 												
 											  </div>
 											</div>
-											
+											<span class="error">{{PhoneCodeMessage}}</span>
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Code</label>
 													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-value="editUser.phone_code">
+													<img class="img-circle" src="images/refresh.png" alt="" ng-click="generatePhoneCode()">
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Status</label><br/>
@@ -346,47 +346,48 @@
 											</div>
 											
 										
-											<!-- <div class="row">										
-												<div class="form-group col-sm-6 editaddphone">
-													<label for="">Phone</label>
-													<div class="widget-todo" >
-														<div class="form-horizontal">
-															<input type="text" class="form-control" id="todo" ng-model="editUser.phone_numbers" placeholder="">
-															<button type="submit" class="btn addphone"><i class="fa fa-plus text-lg"></i></button>
-														</div>
-													</div>
-													
-												</div>
-											</div> -->
-										
 											<div class="row">										
 												<div class="form-group col-sm-6 editaddphone">
 													<label for="">Phone</label>
-													
-													
+													<div class="widget-todo" ng-controller="TodoWidgetCtrl">
+														<span class="error">{{phone_length}}</span>
+														<form class="form-horizontal" role="form">
+														<div class="form-horizontal">
+		   												<input type="text" class="form-control" id="todo" ng-model="todo" placeholder="" required ng-model="editUser.phone_numbers" ng-value="editUser.phone_numbers">
+		   												<button type="submit" class="btn addphone" ng-click="addTodo()"><i class="fa fa-plus text-lg"></i></button>
+		   											</div>
+		  											</form>
+
+														<ul class="todo-list list-unstyled">
+														  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+															<div class="view">					 
+																<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
+																<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
+															</div>
+														  </li>
+														</ul>
+													</div>
 												</div>
 											</div>
-											<div ng-repeat="y in PhoneCodeMessage">{{y}}</div>
-											<button type="submit">Submit</button>
+											<button type="submit" ng-click="submitEditPhoneCode(editUser)">Submit</button>
 										</form>
-										<form ng-submit="submitEditRFIDCode(editUser)">
+										<form ng-submit="submitEditRFIDCode(editUser, rfid_form)" name="rfid_form" ng-validate="validationOptions" > 
 											<div class="row">
 											  <div class="form-group col-md-12 legend">
 												<h5><strong>RFID Code</strong></h5>
 											  </div>
 											</div>
-											
+											<span class="error">{{EditRFIDCodeMsg}}</span>
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Card Number</label>
-													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.rfid_card_no">
+													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.rfid_card_no" name="rfid_card_no" required>
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Facility Code</label>
-													<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editUser.rfid_facility_code">
+													<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editUser.rfid_facility_code" name="rfid_facility_code" required>
 												</div>
 											</div>
-											
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="">Status</label><br/>
@@ -396,21 +397,24 @@
 													</div>
 												</div>
 											</div>
+											<button type="submit">Submit</button>
+										</form>
 											
 											<div class="row">
 												<div class="form-group col-md-12 legend">
 													<h5><strong>BLE Code</strong></h5>
 												</div>
 											</div>
-											
+										<span class="error">{{bleerror}}</span>	
+										<form ng-submit="submitEditBLECode(editUser, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
 											<div class="row">										
 												<div class="form-group col-sm-6">
 													<label for="">Username</label>
-													<input type="text" class="form-control" id="" ng-model="editUser.ble_name">
+													<input type="text" class="form-control" id="" ng-model="editUser.ble_name" name="ble_name" required>
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Password</label>
-													<input type="password" class="form-control" id="" ng-model="editUser.ble_pass">
+													<input type="password" class="form-control" id="" ng-model="editUser.ble_pass" name="ble_pass" required>
 												</div>
 											</div>
 											
@@ -427,7 +431,6 @@
 													</div>
 												</div>
 											</div>
-											<div ng-repeat="x in EditRFIDCodeMsg">{{x}}</div>
 											<button type="submit">Submit</button>
 										</form>
 											<div class="row">
@@ -480,7 +483,7 @@
 																<tr ng-repeat="x in userGroup">
 																	<td>{{x.usergroup_name}}</td>
 																	<td>
-																		<button type="button" ng-click="deleteGroup(x.usergroup_id)" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
+																		<button type="button" ng-click="unassignUserGroupEdit(x.usergroup_id)" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
 																	</td>
 																</tr>
 															</tbody>
