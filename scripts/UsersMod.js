@@ -110,6 +110,9 @@ app
 				$scope.users =  arrayPushService.arrayPush(response.data.data, $scope.users);
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
+				if(response.data == null){
+					$(".f-wm:contains(Load more)").text("No more data available").css( "opacity" , 0.7);
+				}
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
