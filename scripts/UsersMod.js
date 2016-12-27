@@ -164,7 +164,13 @@ app
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
 	$rootScope.submitUserData = function(userData, user_form){
-		if(!user_form.validate()){
+		if(!user_form.validate({
+			rules: {
+        user_phone_no: {
+            rangelength: [10,12]
+        }
+		}
+    })){
 			return false;
 		}
 		if(userData == undefined){
