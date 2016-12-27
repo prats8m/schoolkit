@@ -84,20 +84,20 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form" ng-submit="formSubmit(device)">
+										<form role="form" ng-validate="validationOptions" id="device_form" name="device_form">
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
 											<div class="modal-body">
 												<div class="row overflow">
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Device Name</label>
-															<input type="text" name="" ng-model="device.device_name" id="" class="form-control mb-10" placeholder="">
+															<input type="text" name="device_name" ng-model="device.device_name" id="" class="form-control mb-10" placeholder="" required>
 														</div>
 													</div>
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Serial Number</label>
-															<input type="text" name="" id="" ng-model="device.serial_no" class="form-control mb-10" placeholder="">
+															<input type="text" name="serial_no" id="" ng-model="device.serial_no" class="form-control mb-10" placeholder="" required>
 														</div>
 													</div>
 													<!--<div class="col-md-6 last">
@@ -112,13 +112,14 @@
 													<div class="col-md-6 first">
 														<div class="form-group">
 															<label for="">Registration Code</label>
-															<input type="text" name="" id="" ng-model="device.registration_code" class="form-control mb-10" placeholder="">
+															<input type="text" name="" id="" ng-model="device.registration_code" class="form-control mb-10" placeholder="" required>
 														</div>
 													</div>
 													<div class="col-md-6 first">
 													<div class="form-group">
 														<label for="">Facility</label><br/>
-														<div class="form-control">{{device.facility_id}}</div>
+														<input type="text" class="form-control" value="{{FacilityName}}" disabled/>
+														<!-- <div class="form-control">{{device.facility_id}}</div> -->
 														<!--select class="form-control" ng-model="device.facility_id" disabled>
 															<option selected>USA Corporate Services</option>
 															<option>Aerzen USA Corporation</option>
@@ -153,7 +154,7 @@
 														<div class="form-group">
 															<label for="">Technician</label><br/>
 															
-															<select class="form-control" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id">
+															<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id" required>
 																<option value="">Select</option>
 															</select>
 															<!-- <small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small> -->
@@ -163,7 +164,7 @@
 											</div>
 											<div class="modal-footer">
 												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<button  ng-click="formSubmit(device,device_form)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 											</div>
 										</form>		
 									</script>
@@ -237,7 +238,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="deviceInit()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" id="loadMoreBtn" ng-click="deviceInit()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

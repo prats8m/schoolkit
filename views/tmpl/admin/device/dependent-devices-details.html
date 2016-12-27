@@ -589,8 +589,8 @@
 												<div class="form-group col-sm-6">
 													<label for="">Device Type</label><br/>
 													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'master'">Primary</label>
-														<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'slave'">Dependent</label>
+														<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'master'" style="pointer-events: none;">Primary</label>
+														<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'slave'" style="pointer-events: none;">Dependent</label>
 													</div>
 													<div class="slavevalues" ng-hide="editDevice.device_type=='master'">
 														<select class="form-control mb-10">
