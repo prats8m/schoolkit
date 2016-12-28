@@ -213,10 +213,10 @@ var app = angular
 			
 				//subadmin facility facility details
 				.state('app.subadmin.facility.facility-details', {
-				  url: '/facility-details',
+				  url: '/facility-details/:facility_id',
 				  controller: 'FacilityDetailsCtrl',
-				  templateUrl: 'views/tmpl/subadmin/facility/facility-details.html',
-				  params: {facility_id: null}
+				  params: {facility_id: null},
+				  templateUrl: 'views/tmpl/subadmin/facility/facility-details.html'
 				})
 				
 
@@ -805,8 +805,8 @@ app
 					var expireTime = time + 1000*60;
 					now.setTime(expireTime);
 					$cookies.put('token', response.data.token,{expiry:now});
-					if(response.data.userType == 'admin')
-						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
+					// if(response.data.userType == 'admin')
+					// 	$cookies.put('facilityId', response.data.facilityId,{expiry:now});
 					$state.go('app.admin.dashboard');
 				}
 			}else{
@@ -1086,7 +1086,6 @@ app
       {id: 'UTC+10', name: 'USA (Chamorro)'}
     ]
    };
-
   //Code to default select device type
   $rootScope.facility_device = {};
   $rootScope.facility_device.device_type = 'Primary';
@@ -1123,39 +1122,39 @@ app
 		$scope.layout = 'grid';
 	};	
 	
-	$http.get('http://localhost:8080/elika/json/admin/facility/users.json').success(function(response){
-		$scope.users = response;
-		$scope.totalDisplayed1 = 6;
+	// $http.get('http://localhost:8080/elika/json/admin/facility/users.json').success(function(response){
+	// 	$scope.users = response;
+	// 	$scope.totalDisplayed1 = 6;
 		
-		if($scope.users.length > $scope.totalDisplayed1) {
-			$scope.lmbtn1 = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn1 = {
-				"display" : "none"
-			};
-		}
+	// 	if($scope.users.length > $scope.totalDisplayed1) {
+	// 		$scope.lmbtn1 = {
+	// 			"display" : "block"
+	// 		};			
+	// 	} else {
+	// 		$scope.lmbtn1 = {
+	// 			"display" : "none"
+	// 		};
+	// 	}
 		
-		$scope.loadMore1 = function () {
-			$scope.totalDisplayed1 += 6;
-			if($scope.totalDisplayed1 > $scope.users.length) {				
-				$scope.lmbtn1 = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
+	// 	$scope.loadMore1 = function () {
+	// 		$scope.totalDisplayed1 += 6;
+	// 		if($scope.totalDisplayed1 > $scope.users.length) {				
+	// 			$scope.lmbtn1 = {
+	// 				"display" : "none"
+	// 			};	
+	// 		}			
+	// 	};		
+	// });
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
     
-    if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
-    {
-    	$stateParams = {};
-    	$stateParams.facility_id = jQuery.parseJSON($cookies.get("facility")).facility_id;
-    }
+    // if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
+    // {
+    // 	$stateParams = {};
+    // 	$stateParams.facility_id = $stateParams.id;
+    // }
     $http({
 			url: baseURL+'facility/view/'+$stateParams.facility_id,
 			method: 'GET',
@@ -1166,28 +1165,20 @@ app
 			}
 		})
 		.success(function(response) {
-			var arr = {};
-			$.each(response.data, function(index, value){
-				arr[index] = value;
-			});
-			$cookies.put("facility", JSON.stringify(arr));
-			$scope.facility = "";
-
+			// var arr = {};
+			// $.each(response.data, function(index, value){
+			// 	arr[index] = value;
+			// });
+			// $cookies.put("facility", JSON.stringify(arr));
 			$scope.facility = response.data;
-			$scope.facility.timeZone = response.data.facility_timezone;
+			// $scope.facility.timeZone = response.data.facility_timezone;
 			$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
-
-			$scope.checkModel = {
-				Active: true,
-				Inactive: false
-			};
 			
 		})
 		.error(function(response){
 			console.log(response);
 		});
-
-		 $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
+		 // $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
 
 	// Code starts for facility master device
 
@@ -1195,7 +1186,7 @@ app
 			url: baseURL+'device/list-master-device',
 			method: 'GET',
 			dataType : 'JSON',
-			params:{limit: 20, pageNo: 1, facilityId: jQuery.parseJSON($cookies.get("facility")).facility_id},
+			params:{limit: 20, pageNo: 1, facilityId: $stateParams.facility_id},
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token"),
@@ -1239,7 +1230,7 @@ app
 			url: baseURL+'device/list-master-device',
 			method: 'GET',
 			dataType : 'JSON',
-			params:{limit: 20, pageNo: 1, facilityId: jQuery.parseJSON($cookies.get("facility")).facility_id, searchVal: facility.search_val},
+			params:{limit: 20, pageNo: 1, facilityId: $stateParams.facility_id, searchVal: facility.search_val},
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token"),
@@ -1279,7 +1270,10 @@ app
 	//Code ends to search facility device by text
 
 
-	$scope.edit_facility = function(facility){
+	$scope.edit_facility = function(facility, editfacility){
+		if(!editfacility.validate()){
+			return false;
+		}
 		facility.timeZone = facility.facility_timezone;
 		facility.zip_code = ""+facility.facility_zipcode;
 		facility.status = facility.facility_status == 'Active' ? 1 : 0
@@ -1298,7 +1292,12 @@ app
 			if(response.status == true){
 				toaster.pop('success','Facility Edited Successfully');
 			}else{
-				toaster.pop('error',response.msg.replace(/_/g,' '));
+				var n = [];
+				var arr = response.error;
+				if(arr != null){
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$scope.facility_edit_error = n.join(", ");
+				}		
 			}
 		})
 		.error(function(response){

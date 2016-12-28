@@ -82,7 +82,7 @@
 						<div class="thumb thumb-xxll mb-20">
 							<img class="img-circle" src="images/facility/1.jpg" alt="">
 						</div>
-						<h3 class="mb-10"><strong>USA Corporate Services</strong></h3>
+						<h3 class="mb-10"><strong>{{facility.facility_name}}</strong></h3>
 						<span class="text-muted">19 W 34th St #1018, NY 10001, USA</span>
 						<div class="mt-40">
 							<button class="btn btn-rounded-20 btn-sm btn-greensea">Inactive Facility</button>
@@ -699,12 +699,13 @@
 							</uib-tab>
 							<uib-tab heading="Edit Facility">
 								<div class="wrap-reset"> 
-									<form name="form1" role="form" ng-submit="edit_facility(facility)">
+								<span class="error">{{facility_edit_error}}</span>
+									<form role="form" ng-submit="edit_facility(facility, editfacility)" name="editfacility" ng-validate="validationOptions">
 										<div class="modal-body">											
 											<div class="row">
 												<div class="form-group col-sm-6">
-													<label for="">Facility Name</label>
-													<input type="text" name="" id="" class="form-control mb-10" ng-model="facility.facility_name" value="{{facility.facility_name}}">
+													<label for="facility_name">Facility Name</label>
+													<input type="text" name="facility_name" id="" class="form-control mb-10" ng-model="facility.facility_name" value="{{facility.facility_name}}" required>
 												</div>
 												<div class="form-group col-md-6">
 													<div class="form-group">
@@ -720,7 +721,7 @@
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="">Facility Location</label>
-													<input type="text" name="" id="" class="form-control mb-10" ng-model="facility.facility_location" value="{{facility.facility_location}}">
+													<input type="text" name="facility_location" id="" class="form-control mb-10" ng-model="facility.facility_location" value="{{facility.facility_location}}" required>
 												</div>
 												<div class="form-group col-sm-6">
 													<label for="">Time Zone</label>
@@ -744,7 +745,7 @@
 											<div class="row">
 												<div class="form-group col-sm-6">
 													<label for="">Zip Code</label>
-													<input type="text" name="" id="" class="form-control mb-10" ng-model="facility.facility_zipcode" value="{{facility.facility_zipcode}}">
+													<input type="text" name="facility_zipcode" id="" class="form-control mb-10" ng-model="facility.facility_zipcode" value="{{facility.facility_zipcode}}" required>
 													</select>
 												</div>
 												<div class="form-group col-sm-6">
