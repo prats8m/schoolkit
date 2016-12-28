@@ -110,6 +110,9 @@ app
 				$scope.users =  arrayPushService.arrayPush(response.data.data, $scope.users);
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
+				if(response.data == null){
+					$(".f-wm:contains(Load more)").text("No more data available").css( "opacity" , 0.7);
+				}
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
@@ -164,7 +167,13 @@ app
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
 	$rootScope.submitUserData = function(userData, user_form){
-		if(!user_form.validate()){
+		if(!user_form.validate({
+			rules: {
+        user_phone_no: {
+            rangelength: [10,12]
+        }
+		}
+    })){
 			return false;
 		}
 		if(userData == undefined){
