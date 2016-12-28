@@ -63,7 +63,7 @@ var app = angular
     'angular-intro',
     'dragularModule',
     'ngValidate',
-		'toaster'
+	'toaster'
   ])
   .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
@@ -896,22 +896,6 @@ app
 		title: 'Dashboard',
 		subtitle: 'So much more to see at a glance.'
     };
-});
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:SettingCtrl
- * @description
- * # SettingCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('SettingCtrl', function ($scope) {
-    $scope.page = {
-		title: 'Settings',
-		subtitle: 'Place subtitle here...'
-    };	
 });
 
 'use strict';
