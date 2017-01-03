@@ -100,7 +100,7 @@ app
 			method: 'PUT', 
 			url: baseURL+'door/assign-device',
 			dataType : 'JSON', 
-			data: {'device_id':$scope.device_id,'relays':relayArr},
+			data: {'device_id':parseInt($scope.device_id),'relays':relayArr},
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")

@@ -38,7 +38,7 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
-					$scope.result = 'Your Doors has been deleted successfully.';
+					$scope.result = 'Your Device has been deleted successfully.';
 					$scope.statusclass = 'alert alert-danger alert-dismissable';
 					var tempDevice = [];
 					for(var i=0;i<$scope.data.length;i++){
@@ -401,7 +401,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-slave-of-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -410,7 +410,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$scope.dependent_devices = response.data.data;
+				$scope.dependent_devices = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -528,7 +528,8 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
+			//url: baseURL+'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
+			url: baseURL+'device/list-slave-of-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -823,7 +824,8 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-slave-of-master-device?device_master_id=1',
+			//url: baseURL+'device/list-slave-of-master-device?device_master_id=1',
+			url: baseURL + 'device/list-slave-device?limits=8&pageNo=1&facilityId='+$cookies.get("facilityId"),
 			dataType : 'JSON', 
 			// data: device,
 			headers: {
@@ -833,7 +835,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$scope.dependentDevice = response.data;
+				$scope.dependentDevice = response.data.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
