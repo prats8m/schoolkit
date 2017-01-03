@@ -274,6 +274,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
     var device_id = $stateParams.device_id;
+	$scope.device_id = device_id
 	$rootScope.facilityId = $cookies.get('facilityId');
 	
 	$rootScope.submitDependentDevice = function(device,add_dependent){

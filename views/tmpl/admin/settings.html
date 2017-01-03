@@ -45,15 +45,16 @@
 													</div>
 													
 													<div class="tab-pane fade" id="gstab2">
+														<form ng-submit="submitRelayDoor(relays)">
 														<h4><strong>Relay &amp; Door Setup</strong> <small>(Range from 500 to 4500 ms - default 1000 ms)</small></h4>
-														<div class="form-group row">
+														<div class="form-group row" ng-repeat="relay in relays">
 															<div class="col-sm-3">						
 																<label for="address1">Relay 1 strike time</label>
-																<input type="text" class="form-control" id="address1" ng-model="relay[0].relay" value="1000">
+																<input type="text" class="form-control" id="address1" ng-model="relay.relay" value="1000">
 															</div>
 															<div class="col-sm-3">
 																<label for="">Door</label><br/>
-																<select chosen="{width: '100%'}" ng-model="relay[0].door_id" ng-options="x.door_id as x.door_name for x in doorList">
+																<select chosen="{width: '100%'}" ng-model="relay.door_id" ng-options="x.door_id as x.door_name for x in doorList">
 																	
 																</select>
 															</div>
@@ -61,11 +62,11 @@
 																<div class="col-sm-5">
 																	<label for="">Door Ajar</label><br/>
 																	<div class="btn-group btnrounded">
-																		<label class="btn btn-default" ng-model="relay[0].status" uib-btn-radio="'Active'">Active</label>
-																		<label class="btn btn-default" ng-model="relay[0].status" uib-btn-radio="'Inactive'">Inactive</label>
+																		<label class="btn btn-default" ng-model="relay.status" uib-btn-radio="1">Active</label>
+																		<label class="btn btn-default" ng-model="relay.status" uib-btn-radio="0">Inactive</label>
 																	</div>
 																</div>
-																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
+																<div class="col-sm-7" ng-hide="relay.status=='Inactive'">
 																	<label for="">&nbsp;</label><br/>
 																	<select chosen="{width: '100%'}">
 																		<option value="">Sound alarm using Beeper</option>
@@ -77,105 +78,14 @@
 																</div>
 															</div>
 														</div>
-														<div class="form-group row">
-															<div class="col-sm-3">						
-																<label for="address1">Relay 2 strike time</label>
-																<input type="text" class="form-control" id="address1" ng-model="relay[1].relay" value="1000">
-															</div>
-															<div class="col-sm-3">
-																<label for="">Door</label><br/>
-																<select chosen="{width: '100%'}" ng-model="relay[1].door_id" ng-options="x.door_id as x.door_name for x in doorList">
-																	
-																</select>
-															</div>
-															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
-																<div class="col-sm-5">
-																	<label for="">Door Ajar</label><br/>
-																	<div class="btn-group btnrounded">
-																		<label class="btn btn-default" ng-model="relay[1].status" uib-btn-radio="'Active'">Active</label>
-																		<label class="btn btn-default" ng-model="relay[1].status" uib-btn-radio="'Inactive'">Inactive</label>
-																	</div>
-																</div>
-																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
-																	<label for="">&nbsp;</label><br/>
-																	<select chosen="{width: '100%'}">
-																		<option value="">Sound alarm using Beeper</option>
-																		<option value="">Call/Text technician</option>
-																		<option value="">Call/Text/Email Notification to owner</option>
-																		<option value="">Take a snapshot through camera</option>
-																		<option value="">Record a short video using camera</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-														<div class="form-group row">
-															<div class="col-sm-3">						
-																<label for="address1">Relay 3 strike time</label>
-																<input type="text" class="form-control" id="address1" ng-model="relay[2].relay" value="1000">
-															</div>
-															<div class="col-sm-3">
-																<label for="">Door</label><br/>
-																<select chosen="{width: '100%'}" ng-model="relay[2].door_id" ng-options="x.door_id as x.door_name for x in doorList">
-																	
-																</select>
-															</div>
-															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
-																<div class="col-sm-5">
-																	<label for="">Door Ajar</label><br/>
-																	<div class="btn-group btnrounded">
-																		<label class="btn btn-default" ng-model="relay[2].status" uib-btn-radio="'Active'">Active</label>
-																		<label class="btn btn-default" ng-model="relay[2].status" uib-btn-radio="'Inactive'">Inactive</label>
-																	</div>
-																</div>
-																<div class="col-sm-7" ng-hide="radioModel=='Inactive'">
-																	<label for="">&nbsp;</label><br/>
-																	<select chosen="{width: '100%'}">
-																		<option value="">Sound alarm using Beeper</option>
-																		<option value="">Call/Text technician</option>
-																		<option value="">Call/Text/Email Notification to owner</option>
-																		<option value="">Take a snapshot through camera</option>
-																		<option value="">Record a short video using camera</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-														<div class="form-group row">
-															<div class="col-sm-3">						
-																<label for="address1">Relay 4 strike time</label>
-																<input type="text" class="form-control" id="address1" ng-model="relay[3].relay" value="1000">
-															</div>
-															<div class="col-sm-3">
-																<label for="">Door</label><br/>
-																<select chosen="{width: '100%'}" ng-model="relay[3].door_id" ng-options="x.door_id as x.door_name for x in doorList">
-																	
-																</select>
-															</div>
-															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
-																<div class="col-sm-5">
-																	<label for="">Door Ajar</label><br/>
-																	<div class="btn-group btnrounded">
-																		<label class="btn btn-default" ng-model="relay[3].status" uib-btn-radio="'Active'">Active</label>
-																		<label class="btn btn-default" ng-model="relay[3].status" uib-btn-radio="'Inactive'">Inactive</label>
-																	</div>
-																</div>
-																<div class="col-sm-7" ng-hide="relay[3].status=='Inactive'">
-																	<label for="">&nbsp;</label><br/>
-																	<select chosen="{width: '100%'}">
-																		<option value="">Sound alarm using Beeper</option>
-																		<option value="">Call/Text technician</option>
-																		<option value="">Call/Text/Email Notification to owner</option>
-																		<option value="">Take a snapshot through camera</option>
-																		<option value="">Record a short video using camera</option>
-																	</select>
-																</div>
-															</div>
-														</div>
+														
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button ng-click="submitRelayDoor(relay)" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button type="button" onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
+														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab3">

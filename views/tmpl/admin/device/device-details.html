@@ -85,6 +85,7 @@
 						<h3 class="mb-10"><strong>{{details.device_name}}</strong></h3>
 						<span class="text-muted">{{details.device_model}} </span>
 						<span class="text-muted"><span ng-repeat="(key,features) in details.features">{{key|uppercase}}<span ng-if="!$last">&nbsp;|</span> </span></span>
+						<a ui-sref="app.admin.settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-lightred ml-5 mr-5">Settings</a>
 					</div> 
 					<div class="tile-body text-center bg-blue p-0"> 
 						<ul class="list-inline tbox m-0">

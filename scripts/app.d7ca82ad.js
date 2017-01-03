@@ -464,7 +464,7 @@ var app = angular
 		
 		//admin settings
 		.state('app.admin.settings', {
-		  url: '/settings',
+		  url: '/settings/:device_id',
 		  controller: 'SettingCtrl',
 		  templateUrl: 'views/tmpl/admin/settings.html'
 		})
@@ -805,8 +805,8 @@ app
 					var expireTime = time + 1000*60;
 					now.setTime(expireTime);
 					$cookies.put('token', response.data.token,{expiry:now});
-					// if(response.data.userType == 'admin')
-					// 	$cookies.put('facilityId', response.data.facilityId,{expiry:now});
+					if(response.data.userType == 'admin')
+						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
 					$state.go('app.admin.dashboard');
 				}
 			}else{
