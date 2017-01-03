@@ -246,7 +246,7 @@ app
 		rfid.user_id = parseInt($cookies.get("user_id"));
 		rfid.rfid_facility_code = parseInt(rfid.rfid_facility_code);
 		rfid.rfid_card_no = parseInt(rfid.rfid_card_no);
-		rfid.rfid_status = (rfid.rfid_status == "Active" ? 1 : 0)
+		// rfid.rfid_status = (rfid.rfid_status == "Active" ? 1 : 0)
 		$http(
 		{
 			method: 'POST', 
@@ -260,6 +260,8 @@ app
 		})
 		.success(function(response){
 			$rootScope.rfid_error = "";
+			// $rootScope.rfid = {};
+			// $rootScope.rfid.rfid_status = (rfid.rfid_status == 1 ? "Active" : "Inactive")
 			if(response.status == true){
 				$timeout(function() {
 					$(".accordion-toggle")[3].click();
@@ -349,7 +351,7 @@ app
 			$rootScope.blecode_error = "Password must match to confirm password.";
 			return false;
 		}
-		ble_code.ble_status = ("Active" ? 1 : 0)
+		// ble_code.ble_status = ("Active" ? 1 : 0)
 		ble_code.user_id = parseInt($cookies.get("user_id"));
 		$http(
 		{
@@ -391,8 +393,19 @@ app
 		});
 	}
 
-		$rootScope.saveAccessCode = function(accesscode){
-		$rootScope.accesscode.access_code_status = ("Active" ? 1 : 0)
+	$rootScope.generateAddAccessCode = function(){ 
+			$rootScope.accesscode = {};
+			$rootScope.accesscode.access_code = Date.now();
+	}
+
+	$rootScope.generateAddPhoneCode = function(){
+		$rootScope.phoneCode = {};
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		$rootScope.phoneCode.phone_code = (""+x).substring(8, length);
+	}
+
+	$rootScope.saveAccessCode = function(accesscode){
+		$rootScope.accesscode.access_code_status = ($rootScope.accesscode.access_code_status == "Active" ? 1 : 0)
 		$rootScope.accesscode.user_id = parseInt($cookies.get("user_id"));
 		$http(
 		{
@@ -406,6 +419,7 @@ app
 			}
 		})
 		.success(function(response){
+			$rootScope.accesscode.access_code_status = ($rootScope.accesscode.access_code_status == 1 ? "Active" : "Inactive")
 			if(response.status == true){
 				$timeout(function() {
 				$(".accordion-toggle")[1].click();

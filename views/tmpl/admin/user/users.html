@@ -223,7 +223,7 @@
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="access_code" id="access_code" class="form-control mb-10"  disabled ng-model="accesscode.access_code">
+																					<input type="text" name="access_code" id="access_code" class="form-control mb-10"  disabled ng-model="accesscode.access_code"><img class="img-circle" src="images/refresh.png" alt="" ng-click="generateAddAccessCode()">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -258,7 +258,7 @@
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="phone_code" id="phone_code" ng-model="phoneCode.phone_code" class="form-control mb-10" disabled>
+																					<input type="text" name="phone_code" id="phone_code" ng-model="phoneCode.phone_code" class="form-control mb-10" disabled><img class="img-circle" src="images/refresh.png" alt="" ng-click="generateAddPhoneCode()">
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -337,8 +337,8 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																						<label class="btn btn-default" ng-model="rfid.rfid_status" uib-btn-radio="'Active'">Active</label>
-																						<label class="btn btn-default" ng-model="rfid.rfid_status" uib-btn-radio="'Inactive'">Inactive</label>
+																						<label class="btn btn-default" ng-model="rfid.rfid_status" uib-btn-radio="1">Active</label>
+																						<label class="btn btn-default" ng-model="rfid.rfid_status" uib-btn-radio="0">Inactive</label>
 																					</div>
 																				</div>
 																			</div>
@@ -388,8 +388,8 @@
 																				</div>
 																				<div class="col-md-8 last">
 																					<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																						<label class="btn btn-default" ng-model="ble_code.ble_status" uib-btn-radio="'Active'">Active</label>
-																						<label class="btn btn-default" ng-model="ble_code.ble_status" uib-btn-radio="'Inactive'">Inactive</label>
+																						<label class="btn btn-default" ng-model="ble_code.ble_status" uib-btn-radio="1">Active</label>
+																						<label class="btn btn-default" ng-model="ble_code.ble_status" uib-btn-radio="0">Inactive</label>
 																					</div>
 																				</div>
 																			</div>
