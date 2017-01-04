@@ -515,7 +515,8 @@ var app = angular
 				.state('app.admin.user.user-profile', {
 				  url: '/user-profile/:user_id',
 				  controller: 'UserProfileCtrl',
-				  templateUrl: 'views/tmpl/admin/user/user-profile.html'
+				  templateUrl: 'views/tmpl/admin/user/user-profile.html',
+				  params: {type: "type"}
 				})
 				
 		
