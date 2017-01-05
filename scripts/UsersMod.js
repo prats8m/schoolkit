@@ -26,7 +26,7 @@ app
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete User?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
@@ -679,7 +679,7 @@ app
 	$rootScope.usergroup = {};
 	$rootScope.usergroup.usergrouparr = [];
 
-	$rootScope.assignUserGroup = function(user_group){
+	$rootScope.assignEditUserGroup = function(user_group){
 		var arr  = [];
 		$.each(user_group.usergrouparr, function(index, value){ 
 			if(value == true){
@@ -700,6 +700,7 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$rootScope.usergroupmsg = response.msg;
+				$rootScope.userNotAssignedGroup();
 				toaster.pop('success',response.msg.replace(/_/g," "));
 			}else{	
 				if(response.msg == 'Invalid_Token'){
@@ -708,12 +709,15 @@ app
 					$location.path('/core/login');
 				}
 				$rootScope.usergroupmsg = response.msg;
-				$rootScope.cancel();
+				// $rootScope.cancel();
 				toaster.pop('error',response.msg.replace(/_/g," "));
 			}
+			$timeout(function(){$(".group-close").click(); });
 			$timeout(function() {
 				$scope.assignedGroup();
+				user_group.usergrouparr = [];
 			}, 1000);
+
 		}).error(function(){
 
 		});
@@ -735,10 +739,13 @@ app
 		.success(function(response){
 			$rootScope.nogroup = false;
 			if(response.status == true){
-				if(response.data == null)
+				if(response.data == null){
 					$rootScope.nogroup = "No UserGroup Assigned";
-				else
+					$rootScope.userGroup = "";
+				}
+				else{
 					$rootScope.userGroup = response.data;
+				}
 			}else{	
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -752,7 +759,7 @@ app
 	}
 	
 	$scope.assignedGroup();
-		$http(
+	$rootScope.userNotAssignedGroup = function(){$http(
 		{
 			method: 'POST', 
 			url: baseURL+'user/usergroup-not-assigned-to-user',
@@ -776,7 +783,8 @@ app
 		}).error(function(){
 
 		});
-		
+		}
+	$rootScope.userNotAssignedGroup();
 	//$rootScope.assignUserGroup();
 	
 	$scope.deleteGroup = function(id){
