@@ -158,27 +158,27 @@
 												<div class="row">										
 													<div class="form-group col-sm-6">
 														<p style="color:#3c8719"><label>Access Code</label></p>
-														<p><label>Code</label> {{userData.access_code}}</p>
-														<p><label>Status</label> {{userData.access_status}}</p>	
+														<p><label>Code</label> {{userData.access_code ? userData.access_code : "NA"}}</p>
+														<p><label>Status</label> {{userData.access_status ? userData.access_status : "NA"}}</p>	
 													</div>
 													<div class="form-group col-sm-6 editprofile">
 														<p style="color:#3c8719"><label>Phone Code</label></p>
-														<p><label>Code</label> {{userData.phone_code}}</p>
+														<p><label>Code</label> {{userData.phone_code ? userData.phone_code : "NA"}}</p>
 														<p><label>Status</label> {{userData.phone_status}}</p>
-														<p><label>Phone</label> {{userData.phone_number_1}}</p>
+														<p><label>Phone</label> {{userData.phone_number_1 ? userData.phone_number_1 : "NA"}}</p>
 													</div>
 												</div>
 												<div class="row">										
 													<div class="form-group col-sm-6">
 														<p style="color:#3c8719"><label>RFID Code</label></p>
-														<p><label>Card Number</label> {{userData.rfid_card_number}}</p>
-														<p><label>Facility Code</label> {{userData.rfid_facility_code}}</p>
+														<p><label>Card Number</label> {{userData.rfid_card_number ? userData.rfid_card_number : "NA"}}</p>
+														<p><label>Facility Code</label> {{userData.rfid_facility_code ? userData.rfid_facility_code : "NA"}}</p>
 														<p><label>Status</label> {{userData.rfid_sttaus}}</p>	
 													</div>
 													<div class="form-group col-sm-6 editprofile">
 														<p style="color:#3c8719"><label>BLE Code</label></p>
-														<p><label>Username</label> {{userData.ble_name}}</p>
-														<p><label>Password</label> {{userData.ble_pass}}</p>
+														<p><label>Username</label> {{userData.ble_name ? userData.ble_name : "NA"}}</p>
+														<p><label>Password</label> {{userData.ble_pass ? userData.ble_pass : "NA"}}</p>
 														<p><label>Status</label> {{userData.ble_status}}</p>
 													</div>
 												</div>
@@ -197,7 +197,7 @@
 													<table class="table table-bordered">
 														<thead>
 															<tr>
-																<th>Group Name</th>
+																<th>{{nogroup ? nogroup : "Group Name"}}</th>
 															</tr>
 														</thead>
 														<tbody>

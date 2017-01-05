@@ -249,8 +249,8 @@ app
 		// rfid.rfid_status = (rfid.rfid_status == "Active" ? 1 : 0)
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/assign-rfid-code/',
+			method: 'PUT', 
+			url: baseURL+'user/edit-rfid-code/',
 			dataType : 'JSON', 
 			data:rfid,
 			headers: {
@@ -305,8 +305,8 @@ app
 
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/assign-phone-code',
+			method: 'PUT', 
+			url: baseURL+'user/edit-phone-code',
 			dataType : 'JSON', 
 			data: phoneCode,
 			headers: {
@@ -355,8 +355,8 @@ app
 		ble_code.user_id = parseInt($cookies.get("user_id"));
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/assign-ble-code',
+			method: 'PUT', 
+			url: baseURL+'user/edit-ble-code',
 			dataType : 'JSON', 
 			data: ble_code,
 			headers: {
@@ -409,8 +409,8 @@ app
 		$rootScope.accesscode.user_id = parseInt($cookies.get("user_id"));
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/assign-access-code',
+			method: 'PUT', 
+			url: baseURL+'user/edit-access-code',
 			dataType : 'JSON', 
 			data: accesscode,
 			headers: {
@@ -657,6 +657,12 @@ app
 				else{
 					$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
 				}
+
+				$scope.userData.user_status = ($scope.userData.user_status == 1 ? "Active" : ($scope.userData.user_status == 0 ? "Inactive" : "NA"));
+				$scope.userData.ble_status = ($scope.userData.ble_status == 1 ? "Active" : ($scope.userData.ble_status == 0 ? "Inactive" : "NA"));
+				$scope.userData.rfid_sttaus = ($scope.userData.rfid_sttaus == 1 ? "Active" : ($scope.userData.rfid_sttaus == 0 ? "Inactive" : "NA"));
+				$scope.userData.phone_status = ($scope.userData.phone_status == 1 ? "Active" : ($scope.userData.phone_status == 0 ? "Inactive" : "NA"));
+				$scope.userData.access_status = ($scope.userData.access_code_status == 1 ? "Active" : ($scope.userData.access_code_status == 0 ? "Inactive" : "NA"));
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -727,8 +733,12 @@ app
 			}
 		})
 		.success(function(response){
+			$rootScope.nogroup = false;
 			if(response.status == true){
-				$rootScope.userGroup = response.data;
+				if(response.data == null)
+					$rootScope.nogroup = "No UserGroup Assigned";
+				else
+					$rootScope.userGroup = response.data;
 			}else{	
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -1077,6 +1087,12 @@ app
 	}
 	
 	$("#mask02").datepicker();
+
+	if($stateParams.type == "edit"){
+		$timeout(function() {
+			$("a:contains('Edit Profile')").click();
+		 });
+		}
 });
 
 'use strict';
@@ -1088,7 +1104,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster) {
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster) {  	
      $scope.page = {
       title: 'User Groups',
       subtitle: 'So much more to see at a glance.'
