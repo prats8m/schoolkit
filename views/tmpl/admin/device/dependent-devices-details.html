@@ -7,7 +7,7 @@
 		<div class="row">		
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
-					<div class="bg-dashboard">
+					<div class="bg-dashboard pdevicebg">
 						<div class="bg-transparent">
 							<div class="row">
 								<div class="col-md-12">
@@ -29,7 +29,7 @@
 									<i class="fa fa-fax fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">15</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
 									<span class="text-lg">Primary Devices</span>
 								</div>
 							</div>
@@ -40,14 +40,14 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices">
+					<a ui-sref="app.admin.device.dependent-devices" href="#/app/admin/device/dependent-devices">
 						<div class="noback bg-greensea">
 							<div class="row">
 								<div class="col-xs-4 ta-c">
 									<i class="fa fa-mobile fa-5x"></i>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">7</p>
+								<div class="col-xs-8">
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.dependent_device}}</p>
 									<span class="text-lg">Dependent Devices</span>
 								</div>
 							</div>
@@ -65,7 +65,7 @@
 									<i class="fa fa-users fa-5x"></i>
 								</div>
 								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">95</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
 									<span class="text-lg">Users</span>
 								</div>
 							</div>

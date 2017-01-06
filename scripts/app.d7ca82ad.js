@@ -892,11 +892,33 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DashboardCtrl', function($scope){
+  .controller('DashboardCtrl', function($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL){
     $scope.page = {
 		title: 'Dashboard',
 		subtitle: 'So much more to see at a glance.'
     };
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data[0];
+				// console.log($rootScope.dashboardData);
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	$scope.dashboardInit();
 });
 
 'use strict';
