@@ -451,7 +451,7 @@
 													<div ng-controller="ModalDemoCtrl">
 														<script type="text/ng-template" id="myModalContent.html">
 															<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
-															<form ng-submit="assignUserGroup(usergroup)">
+															<form ng-submit="assignEditUserGroup(usergroup)">
 															<div class="hometabs">
 																<div class="overflow groupslists">
 																	<div class="col-md-12">
@@ -465,7 +465,7 @@
 																</div>
 															</div>
 															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c group-close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 															</div>
 															</form>															
