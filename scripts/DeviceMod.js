@@ -268,7 +268,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceDetailsCtrl', function ($scope, $mdDialog, $http,$stateParams,$cookies,toaster,$rootScope,baseURL,errorHandler,$location) {
+  .controller('DeviceDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams,$cookies,toaster,$rootScope,baseURL,errorHandler,$location) {
      $scope.page = {
       title: 'Device Details',
       subtitle: 'So much more to see at a glance.'
@@ -283,6 +283,7 @@ app
 		}
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
+		//device.registration_code = parseInt(device.registration_code);
 		device.facility_id = parseInt($rootScope.facilityId);
 		$http(
 		{
@@ -507,7 +508,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$scope.technicianList = response.data;
+				$rootScope.technicianList = response.data;
 			}else{
 				
 			}
@@ -515,7 +516,7 @@ app
 
 		});
 	}
-	$scope.getTechnicianList();
+	
 	
 	$scope.searchFunction = function(e){
 		if(e)
@@ -582,7 +583,37 @@ app
 	}
 	$scope.facilityInit();
 	
-	
+	$scope.deviceData = [];
+	$scope.pageNo = 1;
+	$scope.deviceInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'device/list-master-device?limit=100&pageNo='+$scope.pageNo+'&facilityId='+$rootScope.facilityId,
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.deviceData = response.data.data;
+				$scope.pageNo = $scope.pageNo + 1 ;
+				$scope.getTechnicianList();
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+				
+			}
+		}).error(function(){
+
+		});	
+	}	
+	$scope.deviceInit();
 	
 });
 
