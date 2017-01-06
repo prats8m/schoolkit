@@ -640,6 +640,30 @@ app
 	}	
 	$scope.deviceInit();
 	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data[0];
+				// console.log($rootScope.dashboardData);
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
+	
 });
 
 app.filter('deviceFeatureFilter', function() {
@@ -804,6 +828,30 @@ app
 		});
 	}
 	$scope.getTechnicianList();
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data[0];
+				// console.log($rootScope.dashboardData);
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
 });
 
 'use strict';
@@ -910,6 +958,30 @@ app
 		alert(x);
         $scope.myOrderBy = x;
     }
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data[0];
+				// console.log($rootScope.dashboardData);
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
 	
 	$scope.imagePath = 'http://elikastaging.tk/images/';
 	
