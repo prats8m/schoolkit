@@ -271,7 +271,9 @@ small {
 md-tabs .md-tab.md-focused {
     color: #fff;
     background: #3c8719;
-    max-width: none!important
+    max-width: none!important;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .hometabs md-tabs[md-border-bottom] md-tabs-wrapper {
@@ -291,7 +293,10 @@ md-tabs .md-tab.md-focused {
     background: #f9f9f9;
     border-radius: 3px;
     margin-right: 5px;
-    max-width: none!important
+    max-width: none!important;
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .hometabs .mapview {
@@ -1521,3 +1526,7 @@ span.error {
 		height: 640px;
 	}
 }
+
+span.error { font-size: 14px; color: #ff0000; line-height: 22px;}
+label.error {font-size: 14px;font-weight: 100;font-style: italic;color: #ff0000;}
+input.ng-invalid-required.error { border: 1px solid #ff0000; }

@@ -207,9 +207,14 @@
 																		</div>
 																	</div>
 																	<div class="col-md-6 last" ng-hide="userData.status==0">
-																		<div>
+																		<div ng-controller="DatepickerDemoCtrl">
 																			<label for="">Expiration Date</label>
-																			<input type="text" class="form-control" ng-model="userData.expiration_date" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+																			<div class="input-group userexp">
+																				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="userData.expiration_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																				<span class="input-group-btn">
+																					<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																				</span>
+																			</div>
 																		</div>
 																	</div>
 																</div>															
