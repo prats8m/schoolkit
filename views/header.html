@@ -8,7 +8,7 @@
 	<ul class="nav-right pull-right list-inline headmenu">
 		<li class="dropdown messages" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
-				<fa name="bullhorn"></fa><span class="badge bg-lightred">4</span>
+				<img src="images/bell.png" class="sm-img"><span class="badge bg-lightred">4</span>
 			</a>
 			<div class="dropdown-menu pull-right with-arrow panel panel-default animated littleFadeInDown" role="menu">
 				<div class="panel-heading">You have <strong>1</strong> messages and <strong>3</strong> notifications.</div>
@@ -72,7 +72,7 @@
 			</div>
 		</li>
 
-		<li class="dropdown notifications" uib-dropdown>
+		<!--li class="dropdown notifications" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
 				<fa name="history"></fa><span class="badge bg-lightred">5</span>
 			</a>
@@ -150,7 +150,7 @@
 					<a ui-sref="app.admin.help.history-events">Show all notifications <fa name="angle-right" class="pull-right"></fa></a>
 				</div>
 			</div>
-		</li>
+		</li-->
 		
 		<li class="dropdown nav-profile" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
@@ -158,6 +158,9 @@
 				<span>Elika Admin <fa name="angle-down"></fa></span>
 			</a>
 			<ul class="dropdown-menu animated littleFadeInRight" role="menu">
+				<li><a ui-sref="app.admin.help.diagnostics"><fa name="user-md"></fa>Diagnostics</a></li>
+				<li><a ui-sref="app.admin.help.faqs"><fa name="question"></fa>Help/FAQs</a></li>
+				<li><a ui-sref="app.admin.settings"><fa name="cog"></fa>Settings</a></li>
 				<li><a ui-sref="core.login"><fa name="sign-out"></fa>Logout</a></li>
 			</ul>
 		</li>

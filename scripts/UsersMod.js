@@ -12,7 +12,7 @@ app
 
      $scope.page = {
       title: 'Users',
-      subtitle: 'So much more to see at a glance.'
+      subtitle: ''
     };
 	$rootScope.facilityId = $cookies.get("facilityId");
 
@@ -572,6 +572,13 @@ app
 
 		});
 	}
+
+	$scope.dashboardInit = function(){ 
+	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
+	 	.error(function (data, status, headers, config) {     }); } 
+
+	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 	
 });
 
