@@ -719,11 +719,11 @@ app
 				// $rootScope.cancel();
 				toaster.pop('error',response.msg.replace(/_/g," "));
 			}
-			$timeout(function(){$(".group-close").click(); });
 			$timeout(function() {
 				$scope.assignedGroup();
 				user_group.usergrouparr = [];
-			}, 1000);
+			});
+			$timeout(function(){$(".group-close").click(); });
 
 		}).error(function(){
 
@@ -1153,7 +1153,7 @@ app
 
 	if($stateParams.type == "edit"){
 		$timeout(function() {
-			$("a:contains('Edit Profile')").click();
+			$("a:contains('Edit Account')").click();
 		 });
 		}
 });
