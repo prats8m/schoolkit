@@ -625,6 +625,7 @@ app
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
+				$scope.editUser.nfc_code = angular.copy($scope.userData.nfc_code);
 
 				$rootScope.todos = [];
 				var todos = $rootScope.todos;
@@ -664,12 +665,20 @@ app
 				else{
 					$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
 				}
+				if($scope.userData.nfc_code_status == undefined)
+				{
+					$scope.editUser.nfc_code_status = 1;
+				}
+				else{
+					$scope.editUser.nfc_code_status = angular.copy($scope.userData.nfc_code_status);
+				}
 
 				$scope.userData.user_status = ($scope.userData.user_status == 1 ? "Active" : ($scope.userData.user_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.ble_status = ($scope.userData.ble_status == 1 ? "Active" : ($scope.userData.ble_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.rfid_sttaus = ($scope.userData.rfid_sttaus == 1 ? "Active" : ($scope.userData.rfid_sttaus == 0 ? "Inactive" : "NA"));
 				$scope.userData.phone_status = ($scope.userData.phone_status == 1 ? "Active" : ($scope.userData.phone_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.access_status = ($scope.userData.access_code_status == 1 ? "Active" : ($scope.userData.access_code_status == 0 ? "Inactive" : "NA"));
+				$scope.userData.nfc_code_status = ($scope.userData.nfc_code_status == 1 ? "Active" : ($scope.userData.nfc_code_status == 0 ? "Inactive" : "NA"));
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -927,11 +936,13 @@ app
 	}
 	
 	//NFC code edit
-	$scope.submitEditNfcCode = function(submitData, access_edit_form){
+	$scope.submitEditNfcCode = function(submitData, nfc_edit_form){
 		if(!nfc_edit_form.validate()){
 			return false;
 		}
 		submitData.user_id = parseInt($stateParams.user_id);
+		submitData.nfc_code = parseInt(submitData.nfc_code);
+		submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
 		$http(
 		{
 			method: 'PUT', 
@@ -1134,7 +1145,8 @@ app
 			}
 			$timeout(function() {
 				$scope.assignedGroup();
-			}, 1000);
+			});
+			$timeout(function(){$rootScope.userNotAssignedGroup();})
 		}).error(function(){
 
 		});
