@@ -926,6 +926,54 @@ app
 		});
 	}
 	
+	//NFC code edit
+	$scope.submitEditNfcCode = function(submitData, access_edit_form){
+		if(!nfc_edit_form.validate()){
+			return false;
+		}
+		submitData.user_id = parseInt($stateParams.user_id);
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-nfc-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
+			}
+			else{
+				var arr = response.error;
+				if(response.error != "" && response.error != null){
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.AccessCodeMessage = n.join(", ");
+				}
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}
+			}
+			
+			
+			//$scope.submitEditPhoneCode(submitData);
+		}).error(function(){
+
+		});
+	}
+
+	//End Of NFC Code Edit
+
+
 	$scope.submitEditPhoneCode = function(submitData){
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.phone_code = ""+submitData.phone_code;
