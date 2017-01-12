@@ -404,6 +404,62 @@ app
 		$rootScope.phoneCode.phone_code = (""+x).substring(8, length);
 	}
 
+	$rootScope.generateNFCCode = function(){
+		$rootScope.savenfc = {};
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		$rootScope.savenfc.nfc_code = (""+x).substring(8, length);
+	}
+
+	//NFC code edit
+	$rootScope.saveNFCcode = function(submitData, nfc_form){
+		if(!nfc_form.validate()){
+			return false;
+		}
+		submitData.nfc_code = parseInt(submitData.nfc_code);
+		submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
+		submitData.user_id = parseInt($cookies.get("user_id"));
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-nfc-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
+			}
+			else{
+				var arr = response.error;
+				if(response.error != "" && response.error != null){
+					var n = [];
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.NFCCodeMessage = n.join(", ");
+				}
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}
+			}
+			
+			
+			//$scope.submitEditPhoneCode(submitData);
+		}).error(function(){
+
+		});
+	}
+
+	//End Of NFC Code Edit
+
 	$rootScope.saveAccessCode = function(accesscode){
 		$rootScope.accesscode.access_code_status = ($rootScope.accesscode.access_code_status == "Active" ? 1 : 0)
 		$rootScope.accesscode.user_id = parseInt($cookies.get("user_id"));
@@ -625,6 +681,7 @@ app
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
+				$scope.editUser.nfc_code = angular.copy($scope.userData.nfc_code);
 
 				$rootScope.todos = [];
 				var todos = $rootScope.todos;
@@ -664,12 +721,20 @@ app
 				else{
 					$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
 				}
+				if($scope.userData.nfc_code_status == undefined)
+				{
+					$scope.editUser.nfc_code_status = 1;
+				}
+				else{
+					$scope.editUser.nfc_code_status = angular.copy($scope.userData.nfc_code_status);
+				}
 
 				$scope.userData.user_status = ($scope.userData.user_status == 1 ? "Active" : ($scope.userData.user_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.ble_status = ($scope.userData.ble_status == 1 ? "Active" : ($scope.userData.ble_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.rfid_sttaus = ($scope.userData.rfid_sttaus == 1 ? "Active" : ($scope.userData.rfid_sttaus == 0 ? "Inactive" : "NA"));
 				$scope.userData.phone_status = ($scope.userData.phone_status == 1 ? "Active" : ($scope.userData.phone_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.access_status = ($scope.userData.access_code_status == 1 ? "Active" : ($scope.userData.access_code_status == 0 ? "Inactive" : "NA"));
+				$scope.userData.nfc_code_status = ($scope.userData.nfc_code_status == 1 ? "Active" : ($scope.userData.nfc_code_status == 0 ? "Inactive" : "NA"));
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -719,11 +784,11 @@ app
 				// $rootScope.cancel();
 				toaster.pop('error',response.msg.replace(/_/g," "));
 			}
-			$timeout(function(){$(".group-close").click(); });
 			$timeout(function() {
 				$scope.assignedGroup();
 				user_group.usergrouparr = [];
-			}, 1000);
+			});
+			$timeout(function(){$(".group-close").click(); });
 
 		}).error(function(){
 
@@ -926,6 +991,56 @@ app
 		});
 	}
 	
+	//NFC code edit
+	$scope.submitEditNfcCode = function(submitData, nfc_edit_form){
+		if(!nfc_edit_form.validate()){
+			return false;
+		}
+		submitData.user_id = parseInt($stateParams.user_id);
+		submitData.nfc_code = parseInt(submitData.nfc_code);
+		submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-nfc-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
+			}
+			else{
+				var arr = response.error;
+				if(response.error != "" && response.error != null){
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.AccessCodeMessage = n.join(", ");
+				}
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}
+			}
+			
+			
+			//$scope.submitEditPhoneCode(submitData);
+		}).error(function(){
+
+		});
+	}
+
+	//End Of NFC Code Edit
+
+
 	$scope.submitEditPhoneCode = function(submitData){
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.phone_code = ""+submitData.phone_code;
@@ -1086,7 +1201,8 @@ app
 			}
 			$timeout(function() {
 				$scope.assignedGroup();
-			}, 1000);
+			});
+			$timeout(function(){$rootScope.userNotAssignedGroup();})
 		}).error(function(){
 
 		});
@@ -1105,7 +1221,7 @@ app
 
 	if($stateParams.type == "edit"){
 		$timeout(function() {
-			$("a:contains('Edit Profile')").click();
+			$("a:contains('Edit Account')").click();
 		 });
 		}
 });

@@ -8,7 +8,7 @@
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
 					<div class="bg-dashboard pdevicebg">
-						<div class="bg-transparent">
+						<div class="bg-transparent  usersbg">
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
@@ -25,30 +25,16 @@
 					<a ui-sref="app.admin.device.devices">
 						<div class="noback bg-blue">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Primary Devices</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices" href="#/app/admin/device/dependent-devices">
-						<div class="noback bg-greensea">
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
-								</div>
-								<div class="col-xs-8">
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.dependent_device}}</p>
-									<span class="text-lg">Dependent Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">							
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>								
 								</div>
 							</div>
 						</div>
@@ -58,15 +44,41 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
 					<a ui-sref="app.admin.user.users">
 						<div class="noback bg-lightred">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
+								<div class="col-xs-6">
+									<div class="itxt">								
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>								
 								</div>
 							</div>
 						</div>
@@ -74,7 +86,6 @@
 				</div>
 			</div>			
 		</div>
-		
 		<div class="row">
 			<div class="col-md-4">
 				<section class="tile tile-simple">
@@ -88,7 +99,6 @@
 							<button class="btn btn-rounded-20 btn-sm btn-greensea">Send Message</button>
 							<button class="btn btn-rounded-20 btn-sm btn-lightred">Delete User</button>
 						</div>
-
 					</div> 
 					<div class="tile-body text-center bg-blue p-0"> 
 						<ul class="list-inline tbox m-0">
@@ -100,20 +110,13 @@
 								<h2 class="m-0">3</h2>
 								<span class="text-transparent-white">User Groups</span>
 							</li>
-							<li class="tcol bg-blue dker p-10">
-								<h2 class="m-0">3</h2>
-								<span class="text-transparent-white">Schedule Groups</span>
-							</li>
 						</ul>
 					</div>  
 				</section> 
-				
 				<section class="tile tile-simple"> 
-					<div class="tile-header">
-						<h1 class="custom-font"><strong>Description</strong></h1>
-					</div> 
 					<div class="tile-body">
-						<p class="text-default lt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p> 
+						<h2 class="custom-font mt-0">Description</h2>
+						<p class="text-default lt">{{userData.user_description}}</p> 
 					</div> 
 				</section> 
 			</div>
@@ -122,83 +125,28 @@
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0"> 
 						<uib-tabset class="tabs-dark"> 
+						
 							<uib-tab heading="Profile Detail">
-								<div class="wrap-reset"> 
-									<div class="profile-settings"> 
-									
-										<div class="row">
-											<div class="form-group col-md-12 legend">
-												<h4><strong>Account</strong></h4>
+								<div class="wrap-reset">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group legend">
+												<h4><strong>Account</strong> Details</h4>
 											</div>
-										</div>
-										
-										<div class="row profiledetail">
-											<div class="form-group col-md-6">
-												<p><label>Facility</label> {{userData.facility_name}}</p>
-											</div>
-											<div class="form-group col-md-6">
-												<p><label>Device</label> Reception Room</p>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-sm-12 profiledetail">
+											<div class="form-group profiledetail">
 												<p><label>Name</label> {{userData.user_first_name}} {{userData.user_last_name}}</p>
-												<p><label>Phone</label> {{userData.phone_code}}</p>
-												<p><label>E-mail</label> {{userData.user_email}}</p>
-												<p><label>Address</label> {{userData.user_address}}</p> 
-												<!-- <p><label>Country</label> {{userData.facility_name}}</p> -->
-												<p><label>Status</label> {{userData.user_status}}</p>
-												<p><label>Expiration Date</label> {{userData.user_expiration_date|date:'dd-MM-yyyy'}}</p>
-											</div>											
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12 legend">
-												<h4><strong>Credentials</strong></h4>
+												<p><label>E-mail</label>{{userData.user_email}}</p>
+												<p><label>Phone</label>{{userData.phone_code}}</p>
+												<p><label>Address</label>{{userData.user_address}}</p>
+												<p><label>Status</label>{{userData.user_status}}</p>
+												<p><label>Expiration Date</label>{{userData.user_expiration_date|date:'dd-MM-yyyy'}}</p>
 											</div>
 										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12 profiledetail">
-												<div class="row">										
-													<div class="form-group col-sm-6">
-														<p style="color:#3c8719"><label>Access Code</label></p>
-														<p><label>Code</label> {{userData.access_code ? userData.access_code : "NA"}}</p>
-														<p><label>Status</label> {{userData.access_status ? userData.access_status : "NA"}}</p>	
-													</div>
-													<div class="form-group col-sm-6 editprofile">
-														<p style="color:#3c8719"><label>Phone Code</label></p>
-														<p><label>Code</label> {{userData.phone_code ? userData.phone_code : "NA"}}</p>
-														<p><label>Status</label> {{userData.phone_status}}</p>
-														<p><label>Phone</label> {{userData.phone_number_1 ? userData.phone_number_1 : "NA"}}</p>
-													</div>
-												</div>
-												<div class="row">										
-													<div class="form-group col-sm-6">
-														<p style="color:#3c8719"><label>RFID Code</label></p>
-														<p><label>Card Number</label> {{userData.rfid_card_number ? userData.rfid_card_number : "NA"}}</p>
-														<p><label>Facility Code</label> {{userData.rfid_facility_code ? userData.rfid_facility_code : "NA"}}</p>
-														<p><label>Status</label> {{userData.rfid_sttaus}}</p>	
-													</div>
-													<div class="form-group col-sm-6 editprofile">
-														<p style="color:#3c8719"><label>BLE Code</label></p>
-														<p><label>Username</label> {{userData.ble_name ? userData.ble_name : "NA"}}</p>
-														<p><label>Password</label> {{userData.ble_pass ? userData.ble_pass : "NA"}}</p>
-														<p><label>Status</label> {{userData.ble_status}}</p>
-													</div>
-												</div>
-											</div>											
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12 legend">
+										<div class="col-md-6">
+											<div class="form-group legend">
 												<h4><strong>User</strong> Groups</h4>
 											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12">													
+											<div class="form-group">													
 												<div class="tile-body p-0">
 													<table class="table table-bordered">
 														<thead>
@@ -214,305 +162,431 @@
 													</table>
 												</div>
 											</div>
-										</div>										
+										</div>
+									</div>
+									<div class="row mt-20">
+										<div class="col-md-12 profiledetail">
+											<div class="form-group legend">
+												<h4><strong>Credentials</strong> Details</h4>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<p class="greenseatx"><label>Access Code</label></p>
+													<p><label>Code</label>{{userData.access_code ? userData.access_code : "NA"}}</p>
+													<p><label>Status</label> {{userData.access_status ? userData.access_status : "NA"}}</p>	
+												</div>
+												<div class="col-md-6">
+													<p class="greenseatx"><label>NFC Code</label></p>
+													<p><label>Code</label> xxxxx-xx-xx</p>
+													<p><label>Status</label> Active</p>	
+												</div>
+											</div>
+											<div class="row mt-20">
+												<div class="col-md-6">
+													<p class="greenseatx"><label>RFID Code</label></p>
+													<p><label>Card Number</label> {{userData.rfid_card_number ? userData.rfid_card_number : "NA"}}</p>
+													<p><label>Facility Code</label> {{userData.rfid_facility_code ? userData.rfid_facility_code : "NA"}}</p>
+													<p><label>Status</label> {{userData.rfid_sttaus}}</p>	
+												</div>
+												<div class="col-md-6">
+													<p class="greenseatx"><label>BLE Code</label></p>
+													<p><label>Username</label> {{userData.ble_name ? userData.ble_name : "NA"}}</p>
+													<p><label>Password</label> {{userData.ble_pass ? userData.ble_pass : "NA"}}</p>
+													<p><label>Status</label> {{userData.ble_status}}</p>	
+												</div>
+											</div>
+											<div class="row mt-20">
+												<div class="col-md-6">
+													<p class="greenseatx"><label>Phone Code</label></p>
+													<p><label>Code</label> {{userData.phone_code ? userData.phone_code : "NA"}}</p>
+													<p><label>Status</label>{{userData.phone_status}}</p>
+													<p>
+														<label>Phone</label> 
+														<span style="display:inline-block;vertical-align:top;">
+															{{userData.phone_number_1 ? userData.phone_number_1 : "NA"}}<br/>
+															{{userData.phone_number_2 ? userData.phone_number_2 : "NA"}}<br/>
+															{{userData.phone_number_3 ? userData.phone_number_3 : "NA"}}<br/>
+															{{userData.phone_number_4 ? userData.phone_number_4 : "NA"}}
+														</span>
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</uib-tab>
-							<uib-tab heading="Edit Profile">
+							<uib-tab heading="Edit Account">
 								<div class="wrap-reset"> 
-									<!-- <form ng-submit="submitEditUser(editUser)"> -->
-
-										
-										<div class="profile-settings"> 
-										<form ng-submit="submitEditUser(editUser, user_edit)" name="user_edit" ng-validate="validationOptions">
-											<div class="row">
-												<div class="form-group col-md-12 legend">
-													<h4><strong>Account</strong></h4>
-												</div>
-											</div>
-											<span ng-repeat="e in editUserMessage" class="error">{{e}}</span>
-											
-											<div class="row">
-												<div class="form-group col-sm-6">
+									<div class="form-group legend">
+										<h4><strong>Edit</strong> Account</h4>
+									</div>
+									<span ng-repeat="e in editUserMessage" class="error">{{e}}</span>
+									<form role="form" ng-submit="submitEditUser(editUser, user_edit)" name="user_edit" ng-validate="validationOptions">
+										<div class="modal-body">
+											<div class="form-group row">
+												<div class="col-sm-6">
 													<label for="first-name">First Name</label>
 													<input type="text" class="form-control" id="first-name" ng-model="editUser.first_name" ng-value="userData.user_first_name" name="first-name" required>
 												</div>
-												<div class="form-group col-sm-6">
+												<div class="col-sm-6">
 													<label for="last-name">Last Name</label>
 													<input type="text" class="form-control" id="last-name" ng-model="editUser.last_name" ng-value="userData.user_last_name" name="last-name" required>
 												</div>
 											</div>
-											
-											<div class="row">										
-												<div class="form-group col-sm-6">
-													<label for="email">E-mail</label>
+											<div class="form-group row">										
+												<div class="col-sm-6">
+													<label for="email">E-mail Address</label>
 													<input type="email" class="form-control" id="email" ng-model="editUser.email" ng-value="userData.user_email" readonly>
 												</div>
-												<div class="form-group col-sm-6 editprofile">
+												<div class="col-sm-6 editprofile">
 													<label for="profile">Profile Photo</label>
 													<div class="profilephoto">
-														<!-- <input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1"> -->
+														<input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
 														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 													</div>
 												</div>
-											</div>
-											
-											<div class="row">
-												<div class="form-group col-sm-6">
+											</div>										
+											<div class="form-group row">
+												<div class="col-sm-6">
 													<label for="first-name">Phone Number</label>
-													<input type="number" class="form-control" ng-keypress="onlyNumber($event)" id="first-name" ng-model="editUser.user_phone_no">
+													<input type="number" class="form-control" ng-keypress="onlyNumber($event)" id="user_phone_no" ng-model="editUser.user_phone_no">
 												</div>
-												<div class="form-group col-sm-6">
+												<div class="col-sm-6">
 													<label for="address1">Address</label>
 													<input type="text" class="form-control" id="address1" ng-model="editUser.address" ng-value="userData.user_address" name="address1" required>
 												</div>
-											</div>
-											
-											<div class="row">
-												<div class="form-group col-sm-12">
+											</div>										
+											<div class="form-group row">
+												<div class="col-sm-12">
 													<label for="bio">Description</label>
 													<textarea class="form-control" id="bio" ng-model="editUser.description" style="height:125px;" name="bio" required>{{userData.description}}</textarea>
 												</div>
 											</div>
-											
-											<div class="row">										
-												<div class="form-group col-sm-6">
-													<label for="">Status</label><br/>
-													<div class="btn-group btnrounded" >
-														<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="0">Inactive</label>
+											<div class="form-group row" ng-controller="ActivebtnCtrl">
+												<div class="col-md-6">
+													<div class="row">
+														<div class="col-md-5 pr-0">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded">
+																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="1">Active</label>
+																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="0">Inactive</label>
+															</div>
+														</div>
+														<div class="col-md-7" ng-hide="editUser.user_status==0">
+															<div ng-controller="DatepickerDemoCtrl">
+																<label for="">Expiration Date</label>
+																<div class="input-group">
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editUser.expiration_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-value="editUser.expiration_date"/>
+																	<span class="input-group-btn">
+																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																	</span>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
-												<div class="form-group col-sm-6 editprofile" ng-hide="editUser.user_status==0">
-												<div ng-controller="DatepickerDemoCtrl">
-													<label for="">Expiration Date</label>
-													<div class="input-group userexp">
-														<input type="text" class="form-control" ng-model="editUser.expiration_date" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-value="editUser.expiration_date"/>
-														<span class="input-group-btn">
-														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
-														</span>
-													</div>
+											</div>
+											<div class="form-group row legend">
+												<div class="col-md-12">
+													<p></p>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
 												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</uib-tab>
+							
+							<uib-tab heading="Edit Credentials">
+								<div class="wrap-reset"> 
+									<div class="form-group legend">
+										<h4><strong>Edit</strong> Credentials</h4>
+									</div>
+										<div class="modal-body">
+											<div class="form-group row">
+												<div class="col-sm-6">
+													<form role="form"  ng-submit="submitEditAccessCode(editUser, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
+														<div class="form-group greenseatx"><strong>Access Code</strong></div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Code</label>
+															</div>
+															<div class="col-md-8">
+																<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="access_code" ng-model="editUser.access_code" name="access_code" required>
+																<span class="refreshbtn" ng-click="generateAccessCode()"><i class="fa fa-refresh"></i></span>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Status</label>
+															</div>
+															<div class="col-md-8">
+																<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																</div>
+															</div>
+														</div>
+														<div class="form-group row legend">
+															<div class="col-md-12">
+																<p></p>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+															</div>
+														</div>
+													</form>
+												</div>
+												<div class="col-sm-6">
+													<form ng-submit="submitEditNfcCode(editUser, nfc_edit_form)" ng-validate="validationOptions" name="nfc_edit_form">
+														<div class="form-group greenseatx"><strong>NFC Code</strong></div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Code</label>
+															</div>
+															<div class="col-md-8">
+																<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editUser.nfc_code">
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Status</label>
+															</div>
+															<div class="col-md-8">
+																<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																	<label class="btn btn-default" ng-model="editUser.nfc_code_status" uib-btn-radio="1">Active</label>
+																	<label class="btn btn-default" ng-model="editUser.nfc_code_status" uib-btn-radio="0">Inactive</label>
+																</div>
+															</div>
+														</div>
+														<div class="form-group row legend">
+															<div class="col-md-12">
+																<p></p>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+											<div class="form-group row mt-40">
+												<div class="col-sm-6">
+													<span class="error">{{EditRFIDCodeMsg}}</span>
+													<form ng-submit="submitEditRFIDCode(editUser, rfid_form)" name="rfid_form" ng-validate="validationOptions" >
+														<div class="form-group greenseatx"><strong>RFID Code</strong></div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Card Number</label>
+															</div>
+															<div class="col-md-8">
+																<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.rfid_card_no" name="rfid_card_no" required>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Facility Code</label>
+															</div>
+															<div class="col-md-8">
+																<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editUser.rfid_facility_code" name="rfid_facility_code" required>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Status</label>
+															</div>
+															<div class="col-md-8">
+																<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																	<label class="btn btn-default" ng-model="editUser.rfid_status" uib-btn-radio="1">Active</label>
+																	<label class="btn btn-default" ng-model="editUser.rfid_status" uib-btn-radio="0">Inactive</label>
+																</div>
+															</div>
+														</div>
+														<div class="form-group row legend">
+															<div class="col-md-12">
+																<p></p>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+															</div>
+														</div>
+													</form>
+												</div>
+												<div class="col-sm-6">
+													<form ng-submit="submitEditBLECode(editUser, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
+														<div class="form-group greenseatx"><strong>BLE Code</strong></div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Username</label>
+															</div>
+															<div class="col-md-8">
+																<input type="text" class="form-control w-md" id="" value="abcuser" disabled>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Password</label>
+															</div>
+															<div class="col-md-8">
+																<input type="password" class="form-control w-md" id="" value="xxxxxx-xx">
+															</div>
+														</div>
+														<!--div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Confirm Password</label>
+															</div>
+															<div class="col-md-8">
+																<input type="password" class="form-control w-md" id="" value="xxxxxx-xx">
+															</div>
+														</div-->
+														<div class="row">
+															<div class="col-md-4 pr-0 lh-38">
+																<label for="">Status</label>
+															</div>
+															<div class="col-md-8">
+																<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																</div>
+															</div>
+														</div>
+														<div class="form-group row legend">
+															<div class="col-md-12">
+																<p></p>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+											<div class="form-group row mt-40">
+												<div class="col-sm-6">
+													<form>
+													<div class="form-group greenseatx"><strong>Phone Code</strong></div>
+													<div class="row">
+														<div class="col-md-4 pr-0 lh-38">
+															<label for="">Code</label>
+														</div>
+														<div class="col-md-8">
+															<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-value="editUser.phone_code">
+															<span class="refreshbtn" ng-click="generatePhoneCode()"><i class="fa fa-refresh"></i></span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-4 pr-0 lh-38">
+															<label for="">Status</label>
+														</div>
+														<div class="col-md-8">
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="editUser.phone_code_status" uib-btn-radio="1">Active</label>
+																<label class="btn btn-default" ng-model="editUser.phone_code_status" uib-btn-radio="0">Inactive</label>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-4 pr-0 lh-38">
+															<label for="">Phone</label>
+														</div>
+														<div class="col-md-8 editaddphone">
+															<div class="widget-todo w-md" ng-controller="TodoWidgetCtrl">
+																<form class="form-horizontal" role="form" ng-submit="addTodo()">
+																	<input type="text" class="form-control" id="todo" ng-model="todo" placeholder="" required ng-model="editUser.phone_numbers" ng-value="editUser.phone_numbers">
+		   														<button type="submit" class="btn addphone" ng-click="addTodo()"><i class="fa fa-plus"></i></button>
+																</form>
+
+																<ul class="todo-list list-unstyled">
+																  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+																	<div class="view">					 
+																		<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
+																		<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
+																	</div>
+																	<form ng-submit="doneEditing(todo)">
+																		<input class="form-control edit mb-0" ng-trim="false" ng-model="todo.text" ng-blur="doneEditing(todo)" todo-escape="revertEditing(todo)" todo-focus="todo == editedTodo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}">
+																	</form>
+																  </li>
+																</ul>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row legend">
+														<div class="col-md-12">
+															<p></p>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="submitEditPhoneCode(editUser)">Save</button>
+														</div>
+													</div>
+													</form>
+												</div>
+												<div class="col-sm-6">
 													
 												</div>
 											</div>
-											<button type="submit">Submit</button>
-										</form>
-										
-										<form ng-submit="submitEditAccessCode(editUser, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
-											<div class="row">
-											  <div class="form-group col-md-12 legend">
-												<h4><strong><br/>Credentials</strong></h4>
-											  </div>
-											</div>
-											
-											<div class="row">
-											  <div class="form-group col-md-12 legend">
-												<h5><strong>Access Code</strong></h5>
-											  </div>
-											</div>
-											<span class="error">{{AccessCodeMessage}}</span>
-											<div class="row">										
-												<div class="form-group col-sm-6">
-													<label for="">Code</label>
-													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="access_code" ng-model="editUser.access_code" name="access_code" required><img class="img-circle" src="images/refresh.png" alt="" ng-click="generateAccessCode()">
-												</div>
-												<div class="form-group col-sm-6 editprofile">
-													<label for="access_code_status">Status</label><br/>
-													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="editUser.access_code_status" uib-btn-radio="1" name="access_code_status">Active</label>
-														<label class="btn btn-default" ng-model="editUser.access_code_status" uib-btn-radio="0" name="access_code_status">Inactive</label>
-													</div>
-												</div>
-											</div>
-											<button type="submit">Submit</button>
-										</form>
-										
-										<form>
-											<div class="row">
-											  <div class="form-group col-md-12 legend">
-												<h5><strong>Phone Code</strong></h5>
-												
-											  </div>
-											</div>
-											<span class="error">{{PhoneCodeMessage}}</span>
-											<div class="row">										
-												<div class="form-group col-sm-6">
-													<label for="">Code</label>
-													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-value="editUser.phone_code">
-													<img class="img-circle" src="images/refresh.png" alt="" ng-click="generatePhoneCode()">
-												</div>
-												<div class="form-group col-sm-6">
-													<label for="">Status</label><br/>
-													<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-														<label class="btn btn-default" ng-model="editUser.phone_code_status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="editUser.phone_code_status" uib-btn-radio="0">Inactive</label>
-													</div>
-												</div>
-											</div>
-											
-										
-											<div class="row">										
-												<div class="form-group col-sm-6 editaddphone">
-													<label for="">Phone</label>
-													<div class="widget-todo" ng-controller="TodoWidgetCtrl">
-														<span class="error">{{phone_length}}</span>
-														<form class="form-horizontal" role="form">
-														<div class="form-horizontal">
-		   												<input type="text" class="form-control" id="todo" ng-model="todo" placeholder="" required ng-model="editUser.phone_numbers" ng-value="editUser.phone_numbers">
-		   												<button type="submit" class="btn addphone" ng-click="addTodo()"><i class="fa fa-plus text-lg"></i></button>
-		   											</div>
-		  											</form>
-
-														<ul class="todo-list list-unstyled">
-														  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-															<div class="view">					 
-																<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
-																<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
-															</div>
-														  </li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<button type="submit" ng-click="submitEditPhoneCode(editUser)">Submit</button>
-										</form>
-										<form ng-submit="submitEditRFIDCode(editUser, rfid_form)" name="rfid_form" ng-validate="validationOptions" > 
-											<div class="row">
-											  <div class="form-group col-md-12 legend">
-												<h5><strong>RFID Code</strong></h5>
-											  </div>
-											</div>
-											<span class="error">{{EditRFIDCodeMsg}}</span>
-											<div class="row">										
-												<div class="form-group col-sm-6">
-													<label for="">Card Number</label>
-													<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editUser.rfid_card_no" name="rfid_card_no" required>
-												</div>
-												<div class="form-group col-sm-6">
-													<label for="">Facility Code</label>
-													<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editUser.rfid_facility_code" name="rfid_facility_code" required>
-												</div>
-											</div>
-											<div class="row">
-												<div class="form-group col-sm-6">
-													<label for="">Status</label><br/>
-													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="editUser.rfid_status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="editUser.rfid_status" uib-btn-radio="0">Inactive</label>
-													</div>
-												</div>
-											</div>
-											<button type="submit">Submit</button>
-										</form>
-											
-											<div class="row">
-												<div class="form-group col-md-12 legend">
-													<h5><strong>BLE Code</strong></h5>
-												</div>
-											</div>
-										<span class="error">{{bleerror}}</span>	
-										<form ng-submit="submitEditBLECode(editUser, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
-											<div class="row">										
-												<div class="form-group col-sm-6">
-													<label for="">Username</label>
-													<input type="text" class="form-control" id="" ng-model="editUser.ble_name" name="ble_name" required>
-												</div>
-												<div class="form-group col-sm-6">
-													<label for="">Password</label>
-													<input type="password" class="form-control" id="" ng-model="editUser.ble_pass" name="ble_pass" required>
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="form-group col-sm-6">
-													<label for="">Confirm Password</label>
-													<input type="password" class="form-control" id="" ng-model="editUser.ble_cpass">
-												</div>
-												<div class="form-group col-sm-6">
-													<label for="">Status</label><br/>
-													<div class="btn-group btnrounded">
-														<label class="btn btn-default" ng-model="editUser.ble_status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="editUser.ble_status" uib-btn-radio="0">Inactive</label>
-													</div>
-												</div>
-											</div>
-											<button type="submit">Submit</button>
-										</form>
-											<div class="row">
-												<div class="form-group col-md-12 legend">
-													<h4><strong><br/>User</strong> Groups</h4>												
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="col-md-12 legend">
-													<h5 class="pull-left"><strong>Assigned Groups</strong></h5>
-													<div ng-controller="ModalDemoCtrl">
-														<script type="text/ng-template" id="myModalContent.html">
-															<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
-															<form ng-submit="assignEditUserGroup(usergroup)">
-															<div class="hometabs">
-																<div class="overflow groupslists">
-																	<div class="col-md-12">
-																		<ul>
-																			<li ng-repeat="user_group in usergroups">
-																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}}</label>
-																			</li>
-																		</ul>
-																		<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
-																	</div>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c group-close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
-															</div>
-															</form>															
-														</script>
-														<button ng-click="open()" class="btn btn-default btn-rounded btn-ef btn-ef-5 btn-ef-5b mb-10 pull-right"><i class="fa fa-plus"></i> <span>Add Groups</span></button>
-													</div>
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="form-group col-md-12">													
-													<div class="tile-body p-0">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Group Name</th>
-																	<th width="75">Action</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr ng-repeat="x in userGroup">
-																	<td>{{x.usergroup_name}}</td>
-																	<td>
-																		<button type="button" ng-click="unassignUserGroupEdit(x.usergroup_id)" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
 										</div>
-											
-										<div class="row">
-											<div class="form-group col-md-12 legend mt-20">
-												<button onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Back</button>
-												<!-- <button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button> -->
-											</div>
-										</div>
-										<div class="row">
-											<p ng-repeat="m in masters">{{m}}</p>
-										</div>
-									<!-- </form>	 -->
-								</div>
-
 								</div>
 							</uib-tab>
+							
+							<uib-tab heading="Edit User Groups">
+								<div class="wrap-reset"> 
+									<div class="form-group legend">
+										<h4><strong>Edit</strong> User Groups</h4>
+									</div>
+									<div class="form-group row" ng-controller="ModalDemoCtrl">
+										<div class="col-md-12">
+											<button ng-click="open()" class="btn btn-default btn-rounded btn-ef btn-ef-5 btn-ef-5b pull-right"><i class="fa fa-plus"></i> <span>Add Groups</span></button>
+											<script type="text/ng-template" id="myModalContent.html">
+												<form ng-submit="assignEditUserGroup(usergroup)">
+													<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
+													<div class="hometabs">
+														<div class="overflow groupslists">
+															<div class="col-md-12 mt-20">
+																<ul>
+																	<li ng-repeat="user_group in usergroups">
+																		<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}}</label>
+																	</li>
+																</ul>
+																<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left  group-close"></i> Close</button>
+														<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+													</div>
+												</form>											
+											</script>
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-12">													
+											<div class="tile-body p-0">
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>Group Name</th>
+															<th width="125">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in userGroup">
+															<td>{{x.usergroup_name}}</td>
+															<td>
+																<button type="button" ng-click="unassignUserGroupEdit(x.usergroup_id)" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="form-group row legend">
+										<div class="col-md-12">
+											<p></p>
+											<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+											<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+							
 						</uib-tabset>
 					</div>
 				</section>

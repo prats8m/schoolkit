@@ -1518,6 +1518,8 @@ span.error {
 	padding: 8px 15px 0;
 }
 
+
+
 @media only screen and (min-width: 1800px) {
     .welcometxt {
         margin-top: 100%;
@@ -1530,3 +1532,12 @@ span.error {
 span.error { font-size: 14px; color: #ff0000; line-height: 22px;}
 label.error {font-size: 14px;font-weight: 100;font-style: italic;color: #ff0000;}
 input.ng-invalid-required.error { border: 1px solid #ff0000; }
+span.refreshbtn {position: absolute;
+    right: 16px;
+    top: 1px;
+    background: #d5d5d5;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;}

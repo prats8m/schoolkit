@@ -240,7 +240,8 @@
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="access_code" id="access_code" class="form-control mb-10"  disabled ng-model="accesscode.access_code"><img class="img-circle" src="images/refresh.png" alt="" ng-click="generateAddAccessCode()">
+																					<input type="text" name="access_code" id="access_code" class="form-control mb-10"  disabled ng-model="accesscode.access_code">
+																					<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -366,6 +367,40 @@
 																			</form>
 																		</div>
 																		
+																	</uib-accordion-group>
+																	<uib-accordion-group is-open="status.open3" class="panel-default">
+																		<uib-accordion-heading>
+																			NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
+																		</uib-accordion-heading>
+																			<span class="error">{{NFCCodeMessage}}</span>
+																			<div class="">
+																				<form ng-submit="saveNFCcode(savenfc, nfc_form)" ng-validate="validationOptions" name="nfc_form">
+																				<div class="overflow">
+																					<div class="col-md-4 plr-0 lh-38">
+																						<label for="">Code</label>
+																					</div>
+																					<div class="col-md-8">
+																						<input type="text" name="nfc_code" id="" class="form-control" placeholder="" ng-model="savenfc.nfc_code" required disabled>
+																						<span class="refreshbtn" ng-click="generateNFCCode()"><i class="fa fa-refresh"></i></span>
+																					</div>
+																				</div>
+																				<div class="overflow">
+																					<div class="col-md-4 plr-0 lh-38">
+																						<label for="">Status</label>
+																					</div>
+																					<div class="col-md-8">
+																						<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																							<label class="btn btn-default" ng-model="savenfc.nfc_code_status" uib-btn-radio="1">Active</label>
+																							<label class="btn btn-default" ng-model="savenfc.nfc_code_status" uib-btn-radio="0">Inactive</label>
+																						</div>
+																					</div>
+																				</div>
+																				<div class="overflow mt-10 pl-15 ta-c">
+																					<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+																					<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+																				</div>
+																			</form>
+																		</div>
 																	</uib-accordion-group>
 																	
 																	<uib-accordion-group is-open="status.open3" class="panel-default">
