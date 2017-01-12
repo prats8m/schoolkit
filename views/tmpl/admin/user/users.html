@@ -166,7 +166,7 @@
 																	<div class="col-md-6 first">
 																		<div class="form-group">
 																			<label for="user_phone_no">Phone Number</label>
-																			<input type="text" name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="" rangelength>
+																			<input type="text" name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" class="form-control mb-10" placeholder="" rangelength required>
 																		</div>
 																	</div>
 																	<div class="col-md-6 last">
@@ -276,7 +276,8 @@
 																					<label for="">Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="phone_code" id="phone_code" ng-model="phoneCode.phone_code" class="form-control mb-10" disabled><img class="img-circle" src="images/refresh.png" alt="" ng-click="generateAddPhoneCode()">
+																					<input type="text" name="phone_code" id="phone_code" ng-model="phoneCode.phone_code" class="form-control mb-10" disabled>
+																					<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -332,21 +333,21 @@
 																		</uib-accordion-heading>
 																			<span class="error">{{ rfid_error }}</span>
 																		<div class="credintials">
-																			<form ng-submit="saveRFID(rfid)">
+																			<form ng-submit="saveRFID(rfid, rfid_form)" ng-validate="validationOptions" name="rfid_form">
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Card Number</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_card_no">
+																					<input type="text" name="rfid_card_no" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_card_no" required>
 																				</div>
 																			</div>
 																			<div class="overflow">
-																				<div class="col-md-4 first`">
+																				<div class="col-md-4 first">
 																					<label for="">Facility Code</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_facility_code">
+																					<input type="text" name="rfid_facility_code" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_facility_code" required>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -403,19 +404,19 @@
 																		</div>
 																	</uib-accordion-group>
 																	
-																	<uib-accordion-group is-open="status.open3" class="panel-default">
+																	<uib-accordion-group is-open="status.open4" class="panel-default">
 																		<uib-accordion-heading>
-																			BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
+																			BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i>
 																		</uib-accordion-heading>
 																		<span class="error">{{ blecode_error }}</span>
 																		<div class="credintials">
-																			<form ng-submit="saveBLEcode(ble_code)">
+																			<form ng-submit="saveBLEcode(ble_code, ble_form)" ng-validate="validationOptions" name="ble_form">
 																			<div class="overflow">
 																				<div class="col-md-4 first">
 																					<label for="">Username</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_name">
+																					<input type="text" name="ble_name" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_name" required>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -423,7 +424,7 @@
 																					<label for="">Password</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="password" name="" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_pass">
+																					<input type="password" name="ble_pass" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_pass" required>
 																				</div>
 																			</div>
 																			<div class="overflow">
@@ -431,7 +432,7 @@
 																					<label for="">Confirm Password</label>
 																				</div>
 																				<div class="col-md-8 last">
-																					<input type="password" name="" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.cnf_ble_pass">
+																					<input type="password" name="cnf_ble_pass" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.cnf_ble_pass" required>
 																				</div>
 																			</div>
 																			<div class="overflow">
