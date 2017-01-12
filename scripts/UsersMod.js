@@ -201,7 +201,8 @@ app
 		.success(function(response){
 			$rootScope.user_error = "";
 			$rootScope.accesscode = {};
-			$rootScope.accesscode.access_code = Date.now();
+			var x = Math.floor(Math.random()*9999999999) + 10000;
+			$rootScope.accesscode.access_code = parseInt((""+x).substring(8, length));
 			$rootScope.accesscode.access_code_status = 'Active';
 			if(response.status == true){
 				$cookies.put("user_id", response.data.user_id);
@@ -213,8 +214,10 @@ app
 				});
 				$timeout(function() {
 					$scope.assignedGroup();
+				});
+				$timeout(function() {
 					$scope.unassignedGroup();
-				}, 1000);
+				});
 			}else{
 
 				if(response.msg == 'Invalid_Token'){
@@ -238,7 +241,10 @@ app
 		});
 	}
 
-	$rootScope.saveRFID = function(rfid){
+	$rootScope.saveRFID = function(rfid, rfid_form){
+		if(!rfid_form.validate()){
+			return false;
+		}
 		if(rfid == undefined){
 			$rootScope.rfid_error = "Please fill form.";
 			return false;
@@ -342,7 +348,10 @@ app
 		});
 	}
 
-	$rootScope.saveBLEcode = function(ble_code){
+	$rootScope.saveBLEcode = function(ble_code, ble_form){
+		if(!ble_form.validate()){
+			return false;
+		}
 		if(ble_code == undefined){
 			$rootScope.blecode_error = "Please fill form.";
 			return false;
@@ -394,8 +403,9 @@ app
 	}
 
 	$rootScope.generateAddAccessCode = function(){ 
-			$rootScope.accesscode = {};
-			$rootScope.accesscode.access_code = Date.now();
+		$rootScope.accesscode = {};
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		$rootScope.accesscode.access_code = parseInt((""+x).substring(8, length));
 	}
 
 	$rootScope.generateAddPhoneCode = function(){
@@ -415,7 +425,8 @@ app
 		if(!nfc_form.validate()){
 			return false;
 		}
-		submitData.nfc_code = parseInt(submitData.nfc_code);
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		submitData.nfc_code = parseInt((""+x).substring(8, length));
 		submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
 		submitData.user_id = parseInt($cookies.get("user_id"));
 		$http(
@@ -432,6 +443,9 @@ app
 		}).success(function(response){
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
+				$timeout(function() {
+					$(".accordion-toggle")[4].click();
+				});
 			}
 			else{
 				var arr = response.error;
@@ -647,7 +661,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout) {
+  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
      $scope.page = {
       title: 'Arnold',
       subtitle: 'So much more to see at a glance.'
@@ -669,7 +683,7 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$scope.userData = response.data;
-								
+				$scope.editUser.user_id = $stateParams.user_id;
 				$scope.editUser.first_name = angular.copy($scope.userData.user_first_name);
 				$scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
 				$scope.editUser.address = angular.copy($scope.userData.user_address);
@@ -682,6 +696,8 @@ app
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
 				$scope.editUser.nfc_code = angular.copy($scope.userData.nfc_code);
+				$scope.editUser.rfid_card_no = angular.copy($scope.userData.rfid_card_number);
+				
 
 				$rootScope.todos = [];
 				var todos = $rootScope.todos;
@@ -697,6 +713,7 @@ app
 				$scope.editUser.rfid_status = angular.copy($scope.userData.rfid_sttaus);
 				$scope.editUser.ble_name = angular.copy($scope.userData.ble_name);
 				$scope.editUser.ble_status = angular.copy($scope.userData.ble_status);
+				$scope.editUser.ble_pass = angular.copy($scope.userData.ble_pass);
 				$scope.editUser.description = angular.copy($scope.userData.user_description);
 				$scope.editUser.user_phone_no = angular.copy($scope.userData.user_phone_no);
 				$scope.editUser.user_status = angular.copy($scope.userData.user_status);
@@ -1013,12 +1030,13 @@ app
 		}).success(function(response){
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
+				$rootScope.NfcCodeMessage = "";
 			}
 			else{
 				var arr = response.error;
 				if(response.error != "" && response.error != null){
 					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$rootScope.AccessCodeMessage = n.join(", ");
+					$rootScope.NfcCodeMessage = n.join(", ");
 				}
 				else{
 					if(response.msg == 'Invalid_Token'){
@@ -1113,6 +1131,7 @@ app
 			}
 			else{
 				var arr = response.error;
+				var n = [];
 				if(response.error != "" && response.error != null){
 					//toaster.pop('error',response.msg);
 					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
@@ -1207,6 +1226,50 @@ app
 
 		});
 	}
+
+	//Delete user on detail page
+	$scope.deleteUser = function(ev,id) {
+		var confirm = $mdDialog.confirm()		
+		.title('Would you like to delete User?')
+		.content('')
+		.ok('Delete')
+		.cancel('Cancel')
+		.targetEvent(ev);
+		$mdDialog.show(confirm).then(function() {
+			
+			
+			$http(
+			{
+				method: 'DELETE', 
+				url: baseURL + 'user/delete?user_id='+id,
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == true){
+					$location.path('/app/admin/user/users');
+				}else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					toaster.pop('error',response.msg.replace(/_/g,' '));
+				}
+			}).error(function(){
+
+			});
+			
+			
+		}, function() {
+			$scope.result = 'You decided to keep User.';
+			$scope.statusclass = 'alert alert-success alert-dismissable';
+		});
+    };
+	//Delete user on detail page
 	
 	$scope.onlyNumber = function(e){
 		console.log(e);
