@@ -404,6 +404,62 @@ app
 		$rootScope.phoneCode.phone_code = (""+x).substring(8, length);
 	}
 
+	$rootScope.generateNFCCode = function(){
+		$rootScope.savenfc = {};
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		$rootScope.savenfc.nfc_code = (""+x).substring(8, length);
+	}
+
+	//NFC code edit
+	$rootScope.saveNFCcode = function(submitData, nfc_form){
+		if(!nfc_form.validate()){
+			return false;
+		}
+		submitData.nfc_code = parseInt(submitData.nfc_code);
+		submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
+		submitData.user_id = parseInt($cookies.get("user_id"));
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL + 'user/edit-nfc-code',
+			dataType : 'JSON',
+			data:submitData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			if(response.status == true){
+				toaster.pop('success','Submitted Successfully');
+			}
+			else{
+				var arr = response.error;
+				if(response.error != "" && response.error != null){
+					var n = [];
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.NFCCodeMessage = n.join(", ");
+				}
+				else{
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					
+					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				}
+			}
+			
+			
+			//$scope.submitEditPhoneCode(submitData);
+		}).error(function(){
+
+		});
+	}
+
+	//End Of NFC Code Edit
+
 	$rootScope.saveAccessCode = function(accesscode){
 		$rootScope.accesscode.access_code_status = ($rootScope.accesscode.access_code_status == "Active" ? 1 : 0)
 		$rootScope.accesscode.user_id = parseInt($cookies.get("user_id"));
