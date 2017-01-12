@@ -25,12 +25,16 @@
 					<a ui-sref="app.admin.device.devices">
 						<div class="noback bg-blue">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Primary Devices</span>
+								<div class="col-xs-6">	
+									<div class="itxt">							
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -40,15 +44,19 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices" href="#/app/admin/device/dependent-devices">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.door.doors">
+						<div class="noback bg-slategray lt">
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.dependent_device}}</p>
-									<span class="text-lg">Dependent Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -61,12 +69,16 @@
 					<a ui-sref="app.admin.user.users">
 						<div class="noback bg-lightred">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
+								<div class="col-xs-6">
+									<div class="itxt">								
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -88,18 +100,15 @@
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
 											<div class="modal-body">
 												<div class="row overflow">
-													<div class="col-md-6 first">
-														<div class="form-group">
-															<label for="">Device Name</label>
-															<input type="text" name="device_name" ng-model="device.device_name" id="" class="form-control mb-10" placeholder="" required>
-														</div>
+													<div class="col-md-6">
+														<label for="">Device Name</label>
+														<input type="text" name="device_name" ng-model="device.device_name" id="" class="form-control mb-10" placeholder="" required>
 													</div>
-													<div class="col-md-6 first">
-														<div class="form-group">
-															<label for="">Serial Number</label>
-															<input type="text" name="serial_no" id="" ng-model="device.serial_no" class="form-control mb-10" placeholder="" required>
-														</div>
+													<div class="col-md-6">
+														<label for="">Model Name</label>
+														<input type="text" name="" id="" class="form-control" placeholder="">
 													</div>
+													
 													<!--<div class="col-md-6 last">
 														<div class="form-group">
 															<label for="">Model Name</label>
@@ -108,29 +117,21 @@
 													</div>-->
 												</div>
 												<div class="row">
+													<div class="col-md-6">
+														<label for="">Serial Number</label>
+														<input type="text" name="serial_no" id="" ng-model="device.serial_no" class="form-control mb-10" placeholder="" required>
+													</div>
+													<div class="col-md-6">
+														<label for="">Registration Code</label>
+														<input type="text" name="" id="" ng-model="device.registration_code" class="form-control mb-10" placeholder="" required>
+													</div>
 													
-													<div class="col-md-6 first">
-														<div class="form-group">
-															<label for="">Registration Code</label>
-															<input type="text" name="" id="" ng-model="device.registration_code" class="form-control mb-10" placeholder="" required>
-														</div>
-													</div>
-													<div class="col-md-6 first">
-													<div class="form-group">
-														<label for="">Facility</label><br/>
-														<input type="text" class="form-control" value="{{FacilityName}}" disabled/>
-														<!-- <div class="form-control">{{device.facility_id}}</div> -->
-														<!--select class="form-control" ng-model="device.facility_id" disabled>
-															<option selected>USA Corporate Services</option>
-															<option>Aerzen USA Corporation</option>
-														</select-->
-													</div>
-													</div>
 												</div>
+												
 												
 												<div class="form-group">
 													<label for="">Device Type</label><br/>
-													<div class="btn-group btnrounded">
+													<div class="btn-group btnrounded" ng-init="device.device_type='master'">
 														<label class="btn btn-default" ng-model="device.device_type" uib-btn-radio="'master'">Primary</label>
 														<label class="btn btn-default" ng-model="device.device_type" uib-btn-radio="'slave'">Dependent</label>
 													</div>
@@ -150,15 +151,19 @@
 													</div>
 												</div>
 												<div class="row">
-													<div class="col-md-6 first">
-														<div class="form-group">
-															<label for="">Technician</label><br/>
-															
-															<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id" required>
-																<option value="">Select</option>
-															</select>
-															<!-- <small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small> -->
-														</div>
+													<div class="col-md-6">
+														<label for="">Facility</label><br/>
+														<input type="text" class="form-control" value="{{FacilityName}}" disabled/>
+													</div>
+													<div class="col-md-6">
+														
+														<label for="">Technician</label><br/>
+														
+														<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id" required>
+															<option value="">Select</option>
+														</select>
+														<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
+														
 													</div>
 												</div>
 											</div>
@@ -185,7 +190,6 @@
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
 											<li><a href="" ng-click="orderByMe('device_name')">Name</a></li>
-											<!-- <li><a href="" ng-click="orderByMe('device_model')">Facility</a></li> -->
 											<li><a href="" ng-click="orderByMe('device_model')">Model</a></li>
 										</ul>
 									</label>
@@ -210,10 +214,6 @@
 										<label for="fbtitle" class="control-label">Search by title</label>
 										<input type="text" class="form-control" id="fbtitle" ng-model="title">
 									</div>
-									<!-- <div class="col-md-3">
-										<label for="fblocation" class="control-label">Search by facility</label>
-										<input type="text" class="form-control" id="fblocation" ng-model="facility">
-									</div> -->
 								</div>
 							</div>
 							<div ng-if="result">									
@@ -225,6 +225,10 @@
 								<div class="glview">
 									<md-content>			
 										<md-card ng-repeat="device in data | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
+											<span class="moreitemsondevice">
+												<a ui-sref="app.admin.service-plan"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+												<a ui-sref="app.admin.settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
+											</span>
 											<a ui-sref="app.admin.device.device-details({device_id:device.device_id})"><img ng-src="{{imagePath}}/device/{{ device.device_image }}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ device.device_name }}</h2>

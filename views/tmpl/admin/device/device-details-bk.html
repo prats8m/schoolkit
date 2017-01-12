@@ -1,0 +1,813 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<div class="bg-dashboard pdevicebg">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+						<div class="noback bg-blue">						
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-6">	
+									<div class="itxt">							
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">					
+					<a ui-sref="app.admin.door.doors">
+						<div class="noback bg-slategray lt">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+						<div class="noback bg-lightred">						
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="itxt">								
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>	
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+				<section class="tile tile-simple">
+					<div class="tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20">
+							<img class="img-circle" src="images/device/1.jpg" alt="">
+						</div>
+						<h3 class="mb-10"><strong>{{details.device_name}}</strong></h3>
+						<span class="text-muted">{{details.device_model}} </span>
+						<span class="text-muted"><span ng-repeat="(key,features) in details.features">{{key|uppercase}}<span ng-if="!$last">&nbsp;|</span> </span></span>
+						<a ui-sref="app.admin.settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-lightred ml-5 mr-5">Settings</a>
+					</div> 
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol p-10">
+								<h2 class="m-0">{{details.device_slave_count}}</h2>
+								<span class="text-transparent-white">Dependent Devices</span>
+							</li>
+							<!--<li class="tcol bg-blue dker p-10">
+								<h2 class="m-0">3</h2>
+								<span class="text-transparent-white">Users</span>
+							</li>-->
+						</ul>
+					</div>  
+				</section> 
+				
+				<section class="tile tile-simple"> 
+					<div class="tile-header">
+						<h1 class="custom-font"><strong>Description</strong></h1>
+					</div> 
+					<div class="tile-body">
+						<p class="text-default lt">The ELIKA 460 will feature a white color option which presents a clean modern look. This will be the first model to hit the market. Multiple wireless connectivity options with residential and commercial capabilities make the ideal system for any application.</p> 
+					</div> 
+				</section> 
+			</div>
+			
+			<div class="col-md-8" ng-controller="DeviceDetailsCtrl"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<uib-tabset class="tabs-dark"> 
+							<uib-tab heading="Device Detail">
+								<div class="wrap-reset"> 
+									<div class="profile-settings"> 
+									
+										<div class="row">
+											<div class="form-group col-md-12 legend">
+												<h4><strong>Device</strong> Details</h4>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="form-group col-sm-12 profiledetail">
+												<p><label>Facility Name</label> {{details.facility_name}}</p>
+												<p><label>Device Name</label> {{details.device_name}}</p>
+												<p><label>Model Name</label> {{details.device_model}}</p>
+												<p><label>Serial No.</label> {{details.device_serial_no}}</p>
+												<p><label>Device Type</label> {{details.device_type}}</p>
+												<p><label>Technician</label> {{details.technician_name}}</p>
+												<!--<p><label>Door</label> {{details.device_name}}</p>-->
+												
+												<p><label>Features</label> <span ng-repeat="(key,features) in details.features">{{key|uppercase}}<span ng-if="!$last">&nbsp;|</span> </span></p>
+												<!--<p><label>Features</label> Wifi &nbsp;|&nbsp; RFID &nbsp;|&nbsp; BLE &nbsp;|&nbsp; Camera</p>-->												
+											</div>											
+										</div>
+										
+										<div class="row">
+											<div class="form-group col-md-12 legend mb-20">
+												<h4><strong>Device</strong> Status</h4>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="form-group col-md-12">													
+												<div class="tile-body p-0">
+													<table class="table table-bordered dstatus">
+														<thead>
+															<tr>
+																<th>Settings</th>
+																<th>Status</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="(key,features) in details.features">
+																<td>{{key | uppercase}}</td>
+																<td class="{{features|deviceFeatureFilter}}"><i class="fa fa-circle"></i> {{features|deviceFeatureFilter | capitalize}}</td>
+															</tr>
+															
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Dependent Devices">
+								<div class="wrap-reset"> 
+									<div class="table-custom">
+										<div class="row pos-r mb-20">
+											<div class="col-md-3 filterorder">
+												<label class="control-label" ng-init="filtershow=true">
+													<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
+												</label>
+												<label class="control-label" uib-dropdown on-toggle="toggled(open)">
+													<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
+													<ul class="dropdown-menu with-arrow animated littleFadeInUp">
+														<li><a href="" ng-click="orderByMe('device_name')">Name</a></li>
+														<li><a href="" ng-click="orderByMe('device_model')">Model</a></li>
+													</ul>
+												</label>
+											</div>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-8 search">
+														<input type="text" class="form-control" placeholder="Search by text...." ng-model="searchText" ng-keyup="searchFunction($event)">
+														<button class="btn btn-default br-2-r" type="button" ng-click="searchFunction()">Search</button>
+													</div>
+													<div class="col-md-4 ta-r">
+														<div ng-controller="ModalDemoCtrl">
+															<script type="text/ng-template" id="myModalContent.html">
+																<form name="add_dependent" id="add_dependent" ng-validate="validationOptions" role="form" >
+																	<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
+																	<div class="modal-body">							
+																		<div class="overflow form-group">
+																			<label for="">Facility Name:</label> USA Corporate Services
+																		</div>
+																		<div class="row overflow">
+																			<div class="col-md-6 first">
+																				<div class="form-group">
+																					<label for="">Device Name</label>
+																					<input type="text" name="device_name" id="" ng-model="editDevice.device_name" class="form-control mb-10" placeholder="" required>
+																				</div>
+																			</div>
+																			<div class="col-md-6 last">
+																				<div class="form-group">
+																					<label for="">Model Name</label>
+																					<input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control mb-10" placeholder="" required>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="row overflow">
+																			<div class="col-md-6 first">
+																				<div class="form-group">
+																					<label for="">Registration Code</label>
+																					<input type="text" name="registration_code" id="" ng-model="editDevice.registration_code" class="form-control mb-10" placeholder="" required>
+																				</div>
+																			</div>
+																			
+																		</div>
+																		<div class="row">
+																			<div class="col-md-6 first">
+																				<div class="form-group">
+																					<label for="">Serial Number</label>
+																					<input type="text" name="serial_no" id="" ng-model="editDevice.serial_no" class="form-control mb-10" placeholder="" required>
+																				</div>
+																			</div>
+																			<div class="col-md-6 last">
+																				<div class="form-group">
+																					<label for="">Technician</label><br/>
+																					<!-- <select class="form-control" name="technician_id" ng-model="editDevice.technician_id" required>
+																						<option value=''>Select</option>
+																						<option value=1>Arnold</option>
+																						<option value=2>Peter</option>
+																						<option value=3>Paracosm</option>
+																						<option value=4>Jason</option>
+																						<option value=5>Paul</option>
+																						<option value=6>Vin</option>
+																						<option value=7>Dwayne</option>
+																					</select> -->
+																					<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="editDevice.technician_id" required>
+																						<option value="">Select</option>
+																					</select>
+																					<!-- <small class="pull-right" style="margin-bottom: -5px;"><a ng-click="cancel()" ui-sref="app.admin.support.technician">Add Technician</a></small> -->
+																				</div>
+																			</div>
+																		</div>
+																		<div class="form-group">
+																			<label for="">Device Type</label><br/>
+																			<div class="btn-group btnrounded" ng-init="editDevice.device_type='slave'">
+																				<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'master'">Primary</label>
+																				<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'slave'">Dependent</label>
+																			</div>
+																			<div class="slavevalues" ng-hide="editDevice.device_type=='master'">
+																				
+																				<select class="form-control mb-10" ng-options="item.device_id as item.device_name for item in deviceData track by item.device_id" ng-model="editDevice.device_master_id">
+																					<option value="">Select Primary Device</option>
+																				</select>
+																			</div>
+																		</div>
+																		<!-- <div class="row">
+																			<div class="col-md-12">
+																				<div class="form-group">
+																					<label for="">Doors</label><br/>
+																					<select multiple chosen="{width: '100%'}">
+																						<option>Main Gate Front</option>
+																						<option>Main Gate Back</option>
+																						<option>Exit Gate Front</option>
+																						<option>Exit Gate Back</option>
+																						<option>Parking Entry Gate</option>
+																						<option>Parking Exit Gate</option>
+																						<option>Pool Gate</option>
+																						<option>Gym Gate</option>
+																					</select>
+																					<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
+																				</div>
+																			</div>
+																		</div> -->
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																		<button ng-click="submitDependentDevice(editDevice,add_dependent)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+																	</div>
+																</form>		
+															</script>
+															<button ng-click="open()" class="btn btn-default br-2 btnh-38">Add Device</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="gridlistbar ta-r pull-right">
+													<label class="control-label">View by</label>
+													<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+													<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
+												</div>
+											</div>
+											<div class="filterfields" ng-hide="filtershow">
+												<div class="col-md-4">
+													<label for="fbtext" class="control-label">Search by text</label> 
+													<input type="text" class="form-control" id="fbtext" ng-model="text">
+												</div>
+												<div class="col-md-4">
+													<label for="fbtitle" class="control-label">Search by title</label>
+													<input type="text" class="form-control" id="fbtitle" ng-model="title">
+												</div>
+												<div class="col-md-4">
+													<label for="fblocation" class="control-label">Search by model</label>
+													<input type="text" class="form-control" id="fblocation" ng-model="model">
+												</div>
+											</div>
+										</div>
+										<div ng-if="result">									
+											<div layout="row" ng-class="statusclass">									
+												{{result}}
+											</div>
+										</div>
+										<div ng-class="class">
+											<div class="glview">
+												<md-content>			
+													<md-card class="slaveusers" ng-repeat="device in dependent_devices | filter:text | filter:title | filter:model | orderBy:myOrderBy">
+														<a ui-sref="app.admin.device.dependent-devices-details"><img ng-src="{{imagePath}}/device/{{ device.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
+														<md-card-content>
+															<h2 class="md-title">{{ device.device_name }}</h2>
+															<p>{{ device.device_model }}</p>
+															<!--<p>{{ device.noofuser }} Users</p>-->
+														</md-card-content>
+														<div class="md-actions" layout="row" layout-align="center center">
+															<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.dependent-devices-details({device_id:device.device_id})">View</a>
+															<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.device.dependent-devices-details({device_id:device.device_id})">Edit</a>
+															<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Remove</a>
+														</div>
+													</md-card>
+												</md-content>
+											</div>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Users">
+								<div class="wrap-reset"> 
+									<div class="table-custom">
+										<div class="row pos-r mb-20">
+											<div class="col-md-3 filterorder">
+												<label class="control-label" ng-init="filtershow=true">
+													<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
+												</label>
+												<label class="control-label" uib-dropdown on-toggle="toggled(open)">
+													<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
+													<ul class="dropdown-menu with-arrow animated littleFadeInUp">
+														<li><a href="" ng-click="orderByMe('name')">Name</a></li>
+														<li><a href="" ng-click="orderByMe('group')">Group</a></li>
+													</ul>
+												</label>
+											</div>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-8 search">
+														<input type="text" class="form-control" placeholder="Search by text...." >
+														<button class="btn btn-default br-2-r" type="button">Search</button>
+													</div>
+													<div class="col-md-4 ta-r">
+														<div ng-controller="ModalDemo1Ctrl">
+															<script type="text/ng-template" id="myModalContent1.html">
+																<div class="modal-header"><h4 class="modal-title custom-font">Add User</h4></div>
+																<div class="hometabs">
+																	<md-content class="md-padding tabsdemoDynamicHeight">
+																		<md-tabs md-dynamic-height md-border-bottom>
+																		
+																			<md-tab label="Account">
+																				<md-content>								
+																					<div class="account">
+																						<div class="overflow">
+																							<div class="col-md-6 first">
+																								<div class="form-group">
+																									<label for="">First Name</label>
+																									<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																							<div class="col-md-6 last">
+																								<div class="form-group">
+																									<label for="">Last Name</label>
+																									<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																						</div>
+																						<div class="overflow">
+																							<div class="col-md-6 first">
+																								<div class="form-group">
+																									<label for="">Email Address</label>
+																									<input type="emial" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																							<div class="col-md-6 last">
+																								<div class="form-group">
+																									<label for="">Profile Photo</label>
+																									<div class="profilephoto">
+																										<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																										<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																						<div class="overflow">
+																							<div class="col-md-6 first">
+																								<div class="form-group">
+																									<label for="">Phone Number</label>
+																									<input type="tel" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																							<div class="col-md-6 last">
+																								<div class="form-group">
+																									<label for="">Address</label>
+																									<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																								</div>
+																							</div>
+																						</div>
+																						<div class="overflow">
+																							<div class="form-group">
+																								<label for="">Description</label>
+																								<textarea name="" id="" class="form-control mb-10" placeholder=""></textarea>
+																							</div>
+																						</div>
+																						<div class="overflow" ng-controller="ActivebtnCtrl">
+																							<div class="col-md-6 first">
+																								<label for="">Status</label><br/>
+																								<div class="btn-group btnrounded">
+																									<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																									<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																								</div>
+																							</div>
+																							<div class="col-md-6 last" ng-hide="radioModel=='Inactive'">
+																								<div ng-controller="DatepickerDemoCtrl">
+																									<label for="">Expiration Date</label>
+																									<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
+																								</div>
+																							</div>
+																						</div>				
+																					</div>							   
+																				</md-content>
+																			</md-tab>
+																			
+																			<md-tab label="Credentials">
+																				<md-content>														
+																					<div class="credintials" ng-controller="AccordionDemoCtrl">
+																						<uib-accordion close-others="oneAtATime">
+																																							
+																							<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
+																								<uib-accordion-heading>
+																									Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Code</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="016201" disabled>
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																							
+																							<uib-accordion-group is-open="status.open1" class="panel-default">
+																								<uib-accordion-heading>
+																									Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Code</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="161553" disabled>
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Phone</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="widget-todo" ng-controller="TodoWidgetCtrl">
+																												<form class="form-horizontal" role="form" ng-submit="addTodo()">
+																													<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="todo" placeholder="" required>
+																													<button type="submit" class="btn addpost"><i class="fa fa-plus text-lg"></i></button>
+																												</form>
+
+																												<ul class="todo-list list-unstyled">
+																												  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+																													<div class="view">					 
+																														<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
+																														<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
+																													</div>
+																													<form ng-submit="doneEditing(todo)">
+																														<input class="form-control edit mb-0" ng-trim="false" ng-model="todo.text" ng-blur="doneEditing(todo)" todo-escape="revertEditing(todo)" todo-focus="todo == editedTodo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}">
+																													</form>
+																												  </li>
+																												</ul>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																							
+																							<uib-accordion-group is-open="status.open2" class="panel-default">
+																								<uib-accordion-heading>
+																									RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Card Number</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Facility Code</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																							
+																							<uib-accordion-group is-open="status.open3" class="panel-default">
+																								<uib-accordion-heading>
+																									BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i>
+																								</uib-accordion-heading>
+																								
+																								<div class="credintials">
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Username</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Password</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Confirm Password</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<input type="password" name="" id="" class="form-control mb-10" placeholder="">
+																										</div>
+																									</div>
+																									<div class="overflow">
+																										<div class="col-md-4 first">
+																											<label for="">Status</label>
+																										</div>
+																										<div class="col-md-8 last">
+																											<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="overflow ta-c">
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Save</button>
+																										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mb-10">Cancel</button>
+																									</div>
+																								</div>
+																								
+																							</uib-accordion-group>
+																						</uib-accordion>
+																					</div>														
+																				</md-content>
+																			</md-tab>
+
+																			<md-tab label="User Groups">
+																				<md-content>														
+																					<div class="usergroup">
+																						<section class="tile" fullscreen="isFullscreen02">
+																							<div class="tile-header">
+																								<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
+																								<ul class="controls">
+																									<li class="addpopup">
+																										<a class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+																									</li>
+																								</ul>
+																							</div>
+																							<div class="tile-body p-0">
+																								<table class="table table-bordered">
+																									<thead>
+																										<tr>
+																											<th>Group Name</th>
+																											<th width="75">Action</th>
+																										</tr>
+																									</thead>
+																									<tbody>
+																										<tr>
+																											<td>24x7</td>
+																											<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																										</tr>
+																										<tr>
+																											<td>Office Hrs</td>
+																											<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																										</tr>
+																										<tr>
+																											<td>Housekeeping Hrs</td>
+																											<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																										</tr>
+																									</tbody>
+																								</table>
+																							</div>
+																						</section>
+																					</div>														
+																				</md-content>
+																			</md-tab>
+																		</md-tabs>
+																	</md-content>
+																</div>
+																<div class="modal-footer">
+																	<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																	<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
+																</div>											
+															</script>
+															<button ng-click="open()" class="btn btn-default br-2 btnh-38">Add User</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="gridlistbar ta-r pull-right">
+													<label class="control-label">View by</label>
+													<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+													<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
+												</div>
+											</div>
+											<div class="filterfields" ng-hide="filtershow">
+												<div class="col-md-4">
+													<label for="fbtext" class="control-label">Search by text</label> 
+													<input type="text" class="form-control" id="fbtext" ng-model="text">
+												</div>
+												<div class="col-md-4">
+													<label for="fbtitle" class="control-label">Search by name</label>
+													<input type="text" class="form-control" id="fbtitle" ng-model="name">
+												</div>
+												<div class="col-md-4">
+													<label for="fblocation" class="control-label">Search by group</label>
+													<input type="text" class="form-control" id="fblocation" ng-model="group">
+												</div>
+											</div>
+										</div>
+										<div ng-if="result">									
+											<div layout="row" ng-class="statusclass">									
+												{{result}}
+											</div>
+										</div>
+										<div ng-class="class">
+											<div class="glview">
+												<md-content>
+													<md-card class="slaveusers" ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy"">
+														<a ui-sref="app.admin.user.user-profile"><img ng-src="{{imagePath}}/users/{{ user.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
+														<md-card-content>
+															<h2 class="md-title">{{ user.name }}</h2>
+															<p>{{ user.phone }}</p>
+														</md-card-content>
+														<div class="md-actions" layout="row" layout-align="center center">
+															<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.user-profile">View</a>
+															<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.user.user-profile">Edit</a>
+															<a class="btn btn-danger btn-border btn-rounded">Remove</a>
+														</div>
+													</md-card>
+												</md-content>
+											</div>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Edit Device">
+								<div class="wrap-reset"> 
+									<form name="form1" role="form" ng-submit="editFormSubmit(editDevice)">
+										<div class="modal-body">											
+											<div class="row">
+												<div class="form-group col-sm-6">
+													<label for="">Device Name</label>
+													<input type="text" name="" id="" class="form-control mb-10" ng-model="editDevice.device_name">
+												</div>
+												<div class="form-group col-sm-6">
+													<label for="">Model Name</label>
+													<input type="text" name="" id="" class="form-control mb-10" ng-model="editDevice.device_model" disabled>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-sm-6">
+													<label for="">Serial Number</label>
+													<input type="text" name="" id="" class="form-control mb-10" ng-model="editDevice.device_serial_no" disabled>
+												</div>
+												<div class="form-group col-sm-6">
+													<label for="">Technician </label><br/>
+													<select class="form-control" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="editDevice.device_technician_id">
+														<option value="">Select</option>
+													</select>
+													<!--<small class="pull-right" style="margin-bottom:-5px;"><a ui-sref="app.admin.support.technician">Add Technician</a></small>-->
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-sm-6">
+													<label for="">Device Type</label><br/>
+													<div class="btn-group btnrounded">
+														<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'master'" style="pointer-events: none;">Primary</label>
+														<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'slave'" style="pointer-events: none;">Dependent</label>
+													</div>
+													<div class="slavevalues" ng-hide="editDevice.device_type=='master'">
+														<select class="form-control mb-10" ng-options="item.device_id as item.device_name for item in deviceData track by item.device_id" ng-model="editDevice.device_master_id">
+															<option>Select Primary Device</option>
+														</select>
+													</div>
+												</div>
+												
+											</div>		
+										</div>
+										<div class="row">
+											<div class="form-group col-md-12 legend mt-20">
+												<p></p>
+												<button type="button" onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+												<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</uib-tab>
+						</uib-tabset>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

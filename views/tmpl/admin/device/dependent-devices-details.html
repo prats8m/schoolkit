@@ -25,12 +25,16 @@
 					<a ui-sref="app.admin.device.devices">
 						<div class="noback bg-blue">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Primary Devices</span>
+								<div class="col-xs-6">	
+									<div class="itxt">							
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -40,15 +44,19 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices" href="#/app/admin/device/dependent-devices">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.door.doors">
+						<div class="noback bg-slategray lt">
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.dependent_device}}</p>
-									<span class="text-lg">Dependent Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -61,18 +69,22 @@
 					<a ui-sref="app.admin.user.users">
 						<div class="noback bg-lightred">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
+								<div class="col-xs-6">
+									<div class="itxt">								
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-			</div>			
+			</div>	
 		</div>
 		
 		<div class="row">

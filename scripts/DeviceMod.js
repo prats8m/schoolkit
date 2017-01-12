@@ -19,7 +19,7 @@ app
     $scope.showConfirm = function(id,ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete Device?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
@@ -308,8 +308,8 @@ app
 		}
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		//device.registration_code = parseInt(device.registration_code);
 		device.facility_id = parseInt($rootScope.facilityId);
+		
 		$http(
 		{
 			method: 'POST', 
@@ -340,7 +340,7 @@ app
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete device?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
@@ -689,7 +689,7 @@ app.filter('deviceFeatureFilter', function() {
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler,baseURL){
+  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster,errorHandler,baseURL){
     $scope.page = {
       title: 'Dependent Device',
       subtitle: 'So much more to see at a glance.'
@@ -699,7 +699,7 @@ app
     $scope.showConfirm = function(id,ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete user?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
@@ -863,7 +863,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster,errorHandler,baseURL) {
+  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http,$rootScope, $stateParams, $cookies, toaster,errorHandler,baseURL) {
     $scope.page = {
 		title: 'Dependent Devices',
 		subtitle: 'So much more to see at a glance.'
@@ -873,7 +873,7 @@ app
     $scope.showConfirm = function(id,ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete dependent device?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
@@ -923,15 +923,13 @@ app
 		$scope.layout = 'grid';
 	};
 
-	
+	$scope.dependentDevice = [];
 	$scope.getDependentDevice = function(){
 		$http(
 		{
-			method: 'GET', 
-			//url: baseURL+'device/list-slave-of-master-device?device_master_id=1',
+			method: 'GET',
 			url: baseURL + 'device/list-slave-device?limits=8&pageNo=1&facilityId='+$cookies.get("facilityId"),
 			dataType : 'JSON', 
-			// data: device,
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -953,6 +951,36 @@ app
 		});
 	}
 	$scope.getDependentDevice();
+	
+	$scope.searchFunction = function(){
+		
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL + 'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$cookies.get("facilityId"),
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.dependentDevice = response.data.data;
+				//$scope.dependentDevice = arrayPushService.arrayPush(response.data.data, $scope.dependentDevice);
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+					
+				}
+			}	
+		}).error(function(){
+
+		});
+	}
+	//$scope.searchFunction();
 	
 	$scope.orderByMe = function(x) {
 		alert(x);

@@ -25,12 +25,16 @@
 					<a ui-sref="app.admin.device.devices">
 						<div class="noback bg-blue">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Primary Devices</span>
+								<div class="col-xs-6">	
+									<div class="itxt">							
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -40,15 +44,19 @@
 			
 			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
 				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices" href="#/app/admin/device/dependent-devices">
-						<div class="noback bg-greensea">
+					<a ui-sref="app.admin.door.doors">
+						<div class="noback bg-slategray lt">
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.dependent_device}}</p>
-									<span class="text-lg">Dependent Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -61,23 +69,28 @@
 					<a ui-sref="app.admin.user.users">
 						<div class="noback bg-lightred">						
 							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
+								<div class="col-xs-6">
+									<div class="itxt">								
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-			</div>			
+			</div>	
+			
 		</div>
 		
 		<div class="row">
 			<div class="col-md-4">
-				<section class="tile tile-simple">
+				<!-- <section class="tile tile-simple">
 					<div class="tile-widget p-30 text-center">
 						<div class="thumb thumb-xxll mb-20">
 							<img class="img-circle" src="images/device/1.jpg" alt="">
@@ -93,22 +106,50 @@
 								<h2 class="m-0">{{details.device_slave_count}}</h2>
 								<span class="text-transparent-white">Dependent Devices</span>
 							</li>
-							<!--<li class="tcol bg-blue dker p-10">
+							<li class="tcol bg-blue dker p-10">
 								<h2 class="m-0">3</h2>
 								<span class="text-transparent-white">Users</span>
-							</li>-->
+							</li>
 						</ul>
 					</div>  
-				</section> 
+				</section> -->
+				<section class="tile tile-simple">
+					<div class="tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20">
+							<img class="img-circle" src="images/device/1.jpg" alt="">
+						</div>
+						<h3 class="mb-10"><strong>{{details.device_name}}</strong></h3>
+						<span class="text-muted">{{details.device_model}} </span>
+						<span class="text-muted"><span ng-repeat="(key,features) in details.features">{{key|uppercase}}<span ng-if="!$last">&nbsp;|</span> </span></span>
+						<div class="mt-40">
+							<a ui-sref="app.admin.device.dependent-devices({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-blue">Add Device</a>
+							<a ui-sref="app.admin.user.users" class="btn btn-rounded-20 btn-sm btn-lightred ml-5 mr-5">Add User</a>
+							<a ui-sref="app.admin.settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-slategray">View Settings</a>
+							<a ui-sref="app.admin.service-plan" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Plan</a>
+						</div>
+					</div> 
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol p-10">
+								<h2 class="m-0">{{details.device_slave_count}}</h2>
+								<span class="text-transparent-white">Dependent Devices</span>
+							</li>
+							<li class="tcol bg-blue dker p-10">
+								<h2 class="m-0">3</h2>
+								<span class="text-transparent-white">Users</span>
+							</li>
+						</ul>
+					</div>  
+				</section>
 				
-				<section class="tile tile-simple"> 
+				<!-- <section class="tile tile-simple"> 
 					<div class="tile-header">
 						<h1 class="custom-font"><strong>Description</strong></h1>
 					</div> 
 					<div class="tile-body">
 						<p class="text-default lt">The ELIKA 460 will feature a white color option which presents a clean modern look. This will be the first model to hit the market. Multiple wireless connectivity options with residential and commercial capabilities make the ideal system for any application.</p> 
 					</div> 
-				</section> 
+				</section> --> 
 			</div>
 			
 			<div class="col-md-8" ng-controller="DeviceDetailsCtrl"> 
@@ -116,17 +157,15 @@
 					<div class="tile-body p-0"> 
 						<uib-tabset class="tabs-dark"> 
 							<uib-tab heading="Device Detail">
-								<div class="wrap-reset"> 
-									<div class="profile-settings"> 
-									
-										<div class="row">
-											<div class="form-group col-md-12 legend">
+								
+								<div class="wrap-reset">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group legend">
 												<h4><strong>Device</strong> Details</h4>
 											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-sm-12 profiledetail">
+											
+											<div class="form-group profiledetail">
 												<p><label>Facility Name</label> {{details.facility_name}}</p>
 												<p><label>Device Name</label> {{details.device_name}}</p>
 												<p><label>Model Name</label> {{details.device_model}}</p>
@@ -135,19 +174,15 @@
 												<p><label>Technician</label> {{details.technician_name}}</p>
 												<!--<p><label>Door</label> {{details.device_name}}</p>-->
 												
-												<p><label>Features</label> <span ng-repeat="(key,features) in details.features">{{key|uppercase}}<span ng-if="!$last">&nbsp;|</span> </span></p>
+												<!-- <p><label>Features</label> <span ng-repeat="(key,features) in details.features">{{key|uppercase}}<span ng-if="!$last">&nbsp;|</span> </span></p> -->
 												<!--<p><label>Features</label> Wifi &nbsp;|&nbsp; RFID &nbsp;|&nbsp; BLE &nbsp;|&nbsp; Camera</p>-->												
-											</div>											
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12 legend mb-20">
-												<h4><strong>Device</strong> Status</h4>
 											</div>
 										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12">													
+										<div class="col-md-6">
+											<div class="form-group legend">
+												<h4><strong>Device</strong> Status</h4>
+											</div>
+											<div class="form-group">													
 												<div class="tile-body p-0">
 													<table class="table table-bordered dstatus">
 														<thead>
@@ -167,9 +202,9 @@
 												</div>
 											</div>
 										</div>
-										
 									</div>
 								</div>
+							
 							</uib-tab>
 							<uib-tab heading="Dependent Devices">
 								<div class="wrap-reset"> 
@@ -290,7 +325,7 @@
 																	</div>
 																</form>		
 															</script>
-															<button ng-click="open()" class="btn btn-default br-2 btnh-38">Add Device</button>
+															
 														</div>
 													</div>
 												</div>
@@ -685,7 +720,7 @@
 																	<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 																</div>											
 															</script>
-															<button ng-click="open()" class="btn btn-default br-2 btnh-38">Add User</button>
+															<!-- <button ng-click="open()" class="btn btn-default br-2 btnh-38">Add User</button> -->
 														</div>
 													</div>
 												</div>

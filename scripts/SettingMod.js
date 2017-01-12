@@ -16,6 +16,7 @@ app
 	
 	$scope.device_id = $stateParams.device_id;
 	$rootScope.doorList = [];
+	$scope.relays = [];
 	$scope.getDoorsList = function(){
 		$http(
 		{
@@ -79,9 +80,7 @@ app
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
 					$location.path('/core/login');return false;
-				}else{
-							
-					
+				}else{		
 					toaster.pop('error',response.msg.replace(/_/g,' '));
 				}
 			}
