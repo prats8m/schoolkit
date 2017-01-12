@@ -100,14 +100,14 @@
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
 											<div class="modal-body">
 												<div class="row overflow">
-													<div class="col-md-6">
+													<div class="col-md-12">
 														<label for="">Device Name</label>
 														<input type="text" name="device_name" ng-model="device.device_name" id="" class="form-control mb-10" placeholder="" required>
 													</div>
-													<div class="col-md-6">
+													<!-- <div class="col-md-6">
 														<label for="">Model Name</label>
 														<input type="text" name="" id="" class="form-control" placeholder="">
-													</div>
+													</div> -->
 													
 													<!--<div class="col-md-6 last">
 														<div class="form-group">
@@ -130,15 +130,15 @@
 												
 												
 												<div class="form-group">
-													<label for="">Device Type</label><br/>
+													<label for="">Device Type </label><br/>
 													<div class="btn-group btnrounded" ng-init="device.device_type='master'">
 														<label class="btn btn-default" ng-model="device.device_type" uib-btn-radio="'master'">Primary</label>
 														<label class="btn btn-default" ng-model="device.device_type" uib-btn-radio="'slave'">Dependent</label>
 													</div>
 													<div class="slavevalues" ng-hide="device.device_type=='master'">
-														<select class="form-control mb-10">
+														<select class="form-control mb-10" ng-model="device.device_master_id" ng-options="item.device_id as item.device_name for item in deviceList">
 															<option>Select Primary Device</option>
-															<option value=2>Reception Room</option>
+															<!-- <option value=2>Reception Room</option>
 															<option value=3>Conference Room</option>
 															<option value=4>Server Room</option>
 															<option value=5>Meeting Room</option>
@@ -146,7 +146,7 @@
 															<option value=7>Boardroom</option>
 															<option value=8>Managers Room</option>
 															<option value=9>Director Room</option>
-															<option value=10>Inventory Room</option>
+															<option value=10>Inventory Room</option> -->
 														</select>
 													</div>
 												</div>
@@ -164,6 +164,13 @@
 														</select>
 														<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
 														
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-12">
+														<label for="">Doors</label><br/><!--doorList-->
+														<select ng-model="device.door_id" multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
+														</select>
 													</div>
 												</div>
 											</div>
