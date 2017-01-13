@@ -1,6 +1,5 @@
 'use strict';
 /**
-
  * @ngdoc function
  * @name minovateApp.controller:DeviceCtrl
  * @description
@@ -23,7 +22,7 @@ app
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
+		$mdDialog.show(confirm).then(function(){
 			
 			$http(
 			{
@@ -76,7 +75,7 @@ app
 		$scope.class = 'gridview';
 		$scope.layout = 'grid';
 	};
-	// http://[base_url]/door/list?searchVal=inu&limits=11&pageNo=1
+
 	$scope.getDoorsList = function(){
 		$http({
 			url: baseURL+'door/list?limits=100&pageNo=1',
@@ -89,7 +88,6 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				//toaster.pop('success',response.msg.replace(/_/g,' '));
 				$rootScope.doorList = response.data.data;
 				$scope.getTechnicianList();
 			}else{
@@ -106,7 +104,6 @@ app
 		if(!device_form.validate()){
 			return false;
 		}
-		//console.log(device);return false;
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
 		device.facility_id = parseInt($rootScope.facilityId);
@@ -183,7 +180,6 @@ app
 				}
 			}
 		}).error(function(){
-
 		});	
 	}	
 	$scope.deviceInit();
@@ -236,7 +232,6 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				//toaster.pop('success',response.msg.replace(/_/g,' '));
 				$rootScope.doorList = response.data.data;
 				$scope.getTechnicianList();
 			}else{
@@ -744,7 +739,7 @@ app.filter('deviceFeatureFilter', function() {
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster,errorHandler,baseURL){
+  .controller('DependentDevicesDetailsCtrl', function($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster,errorHandler,baseURL, $location){
     $scope.page = {
       title: 'Dependent Device',
       subtitle: 'So much more to see at a glance.'
@@ -753,7 +748,7 @@ app
 	$scope.result = '';
     $scope.showConfirm = function(id,ev) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete user?')
+		.title('Would you like to delete device?')
 		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
@@ -906,6 +901,32 @@ app
 	}
 	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
+	}
+	
+	$scope.deleteThisDevice = function(){
+		if(! confirm("Are you sure you want to delete this device.")){
+			return false;
+		}
+		$http({
+			method: 'POST', 
+			url: baseURL+'device/delete',
+			data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt($cookies.get("facilityId"))},
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$location.path('/app/admin/device/dependent-devices');
+			}else{
+				toaster.pop('error','Something went wrong.');
+			}
+		}).error(function(){
+			toaster.pop('error','Something went wrong.');
+		});
 	}
 });
 

@@ -455,6 +455,49 @@ var app = angular
     })
 	
 	
+	//admin service-plan
+		.state('app.admin.service-plan', {
+		  url: '/service-plan',
+		  controller: 'ServicePlanCtrl',
+		  templateUrl: 'views/tmpl/admin/service-plan.html'
+		})
+		
+		//admin change-service-plan
+		.state('app.admin.change-service-plan', {
+		  url: '/change-service-plan',
+		  controller: 'ChangeServicePlanCtrl',
+		  templateUrl: 'views/tmpl/admin/change-service-plan.html'
+		})
+		
+		//admin upgrade-service-plan
+		.state('app.admin.upgrade-service-plan', {
+		  url: '/upgrade-service-plan',
+		  controller: 'UpgradeServicePlanCtrl',
+		  templateUrl: 'views/tmpl/admin/upgrade-service-plan.html'
+		})
+		
+		//admin billing-information
+		.state('app.admin.billing-information', {
+		  url: '/billing-information',
+		  controller: 'BillingInfomationCtrl',
+		  templateUrl: 'views/tmpl/admin/billing-information.html'
+		})
+		
+		//admin payment
+		.state('app.admin.payment', {
+		  url: '/payment',
+		  controller: 'PaymentCtrl',
+		  templateUrl: 'views/tmpl/admin/payment.html'
+		})
+		
+		//admin payment-confirmation
+		.state('app.admin.payment-confirmation', {
+		  url: '/payment-confirmation',
+		  controller: 'PaymentConfirmationCtrl',
+		  templateUrl: 'views/tmpl/admin/payment-confirmation.html'
+		})
+	
+	
 		//admin dashboard
 		.state('app.admin.dashboard', {
 		  url: '/dashboard',
@@ -9809,6 +9852,138 @@ app.controller('AddUserCtrl',function($scope){
 		})
 
 	}
+});
+
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ServicePlanCtrl
+ * @description
+ * # ServicePlanCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('ServicePlanCtrl', function ($scope, $filter, $http) {
+    $scope.page = {
+		title: 'Elika Service Plan',
+    };
+	
+	$scope.plans = [{
+      title: 'Cloud Storage',
+	  value: 'Unlimited',
+	  price:'12.95',
+    },{
+      title: 'Cellular Data',
+	  value: '150 MB',
+	  price:'5.00',
+    },{
+      title: 'Cellular Module',
+	  value: '150 Minutes',
+	  price:'7.00',
+    },{
+      title: 'Cellular Transferred',
+	  value: '150',
+	  price:'7.00',
+    },{
+      title: 'VoIP',
+	  value: '150 Minutes',
+	  price:'8.00',
+    }];
+	
+	$scope.imagePath = 'http://localhost/elika/images/';
+	
+});
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ChangeServicePlanCtrl
+ * @description
+ * # ChangeServicePlanCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('ChangeServicePlanCtrl', function ($scope, $filter, $http) {
+    $scope.page = {
+		title: 'Change Service Plan',
+    };
+	
+	$scope.imagePath = 'http://localhost/elika/images/';
+	
+});
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:UpgradeServicePlanCtrl
+ * @description
+ * # UpgradeServicePlanCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('UpgradeServicePlanCtrl', function ($scope, $filter, $http) {
+    $scope.page = {
+		title: 'Upgrade Service Plan',
+    };
+	
+	$scope.imagePath = 'http://localhost/elika/images/';
+	
+});
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:BillingInfomationCtrl
+ * @description
+ * # BillingInfomationCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('BillingInfomationCtrl', function ($scope) {
+     $scope.page = {
+      title: 'Billing Infomation',
+      subtitle: 'Place subtitle here...'
+    };
+	
+});
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:PaymentCtrl
+ * @description
+ * # PaymentCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('PaymentCtrl', function ($scope) {
+     $scope.page = {
+      title: 'Payment',
+      subtitle: 'Place subtitle here...'
+    };
+	
+	$scope.setCVV = function(cvv){
+		$(".entercvv").hide();
+		$("#"+cvv).show();
+	}
+});
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:PaymentConfirmationCtrl
+ * @description
+ * # PaymentConfirmationCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('PaymentConfirmationCtrl', function ($scope) {
+     $scope.page = {
+      title: 'Payment Confirmation',
+      subtitle: 'Place subtitle here...'
+    };
+	
 });
 
 app.service('arrayPushService', function arrayPushService() {

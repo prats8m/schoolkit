@@ -31,13 +31,6 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$rootScope.doorList = response.data.data;
-				/* $scope.relays = [
-					{relay:'Relay 1',door_id:5,status:'Active'},
-					{relay:'Relay 2',door_id:2,status:'Active'},
-					{relay:'Relay 3',door_id:3,status:'Active'},
-					{relay:'Relay 4',door_id:4,status:'Active'}
-					
-				]; */
 			}else{
 				
 			}
@@ -52,8 +45,7 @@ app
 		{
 			method: 'GET', 
 			url: baseURL+'device/get-device-relay?device_id=' + $scope.device_id,
-			dataType : 'JSON', 
-			// data: {'device_id':1,'relays':relayArr},
+			dataType : 'JSON',
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -66,11 +58,10 @@ app
 				var tmp;
 				for(var i=0;i < data.length;i++){
 					tmp = {
-						id:data[i].drd_id,
-						device_id:data[i].drd_device_id,
 						relay:data[i].drd_relay,
 						door_id:data[i].drd_door_id,
 						status:data[i].drd_status,
+						strike_time:data[i].strike_time,
 					};
 					relayData.push(tmp);
 				}					
@@ -112,7 +103,8 @@ app
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
-					$location.path('/core/login');return false;
+					$location.path('/core/login');
+					return false;
 				}else{
 					toaster.pop('error',response.msg.replace(/_/g,' '));
 				}

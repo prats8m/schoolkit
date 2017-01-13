@@ -133,8 +133,8 @@
 														<h4><strong>Relay &amp; Door Setup</strong> <small>(Range from 500 to 4500 ms - default 1000 ms)</small></h4>
 														<div class="form-group row" ng-repeat="relay in relays">
 															<div class="col-sm-3">						
-																<label for="address1">Relay 1 strike time</label>
-																<input type="text" class="form-control" id="address1" ng-model="relay.relay" value="1000">
+																<label for="address1">Relay {{$index + 1}} strike time</label>
+																<input type="text" class="form-control" id="address1" ng-model="relay.strike_time" value="1000">
 															</div>
 															<div class="col-sm-3">
 																<label for="">Door</label><br/>
