@@ -169,8 +169,108 @@ app
 	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
 	}
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
+
+	//Create Doors
+	$rootScope.doormsg = "";
+	$rootScope.createDoor = function(door, create_door){
+		if(!create_door.validate()){
+			return false;
+		}
+		door.facility_id = parseInt($cookies.get("facilityId"));
+		$http({
+			url: baseURL + 'door/add',
+			method: 'POST',
+			dataType : 'JSON',
+			data: door,
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.doormsg = response.msg;
+				// console.log($rootScope.dashboardData);
+			}
+			else{
+				$rootScope.doormsg = response.msg;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+		}
+		//End of create door
+
+		//Search Door
+		$scope.searchFunction = function(e){
+		if(e)
+		if(e.keyCode!=13){return false;}
+		if(!$scope.searchText){
+			$scope.searchText = '';
+		}
+		$scope.pageNo = 1;
+		$scope.users =[];
+		
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.adoors = response.data.data;
+				$scope.pageNo = $scope.pageNo + 1 ;
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+			}
+		}).error(function(){
+
+		});	
+	}
+
+		//End of search door
+
+		//List Doors
+		$scope.pageNo = 1;
+		$scope.searchText = '';
+		$scope.listDoors = function(){
+			$http({
+				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo,
+				method: 'GET',
+				dataType : 'JSON',
+				headers: {
+					"Authorization": $cookies.get("token"),
+					"Content-type": "application/json"
+				}
+			})
+			.success(function(response) {
+				if(response.status == true){
+					$scope.adoors = response.data.data;
+					$scope.pageNo = $scope.pageNo + 1 ;
+					// console.log($rootScope.dashboardData);
+				}
+				else{
+					$rootScope.doormsg = response.msg;
+				}
+			})
+			.error(function (data, status, headers, config) {
+				
+		});
+		}
+		$scope.listDoors();
+		//End of list doors
+
+	$scope.imagePath = 'http://localhost/elika/elika/images';
 	
 });
 
