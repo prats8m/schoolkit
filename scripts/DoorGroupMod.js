@@ -48,13 +48,15 @@ app
       DTColumnDefBuilder.newColumnDef(2).notSortable()
     ];
 	
-	$scope.submitCreateDoorGroup = function(doorGroup){
+	
+	
+	$rootScope.submitCreateDoorGroup = function(doorGroup){
 		
 		$http(
 		{
 			method: 'POST', 
 			url: baseURL+'doorgroup/add',
-			data:{ name:doorGroup.name, door_id:doorGroup.doors, status:1, "facility_id":$cookies.get('facilityId')},
+			data:{ name:doorGroup.name, door_id:doorGroup.doors, status:1, "facility_id":parseInt($cookies.get('facilityId'))},
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -63,12 +65,41 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				
+				toaster.pop('success',response.msg.replace(/_/g , " "));
 			}else{
-				
+				toaster.pop('error',response.msg.replace(/_/g , " "));
+				if(response.msg == 'Invalid_Token'){
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		}).error(function(){
 
 		});
 	}
+	
+	$scope.getDoorsList = function(){
+		$http({
+			url: baseURL+'doorgroup/list',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				'Authorization': $cookies.get("token")
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.doorGroupList = response.data;
+			}else{
+				
+			}
+		})
+		.error(function(){
+
+		});
+	}
+	$scope.getDoorsList();
+	
+	
 });
