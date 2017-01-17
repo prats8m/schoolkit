@@ -406,7 +406,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in tusers | limitTo:totalDisplayed | filter:text | filter:name | filter:facility | filter:phone | orderBy:myOrderBy"">											
+										<md-card ng-repeat="t in technicianList | orderBy:myOrderBy"">											
 											<img ng-src="{{imagePath}}/users/{{user.imagename}}.jpg" class="md-card-image" alt="Washed Out">
 											<md-card-content>
 												<h2 class="md-title">{{ user.name }}</h2>

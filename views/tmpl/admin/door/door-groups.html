@@ -137,9 +137,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="doorgroup in doorgroups">
-											<td>{{ doorgroup.title }}</td>
-											<td>{{ doorgroup.noofdoors }}</td>
+										<tr ng-repeat="doorgroup in doorGroupList">
+											<td>{{ doorgroup.doorgroup_name }}</td>
+											<td>{{ doorgroup.doorgroup_door_count }}</td>
 											<td width="220">							
 												<div ng-controller="ModalDemo1Ctrl" style="display: inline-block;">
 													<script type="text/ng-template" id="myModalContent1.html">
@@ -149,21 +149,12 @@
 															</div>
 															<div class="modal-body">	
 																<div class="form-group overflow">
-																	<label for="">Group Name</label>
-																	<input type="text" name="" id="" class="form-control mb-10" value="Entry Gate">
+																	<label for="">Group Name </label>
+																	<input type="text" name="" id="" class="form-control mb-10" ng-model="doorgroup.doorgroup_name">
 																</div>
 																<div class="form-group">
 																	<label for="">Doors</label>
-																	<select class="form-control" Multiple chosen="{width: '100%'}">
-																		<option selected>Main Gate Front</option>
-																		<option>Main Gate Back</option>
-																		<option>Exit Gate Front</option>
-																		<option selected>Exit Gate Back</option>
-																		<option>Parking Entry Gate</option>
-																		<option>Parking Exit Gate</option>
-																		<option>Pool Gate</option>							
-																		<option>Gym Gate</option>
-																	</select>
+																	<select class="form-control" Multiple chosen="{width: '100%'}" ng-model="doorgroup.door_id" ng-options="item.door_id as item.door_name for item in doorList"></select>
 																	<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.door.doors">Add Door</a></small>
 																</div>
 															</div>
