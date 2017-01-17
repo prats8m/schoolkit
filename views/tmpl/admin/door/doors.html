@@ -215,8 +215,8 @@
 												<p style="height:auto;">{{ door.description | limitTo: 75 }}{{door.description.length > 75 ? '...' : ''}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.door.view-doors">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.door.view-doors">Edit</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.door.view-doors({door_id:door.door_id, type:'view'})">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.door.view-doors({door_id:door.door_id, type:'edit'})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
 											</div>
 										</md-card>										

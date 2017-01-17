@@ -612,9 +612,10 @@ var app = angular
 			
 				//admin door view-doors
 				.state('app.admin.door.view-doors', {
-				  url: '/view-doors',
+				  url: '/view-doors/:door_id',
 				  controller: 'ViewDoorCtrl',
-				  templateUrl: 'views/tmpl/admin/door/view-doors.html'
+				  templateUrl: 'views/tmpl/admin/door/view-doors.html',
+				  params: {type: "type"}
 				})
 			
 			//admin door door-groups
@@ -10057,4 +10058,21 @@ app.service('errorHandler',  function ($http,$location,toaster,$cookies) {
 		return true;
 	}
  });
+
+
+// app.directive('fileModel', ['$parse', function ($parse) {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, element, attrs) {
+//             var model = $parse(attrs.fileModel);
+//             var modelSetter = model.assign;
+            
+//             element.bind('change', function(){
+//                 scope.$apply(function(){
+//                     modelSetter(scope, element[0].files[0]);
+//                 });
+//             });
+//         }
+//     };
+// }]);
 app.constant('baseURL', 'http://35.162.244.123:8080/');

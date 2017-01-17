@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster) {
+  .controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService) {
      $scope.page = {
       title: 'Doors',
       subtitle: 'So much more to see at a glance.'
@@ -48,28 +48,28 @@ app
 	$scope.pageNo = 1;
 	$scope.searchText = '';
 	
-	$scope.doorsInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.data =  arrayPushService.arrayPush(response.data.data, $scope.data);
-				$scope.pageNo = $scope.pageNo + 1 ;
-			}else{
+	// $scope.doorsInit = function(){
+	// 	$http(
+	// 	{
+	// 		method: 'GET', 
+	// 		url: baseURL+'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+	// 		dataType : 'JSON', 
+	// 		headers: {
+	// 			"Content-type": "application/json",
+	// 			"Authorization": $cookies.get("token")
+	// 		}
+	// 	})
+	// 	.success(function(response){
+	// 		if(response.status == true){
+	// 			$scope.data =  arrayPushService.arrayPush(response.data.data, $scope.data);
+	// 			$scope.pageNo = $scope.pageNo + 1 ;
+	// 		}else{
 				
-			}
-		}).error(function(){
+	// 		}
+	// 	}).error(function(){
 
-		});
-	}
+	// 	});
+	// }
 	
 	$scope.facilityInit = function(){
 		$http(
@@ -146,29 +146,29 @@ app
 		$scope.dashboardInit();
 	}
 	
-	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
-				// console.log($rootScope.dashboardData);
-			}
-		})
-		.error(function (data, status, headers, config) {
+	// $scope.dashboardInit = function(){
+	// 	$http({
+	// 		url: baseURL + 'user/dashboard',
+	// 		method: 'GET',
+	// 		dataType : 'JSON',
+	// 		headers: {
+	// 			"Authorization": $cookies.get("token"),
+	// 			"Content-type": "application/json"
+	// 		}
+	// 	})
+	// 	.success(function(response) {
+	// 		if(response.status == true){
+	// 			$rootScope.dashboardData = response.data[0];
+	// 			// console.log($rootScope.dashboardData);
+	// 		}
+	// 	})
+	// 	.error(function (data, status, headers, config) {
 			
-		});
-	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
-		$scope.dashboardInit();
-	}
+	// 	});
+	// }
+	// if(!$rootScope.hasOwnProperty('dashboardData')){
+	// 	$scope.dashboardInit();
+	// }
 
 	//Create Doors
 	$rootScope.doormsg = "";
@@ -243,6 +243,7 @@ app
 		//List Doors
 		$scope.pageNo = 1;
 		$scope.searchText = '';
+		$scope.adoors = [];
 		$scope.listDoors = function(){
 			$http({
 				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo,
@@ -255,7 +256,7 @@ app
 			})
 			.success(function(response) {
 				if(response.status == true){
-					$scope.adoors = response.data.data;
+					$scope.adoors = arrayPushService.arrayPush(response.data.data,  $scope.adoors);
 					$scope.pageNo = $scope.pageNo + 1 ;
 					// console.log($rootScope.dashboardData);
 				}
@@ -283,13 +284,78 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDoorCtrl', function ($scope, $http) {
+  .controller('ViewDoorCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
      $scope.page = {
       title: 'Doors Details',
       subtitle: 'So much more to see at a glance.'
     };
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
+	$scope.imagePath = 'http://localhost:8080/elika/images';
+	// $scope.doorData = {};
+	// $scope.doorData.door_status = 1;
+	$scope.doorInit = function(){
+		$http({
+			url: baseURL + 'door/view?doorId='+$stateParams.door_id,
+				method: 'GET',
+				dataType : 'JSON',
+				headers: {
+					"Authorization": $cookies.get("token"),
+					"Content-type": "application/json" 
+				}
+		})
+		.success(function(response){
+			$scope.doorData = response.data;
+			$scope.facilityInit();
+		})
+	}	
+
+	$scope.doorInit();
+
+	$scope.facilityInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'facility/list',
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.facilityList = response.data.data;
+				$scope.doorData.facility_id = parseInt($cookies.get('facilityId'));	
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+
+	$scope.editDoordata = function(doorData, door_data){
+		$http(
+		{
+			method: 'PUT', 
+			url: baseURL+'door/edit',
+			dataType : 'JSON', 
+			data: doorData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			toaster.pop('success',response.msg.replace(/_/g," "));
+		})
+	}
+
+	if($stateParams.type == "edit"){
+		$timeout(function() {
+			$("a:contains('Edit Door')").click();
+		 });
+		}
 	
 });
 
