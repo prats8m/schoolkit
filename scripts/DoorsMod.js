@@ -370,6 +370,8 @@ app
 	}
 
 	$scope.editDoordata = function(doorData, door_data){
+		doorData.facility_id = doorData.facility.facility_id;
+		delete doorData.facility;
 		$http(
 		{
 			method: 'PUT', 

@@ -170,7 +170,7 @@
 												<div class="col-md-6 last">
 													<div class="form-group">
 														<label for="">Facility</label><br/>
-														<select class="form-control" ng-options="field.facility_name as field.facility_name for field in facilityList  track by field.id" ng-model="doorData.facility_name" >
+														<select class="form-control" ng-options="field as field.facility_name for field in facilityList track by field.facility_id" ng-model="doorData.facility" >
 														</select>
 													</div>
 												</div>
