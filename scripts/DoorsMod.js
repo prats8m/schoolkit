@@ -15,16 +15,51 @@ app
 	$rootScope.addDoors = {};
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev, door_id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete Door?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your Door has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			//Code to delete door
+			$http(
+			{
+				method: 'DELETE', 
+				url: baseURL + 'door/delete/'+door_id,
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == true){
+					$scope.result = 'Your Door has been deleted successfully.';
+					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					var adoor = $scope.adoors;
+					var tempUser = [];
+					for(var i=0;i<adoor.length;i++){
+						if(door_id != adoor[i].door_id){
+							tempUser.push(adoor[i]);
+						}
+					}
+					$scope.adoors = tempUser;
+				}else{	
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					toaster.pop('error',response.msg.replace(/_/g,' '));
+				}
+			}).error(function(){
+
+			});
+			//Code end to delete door
+
+			
 		}, function() {
 			$scope.result = 'You decided to keep Door.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
@@ -350,6 +385,49 @@ app
 			toaster.pop('success',response.msg.replace(/_/g," "));
 		})
 	}
+
+	$scope.result = '';
+    $scope.showConfirm = function(ev, door_id) {
+		var confirm = $mdDialog.confirm()		
+		.title('Would you like to delete Door?')
+		.content('')
+		.ok('Delete')
+		.cancel('Cancel')
+		.targetEvent(ev);
+		$mdDialog.show(confirm).then(function() {
+			//Code to delete door
+			$http(
+			{
+				method: 'DELETE', 
+				url: baseURL + 'door/delete/'+door_id,
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == true){
+					$location.path('/app/admin/door/doors');
+				}else{	
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					toaster.pop('error',response.msg.replace(/_/g,' '));
+				}
+			}).error(function(){
+
+			});
+			//Code end to delete door
+
+			
+		}, function() {
+			$scope.result = 'You decided to keep Door.';
+			$scope.statusclass = 'alert alert-success alert-dismissable';
+		});
+    };
 
 	if($stateParams.type == "edit"){
 		$timeout(function() {

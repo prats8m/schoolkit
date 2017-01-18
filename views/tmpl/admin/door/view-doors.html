@@ -97,7 +97,7 @@
 						<h4 class="mb-0"><strong>{{doorData.door_name}}</strong></h4>
 						<span class="text-muted">{{doorData.door_status == 1 ? 'Active' : 'Inactive'}}</span>
 						<div class="mt-40">
-							<button class="btn btn-rounded-20 btn-sm btn-lightred">Delete Gate</button>
+							<button class="btn btn-rounded-20 btn-sm btn-lightred" ng-click="showConfirm($event, doorData.door_id)">Delete Gate</button>
 						</div>
 					</div>
 					<div class="tile-body text-center bg-blue p-0"> 
@@ -170,7 +170,7 @@
 												<div class="col-md-6 last">
 													<div class="form-group">
 														<label for="">Facility</label><br/>
-														<select class="form-control" ng-options="field.facility_name as field.facility_name for field in facilityList" ng-model="doorData.facility_name" >
+														<select class="form-control" ng-options="field.facility_name as field.facility_name for field in facilityList  track by field.id" ng-model="doorData.facility_name" >
 														</select>
 													</div>
 												</div>
