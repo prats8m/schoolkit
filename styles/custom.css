@@ -77,7 +77,7 @@ textarea.form-control {
     overflow: hidden
 }
 
-.profilephoto #profilep-2 {
+.profilephoto .user-profilep {
     font-size: 13px;
     position: absolute;
     left: -75px;
@@ -87,7 +87,7 @@ textarea.form-control {
     background-color: #eee
 }
 
-.profilephoto.csvupload #profilep-2 {
+.profilephoto.csvupload .user-profilep {
     left: 14px;
     opacity: 0;
     width: 115px
