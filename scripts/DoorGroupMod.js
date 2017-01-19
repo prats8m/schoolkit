@@ -78,7 +78,7 @@ app
 		});
 	}
 	
-	$scope.getDoorsList = function(){
+	$scope.getDoorGroupList = function(){
 		$http({
 			url: baseURL+'doorgroup/list',
 			method: 'GET',
@@ -96,10 +96,59 @@ app
 			}
 		})
 		.error(function(){
+		});
+	}
+	$scope.getDoorGroupList();
+	
+	$scope.getDoorsList = function(){
+		$http({
+			url: baseURL+'door/list?limits=100&pageNo=1',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				'Authorization': $cookies.get("token")
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.doorList = response.data.data;
+			}else{
+				
+			}
+		})
+		.error(function(){
 
 		});
 	}
 	$scope.getDoorsList();
+	
+	$rootScope.doorGroupSubmit = function(doorGroup){
+		var data = {};
+		data.name = doorGroup.doorgroup_name;
+		data.doorgroup_id = doorGroup.door_id;
+		data.status = 1;
+		$http({
+			url: baseURL+'doorgroup/edit',
+			method: 'PUT',
+			dataType : 'JSON',
+			data : data,
+			headers: {
+				"Content-type": "application/json",
+				'Authorization': $cookies.get("token")
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				//$rootScope.doorList = response.data.data;
+			}else{
+				
+			}
+		})
+		.error(function(){
+
+		});
+	}
 	
 	
 });

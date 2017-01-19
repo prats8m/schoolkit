@@ -244,117 +244,121 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in usergroups | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
-											<img ng-src="{{imagePath}}/usergroups/{{user.imagename}}.jpg" class="md-card-image img100percent" alt="Washed Out">
+										<md-card ng-repeat="user in usergroups | orderBy:myOrderBy">
+											<img ng-src="http://elikastaging.ml/images/usergroups/24x7.jpg" class="md-card-image img100percent" alt="Washed Out">
 											<md-card-content>
-												<h2 class="md-title">{{ user.title }}</h2>												
-												<p>{{ user.noofusers }} Users</p>
+												<h2 class="md-title">{{ user.usergroup_name }}</h2>												
+												<p>{{ user.usergroup_user_count }} Users</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<div ng-controller="ModalDemo1Ctrl">
-													<script type="text/ng-template" id="myModalContent1.html">
-														<form name="form1" role="form">
-															<div class="modal-header">
-																<h4 class="modal-title custom-font">Edit User Groups</h4>
-															</div>
-															<div class="modal-body">											
-																<div class="form-group">
-																	<label for="">Group Name</label>
-																	<input type="text" name="" id="" class="form-control mb-10" value="Office Hours" placeholder="">
-																</div>
-																<div class="form-group row">						
-																	<div class="col-md-6">
-																		<label for="">User Group Photo</label>
-																		<div class="profilephoto">
-																			<input ui-jq="filestyle" type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-																			<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
-																		</div>
-																	</div>
-																	<div class="col-md-6">
-																		<label for="">Facility</label><br/>
-																		<select class="form-control" disabled>
-																			<option selected>USA Corporate Services</option>
-																			<option>Aerzen USA Corporation</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group mt-10">
-																	<div class="tile-body p-0">
-																		<table class="table table-bordered">
-																			<thead>
-																				<tr>
-																					<th>Door/Door Groups</th>
-																					<th width="225">Schedule Groups</th>
-																				</tr>
-																			</thead>
-																			<tbody>
-																				<tr>
-																					<td>Main Gate Front</td>
-																					<td>
-																						<select class="form-control">
-																							<option>Select Schedule Group</option>
-																							<option selected>Office-Weekdays</option>
-																							<option>Office-Weekend</option>
-																							<option>Cleaning-Weekdays</option>
-																							<option>Cleaning-Weekend</option>
-																						</select>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>Entry Gate</td>
-																					<td>
-																						<select class="form-control">
-																							<option>Select Schedule Group</option>
-																							<option>Office-Weekdays</option>
-																							<option>Office-Weekend</option>
-																							<option>Cleaning-Weekdays</option>
-																							<option>Cleaning-Weekend</option>
-																						</select>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>Main Gate Back</td>
-																					<td>
-																						<select class="form-control">
-																							<option>Select Schedule Group</option>
-																							<option>Office-Weekdays</option>
-																							<option>Office-Weekend</option>
-																							<option selected>Cleaning-Weekdays</option>
-																							<option>Cleaning-Weekend</option>
-																						</select>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>Pool Gate</td>
-																					<td>
-																						<select class="form-control">
-																							<option>Select Schedule Group</option>
-																							<option>Office-Weekdays</option>
-																							<option>Office-Weekend</option>
-																							<option>Cleaning-Weekdays</option>
-																							<option selected>Cleaning-Weekend</option>
-																						</select>
-																					</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</div>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
-															</div>
-														</form>								
-													</script>
-													<a ng-click="open()" class="btn btn-success btn-border btn-rounded">Edit</a>
+												<div ng-controller="ModalUserGroupCtrl">
+													<a ng-click="open(user)" class="btn btn-success btn-border btn-rounded">Edit</a>
 												</div>												
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,user.usergroup_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
 								</div>
 							</div>
+							
+							<script type="text/ng-template" id="myModalContent1.html">
+								<form name="form1" role="form" ng-submit="updateUserGroup(usergroup)">
+									<div class="modal-header">
+										<h4 class="modal-title custom-font">Edit User Groups</h4>
+									</div>
+									<div class="modal-body">
+										<input type="hidden" ng-model="usergroup.usergroup_id">
+										<div class="form-group">
+											<label for="">Group Name</label>
+											<input type="text" name="" id="" class="form-control mb-10" ng-model="usergroup.usergroup_name" placeholder="">
+										</div>
+										<div class="form-group row">						
+											<div class="col-md-6">
+												<label for="">User Group Photo</label>
+												<div class="profilephoto">
+													<input ui-jq="filestyle" type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+													<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<label for="">Facility</label><br/>
+												<!-- <select class="form-control" ng-model="usergroup.facility_id" disabled>
+													<option selected>USA Corporate Services</option>
+													<option>Aerzen USA Corporation</option>
+												</select> -->
+												<input type="text" class="form-control mb-10" ng-model="usergroup.facility_id" disabled/>
+											</div>
+										</div>
+										<div class="form-group mt-10">
+											<div class="tile-body p-0">
+												<table class="table table-bordered">
+													<thead>
+														<tr>
+															<th>Door/Door Groups</th>
+															<th width="225">Schedule Groups</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Main Gate Front</td>
+															<td>
+																<select class="form-control">
+																	<option>Select Schedule Group</option>
+																	<option selected>Office-Weekdays</option>
+																	<option>Office-Weekend</option>
+																	<option>Cleaning-Weekdays</option>
+																	<option>Cleaning-Weekend</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<td>Entry Gate</td>
+															<td>
+																<select class="form-control">
+																	<option>Select Schedule Group</option>
+																	<option>Office-Weekdays</option>
+																	<option>Office-Weekend</option>
+																	<option>Cleaning-Weekdays</option>
+																	<option>Cleaning-Weekend</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<td>Main Gate Back</td>
+															<td>
+																<select class="form-control">
+																	<option>Select Schedule Group</option>
+																	<option>Office-Weekdays</option>
+																	<option>Office-Weekend</option>
+																	<option selected>Cleaning-Weekdays</option>
+																	<option>Cleaning-Weekend</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<td>Pool Gate</td>
+															<td>
+																<select class="form-control">
+																	<option>Select Schedule Group</option>
+																	<option>Office-Weekdays</option>
+																	<option>Office-Weekend</option>
+																	<option>Cleaning-Weekdays</option>
+																	<option selected>Cleaning-Weekend</option>
+																</select>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+										<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+									</div>
+								</form>								
+							</script>
+							
 						</div>
 					</div>	
 				</section>

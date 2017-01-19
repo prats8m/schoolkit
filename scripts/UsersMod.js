@@ -1319,7 +1319,7 @@ app
 	};
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete User Group?')
 		.content('The standard chunk of Lorem Ipsum used.')
@@ -1327,30 +1327,13 @@ app
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your User Group has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			$scope.userGroupDelete(id);
+			
 		}, function() {
 			$scope.result = 'You decided to keep User Group.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
-	
-	$scope.usergroups = [{
-      title: 'Office Hours',
-	  imagename:'officehrs',
-	  facility: 'USA Corporate Services',
-	  noofusers: '72',
-    },{
-      title: '24X7 Hours',
-	  imagename:'24x7',
-	  facility: 'Belfor Service Plus',
-	  noofusers: '58',
-    },{
-      title: 'Housekeeping Hours',
-	  imagename:'housekeeping',
-	  facility: 'Mitsui & Company Inc',
-	  noofusers: '15',
-    }];		
 
     $rootScope.saveUserGroup = function(usergroup, group_form){
     	if(!group_form.validate()){
@@ -1387,6 +1370,80 @@ app
 				else{
 					$rootScope.user_group_error = response.msg.replace(/_/g,' ');
 				}	
+			}
+		}).error(function(){
+
+		});
+    }
+	
+	$scope.getUserGroupList = function(){
+    	$http({
+			method: 'GET', 
+			url: baseURL + 'usergroup/list?limit=100&pageNo=1',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.usergroups = response.data.data;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+    }
+	$scope.getUserGroupList();
+	
+	$scope.userGroupDelete = function(id){
+    	$http({
+			method: 'GET', 
+			url: baseURL + 'usergroup/delete?usergroup_id='+id,
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.result = 'Your User Group has been deleted successfully.';
+				$scope.statusclass = 'alert alert-danger alert-dismissable';
+				var ug = $scope.usergroups;
+				var temp = [];
+				for(var i=0; i < ug.length; i++){
+					if(ug[i].usergroup_id != id)
+						temp.push(ug[i]);
+				}
+				$scope.usergroups = temp;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+    }
+	
+	$rootScope.updateUserGroup = function(data){
+		data.facility_id = parseInt(data.facility_id);
+    	$http({
+			method: 'PUT', 
+			url: baseURL + 'usergroup/edit',
+			dataType : 'JSON',
+			data:data,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				toaster.pop('success',response.msg.replace(/_/g,' '));
+			}else{
+				
 			}
 		}).error(function(){
 

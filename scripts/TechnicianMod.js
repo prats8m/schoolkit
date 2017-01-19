@@ -50,8 +50,7 @@ app
 		{
 			method: 'GET', 
 			url: baseURL+'technician/list',
-			dataType : 'JSON', 
-			//data: device,
+			dataType : 'JSON',
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")

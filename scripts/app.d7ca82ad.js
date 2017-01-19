@@ -2931,6 +2931,66 @@ app
     };
   })
   
+  .controller('ModalDoorGroupCtrl', function ($scope, $uibModal, $log ,$rootScope, $cookies) {
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function(doorgroup) {
+       
+		var modalInstance = $uibModal.open({
+			templateUrl: 'myModalContent1.html',
+			controller: 'ModalInstanceCtrl',
+			resolve: {
+			  items: function () {
+				return $scope.items;
+			  }
+			}
+		});
+		var door_ids = [];
+		for(var i=0; i < doorgroup.door.length; i++){
+			door_ids.push(doorgroup.door[i].door_id);
+		}
+		$rootScope.doorgroup = {};
+		$rootScope.doorgroup.doorgroup_name = doorgroup.doorgroup_name;
+		$rootScope.doorgroup.door_id = door_ids;
+				
+		modalInstance.result.then(function (selectedItem) {
+			$scope.selected = selectedItem;
+		}, function () {
+			$log.info('Modal dismissed at: ' + new Date());
+		});
+    };
+  })
+  
+  .controller('ModalUserGroupCtrl', function ($scope, $uibModal, $log ,$rootScope, $cookies) {
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function(usergroup) {
+
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent1.html',
+        controller: 'ModalInstanceCtrl',
+       // size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+	  $rootScope.usergroup = {};
+	  $rootScope.usergroup.usergroup_id = usergroup.usergroup_id;
+	  $rootScope.usergroup.usergroup_name = usergroup.usergroup_name;
+	  $rootScope.usergroup.facility_id = $cookies.get("facilityId");
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+  })
+  
 
   // Please note that $modalInstance represents a modal window (instance) dependency.
   // It is not the same as the $modal service used above.
