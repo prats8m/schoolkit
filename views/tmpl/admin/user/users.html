@@ -128,7 +128,7 @@
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Account">
 														<span class="error">{{user_error}}</span>
-														<form  ng-validate="validationOptions" id="user_form" name="user_form">
+														<form  ng-validate="validationOptions" id="user_form" name="user_form" enctype="multipart/form-data">
 														<md-content>
 															<div class="account">
 																<div class="overflow">
@@ -156,8 +156,8 @@
 																		<div class="form-group">
 																			<label for="">Profile Photo</label>
 																			<div class="profilephoto">
-																				<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1" file-model="userData.photo">
-																				<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+																				<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-3" tabindex="-1" file-model="userData.photo" name="photo">
+																				<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-3" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 																			</div>
 																		</div>
 																	</div>

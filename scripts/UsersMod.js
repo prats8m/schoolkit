@@ -8,7 +8,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout) {
+  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, fileUpload) {
 
      $scope.page = {
       title: 'Users',
@@ -173,7 +173,7 @@ app
             rangelength: [10,12]
         }
 		}
-    })){
+   		 })){
 			return false;
 		}
 		if(userData == undefined){
@@ -187,6 +187,10 @@ app
 			alert("Password and Confirm password not matched");
 			return false;
 		}
+		var fileData = {};
+		fileData.file = userData.photo;
+		userData.photo = userData.photo.name;
+		delete userData.photo;
 		$http(
 		{
 			method: 'POST', 
@@ -199,6 +203,20 @@ app
 			}
 		})
 		.success(function(response){
+			fileData.user_id = response.data.user_id;
+			var formData = fileData.file;
+			console.log(fileData.file);
+ 			$http(
+			{
+				method: 'POST', 
+				url: baseURL+'user/pic-upload',
+				dataType : 'JSON', 
+				data: {"user_id": response.data.user_id, "file":formData},
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			});
 			$rootScope.user_error = "";
 			$rootScope.accesscode = {};
 			var x = Math.floor(Math.random()*9999999999) + 10000;
