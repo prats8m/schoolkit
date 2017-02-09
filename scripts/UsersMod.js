@@ -1394,10 +1394,16 @@ app
 		});
     }
 	
-	$scope.getUserGroupList = function(){
+	$scope.getUserGroupList = function(e){console.log(e);
+		if(e)
+		if(e.keyCode!=13){return false;}
+		if(!$scope.searchValue){
+			$scope.searchValue = '';
+		}
+		$scope.usergroups = [];
     	$http({
 			method: 'GET', 
-			url: baseURL + 'usergroup/list?limit=100&pageNo=1',
+			url: baseURL + 'usergroup/list?limit=100&pageNo=1&searchVal='+$scope.searchValue,
 			dataType : 'JSON',
 			headers: {
 				"Content-type": "application/json",

@@ -212,8 +212,8 @@
 								<div class="col-md-8">
 									<div class="row">
 										<div class="col-md-6 search first">
-											<input type="text" class="form-control" placeholder="Search by text....">
-											<button class="btn btn-default br-2-r" type="button">Search</button>
+											<input type="text" class="form-control" ng-model="searchValue" ng-keyup="getUserGroupList($event)" placeholder="Search by text....">
+											<button class="btn btn-default br-2-r" ng-click="getUserGroupList()" type="button">Search</button>
 										</div>
 										<div class="col-md-6 profilephoto csvupload ta-r">
 											<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
@@ -228,7 +228,7 @@
 									</div>
 									<div class="col-md-3">
 										<label for="fbtitle" class="control-label">Search by title</label>
-										<input type="text" class="form-control" id="fbtitle" ng-model="title">
+										<input type="text" class="form-control" id="fbtitle" ng-model="usergroup_name">
 									</div>
 									<div class="col-md-3">
 										<label for="fblocation" class="control-label">Search by facility</label>

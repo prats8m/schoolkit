@@ -1,16 +1,86 @@
 <header class="clearfix">
 	<div class="branding">
-		<a class="brand" ui-sref="app.dashboard">
+		<a class="brand" ui-sref="app.admin.dashboard">
 			<span><strong>Elika</strong> Access System</span>
 		</a>
 		<a href="javascript:;" class="offcanvas-toggle visible-xs-inline" offcanvas-sidebar><i class="fa fa-bars"></i></a>
 	</div>
+	
+	<div class="topmenu pull-left">
+		<ul class="nav-right list-inline headmenu">
+			<li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Devices &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.device.devices">Primary Devices</a></li>
+					<li><a ui-sref="app.admin.device.dependent-devices">Dependent Devices</a></li>
+				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Users &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.user.users">Users</a></li>
+					<li><a ui-sref="app.admin.user.add-user">Add User</a></li>
+					<li><a ui-sref="app.admin.user.user-groups">User Groups</a></li>
+				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Doors &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.door.doors">Doors</a></li>
+					<li><a ui-sref="app.admin.door.door-groups">Door Groups</a></li>
+				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Schedules &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.schedule.schedule-groups">Schedule Groups</a></li>
+					<li><a ui-sref="app.admin.schedule.add-schedule">Add Schedule</a></li>
+					<li><a ui-sref="app.admin.schedule.holiday-schedules">Holiday Schedules</a></li>
+				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Administrator &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.administrator.roles">Roles</a></li>
+					<li><a ui-sref="app.admin.administrator.add-roles">Add Roles</a></li>
+					<li><a ui-sref="app.admin.administrator.admin">Admin</a></li>
+				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Camera DVR &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.camera.camera-dvr">Live and Recorded Feeds</a></li>
+					<li><a ui-sref="app.admin.setup.camera-directory">Camera Directory</a></li>
+					<li><a ui-sref="app.admin.setup.dvr-directory">DVR Directory</a></li>
+					<li><a ui-sref="app.admin.setup.dvrcamera-directory">DVR Camera Directory</a></li>
+					<!--li><a ui-sref="app.admin.setup.eagle-eye-directory">Eagle Eye Directory</a></li-->
+				</ul>
+			</li>
+			<li><a href=""><span>Activity</span></a></li>
+			<li><a href=""><span>Reports</span></a></li>
+		</ul>
+	</div> 
+	
+	
 	<ul class="nav-right pull-right list-inline headmenu">
 		<li class="dropdown messages" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
 				<img src="images/bell.png" class="sm-img"><span class="badge bg-lightred">4</span>
 			</a>
-			<div class="dropdown-menu pull-right with-arrow panel panel-default animated littleFadeInDown" role="menu">
+			<div class="dropdown-menu pull-right with-arrow panel panel-default animated littleFadeInDown notification" role="menu">
 				<div class="panel-heading">You have <strong>1</strong> messages and <strong>3</strong> notifications.</div>
 				<ul class="list-group">
 					<li class="list-group-item">
@@ -71,97 +141,16 @@
 				</div>
 			</div>
 		</li>
-
-		<!--li class="dropdown notifications" uib-dropdown>
-			<a href class="dropdown-toggle" uib-dropdown-toggle>
-				<fa name="history"></fa><span class="badge bg-lightred">5</span>
-			</a>
-			<div class="dropdown-menu pull-right with-arrow panel panel-default animated littleFadeInLeft" role="menu">
-				<div class="panel-heading">You have <strong>3</strong> history and <strong>2</strong> events.</div>
-				<ul class="list-group">
-					<li class="list-group-item">
-						<a ui-sref="app.admin.help.history-events" class="media">
-							<div class="media-left">
-								<span class="media-object media-icon bg-danger">
-									<fa name="ban"></fa>
-								</span>
-							</div>
-							<div class="media-body">
-								<span class="block">User Imrich cancelled account</span>
-								<small class="text-muted">6 minutes ago</small>
-							</div>
-						</a>
-					</li>
-					<li class="list-group-item">
-						<a ui-sref="app.admin.help.history-events" class="media">
-							<div class="media-left">
-								<span class="media-object media-icon bg-primary">
-									<fa name="bolt"></fa>
-								</span>
-							</div>
-							<div class="media-body">
-								<span class="block">New user registered</span>
-								<small class="text-muted">12 minutes ago</small>
-							</div>
-						</a>
-					</li>
-					<li class="list-group-item">
-						<a ui-sref="app.admin.help.history-events" class="media">
-							<div class="media-left">
-								<span class=" media-object media-icon bg-greensea">
-									<fa name="lock"></fa>
-								</span>
-							</div>
-							<div class="media-body">
-								<span class="block">User Robert locked account</span>
-								<small class="text-muted">18 minutes ago</small>
-							</div>
-						</a>
-					</li>
-					<li class="list-group-item">
-						<a ui-sref="app.admin.help.history-events" class="media">
-							<div class="media-left">
-								<span class="media-object media-icon bg-danger">
-									<fa name="ban"></fa>
-								</span>
-							</div>
-							<div class="media-body">
-								<span class="block">User Imrich cancelled account</span>
-								<small class="text-muted">6 minutes ago</small>
-							</div>
-						</a>
-					</li>
-					<li class="list-group-item">
-						<a ui-sref="app.admin.help.history-events" class="media">
-							<div class="media-left">
-								<span class="media-object media-icon bg-primary">
-									<fa name="bolt"></fa>
-								</span>
-							</div>
-							<div class="media-body">
-								<span class="block">New user registered</span>
-								<small class="text-muted">12 minutes ago</small>
-							</div>
-						</a>
-					</li>
-				</ul>
-
-				<div class="panel-footer">
-					<a ui-sref="app.admin.help.history-events">Show all notifications <fa name="angle-right" class="pull-right"></fa></a>
-				</div>
-			</div>
-		</li-->
 		
 		<li class="dropdown nav-profile" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
 				<img src="images/avatar.jpg" alt="" class="img-circle size-30x30">
-				<span>Elika Admin <fa name="angle-down"></fa></span>
+				<span>Jhon Rockwell <fa name="angle-down"></fa></span>
 			</a>
-			<ul class="dropdown-menu animated littleFadeInRight" role="menu">
-				<li><a ui-sref="app.admin.help.diagnostics"><fa name="user-md"></fa>Diagnostics</a></li>
-				<li><a ui-sref="app.admin.help.faqs"><fa name="question"></fa>Help/FAQs</a></li>
-				<li><a ui-sref="app.admin.settings"><fa name="cog"></fa>Settings</a></li>
-				<li><a ui-sref="core.login"><fa name="sign-out"></fa>Logout</a></li>
+			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">
+				<li><a ui-sref="app.admin.profile-settings"><i class="fa fa-cog" aria-hidden="true"></i> Profile Settings</a></li>
+				<li><a ui-sref="app.admin.help.faqs"><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li>
+				<li><a ui-sref="core.login"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
 			</ul>
 		</li>
 	</ul>

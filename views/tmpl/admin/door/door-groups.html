@@ -98,11 +98,11 @@
 											<div class="modal-body">						
 												<div class="form-group overflow">
 													<label for="">Group Name</label>
-													<input type="text" name="" ng-model="doorGroup.name" id="" class="form-control" placeholder="">
+													<input type="text" name="group_name" ng-model="doorGroup.name" id="" class="form-control" placeholder="" required>
 												</div>
 												<div class="form-group">
 													<label for="">Doors</label>
-													<select class="form-control" ng-model="doorGroup.doors" Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
+													<select class="form-control" name="door" ng-model="doorGroup.doors_id" Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
 
 													</select>
 													<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
@@ -142,9 +142,13 @@
 											<td>{{ doorgroup.door_count }}</td>
 											<td width="220">							
 												<div ng-controller="ModalDoorGroupCtrl" style="display: inline-block;">
+												
+								
+												
+												
 													<button type="button" ng-click="open(doorgroup)" class="btn btn-success btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-edit"></i> <span>Edit</span></button>
 												</div>
-												<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="showConfirm($event)"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
+												<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="showConfirm($event,doorgroup.doorgroup_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
 											</td>
 										</tr>
 									</tbody>
@@ -158,11 +162,11 @@
 									<div class="modal-body">	
 										<div class="form-group overflow">
 											<label for="">Group Name </label>
-											<input type="text" name="" id="" class="form-control mb-10" ng-model="doorgroup.doorgroup_name">
+											<input type="text" name="group_name" id="" class="form-control mb-10" ng-model="doorgroup.doorgroup_name" required />
 										</div>
 										<div class="form-group">
 											<label for="">Doors</label>
-											<select class="form-control" Multiple chosen="{width: '100%'}" ng-model="doorgroup.door_id" ng-options="item.door_id as item.door_name for item in doorList">
+											<select class="form-control" name="doors" Multiple chosen="{width: '100%'}" ng-model="doorgroup.door_id" ng-options="item.door_id as item.door_name for item in doorList">
 											</select>
 											<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.door.doors">Add Door</a></small>
 										</div>

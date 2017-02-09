@@ -167,6 +167,35 @@ var app = angular
       controller: 'CreatePasswordCtrl',
       templateUrl: 'views/tmpl/create-new-password.html'
     })
+	
+	//admin device view-device
+	.state('app.admin.device.view-device', {
+	  url: '/view-primary-device/:device_id',
+	  controller: 'ViewDeviceCtrl',
+	  templateUrl: 'views/tmpl/admin/device/view-device.html'
+	})
+	
+	//admin device edit-device
+	.state('app.admin.device.edit-device', {
+	  url: '/edit-primary-device/:device_id',
+	  controller: 'EditDeviceCtrl',
+	  templateUrl: 'views/tmpl/admin/device/edit-device.html'
+	})
+	
+	//admin device view-dependent-device
+	.state('app.admin.device.view-dependent-device', {
+	  url: '/view-dependent-device/:device_id',
+	  controller: 'ViewDependentDeviceCtrl',
+	  templateUrl: 'views/tmpl/admin/device/view-dependent-device.html'
+	})
+	
+	//admin device edit-dependent-device
+	.state('app.admin.device.edit-dependent-device', {
+	  url: '/edit-dependent-device/:device_id',
+	  controller: 'EditDeviceCtrl',
+	  templateUrl: 'views/tmpl/admin/device/edit-dependent-device.html'
+	})
+			
 
 	/*-----------------------------------------------------------------
 				End code for default pages
@@ -453,13 +482,13 @@ var app = angular
       url: '/admin',
       template: '<div ui-view></div>'
     })
-	
-	
-	//admin service-plan
-		.state('app.admin.service-plan', {
+
+		
+	//admin device service-plan
+		.state('app.admin.device.service-plan', {
 		  url: '/service-plan',
 		  controller: 'ServicePlanCtrl',
-		  templateUrl: 'views/tmpl/admin/service-plan.html'
+		  templateUrl: 'views/tmpl/admin/device/service-plan.html'
 		})
 		
 		//admin change-service-plan
@@ -510,6 +539,12 @@ var app = angular
 		  url: '/settings/:device_id',
 		  controller: 'SettingCtrl',
 		  templateUrl: 'views/tmpl/admin/settings.html'
+		})
+		
+		.state('app.admin.device.device-settings', {
+		  url: '/device-settings/:device_id',
+		  controller: 'DeviceSettingsCtrl',
+		  templateUrl: 'views/tmpl/admin/device/device-settings.html'
 		})
 		
 		//admin facility
@@ -2951,6 +2986,7 @@ app
 			door_ids.push(doorgroup.door[i].door_id);
 		}
 		$rootScope.doorgroup = {};
+		$rootScope.doorgroup.doorgroup_id = doorgroup.doorgroup_id;
 		$rootScope.doorgroup.doorgroup_name = doorgroup.doorgroup_name;
 		$rootScope.doorgroup.door_id = door_ids;
 				

@@ -1,0 +1,134 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent ddevicebg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div ng-if="result">									
+			<div layout="row" ng-class="statusclass">									
+				{{result}}
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20">
+							<img class="img-circle" src="images/device/elika-76-gunmetal.png" alt="">
+						</div>
+						<h3 class="mb-10"><strong>{{details.device_name}}</strong></h3>
+						<span class="text-muted">{{details.device_model}}</span>
+						<div class="mt-40">
+							<a ui-sref="app.admin.device.edit-device({device_id:details.device_id})" class="btn btn-rounded-20 btn-sm btn-greensea">Edit Device</a>
+							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Device</a>
+						</div>
+					</div>  
+				</section> 
+			</div>
+			
+			<div class="col-sm-12 col-md-8"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="h1head">Dependent Device Details</h1>
+						</div>
+						<div class="hometabs">
+							<div class="wrap-reset m-0 pt-20">
+								<div class="form-group profiledetail">
+									<p><label>Facility Name</label> {{details.facility_name}}</p>
+									<p><label>Primary Device</label> {{details.device_name}}</p>
+									<p><label>Device Name</label> {{details.device_name}}</p>
+									<p><label>Model Name</label> {{details.device_model}}</p>
+									<p><label>Serial No.</label> {{details.device_serial_no}}</p>
+									<p><label>Device Type</label> {{details.device_type}}</p>
+									<p><label>Technician</label> {{details.technician_name}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
