@@ -166,6 +166,22 @@ app
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 	
+	$scope.doorList = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'door/list?facility_id='+parseInt($cookies.get("facilityId")),
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			debugger
+		})
+	}
+
 	$rootScope.submitUserData = function(userData, user_form){
 		if(!user_form.validate({
 			rules: {
@@ -181,15 +197,16 @@ app
 			return false;
 		}
 		userData.user_phone_no = parseInt(userData.user_phone_no);
+		userData.zip_code = parseInt(userData.zip_code);
 		userData.user_type = 'admin';
-		userData.facility_id = 3;
+		userData.facility_id = parseInt($cookies.get("facilityId"));;
 		if(userData.password != userData.cpassword){
 			alert("Password and Confirm password not matched");
 			return false;
 		}
-		var fileData = {};
-		fileData.file = userData.photo;
-		userData.photo = userData.photo.name;
+		// var fileData = {};
+		// fileData.file = userData.photo;
+		// userData.photo = userData.photo.name;
 		delete userData.photo;
 		$http(
 		{
@@ -203,20 +220,20 @@ app
 			}
 		})
 		.success(function(response){
-			fileData.user_id = response.data.user_id;
-			var formData = fileData.file;
-			console.log(fileData.file);
- 			$http(
-			{
-				method: 'POST', 
-				url: baseURL+'user/pic-upload',
-				dataType : 'JSON', 
-				data: {"user_id": response.data.user_id, "file":formData},
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
-				}
-			});
+			// fileData.user_id = response.data.user_id;
+			// var formData = fileData.file;
+			// console.log(fileData.file);
+ 		// 	$http(
+			// {
+			// 	method: 'POST', 
+			// 	url: baseURL+'user/pic-upload',
+			// 	dataType : 'JSON', 
+			// 	data: {"user_id": response.data.user_id, "file":formData},
+			// 	headers: {
+			// 		"Content-type": "application/json",
+			// 		"Authorization": $cookies.get("token")
+			// 	}
+			// });
 			$rootScope.user_error = "";
 			$rootScope.accesscode = {};
 			var x = Math.floor(Math.random()*9999999999) + 10000;
@@ -224,8 +241,8 @@ app
 			$rootScope.accesscode.access_code_status = 'Active';
 			if(response.status == true){
 				$cookies.put("user_id", response.data.user_id);
-				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");	
-				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
+				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");	
+				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
 				$("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
 				$timeout(function() {
 				$(".ng-scope:contains(Credentials)").trigger( "click" );
@@ -235,6 +252,9 @@ app
 				});
 				$timeout(function() {
 					$scope.unassignedGroup();
+				});
+				$timeout(function() {
+					$scope.doorList();
 				});
 			}else{
 
@@ -258,6 +278,7 @@ app
 		}).error(function(){
 		});
 	}
+
 
 	$rootScope.saveRFID = function(rfid, rfid_form){
 		if(!rfid_form.validate()){
@@ -1319,8 +1340,16 @@ app
   .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster) {  	
      $scope.page = {
       title: 'User Groups',
-      subtitle: 'So much more to see at a glance.'
+      subtitle: '',
+      member: 'User Groups Members'
     };
+
+    $scope.dashboardInit = function(){ 
+	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
+	 	.error(function (data, status, headers, config) {     }); } 
+
+	 	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 	
 	$scope.layout = 'grid';
 	$scope.class = 'gridview';
@@ -1393,11 +1422,22 @@ app
 
 		});
     }
+
+   $scope.searchFunction = function(e){
+		if(e)
+		if(e.keyCode!=13){return false;}
+		if(!$scope.searchText){
+			$scope.searchText = '';
+		}
+		}
+		$scope.pageNo = 1;
+		$scope.usergroups =[];
+		$scope.searchText = "";
 	
 	$scope.getUserGroupList = function(){
     	$http({
 			method: 'GET', 
-			url: baseURL + 'usergroup/list?limit=100&pageNo=1',
+			url: baseURL + 'usergroup/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
 			dataType : 'JSON',
 			headers: {
 				"Content-type": "application/json",

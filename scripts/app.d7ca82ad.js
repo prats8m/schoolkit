@@ -232,6 +232,13 @@ var app = angular
 			  controller: 'UserCtrl',
 			  templateUrl: 'views/tmpl/subadmin/user/users.html'
 			})
+
+			//admin user user-groups-members
+				.state('app.admin.user.user-groups-members', {
+				  url: '/user-groups-members',
+				  controller: 'UserGroupsCtrl',
+				  templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
+				})	
 			
 			//subadmin user user-groups
 			.state('app.subadmin.user.user-groups', {
@@ -546,6 +553,13 @@ var app = angular
 			  controller: 'UserCtrl',
 			  templateUrl: 'views/tmpl/admin/user/users.html'
 			})
+
+			//admin user add
+			.state('app.admin.user.add-user', {
+				  url: '/add-user',
+				  controller: 'UserCtrl',
+				  templateUrl: 'views/tmpl/admin/user/add-user.html'
+				})
 			
 			//admin user user-groups
 			.state('app.admin.user.user-groups', {
