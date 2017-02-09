@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('SettingCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams)
+  .controller('DeviceSettingsCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams)
   {
     $scope.page = {
 		title: 'Settings',

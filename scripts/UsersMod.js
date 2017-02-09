@@ -1434,7 +1434,13 @@ app
 		$scope.usergroups =[];
 		$scope.searchText = "";
 	
-	$scope.getUserGroupList = function(){
+	$scope.getUserGroupList = function(e){console.log(e);
+		if(e)
+		if(e.keyCode!=13){return false;}
+		if(!$scope.searchValue){
+			$scope.searchValue = '';
+		}
+		$scope.usergroups = [];
     	$http({
 			method: 'GET', 
 			url: baseURL + 'usergroup/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,

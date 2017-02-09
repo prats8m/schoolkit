@@ -14,7 +14,7 @@ app
     };
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete Doors?')
 		.content('The standard chunk of Lorem Ipsum used.')
@@ -22,8 +22,9 @@ app
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your Doors has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			//$scope.result = 'Your Doors has been deleted successfully.';
+			//$scope.statusclass = 'alert alert-danger alert-dismissable';
+			$scope.doorGroupDelete(id);
 		}, function() {
 			$scope.result = 'You decided to keep Doors.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
@@ -51,12 +52,12 @@ app
 	
 	
 	$rootScope.submitCreateDoorGroup = function(doorGroup){
-		
+		console.log(doorGroup);
 		$http(
 		{
 			method: 'POST', 
 			url: baseURL+'doorgroup/add',
-			data:{ name:doorGroup.name, door_id:doorGroup.doors, status:1, "facility_id":parseInt($cookies.get('facilityId'))},
+			data:{ name:doorGroup.name, door_id:doorGroup.doors_id, status:1, "facility_id":parseInt($cookies.get('facilityId'))},
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -102,7 +103,7 @@ app
 	
 	$scope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1',
+			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {
@@ -124,9 +125,11 @@ app
 	$scope.getDoorsList();
 	
 	$rootScope.doorGroupSubmit = function(doorGroup){
+		//console.log(doorGroup);
 		var data = {};
+		data.doorgroup_id = parseInt(doorGroup.doorgroup_id);
 		data.name = doorGroup.doorgroup_name;
-		data.doorgroup_id = doorGroup.door_id;
+		data.door_id = doorGroup.door_id;
 		data.status = 1;
 		$http({
 			url: baseURL+'doorgroup/edit',
@@ -140,9 +143,9 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				//$rootScope.doorList = response.data.data;
+				toaster.pop('success',response.msg.replace(/_/g," "));
 			}else{
-				
+				toaster.pop('error',response.msg.replace(/_/g," "));
 			}
 		})
 		.error(function(){
@@ -150,5 +153,28 @@ app
 		});
 	}
 	
+	$scope.doorGroupDelete = function(id){
+		$http({
+			url: baseURL+'doorgroup/delete?doorgroup_id='+id,
+			method: 'DELETE',
+			dataType : 'JSON',
+			//data : data,
+			headers: {
+				"Content-type": "application/json",
+				'Authorization': $cookies.get("token")
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$scope.result = 'Your Doors has been deleted successfully.';
+				$scope.statusclass = 'alert alert-danger alert-dismissable';
+			}else{
+				toaster.pop('error',response.msg.replace(/_/g," "));
+			}
+		})
+		.error(function(){
+
+		});
+	}
 	
 });

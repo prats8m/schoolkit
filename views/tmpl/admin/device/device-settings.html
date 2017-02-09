@@ -1,0 +1,909 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent" ng-controller="DeviceSettingsCtrl">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row">		
+			<div class="col-md-12"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<uib-tabset class="tabs-dark"> 
+							<uib-tab heading="General Settings">
+								<div class="wrap-reset"> 
+									<div class="profile-settings">
+										<div class="row">
+											<div class="col-sm-3 col-md-3 col-lg-2">
+												<ul class="tabs-menu">
+													<li class="active"><a href="#gstab1" native-tab>Access Granted Key</a></li>
+													<li><a href="#gstab2" native-tab>Relay &amp; Door Setup</a></li>
+													<li><a href="#gstab3" native-tab>Expansion Board</a></li>
+													<li><a href="#gstab4" native-tab>Camera Setup</a></li>
+													<li><a href="#gstab5" native-tab>Talk Time Setup</a></li>
+													<li><a href="#gstab6" native-tab>LED Setup</a></li>
+													<li><a href="#gstab7" native-tab>Speaker &amp; Microphone Setup</a></li>
+													<li><a href="#gstab8" native-tab>Call Button Setup</a></li>
+													<li><a href="#gstab9" native-tab>Lockout Setup</a></li>
+												</ul>
+											</div>
+
+											<div class="col-sm-9 col-md-9 col-lg-10 pl-0">
+												<div class="tab-content">												
+													<div class="tab-pane fade in active" id="gstab1">
+														<h4><strong>Access Granted Key</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-4">
+																<label for="address1">Granted Key Number <small>(Default: #)</small></label>
+																<input type="text" class="form-control" id="address1" value="">
+															</div>															
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab2">
+														<form ng-submit="submitRelayDoor(relays)">
+														<h4><strong>Relay &amp; Door Setup</strong> <small>(Range from 500 to 4500 ms - default 1000 ms)</small></h4>
+														<div class="form-group row" ng-repeat="relay in relays">
+															<div class="col-sm-3">						
+																<label for="address1">Relay {{$index + 1}} strike time</label>
+																<input type="text" class="form-control" id="address1" ng-model="relay.strike_time" value="1000">
+															</div>
+															<div class="col-sm-3">
+																<label for="">Door</label><br/>
+																<select chosen="{width: '100%'}" ng-model="relay.door_id" ng-options="x.door_id as x.door_name for x in doorList">
+																	
+																</select>
+															</div>
+															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
+																<div class="col-sm-5">
+																	<label for="">Door Ajar</label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="relay.status" uib-btn-radio="1">Active</label>
+																		<label class="btn btn-default" ng-model="relay.status" uib-btn-radio="0">Inactive</label>
+																	</div>
+																</div>
+																<div class="col-sm-7" ng-hide="relay.status=='Inactive'">
+																	<label for="">&nbsp;</label><br/>
+																	<select chosen="{width: '100%'}">
+																		<option value="">Sound alarm using Beeper</option>
+																		<option value="">Call/Text technician</option>
+																		<option value="">Call/Text/Email Notification to owner</option>
+																		<option value="">Take a snapshot through camera</option>
+																		<option value="">Record a short video using camera</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-disabled="relays.length==0">Save </button>
+																<button type="button" onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" >Cancel</button>
+															</div>
+														</div>
+														</form>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab3">
+														<h4><strong>Expansion Board</strong></h4>
+														<div class="row mt-20">
+															<div class="col-sm-11 pr-0">
+																<div class="form-group row">
+																	<div class="col-sm-2 pr-0">						
+																		<label for="address1">Board 1</label>
+																		<input type="text" class="form-control" id="address1" value="1000">
+																	</div>
+																	<div class="col-sm-3 pr-0">
+																		<label for="">Door</label><br/>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Main Gate Front</option>
+																			<option value="">Main Gate Back</option>
+																			<option value="">Pedestrian Gate</option>
+																			<option value="">Parking Gate</option>
+																			<option value="">Pool Gate</option>
+																		</select>
+																	</div>
+																	<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">	
+																		<div class="col-sm-5 pl-0" style="width:auto;">
+																			<label for="">Door Ajar</label><br/>
+																			<div class="btn-group btnrounded">
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																			</div>
+																		</div>
+																		<div class="col-sm-6 plr-0" ng-hide="radioModel=='Inactive'">
+																			<label for="">&nbsp;</label><br/>
+																			<select chosen="{width: '100%'}">
+																				<option value="">Sound alarm using Beeper</option>
+																				<option value="">Call/Text technician</option>
+																				<option value="">Call/Text/Email Notification to owner</option>
+																				<option value="">Take a snapshot through camera</option>
+																				<option value="">Record a short video using camera</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row mt-20">
+															<div class="col-sm-11 pr-0">
+																<div class="form-group row">
+																	<div class="col-sm-2 pr-0">						
+																		<label for="address1">Board 2</label>
+																		<input type="text" class="form-control" id="address1" value="1000">
+																	</div>
+																	<div class="col-sm-3 pr-0">
+																		<label for="">Door</label><br/>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Main Gate Front</option>
+																			<option value="">Main Gate Back</option>
+																			<option value="">Pedestrian Gate</option>
+																			<option value="">Parking Gate</option>
+																			<option value="">Pool Gate</option>
+																		</select>
+																	</div>
+																	<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">	
+																		<div class="col-sm-5 pl-0" style="width:auto;">
+																			<label for="">Door Ajar</label><br/>
+																			<div class="btn-group btnrounded">
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																				<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																			</div>
+																		</div>
+																		<div class="col-sm-6 plr-0" ng-hide="radioModel=='Inactive'">
+																			<label for="">&nbsp;</label><br/>
+																			<select chosen="{width: '100%'}">
+																				<option value="">Sound alarm using Beeper</option>
+																				<option value="">Call/Text technician</option>
+																				<option value="">Call/Text/Email Notification to owner</option>
+																				<option value="">Take a snapshot through camera</option>
+																				<option value="">Record a short video using camera</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+																										
+													<div class="tab-pane fade" id="gstab4">
+														<h4><strong>Camera Setup</strong></h4>
+														<div class="row mt-20" ng-controller="ActivebtnCtrl">
+															<div class="form-group col-sm-4 col-md-3 col-lg-2">
+																<label for="address1">Picture Snapshots</label><br/>
+																<div class="btn-group btnrounded">
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																</div>
+															</div>
+															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="radioModel=='Inactive'">
+																<label for="">&nbsp;</label><br/>
+																<select chosen="{width: '100%'}">
+																	<option value="">Access Granted</option>
+																	<option value="">Access Denied</option>
+																	<option value="">Pre-defined Interval</option>
+																	<option value="">On Motion Detection</option>
+																</select>
+															</div>
+														</div>
+														<div class="row mt-20" ng-controller="ActivebtnCtrl">
+															<div class="form-group col-sm-4 col-md-3 col-lg-2">
+																<label for="address1">Video Recording</label><br/>
+																<div class="btn-group btnrounded">
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																</div>
+															</div>
+															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="radioModel=='Inactive'">
+																<label for="">&nbsp;</label><br/>
+																<select chosen="{width: '100%'}">
+																	<option value="">Access Granted</option>
+																	<option value="">Access Denied</option>
+																	<option value="">Pre-defined Interval</option>
+																	<option value="">On Motion Detection</option>
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab5">
+														<h4><strong>Talk Time Setup</strong></h4>
+														<div class="row mt-20" ng-controller="mtSliderCtrl">
+															<div class="form-group col-sm-6 col-md-5 col-lg-3">
+																<label for="address1">Talk Time <small>(10–240 seconds, Default 30)</small></label>
+																<input type="text" class="form-control" id="" ng-model="rating1">
+															</div>
+															<div class="form-group mt-40 col-sm-12">
+																<div layout>
+																	<md-slider flex class="md-primary" md-discrete ng-model="rating1" step="1" min="10" max="240" aria-label="rating"></md-slider>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab6">
+														<h4><strong>LED Setup</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-12 col-md-12 col-lg-6">
+																<div class="row" ng-controller="mtSliderCtrl">
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="">LED Keypad Setup</label><br/>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">On all the time</option>
+																			<option value="">On when no sun</option>
+																			<option value="">On when sun, off if no battery</option>
+																		</select>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
+																		<input type="text" class="form-control" id="address1" ng-model="rating2">
+																	</div>
+																	<div class="form-group mt-40 col-sm-12">
+																		<div layout>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating2" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group col-sm-12 col-md-12 col-lg-6">
+																<div class="row" ng-controller="mtSliderCtrl">
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="">Courtesy Light Setup</label><br/>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">On all the time</option>
+																			<option value="">On when no sun</option>
+																			<option value="">On when sun, off if no battery</option>
+																		</select>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
+																		<input type="text" class="form-control" id="address1" ng-model="rating3">
+																	</div>
+																	<div class="form-group mt-40 col-sm-12">
+																		<div layout>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating3" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab7">
+														<h4><strong>Speaker &amp; Microphone Setup</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-12 col-md-12 col-lg-6">
+																<div class="row" ng-controller="mtSliderCtrl">
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="address1">Speaker Volume <small>(0-3, Default 2)</small></label>
+																		<input type="text" class="form-control" id="address1" ng-model="rating4">
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="">Beeper Option</label><br/>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">Only keypad feedback</option>
+																			<option value="">All events</option>
+																			<option value="">Keypad feedback &amp; All events</option>
+																		</select>
+																	</div>
+																	<div class="form-group mt-40 col-sm-12">
+																		<div layout>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating4" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group col-sm-12 col-md-12 col-lg-6">
+																<div class="row" ng-controller="mtSliderCtrl">
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="address1">Microphone Sensitivity <small>(0-3, Default 2)</small></label>
+																		<input type="text" class="form-control" id="address1" ng-model="rating5">
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="">Beeper Option</label><br/>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">On all the time</option>
+																			<option value="">On when no sun</option>
+																			<option value="">On when sun, off if no battery</option>
+																		</select>
+																	</div>
+																	<div class="form-group mt-40 col-sm-12">
+																		<div layout>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating5" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab8">
+														<h4><strong>Call Button Setup</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-5">
+																<label for="address1">Call Button</label>
+																<select chosen="{width: '100%'}">
+																	<option value="">Dial a phone number</option>
+																	<option value="">LCD enter button</option>
+																</select>
+															</div>
+															<div class="form-group col-sm-5">
+																<label for="address1">Phone Number</label>
+																<input type="text" class="form-control" id="address1" value="">
+															</div>
+														</div>
+														<div class="row mt-20">
+															<div class="form-group col-md-3">
+																<label for="address1">7-Day Timer Settings</label>
+																<div class="row">
+																	<div class="col-sm-12 col-md-6">
+																		<label class="checkbox checkbox-custom-alt" ng-init="customRadioCard='24x7'">
+																			<input name="customRadioCard" ng-model="customRadioCard" value="24x7" type="radio" checked="checked"><i></i> 24x7
+																		</label>
+																	</div>
+																	<div class="col-sm-12 col-md-6">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="customRadioCard" ng-model="customRadioCard" value="Custom" type="radio"><i></i> Custom
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div ng-hide="customRadioCard == '24x7'">
+															<div class="row">
+																<div class="form-group col-sm-5">
+																	<div class="row">
+																		<div class="form-group col-sm-6 validtime">
+																			<label for="">Start Time <small>(HH:MM)</small></label>
+																			<span ng-controller="TimepickerDemoCtrl">
+																				<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			</span>
+																		</div>
+																		<div class="form-group col-sm-6 validtime">
+																			<label for="">End Time <small>(HH:MM)</small></label>
+																			<span ng-controller="TimepickerDemoCtrl">
+																				<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group col-sm-6">
+																	<label for="">Choose specific days of the week</label><br/>
+																	<div class="btn-group btnrounded calldays" ng-controller="DaysCtrl">
+																		<label class="btn btn-default" ng-model="checkModel.Mo" uib-btn-checkbox>Mon</label>
+																		<label class="btn btn-default" ng-model="checkModel.Tu" uib-btn-checkbox>Tue</label>
+																		<label class="btn btn-default" ng-model="checkModel.We" uib-btn-checkbox>Wed</label>
+																		<label class="btn btn-default" ng-model="checkModel.Th" uib-btn-checkbox>Thr</label>
+																		<label class="btn btn-default" ng-model="checkModel.Fr" uib-btn-checkbox>Fri</label>
+																		<label class="btn btn-default" ng-model="checkModel.Sa" uib-btn-checkbox>Sat</label>
+																		<label class="btn btn-default" ng-model="checkModel.Su" uib-btn-checkbox>Sun</label>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="form-group col-sm-5">
+																	<label for="">Relay Setup/Access Gates</label><br/>
+																	<select Multiple chosen="{width: '100%'}">
+																		<option value="">Main Gate Front</option>
+																		<option value="">Main Gate Back</option>
+																		<option value="">Pedestrian Gate</option>
+																		<option value="">Parking Gate</option>
+																		<option value="">Pool Gate</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="gstab9">
+														<h4><strong>Lockout Setup</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-12">
+																<label for="">Lockout Items</label><br/>
+																<div class="row">
+																	<div class="col-sm-2">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="BLE" value="24x7" type="checkbox"><i></i> BLE
+																		</label>
+																	</div>
+																	<div class="col-sm-2">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="NFC" value="24x7" type="checkbox"><i></i> NFC
+																		</label>
+																	</div>
+																	<div class="col-sm-2">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="NFC" value="24x7" type="checkbox"><i></i> RFID
+																		</label>
+																	</div>
+																	<div class="col-sm-2">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="NFC" value="24x7" type="checkbox"><i></i> Keypad
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-sm-6" ng-controller="mtSliderCtrl">
+																<label for="address1">Lockout Mode Max Tries <small>(3-10, Default 3)</small></label>
+																<input type="text" class="form-control" id="address1" ng-model="rating6">
+																<div class="form-group mt-40">
+																	<div layout>
+																		<md-slider flex class="md-primary" md-discrete ng-model="rating6" step="1" min="3" max="10" aria-label="rating"></md-slider>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group col-sm-6" ng-controller="mtSliderCtrl">
+																<label for="address1">Lockout Period <small>(10–600 seconds, Default 60)</small></label>
+																<input type="text" class="form-control" id="address1" ng-model="rating7">
+																<div class="form-group mt-40">
+																	<div layout>
+																		<md-slider flex class="md-primary" md-discrete ng-model="rating7" step="1" min="10" max="600" aria-label="rating"></md-slider>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>									
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Advance Settings">
+								<div class="wrap-reset"> 
+									<div class="profile-settings"> 
+										<div class="row">
+											<div class="col-sm-3 col-md-3 col-lg-2">
+												<ul class="tabs-menu">
+													<li class="active"><a href="#astab1" native-tab>Master Code</a></li>
+													<li><a href="#astab2" native-tab>Clock Settings</a></li>
+													<li><a href="#astab3" native-tab>LCD Setup</a></li>
+													<li><a href="#astab4" native-tab>Latch Code</a></li>
+													<li><a href="#astab5" native-tab>Diagnostics</a></li>
+													<li><a href="#astab6" native-tab>History</a></li>
+													<li><a href="#astab7" native-tab>Factory Setup</a></li>
+													<li><a href="#astab8" native-tab>Data Backup &amp; Restore</a></li>
+												</ul>
+											</div>
+
+											<div class="col-sm-9 col-md-9 col-lg-10 pl-0">
+												<div class="tab-content">												
+													<div class="tab-pane fade in active" id="astab1">
+														<h4><strong>Master Code</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-6">
+																<label for="address1">Master Code</label>
+																<input type="text" class="form-control" id="address1" value="">
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="astab2">
+														<h4><strong>Clock Settings</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-6">
+																<label for="address1">Real-Time Clock</label>
+																<select chosen="{width: '100%'}">
+																	<option value="">USA (Alaska)</option>
+																	<option value="">USA (Samoa)</option>
+																	<option value="">USA (Pacific)</option>
+																	<option value="">USA (Eastern)</option>
+																	<option value="">USA (Hawaii-Aleutian)</option>
+																	<option value="">USA (Mountain)</option>
+																	<option value="">USA (Atlantic)</option>
+																	<option value="">USA (Central)</option>
+																	<option value="">USA (Chamorro)</option>
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-sm-3">
+																<input type="text" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
+															</div>
+															<div class="form-group col-sm-3 validtime">
+																<span ng-controller="TimepickerDemoCtrl">
+																	<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																</span>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="astab3">
+														<h4><strong>LCD Setup</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-12">
+																<label for="">Welcome Message</label><br/>
+																<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-sm-12">
+																<label for="">Owner Information</label><br/>
+																<div class="row">
+																	<div class="form-group col-sm-2">
+																		Name
+																	</div>
+																	<div class="form-group col-sm-8">
+																		Jhon Smith
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-2">
+																		Company
+																	</div>
+																	<div class="form-group col-sm-8">
+																		USA Corporate Services
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-2">
+																		Address
+																	</div>
+																	<div class="form-group col-sm-8">
+																		19 W 34th Floor, St#1018, NY-10001, USA
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-2">
+																		Phone
+																	</div>
+																	<div class="form-group col-sm-8">
+																		+1 202-555-0181
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-2">
+																		Email
+																	</div>
+																	<div class="form-group col-sm-8">
+																		jsmith13554@gmail.com
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="astab4">
+														<h4><strong>Latch Code</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-sm-6">
+																<label for="address1">Latch Code</label>
+																<input type="text" class="form-control" id="address1" value="">
+															</div>
+															<div class="form-group col-sm-6">
+																<label for="">Access Gates</label><br/>
+																<select Multiple chosen="{width: '100%'}">
+																	<option value="">Main Gate Front</option>
+																	<option value="">Main Gate Back</option>
+																	<option value="">Pedestrian Gate</option>
+																	<option value="">Parking Gate</option>
+																	<option value="">Pool Gate</option>
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="astab5">
+														<h4><strong>Diagnostics</strong></h4>				
+														<div class="row mt-20">
+															<div class="form-group col-sm-6">
+																<label for="address1">Real-Time Clock</label>
+																<div class="row">
+																	<div class="form-group col-sm-6">
+																		<input type="text" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
+																	</div>
+																	<div class="form-group col-sm-6 validtime">
+																		<span ng-controller="TimepickerDemoCtrl">
+																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																		</span>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 validtime">
+																		<label for="">Start Time <small>(HH:MM)</small></label>
+																		<span ng-controller="TimepickerDemoCtrl">
+																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																		</span>
+																	</div>
+																	<div class="form-group col-sm-6 validtime">
+																		<label for="">End Time <small>(HH:MM)</small></label>
+																		<span ng-controller="TimepickerDemoCtrl">
+																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																		</span>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group col-sm-6">
+																<label for="address1">Description/Details of the diagnostic event</label>
+																<textarea class="form-control" style="height:116px;" ></textarea>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+																										
+													<div class="tab-pane fade" id="astab6">
+														<h4><strong>History</strong></h4>				
+														<div class="row mt-20">
+															<div class="form-group col-sm-6">
+																<label for="address1">Real-Time Clock</label>
+																<div class="row">
+																	<div class="form-group col-sm-6">
+																		<input type="text" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
+																	</div>
+																	<div class="form-group col-sm-6 validtime">
+																		<span ng-controller="TimepickerDemoCtrl">
+																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																		</span>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 validtime">
+																		<label for="">Start Time <small>(HH:MM)</small></label>
+																		<span ng-controller="TimepickerDemoCtrl">
+																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																		</span>
+																	</div>
+																	<div class="form-group col-sm-6 validtime">
+																		<label for="">End Time <small>(HH:MM)</small></label>
+																		<span ng-controller="TimepickerDemoCtrl">
+																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																		</span>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group col-sm-6">
+																<label for="address1">Description/Details of the diagnostic event</label>
+																<textarea class="form-control" style="height:116px;" ></textarea>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="astab7">
+														<h4><strong>Factory Setup</strong></h4>
+														<div class="row mt-10">
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete 3-digit codes
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete 4-digit codes
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete 5-digit codes
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete 6-digit codes
+																</label>
+															</div>														
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete BLE codes
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete RFID codes
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete NFC codes
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete All History
+																</label>
+															</div>														
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Delete All Diagnostics
+																</label>
+															</div>
+															<div class="col-sm-4">
+																<label class="checkbox checkbox-custom-alt" style="font-weight: 100;">
+																	<input type="checkbox"><i></i> Default Device Settings
+																</label>
+															</div>
+														</div>
+														<div class="row mt-20">
+															<div class="form-group col-md-12 legend">
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Reset</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+													</div>
+													
+													<div class="tab-pane fade" id="astab8">
+														<h4><strong>Data Backup &amp; Restore</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-md-12 legend">					
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Backup Elika Device</button> &nbsp;&nbsp;
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Backup Deletion Elika Device</button> &nbsp;&nbsp;
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Restore From Backup</button>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+						</uib-tabset>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

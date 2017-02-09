@@ -241,13 +241,13 @@
 																			<div class="col-md-6 first">
 																				<div class="form-group">
 																					<label for="">Device Name</label>
-																					<input type="text" name="device_name" id="" ng-model="editDevice.device_name" class="form-control mb-10" placeholder="" required>
+																					<input type="text" name="device_name" id="" ng-model="editDevice.device_name" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
 																			<div class="col-md-6 last">
 																				<div class="form-group">
 																					<label for="">Model Name</label>
-																					<input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control mb-10" placeholder="" required>
+																					<input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
 																		</div>
@@ -255,7 +255,7 @@
 																			<div class="col-md-6 first">
 																				<div class="form-group">
 																					<label for="">Registration Code</label>
-																					<input type="text" name="registration_code" id="" ng-model="editDevice.registration_code" class="form-control mb-10" placeholder="" required>
+																					<input type="text" name="registration_code" id="" ng-model="editDevice.registration_code" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
 																			
@@ -264,7 +264,7 @@
 																			<div class="col-md-6 first">
 																				<div class="form-group">
 																					<label for="">Serial Number</label>
-																					<input type="text" name="serial_no" id="" ng-model="editDevice.serial_no" class="form-control mb-10" placeholder="" required>
+																					<input type="text" name="serial_no" id="" ng-model="editDevice.device_serial_no" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
 																			<div class="col-md-6 last">
@@ -294,8 +294,7 @@
 																				<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'slave'">Dependent</label>
 																			</div>
 																			<div class="slavevalues" ng-hide="editDevice.device_type=='master'">
-																				
-																				<select class="form-control mb-10" ng-options="item.device_id as item.device_name for item in deviceData track by item.device_id" ng-model="editDevice.device_master_id">
+																				<select class="form-control" ng-options="item.device_id as item.device_name for item in deviceData track by item.device_id" ng-model="editDevice.device_master_id">
 																					<option value="">Select Primary Device</option>
 																				</select>
 																			</div>

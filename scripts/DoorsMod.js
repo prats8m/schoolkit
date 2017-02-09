@@ -250,7 +250,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
+			url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facility_id='+$cookies.get("facilityId"),
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
