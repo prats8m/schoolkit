@@ -173,7 +173,7 @@
 							</div>
 							<div ng-class="class">
 								<div class="glview">
-									<md-content>	{{users}}		
+									<md-content>		
 										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
 											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{imagePath}}/users/{{user.imagename}}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>

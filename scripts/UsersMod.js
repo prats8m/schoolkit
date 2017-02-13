@@ -178,10 +178,10 @@ app
 			}
 		})
 		.success(function(response){
-			debugger
+			$scope.door_lists = response.data.data;
 		})
 	}
-
+	$scope.doorList();
 	$rootScope.submitUserData = function(userData, user_form){
 		if(!user_form.validate({
 			rules: {
@@ -334,24 +334,26 @@ app
 		});
 	}
 
-	$rootScope.phoneCode = {};
+	$scope.phoneCode = {};
 	var x = Math.floor(Math.random()*9999999999) + 10000;
-	$rootScope.phoneCode.phone_code = (""+x).substring(8, length);
-
-	$rootScope.submitPhoneCode = function(phoneCode){
-		// http://[base_url]/user/assign-phone-code
+	$scope.phoneCode.phone_code = (""+x).substring(8, length);
+	$scope.phoneCode.status = 1;
+	$scope.submitPhoneCode = function(phoneCode, phone_form){
+		if(!phone_form.validate()){
+			return false;
+		}
 		phoneCode.user_id = parseInt($cookies.get("user_id"));
-		phoneCode.phone_code = "" + phoneCode.phone_code;
-		phoneCode.phone_numbers = [];
-		phoneCode.phone_numbers[0] = $("#todo").val();
-		$.each($(".todo-list .ng-binding"), function(index, value){ 
-			phoneCode.phone_numbers[index+1] = $(this).text();
-		});
-
+		phoneCode.details = {};
+		phoneCode.details.phone_code = JSON.stringify(phoneCode.phone_code);
+		phoneCode.details.phone_numbers = [];
+		phoneCode.details.phone_numbers[0] = phoneCode.phone_numbers;
+		phoneCode.credential_type = "phone_code";
+		delete phoneCode.phone_code;
+		delete phoneCode.phone_numbers;
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL+'user/edit-phone-code',
+			method: 'POST', 
+			url: baseURL+'user/add-credential',
 			dataType : 'JSON', 
 			data: phoneCode,
 			headers: {
@@ -441,10 +443,10 @@ app
 		});
 	}
 
-	$rootScope.generateAddAccessCode = function(){ 
-		$rootScope.accesscode = {};
+	$scope.generateAddAccessCode = function(){ 
+		$scope.accesscode = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
-		$rootScope.accesscode.access_code = parseInt((""+x).substring(8, length));
+		$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
 	}
 
 	$rootScope.generateAddPhoneCode = function(){
@@ -512,14 +514,21 @@ app
 	}
 
 	//End Of NFC Code Edit
-
-	$rootScope.saveAccessCode = function(accesscode){
-		$rootScope.accesscode.access_code_status = ($rootScope.accesscode.access_code_status == "Active" ? 1 : 0)
-		$rootScope.accesscode.user_id = parseInt($cookies.get("user_id"));
+	$scope.accesscode = {};
+	$scope.accesscode.status = 1;
+	$scope.saveAccessCode = function(accesscode, access_code){
+		if(!access_code.validate()){
+			return false;
+		}
+		accesscode.user_id = parseInt($cookies.get("user_id"));
+		accesscode.credential_type = "access_code";
+		accesscode.details = {};
+		accesscode.details.access_code = JSON.stringify(accesscode.access_code);
+		delete accesscode.access_code;
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL+'user/edit-access-code',
+			method: 'POST', 
+			url: baseURL+'user/add-credential',
 			dataType : 'JSON', 
 			data: accesscode,
 			headers: {
@@ -528,7 +537,6 @@ app
 			}
 		})
 		.success(function(response){
-			$rootScope.accesscode.access_code_status = ($rootScope.accesscode.access_code_status == 1 ? "Active" : "Inactive")
 			if(response.status == true){
 				$timeout(function() {
 				$(".accordion-toggle")[1].click();
@@ -545,10 +553,10 @@ app
 
 				var n = [];
 				var arr = response.error;
-				$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.accesscode_error = n.join(", ");
 				if (n.length == 0)
-				$rootScope.accesscode_error = response.msg.replace(/_/g,' ');
+				$scope.accesscode_error = response.msg.replace(/_/g,' ');
 				
 			}
 		}).error(function(){

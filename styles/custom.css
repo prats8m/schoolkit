@@ -2253,3 +2253,7 @@ span.error {
         float: left;
     }
 }
+
+span.error { font-size: 14px; color: #ff0000; line-height: 22px;}
+label.error {font-size: 14px;font-weight: 100;font-style: italic;color: #ff0000;}
+input.ng-invalid-required.error { border: 1px solid #ff0000; }

@@ -279,7 +279,9 @@
 										<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
 											<uib-accordion-heading>Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
+												<span class="error">{{accesscode_error}}</span>
 												<div class="row">
+												<form ng-submit="saveAccessCode(accesscode, access_code)" name="access_code" id="access_code" ng-validate="validationOptions">
 													<div class="form-group col-sm-3 col-md-3">
 														<label for="">Access Code</label>
 														<div style="position: relative">
@@ -289,24 +291,17 @@
 													</div>
 													<div class="form-group col-sm-3 col-md-6">
 														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
+														<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id" multiple required>
 														</select>
 													</div>
 													<div class="form-group col-sm-3 col-md-3">
 														<label for="">Status</label><br/>
 														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+															<label class="btn btn-default" ng-model="accesscode.status" uib-btn-radio=1>Active</label>
+															<label class="btn btn-default" ng-model="accesscode.status" uib-btn-radio=0>Inactive</label>
 														</div>
 														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+													</form>
 													</div>
 												</div>
 												<div class="mt-40">							
@@ -387,39 +382,33 @@
 										<uib-accordion-group is-open="status.open1" class="panel-default">
 											<uib-accordion-heading>Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
+											<span class="error">{{ phone_error }}</span>
 												<div class="row">
-													<div class="form-group col-sm-3 col-md-3">
-														<label for="">Phone Code</label>
-														<div style="position: relative">
-															<input type="text" name="access_code" id="phone_code" class="form-control mb-10" disabled ng-model="accesscode.phone_code">
-															<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
+													<form ng-submit="submitPhoneCode(phoneCode, phone_form)" name="phone_form" id="phone_code" ng-validate="validationOptions">
+														<div class="form-group col-sm-3 col-md-3">
+															<label for="">Phone Code</label>
+															<div style="position: relative">
+																<input type="text" name="access_code" id="phone_code" class="form-control mb-10" disabled ng-model="phoneCode.phone_code">
+																<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
+															</div>
+														</div>													
+														<div class="form-group col-sm-3 col-md-3">
+															<label for="">Assign Doors</label><br/>
+															<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id" multiple required></select>
 														</div>
-													</div>													
-													<div class="form-group col-sm-3 col-md-3">
-														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
-														</select>
-													</div>
-													<div class="form-group col-sm-3 col-md-3">
-														<label for="">Phone Number</label>
-														<input type="text" name="" id="" class="form-control">
-													</div>
-													<div class="form-group col-sm-3 col-md-3">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+														<div class="form-group col-sm-3 col-md-3">
+															<label for="">Phone Number</label>
+															<input type="text" name="phone_numbers" id="phone_numbers" class="form-control" ng-model="phoneCode.phone_numbers" required>
 														</div>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</div>
+														<div class="form-group col-sm-3 col-md-3">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="phoneCode.status" uib-btn-radio=1>Active</label>
+																<label class="btn btn-default" ng-model="phoneCode.status" uib-btn-radio=0>Inactive</label>
+															</div>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+														</div>
+													</form>
 												</div>
 												<div class="mt-40">							
 													<div class="tile-body p-0 table-responsive">
