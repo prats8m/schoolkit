@@ -182,7 +182,7 @@ app
 		})
 	}
 	$scope.doorList();
-	$rootScope.submitUserData = function(userData, user_form){
+	$scope.submitUserData = function(userData, user_form){
 		if(!user_form.validate({
 			rules: {
         user_phone_no: {
@@ -245,7 +245,8 @@ app
 				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
 				$("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
 				$timeout(function() {
-				$(".ng-scope:contains(Credentials)").trigger( "click" );
+				$(".ng-scope:contains(User Groups)").trigger( "click" );
+				// $(".ng-scope:contains(Credentials)").trigger( "click" );
 				});
 				$timeout(function() {
 					$scope.assignedGroup();
@@ -278,9 +279,9 @@ app
 		}).error(function(){
 		});
 	}
-
-
-	$rootScope.saveRFID = function(rfid, rfid_form){
+	$scope.rfid = {};
+	$scope.rfid.status = 1;
+	$scope.saveRFID = function(rfid, rfid_form){
 		if(!rfid_form.validate()){
 			return false;
 		}
@@ -289,13 +290,16 @@ app
 			return false;
 		}
 		rfid.user_id = parseInt($cookies.get("user_id"));
-		rfid.rfid_facility_code = parseInt(rfid.rfid_facility_code);
-		rfid.rfid_card_no = parseInt(rfid.rfid_card_no);
-		// rfid.rfid_status = (rfid.rfid_status == "Active" ? 1 : 0)
+		rfid.details = {};
+		rfid.details.rfid_facility_id = JSON.stringify(parseInt(rfid.rfid_facility_code));
+		rfid.details.rfid_card_no = JSON.stringify(parseInt(rfid.rfid_card_no));
+		rfid.credential_type = "rfid_code";
+		delete rfid.rfid_card_no;
+		delete rfid.rfid_facility_code;
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL+'user/edit-rfid-code/',
+			method: 'POST', 
+			url: baseURL+'user/add-credential',
 			dataType : 'JSON', 
 			data:rfid,
 			headers: {
@@ -304,9 +308,7 @@ app
 			}
 		})
 		.success(function(response){
-			$rootScope.rfid_error = "";
-			// $rootScope.rfid = {};
-			// $rootScope.rfid.rfid_status = (rfid.rfid_status == 1 ? "Active" : "Inactive")
+			$scope.rfid_error = "";
 			if(response.status == true){
 				$timeout(function() {
 					$(".accordion-toggle")[3].click();
@@ -323,10 +325,10 @@ app
 				var arr = response.error;
 				if(arr != null){
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.rfid_error = n.join(", ");
+				$scope.rfid_error = n.join(", ");
 				}
 				else{
-					$rootScope.rfid_error = response.msg.replace(/_/g,' ');
+					$scope.rfid_error = response.msg.replace(/_/g,' ');
 				}
 			}
 		}).error(function(){
@@ -389,24 +391,25 @@ app
 		});
 	}
 
-	$rootScope.saveBLEcode = function(ble_code, ble_form){
+	$scope.ble_code = {};
+	$scope.ble_code.status = 1;
+	$scope.saveBLEcode = function(ble_code, ble_form){
 		if(!ble_form.validate()){
 			return false;
 		}
 		if(ble_code == undefined){
-			$rootScope.blecode_error = "Please fill form.";
+			$scope.blecode_error = "Please fill form.";
 			return false;
 		}
-		if(ble_code.ble_pass != ble_code.cnf_ble_pass){
-			$rootScope.blecode_error = "Password must match to confirm password.";
-			return false;
-		}
-		// ble_code.ble_status = ("Active" ? 1 : 0)
+		ble_code.details = {};
+		ble_code.details.ble_username = JSON.stringify(ble_code.ble_name);
+		ble_code.details.ble_password = JSON.stringify(ble_code.ble_pass);
 		ble_code.user_id = parseInt($cookies.get("user_id"));
+		ble_code.credential_type = "ble_code";
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL+'user/edit-ble-code',
+			method: 'POST', 
+			url: baseURL+'user/add-credential',
 			dataType : 'JSON', 
 			data: ble_code,
 			headers: {
@@ -455,27 +458,31 @@ app
 		$rootScope.phoneCode.phone_code = (""+x).substring(8, length);
 	}
 
-	$rootScope.generateNFCCode = function(){
-		$rootScope.savenfc = {};
+	$scope.generateNFCCode = function(){
+		$scope.savenfc = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
-		$rootScope.savenfc.nfc_code = (""+x).substring(8, length);
+		$scope.savenfc.nfc_code = (""+x).substring(8, length);
 	}
 
 	//NFC code edit
-	$rootScope.saveNFCcode = function(submitData, nfc_form){
+	$scope.savenfc = {};
+	$scope.savenfc.status = 1;
+	$scope.saveNFCcode = function(savenfc, nfc_form){
 		if(!nfc_form.validate()){
 			return false;
 		}
-		var x = Math.floor(Math.random()*9999999999) + 10000;
-		submitData.nfc_code = parseInt((""+x).substring(8, length));
-		submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
-		submitData.user_id = parseInt($cookies.get("user_id"));
+		savenfc.user_id = parseInt($cookies.get("user_id"));
+		savenfc.details = {};
+		savenfc.details.nfc_code = JSON.stringify(savenfc.nfc_code);
+		savenfc.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
+		savenfc.credential_type = "nfc_code";
+		delete savenfc.nfc_code;
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL + 'user/edit-nfc-code',
+			method: 'POST', 
+			url: baseURL + 'user/add-credential',
 			dataType : 'JSON',
-			data:submitData,
+			data:savenfc,
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
