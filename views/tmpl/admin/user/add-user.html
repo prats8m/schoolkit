@@ -206,7 +206,7 @@
 															</div>
 														</div>
 														<div class="modal-footer">
-															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c closeg" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 														</div>
 													</form>											
@@ -552,8 +552,11 @@
 													<form ng-submit="saveNFCcode(savenfc, nfc_form)" ng-validate="validationOptions" name="nfc_form">
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">NFC Code</label>
-															<input type="text" name="nfc_code" id="" class="form-control" placeholder="" ng-model="savenfc.nfc_code" required disabled>
-															<span class="refreshbtn" ng-click="generateNFCCode()"><i class="fa fa-refresh"></i>
+															<div style="position: relative;">
+																<input type="text" name="nfc_code" id="" class="form-control" placeholder="" ng-model="savenfc.nfc_code" required disabled>
+																<span class="refreshbtn" ng-click="generateNFCCode()"><i class="fa fa-refresh"></i>
+																</span>
+															</div>
 														</div>
 														<div class="form-group col-sm-3 col-md-6">
 															<label for="">Assign Doors</label><br/>

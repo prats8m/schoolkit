@@ -605,6 +605,10 @@ app
 			}
 			$timeout(function() {
 				$scope.assignedGroup();
+				user_group.usergrouparr = [];
+			}, 1000);
+			$timeout(function() {
+				$scope.unassignedGroup();
 			}, 1000);
 		}).error(function(){
 
@@ -637,6 +641,9 @@ app
 			}
 			$timeout(function() {
 				$scope.assignedGroup();
+			}, 1000);
+			$timeout(function() {
+				$scope.unassignedGroup();
 			}, 1000);
 		}).error(function(){
 
@@ -717,11 +724,18 @@ app
 app
   .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
      $scope.page = {
-      title: 'Arnold',
-      subtitle: 'So much more to see at a glance.'
+      title: 'Edit User',
+      subtitle: ''
     };
 	$scope.editUser = {};
 	$("#mask02").datepicker();
+
+	$scope.dashboardInit = function(){ 
+	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
+	 	.error(function (data, status, headers, config) {     }); } 
+
+	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 	
 	$scope.profileInit = function(){
 		$http(
