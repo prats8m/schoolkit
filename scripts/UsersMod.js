@@ -752,13 +752,15 @@ app
 			if(response.status == true){
 				$scope.userData = response.data;
 				$scope.editUser.user_id = $stateParams.user_id;
+				$scope.editUser.user_zipcode = angular.copy($scope.userData.user_zipcode);
+				$scope.editUser.user_zipcode = angular.copy($scope.userData.user_zipcode);
 				$scope.editUser.first_name = angular.copy($scope.userData.user_first_name);
 				$scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
 				$scope.editUser.address = angular.copy($scope.userData.user_address);
 				$scope.editUser.email = angular.copy($scope.userData.user_email);
 				$scope.editUser.expiration_date = angular.copy($scope.userData.user_expiration_date);
 				$scope.editUser.status = angular.copy($scope.userData.user_status);
-				
+				$scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
 				$scope.editUser.access_code = angular.copy($scope.userData.access_code);
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
 				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
@@ -820,6 +822,7 @@ app
 				$scope.userData.phone_status = ($scope.userData.phone_status == 1 ? "Active" : ($scope.userData.phone_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.access_status = ($scope.userData.access_code_status == 1 ? "Active" : ($scope.userData.access_code_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.nfc_code_status = ($scope.userData.nfc_code_status == 1 ? "Active" : ($scope.userData.nfc_code_status == 0 ? "Inactive" : "NA"));
+				$scope.assignedGroup();
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -881,7 +884,7 @@ app
 
 	}
 
-	$scope.assignedGroup = function(){
+	$scope.editassignedGroup = function(){
 		$http(
 		{
 			method: 'POST', 
@@ -894,14 +897,14 @@ app
 			}
 		})
 		.success(function(response){
-			$rootScope.nogroup = false;
+			$scope.nogroup = false;
 			if(response.status == true){
 				if(response.data == null){
-					$rootScope.nogroup = "No UserGroup Assigned";
-					$rootScope.userGroup = "";
+					$scope.nogroup = "No UserGroup Assigned";
+					$scope.userGroup = "";
 				}
 				else{
-					$rootScope.userGroup = response.data;
+					$scope.userGroup = response.data;
 				}
 			}else{	
 				if(response.msg == 'Invalid_Token'){
@@ -915,7 +918,7 @@ app
 		});
 	}
 	
-	$scope.assignedGroup();
+	$scope.editassignedGroup();
 	$rootScope.userNotAssignedGroup = function(){$http(
 		{
 			method: 'POST', 
@@ -971,6 +974,18 @@ app
 
 		});
 	}
+
+	$scope.formatDate = function(date) {
+	var d = new Date(date),
+	    month = '' + (d.getMonth() + 1),
+	    day = '' + d.getDate(),
+	    year = d.getFullYear();
+
+	if (month.length < 2) month = '0' + month;
+	if (day.length < 2) day = '0' + day;
+
+	return [day, month, year].join('/');
+	}
 	
 	var n = [];
 	$scope.submitEditUser = function(submitData, user_edit){
@@ -980,9 +995,11 @@ app
 		submitData.status = submitData.user_status
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.user_phone_no = parseInt(submitData.user_phone_no);
-		submitData.user_type = 'admin';
-		submitData.facility_id = 3;
-		$rootScope.masters = []
+		submitData.name_on_lcd = submitData.user_name_on_lcd;
+		submitData.zipcode = parseInt(submitData.zipcode);
+		submitData.facility_id = parseInt($cookies.get("facilityId"));
+		submitData.expiration_date = submitData.expiration_date;
+		$rootScope.masters = [];
 		$http(
 		{
 			method: 'PUT', 
@@ -996,6 +1013,7 @@ app
 		}).success(function(response){
 			
 			if(response.status == true){
+				$scope.profileInit
 				toaster.pop('success','Submitted Successfully');
 				$scope.editUserMessage = "";
 			}else{
@@ -1003,7 +1021,7 @@ app
 				var arr = response.error;
 				if(response.error != ""){
 					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$scope.editUserMessage = n;
+					$scope.editUserMessage = n.join(", ");
 				}
 				else{
 					if(response.msg == 'Invalid_Token'){
@@ -1366,7 +1384,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster) {  	
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService) {  	
      $scope.page = {
       title: 'User Groups',
       subtitle: '',
@@ -1469,7 +1487,6 @@ app
 		if(!$scope.searchValue){
 			$scope.searchValue = '';
 		}
-		$scope.usergroups = [];
     	$http({
 			method: 'GET', 
 			url: baseURL + 'usergroup/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
@@ -1481,8 +1498,12 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$scope.usergroups = response.data.data;
+				$scope.usergroups = arrayPushService.arrayPush(response.data.data, $scope.usergroups);
+				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
+				if(response.data == null){
+					$(".f-wm:contains(Load more)").text("No more data available").css( "opacity" , 0.7);
+				}
 				
 			}
 		}).error(function(){
