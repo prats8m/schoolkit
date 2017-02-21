@@ -157,7 +157,7 @@
 												<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 													<label for="">Expiration Date</label>
 													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="userData.expiration_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
+														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
 														<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -192,13 +192,7 @@
 																<div class="col-md-12 mt-20">
 																	<ul>
 																		<li ng-repeat="user_group in usergroups">
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}}</label>
-																</li>
-																		<li>
-																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Hours <small>(40 Users)</small></label>
-																		</li>
-																		<li>
-																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services <small>(42 Users)</small></label>
+																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></label>
 																		</li>
 																	</ul>
 																	<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
@@ -222,7 +216,7 @@
 													</thead>
 													<tbody style="font-size:14px;">
 														<tr ng-repeat="assign_usergroup in assingned_usergroups">
-															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>(40 Users)</small></a></td>
+															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
 															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="unassignUserToUsergroup(assign_usergroup.usergroup_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 														</tr>
 													</tbody>

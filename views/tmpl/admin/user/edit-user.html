@@ -97,8 +97,8 @@
 						<div class="thumb thumb-xxll">
 							<img class="img-circle" src="images/users/2.jpg" alt="">
 						</div>
-						<h4 class="mb-0"><strong>Arnold</strong></h4>
-						<span class="text-muted">+1 212 1467 8920</span>
+						<h4 class="mb-0"><strong>{{editUser.first_name}}</strong></h4>
+						<span class="text-muted">{{editUser.user_phone_no}}</span>
 						<div class="mt-40">
 							<a ui-sref="app.admin.user.view-user({user_id:editUser.user_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View User</a>
 							<a ng-click="deleteUser($event,editUser.user_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User</a>
@@ -146,8 +146,8 @@
 												<div class="form-group col-sm-6 col-md-6">
 													<label for="">Profile Photo</label>
 													<div class="profilephoto">
-														<!-- <input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div> -->
+														<input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 													</div>
 												</div>
 											</div>
@@ -266,36 +266,30 @@
 											<uib-accordion-heading>Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
 												<div class="row">
-													<div class="form-group col-sm-6 col-md-4">
-														<label for="">Access Code</label>
-														<div style="position: relative">
-															<input type="text" name="access_code" id="access_code" class="form-control"  disabled ng-model="accesscode.access_code">
-															<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
+													<form role="form"  ng-submit="submitEditAccessCode(editAccess, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
+														<div class="form-group col-sm-6 col-md-4">
+															<label for="">Access Code</label>
+															<div style="position: relative">
+																<input type="text" name="access_code" id="access_code" class="form-control"  disabled ng-model="editAccess.access_code">
+																<span class="refreshbtn" ng-click="generateAccessCode()"><i class="fa fa-refresh"></i></span>
+															</div>
 														</div>
-													</div>
-													<div class="form-group col-sm-12 col-md-8">
-														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
-														</select>
-													</div>
-													<div class="form-group col-sm-12 col-md-12">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+														<div class="form-group col-sm-12 col-md-8">
+															<label for="">Assign Doors</label><br/>
+															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editAccess.door_id" multiple required>
+															</select>
 														</div>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</div>
+														<div class="form-group col-sm-12 col-md-12">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="editAccess.status" uib-btn-radio=1>Active</label>
+																<label class="btn btn-default" ng-model="editAccess.status" uib-btn-radio=0>Inactive</label>
+															</div>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+														</div>
+													</form>
 												</div>
-												<div class="mt-40">							
+												<div class="mt-40">			
 													<div class="tile-body p-0 table-responsive">
 														<table class="table table-bordered">
 															<thead>
@@ -307,51 +301,9 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate, Gym Gate</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>14562583</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>41154124</td>
-																	<td>Main Gate Front, Main Gate Back </td>
+																<tr ng-repeat="accesscode in access_code_list">
+																	<td>{{accesscode.Access_Code}}</td>
+																	<td>{{accesscode.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
 																			<option value="" selected>Active</option>
@@ -374,40 +326,34 @@
 											<uib-accordion-heading>Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
 												<div class="row">
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">Phone Code</label>
-														<div style="position: relative">
-															<input type="text" name="access_code" id="phone_code" class="form-control" disabled ng-model="accesscode.phone_code">
-															<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
+													<form ng-submit="submitEditPhoneCode(phoneedit, phone_edit_form)" ng-validate="validationOptions" name="phone_edit_form">
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Phone Code</label>
+															<div style="position: relative">
+																<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneedit.phone_code">
+																<span class="refreshbtn" ng-click="generatePhoneCode()"><i class="fa fa-refresh"></i></span>
+															</div>
+														</div>													
+														<div class="form-group col-sm-3 col-md-8">
+															<label for="">Assign Doors</label><br/>
+															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneedit.door_id" multiple required>
+															</select>
 														</div>
-													</div>													
-													<div class="form-group col-sm-3 col-md-8">
-														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
-														</select>
-													</div>
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">Phone Number</label>
-														<input type="text" name="" id="" class="form-control">
-													</div>
-													<div class="form-group col-sm-3 col-md-8">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Phone Number</label>
+															<input type="text" name="" id="" class="form-control" ng-model="phoneedit.phone_numbers">
 														</div>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</div>
+														<div class="form-group col-sm-3 col-md-8">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="phoneedit.status" uib-btn-radio=1>Active</label>
+																<label class="btn btn-default" ng-model="phoneedit.status" uib-btn-radio=0>Inactive</label>
+															</div>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+														</div>
+													</form>
 												</div>
-												<div class="mt-40">							
+												<div class="mt-40">				
 													<div class="tile-body p-0 table-responsive">
 														<table class="table table-bordered">
 															<thead>
@@ -420,7 +366,7 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
+																<tr ng-repeat="phone_code in phone_code_list">
 																	<td>11309147</td>
 																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
 																	<td>+1 212 1467 1212</td>

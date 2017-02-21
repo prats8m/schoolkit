@@ -170,7 +170,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'door/list?facility_id='+parseInt($cookies.get("facilityId")),
+			url: baseURL+'user/list-door-credential/'+parseInt($cookies.get("user_id")),
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -178,7 +178,7 @@ app
 			}
 		})
 		.success(function(response){
-			$scope.door_lists = response.data.data;
+			$scope.door_lists = response.data;
 		})
 	}
 	$scope.doorList();
@@ -234,11 +234,11 @@ app
 			// 		"Authorization": $cookies.get("token")
 			// 	}
 			// });
-			$rootScope.user_error = "";
-			$rootScope.accesscode = {};
+			$scope.user_error = "";
+			$scope.accesscode = {};
 			var x = Math.floor(Math.random()*9999999999) + 10000;
-			$rootScope.accesscode.access_code = parseInt((""+x).substring(8, length));
-			$rootScope.accesscode.access_code_status = 'Active';
+			$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
+			$scope.accesscode.access_code_status = 'Active';
 			if(response.status == true){
 				$cookies.put("user_id", response.data.user_id);
 				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");	
@@ -253,9 +253,6 @@ app
 				});
 				$timeout(function() {
 					$scope.unassignedGroup();
-				});
-				$timeout(function() {
-					$scope.doorList();
 				});
 			}else{
 
@@ -594,6 +591,9 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$rootScope.usergroupmsg = response.msg;
+				$timeout(function() {
+					$scope.doorList();
+				});
 			}else{	
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -750,6 +750,8 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
+				$scope.editAccess = {};
+				$scope.phoneedit = {};
 				$scope.userData = response.data;
 				$scope.editUser.user_id = $stateParams.user_id;
 				$scope.editUser.user_zipcode = angular.copy($scope.userData.user_zipcode);
@@ -761,9 +763,9 @@ app
 				$scope.editUser.expiration_date = angular.copy($scope.userData.user_expiration_date);
 				$scope.editUser.status = angular.copy($scope.userData.user_status);
 				$scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
-				$scope.editUser.access_code = angular.copy($scope.userData.access_code);
+				// $scope.editAccess.access_code = angular.copy($scope.userData.access_code);
 				$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
-				$scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
+				// $scope.editUser.phone_code = angular.copy($scope.userData.phone_code);
 				$scope.editUser.phone_code_status = angular.copy($scope.userData.phone_status);
 				$scope.editUser.nfc_code = angular.copy($scope.userData.nfc_code);
 				$scope.editUser.rfid_card_no = angular.copy($scope.userData.rfid_card_number);
@@ -789,10 +791,10 @@ app
 				$scope.editUser.user_status = angular.copy($scope.userData.user_status);
 				if($scope.userData.access_status == undefined)
 				{
-					$scope.editUser.access_code_status = 1;
+					$scope.editAccess.access_code_status = 1;
 				}
 				else{
-					$scope.editUser.access_code_status = angular.copy($scope.userData.access_status);
+					$scope.editAccess.access_code_status = angular.copy($scope.userData.access_status);
 				}
 				if($scope.userData.rfid_status == undefined)
 				{
@@ -822,7 +824,7 @@ app
 				$scope.userData.phone_status = ($scope.userData.phone_status == 1 ? "Active" : ($scope.userData.phone_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.access_status = ($scope.userData.access_code_status == 1 ? "Active" : ($scope.userData.access_code_status == 0 ? "Inactive" : "NA"));
 				$scope.userData.nfc_code_status = ($scope.userData.nfc_code_status == 1 ? "Active" : ($scope.userData.nfc_code_status == 0 ? "Inactive" : "NA"));
-				$scope.assignedGroup();
+				$scope.editassignedGroup();
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -835,6 +837,23 @@ app
 		});
 	}
 	$scope.profileInit();
+
+	$scope.editdoorList = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'user/list-door-credential/'+parseInt($stateParams.user_id),			
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			$scope.door_lists = response.data;
+		})
+	}
+	$scope.editdoorList();
 	
 	$rootScope.usergroup = {};
 	$rootScope.usergroup.usergrouparr = [];
@@ -1041,12 +1060,15 @@ app
 	}
 
 	$scope.generateAccessCode = function(){ 
-			$scope.editUser.access_code = Date.now();
+		// $scope.editUser.access_code = Date.now();
+		// $scope.accesscode = {};
+		var x = Math.floor(Math.random()*9999999999) + 10000;
+		$scope.editAccess.access_code = parseInt((""+x).substring(8, length));
 	}
 
 	$scope.generatePhoneCode = function(){
 		var x = Math.floor(Math.random()*9999999999) + 10000;
-		$scope.editUser.phone_code = (""+x).substring(8, length);
+		$scope.phoneedit.phone_code = (""+x).substring(8, length);
 	}
 	
 	$scope.submitEditAccessCode = function(submitData, access_edit_form){
@@ -1054,11 +1076,14 @@ app
 			return false;
 		}
 		submitData.user_id = parseInt($stateParams.user_id);
-		submitData.access_code = parseInt(submitData.access_code);
+		submitData.credential_type = "access_code";
+		submitData.details = {};
+		submitData.details.access_code = JSON.stringify(parseInt(submitData.access_code));
+		delete submitData.access_code;
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL + 'user/edit-access-code',
+			method: 'POST', 
+			url: baseURL + 'user/add-credential',
 			dataType : 'JSON',
 			data:submitData,
 			headers: {
@@ -1069,6 +1094,7 @@ app
 		}).success(function(response){
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
+				$scope.getAccessCodeList();
 			}
 			else{
 				var arr = response.error;
@@ -1094,6 +1120,22 @@ app
 		});
 	}
 	
+	$scope.getAccessCodeList = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL + 'credential/list?user_id='+parseInt($stateParams.user_id)+'&type=access_code',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			$scope.access_code_list = response.data;
+		})
+	}
+	$scope.getAccessCodeList();
 	//NFC code edit
 	$scope.submitEditNfcCode = function(submitData, nfc_edit_form){
 		if(!nfc_edit_form.validate()){
@@ -1143,20 +1185,43 @@ app
 	}
 
 	//End Of NFC Code Edit
-
-
-	$scope.submitEditPhoneCode = function(submitData){
-		submitData.user_id = parseInt($stateParams.user_id);
-		submitData.phone_code = ""+submitData.phone_code;
-		submitData.phone_numbers = [];
-		submitData.phone_numbers[0] = $("#todo").val();
-		$.each($(".todo-list .ng-binding"), function(index, value){ 
-			submitData.phone_numbers[index+1] = $(this).text();
-		})
+	$scope.getPhoneList = function(){
 		$http(
 		{
-			method: 'PUT', 
-			url: baseURL + 'user/edit-phone-code',
+			method: 'GET', 
+			url: baseURL + 'credential/list?user_id='+parseInt($stateParams.user_id)+'&type=phone_code',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+			
+		}).success(function(response){
+			$scope.phone_code_list = response.data;
+		})
+	}
+	$scope.getPhoneList();
+
+	$scope.submitEditPhoneCode = function(submitData, phone_edit_form){
+		// submitData.user_id = parseInt($stateParams.user_id);
+		// submitData.phone_code = ""+submitData.phone_code;
+		// submitData.phone_numbers = [];
+		// submitData.phone_numbers[0] = $("#todo").val();
+		// $.each($(".todo-list .ng-binding"), function(index, value){ 
+		// 	submitData.phone_numbers[index+1] = $(this).text();
+		// })
+		submitData.user_id = parseInt($stateParams.user_id);
+		submitData.details = {};
+		submitData.details.phone_code = JSON.stringify(submitData.phone_code);
+		submitData.details.phone_numbers = [];
+		submitData.details.phone_numbers[0] = submitData.phone_numbers;
+		submitData.credential_type = "phone_code";
+		delete submitData.phone_code;
+		delete submitData.phone_numbers;
+		$http(
+		{
+			method: 'POST', 
+			url: baseURL + 'user/add-credential',
 			dataType : 'JSON',
 			data:submitData,
 			headers: {
@@ -1168,6 +1233,7 @@ app
 			
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
+				$scope.getPhoneList();
 			}
 			else{
 				var arr = response.error;
