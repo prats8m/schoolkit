@@ -189,6 +189,7 @@
 													<form ng-submit="assignUserGroup(usergroup)">
 														<div class="hometabs">
 															<div class="overflow groupslists">
+															{{usergroupmsg}}
 																<div class="col-md-12 mt-20">
 																	<ul>
 																		<li ng-repeat="user_group in usergroups">
@@ -271,55 +272,13 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="accesscode in access_code_list">
+																	<td>{{accesscode.Access_Code}}</td>
+																	<td>{{accesscode.Door_Name}}  </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate, Gym Gate</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>14562583</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>41154124</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">

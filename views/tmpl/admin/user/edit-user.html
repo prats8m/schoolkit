@@ -306,8 +306,8 @@
 																	<td>{{accesscode.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{accesscode.status == 1}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
@@ -367,58 +367,13 @@
 															</thead>
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="phone_code in phone_code_list">
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
-																	<td>+1 212 1467 1212</td>
+																	<td>{{phone_code.Detail.phone_code}}</td>
+																	<td>{{phone_code.Door_Name}}</td>
+																	<td><div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div></td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back</td>
-																	<td>+1 212 1254 7854</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>14562583</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>+1 212 4587 8759</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>41154124</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>+1 212 7854 9658</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{phone_code.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{phone_code.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
@@ -437,35 +392,29 @@
 											<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
 												<div class="row">
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">Card Number</label>
-														<input type="text" name="" id="" class="form-control">
-													</div>											
-													<div class="form-group col-sm-3 col-md-8">
-														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
-														</select>
-													</div>
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">Facility Code</label>
-														<input type="text" name="" id="" class="form-control">
-													</div>
-													<div class="form-group col-sm-12 col-md-8">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+													<form ng-submit="submitEditRFIDCode(editRfid, rfid_form)" name="rfid_form" ng-validate="validationOptions" >
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Card Number</label>
+															<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no" required>
+														</div>											
+														<div class="form-group col-sm-3 col-md-8">
+															<label for="">Assign Doors</label><br/>
+															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editRfid.door_id" multiple required>
+															</select>
 														</div>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</div>
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Facility Code</label>
+															<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editRfid.rfid_facility_code" name="rfid_facility_code" required>
+														</div>
+														<div class="form-group col-sm-12 col-md-8">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="editRfid.status" uib-btn-radio=1>Active</label>
+																<label class="btn btn-default" ng-model="editRfid.status" uib-btn-radio=0>Inactive</label>
+															</div>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+														</div>
+													</form>
 												</div>
 												<div class="mt-40">							
 													<div class="tile-body p-0 table-responsive">
@@ -480,44 +429,14 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>1130 9147 5482 8547</td>
-																	<td>122</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="rfid_code in rfid_code_list">
+																	<td>{{rfid_code.Detail.rfid_card_no}}</td>
+																	<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																	<td>{{rfid_code.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>1319 0147 8954 7892</td>
-																	<td>7854</td>
-																	<td>Main Gate Front, Main Gate Back</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>1456 2583 8524 9635</td>
-																	<td>4587</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{rfid_code.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{rfid_code.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
@@ -536,31 +455,26 @@
 											<uib-accordion-heading>NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
 												<div class="row">
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">NFC Code</label>
-														<input type="text" name="" id="" class="form-control">
-													</div>
-													<div class="form-group col-sm-3 col-md-8">
-														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
-														</select>
-													</div>
-													<div class="col-sm-12 col-md-12">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+													<span class="error">{{NfcCodeMessage}}</span>
+													<form ng-submit="submitEditNfcCode(editNfc, nfc_edit_form)" ng-validate="validationOptions" name="nfc_edit_form">
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">NFC Code</label>
+															<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editNfc.nfc_code" required>
 														</div>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</div>
+														<div class="form-group col-sm-3 col-md-8">
+															<label for="">Assign Doors</label><br/>
+															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editNfc.door_id" multiple required>
+															</select>
+														</div>
+														<div class="col-sm-12 col-md-12">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="editNfc.status" uib-btn-radio=1>Active</label>
+																<label class="btn btn-default" ng-model="editNfc.status" uib-btn-radio=0>Inactive</label>
+															</div>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+														</div>
+													</form>
 												</div>
 												<div class="mt-40">							
 													<div class="tile-body p-0 table-responsive">
@@ -574,27 +488,13 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="nfccode in nfc_code_list">
+																	<td>{{nfccode.Detail.nfc_code}}</td>
+																	<td>{{nfccode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate, Gym Gate</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{nfccode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{nfccode.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
@@ -613,35 +513,30 @@
 											<uib-accordion-heading>BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
 												<div class="row">
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">Username</label>
-														<input type="text" name="" id="" class="form-control">
-													</div>
-													<div class="form-group col-sm-3 col-md-8">
-														<label for="">Assign Doors</label><br/>
-														<select Multiple chosen="{width: '100%'}">
-															<option value="">Main Gate Front</option>
-															<option value="">Main Gate Back</option>
-															<option value="">Exit Gate Front</option>
-															<option value="">Exit Gate Back</option>
-															<option value="">Parking Entry Gate</option>
-															<option value="">Parking Exit Gate</option>
-															<option value="">Pool Gate</option>
-															<option value="">Gym Gate</option>
-														</select>
-													</div>
-													<div class="form-group col-sm-3 col-md-4">
-														<label for="">Password</label>
-														<input type="password" name="" id="" class="form-control">
-													</div>
-													<div class="form-group col-sm-3 col-md-8">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+													<span class="error">{{ bleerror }}</span>
+													<form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Username</label>
+															<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required>
 														</div>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</div>
+														<div class="form-group col-sm-3 col-md-8">
+															<label for="">Assign Doors</label><br/>
+															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editBle.door_id" multiple required>
+															</select>
+														</div>
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Password</label>
+															<input type="password" class="form-control" id="" ng-model="editBle.ble_pass" name="ble_pass" required>
+														</div>
+														<div class="form-group col-sm-3 col-md-8">
+															<label for="">Status</label><br/>
+															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																<label class="btn btn-default" ng-model="editBle.status" uib-btn-radio=1>Active</label>
+																<label class="btn btn-default" ng-model="editBle.status" uib-btn-radio=0>Inactive</label>
+															</div>
+															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+														</div>
+													</form>
 												</div>
 												<div class="mt-40">							
 													<div class="tile-body p-0 table-responsive">
@@ -656,14 +551,14 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>jhonrock</td>
-																	<td>**********</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="blecode in ble_code_list">
+																	<td>{{blecode.Detail.ble_username}}</td>
+																	<td>{{blecode.Detail.ble_password}}</td>
+																	<td>{{blecode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{blecode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{blecode.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
