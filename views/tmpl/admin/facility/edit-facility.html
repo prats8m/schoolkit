@@ -1,0 +1,196 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div ng-if="result">									
+			<div layout="row" ng-class="statusclass">									
+				{{result}}
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20">
+							<img class="img-circle" src="images/facility/1.jpg" alt="">
+						</div>
+						<h3 class="mb-10"><strong>{{facility.facility_name}}</strong></h3>
+						<span class="text-muted">{{facility.facility_location}}</span>
+						<div class="mt-40">
+							<a ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Facility</a>
+							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete facility</a>
+						</div>
+					</div> 
+					<div class="tile-body text-center p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol bg-blue dker p-10">
+								<a ui-sref="app.admin.device.devices">
+									<h2 class="m-0">{{dashboardData.primary_device}}</h2>
+									<span class="text-transparent-white">Devices</span>
+								</a>
+							</li>
+							<li class="tcol bg-blue dk p-10">
+								<a ui-sref="app.admin.user.users">
+									<h2 class="m-0">{{dashboardData.user}}</h2>
+									<span class="text-transparent-white">Users</span>
+								</a>
+							</li>
+							<li class="tcol bg-blue bg p-10">
+								<a ui-sref="app.admin.door.doors">
+									<h2 class="m-0">{{dashboardData.door}}</h2>
+									<span class="text-transparent-white">Doors</span>
+								</a>
+							</li>
+						</ul>
+					</div>  
+				</section>
+			</div>
+			
+			<div class="col-sm-12 col-md-8"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="h1head">Edit Facility</h1>
+						</div>
+						<div class="hometabs">
+							<div class="wrap-reset m-0 pt-20">
+								<form name="editfacility" ng-validate role="form">
+									<div class="modal-body mt-5">
+										<div class="row">
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Facility Name</label>
+												<input type="text" name="facility_name" id="" class="form-control" ng-model="facility.facility_name" required>
+											</div>
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Facility Location</label>
+												<input type="text" name="facility_location" id="" class="form-control" ng-model="facility.facility_location" required>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Time Zone</label>
+												<input type="text" class="form-control" ng-model="facility.facility_timezone">
+												<!-- <select class="form-control">
+													<option selected>USA (Alaska )</option>
+													<option>USA (Samoa)</option>
+													<option>USA (Pacific)</option>
+													<option>USA (Eastern)</option>
+													<option>USA (Hawaii-Aleutian)</option>
+													<option>USA (Mountain)</option>
+													<option>USA (Atlantic)</option>
+													<option>USA (Central)</option>
+													<option>USA (Chamorro)</option>
+												</select> -->
+											</div>
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Zip Code</label>
+												<input type="text" name="zip" id="zip" class="form-control" ng-model="facility.facility_zipcode" placeholder="10001" required>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="">Status</label><br/>
+											<div class="btn-group btnrounded">
+												<label class="btn btn-default" ng-model="facility.facility_status" uib-btn-radio="1">Active</label>
+												<label class="btn btn-default" ng-model="facility.facility_status" uib-btn-radio="0">Inactive</label>
+											</div>
+										</div>	
+										<div class="form-group row legend">
+											<div class="col-md-12">
+												<p></p>
+												<button back-button="" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+												<button type="submit" ng-click="edit_facility(facility,editfacility)" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

@@ -5,7 +5,7 @@
 	
 	<div class="pagecontent">	
 		<div class="row">		
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
 						<div class="bg-transparent">
@@ -18,58 +18,67 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.facility.facility">
-						<div class="noback bg-greensea">
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-map-marker fa-5x"></i>
-								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Facility</p>
-									<span class="text-lg">2</span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Devices</p>
-									<span class="text-lg">35</span>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
 								</div>
 							</div>
 						</div>
+					</div>
 					</a>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
-					<a ui-sref="app.admin.user.users">
-						<div class="noback bg-lightred">						
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">Users</p>
-									<span class="text-lg">145</span>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
 								</div>
 							</div>
 						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
 					</a>
 				</div>
 			</div>			
@@ -77,44 +86,55 @@
 	
 		<div class="row" ng-controller="FacilityCtrl">
 			<div class="col-md-12">
-				<section class="tile box-shadow" fullscreen="isFullscreen06">
+				<section class="tile box-shadow">
 					<div class="tile-header dvd dvd-btm">
-						<h1 class="custom-font"><strong>Facility</strong></h1>
+						<h1 class="custom-font">Facility</h1>
 						<ul class="controls">
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form">
+										<form name="addFacility" role="form" ng-validate>
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Facility</h4></div>
-											<div class="modal-body">
+											<div class="modal-body mt-5">
 												<div class="form-group">
 													<label for="">Facility Name</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+													<input type="text" name="" ng-model="facility.facility_name" id="" class="form-control" placeholder="" required>
 												</div>
 												<div class="form-group">
 													<label for="">Facility Location</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+													<input type="text" name="" id="" ng-model="facility.facility_location" class="form-control" placeholder="" required>
 												</div>
-												<div class="form-group">
-													<label for="">Time Zone</label>
-													<select class="form-control mb-10" ng-model="facility.timezones.availableOptions">
-													</select>
-												</div>
-												<div class="form-group">
-													<label for="">Zip Code</label>
-													<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+												<div class="row">
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">Time Zone</label>
+														<select class="form-control" ng-model="facility.timeZone" required>
+															<option>USA (Alaska )</option>
+															<option>USA (Samoa)</option>
+															<option>USA (Pacific)</option>
+															<option>USA (Eastern)</option>
+															<option>USA (Hawaii-Aleutian)</option>
+															<option>USA (Mountain)</option>
+															<option>USA (Atlantic)</option>
+															<option>USA (Central)</option>
+															<option>USA (Chamorro)</option>
+														</select>
+													</div>
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">Zip Code</label>
+														<input type="text" name="" id="" ng-model="facility.zip_code" class="form-control" placeholder="" required>
+													</div>
 												</div>
 												<div class="form-group">
 													<label for="">Status</label><br/>
 													<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-														<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+														<label class="btn btn-default" ng-model="facility.status" uib-btn-radio="1">Active</label>
+														<label class="btn btn-default" ng-model="facility.status" uib-btn-radio="0">Inactive</label>
 													</div>
 												</div>												
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="cancel" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+												<button type="submit" ng-click="save(facility,addFacility)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 											</div>
 										</form>		
 									</script>
@@ -126,8 +146,8 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r">
-								<div class="col-md-6 filterorder">
+							<div class="row pos-r mb-40">
+								<div class="col-sm-3 col-md-3 filterorder">
 									<label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
@@ -135,29 +155,59 @@
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
 											<li><a href="" ng-click="orderByMe('title')">Title</a></li>
-											<li><a href="" ng-click="orderByMe('location')">Location</a></li>
+											<li><a href="" ng-click="orderByMe('facility')">Facility</a></li>
+											<li><a href="" ng-click="orderByMe('model')">Model</a></li>
 										</ul>
 									</label>
 								</div>
-								<div class="col-md-6">
+								<div class="col-sm-6 col-md-6">
+									<div class="row">
+										<div class="col-sm-8 col-md-9 search">
+											<input type="text" class="form-control" ng-model="search" ng-change="search_facility()" placeholder="Search by text....">
+											<button class="btn btn-default br-2-r" ng-click="search_facility()" type="button">Search</button>
+										</div>
+										<div class="col-sm-4 col-md-3 profilephoto csvupload">
+											<div ng-controller="ModalDemo1Ctrl">
+												<script type="text/ng-template" id="myModalContent1.html">
+													<form name="form1" role="form">
+														<div class="modal-header"><h4 class="modal-title custom-font">Upload CSV File</h4></div>
+														<div class="modal-body mt-5 pb-30 mb-40">
+															<label for="">Upload CSV file</label>
+															<div class="profilephoto">
+																<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+															</div>											
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>	
+														</div>
+													</form>		
+												</script>
+												<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3 col-md-3">
 									<div class="gridlistbar ta-r pull-right">
-										<label class="control-label">View by</label> 
+										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div>
 								</div>
 								<div class="filterfields" ng-hide="filtershow">
-									<div class="col-md-3">
+									<div class="col-sm-4 col-md-3">
 										<label for="fbtext" class="control-label">Search by text</label> 
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
 									</div>
-									<div class="col-md-3">
+									<div class="col-sm-4 col-md-3">
 										<label for="fbtitle" class="control-label">Search by title</label>
 										<input type="text" class="form-control" id="fbtitle" ng-model="title">
 									</div>
-									<div class="col-md-3">
-										<label for="fblocation" class="control-label">Search by location</label>
-										<input type="text" class="form-control" id="fblocation" ng-model="location">
+									<div class="col-sm-4 col-md-3">
+										<label for="fblocation" class="control-label">Search by facility</label>
+										<input type="text" class="form-control" id="fblocation" ng-model="facility">
 									</div>
 								</div>
 							</div>
@@ -172,13 +222,13 @@
 										<md-card ng-repeat="facility in facilities | limitTo:totalDisplayed | filter:text | filter:title | filter:location | orderBy:myOrderBy">
 											<a ui-sref="app.admin.facility.facility-details"><img ng-src="{{imagePath}}/facility/{{ facility.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
-												<h2 class="md-title">{{ facility.title }}</h2>
-												<p>{{ facility.location }}</p>
-												<p>{{ facility.noofdevices }} Devices &nbsp;|&nbsp; {{ facility.noofuser }} Users</p>
+												<h2 class="md-title">{{ facility.facility_name }}</h2>
+												<p>{{ facility.facility_location }}</p>
+												<p>{{ facility.facility_device_count }} Devices &nbsp;|&nbsp; {{ facility.facility_user_count }} Users</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.facility.facility-details">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.facility.facility-details">Edit</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.facility.edit-facility({facility_id:facility.facility_id})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
 											</div>
 										</md-card>										
@@ -191,6 +241,5 @@
 				</section>
 			</div>			
 		</div>
-	
 	</div>
 </div>
