@@ -703,12 +703,15 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$rootScope.usergroupmsg = response.msg;
+				$scope.usergroupmsg = response.msg;
 				$timeout(function() {
 					$scope.doorList();
 				});
 				$timeout(function() {
 					$scope.getAccessCodeList();
+				});
+				$timeout(function() {
+					$(".closeg").click();
 				});
 			}else{	
 				if(response.msg == 'Invalid_Token'){

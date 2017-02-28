@@ -7,21 +7,20 @@
  * Controller of the minovateApp
  */
 app
-  .controller('FacilityCtrl',function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL,toaster) {
+  .controller('FacilityCtrl',function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL,toaster, $timeout) {
   	
     $scope.page = {
 		title: 'Facility',
-		subtitle: 'So much more to see at a glance.'
+		subtitle: ''
     };
 
-    $rootScope.singleModel = 1;
     $rootScope.facility = {};
-    $rootScope.facility.status = 'Active';
+    $rootScope.facility.status = 1;
 
-    $rootScope.checkModel = {
-      Active: true,
-      Inactive: false
-    };
+    // $rootScope.checkModel = {
+    //   Active: true,
+    //   Inactive: false
+    // };
 
 	
     $rootScope.save = function(facility,addFacility){
@@ -41,17 +40,19 @@ app
 			}
 			})
 			.success(function(response) {
-				debugger;
 				var n = [];
 				var arr = response.error;
-				if(response.error != ""){
-					$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$rootScope.masters = n;
+				if(response.error != null){
+					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+					$rootScope.masters = n.join(", ");
 				}
 				else{
-					$rootScope.masters = []
-					$rootScope.masters[0] = response.msg.replace(/_/g, " ");
-					$("#cancel").click();
+					if(response.msg == "Facility_Added"){
+						$timeout(function() {
+							$("#cancel_facility").click();
+						});
+					}
+					$rootScope.masters = response.msg.replace(/_/g, " ");
 				}
 				
 			})
@@ -189,7 +190,7 @@ app
 
     $scope.page = {
 		title: 'Facility Details',
-		subtitle: 'So much more to see at a glance.'
+		subtitle: ''
     };
     $scope.timezones = {
   	model: null,
@@ -439,7 +440,7 @@ app
 
     $scope.page = {
 		title: 'Facility Details',
-		subtitle: 'So much more to see at a glance.'
+		subtitle: ''
     };
 	
 	$scope.imagePath = baseURL+'elika/images/';
@@ -477,7 +478,7 @@ app
 
     $scope.page = {
 		title: 'Facility Details',
-		subtitle: 'So much more to see at a glance.'
+		subtitle: ''
     };
 	
 	$scope.imagePath = baseURL+'elika/images/';

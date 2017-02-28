@@ -189,11 +189,10 @@
 													<form ng-submit="assignUserGroup(usergroup)">
 														<div class="hometabs">
 															<div class="overflow groupslists">
-															<span class="error">{{usergroupmsg}}</span>
 																<div class="col-md-12 mt-20">
 																	<ul>
 																		<li ng-repeat="user_group in usergroups">
-																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></label>
+																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}} <small>({{user_group.count}} Users)</small></label>
 																		</li>
 																	</ul>
 																	<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
@@ -207,6 +206,7 @@
 													</form>											
 												</script>
 											</div>
+											<div class="layout layout-row alert alert-success alert-dismissable" style="display: none;">	{{usergroupmsg}}</div>
 											<div class="tile-body p-0">
 												<table class="table table-bordered">
 													<thead>
