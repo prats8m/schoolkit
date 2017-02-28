@@ -248,7 +248,7 @@
 													<tbody style="font-size:14px;">
 														<tr ng-repeat="assign_usergroup in userGroup">
 															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
-															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+															<td><button type="button" ng-click="unassignUserGroupEdit(assign_usergroup.usergroup_id)" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 														</tr>
 													</tbody>
 												</table>

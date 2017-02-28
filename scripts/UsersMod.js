@@ -1583,7 +1583,7 @@ app
 				}
 			}
 			$timeout(function() {
-				$scope.assignedGroup();
+				$scope.editassignedGroup();
 			});
 			$timeout(function(){$rootScope.userNotAssignedGroup();})
 		}).error(function(){
