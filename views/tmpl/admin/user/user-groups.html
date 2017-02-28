@@ -261,7 +261,7 @@
 							</div>
 							<div ng-class="class">
 								<div class="glview">
-									<md-content>			
+									<md-content>
 										<md-card ng-repeat="user in usergroups | filter:text | filter:title | filter:facility | orderBy:myOrderBy">
 											<img ng-src="{{imagePath}}/usergroups/{{user.imagename}}.jpg" class="md-card-image img100percent" alt="Washed Out">
 											<md-card-content>
@@ -373,6 +373,7 @@
 											</div>
 										</md-card>										
 									</md-content>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getUserGroupList()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

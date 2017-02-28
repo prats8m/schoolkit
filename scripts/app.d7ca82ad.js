@@ -601,6 +601,20 @@ var app = angular
 				  controller: 'UserCtrl',
 				  templateUrl: 'views/tmpl/admin/user/add-user.html'
 				})
+
+			//admin user view-user
+				.state('app.admin.user.view-user', {
+				  url: '/view-user/:user_id',
+				  controller: 'UserProfileCtrl',
+				  templateUrl: 'views/tmpl/admin/user/view-user.html'
+				})
+				
+				//admin user edit-user
+				.state('app.admin.user.edit-user', {
+				  url: '/edit-user/:user_id',
+				  controller: 'UserProfileCtrl',
+				  templateUrl: 'views/tmpl/admin/user/edit-user.html'
+				})
 			
 			//admin user user-groups
 			.state('app.admin.user.user-groups', {
