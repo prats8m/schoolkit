@@ -1,0 +1,157 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div ng-if="result">									
+			<div layout="row" ng-class="statusclass">									
+				{{result}}
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20">
+							<img class="img-circle" src="images/facility/1.jpg" alt="">
+						</div>
+						<h3 class="mb-10"><strong>{{facility.facility_name}}</strong></h3>
+						<span class="text-muted">{{facility.facility_location}}</span>
+						<div class="mt-40">
+							<a ui-sref="app.admin.facility.edit-facility({facility_id:facility.facility_id})" class="btn btn-rounded-20 btn-sm btn-greensea">Edit Facility</a>
+							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete facility</a>
+						</div>
+					</div> 
+					<div class="tile-body text-center p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol bg-blue dker p-10">
+								<a ui-sref="app.admin.device.devices">
+									<h2 class="m-0">{{dashboardData.primary_device}}</h2>
+									<span class="text-transparent-white">Devices</span>
+								</a>
+							</li>
+							<li class="tcol bg-blue dk p-10">
+								<a ui-sref="app.admin.user.users">
+									<h2 class="m-0">{{dashboardData.user}}</h2>
+									<span class="text-transparent-white">Users</span>
+								</a>
+							</li>
+							<li class="tcol bg-blue bg p-10">
+								<a ui-sref="app.admin.door.doors">
+									<h2 class="m-0">{{dashboardData.door}}</h2>
+									<span class="text-transparent-white">Doors</span>
+								</a>
+							</li>
+						</ul>
+					</div>  
+				</section>
+			</div>
+			
+			<div class="col-sm-12 col-md-8"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="h1head">Facility Details</h1>
+						</div>
+						<div class="hometabs">
+							<div class="wrap-reset m-0 pt-20">
+								<div class="form-group profiledetail">
+									<p><label>Name</label> {{facility.facility_name}}</p>
+									<p><label>Location</label> {{facility.facility_location}}</p>
+									<p><label>Time Zone</label> {{facility.facility_timezone}}</p>
+									<p><label>Zip Code</label> {{facility.facility_zipcode}}</p>
+									<p><label>Status</label> {{facility.facility_status}}</p>
+									<p><label>Device</label> 22</p>
+									<p><label>Users</label> 45</p>
+									<p><label>Doors</label> 22</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

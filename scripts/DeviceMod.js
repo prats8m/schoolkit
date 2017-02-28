@@ -125,6 +125,7 @@ app
 					if(response.error != ""){
 						var n = [];
 						$rootScope.masters = [];
+						var arr = [];
 						$.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 						$rootScope.masters = n;
 					}
@@ -177,9 +178,11 @@ app
 					$("#loadMoreBtn").attr("disabled","disabled");
 				}
 			}
+
 		}).error(function(){
 		});	
-	}	
+	}
+
 	$scope.deviceInit();
 		
 	$scope.searchFunction = function(e){

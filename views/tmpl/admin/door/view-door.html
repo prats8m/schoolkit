@@ -1,0 +1,140 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent doorbg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div ng-if="result">									
+			<div layout="row" ng-class="statusclass">									
+				{{result}}
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<h4 class="mb-0"><strong>{{doorData.door_name}}</strong></h4>
+						<span class="text-muted">{{doorData.door_status == 1 ? 'Active' : 'Inactive'}}</span>
+						<div class="mt-40">
+							<a ui-sref="app.admin.door.edit-door({door_id:doorData.door_id})" class="btn btn-rounded-20 btn-sm btn-greensea">Edit Door</a>
+							<a ng-click="showConfirm($event, doorData.door_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door</a>
+						</div>
+					</div>
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol p-10">
+								<h3 class="m-0 mb-5">Facility</h3>
+								<span class="text-transparent-white mt-15"><a ui-sref="app.admin.facility.facility-details">{{doorData.facility_name}}</a></span>
+							</li>
+						</ul>
+					</div>					
+				</section>
+			</div>
+			
+			<div class="col-sm-12 col-md-8"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="custom-font">{{page.title}}</h1>
+						</div>						
+						<div class="hometabs">	
+							<div class="wrap-reset m-0 pt-20">
+								<div class="row">
+									<div class="col-sm-12 col-md-12">
+										<div class="form-group profiledetail">
+											<p><label>Name</label> {{doorData.door_name}}</p>
+											<p><label>Facility</label> {{doorData.facility_name}}</p>
+											<p><label>Door Groups</label> Entry Gate</p>
+											<p><label>Status</label> {{doorData.door_status == 1 ? 'Active' : 'Inactive'}}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

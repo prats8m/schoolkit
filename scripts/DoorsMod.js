@@ -57,9 +57,8 @@ app
 			}).error(function(){
 
 			});
-			//Code end to delete door
-
 			
+			//Code end to delete door
 		}, function() {
 			$scope.result = 'You decided to keep Door.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
@@ -212,6 +211,7 @@ app
 			return false;
 		}
 		door.facility_id = parseInt($cookies.get("facilityId"));
+		door.description = " ";
 		$http({
 			url: baseURL + 'door/add',
 			method: 'POST',
@@ -225,16 +225,15 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.doormsg = response.msg;
-				// console.log($rootScope.dashboardData);
-			}
-			else{
+				$("#close").click();
+			}else{
 				$rootScope.doormsg = response.msg;
 			}
 		})
 		.error(function (data, status, headers, config) {
 			
 		});
-		}
+	}
 		//End of create door
 
 		//Search Door
@@ -281,7 +280,7 @@ app
 		$scope.adoors = [];
 		$scope.listDoors = function(){
 			$http({
-				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo,
+				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&facility_id='+$cookies.get("facilityId"),
 				method: 'GET',
 				dataType : 'JSON',
 				headers: {
@@ -434,8 +433,166 @@ app
 	if($stateParams.type == "edit"){
 		$timeout(function() {
 			$("a:contains('Edit Door')").click();
-		 });
-		}
+		});
+	}
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data[0];
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
 	
 });
+
+app
+  .controller('EditDoorCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
+		$scope.page = {
+			title: 'Edit Door',
+		};
+	
+	$scope.imagePath = 'http://localhost:8080/elika/images';
+	
+	$scope.facilityInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'facility/list',
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.facilityList = response.data.data;
+				$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));	
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	
+	$scope.showConfirm = function(ev, door_id) {
+		var confirm = $mdDialog.confirm()		
+		.title('Would you like to delete Door?')
+		.content('')
+		.ok('Delete')
+		.cancel('Cancel')
+		.targetEvent(ev);
+		$mdDialog.show(confirm).then(function() {
+			//Code to delete door
+			$http(
+			{
+				method: 'DELETE', 
+				url: baseURL + 'door/delete/'+door_id,
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == true){
+					$location.path('/app/admin/door/doors');
+				}else{	
+					if(response.msg == 'Invalid_Token'){
+						toaster.pop('error','Session Expired');
+						$cookies.remove("token");
+						$location.path('/core/login');
+					}
+					toaster.pop('error',response.msg.replace(/_/g,' '));
+				}
+			}).error(function(){
+
+			});
+			//Code end to delete door
+		}, function() {
+			$scope.result = 'You decided to keep Door.';
+			$scope.statusclass = 'alert alert-success alert-dismissable';
+		});
+    };
+	
+	$scope.doorInit = function(){
+		$http({
+			url: baseURL + 'door/view?doorId='+$stateParams.door_id,
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json" 
+			}
+		})
+		.success(function(response){
+			$scope.doorData = response.data;
+			$scope.facilityInit();
+		})
+	}	
+
+	$scope.doorInit();
+	
+	$scope.editDoordata = function(doorData, door_data){
+		doorData.facility_id = parseInt($cookies.get('facilityId'));
+		delete doorData.facility;
+		//  console.log(doorData);
+		$http(
+		{	
+			method: 'PUT', 
+			url: baseURL+'door/edit',
+			dataType : 'JSON', 
+			data: doorData,
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			toaster.pop('success',response.msg.replace(/_/g," "));
+		})
+	}
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data[0];
+				// console.log($rootScope.dashboardData);
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
+	
+  });
 
