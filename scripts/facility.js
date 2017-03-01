@@ -44,7 +44,7 @@ app
 				var arr = response.error;
 				if(response.error != null){
 					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$rootScope.masters = n.join(", ");
+					$rootScope.fac_error = n.join(", ");
 				}
 				else{
 					if(response.msg == "Facility_Added"){
@@ -52,7 +52,7 @@ app
 							$("#cancel_facility").click();
 						});
 					}
-					$rootScope.masters = response.msg.replace(/_/g, " ");
+					$rootScope.fac_error = response.msg.replace(/_/g, " ");
 				}
 				
 			})
@@ -113,7 +113,7 @@ app
 	};
 	$http({
 		url: baseURL+'facility/list',
-		params:{limit: 200, page_no: 1, search_val: ""},
+		params:{limit: 20, page_no: 1},
 		method: 'GET',
 		dataType : 'JSON',
 		headers: {

@@ -96,7 +96,7 @@
 										<form name="addFacility" role="form" ng-validate>
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Facility</h4></div>
 											<div class="modal-body mt-5">
-												<span class="error">{{masters}}</span>
+												<span class="error">{{fac_error}}</span>
 												<div class="form-group">
 													<label for="">Facility Name</label>
 													<input type="text" name="facility_name" ng-model="facility.facility_name" id="" class="form-control" placeholder="" required>
@@ -109,7 +109,7 @@
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Time Zone</label>
 														<select class="form-control" ng-model="facility.timeZone" required>
-															<option>USA (Alaska )</option>
+															<option>USA (Alaska)</option>
 															<option>USA (Samoa)</option>
 															<option>USA (Pacific)</option>
 															<option>USA (Eastern)</option>
@@ -234,7 +234,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-if="facilities" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
