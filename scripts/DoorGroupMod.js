@@ -66,9 +66,14 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				toaster.pop('success',response.msg.replace(/_/g , " "));
+				if(response.msg == "DoorGroup_Assigned"){
+					$("#group_close").click();
+				}
+				else{
+					$rootScope.errormsg = response.msg.replace(/_/g , " ");
+				}
 			}else{
-				toaster.pop('error',response.msg.replace(/_/g , " "));
+				$rootScope.errormsg = response.msg.replace(/_/g , " ");
 				if(response.msg == 'Invalid_Token'){
 					$cookies.remove("token");
 					$location.path('/core/login');return false;

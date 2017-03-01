@@ -95,7 +95,7 @@
 									<script type="text/ng-template" id="myModalContent.html">
 										<form name="form1" role="form" ng-submit="submitCreateDoorGroup(doorGroup)">
 											<div class="modal-header"><h4 class="modal-title custom-font">Create Door Groups</h4></div>
-											<div class="modal-body">						
+											<div class="modal-body">					<span class="error">{{errormsg}}</span>
 												<div class="form-group overflow">
 													<label for="">Group Name</label>
 													<input type="text" name="group_name" ng-model="doorGroup.name" id="" class="form-control" placeholder="" required>
@@ -109,7 +109,7 @@
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()" id="group_close"><i class="fa fa-arrow-left"></i> Close</button>
 												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 											</div>
 										</form>

@@ -199,7 +199,7 @@ app
 		userData.user_phone_no = parseInt(userData.user_phone_no);
 		userData.zip_code = parseInt(userData.zip_code);
 		userData.user_type = 'admin';
-		userData.facility_id = parseInt($cookies.get("facilityId"));;
+		// userData.facility_id = parseInt($cookies.get("facilityId"));;
 		if(userData.password != userData.cpassword){
 			alert("Password and Confirm password not matched");
 			return false;
@@ -254,18 +254,18 @@ app
 				$timeout(function() {
 					$scope.unassignedGroup();
 				});
-				$timeout(function() {
-					$scope.getRfidList();
-				});
-				$timeout(function() {
-					$scope.getPhoneList();
-				});
-				$timeout(function() {
-					$scope.getBleList();
-				});
-				$timeout(function() {
-					$scope.getNfcCodeList();
-				})
+				// $timeout(function() {
+				// 	$scope.getRfidList();
+				// });
+				// $timeout(function() {
+				// 	$scope.getPhoneList();
+				// });
+				// $timeout(function() {
+				// 	$scope.getBleList();
+				// });
+				// $timeout(function() {
+				// 	$scope.getNfcCodeList();
+				// })
 			}else{
 
 				if(response.msg == 'Invalid_Token'){
@@ -487,9 +487,6 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$timeout(function() {
-				$(".ng-scope:contains(User Groups)").trigger( "click" );
-				});
 				$timeout(function(){
 					$scope.getBleList();
 				})
@@ -562,7 +559,7 @@ app
 		savenfc.user_id = parseInt($cookies.get("user_id"));
 		savenfc.details = {};
 		savenfc.details.nfc_code = JSON.stringify(savenfc.nfc_code);
-		savenfc.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
+		// savenfc.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
 		savenfc.credential_type = "nfc_code";
 		delete savenfc.nfc_code;
 		$http(
@@ -655,6 +652,7 @@ app
 		.success(function(response){
 			$scope.getAccessCodeList();
 			if(response.status == true){
+				$scope.accesscode_error = response.msg;
 				$timeout(function() {
 				$(".accordion-toggle")[1].click();
 				});
@@ -823,6 +821,43 @@ app
 		});
 	}
 
+	$scope.removeCredential = function(id, type){
+		$http(
+		{
+			method: 'DELETE', 
+			url: baseURL+'user/delete-credential?credential_id='+id+'&type='+type,			
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+
+			switch (type) {
+            case 'access_code':
+                $scope.getAccessCodeList();
+                break;
+            case 'phone_code':
+                $scope.getPhoneList();
+                break;
+            case 'rfid_code':
+            		$scope.getRfidList();
+            		break;
+            case 'nfc_code':
+                $scope.getNfcCodeList();
+                break;
+            case 'ble_code':
+                $scope.getBleList();
+                break;
+            default:
+
+        }
+			
+			// $scope.door_lists = response.data;
+		})
+	}
+
 	$scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
 	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
@@ -964,23 +999,6 @@ app
 		});
 	}
 	$scope.profileInit();
-
-	$scope.removeCredential = function(id, type){
-		$http(
-		{
-			method: 'DELETE', 
-			url: baseURL+'user/delete-credential?credential_id='+id+'&type='+type,			
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			$scope.getAccessCodeList();
-			// $scope.door_lists = response.data;
-		})
-	}
 
 	$scope.editdoorList = function(){
 		$http(
@@ -1291,7 +1309,7 @@ app
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.details = {};
 		submitData.details.nfc_code = submitData.nfc_code;
-		submitData.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
+		// submitData.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
 		submitData.credential_type = "nfc_code";
 		delete submitData.nfc_code;
 		$http(
@@ -1453,7 +1471,7 @@ app
 		// submitData.rfid_facility_code = parseInt(submitData.rfid_facility_code);
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.details = {};
-		submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_code));
+		// submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_code));
 		submitData.details.rfid_card_no = JSON.stringify(parseInt(submitData.rfid_card_no));
 		submitData.credential_type = "rfid_code";
 		delete submitData.rfid_card_no;
@@ -1637,6 +1655,24 @@ app
 		});
     };
 	//Delete user on detail page
+
+	//Remove user  credentials
+	$scope.removeCredential = function(id, type){
+		$http({
+			method: 'DELETE', 
+			url: baseURL+'user/delete-credential?credential_id='+id+'&type='+type,			
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			$scope.getAccessCodeList();
+			// $scope.door_lists = response.data;
+		})
+	}
+	//End remove user credentials
 	
 	$scope.onlyNumber = function(e){
 		console.log(e);
