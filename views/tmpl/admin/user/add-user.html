@@ -192,7 +192,7 @@
 																<div class="col-md-12 mt-20">
 																	<ul>
 																		<li ng-repeat="user_group in usergroups">
-																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></label>
+																			<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]" ><i></i> {{user_group.usergroupName}} <small>({{user_group.count}} Users)</small></label>
 																		</li>
 																	</ul>
 																	<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
@@ -206,6 +206,7 @@
 													</form>											
 												</script>
 											</div>
+											<div class="layout layout-row alert alert-success alert-dismissable" style="display: none;">	{{usergroupmsg}}</div>
 											<div class="tile-body p-0">
 												<table class="table table-bordered">
 													<thead>
@@ -271,60 +272,18 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="accesscode in access_code_list">
+																	<td>{{accesscode.Access_Code}}</td>
+																	<td>{{accesscode.Door_Name}}  </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate, Gym Gate</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>14562583</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>41154124</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -378,64 +337,19 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
-																	<td>+1 212 1467 1212</td>
+																<tr  ng-repeat="phone_code in phone_code_list">
+																	<td>{{phone_code.Detail.phone_code}}</td>
+																	<td>{{phone_code.Door_Name}}</td>
+																	<td><div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div></td>
 																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																	<select style="border: 0; width: 100%;">
+																			<option value="" ng-selected="{{phone_code.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{phone_code.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back</td>
-																	<td>+1 212 1254 7854</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>14562583</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>+1 212 4587 8759</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>41154124</td>
-																	<td>Main Gate Front, Main Gate Back </td>
-																	<td>+1 212 7854 9658</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -485,49 +399,19 @@
 																	</tr>
 																</thead>
 																<tbody style="font-size:14px;">
-																	<tr>
-																		<td>1130 9147 5482 8547</td>
-																		<td>122</td>
-																		<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																	<tr ng-repeat="rfid_code in rfid_code_list">
+																		<td>{{rfid_code.Detail.rfid_card_no}}</td>
+																		<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																		<td>{{rfid_code.Door_Name}} </td>
 																		<td>
 																			<select style="border: 0; width: 100%;">
-																				<option value="" selected>Active</option>
-																				<option value="">Inactive</option>
-																			</select>
+																			<option value="" ng-selected="{{rfid_code.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{rfid_code.status == 0}}">Inactive</option>
+																		</select>
 																		</td>
 																		<td class="credintialicon">
 																			<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																			<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>1319 0147 8954 7892</td>
-																		<td>7854</td>
-																		<td>Main Gate Front, Main Gate Back</td>
-																		<td>
-																			<select style="border: 0; width: 100%;">
-																				<option value="" selected>Active</option>
-																				<option value="">Inactive</option>
-																			</select>
-																		</td>
-																		<td class="credintialicon">
-																			<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																			<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>1456 2583 8524 9635</td>
-																		<td>4587</td>
-																		<td>Main Gate Front, Main Gate Back </td>
-																		<td>
-																			<select style="border: 0; width: 100%;">
-																				<option value="" selected>Active</option>
-																				<option value="">Inactive</option>
-																			</select>
-																		</td>
-																		<td class="credintialicon">
-																			<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																			<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			<a href="" ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																		</td>
 																	</tr>
 																</tbody>
@@ -578,32 +462,18 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>11309147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="nfccode in nfc_code_list">
+																	<td>{{nfccode.Detail.nfc_code}}</td>
+																	<td>{{nfccode.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{nfccode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{nfccode.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>13190147</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate, Gym Gate</td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
-																		</select>
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{nfccode.Credential_Id}}', 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -654,19 +524,19 @@
 																</tr>
 															</thead>
 															<tbody style="font-size:14px;">
-																<tr>
-																	<td>jhonrock</td>
-																	<td>**********</td>
-																	<td>Main Gate Front, Main Gate Back, Pool Gate </td>
+																<tr ng-repeat="blecode in ble_code_list">
+																	<td>{{blecode.Detail.ble_username}}</td>
+																	<td>{{blecode.Detail.ble_password}}</td>
+																	<td>{{blecode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" selected>Active</option>
-																			<option value="">Inactive</option>
+																			<option value="" ng-selected="{{blecode.status == 1}}">Active</option>
+																			<option value="" ng-selected="{{blecode.status == 0}}">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{ blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
