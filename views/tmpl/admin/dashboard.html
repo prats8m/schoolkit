@@ -7,7 +7,7 @@
 						<div class="bg-transparent">
 							<div class="row">
 								<div class="col-md-12">
-									<h3 class="custom-font h3link hvr-pulse-grow"><a ui-sref="app.admin.facility.facility">Create A New Facilities</a></h3>
+									<h3 class="custom-font h3link hvr-pulse-grow"><a ui-sref="app.admin.facility.facility">Facilities</a></h3>
 									<!--h3 class="custom-font h3link"><a ui-sref="app.admin.facility.facility-details">USA Corporate Services</a></h3-->
 								</div>
 							</div>
@@ -26,7 +26,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device + dashboardData.dependent_device}}</p>
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -35,10 +35,10 @@
 					<div class="back bg-blue">
 						<div class="row">             
 							<div class="col-xs-6">
-								<a ui-sref="app.admin.device.devices"><img src="images/device-icon.png" alt=""><br/>15 Primary</a>
+								<a ui-sref="app.admin.device.devices"><img src="images/device-icon.png" alt=""><br/>{{dashboardData.primary_device}} Primary</a>
 							</div>
 							<div class="col-xs-6">
-								<a ui-sref="app.admin.device.dependent-devices"><img src="images/dependent-device-icon.png" alt=""><br/>7 Dependent</a>
+								<a ui-sref="app.admin.device.dependent-devices"><img src="images/dependent-device-icon.png" alt=""><br/>{{dashboardData.dependent_device}} Dependent</a>
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -84,7 +84,7 @@
 							</div>
 							<div class="col-xs-6">	
 							<div class="itxt">							
-								<p class="text-elg text-strong mt-5 mb-5">22</p>
+								<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
 								<span class="text-lg">Doors</span>
 							</div>	
 							</div>

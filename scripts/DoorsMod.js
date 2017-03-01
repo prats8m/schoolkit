@@ -14,6 +14,8 @@ app
     };
 	$rootScope.addDoors = {};
 	
+	$rootScope.facilityId = $cookies.get('facilityId');
+	
 	$scope.result = '';
     $scope.showConfirm = function(ev, door_id) {
 		var confirm = $mdDialog.confirm()		
@@ -210,7 +212,7 @@ app
 		if(!create_door.validate()){
 			return false;
 		}
-		door.facility_id = parseInt($cookies.get("facilityId"));
+		//door.facility_id = parseInt($cookies.get("facilityId"));
 		door.description = " ";
 		$http({
 			url: baseURL + 'door/add',
@@ -224,14 +226,12 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.doormsg = response.msg;
-				$("#close").click();
+				toaster.pop('success',response.msg.replace(/_/g,' '));
 			}else{
-				$rootScope.doormsg = response.msg;
+				toaster.pop('error',response.msg.replace(/_/g,' '));
 			}
 		})
 		.error(function (data, status, headers, config) {
-			
 		});
 	}
 		//End of create door
@@ -266,6 +266,7 @@ app
 					$cookies.remove("token");
 					$location.path('/core/login');
 				}
+				$scope.adoors = [];
 			}
 		}).error(function(){
 
@@ -292,9 +293,7 @@ app
 				if(response.status == true){
 					$scope.adoors = arrayPushService.arrayPush(response.data.data,  $scope.adoors);
 					$scope.pageNo = $scope.pageNo + 1 ;
-					// console.log($rootScope.dashboardData);
-				}
-				else{
+				}else{
 					$rootScope.doormsg = response.msg;
 				}
 			})
@@ -304,6 +303,33 @@ app
 		}
 		$scope.listDoors();
 		//End of list doors
+		
+		$scope.facilityInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'facility/list',
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$rootScope.facilityList = response.data.data;
+				/* for(var i=0;i<facilityList.length;i++){
+					if(parseInt(facilityList[i].facility_id) == parseInt($cookies.get('facilityId')))
+						$rootScope.FacilityName = facilityList[i].facility_name;
+				} */	
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	$scope.facilityInit();
 
 	$scope.imagePath = 'http://localhost/elika/elika/images';
 	
@@ -551,7 +577,11 @@ app
 	$scope.doorInit();
 	
 	$scope.editDoordata = function(doorData, door_data){
-		doorData.facility_id = parseInt($cookies.get('facilityId'));
+		if(!door_data.validate()){
+			return false;
+		}		
+		doorData.facility_id = parseInt(doorData.facility_id );
+		//console.log(doorData);
 		delete doorData.facility;
 		//  console.log(doorData);
 		$http(

@@ -124,7 +124,7 @@
 								<div class="row">
 									<div class="form-group col-sm-6 col-md-4 first">
 										<label for="">Name</label>
-										<input type="text" name="" id="" ng-model="doorData.door_name" class="form-control mb-10" placeholder="">
+										<input type="text" name="door_name" id="" ng-model="doorData.door_name" class="form-control mb-10" placeholder="" required>
 									</div>
 									<div class="form-group col-sm-6 col-md-4 last">
 										<label for="">Facility</label><br/>
@@ -132,7 +132,8 @@
 											<option selected>USA Corporate Services</option>
 											<option>Aerzen USA Corporation</option>
 										</select> -->
-										<select class="form-control" ng-options="field as field.facility_name for field in facilityList track by field.facility_id" ng-model="doorData.facility" >
+										<select class="form-control" name="facility_name" ng-options="field as field.facility_name for field in facilityList track by field.facility_id" ng-model="doorData.facility_id" required>
+											<option value="">Select</option>
 										</select>
 									</div>
 									<div class="form-group col-sm-6 col-md-4 first">

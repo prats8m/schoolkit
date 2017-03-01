@@ -75,7 +75,7 @@ app
 
 	$scope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1',
+			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {
@@ -283,11 +283,11 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				var facilityList = response.data.data;
-				for(var i=0;i<facilityList.length;i++){
+				$rootScope.facilityList = response.data.data;
+				/* for(var i=0;i<facilityList.length;i++){
 					if(parseInt(facilityList[i].facility_id) == parseInt($cookies.get('facilityId')))
 						$rootScope.FacilityName = facilityList[i].facility_name;
-				}	
+				} */	
 			}else{
 				
 			}
