@@ -1375,7 +1375,6 @@ app
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
 			$scope.userGroupDelete(id);
-			
 		}, function() {
 			$scope.result = 'You decided to keep User Group.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
@@ -1434,7 +1433,8 @@ app
 		$scope.usergroups =[];
 		$scope.searchText = "";
 	
-	$scope.getUserGroupList = function(e){console.log(e);
+	$scope.getUserGroupList = function(e){
+		console.log(e);
 		if(e)
 		if(e.keyCode!=13){return false;}
 		if(!$scope.searchValue){
