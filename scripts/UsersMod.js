@@ -165,6 +165,28 @@ app
     }
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
+
+	$scope.facilityInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'facility/list',
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){	
+				$scope.facilityList = response.data.data;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
 	
 	$scope.doorList = function(){
 		$http(
@@ -248,12 +270,15 @@ app
 				$(".ng-scope:contains(User Groups)").trigger( "click" );
 				// $(".ng-scope:contains(Credentials)").trigger( "click" );
 				});
+				$timeout(function(){
+					$scope.facilityInit();
+				});
 				$timeout(function() {
 					$scope.assignedGroup();
 				});
-				$timeout(function() {
-					$scope.unassignedGroup();
-				});
+				// $timeout(function() {
+				// 	$scope.unassignedGroup(facility_id);
+				// });
 				// $timeout(function() {
 				// 	$scope.getRfidList();
 				// });
@@ -693,7 +718,7 @@ app
 			method: 'POST', 
 			url: baseURL+'user/assign-usergroup',
 			dataType : 'JSON', 
-			data: { "user_id": parseInt($cookies.get("user_id")), "user_group_id": arr },
+			data: { "user_id": parseInt($cookies.get("user_id")), "user_group_id": arr , "facility_id": user_group.facility_id},
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -794,13 +819,13 @@ app
 		});
 	}
 
-	$scope.unassignedGroup = function(){
+	$scope.unassignedGroup = function(facility_id){
 		$http(
 		{
 			method: 'POST', 
 			url: baseURL+'user/usergroup-not-assigned-to-user',
 			dataType : 'JSON', 
-			data: { "user_id": parseInt($cookies.get("user_id")) },
+			data: { "user_id": parseInt($cookies.get("user_id")), "facility_id":  facility_id},
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -808,6 +833,8 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
+				$rootScope.usergroup = {};
+				$rootScope.usergroup.facility_id = facility_id;
 				$rootScope.usergroups = response.data;
 			}else{	
 				if(response.msg == 'Invalid_Token'){
@@ -1789,7 +1816,8 @@ app
 			if(response.status == true){
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-0]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
-				toaster.pop('success','User Group Added Successfully');
+				$rootScope.listDoorSchedule(response.data.user_group_id);
+				// toaster.pop('success','User Group Added Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -1806,6 +1834,28 @@ app
 				else{
 					$rootScope.user_group_error = response.msg.replace(/_/g,' ');
 				}	
+			}
+		}).error(function(){
+
+		});
+    }
+
+    $rootScope.listDoorSchedule = function(usergroup_id){
+    	$http(
+		{
+			method: 'GET', 
+			url: baseURL+'usergroup/list-door-schedule?usergroup_id='+usergroup_id,
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){	
+				$rootScope.listDoorGroup = response.data;
+			}else{
+				
 			}
 		}).error(function(){
 

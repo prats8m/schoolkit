@@ -179,6 +179,11 @@
 										<section class="tile">
 											<div class="tile-header" ng-controller="ModalDemoCtrl">
 												<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
+												<div class="col-md-3 mt-3">
+													<select class="form-control"  ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id" ng-change="unassignedGroup(facility)" >
+														<option value="">Select</option>
+													</select>
+												</div>
 												<ul class="controls">
 													<li class="addpopup">
 														<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
@@ -187,6 +192,7 @@
 												<script type="text/ng-template" id="myModalContent.html">
 													<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
 													<form ng-submit="assignUserGroup(usergroup)">
+													<input type="hidden" ng-model="usergroup.facility_id" id="group_facility_id">
 														<div class="hometabs">
 															<div class="overflow groupslists">
 																<div class="col-md-12 mt-20">
@@ -206,6 +212,7 @@
 													</form>											
 												</script>
 											</div>
+												
 											<div class="layout layout-row alert alert-success alert-dismissable" style="display: none;">	{{usergroupmsg}}</div>
 											<div class="tile-body p-0">
 												<table class="table table-bordered">
@@ -438,7 +445,7 @@
 														</div>
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Facility Code</label>
-															<input type="text" name="nfc_facility_code" id="" class="form-control mb-10" placeholder="" ng-model="savenfc.nfc_facility_id" required>
+															<input type="text" name="nfc_facility_code" id="" class="form-control mb-10" placeholder="" ng-model="savenfc.nfc_facility_code" required>
 														</div>
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Assign Doors</label><br/>
