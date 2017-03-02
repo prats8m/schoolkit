@@ -104,7 +104,7 @@ app
 		}
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		device.facility_id = parseInt($rootScope.facilityId);
+		//device.facility_id = parseInt($rootScope.facilityId);
 
 		$http({
 			url: baseURL+'device/add',
@@ -347,7 +347,7 @@ app
     };
     var device_id = $stateParams.device_id;
 	$scope.device_id = device_id
-	$rootScope.facilityId = $cookies.get('facilityId');
+	//$rootScope.facilityId = $cookies.get('facilityId');
 	
 	$rootScope.submitDependentDevice = function(device,add_dependent){
 		if(!add_dependent.validate()){
@@ -355,7 +355,7 @@ app
 		}
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		device.facility_id = parseInt($rootScope.facilityId);
+		//device.facility_id = parseInt($rootScope.facilityId);
 		
 		$http(
 		{
@@ -1089,7 +1089,7 @@ app
 
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		device.facility_id = parseInt($rootScope.facilityId);
+		//device.facility_id = parseInt($rootScope.facilityId);
 
 		$http({
 			url: baseURL+'device/add',
@@ -1404,7 +1404,7 @@ app
 		}
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		device.facility_id = parseInt($rootScope.facilityId);
+		//device.facility_id = parseInt($rootScope.facilityId);
 
 		$http({
 			url: baseURL+'device/add',
