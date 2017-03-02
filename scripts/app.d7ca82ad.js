@@ -1030,7 +1030,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})
