@@ -584,9 +584,11 @@ app
 		savenfc.user_id = parseInt($cookies.get("user_id"));
 		savenfc.details = {};
 		savenfc.details.nfc_code = JSON.stringify(savenfc.nfc_code);
+		savenfc.details.nfc_facility_code = JSON.stringify(savenfc.nfc_facility_code);
 		// savenfc.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
 		savenfc.credential_type = "nfc_code";
 		delete savenfc.nfc_code;
+		delete savenfc.nfc_facility_code;
 		$http(
 		{
 			method: 'POST', 
