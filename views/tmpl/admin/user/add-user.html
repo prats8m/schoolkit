@@ -436,7 +436,11 @@
 																</span>
 															</div>
 														</div>
-														<div class="form-group col-sm-3 col-md-6">
+														<div class="form-group col-sm-3 col-md-3">
+															<label for="">Facility Code</label>
+															<input type="text" name="nfc_facility_code" id="" class="form-control mb-10" placeholder="" ng-model="savenfc.nfc_facility_id" required>
+														</div>
+														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Assign Doors</label><br/>
 															<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="savenfc.door_id" multiple required></select>
 														</div>

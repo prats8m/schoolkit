@@ -860,7 +860,7 @@ app
 
 	$scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);   }  })  
 	 	.error(function (data, status, headers, config) {     }); } 
 
 	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
@@ -886,7 +886,7 @@ app
 
 	$scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);   }  })  
 	 	.error(function (data, status, headers, config) {     }); } 
 
 	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
@@ -1710,7 +1710,7 @@ app
 
     $scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);   }  })  
 	 	.error(function (data, status, headers, config) {     }); } 
 
 	 	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
