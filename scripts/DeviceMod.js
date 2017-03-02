@@ -1033,7 +1033,7 @@ app
 	
 	$scope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1',
+			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {
@@ -1043,9 +1043,8 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				//toaster.pop('success',response.msg.replace(/_/g,' '));
 				$rootScope.doorList = response.data.data;
-				
+				$scope.getTechnicianList();
 			}else{
 				
 			}
@@ -1054,6 +1053,7 @@ app
 
 		});
 	}
+	$scope.getDoorsList();
 	
 	$scope.getTechnicianList = function(device){
 		
@@ -1225,6 +1225,30 @@ app
 	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
 	}
+	
+	$scope.facilityInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'facility/list',
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){	
+				$rootScope.facilityList = response.data.data;
+				
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	$scope.facilityInit();
 	
 	$scope.imagePath = 'http://elikastaging.tk/images/';
 	

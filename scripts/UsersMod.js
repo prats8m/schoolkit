@@ -1701,7 +1701,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService) {  	
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService,$timeout) {  	
      $scope.page = {
       title: 'User Groups',
       subtitle: '',
@@ -1709,9 +1709,21 @@ app
     };
 
     $scope.dashboardInit = function(){ 
-	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data[0];     console.log($rootScope.dashboardData);   }  })  
-	 	.error(function (data, status, headers, config) {     }); } 
+	 $http({
+		 url: baseURL + 'user/dashboard',   
+		 method: 'GET',   dataType : 'JSON',   
+		 headers: {    
+			"Authorization": $cookies.get("token"),    
+			"Content-type": "application/json"   
+		 }  
+		}).success(function(response) {   
+			if(response.status == true){    
+				$rootScope.dashboardData = response.data[0];     
+				console.log($rootScope.dashboardData);   
+			}  
+		}).error(function (data, status, headers, config) {
+		}); 
+	} 
 
 	 	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 	
@@ -1744,12 +1756,35 @@ app
 			$scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
+	
+	$scope.facilityInit = function(){
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'facility/list',
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){	
+				$rootScope.facilityList = response.data.data;
+			}else{
+				
+			}
+		}).error(function(){
+
+		});
+	}
+	$scope.facilityInit();
 
     $rootScope.saveUserGroup = function(usergroup, group_form){
     	if(!group_form.validate()){
 			return false;
 		}
-		usergroup.facility_id = parseInt($cookies.get("facilityId"));
+		//usergroup.facility_id = parseInt($cookies.get("facilityId"));
 		$http({
 			method: 'POST', 
 			url: baseURL + 'usergroup/add',
@@ -1763,6 +1798,8 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-0]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
 				toaster.pop('success','User Group Added Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){

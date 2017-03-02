@@ -97,7 +97,7 @@
 						<h4 class="mb-0"><strong>{{doorData.door_name}}</strong></h4>
 						<span class="text-muted">{{doorData.door_status == 1 ? 'Active' : 'Inactive'}}</span>
 						<div class="mt-40">
-							<a ui-sref="app.admin.door.view-door({door_id:doorData.door_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
+							<a ui-sref="app.admin.door.view-doors({door_id:doorData.door_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
 							<a ng-click="showConfirm($event, doorData.door_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door</a>
 						</div>
 					</div>
@@ -132,12 +132,12 @@
 											<option selected>USA Corporate Services</option>
 											<option>Aerzen USA Corporation</option>
 										</select> -->
-										<select class="form-control" name="facility_name" ng-options="field as field.facility_name for field in facilityList track by field.facility_id" ng-model="doorData.facility_id" required>
+										<select class="form-control" name="facility_name" ng-init="doorData.facility_id = facilityId" ng-options="field.facility_id as field.facility_name for field in facilityList track by field.facility_id" ng-model="doorData.facility_id" required>
 											<option value="">Select</option>
 										</select>
 									</div>
 									<div class="form-group col-sm-6 col-md-4 first">
-										<label for="">Device Type</label><br/>
+										<label for="">Door Status</label><br/>
 										<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
 											<label class="btn btn-default" ng-model="doorData.door_status" uib-btn-radio="1">Active</label>
 											<label class="btn btn-default" ng-model="doorData.door_status" uib-btn-radio="0">Inactive</label>
