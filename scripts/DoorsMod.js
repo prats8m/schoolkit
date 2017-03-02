@@ -581,9 +581,7 @@ app
 			return false;
 		}		
 		doorData.facility_id = parseInt(doorData.facility_id );
-		//console.log(doorData);
 		delete doorData.facility;
-		//  console.log(doorData);
 		$http(
 		{	
 			method: 'PUT', 

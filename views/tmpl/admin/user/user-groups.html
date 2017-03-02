@@ -31,7 +31,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
 									<span class="text-lg">Doors</span>
 								</div>
 							</div>
@@ -73,7 +73,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -93,100 +93,121 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="group_form" role="form" ng-validate="validationOptions" ng-submit="saveUserGroup(usergroup, group_form)" id="group_form">
+										<div name="form1" role="form">
 											<div class="modal-header">
 												<h4 class="modal-title custom-font">Create User Groups</h4>
 											</div>
-											<div class="modal-body">
-												<div class="row">
-													<div class="form-group col-sm-6 col-md-6 pr-10">
-														<label for="">Group Name</label>
-														<input type="text" name="usergroup_name" id="usergroup_name" class="form-control" placeholder="" ng-model="usergroup.usergroup_name" required>
-													</div>
-													<div class="form-group col-sm-6 col-md-6 pl-10">
-														<label for="">Facility</label><br/>
-														<select class="form-control" disabled>
-															<option selected>USA Corporate Services</option>
-															<option>Aerzen USA Corporation</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<div class="tile-body p-0">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Door/Door Groups</th>
-																	<th width="222">Schedule Groups</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Main Gate Front</td>
-																	<td>
-																		<select class="form-control">
-																			<option>Select Schedule Group</option>
-																			<option>No Access</option>
-																			<option>Full Access</option>
-																			<option>Office-Weekdays</option>
-																			<option>Office-Weekend</option>
-																			<option>Cleaning-Weekdays</option>
-																			<option>Cleaning-Weekend</option>
-																		</select>
-																	</td>
-																</tr>
-																<tr>
-																	<td>Entry Gate</td>
-																	<td>
-																		<select class="form-control">
-																			<option>Select Schedule Group</option>
-																			<option>No Access</option>
-																			<option>Full Access</option>
-																			<option>Office-Weekdays</option>
-																			<option>Office-Weekend</option>
-																			<option>Cleaning-Weekdays</option>
-																			<option>Cleaning-Weekend</option>
-																		</select>
-																	</td>
-																</tr>
-																<tr>
-																	<td>Main Gate Back</td>
-																	<td>
-																		<select class="form-control">
-																			<option>Select Schedule Group</option>
-																			<option>No Access</option>
-																			<option>Full Access</option>
-																			<option>Office-Weekdays</option>
-																			<option>Office-Weekend</option>
-																			<option>Cleaning-Weekdays</option>
-																			<option>Cleaning-Weekend</option>
-																		</select>
-																	</td>
-																</tr>
-																<tr>
-																	<td>Pool Gate</td>
-																	<td>
-																		<select class="form-control">
-																			<option>Select Schedule Group</option>
-																			<option>No Access</option>
-																			<option>Full Access</option>
-																			<option>Office-Weekdays</option>
-																			<option>Office-Weekend</option>
-																			<option>Cleaning-Weekdays</option>
-																			<option>Cleaning-Weekend</option>
-																		</select>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
+											<div class="modal-body hometabs p-0">		
+												<md-content class="md-padding tabsdemoDynamicHeight">
+												<md-tabs md-dynamic-height md-border-bottom>		
+													<md-tab label="Group Name">
+													<md-content>
+														<form name="group_form" role="form" ng-validate="validationOptions" ng-submit="saveUserGroup(userGroup, group_form)" id="group_form">
+														<div class="row mt-10">
+															<div class="form-group col-sm-12 col-md-12">
+																<label for="">Group Name</label>
+																<input type="text" name="group_name" id="group_name" ng-model="userGroup.usergroup_name" class="form-control" placeholder="" required>
+															</div>
+															<div class="form-group col-sm-12 col-md-12">
+																<label for="">Facility</label><br/>
+																<select class="form-control" ng-model="userGroup.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList">
+																	<option value="">Select</option>
+																</select>
+															</div>
+														</div>
+														<div class="row mt-20">
+															<div class="col-sm-12 col-md-12">	
+																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Submit</button>
+															</div>
+														</div>
+														</form>
+													</md-content>
+													</md-tab>
+													
+													<md-tab label="Door Schedule">
+													<md-content>
+														<div class="tile-body p-0">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th>Door/Door Groups</th>
+																		<th width="222">Schedule Groups</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>Main Gate Front</td>
+																		<td>
+																			<span class="loader"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+																			<select class="form-control">
+																				<option>Select Schedule Group</option>
+																				<option selected>No Access</option>
+																				<option>Full Access</option>
+																				<option>Office-Weekdays</option>
+																				<option>Office-Weekend</option>
+																				<option>Cleaning-Weekdays</option>
+																				<option>Cleaning-Weekend</option>
+																			</select>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>Entry Gate</td>
+																		<td>
+																			<span class="loader"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+																			<select class="form-control">
+																				<option selected>No Access</option>
+																				<option>Full Access</option>
+																				<option>Select Schedule Group</option>
+																				<option>Office-Weekdays</option>
+																				<option>Office-Weekend</option>
+																				<option>Cleaning-Weekdays</option>
+																				<option>Cleaning-Weekend</option>
+																			</select>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>Main Gate Back</td>
+																		<td>
+																			<span class="loader"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+																			<select class="form-control">
+																				<option selected>No Access</option>
+																				<option>Full Access</option>
+																				<option>Select Schedule Group</option>
+																				<option>Office-Weekdays</option>
+																				<option>Office-Weekend</option>
+																				<option>Cleaning-Weekdays</option>
+																				<option>Cleaning-Weekend</option>
+																			</select>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>Pool Gate</td>
+																		<td>
+																			<span class="loader"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+																			<select class="form-control">
+																				<option>Select Schedule Group</option>
+																				<option selected>No Access</option>
+																				<option>Full Access</option>
+																				<option>Office-Weekdays</option>
+																				<option>Office-Weekend</option>
+																				<option>Cleaning-Weekdays</option>
+																				<option>Cleaning-Weekend</option>
+																			</select>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</md-content>
+													</md-tab>
+												</md-tabs>
+												</md-content>
 											</div>
 											<div class="modal-footer">
 												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 											</div>
-										</form>								
+										</div>								
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User Groups</span></a>
 								</div>
@@ -373,7 +394,6 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getUserGroupList()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
