@@ -898,7 +898,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL) {
+  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope) {
 	  
 		
 	/* if($cookies.get('token')){
@@ -926,6 +926,7 @@ app
 					var expireTime = time + 1000*60;
 					now.setTime(expireTime);
 					$cookies.put('token', response.data.token,{expiry:now});
+					$rootScope.current_user = response.data;
 					if(response.data.userType == 'admin')
 						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
 					$state.go('app.admin.dashboard');
