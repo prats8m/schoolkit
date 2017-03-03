@@ -1763,7 +1763,7 @@ app
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete User Group?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		.content('')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
