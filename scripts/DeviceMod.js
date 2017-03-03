@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler) {
+  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout) {
     $scope.page = {
 		title: 'Devices',
 		subtitle: 'So much more to see at a glance.'
@@ -119,6 +119,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){$("#close").cilck();})
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 				if(response.msg == 'Validation_Error'){
@@ -301,6 +302,28 @@ app
         $scope.myOrderBy = x;
     }
 	
+	//  device/models-list
+	$scope.deviceModelInit = function(){
+		$http({
+			url: baseURL + 'device/models-list',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.deviceModel = response.data;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	$scope.deviceModelInit();
+	
 	$scope.dashboardInit = function(){
 		$http({
 			url: baseURL + 'user/dashboard',
@@ -313,7 +336,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})
@@ -470,6 +493,27 @@ app
 		});	
 	}
 	$scope.dependentDeviceInit();
+	
+	$scope.deviceModelInit = function(){
+		$http({
+			url: baseURL + 'device/models-list',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.deviceModel = response.data;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	$scope.deviceModelInit();
 
 	$scope.pageNo = 1;
 	$scope.dependentDevices = function(e){
@@ -705,7 +749,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})
@@ -894,7 +938,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 			}
 		})
 		.error(function (data, status, headers, config) {
@@ -1022,7 +1066,6 @@ app
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
 					$location.path('/core/login');
-					
 				}
 			}
 		}).error(function(){
@@ -1104,6 +1147,8 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$scope.pageNo = 1;
+				$scope.dependentDevices();
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 				if(response.msg == 'Validation_Error'){
@@ -1160,7 +1205,6 @@ app
 	//$scope.searchFunction();
 	
 	$scope.orderByMe = function(x) {
-		alert(x);
         $scope.myOrderBy = x;
     }
 	
@@ -1214,7 +1258,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})
@@ -1456,7 +1500,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})

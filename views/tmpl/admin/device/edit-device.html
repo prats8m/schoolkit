@@ -133,7 +133,10 @@
 											</div>
 											<div class="form-group col-sm-6 col-md-6">
 												<label for="">Model Name</label>
-												<input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control" placeholder="" required disabled>
+												<!-- <input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control" placeholder="" required disabled> -->
+												<select name="device_model" ng-model="editDevice.model_name" class="form-control" ng-options="model for model in deviceModel" required>
+													<option value="">Select</option>
+												</select>
 											</div>
 										</div>
 										<div class="row">
