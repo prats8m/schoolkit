@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService) {
+  .controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout) {
      $scope.page = {
       title: 'Doors',
       subtitle: 'So much more to see at a glance.'
@@ -226,7 +226,10 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){
+					$(".door_close").click();
+				})
+				// toaster.pop('success',response.msg.replace(/_/g,' '));
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 			}

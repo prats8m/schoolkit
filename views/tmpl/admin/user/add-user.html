@@ -177,18 +177,24 @@
 								<md-content>														
 									<div class="usergroup mt-10">
 										<section class="tile">
-											<div class="tile-header" ng-controller="ModalDemoCtrl">
-												<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
-												<div class="col-md-3 mt-3">
-													<select class="form-control"  ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id" ng-change="unassignedGroup(facility)" >
-														<option value="">Select</option>
-													</select>
+											<div class="tile-header mb-0 mt-20" ng-controller="ModalDemoCtrl">
+												<div class="row">
+													<div class="form-group col-sm-3 col-md-3">
+														<label for="">Firstly Select facility</label><br/>
+														<select class="form-control"  ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id" ng-change="unassignedGroup(facility)" >
+														</select>
+													</div>
 												</div>
-												<ul class="controls">
-													<li class="addpopup">
-														<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
-													</li>
-												</ul>
+												<div class="row mt-20">
+													<div class="col-sm-12 col-md-12">
+														<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
+														<ul class="controls">
+															<li class="addpopup">
+																<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+															</li>
+														</ul>
+													</div>
+												</div>
 												<script type="text/ng-template" id="myModalContent.html">
 													<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
 													<form ng-submit="assignUserGroup(usergroup)">

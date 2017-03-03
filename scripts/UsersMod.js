@@ -1730,7 +1730,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService,$timeout) {  	
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul) {  	
      $scope.page = {
       title: 'User Groups',
       subtitle: '',
@@ -1818,7 +1818,12 @@ app
 			if(response.status == true){
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-0]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
-				$rootScope.listDoorSchedule(response.data.user_group_id);
+				$timeout(function(){
+						$scope.pageNo = 1 ;
+						// $scope.usergroups = {};
+						$scope.getUserGroupList();
+					})
+				$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
 				// toaster.pop('success','User Group Added Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
@@ -1842,7 +1847,36 @@ app
 		});
     }
 
-    $rootScope.listDoorSchedule = function(usergroup_id){
+    $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed){
+    	$("#"+ud_id).css("display", "block");
+    	if(schedule_id != "null"){
+    		is_access_allowed = 2;
+    	}
+			$http(
+				{
+					method: 'PUT', 
+					url: baseURL+'usergroup/edit-door-schedule',
+					dataType : 'JSON', 
+					data : {"ud_id":ud_id,"is_access_allowed":is_access_allowed,"schedule_id":schedule_id},
+					headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == "true"){
+					$timeout(function(){
+						$("#"+ud_id).css("display", "none");
+					});
+				}
+				else{
+
+				}
+
+			})
+    }
+
+    $rootScope.listDoorSchedule = function(usergroup_id, facility_id){
     	$http(
 		{
 			method: 'GET', 
@@ -1855,7 +1889,22 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){	
-				$rootScope.listDoorGroup = response.data;
+				$scope.x = schedul.getScheduleByFacility(facility_id);
+				$rootScope.listDoorGroup = {};
+				angular.forEach(response.data, function(value, key){          
+					$rootScope.listDoorGroup[key] = value;
+					$rootScope.listDoorGroup[key].schedulelist = {};
+					$rootScope.listDoorGroup[key].schedulelist[0] = {};
+					$rootScope.listDoorGroup[key].schedulelist[0].name = value.schedule_name;
+					$rootScope.listDoorGroup[key].schedulelist[0].id = value.schedule_id;
+					$scope.x.success(function(resp){
+						angular.forEach(resp.data, function(val, k){
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)+1] = {};
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)+1].name = val.schedule_name;
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)+1].id = val.schedule_id;
+						});
+					});
+        });
 			}else{
 				
 			}

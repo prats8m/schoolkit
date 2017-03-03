@@ -9675,6 +9675,23 @@ app.service('errorHandler',  function ($http,$location,toaster,$cookies) {
 	}
  });
 
+app.service('schedul', function($http, baseURL, $cookies) {
+    this.getScheduleByFacility = function (facility_id) {
+        return $http({
+				method: 'GET', 
+				url: baseURL+'schedule/list-schedule?facility_id='+facility_id,
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+				})
+				.success(function(response){
+					response.data;
+				})
+    }
+
+});
 
 // app.directive('fileModel', ['$parse', function ($parse) {
 //     return {

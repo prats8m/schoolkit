@@ -31,7 +31,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
 									<span class="text-lg">Doors</span>
 								</div>
 							</div>
@@ -73,7 +73,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -139,15 +139,9 @@
 																	<tr ng-repeat="doorlist in listDoorGroup">
 																		<td>{{doorlist.door_name}}</td>
 																		<td>
-																			<span class="loader"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
-																			<select class="form-control">
-																				<option>Select Schedule Group</option>
-																				<option selected>No Access</option>
-																				<option>Full Access</option>
-																				<option>Office-Weekdays</option>
-																				<option>Office-Weekend</option>
-																				<option>Cleaning-Weekdays</option>
-																				<option>Cleaning-Weekend</option>
+																			<span class="loader" id="{{doorlist.ud_id}}" style="display: none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+																			<select class="form-control" ng-model="schedule_id" ng-options="item.id as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id,doorlist.is_access_allowed)">
+																				<option value="">Select Schedule Group</option>
 																			</select>
 																		</td>
 																	</tr>
@@ -160,7 +154,7 @@
 												</md-content>
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c usergroup_close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 											</div>
 										</div>								
