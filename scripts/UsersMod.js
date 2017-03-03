@@ -1820,10 +1820,12 @@ app
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
 				$timeout(function(){
 						$scope.pageNo = 1 ;
-						// $scope.usergroups = {};
+						$scope.usergroups =[];
 						$scope.getUserGroupList();
 					})
-				$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
+				$timeout(function(){
+					$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
+				})
 				// toaster.pop('success','User Group Added Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
@@ -1864,14 +1866,15 @@ app
 				}
 			})
 			.success(function(response){
-				if(response.status == "true"){
+				if(response.status == true){
+					$rootScope.user_group_success = response.msg.replace(/_/g,' ');
+				}
+				else{
+					$rootScope.user_group_success = response.msg.replace(/_/g,' ');
+				}
 					$timeout(function(){
 						$("#"+ud_id).css("display", "none");
 					});
-				}
-				else{
-
-				}
 
 			})
     }

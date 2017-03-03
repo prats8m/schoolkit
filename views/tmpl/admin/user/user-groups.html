@@ -97,37 +97,39 @@
 											<div class="modal-header">
 												<h4 class="modal-title custom-font">Create User Groups</h4>
 											</div>
-											<div class="modal-body hometabs p-0">		
-												<md-content class="md-padding tabsdemoDynamicHeight">
+											<div class="modal-body hometabs usergroups p-0">		
+												<md-content class="md-padding tabsdemoDynamicHeight p-0 pt-20">
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Group Name">
 													<md-content>
 														<span class="error">{{user_group_error}}</span>
 														<form name="group_form" role="form" ng-validate="validationOptions" ng-submit="saveUserGroup(userGroup, group_form)" id="group_form">
-														<div class="row mt-10">
-															<div class="form-group col-sm-12 col-md-12">
-																<label for="">Group Name</label>
-																<input type="text" name="group_name" id="group_name" ng-model="userGroup.usergroup_name" class="form-control" placeholder="" required>
+															<div class="p-15">
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12">
+																		<label for="">Group Name</label>
+																		<input type="text" name="group_name" id="group_name" ng-model="userGroup.usergroup_name" class="form-control" placeholder="" required>
+																	</div>
+																	<div class="form-group col-sm-12 col-md-12">
+																		<label for="">Facility</label><br/>
+																		<select class="form-control" ng-model="userGroup.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList">
+																			<option value="">Select</option>
+																		</select>
+																	</div>
+																</div>
+																<div class="modal-footer" style="margin: 20px -15px -15px;">	
+																	<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																	<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
+																</div>
 															</div>
-															<div class="form-group col-sm-12 col-md-12">
-																<label for="">Facility</label><br/>
-																<select class="form-control" ng-model="userGroup.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList">
-																	<option value="">Select</option>
-																</select>
-															</div>
-														</div>
-														<div class="row mt-20">
-															<div class="col-sm-12 col-md-12">	
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Submit</button>
-															</div>
-														</div>
 														</form>
 													</md-content>
 													</md-tab>
 													
 													<md-tab label="Door Schedule">
 													<md-content>
-														<div class="tile-body p-0">
+														<div class="tile-body p-15">
+														<span style="color: green;">{{user_group_success}}</span>
 															<table class="table table-bordered">
 																<thead>
 																	<tr>
@@ -147,15 +149,14 @@
 																	</tr>
 																</tbody>
 															</table>
+															<div class="modal-footer" style="margin: 20px -15px -15px;">
+																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+															</div>
 														</div>
 													</md-content>
 													</md-tab>
 												</md-tabs>
 												</md-content>
-											</div>
-											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c usergroup_close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 											</div>
 										</div>								
 									</script>
