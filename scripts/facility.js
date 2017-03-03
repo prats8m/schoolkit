@@ -51,10 +51,11 @@ app
 						$timeout(function() {
 							$("#cancel_facility").click();
 						});
+						toaster.pop('success','Door added successfully.');
+						$scope.facilityInit();
 					}
 					$rootScope.fac_error = response.msg.replace(/_/g, " ");
 				}
-				
 			})
 			.error(function (data, status, headers, config) {
 				console.log(data);
@@ -111,30 +112,34 @@ app
 			}
 		});
 	};
-	$http({
-		url: baseURL+'facility/list',
-		params:{limit: 20, page_no: 1},
-		method: 'GET',
-		dataType : 'JSON',
-		headers: {
-			'Content-type': 'application/json',
-			'Authorization': $cookies.get("token")
-		}
-	}).success(function(response){
-		$scope.facilities = response["data"]["data"];
-		$scope.totalDisplayed = 8;
-		
-		if($scope.facilities.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-				
-	});
+	
+	$scope.facilityInit = function(){
+		$http({
+			url: baseURL+'facility/list',
+			params:{limit: 20, page_no: 1},
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				'Content-type': 'application/json',
+				'Authorization': $cookies.get("token")
+			}
+		}).success(function(response){
+			$scope.facilities = response["data"]["data"];
+			$scope.totalDisplayed = 8;
+			
+			if($scope.facilities.length > $scope.totalDisplayed) {
+				$scope.lmbtn = {
+					"display" : "block"
+				};			
+			} else {
+				$scope.lmbtn = {
+					"display" : "none"
+				};
+			}
+					
+		});
+	}
+	$scope.facilityInit();
 	
 	$scope.loadMore = function () {
 		$scope.totalDisplayed += 8;

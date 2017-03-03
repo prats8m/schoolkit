@@ -146,6 +146,8 @@ app
 		.success(function(response){
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$scope.pageNo = 1;
+				$scope.listDoors();
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 			}
@@ -170,7 +172,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})
@@ -226,10 +228,13 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$timeout(function(){
-					$(".door_close").click();
-				})
-				// toaster.pop('success',response.msg.replace(/_/g,' '));
+
+				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$scope.pageNo = 1;
+				$scope.listDoors();
+				$timeout(function() {
+					$("#close").click();
+				});
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 			}
@@ -477,7 +482,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 			}
 		})
 		.error(function (data, status, headers, config) {
@@ -613,7 +618,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.dashboardData = response.data[0];
+				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
 			}
 		})
