@@ -244,7 +244,7 @@
 												<a ui-sref="app.admin.user.user-groups-members" class="btn btn-orange btn-border btn-rounded">View</a>
 												<div ng-controller="ModalDemo1Ctrl">
 													<script type="text/ng-template" id="myModalContent1.html">
-														<form name="form1" role="form">
+														<form name="editUserGroup" ng-submit="editUserGroup(usergroupedit)" role="form" ng-validate="validationOptions">
 															<div class="modal-header">
 																<h4 class="modal-title custom-font">Edit User Groups</h4>
 															</div>
@@ -252,14 +252,13 @@
 																<div class="row">						
 																	<div class="form-group col-md-6 pr-10">
 																		<label for="">Group Name</label>
-																		<input type="text" name="" id="" class="form-control" value="Office Hours" placeholder="">
+																		<input type="text" name="usergroup_name" id="usergroup_name" class="form-control" ng-model="usergroupedit.usergroup_name" value="usergroupedit.usergroup_name" placeholder="">
 																	</div>
 																	<div class="form-group col-md-6 pl-10">
-																		<label for="">Facility</label><br/>
-																		<select class="form-control" disabled>
-																			<option selected>USA Corporate Services</option>
-																			<option>Aerzen USA Corporation</option>
-																		</select>
+																		<label for="">Facility{{usergroupedit.facilities}}</label><br/>
+																		<!-- <select class="form-control" disabled ng-model="facility" ng-options="facility.facility_name for facility in usergroupedit.fac" >
+																		</select> -->
+																		<input type="text" name="facility_name" id="facility_name" class="form-control" ng-model="usergroupedit.facility_name" disabled placeholder="usergroupedit.facility_name">
 																	</div>
 																</div>
 																<div class="form-group mt-10">
@@ -339,7 +338,7 @@
 															</div>
 														</form>								
 													</script>
-													<a ng-click="open()" class="btn btn-success btn-border btn-rounded">Edit</a>
+													<a ng-click="showEditForm(user.usergroup_id,user.usergroup_name,user.usergroup_facility_id, user.facility.facility_name)" class="btn btn-success btn-border btn-rounded">Edit</a>
 												</div>												
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event, user.usergroup_id)">Delete</a>
 											</div>

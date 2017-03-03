@@ -1730,7 +1730,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul) {  	
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul,$uibModal, $log) {  	
      $scope.page = {
       title: 'User Groups',
       subtitle: '',
@@ -1822,10 +1822,10 @@ app
 						$scope.pageNo = 1 ;
 						$scope.usergroups =[];
 						$scope.getUserGroupList();
-					})
+					});
 				$timeout(function(){
 					$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
-				})
+				});
 				// toaster.pop('success','User Group Added Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
@@ -1924,7 +1924,7 @@ app
 		}
 		}
 		$scope.pageNo = 1;
-		$scope.usergroups =[];
+		$rootScope.usergroups =[];
 		$scope.searchText = "";
 	
 	$scope.getUserGroupList = function(e){
@@ -1945,7 +1945,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$scope.usergroups = arrayPushService.arrayPush(response.data.data, $scope.usergroups);
+				$rootScope.usergroups = arrayPushService.arrayPush(response.data.data, $rootScope.usergroups);
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
 				if(response.data == null){
@@ -1987,6 +1987,33 @@ app
 
 		});
     }
+
+  $scope.showEditForm = function(group_id, group_name, facility_id, facility_name, size) {
+  	$scope.items = ['item1', 'item2', 'item3'];
+
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent1.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $rootScope.usergroupedit = {};
+      $rootScope.usergroupedit.usergroup_name = group_name;
+      $rootScope.usergroupedit.usergroup_id = group_id;
+			$rootScope.usergroupedit.facility_id = facility_id;
+			$rootScope.usergroupedit.facility_name = facility_name;
+
+    };
 	
 	$rootScope.updateUserGroup = function(data){
 		data.facility_id = parseInt(data.facility_id);
