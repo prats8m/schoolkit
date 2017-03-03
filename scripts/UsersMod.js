@@ -1817,8 +1817,8 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-0]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click()});
 				$timeout(function(){
 						$scope.pageNo = 1 ;
 						$scope.usergroups =[];
@@ -2032,8 +2032,8 @@ app
 		.success(function(response){
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-0]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click()});
 				$timeout(function(){
 						$scope.pageNo = 1 ;
 						$scope.usergroups =[];
@@ -2055,6 +2055,6 @@ app
         $scope.myOrderBy = x;
     }
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
+	$scope.imagePath = baseURL+'elika/images';	
 	
 });
