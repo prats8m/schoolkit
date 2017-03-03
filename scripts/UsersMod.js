@@ -1803,6 +1803,7 @@ app
 			return false;
 		}
 		//usergroup.facility_id = parseInt($cookies.get("facilityId"));
+		$rootScope.user_group_error = "";
 		$http({
 			method: 'POST', 
 			url: baseURL + 'usergroup/add',
@@ -1924,7 +1925,7 @@ app
 		}
 		}
 		$scope.pageNo = 1;
-		$rootScope.usergroups =[];
+		$scope.usergroups =[];
 		$scope.searchText = "";
 	
 	$scope.getUserGroupList = function(e){
@@ -1945,7 +1946,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$rootScope.usergroups = arrayPushService.arrayPush(response.data.data, $rootScope.usergroups);
+				$scope.usergroups = arrayPushService.arrayPush(response.data.data, $scope.usergroups);
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
 				if(response.data == null){
@@ -2014,14 +2015,15 @@ app
 			$rootScope.usergroupedit.facility_name = facility_name;
 
     };
+   
 	
-	$rootScope.updateUserGroup = function(data){
-		data.facility_id = parseInt(data.facility_id);
+	$rootScope.editUserGroupp = function(usergroupedit){
+		// delete usergroupedit.facility_name;
     	$http({
 			method: 'PUT', 
 			url: baseURL + 'usergroup/edit',
 			dataType : 'JSON',
-			data:data,
+			data:usergroupedit,
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -2030,6 +2032,17 @@ app
 		.success(function(response){
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-0]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content-1]:contains('Door Schedule')").click()});
+				$timeout(function(){
+						$scope.pageNo = 1 ;
+						$scope.usergroups =[];
+						$scope.getUserGroupList();
+					});
+				$timeout(function(){
+					$rootScope.listDoorSchedule(usergroupedit.usergroup_id, usergroupedit.facility_id);
+				});
+
 			}else{
 				
 			}
