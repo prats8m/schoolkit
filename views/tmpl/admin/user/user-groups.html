@@ -185,8 +185,8 @@
 								<div class="col-sm-8 col-md-8">
 									<div class="row">
 										<div class="col-sm-6 col-md-6 search first">
-											<input type="text" class="form-control" placeholder="Search by text....">
-											<button class="btn btn-default br-2-r" type="button">Search</button>
+											<input type="text" class="form-control" placeholder="Search by text...." ng-keyup="searchFunction($event)" ng-model="searchText">
+											<button class="btn btn-default br-2-r" type="button" ng-click="searchFunction()">Search</button>
 										</div>
 										<div class="col-sm-6 col-md-6 profilephoto csvupload ta-r">
 											<div ng-controller="ModalDemo2Ctrl">
@@ -241,7 +241,7 @@
 												<p>{{ user.usergroup_user_count }} Users</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a ui-sref="app.admin.user.user-groups-members" class="btn btn-orange btn-border btn-rounded">View</a>
+												<a ui-sref="app.admin.user.user-groups-members({usergroup_id:user.usergroup_id})" class="btn btn-orange btn-border btn-rounded">View</a>
 												<div ng-controller="ModalDemo1Ctrl">
 													<script type="text/ng-template" id="myModalContent1.html">
 															<div class="modal-header">
@@ -314,7 +314,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getUserGroupList()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getUserGroupList()" ng-style="lmbtn" >Load more</button>
 								</div>
 							</div>
 						</div>
