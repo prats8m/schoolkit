@@ -1,0 +1,489 @@
+<div class="page admin">	
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">	
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent pdevicebg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">Warehouse Dashboard</h3>								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.inventory.devices">
+						<div class="noback bg-blue">	
+							<div class="itxt">
+								<span class="text-lg">Warehouse Inventory Management</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.firmware.firmware-management">
+						<div class="noback bg-slategray lt">
+							<div class="itxt">
+								<span class="text-lg">Firmware Management</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.monitor-diagnostics-and-reported-issues">
+						<div class="noback bg-lightred">
+							<div class="itxt">
+								<span class="text-lg">Monitor Diagnostics &amp; Reported Issues</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row" ng-controller="DiagnosticCtrl">
+			<div class="col-md-12">
+				<section class="tile box-shadow">
+					<div class="tile-header dvd dvd-btm">
+						<h1 class="custom-font">{{page.title}}</h1>
+						<ul class="controls">
+							<li class="addpopup">
+								<div><a href back-button class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add disconnect">Disconnect</a></div>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="hometabs">
+						<div class="tile-body table-custom">
+							<h3 class="m-0"><strong>SN: 0216-VP-10004</strong></h3>
+							<div class="row mt-20">
+								<div class="form-group col-sm-6 col-md-4">
+									<h4>
+										<label class="checkbox checkbox-custom-alt m-0" style="font-weight: 500;">
+											<input name="customRadioAlt" type="checkbox"><i></i> Main Board Tests 
+										</label>
+									</h4>
+									<div class="row mt-20">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">3.3V Regulator</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">5.0V Regulator</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">12V AC</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">12V Regulator</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Buzzer Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">USB Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">HID Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">3.3V M Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">5.0V M Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Read Input 1</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Read Input 2</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Test Beeper</button>
+											<input type="number" name="" id="" min="10" max="100" step="1" value ="5" class="form-control w-60 ml-10 pull-left">
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group col-sm-6 col-md-4">
+									<h4>
+										<label class="checkbox checkbox-custom-alt m-0" style="font-weight: 500;">
+											<input name="customRadioAlt" type="checkbox"><i></i> Front Board Tests 
+										</label>
+									</h4>
+									<div class="row mt-20">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">LCD Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">BLE Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Camera Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">DBG Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Amp Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Echo Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Door Sensor</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Sun Sensor</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Panel Light</button>
+											<input type="number" name="" id="" min="10" max="100" step="1" value ="50" class="form-control w-60 ml-10 pull-left">
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">LED Light</button>
+											<input type="number" name="" id="" min="10" max="100" step="1" value ="50" class="form-control w-60 ml-10 pull-left">
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Keypad</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Take Picture</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group col-sm-6 col-md-4">
+									<h4>
+										<label class="checkbox checkbox-custom-alt m-0" style="font-weight: 500;">
+											<input name="customRadioAlt" type="checkbox"><i></i> Cell Module Tests 
+										</label>
+									</h4>
+									<div class="row mt-20">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">USB Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">5.0V Voltage</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">RSSI</button>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+											<input type="text" name="" id="" class="form-control w-60 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">DNS</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									
+									<h4 class="mt-40">
+										<label class="checkbox checkbox-custom-alt pt-30" style="font-weight: 500;">
+											<input name="customRadioAlt" type="checkbox"><i></i> Firmware Revision 
+										</label>
+									</h4>
+									<div class="row mt-20">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Main Rev</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Front Rev</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">File Rev</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">VoIP Rev</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Cell Rev</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<button class="btn btn-blue btn-rounded w-150 pull-left" style="padding: 8px 12px;">Echo Rev</button>
+											<input type="text" name="" id="" class="form-control w-130 ml-10 pull-left" disabled>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row mt-40">
+								<div class="form-group col-sm-6 col-md-4">
+									<h4>Main Board Switches</h4>
+									<div class="row mt-20">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">3.3V Module Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch1" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch1" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">HID Module Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch2" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch2" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Buzzer Module Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch3" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch3" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">SD Module Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch4" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch4" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">CAN Module Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch5" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch5" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Relay 1 Control</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch6" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch6" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Relay 2 Control</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch7" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch7" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">5.0V Module Switch</label>
+											<button class="btn btn-danger btn-rounded w-130 ml-10" style="padding: 8px 12px;">Shut down</button>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group col-sm-6 col-md-4">
+									<h4>Front Board Switches</h4>
+									<div class="row mt-20">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Amp Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch8" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch8" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Echo Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch9" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch9" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">BLE Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch10" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch10" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Debug Port Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch11" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch11" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">Camera Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch12" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch12" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+									<div class="row mt-10">
+										<div class="col-sm-12">
+											<label class="w-150" style="font-weight:400;">LCD Switch</label>
+											<label class="checkbox checkbox-custom-alt ml-10 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch13" type="radio"><i></i> On
+											</label>
+											<label class="checkbox checkbox-custom-alt ml-20 mt-0 mb-0" style="font-weight:400; display: inline-block;">
+												<input name="switch13" type="radio"><i></i> Off
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

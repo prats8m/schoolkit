@@ -1,0 +1,22 @@
+{
+  "Menu": {
+    "DASHBOARD": "Dashboard",
+	"FACILITY": "Facility",
+    "USER": "User",
+    "USERS": "Users",
+    "USER_GROUPS": "User Groups",
+	"DOOR": "Door",
+    "DOORS": "Doors",
+    "DOOR_GROUPS": "Door Groups",	
+	"SCHEDULE": "Schedule",
+	"SCHEDULES": "Schedules",
+    "SCHEDULE_GROUPS": "Schedule Groups",
+    "HOLIDAY_SCHEDULE": "Holiday Schedule",
+	"PERMISSIONS": "Permissions",
+	"ROLES": "Roles",
+    "ADMIN": "Admin",
+	"SUPPORT": "Support",
+    "TECHNICIAN": "Technician",
+	"HELP": "Help"
+  }
+}

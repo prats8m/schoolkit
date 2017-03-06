@@ -1,0 +1,126 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent pdevicebg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">Warehouse Dashboard</h3>								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.inventory.devices">
+						<div class="noback bg-blue">	
+							<div class="itxt">
+								<span class="text-lg">Warehouse Inventory Management</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.firmware.firmware-management">
+						<div class="noback bg-slategray lt">
+							<div class="itxt">
+								<span class="text-lg">Firmware Management</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.monitor-diagnostics-and-reported-issues">
+						<div class="noback bg-lightred">
+							<div class="itxt">
+								<span class="text-lg">Monitor Diagnostics &amp; Reported Issues</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div ng-if="result">									
+			<div layout="row" ng-class="statusclass">									
+				{{result}}
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<h3 class="mb-10"><strong>{{device.device_name}}</strong></h3>
+						<span class="text-muted">{{device.device_model}}</span>
+						<div class="mt-40">
+							<a ui-sref="app.inventory.edit-device({device_id:device.device_id})" class="btn btn-rounded-20 btn-sm btn-greensea mr-5">Update Device</a>
+							<a ng-click="showConfirm($event,device.device_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
+						</div>
+					</div> 
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol bg-blue dk p-0">
+								<a ui-sref="app.inventory.diagnostic">
+									<h2>Diagnostic</h2>
+								</a>
+							</li>
+							<li class="tcol p-0">
+								<a href="">
+									<h2>Logs</h2>
+								</a>
+							</li>
+						</ul>
+					</div>  
+				</section>
+			</div>
+			
+			<div class="col-sm-12 col-md-8" ng-controller="ViewDeviceCtrl"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0">
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="custom-font">{{page.title}}</h1>
+						</div>
+						<div class="hometabs">
+							<div class="wrap-reset m-0">
+								<div class="row">
+									<div class="col-sm-12 col-md-12">
+										<div class="form-group profiledetail">
+											<p><label>Create Date</label> {{device.device_created_on}}</p>
+											<p><label>Device Model</label> {{device.device_model}}</p>
+											<p><label>Device Name</label> {{device.device_name}}</p>
+											<p><label>Client</label> Un-registered</p>
+											<p><label>Serial No.</label> {{device.device_serial_no}}</p>
+											<p><label>Reg Code</label> {{device.device_registration_code}}</p>
+											<p><label>Account Number/ICCID</label> {{device.device_account_no}}</p>
+											<p><label>Phone Number</label> {{device.device_phone_no}}</p>
+											<p><label>Cell Module</label> {{device.device_cell}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>VoIP</label> {{device.device_voip}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>Camera</label> N/A <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>Wiegand</label> {{device.device_wiegand}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>Bluetooth Mac Id</label> {{device.device_mac_address}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>Main Board</label> 030000 <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>Front Board</label> 030000 <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
