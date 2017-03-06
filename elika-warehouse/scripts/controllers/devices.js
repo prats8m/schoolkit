@@ -81,10 +81,10 @@ app
 		$rootScope.errorMessage = '';
 		device.account_no = parseInt(device.account_no);
 		device.phone_no = parseInt(device.phone_no);
-		device.device_cell = (! device.device_cell)? 0 : device.device_cell;
-		device.device_voip = (! device.device_voip)? 0 : device.device_voip;
-		device.device_camera = (! device.device_camera)? 0 : device.device_camera;
-		device.device_wiegand = (! device.device_wiegand)? 0 : device.device_wiegand;
+		device.device_cell = (! device.device_cell) ? 0 : device.device_cell;
+		device.device_voip = (! device.device_voip) ? 0 : device.device_voip;
+		device.device_camera = (! device.device_camera) ? 0 : device.device_camera;
+		device.device_wiegand = (! device.device_wiegand) ? 0 : device.device_wiegand;
 		
 		dataService.postData(device,baseUrl+'device/add-device-warehouse')
 		.success(function(response){
