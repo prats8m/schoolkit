@@ -5,10 +5,10 @@
 	
 	<div class="pagecontent">	
 		<div class="row">		
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
-						<div class="bg-transparent">
+						<div class="bg-transparent cameradvrbg">
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
@@ -18,58 +18,67 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">15</p>
-									<span class="text-lg">Primary Devices</span>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
 								</div>
 							</div>
 						</div>
+					</div>
 					</a>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices">
-						<div class="noback bg-greensea">
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">7</p>
-									<span class="text-lg">Dependent Devices</span>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
 								</div>
 							</div>
 						</div>
+					</div>
 					</a>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-						<div class="noback bg-lightred">						
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
-								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">95</p>
-									<span class="text-lg">Users</span>
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
 								</div>
 							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
 						</div>
+					</div>
 					</a>
 				</div>
 			</div>			
@@ -78,808 +87,499 @@
 		<div class="row" ng-controller="CameraDVRCtrl">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
-					<!--div class="tile-header dvd dvd-btm">
-						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
-					</div-->
-					
 					<div class="hometabs">
-						<div class="table-custom">
+						<div id="camerandvr" class="table-custom">
 							<uib-tabset class="tabs-dark"> 
-								<uib-tab heading="Live Video Feeds">
-									<div class="wrap-reset"> 
-										<div class="profile-settings cameradvr">
-											<div class="row">
-												<div class="col-md-2 col-sm-2">
-													<ul class="tabs-menu">
-														<li class="active">
-															<a href="#gstab1" native-tab>
-																<video width="168">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																	Your browser does not support HTML5 video.
-																</video>
-																<span class="devicecamname">
-																	Elika-918 <span class="pull-right">Front Main Gate</span>
-																</span>
-															</a>
-														</li>
-														<li>
-															<a href="#gstab2" native-tab>
-																<video width="168">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																	Your browser does not support HTML5 video.
-																</video>
-																<span class="devicecamname">
-																	Elika-460 <span class="pull-right">Pool Gate</span>
-																</span>
-															</a>
-														</li>
-														<li>
-															<a href="#gstab3" native-tab>
-																<video width="168">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																	Your browser does not support HTML5 video.
-																</video>
-																<span class="devicecamname">
-																	Elika-460 <span class="pull-right">Pool Gate</span>
-																</span>
-															</a>
-														</li>
-														<li>
-															<a href="#gstab4" native-tab>
-																<video width="168">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																	Your browser does not support HTML5 video.
-																</video>
-																<span class="devicecamname">
-																	Elika-460 <span class="pull-right">front Main Gate</span>
-																</span>
-															</a>
-														</li>
-														<li>
-															<a href="#gstab5" native-tab>
-																<video width="168">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																	<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																	Your browser does not support HTML5 video.
-																</video>
-																<span class="devicecamname">
-																	Elika-918 <span class="pull-right">Back Main Gate</span>
-																</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-												<div class="col-md-10 col-sm-10">
-													<div class="tab-content">												
-														<div class="tab-pane fade in active" id="gstab1">		
-															<video width="1000" controls autoplay>
-																<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																Your browser does not support HTML5 video.
-															</video>
-														</div>
-														
-														<div class="tab-pane fade" id="gstab2">
-															<video width="1000" controls>
-																<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																Your browser does not support HTML5 video.
-															</video>
-														</div>
-														
-														<div class="tab-pane fade" id="gstab3">
-															<video width="1000" controls>
-																<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																Your browser does not support HTML5 video.
-															</video>
-														</div>
-														
-														<div class="tab-pane fade" id="gstab4">
-															<video width="1000" controls>
-																<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																Your browser does not support HTML5 video.
-															</video>
-														</div>
-														
-														<div class="tab-pane fade" id="gstab5">
-															<video width="1000" controls>
-																<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																Your browser does not support HTML5 video.
-															</video>
-														</div>
+								<uib-tab heading="Live Feeds">
+									<div class="wrap-reset m-0"> 
+										<div class="profile-settings">
+											<div class="row pos-r mb-20">
+												<div class="col-sm-4 col-md-4">
+													<div class="gridlistbar ta-l">
+														<label class="control-label">No of Camera</label>
+														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'onecam'}"><i class="fa fa-stop" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="" ng-click="changedClass()">Camera 1</a></li>
+																<li><a href="" ng-click="changedClass()">Camera 2</a></li>
+																<li><a href="" ng-click="changedClass()">Camera 3</a></li>
+																<li><a href="" ng-click="changedClass()">Camera 4</a></li>
+																<li><a href="" ng-click="changedClass()">Camera 5</a></li>
+																<li><a href="" ng-click="changedClass()">Camera 6</a></li>
+															</ul>
+														</span>
+														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'twocam'}"><i class="fa fa-pause" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="" ng-click="changecClass()">Camera 1-2</a></li>
+																<li><a href="" ng-click="changecClass()">Camera 3-4</a></li>
+																<li><a href="" ng-click="changecClass()">Camera 5-6</a></li>
+															</ul>
+														</span>
+														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'fourcam'}"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="" ng-click="changebClass()">Camera 1-4</a></li>
+																<li><a href="" ng-click="changebClass()">Camera 2-6</a></li>
+															</ul>
+														</span>
+														<a href="" class="grid-icon" ng-class="{active: layout == 'sixcam'}" ng-click="changeaClass()"><i class="fa fa-th-large" aria-hidden="true" style="margin-right:-6px;"></i><i class="fa fa-th-large" aria-hidden="true"></i></a>
 													</div>
 												</div>
-											</div>									
+												<div class="col-sm-4 col-md-4">
+													<div class="gridlistbar ta-c">
+														<a href="" uib-tooltip="Refreshes the connections"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+														<a href="" uib-tooltip="Clears Live Feed"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+														<div ng-controller="ModalDemoCtrl" style="display: inline-block; cursor: pointer;">
+															<script type="text/ng-template" id="myModalContent.html">
+																<form name="form1" role="form">
+																	<div class="modal-header"><h4 class="modal-title custom-font">Create a new camera group</h4></div>
+																	<div class="modal-body mt-5">
+																		<div class="form-group row">
+																			<div class="col-sm-12 col-md-12">
+																				<label for="">Camera Group Name</label>
+																				<input type="text" name="" id="" class="form-control" placeholder="">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+																		<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Ok</button>	
+																	</div>
+																</form>		
+															</script>
+															<a ng-click="open()" uib-tooltip="Updates the current camera group"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+														</div>
+														<a href="" ng-click="showConfirm($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														<a href="" uib-tooltip="Makes the current camera group the default camera group"><i class="fa fa-home" aria-hidden="true"></i></a>
+													</div>
+												</div>
+												<div class="col-sm-2 col-md-2 pull-right">
+													<div class="gridlistbar ta-r">
+														<select class="form-control">
+															<option selected>Select the camera group</option>
+															<option>Camera group 1</option>
+															<option>Camera group 2</option>
+															<option>Camera group 3</option>
+															<option>Camera group 4</option>
+															<option>Camera group 5</option>
+															<option>Camera group 6</option>
+															<option>Camera group 7</option>
+															<option>Camera group 8</option>
+															<option>Camera group 9</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div ng-if="result">									
+												<div layout="row" ng-class="statusclass">									
+													{{result}}
+												</div>
+											</div>
+											<div ng-class="class">											
+												<div class="livevideo">
+													<div class="selectcam">
+														Camera 1
+														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="">Camera 1</a></li>
+																<li><a href="">Camera 2</a></li>
+																<li><a href="">Camera 3</a></li>
+																<li><a href="">Camera 4</a></li>
+																<li><a href="">Camera 5</a></li>
+																<li><a href="">Camera 6</a></li>
+															</ul>
+														</label>
+													</div>
+													<div class="video">
+														<div id="boundary">
+															<div id="vstage">
+																<video>
+																	<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+																	<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+																	<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																	Your browser does not support HTML5 video.
+																</video>
+															</div>
+															<div id="controls">
+																<div id="change">
+																	<button class="volumeup"><i class="fa fa-volume-up favolumeup" aria-hidden="true"></i></button>
+																	<button class="zoomin"><i class="fa fa-plus fazoomin" aria-hidden="true"></i></button>
+																	<button class="left"><i class="fa fa-chevron-left faleft" aria-hidden="true"></i></button>
+																	<button class="right"><i class="fa fa-chevron-right faright" aria-hidden="true"></i></button>
+																	<button class="play">&#x0011;</button>
+																	<button class="up"><i class="fa fa-chevron-up faup" aria-hidden="true"></i></button>
+																	<button class="down"><i class="fa fa-chevron-down fadown" aria-hidden="true"></i></button>
+																	<button class="zoomout"><i class="fa fa-minus fazoomout" aria-hidden="true"></i></button>
+																	<button class="volumedown"><i class="fa fa-volume-down favolumedown" aria-hidden="true"></i></button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<script>
+														$(document).ready(function(){
+															$('.play').click(function(){
+																$(this).parent('#change').addClass('widthinc');
+															});
+														});
+														(function(){
+														  var zoom = 1,
+															  rotate = 0;
+														  var vstage = document.getElementById('vstage'),
+															  v = document.getElementsByTagName('video')[0],
+															  controls = document.getElementById('controls');
+														  var properties = ['transform', 'WebkitTransform', 'MozTransform',
+																			'msTransform', 'OTransform'],
+															  prop = properties[0];  
+														  var i,j,t;
+														  for(i=0,j=properties.length;i<j;i++){
+															if(typeof vstage.style[properties[i]] !== 'undefined'){
+															  prop = properties[i];
+															  break;
+															}
+														  }
+														  v.style.left = 0;
+														  v.style.top = 0;
+														  controls.addEventListener('click',function(e){
+															t = e.target;
+															if(t.nodeName.toLowerCase()==='button' || t.nodeName.toLowerCase()==='i'){   
+															  switch(t.className){  
+																case 'play':
+																  if(v.paused){
+																	v.play();
+																	t.innerHTML = '&#x05C0;&#x05C0;';
+																  } else {
+																	v.pause();
+																	t.innerHTML = '&#x0011;';
+																  }
+																break;
+																
+																case 'zoomin':
+																  zoom = zoom + 0.1;
+																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
+																break;												
+																case 'fa fa-plus fazoomin':
+																  zoom = zoom + 0.1;
+																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
+																break;
+																
+																case 'zoomout':
+																  zoom = zoom - 0.1;
+																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
+																break;												
+																case 'fa fa-minus fazoomout':
+																  zoom = zoom - 0.1;
+																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
+																break;
+																
+																case 'rotateleft':
+																  rotate = rotate + 5;
+																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
+																break;
+																
+																case 'rotateright':
+																  rotate = rotate - 5;
+																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
+																break;
+																
+																case 'left':
+																  v.style.left = (parseInt(v.style.left,10) - 5) + 'px';
+																break;
+																case 'fa fa-chevron-left faleft':
+																  v.style.left = (parseInt(v.style.left,10) - 5) + 'px';
+																break;
+																
+																case 'right':
+																  v.style.left = (parseInt(v.style.left,10) + 5) + 'px';
+																break;
+																case 'fa fa-chevron-right faright':
+																  v.style.left = (parseInt(v.style.left,10) + 5) + 'px';
+																break;
+																
+																case 'up':
+																  v.style.top = (parseInt(v.style.top,10) - 5) + 'px';
+																break;
+																case 'fa fa-chevron-up faup':
+																  v.style.top = (parseInt(v.style.top,10) - 5) + 'px';
+																break;
+																
+																case 'down':
+																  v.style.top = (parseInt(v.style.top,10) + 5) + 'px';
+																break;
+																case 'fa fa-chevron-down fadown':
+																  v.style.top = (parseInt(v.style.top,10) + 5) + 'px';
+																break;
+																
+																case 'reset':
+																  zoom = 1;
+																  rotate = 0;
+																  v.style.top = 0 + 'px';
+																  v.style.left = 0 + 'px';
+																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
+																break;
+																case 'fa fa-refresh farefresh':
+																  zoom = 1;
+																  rotate = 0;
+																  v.style.top = 0 + 'px';
+																  v.style.left = 0 + 'px';
+																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
+																break;
+															  }
+															  e.preventDefault();
+															}
+														  },false);
+														})();
+													</script>
+												</div>
+												<div class="livevideo">
+													<div class="selectcam">
+														No Camera Selected
+														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="">Camera 1</a></li>
+																<li><a href="">Camera 2</a></li>
+																<li><a href="">Camera 3</a></li>
+																<li><a href="">Camera 4</a></li>
+																<li><a href="">Camera 5</a></li>
+																<li><a href="">Camera 6</a></li>
+															</ul>
+														</label>
+													</div>
+													<div class="video">
+														
+													</div>
+												</div>
+												<div class="livevideo">
+													<div class="selectcam">
+														No Camera Selected
+														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="">Camera 1</a></li>
+																<li><a href="">Camera 2</a></li>
+																<li><a href="">Camera 3</a></li>
+																<li><a href="">Camera 4</a></li>
+																<li><a href="">Camera 5</a></li>
+																<li><a href="">Camera 6</a></li>
+															</ul>
+														</label>
+													</div>
+													<div class="video">
+														
+													</div>
+												</div>
+												<div class="livevideo">
+													<div class="selectcam">
+														No Camera Selected
+														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="">Camera 1</a></li>
+																<li><a href="">Camera 2</a></li>
+																<li><a href="">Camera 3</a></li>
+																<li><a href="">Camera 4</a></li>
+																<li><a href="">Camera 5</a></li>
+																<li><a href="">Camera 6</a></li>
+															</ul>
+														</label>
+													</div>
+													<div class="video">
+														
+													</div>
+												</div>
+												<div class="livevideo">
+													<div class="selectcam">
+														No Camera Selected
+														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="">Camera 1</a></li>
+																<li><a href="">Camera 2</a></li>
+																<li><a href="">Camera 3</a></li>
+																<li><a href="">Camera 4</a></li>
+																<li><a href="">Camera 5</a></li>
+																<li><a href="">Camera 6</a></li>
+															</ul>
+														</label>
+													</div>
+													<div class="video">
+														
+													</div>
+												</div>
+												<div class="livevideo">
+													<div class="selectcam">
+														No Camera Selected
+														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+																<li><a href="">Camera 1</a></li>
+																<li><a href="">Camera 2</a></li>
+																<li><a href="">Camera 3</a></li>
+																<li><a href="">Camera 4</a></li>
+																<li><a href="">Camera 5</a></li>
+																<li><a href="">Camera 6</a></li>
+															</ul>
+														</label>
+													</div>
+													<div class="video">
+														
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</uib-tab>
-								<uib-tab heading="Recorded Video Feeds">
+								<uib-tab heading="Recorded Feeds">
 									<div class="wrap-reset"> 
 										<div class="profile-settings"> 
 											<div class="row">
-												<div class="col-md-2 col-sm-2">
-													<ul class="tabs-menu">
-														<li class="active"><a href="#astab1" native-tab>Pool Gate</a></li>
-														<li><a href="#astab2" native-tab>Front Main Gate</a></li>
-														<li><a href="#astab3" native-tab>Front Back Gate</a></li>
-														<li><a href="#astab4" native-tab>Gym Gate</a></li>
-														<li><a href="#astab5" native-tab>Parking Front Gate</a></li>
-														<li><a href="#astab6" native-tab>Parking Back Gate</a></li>
-													</ul>
+												<div class="col-sm-12 col-md-9 col-centered">
+													<div class="col-sm-3 col-md-3">
+														<label for="">Facility</label><br/>
+														<select class="form-control" disabled>
+															<option selected>USA Corporate Services</option>
+															<option>Aerzen USA Corporation</option>
+															<option>Aerzen USA Corporation</option>
+															<option>Aerzen USA Corporation</option>
+															<option>Aerzen USA Corporation</option>
+															<option>Aerzen USA Corporation</option>
+														</select>
+													</div>
+													<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
+														<label for="">Date</label>
+														<div class="input-group">
+															<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+															<span class="input-group-btn">
+																<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+															</span>
+														</div>
+													</div>
+													<div class="col-sm-3 col-md-3 validtime">
+														<label for="">Time <small>(Includes 10 min before & after)</small></label>
+														<span ng-controller="TimepickerDemoCtrl">
+															<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+														</span>
+													</div>
+													<div class="col-sm-3 col-md-3 validtime" ng-init="searchSection='reset'">
+														<label for="">&nbsp;</label><br/>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-model="searchSection" ng-click="searchSection = 'search'">Search</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="searchSection = 'reset'">Reset</button>
+													</div>
 												</div>
-
-												<div class="col-md-10 col-sm-10">
-													<div class="tab-content">												
-														<div class="tab-pane fade in active" id="astab1">
-															<h4><strong>Pool Gate Recorded Videos</strong></h4>
-															<div class="row">																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>																	
-															</div>
+											</div>
+											<div class="row searchvideoitems" ng-init="searchSection = 'reset'">
+												<div class="col-md-12" ng-hide="searchSection == 'reset'">
+													<div class="row">
+														<div class="col-md-4">
+															<ul class="tabs-menu">
+																<li class="searchitems active">
+																	<a href="#gstab1" native-tab>
+																		Main Entrance Camera
+																		<small>Front Entrance (Bethesda)</small>
+																	</a>
+																</li>
+																<li class="searchitems">
+																	<a href="#gstab2" native-tab>
+																		Entrance to Hall
+																	</a>
+																</li>
+																<li class="searchitems">
+																	<a href="#gstab3" native-tab>
+																		Klva and Smart
+																		<small>01/01 General Entrance</small>
+																	</a>
+																</li>
+																<li class="searchitems">
+																	<a href="#gstab4" native-tab>
+																		Lobby Area
+																	</a>
+																</li>
+																<li class="searchitems">
+																	<a href="#gstab5" native-tab>
+																		Lobby Entrance
+																		<small>South Lobby Entrance</small>
+																	</a>
+																</li>
+															</ul>
 														</div>
-														
-														<div class="tab-pane fade" id="astab2">
-															<h4><strong>Front Main Gate Recorded Videos</strong></h4>
-															<div class="row">
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
+														<div class="col-md-8">
+															<div class="tab-content">												
+																<div class="livevideo tab-pane fade in active" id="gstab1">
+																	<div class="selectcam">
+																		Main Entrance Camera <small>Front Entrance (Bethesda)</small>
+																	</div>
+																	<div class="video">
+																		<video controls>
+																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			Your browser does not support HTML5 video.
+																		</video>
+																	</div>
 																</div>
 																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
+																<div class="livevideo tab-pane fade" id="gstab2">
+																	<div class="selectcam">
+																		Entrance to Hall
+																	</div>
+																	<div class="video">
+																		<video controls>
+																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			Your browser does not support HTML5 video.
+																		</video>
+																	</div>
 																</div>
 																
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
+																<div class="livevideo tab-pane fade" id="gstab3">
+																	<div class="selectcam">
+																		Klva and Smart <small>01/01 General Entrance</small>
+																	</div>
+																	<div class="video">
+																		<video controls>
+																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			Your browser does not support HTML5 video.
+																		</video>
+																	</div>
 																</div>
 																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
+																<div class="livevideo tab-pane fade" id="gstab4">
+																	<div class="selectcam">
+																		Lobby Area
+																	</div>
+																	<div class="video">
+																		<video controls>
+																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			Your browser does not support HTML5 video.
+																		</video>
+																	</div>
 																</div>
 																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
+																<div class="livevideo tab-pane fade" id="gstab5">
+																	<div class="selectcam">
+																		Lobby Entrance <small>South Lobby Entrance</small>
+																	</div>
+																	<div class="video">
+																		<video controls>
+																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			Your browser does not support HTML5 video.
+																		</video>
+																	</div>
 																</div>
 																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>																
-															</div>
-														</div>
-														
-														<div class="tab-pane fade" id="astab3">
-															<h4><strong>Front Back Gate Recorded Videos</strong></h4>
-															<div class="row">																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-															</div>
-														</div>
-														
-														<div class="tab-pane fade" id="astab4">
-															<h4><strong>Gym Gate Recorded Videos</strong></h4>
-															<div class="row">																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>																	
-															</div>
-														</div>
-														
-														<div class="tab-pane fade" id="astab5">
-															<h4><strong>Parking Front Gate Recorded Videos</strong></h4>
-															<div class="row">																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>																	
-															</div>
-														</div>
-														
-														<div class="tab-pane fade" id="astab6">
-															<h4><strong>Parking Back Gate Recorded Videos</strong></h4>
-															<div class="row">
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-918
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-460(s)
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>
-																
-																<div class="rvideos">
-																	<video width="322" controls>
-																		<source src="http://elikastaging.tk/videos/mov_bbb.mp4" type="video/mp4">
-																		<source src="http://elikastaging.tk/videos/mov_bbb.ogg" type="video/ogg">
-																		Your browser does not support HTML5 video.
-																	</video>
-																	<span class="devicecamname">
-																		Elika-2101
-																	</span>
-																</div>																	
 															</div>
 														</div>
 													</div>
+													
 												</div>
 											</div>
 										</div>

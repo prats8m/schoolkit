@@ -98,7 +98,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
+			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -137,7 +137,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
+			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -204,6 +204,9 @@ app
 		})
 	}
 	$scope.doorList();
+
+	$scope.userData = {};
+	$scope.userData.status = 1;
 	$scope.submitUserData = function(userData, user_form){
 		if(!user_form.validate({
 			rules: {
@@ -2154,10 +2157,11 @@ app
 app
   .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams)
 		{
-			$scope.page = {
-		  	title: 'Users',
-		  	subtitle: ''
-			};
+			 $scope.page = {
+      title: 'User Groups',
+      subtitle: '',
+      member: 'User Groups Members'
+    };
 
 		$scope.usergroup_id = $stateParams.usergroup_id;
 

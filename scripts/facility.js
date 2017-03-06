@@ -56,6 +56,12 @@ app
 					}
 					$rootScope.fac_error = response.msg.replace(/_/g, " ");
 				}
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
+				
 			})
 			.error(function (data, status, headers, config) {
 				console.log(data);
