@@ -927,8 +927,12 @@ app
 					now.setTime(expireTime);
 					$cookies.put('token', response.data.token,{expiry:now});
 					$rootScope.current_user = response.data;
-					if(response.data.userType == 'admin')
+					console.log($rootScope.current_user);
+					if(response.data.userType == 'admin'){
 						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
+						$cookies.put('userFirstName', response.data.userFirstName,{expiry:now});
+						$cookies.put('userLastName', response.data.userLastName,{expiry:now});
+					}
 					$state.go('app.admin.dashboard');
 				}
 			}else{
@@ -9709,3 +9713,14 @@ app.service('schedul', function($http, baseURL, $cookies) {
 //     };
 // }]);
 app.constant('baseURL', 'http://35.162.244.123:8080/');
+
+app.directive('username', function username() {
+      return {
+		template: '{{userFirstName}} {{userLastName}}',
+		controller:function($scope,$cookies){
+			$scope.userFirstName = $cookies.get('userFirstName');
+			$scope.userLastName = $cookies.get('userLastName');
+		}
+	  };
+    });
+    

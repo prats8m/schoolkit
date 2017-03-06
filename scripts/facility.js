@@ -297,7 +297,7 @@ app
 			// $cookies.put("facility", JSON.stringify(arr));
 			$scope.facility = response.data;
 			// $scope.facility.timeZone = response.data.facility_timezone;
-			$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
+			//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 			
 		})
 		.error(function(response){
@@ -461,7 +461,7 @@ app
 	})
 	.success(function(response) {
 		$scope.facility = response.data;
-		$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
+		//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 	})
 	.error(function(response){
 		console.log(response);
@@ -499,7 +499,7 @@ app
 	})
 	.success(function(response) {
 		$scope.facility = response.data;
-		$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
+		//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 	})
 	.error(function(response){
 		console.log(response);
@@ -545,7 +545,7 @@ app
 		}
 		facility.timeZone = facility.facility_timezone;
 		facility.zip_code = ""+facility.facility_zipcode;
-		facility.status = facility.facility_status == 'Active' ? 1 : 0
+		//facility.status = facility.facility_status == 'Active' ? 1 : 0
 		$http({
 			url: baseURL+'facility/edit',
 			method: 'PUT',

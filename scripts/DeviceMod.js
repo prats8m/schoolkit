@@ -103,7 +103,7 @@ app
 			return false;
 		}
 		device.technician_id = parseInt(device.technician_id);
-		device.serial_no = parseInt(device.serial_no);
+		//device.serial_no = parseInt(device.serial_no);
 		//device.facility_id = parseInt($rootScope.facilityId);
 
 		$http({
@@ -337,7 +337,6 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.dashboardData = response.data;
-				// console.log($rootScope.dashboardData);
 			}
 		})
 		.error(function (data, status, headers, config) {
