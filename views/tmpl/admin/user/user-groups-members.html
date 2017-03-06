@@ -1,4 +1,4 @@
-<div class="page page-profile">
+<div class="page page-profile" ng-controller="UserGroupsDetailCtrl">
 	<div class="pageheader backpage">		
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
@@ -100,13 +100,13 @@
 						<h3 class="mb-10"><strong>Office Hours</strong></h3>
 						<span class="text-muted">35 Users</span>
 						<div class="mt-40">
-							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User Group</a>
+							<a ng-click="showConfirm($event, usergroup_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User Group</a>
 						</div>
 					</div>  
 				</section>
 			</div>
 			
-			<div class="col-sm-12 col-md-8" ng-controller="UserGroupsCtrl"> 
+			<div class="col-sm-12 col-md-8"> 
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0"> 
 						<div class="tile-header dvd dvd-btm">
@@ -155,15 +155,15 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>
-										<md-card class="slaveusers" ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy"">
+										<md-card class="slaveusers" ng-repeat="userdetail in usergroupslist | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy"">
 											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{imagePath}}/users/{{ user.imagename }}.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
-												<h2 class="md-title">{{ user.name }}</h2>
-												<p>{{ user.phone }}</p>
+												<h2 class="md-title">{{ userdetail.user.user_first_name }}</h2>
+												<p>{{ userdetail.user.user_phone_no }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.view-user">View</a>
-												<a class="btn btn-danger btn-border btn-rounded" ui-sref="app.admin.user.user-groups">Remove</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.view-user({user_id: userdetail.user.user_id})">View</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="unassignUserGroupDetail(userdetail.user.user_id)"  ui-sref="app.admin.user.user-groups">Remove</a>
 											</div>
 										</md-card>
 									</md-content>

@@ -208,6 +208,13 @@
 								<md-content>														
 									<div class="usergroup mt-10">
 										<section class="tile">
+											<div class="row">
+													<div class="form-group col-sm-3 col-md-3">
+														<label for="">Firstly Select facility</label><br/>
+														<select class="form-control"  ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id" ng-change="userNotAssignedGroup(facility)" >
+														</select>
+													</div>
+												</div>
 											<div class="tile-header" ng-controller="ModalDemoCtrl">
 												<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
 												<ul class="controls">
@@ -217,6 +224,7 @@
 												</ul>
 												<script type="text/ng-template" id="myModalContent.html">
 													<form ng-submit="assignEditUserGroup(usergroup)">
+													<input type="hidden" ng-model="usergroup.facility_id" id="group_facility_id">
 														<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
 														<div class="hometabs">
 															<div class="overflow groupslists">
@@ -248,7 +256,7 @@
 													<tbody style="font-size:14px;">
 														<tr ng-repeat="assign_usergroup in userGroup">
 															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
-															<td><button type="button" ng-click="unassignUserGroupEdit(assign_usergroup.usergroup_id)" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+															<td><button type="button" ng-click="unassignUserGroupEdit(assign_usergroup.usergroup_id,usergroup.facility_id )" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 														</tr>
 													</tbody>
 												</table>

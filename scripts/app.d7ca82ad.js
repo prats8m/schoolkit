@@ -264,7 +264,7 @@ var app = angular
 
 			//admin user user-groups-members
 				.state('app.admin.user.user-groups-members', {
-				  url: '/user-groups-members',
+				  url: '/user-groups-members/:usergroup_id',
 				  controller: 'UserGroupsCtrl',
 				  templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
 				})	
