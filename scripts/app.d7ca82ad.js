@@ -9723,7 +9723,7 @@ app.service('schedul', function($http, baseURL, $cookies) {
 //         }
 //     };
 // }]);
-app.constant('baseURL', 'http://35.162.244.123:8080/');
+app.constant('baseURL', 'http://35.160.142.158:8080/');
 
 app.directive('username', function username() {
       return {
