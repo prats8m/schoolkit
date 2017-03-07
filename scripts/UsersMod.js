@@ -381,7 +381,7 @@ app
 				var n = [];
 				var arr = response.error;
 				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$scope.rfid_error = n.join(", ");
 				}
 				else{
@@ -415,7 +415,7 @@ app
 		})
 	}
 	
-
+	$scope.phoneCode.status = 1;
 	$scope.submitPhoneCode = function(phoneCode, phone_form){
 		if(!phone_form.validate()){
 			return false;
@@ -458,7 +458,7 @@ app
 				var n = [];
 				var arr = response.error;
 				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.phone_error = n.join(", ");
 				}
 				else{
@@ -543,19 +543,19 @@ app
 	}
 
 	$scope.generateAddAccessCode = function(){ 
-		$scope.accesscode = {};
+		// $scope.accesscode = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
 		$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
 	}
 
 	$rootScope.generateAddPhoneCode = function(){
-		$scope.phoneCode = {};
+		// $scope.phoneCode = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
 		$scope.phoneCode.phone_code = (""+x).substring(8, length);
 	}
 
 	$scope.generateNFCCode = function(){
-		$scope.savenfc = {};
+		// $scope.savenfc = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
 		$scope.savenfc.nfc_code = (""+x).substring(8, length);
 	}
@@ -682,7 +682,7 @@ app
 		.success(function(response){
 			$scope.getAccessCodeList();
 			if(response.status == true){
-				$scope.accesscode_error = response.msg;
+				// $scope.accesscode_error = response.msg;
 				$timeout(function() {
 				$(".accordion-toggle")[1].click();
 				});
@@ -700,8 +700,8 @@ app
 				var arr = response.error;
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.accesscode_error = n.join(", ");
-				if (n.length == 0)
-				$scope.accesscode_error = response.msg.replace(/_/g,' ');
+				// if (n.length == 0)
+				// $scope.accesscode_error = response.msg.replace(/_/g,' ');
 				
 			}
 		}).error(function(){
@@ -755,7 +755,7 @@ app
 				user_group.usergrouparr = [];
 			}, 1000);
 			$timeout(function() {
-				$scope.unassignedGroup();
+				$scope.unassignedGroup(user_group.facility_id);
 			}, 1000);
 		}).error(function(){
 
@@ -764,7 +764,7 @@ app
 	}
 
 
-	$rootScope.unassignUserToUsergroup = function(user_group_id){
+	$rootScope.unassignUserToUsergroup = function(user_group_id, facility_id){
 		$http(
 		{
 			method: 'POST', 
@@ -790,7 +790,7 @@ app
 				$scope.assignedGroup();
 			}, 1000);
 			$timeout(function() {
-				$scope.unassignedGroup();
+				$scope.unassignedGroup(facility_id);
 			}, 1000);
 		}).error(function(){
 
@@ -842,6 +842,7 @@ app
 				$rootScope.usergroup.facility_id = facility_id;
 				$rootScope.usergroups = response.data;
 			}else{	
+				$rootScope.usergroups = {};
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
@@ -851,6 +852,31 @@ app
 		}).error(function(){
 
 		});
+	}
+
+
+	$scope.editCredential = function(cred_data, credential_type){
+		// $scope.accesscode.access_code = accesscode.Credential_Id;
+		// $scope.accesscode.access_code = accesscode.Credential_Id;
+
+		switch (credential_type) {
+		  case 'access_code':
+		      // $scope.getAccessCodeList();
+		      $scope.phoneCode.phone_code = cred_data.Credential_Id;
+		      $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
+		      $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
+		      $scope.Door_Name = cred_data.Door_Name;
+		      break;
+		  case 'phone_code':
+		      break;
+		  case 'rfid_code':
+		  		break;
+		  case 'nfc_code':
+		      break;
+		  case 'ble_code':
+		      break;
+		  default:
+
 	}
 
 	$scope.removeCredential = function(id, type){
@@ -1343,7 +1369,7 @@ app
 						$cookies.remove("token");
 						$location.path('/core/login');
 					}
-					
+					$scope.AccessCodeMessage = response.msg;
 					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 				}
 			}
@@ -2003,13 +2029,13 @@ app
 		$scope.usergroups =[];
 		$scope.searchText = "";
 	
-	$scope.getUserGroupList = function(e){
-		console.log(e);
-		if(e)
-		if(e.keyCode!=13){return false;}
-		if(!$scope.searchValue){
-			$scope.searchValue = '';
-		}
+	$scope.getUserGroupList = function(){
+		// console.log(e);
+		// if(e)
+		// if(e.keyCode!=13){return false;}
+		// if(!$scope.searchValue){
+		// 	$scope.searchValue = '';
+		// }
     	$http({
 			method: 'GET', 
 			url: baseURL + 'usergroup/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
