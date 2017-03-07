@@ -1,0 +1,268 @@
+<div class="page admin">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">	
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent cameradvrbg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row" ng-controller="DvrDirectoryCtrl">
+			<div class="col-md-12">
+				<section class="tile box-shadow" fullscreen="isFullscreen06">
+					<div class="hometabs">
+						<div id="camerandvr" class="table-custom">
+							<div class="tile-header dvd dvd-btm">
+								<h1 class="custom-font"><strong>DVR Directory</strong></h1>
+								<ul class="controls">
+									<li class="addpopup">
+										<div ng-controller="ModalDemoCtrl">
+											<script type="text/ng-template" id="myModalContent.html">
+												<form name="form1" role="form">
+													<div class="modal-header"><h4 class="modal-title custom-font">Add DVR</h4></div>
+													<div class="modal-body mt-5">
+														<div class="form-group row">
+															<div class="col-sm-6 col-md-6">
+																<label for="">DVR Name</label>
+																<input type="text" name="" id="" class="form-control" placeholder="">
+															</div>
+															<div class="col-sm-6 col-md-6">
+																<label for="">Type</label><br/>
+																<select class="form-control">
+																	<option>Dedicated Micros Digital S2</option>
+																	<option>Samsung SHR-504y</option>
+																</select>
+															</div>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-6 col-md-6">
+																<label for="">URL</label>
+																<input type="text" name="" id="" class="form-control" placeholder="">
+															</div>
+															<div class="col-sm-6 col-md-6">
+																<label for="">Time Zone</label><br/>
+																<select class="form-control">
+																	<option value="USA (Alaska )">USA (Alaska )</option>
+																	<option value="USA (Samoa)">USA (Samoa)</option>
+																	<option value="USA (Pacific)">USA (Pacific)</option>
+																	<option value="USA (Eastern)">USA (Eastern)</option>
+																	<option value="USA (Hawaii-Aleutian)">USA (Hawaii-Aleutian)</option>
+																</select>
+															</div>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-6 col-md-6">
+																<label for="">Playback Username</label>
+																<input type="text" name="" id="" class="form-control" placeholder="">
+															</div>
+															<div class="col-sm-6 col-md-6">
+																<label for="">Playback Password</label>
+																<input type="password" name="" id="" class="form-control" placeholder="">
+															</div>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-6 col-md-6">
+																<label for="">Max Video Age <small>(in days)</small></label>
+																<input type="text" name="" id="" class="form-control" placeholder="">
+															</div>
+															<div class="col-sm-6 col-md-6">
+																<label for="">Playback Offset <small>(in seconds)</small></label>
+																<input type="text" name="" id="" class="form-control" placeholder="">
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+														<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save DVR</button>	
+													</div>
+												</form>		
+											</script>
+											<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add DVR</span></a>
+										</div>								
+									</li>
+								</ul>
+							</div>
+							
+							<div class="hometabs">
+								<div class="tile-body table-custom">							
+									<div ng-if="result">									
+										<div layout="row" ng-class="statusclass">									
+											{{result}}
+										</div>
+									</div>							
+									<div class="table-responsive">
+										<table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-custom table-striped">
+											<thead>
+												<tr>
+													<th>DVR Name</th>
+													<th>Type</th>
+													<th>URL</th>
+													<th>Max Video Age</th>
+													<th>Playback Offset</th>
+													<th width="100">Action</th>
+												</tr>
+											</thead>
+											<tbody> 
+												<tr ng-repeat="dvrdir in dvrdirectroy">
+													<td>{{ dvrdir.title }}</td>
+													<td>{{ dvrdir.type }}</td>
+													<td>{{ dvrdir.url }}</td>
+													<td>{{ dvrdir.maxvideoage }}</td>
+													<td>{{ dvrdir.platbackoffset }}</td>
+													<td class="customicon">
+														<div ng-controller="ModalDemo1Ctrl" style="display: inline-block;">
+															<script type="text/ng-template" id="myModalContent1.html">
+																<form name="form1" role="form">
+																	<div class="modal-header"><h4 class="modal-title custom-font">Edit DVR</h4></div>
+																	<div class="modal-body mt-5">
+																		<div class="form-group row">
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">DVR Name</label>
+																				<input type="text" name="" id="" class="form-control" value="Dedicated Micros">
+																			</div>
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">Type</label><br/>
+																				<select class="form-control">
+																					<option selected>Dedicated Micros Digital S2</option>
+																					<option>Samsung SHR-504y</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">URL</label>
+																				<input type="text" name="" id="" class="form-control" value="http://dvr2.abcd.com">
+																			</div>
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">Time Zone</label><br/>
+																				<select class="form-control">
+																					<option value="USA (Alaska )" selected>USA (Alaska )</option>
+																					<option value="USA (Samoa)">USA (Samoa)</option>
+																					<option value="USA (Pacific)">USA (Pacific)</option>
+																					<option value="USA (Eastern)">USA (Eastern)</option>
+																					<option value="USA (Hawaii-Aleutian)">USA (Hawaii-Aleutian)</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">Playback Username</label>
+																				<input type="text" name="" id="" class="form-control" value="adam">
+																			</div>
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">Playback Password</label>
+																				<input type="password" name="" id="" class="form-control" value="adam@adam">
+																			</div>
+																		</div>
+																		<div class="form-group row">
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">Max Video Age <small>(in days)</small></label>
+																				<input type="text" name="" id="" class="form-control" value="7">
+																			</div>
+																			<div class="col-sm-6 col-md-6">
+																				<label for="">Playback Offset <small>(in seconds)</small></label>
+																				<input type="text" name="" id="" class="form-control" value="0">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																		<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save DVR</button>	
+																	</div>
+																</form>		
+															</script>
+															<a ng-click="open()" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+														</div>
+														<a href="" ng-click="showConfirm($event)" uib-tooltip="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>	
+		
+	</div>
+</div>

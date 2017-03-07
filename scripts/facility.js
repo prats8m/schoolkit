@@ -429,6 +429,29 @@ app
 
 	$scope.imagePath = baseURL+'elika/images/';
 	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
+	
 });
 
 
@@ -461,11 +484,33 @@ app
 	})
 	.success(function(response) {
 		$scope.facility = response.data;
-		//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 	})
 	.error(function(response){
 		console.log(response);
 	});
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
 	
   });
   
@@ -499,10 +544,8 @@ app
 	})
 	.success(function(response) {
 		$scope.facility = response.data;
-		//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 	})
 	.error(function(response){
-		console.log(response);
 	});
 	
 	$scope.edit_facility = function(facility, editfacility){

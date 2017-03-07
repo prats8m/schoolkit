@@ -108,19 +108,19 @@
 						<ul class="list-inline tbox m-0">
 							<li class="tcol bg-blue dker p-10">
 								<a ui-sref="app.admin.device.devices">
-									<h2 class="m-0">{{dashboardData.primary_device}}</h2>
+									<h2 class="m-0">{{facility.facility_device_count|emptyVal}}</h2>
 									<span class="text-transparent-white">Devices</span>
 								</a>
 							</li>
 							<li class="tcol bg-blue dk p-10">
 								<a ui-sref="app.admin.user.users">
-									<h2 class="m-0">{{dashboardData.user}}</h2>
+									<h2 class="m-0">{{facility.facility_user_count|emptyVal}}</h2>
 									<span class="text-transparent-white">Users</span>
 								</a>
 							</li>
 							<li class="tcol bg-blue bg p-10">
 								<a ui-sref="app.admin.door.doors">
-									<h2 class="m-0">{{dashboardData.door}}</h2>
+									<h2 class="m-0">{{facility.facility_Door_count|emptyVal}}</h2>
 									<span class="text-transparent-white">Doors</span>
 								</a>
 							</li>
@@ -143,9 +143,9 @@
 									<p><label>Time Zone</label> {{facility.facility_timezone}}</p>
 									<p><label>Zip Code</label> {{facility.facility_zipcode}}</p>
 									<p><label>Status</label> {{facility.facility_status}}</p>
-									<p><label>Device</label> 22</p>
-									<p><label>Users</label> 45</p>
-									<p><label>Doors</label> 22</p>
+									<p><label>Device</label> {{facility.facility_device_count|emptyVal}}</p>
+									<p><label>Users</label> {{facility.facility_user_count|emptyVal}}</p>
+									<p><label>Doors</label> {{facility.facility_Door_count|emptyVal}}</p>
 								</div>
 							</div>
 						</div>

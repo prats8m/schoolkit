@@ -9724,3 +9724,8 @@ app.directive('username', function username() {
 	  };
     });
     
+app.filter('emptyVal', function() {
+    return function(input) {
+      return (input == null || input == 'null' || input == 0)? 0 : input;
+    }
+});

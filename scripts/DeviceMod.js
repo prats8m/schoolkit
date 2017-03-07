@@ -13,6 +13,8 @@ app
 		subtitle: 'So much more to see at a glance.'
     };
 	
+	$rootScope.device = {};
+	
 	$scope.result = '';
 	$rootScope.facilityId = $cookies.get("facilityId");
     $scope.showConfirm = function(id,ev) {
@@ -73,9 +75,9 @@ app
 		$scope.layout = 'grid';
 	};
 
-	$scope.getDoorsList = function(){
+	$rootScope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
+			url: baseURL+'door/list?facility_id='+$rootScope.device.facility_id,
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {
@@ -86,7 +88,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.doorList = response.data.data;
-				$scope.getTechnicianList();
+				//$scope.getTechnicianList();
 			}else{
 				
 			}
@@ -95,7 +97,7 @@ app
 
 		});
 	}
-	$scope.getDoorsList();
+	//$scope.getDoorsList();
 	
 	$rootScope.formSubmit = function(device,device_form){
 		
@@ -259,7 +261,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.doorList = response.data.data;
-				$scope.getTechnicianList();
+				//$scope.getTechnicianList();
 			}else{
 				
 			}
