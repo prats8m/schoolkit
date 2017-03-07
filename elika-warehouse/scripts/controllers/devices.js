@@ -91,6 +91,7 @@ app
 			if(response.status == true){
 				toaster.pop('success','Device successfully added.');
 				$timeout(function(){$("#close").click();});
+				$scope.deviceInit();
 			}else{
 				
 				var n = [];
