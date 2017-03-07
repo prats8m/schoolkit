@@ -1,0 +1,1 @@
+app.constant('baseURL', 'http://35.160.142.158:8080/');
