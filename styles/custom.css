@@ -119,6 +119,10 @@ span.loader {
     font-weight: 500
 }
 
+.mobmenu {
+	display: none;
+}
+
 .entercvv {
 	display: none;
 }
@@ -154,6 +158,10 @@ textarea.form-control {
     left: 14px;
     opacity: 0;
     width: 115px
+}
+
+.topmenu .branding {
+	display: none;
 }
 
 .modal-header {
@@ -613,19 +621,19 @@ md-tabs .md-tab.md-focused {
     width: 125px
 }
 
-.deviceactiondrop {
-    display: inline-block;
-    padding: 0 15px;
-    font-size: 18px
-}
-
-.tile-simple .text-muted {
+.tcol .text-muted {
     display: block;
     margin: 10px 0 13px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	padding: 0 10px;
 	overflow: hidden;
+}
+
+.deviceactiondrop {
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 18px
 }
 
 .btn-group.btnrounded.calldays>.btn {
@@ -873,8 +881,8 @@ a.serplan:hover {
 }
 
 .glview md-card {
-    margin: 0 12px 25px;
-    width: 23%;
+    margin: 0 1% 25px;
+    width: 23.025%;
     padding: 15px;
     vertical-align: top;
     float: left;
@@ -885,6 +893,10 @@ a.serplan:hover {
     background: #fefefe;
     position: relative
 }
+
+.glview md-card:nth-child(4n+4) {
+	margin-right: 0;
+} 
 
 .glview md-card.slaveusers {
     width: 260px
@@ -1511,6 +1523,18 @@ md-card:hover .moreitemsondevice {
     color: #5f6060!important
 }
 
+#header .topmenu .nav-right > li > a {
+	line-height: normal;
+	padding: 0;
+}
+
+#header .topmenu .nav-right > li span {
+	padding: 0 5px;
+    line-height: 42px;
+	display: block;
+	cursor: pointer;
+}
+
 .bg-blue {
    background-color: #1d8acf!important; 
 }
@@ -1572,9 +1596,11 @@ md-card:hover .moreitemsondevice {
 }
 
 .iconbx {
-    padding: 49px 30px 49px 0;
+    padding: 49px 0 49px 0;
     background: rgba(0, 0, 0, .1);
-    border-radius: 5px 0 0 5px
+    border-radius: 5px 0 0 5px;
+    width: 100%;
+    text-align: center!important;
 }
 
 .card-container .card .back>.row>div a {
@@ -1585,8 +1611,11 @@ md-card:hover .moreitemsondevice {
 	margin-bottom: 15px;
 }
 
+.card-container .card .front .row .col-xs-6:last-child, .card-container .card .noback .row .col-xs-6:last-child {
+	margin-left: -15px;
+}
+
 .itxt {
-    padding-right: 25px;
     margin-top: 48px;
     text-align: center
 }
@@ -1623,7 +1652,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .page-login.core-new {
-    background: url(../images/loginbg-new.jpg) top left no-repeat;
+    background: url(../images/loginbg-new.jpg) top right no-repeat;
     background-size: cover;
 }
 
@@ -2048,11 +2077,39 @@ input.ng-invalid-required.error {
 	border: 1px solid #ff0000;
 }
 
+.addaccess .aassigndoor {
+	width: 850px;
+}
+
+.phoneaccess .passigndoor {
+	width: 725px;
+}
+
+.rfidcode  .rassigndoor {
+	width: 700px;
+}
+
+.wiegandcode .wassigndoor {
+	width: 700px;
+}
+
+.nfccode .nassigndoor {
+	width: 850px;
+}
+
+.blecode .bassigndoor {
+	width: 725px;
+}
+
+.addaccess .aaction, .phoneaccess .paction, .rfidcode .raction, .wiegandcode .waction, .nfccode .naction, .blecode .baction {
+	width: 75px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-2 {
         left: -85px
     }
-	.tile-simple .text-muted {
+	.tcol .text-muted {
 		margin: 10px 0 12px;
 	}
 }
@@ -2061,9 +2118,18 @@ input.ng-invalid-required.error {
 
 
 /********** @media **********/
+@media only screen and (min-width: 1920px) {
+	.glview md-card {
+		width: 15.35%;
+	}
+}
+
 @media only screen and (min-width: 1680px) {
 	body {
 		line-height: 1.8;
+	}
+	.tile .tile-header, .tile .tile-widget, .tile .tile-body, .tile .tile-footer {
+		padding: 20px;
 	}
 	.page {
 		padding: 20px 30px 10px;
@@ -2162,7 +2228,7 @@ input.ng-invalid-required.error {
 		border-radius: 5px;
 	}	
 	.iconbx {
-		padding: 65px 39px 64px 0;
+		padding: 65px 0 64px 0;
 	}
 	.iconbx img {
 		width: 125px;
@@ -2175,7 +2241,6 @@ input.ng-invalid-required.error {
 		padding: 30px !important;
 	}
 	.cameradvr .above1800 img {
-		/*width: 22.5%;*/
 		height: 50px;
 	}
 	 .above1800.p-30 img {
@@ -2219,7 +2284,7 @@ input.ng-invalid-required.error {
 		line-height: 45px;
 	}
 	.glview md-card {
-		width: 15.33%;
+		width: 18.5%;
 	}
 	.glview md-card.slaveusers {
 		width: 23%;
@@ -2286,9 +2351,6 @@ input.ng-invalid-required.error {
 	.tile .tile-header {
 		padding: 15px 20px;
 	}
-	.hometabs {
-		padding: 0 10px;
-	}
 	.form-group {
 		margin-bottom: 20px;
 	}
@@ -2337,7 +2399,7 @@ input.ng-invalid-required.error {
 		height: 49px;
 	}
 	.iconbx {
-		padding: 55px 24px 55px 0;
+		padding: 55px 0 55px 0;
 	}
 	.iconbx img {
 		width: 95px;
@@ -2357,7 +2419,7 @@ input.ng-invalid-required.error {
 		height: 201px;
 	}
 	.glview md-card {
-		width: 18.2%;
+		width: 23.2%;
 	}
 }
 
@@ -2369,17 +2431,177 @@ input.ng-invalid-required.error {
 }
 
 @media only screen and (max-width: 1279px) {
+	.page.bodyfix {
+		position: fixed;
+	}
+	.moreitemsondevice {
+		display: block;
+	}
+	.view-container.bodygray section#content:before {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.75);
+		left: 0;
+		top: 0;
+		content: "";
+		z-index: 99;
+	}
+	#header .branding {
+		padding: 0 10px;
+	}
+	.appWrapper.sidebar-sm #header .branding {
+		width: auto;
+		margin-left: 0;
+	}
 	.topmenu  {
-		display: none;
-	}	
+		width: 225px;
+		position: absolute;
+		height: 100%;
+		transition: 0.25s;
+		left: -100%;
+		top: 45px;
+		background: #fff;
+		box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+	}
+	
+	.topmenu.pull-left {
+		float: none!important;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+	
+	.topmenu .list-inline > li {
+		display: block;
+	}
+	
+	#header .topmenu  .nav-right > li, #header .topmenu .nav-left > li {
+		margin-top: 0px;
+	}
+	
+	.topmenu.openmmenu {
+		left:0;
+	}
+	
+	.topmenu .list-inline > li {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	#header .topmenu .nav-right > li > a, #header .topmenu .nav-left > li > a {
+		display: block;
+	}
+	
+	#header .topmenu .nav-right > li > span i, #header .topmenu .nav-left > li > span i{
+		float: right;
+		margin-top: 11px;
+	}
+	
+	#header .topmenu .nav-right > li.open > span i, #header .topmenu .nav-left > li > span i {
+		transform: rotate(180deg);
+	}
+	
+	.topmenu .dropdown-menu {
+		position: relative;
+		top: 0;
+		left: 0;
+		margin: 0 -10px;
+	}
+	
+	.topmenu .dropdown-menu.open, #header .nav-right>li.open {
+		background: #f1f1f1!important;
+	}
+	
+	#header .nav-right.pull-right>li.open {
+		background: #ffffff!important;
+	}
+	
+	.topmenu .dropdown-menu.panel {
+		min-width: 100%;
+		width: 235px;
+		box-shadow: 0 0 0 rgba(0,0,0,0);
+		animation-duration: 0s!important;
+		background: #f9f9f9;
+		border:0 none;
+		border-top: 1px solid #f1f1f1!important;
+		border-bottom: 1px solid #f1f1f1;
+		padding: 5px 0 0 0;
+	}
+	
+	.topmenu .dropdown-menu > li > a {
+		padding: 8px 15px;
+	}
+	
+	.mobmenu {		
+		display: block;
+		float: left;
+	}
+	
+	.animated-arrow {
+		display: block;
+		padding: 21px;
+		position: relative;
+	}
+	
+	.animated-arrow span, .animated-arrow span:after, .animated-arrow span:before {
+		cursor: pointer;
+		height: 3px;
+		width: 24px;
+		background: #449d44;
+		position: absolute;
+		display: block;
+		content: '';
+		transition: .25s;
+		left: 50%;
+		margin-left: -12px;
+	}
+	
+	.animated-arrow span:before {
+		top: -7px;
+	}
+	
+	.animated-arrow span:after {
+		bottom: -7px;
+	}
+	
+	.openmenu.animated-arrow span::after, .openmenu.animated-arrow span::before {
+		background-color: #e05d6f;
+	}
+	
+	.openmenu.animated-arrow span {
+		background-color: transparent;
+	}
+	
+	.openmenu.animated-arrow span:before {
+		transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		bottom: 0;
+	}
+	
+	.openmenu.animated-arrow span:after {
+		transform: rotate(-45deg);
+		-moz-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		-o-transform: rotate(-45deg);
+		/* -webkit-transform: rotate(-45deg); */
+	}
+	
+	.openmenu.animated-arrow.active span:after, .openmenu.animated-arrow span:before {
+		top: 0;
+	}
+	
+	.openmenu.animated-arrow span:after {
+		bottom: 0;
+	}
+	
 	.card-container .card {
 		margin-bottom: 20px;
 	}
 	.dashboardbg {
 		height: 360px!important;
-	}
-	.iconbx {
-		padding: 49px 20px 49px 0;
 	}
 	.card-container .card .back>.row>div a img {
 		width: 76px;
@@ -2396,7 +2618,361 @@ input.ng-invalid-required.error {
 }
 
 @media only screen and (max-width: 1139px) {
-	
+	.dnone {
+		display: none;
+	}
+	.card-container .card {
+		margin-bottom: 30px;
+	}
+	.page-dashboard .adminroles .above1800.p-30 {
+		padding: 20px !important;
+	}
+	.page-dashboard .adminroles .above1800.p-30 img {
+		height: 40px;
+	}	
+	.page-dashboard .adminroles .tcol a h3 {
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
+	.page-dashboard .adminroles .tile-simple .text-muted {
+		margin-top: 10px;
+		margin-bottom: 2px;
+	}
+	.dashboardbg {
+		height: 370px!important;
+	}
+	.appWrapper.sidebar-sm #header .branding .brand > span {
+		display: block;
+	}
+	.appWrapper.sidebar-sm #header .branding .brand {
+		margin-left: 0;
+	}
+	.thumb.thumb-xxll {
+		width: 100px;
+		margin-bottom: 10px;
+	}
+	.glview md-card:nth-child(4n+4) {
+		margin-right: 1%;
+	}
+	.glview md-card:nth-child(3n+3) {
+		margin-right: 0;
+	}
+	.glview md-card {
+		width: 31.2%;
+	}
+	.leftwrap {
+		width: 250px;
+		padding: 30px 20px;
+	}
+	.leftwrap .newlogo img {
+		width: 200px;
+	}
+	.welcometxt {
+		left: 25px;
+		margin-top: -65px;
+	}
+	.welcometxt h1 {
+		font-size: 40px;
+	}
+	.welcometxt span {
+		border-bottom: 5px solid #0eba8c;
+	}
+	.page-login.core-new { 
+		padding-left: 250px;
+	}
+}
+
+@media only screen and (max-width: 919px) {
+	.page {
+		padding: 15px 20px;
+	}
+	.iconbx img {
+		width: 60px;
+	}
+	.iconbx {
+		padding: 25px 0 25px 0;
+	}
+	.text-elg {
+		font-size: 40px !important;
+		line-height: 26px;
+	}
+	.text-lg {
+		font-size: 22px !important;
+	}
+	.itxt {
+		margin-top: 28px;
+	}
+	.card-container .card {
+		margin-bottom: 20px;
+	}
+	.pageheader {
+		margin-bottom: 10px;
+	}
+	.page-dashboard .card-container .card {
+		margin-bottom: 10px;
+	}
+	.page-dashboard .card-container {
+		padding: 0 10px;
+	}
+	.card-container .card .back>.row>div a {
+		padding: 15px 10px 0;
+		font-size: 16px;
+	}
+	.dashboardbg {
+		height: 341px!important;
+	}
+	.card .back>.row>div a img {
+		width: 50px;
+		margin-bottom: 10px;
+	}
+	.cameradvr, .adminroles   {
+		margin-top: 10px;
+		width: 50%;
+		margin-bottom: 0!important;
+	}
+	.page-dashboard .above1800.p-30 img {
+		height: 40px;
+	}
+	.page-dashboard .above1800.p-30 {
+		padding: 20px !important;
+	}
+	.holidayschedule {
+		width: 60%;
+	}
+	.historyreports, .technicians {
+		width: 40%;
+	}
+	.card-container .card .back>.row>div a img {
+		width: 50px;
+		margin-bottom: 10px;
+	}
+	.leftwrap {
+		width: 100%;
+		padding: 15px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		height: auto;
+	}
+	.leftwrap .newlogo img {
+		width: 175px;
+	}
+	.welcometxt {
+		display: none;
+	}
+	.page-login.core-new {
+		padding: 125px 0 50px;
+	}
+	.glview md-card .md-actions a {
+		padding: 5px 10px;
+		margin: 10px 4px 0;
+	}
+	.filterorder label:nth-child(2) a {
+		padding-right: 0px;
+		margin-right: 0px;
+	}
+	.search {
+		padding: 0 15px 0 0;
+	}
+	.profilephoto {
+		padding: 0 1px;
+	}
+	.profilephoto .input-group-btn .btn {
+		padding: 8px 9px;
+	}
+	.filterorder label>a {
+		padding-right: 10px;
+		margin-right: 5px;
+	}
+	.credintials .col-sm-3 {
+		width: 50%;
+	}
+	.addaccess .aassigndoor {
+		width: 350px;
+	}
+	.phoneaccess .passigndoor {
+		width: 225px;
+	}
+	.rfidcode  .rassigndoor {
+		width: 200px;
+	}
+	.wiegandcode .wassigndoor {
+		width: 225px;
+	}
+	.nfccode .nassigndoor {
+		width: 350px;
+	}
+	.blecode .bassigndoor {
+		width: 300px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.page {
+		padding: 15px;
+	}
+	.page-dashboard .card-container {
+		float: left;
+		width: 48.75%;
+		padding: 0 0 0 15px;
+	}
+	.card-container {
+		position: relative;
+		float: left;
+		padding: 0 0 0 15px;
+		width: 32.50%;
+	}
+	.cameradvr, .adminroles {
+		margin-top: 5px;
+	}
+	.holidayschedule {
+		width: 97.35%!important;
+		margin: -5px 0;
+	}
+	.glview md-card {
+		width: 46%;
+		margin: 0 2% 25px;
+	}
+	.glview md-card:nth-child(3n+3), .glview md-card:nth-child(4n+4){
+		margin-right: 2%;
+	}
+	.glview md-card:nth-child(2n+2){
+		margin-right: 0;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder {
+		width: 30%;
+		float: left;
+		text-align: left;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-6.col-md-6 {
+		width: 51%;
+		float: left;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 {
+		float: left;
+		width: 19%;
+		text-align: right;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 .gridlistbar label {
+		display: none;
+	}
+	.search {
+		padding: 0 15px 0 0;
+		width: 62%;
+		float: left;
+	}
+	.profilephoto.csvupload {
+		padding: 0 15px 0 1px;
+		width: 38%;
+		float: right;
+		margin-right: 0;
+		text-align: right;
+	}
+	.profilephoto.csvupload i {
+		display: none;
+	}
+	.profilephoto.csvupload .input-group-btn .btn {
+		padding: 8px 12px 8px 0;
+	}
+	.filterfields .col-sm-3.col-md-3 {
+		width: 100%!important;
+		text-align: left!important;
+		margin-bottom: 15px;
+	}
+	.credintials .col-sm-3 {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 599px) {
+	#header .nav-right > li.nav-profile > a span .uname {
+		display: none;
+	}
+	.appWrapper.sidebar-sm #header .branding {
+		width: 100%;
+		float: none;
+	}
+	.appWrapper.sidebar-sm #header .branding .brand {
+		margin-left: 4px;
+		float: none;
+		display: block;
+	}
+	.branding, .dropdown-menu.pull-right.with-arrow:after {
+		display: none;
+	}
+	.topmenu .branding {
+		display: block;
+	}
+	.dropdown-menu.panel.notification {
+		min-width: 300px;
+		top: 44px;
+		right: -65px;
+	}
+	.leftwrap {
+		padding: 10px;
+	}
+	.leftwrap .newlogo img {
+		width: 125px;
+	}
+	.page-login.core-new {
+		padding: 75px 0 25px;
+	}
+	#hpopup {
+		padding: 15px;
+		width: 280px;
+	}
+	.negmargin40 {
+		margin: 0px -15px -15px;
+	}
+	#hpopup .login-h2 {
+		font-size: 22px;
+	}
+	#hpopup a, #hpopup label, #hpopup p  {
+		font-size: 14px!important;
+	}
+	#hpopup button[type="submit"] {
+		margin-top: 20px!important;
+		margin-bottom: 10px;
+	}
+	.dashboardbg {
+		height: 107px!important;
+	}
+	.page-dashboard .card-container, .card-container {
+		float: none;
+		width: 100%;
+		padding: 0 15px;
+	}
+	.glview md-card {
+		width: 90%;
+		margin: 0 auto 20px!important;
+		float: none;
+		display: block;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder {
+		width: 100%;
+		float: left;
+		text-align: left;
+	}
+	.search {
+		padding: 0 15px;
+		width: 100%;
+		float: left;
+		margin: 15px 0;
+	}
+	.profilephoto.csvupload {
+		padding: 0 15px;
+		width: 50%;
+		float: left;
+		margin-right: 0;
+		text-align: left;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 {
+		float: left;
+		width: 50%;
+		text-align: right;
+	}
+	.hometabs .tile-body.table-custom .row .col-sm-6.col-md-6 {
+		width: 100%;
+		float: left;
+	}
 }
 .btnMargin{
     margin: 5px;

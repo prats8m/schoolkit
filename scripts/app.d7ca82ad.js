@@ -954,7 +954,6 @@ app
 	}
 
   $scope.logout = function(){
-    debugger;
     $cookies.remove('token');
     $location.path('core/login');
   }

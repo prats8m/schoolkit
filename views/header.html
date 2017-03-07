@@ -5,23 +5,30 @@
 		</a>
 		<a href="javascript:;" class="offcanvas-toggle visible-xs-inline" offcanvas-sidebar><i class="fa fa-bars"></i></a>
 	</div>
+	<div class="mobmenu">
+		<a href="javascript:;" class="animated-arrow">
+			<span></span>
+		</a>
+	</div>
 	
 	<div class="topmenu pull-left">
+		<div class="branding">
+			<a class="brand" ui-sref="app.admin.dashboard">
+				<span><strong>Elika</strong> Access System</span>
+			</a>
+		</div>
 		<ul class="nav-right list-inline headmenu">
 			<li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li>
+			<li><a ui-sref="app.admin.facility.facility"><span>Facilities</span></a></li>
 			<li class="dropdown" uib-dropdown>
-				<a href class="dropdown-toggle" uib-dropdown-toggle>
-					<span>Devices &nbsp;<fa name="angle-down"></fa></span>
-				</a>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Devices &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.device.devices">Primary Devices</a></li>
 					<li><a ui-sref="app.admin.device.dependent-devices">Dependent Devices</a></li>
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
-				<a href class="dropdown-toggle" uib-dropdown-toggle>
-					<span>Users &nbsp;<fa name="angle-down"></fa></span>
-				</a>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Users &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.user.users">Users</a></li>
 					<li><a ui-sref="app.admin.user.add-user">Add User</a></li>
@@ -29,18 +36,14 @@
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
-				<a href class="dropdown-toggle" uib-dropdown-toggle>
-					<span>Doors &nbsp;<fa name="angle-down"></fa></span>
-				</a>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Doors &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.door.doors">Doors</a></li>
 					<li><a ui-sref="app.admin.door.door-groups">Door Groups</a></li>
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
-				<a href class="dropdown-toggle" uib-dropdown-toggle>
-					<span>Schedules &nbsp;<fa name="angle-down"></fa></span>
-				</a>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Schedules &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.schedule.schedule-groups">Schedule Groups</a></li>
 					<li><a ui-sref="app.admin.schedule.add-schedule">Add Schedule</a></li>
@@ -48,9 +51,7 @@
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
-				<a href class="dropdown-toggle" uib-dropdown-toggle>
-					<span>Administrator &nbsp;<fa name="angle-down"></fa></span>
-				</a>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Administrator &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.administrator.roles">Roles</a></li>
 					<li><a ui-sref="app.admin.administrator.add-roles">Add Roles</a></li>
@@ -58,9 +59,7 @@
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
-				<a href class="dropdown-toggle" uib-dropdown-toggle>
-					<span>Camera DVR &nbsp;<fa name="angle-down"></fa></span>
-				</a>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Camera DVR &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.camera.camera-dvr">Live and Recorded Feeds</a></li>
 					<li><a ui-sref="app.admin.setup.camera-directory">Camera Directory</a></li>
@@ -70,7 +69,7 @@
 				</ul>
 			</li>
 			<li><a href=""><span>Activity</span></a></li>
-			<li><a href=""><span>Reports</span></a></li>
+			<li><a href=""><span>Reports</span></a></li>			
 		</ul>
 	</div> 
 	
@@ -155,4 +154,31 @@
 			</ul>
 		</li>
 	</ul>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var winw = $(window).width();
+			var winh = $(window).height();
+			
+			var openmmenuh = winh - 45;
+			
+			if(winw<1280) {
+				$('.topmenu').attr('style','height:'+openmmenuh+'px;');
+			};		
+			
+			$('.animated-arrow').click(function(){
+				$(this).toggleClass('openmenu');
+				$(this).parent().siblings('.topmenu').toggleClass('openmmenu');
+				$('.page').toggleClass('bodyfix');
+				$('.view-container').toggleClass('bodygray');
+			});
+			
+			$('#content, .topmenu .dropdown-menu > li > a, #header .topmenu .nav-right > li > a').click(function(){
+				$('.view-container').removeClass('bodygray');
+				$('.animated-arrow').removeClass('openmenu');
+				$('.topmenu').removeClass('openmmenu');
+				$('.page').removeClass('bodyfix');
+			});
+			
+		});
+	</script>
 </header>

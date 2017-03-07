@@ -134,7 +134,7 @@
 																<thead>
 																	<tr>
 																		<th>Door/Door Groups</th>
-																		<th width="222">Schedule Groups</th>
+																		<th width="222">Schedule Groups{{doorlist.schedulelist}}</th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -142,8 +142,10 @@
 																		<td>{{doorlist.door_name}}</td>
 																		<td>
 																			<span class="loader" id="{{doorlist.ud_id}}" style="display: none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
-																			<select class="form-control" ng-model="schedule_id" ng-options="item.id as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id,doorlist.is_access_allowed)">
-																				<option value="">Select Schedule Group</option>
+																			<!-- <select class="form-control selectpicker" ng-model="{{doorlist.schedulelist.is_access_allowed}}:{{doorlist.is_access_allowed}}" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id, this.selected)">
+																				<option value="{{item.id}}:{{item.is_access_allowed}}" ng-repeat="item in doorlist.schedulelist" >{{item.name}}</option>
+																			</select> -->
+																			<select class="form-control" ng-model="doorlist.is_access_allowed" ng-options="item.is_access_allowed as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(doorlist.schedule_id, doorlist.ud_id,doorlist.is_access_allowed)"  >
 																			</select>
 																		</td>
 																	</tr>
