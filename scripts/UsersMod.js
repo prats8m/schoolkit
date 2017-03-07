@@ -200,7 +200,7 @@ app
 			}
 		})
 		.success(function(response){
-			$scope.door_lists = response.data;
+			$rootScope.door_lists = response.data;
 		})
 	}
 	$scope.doorList();
@@ -855,31 +855,31 @@ app
 	}
 
 
-	$scope.editCredential = function(cred_data, credential_type){
-		// $scope.accesscode.access_code = accesscode.Credential_Id;
-		// $scope.accesscode.access_code = accesscode.Credential_Id;
+// 	$scope.editCredential = function(cred_data, credential_type){
+// 		// $scope.accesscode.access_code = accesscode.Credential_Id;
+// 		// $scope.accesscode.access_code = accesscode.Credential_Id;
 
-		switch (credential_type) {
-		  case 'access_code':
-		      // $scope.getAccessCodeList();
-		      $scope.phoneCode.phone_code = cred_data.Credential_Id;
-		      $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
-		      $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
-		      $scope.Door_Name = cred_data.Door_Name;
-		      break;
-		  case 'phone_code':
-		      break;
-		  case 'rfid_code':
-		  		break;
-		  case 'nfc_code':
-		      break;
-		  case 'ble_code':
-		      // $scope.getBleList();
-		      break;
-		  default:
+// 		switch (credential_type) {
+// 		  case 'access_code':
+// 		      // $scope.getAccessCodeList();
+// 		      $scope.phoneCode.phone_code = cred_data.Credential_Id;
+// 		      $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
+// 		      $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
+// 		      $scope.Door_Name = cred_data.Door_Name;
+// 		      break;
+// 		  case 'phone_code':
+// 		      break;
+// 		  case 'rfid_code':
+// 		  		break;
+// 		  case 'nfc_code':
+// 		      break;
+// 		  case 'ble_code':
+// 		      // $scope.getBleList();
+// 		      break;
+// 		  default:
 
-	}
-}
+// 	}
+// }
 
 	$scope.removeCredential = function(id, type){
 		$http(
@@ -1166,7 +1166,7 @@ app
 				$scope.editassignedGroup();
 				user_group.usergrouparr = [];
 			});
-			$timeout(function(){$(".group-close").click(); });
+			$timeout(function(){$(".usergroup_edit").click(); });
 
 		}).error(function(){
 
@@ -1941,7 +1941,7 @@ app
 
     $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed){
     	$("#"+ud_id).css("display", "block");
-    	if(schedule_id != "null"){
+    	if(schedule_id != "No Access" && schedule_id != "Full Access"){
     		is_access_allowed = 2;
     	}
 			$http(
@@ -1985,16 +1985,19 @@ app
 				$scope.x = schedul.getScheduleByFacility(facility_id);
 				$rootScope.listDoorGroup = {};
 				angular.forEach(response.data, function(value, key){          
-					$rootScope.listDoorGroup[key] = value;
+					 $rootScope.listDoorGroup[key] = value;
 					$rootScope.listDoorGroup[key].schedulelist = {};
-					$rootScope.listDoorGroup[key].schedulelist[0] = {};
-					$rootScope.listDoorGroup[key].schedulelist[0].name = value.schedule_name;
-					$rootScope.listDoorGroup[key].schedulelist[0].id = value.schedule_id;
+
+					// $rootScope.listDoorGroup[key].schedulelist[0] = {};
+					// $rootScope.listDoorGroup[key].schedulelist[0].name = value.schedule_name;
+					// $rootScope.listDoorGroup[key].schedulelist[0].id = value.schedule_id;
+					// $rootScope.listDoorGroup[key].schedule_id = value.schedule_name;
 					$scope.x.success(function(resp){
 						angular.forEach(resp.data, function(val, k){
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)+1] = {};
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)+1].name = val.schedule_name;
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)+1].id = val.schedule_id;
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)] = {};
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)].name = val.schedule_name;
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)].id = val.schedule_id;
+							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)].is_access_allowed = val.is_access_allowed;
 						});
 					});
         });
