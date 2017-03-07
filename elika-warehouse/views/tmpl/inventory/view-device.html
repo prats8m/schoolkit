@@ -100,19 +100,19 @@
 										<div class="form-group profiledetail">
 											<!-- <p><label>Create Date</label> {{device.device_created_on}}</p> -->
 											<p><label>Device Model</label> {{device.device_model}}</p>
-											<p><label>Device Name</label> {{device.device_name}}</p>
-											<p><label>Client</label> Un-registered</p>
+											<!-- <p><label>Device Name</label> {{device.device_name}}</p> -->
+											<p><label>Client</label> {{device.facility | warehouseClientName}}</p>
 											<p><label>Serial No.</label> {{device.device_serial_no}}</p>
 											<p><label>Reg Code</label> {{device.device_registration_code}}</p>
 											<p><label>Account Number/ICCID</label> {{device.device_account_no}}</p>
 											<p><label>Phone Number</label> {{device.device_phone_no}}</p>
-											<p><label>Cell Module</label> {{device.device_cell}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
-											<p><label>VoIP</label> {{device.device_voip}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
-											<p><label>Camera</label> N/A <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
-											<p><label>Wiegand</label> {{device.device_wiegand}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
-											<p><label>Bluetooth Mac Id</label> {{device.device_mac_address}} <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
-											<p><label>Main Board</label> F.W. Rev No. <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
-											<p><label>Front Board</label> F.W. Rev No. <span class="pull-right w-60"><a href="" class="text-danger text-sm"><strong>Reset</strong></a></span></p>
+											<p><label>Cell Module</label> {{device.device_cell|warehouseDeviceFeatures}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
+											<p><label>VoIP</label> {{device.device_voip|warehouseDeviceFeatures}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
+											<p><label>Camera</label> {{device.device_camera|warehouseDeviceFeatures}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
+											<p><label>Wiegand</label> {{device.device_wiegand|warehouseDeviceFeatures}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
+											<p><label>Bluetooth Mac Id</label> {{device.device_mac_address}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
+											<p><label>Main Board</label> F.W. Rev No. <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
+											<p><label>Front Board</label> F.W. Rev No. <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
 										</div>
 									</div>
 								</div>
