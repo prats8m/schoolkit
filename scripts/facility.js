@@ -20,6 +20,7 @@ app
 			$scope.addFacilityModal = $uibModal.open({
 				templateUrl: 'myModalContent.html',
 				size: 'md',
+				scope: $scope,
 				resolve: {
 					items: function () {
 						return $scope.items;
@@ -73,9 +74,9 @@ app
 		$scope.result = '';
 		$scope.showConfirm = function (ev) {
 			var confirm = $mdDialog.confirm()
-				.title('Delete facility is not available')
+				.title('Would you like to delete Facility?')
 				.content('')
-				// .ok('Delete')
+				.ok('Delete')
 				.cancel('Cancel')
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
@@ -94,7 +95,13 @@ app
 				$scope.class = 'listview';
 			$scope.layout = 'list';
 		};
-
+		$scope.facilityZipCode = "asdad";
+		$scope.allowNumberOnly = function (evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                evt.preventDefault();
+        }
 		$scope.changeaClass = function () {
 			if ($scope.class === 'listview')
 				$scope.class = 'gridview';

@@ -1101,7 +1101,7 @@ app
 	
 	$scope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
+			url: baseURL+'door/list?limits=100&pageNo=1',
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {

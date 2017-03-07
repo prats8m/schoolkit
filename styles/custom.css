@@ -2398,3 +2398,6 @@ input.ng-invalid-required.error {
 @media only screen and (max-width: 1139px) {
 	
 }
+.btnMargin{
+    margin: 5px;
+}
