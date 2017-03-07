@@ -1,0 +1,199 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent pdevicebg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">Warehouse Dashboard</h3>								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.inventory.devices">
+						<div class="noback bg-blue">	
+							<div class="itxt">
+								<span class="text-lg">Warehouse Inventory Management</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.firmware.firmware-management">
+						<div class="noback bg-slategray lt">
+							<div class="itxt">
+								<span class="text-lg">Firmware Management</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.monitor-diagnostics-and-reported-issues">
+						<div class="noback bg-lightred">
+							<div class="itxt">
+								<span class="text-lg">Monitor Diagnostics &amp; Reported Issues</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div ng-if="result">									
+			<div layout="row" ng-class="statusclass">									
+				{{result}}
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<h4 class="mb-0"><strong>Arnold</strong></h4>
+						<span class="text-muted">+1 212 1467 1212</span>
+						<div class="mt-40">
+							<a class="btn btn-rounded-20 btn-sm btn-lightred" ng-click="showConfirm($event)">Delete Admin</a>
+						</div>
+					</div>
+				</section>  
+			</div>
+			
+			<div class="col-sm-12 col-md-8"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<uib-tabset class="tabs-dark"> 
+							<uib-tab heading="Profile Detail">
+								<div class="wrap-reset"> 
+									<div class="profile-settings"> 
+										<div class="row">
+											<div class="form-group col-sm-12 profiledetail">
+												<p><label>Name</label> Arnold</p>
+												<p><label>Email</label> arnold1234@gmail.com</p>
+												<p><label>Phone</label> +1 212 1467 1212</p>
+												<p><label>Zip Code</label> 90001</p>
+												<p><label>Username</label> admin</p>
+												<p><label>Password</label> *********</p>
+												<p><label>Secret Question</label> In what city were you born?</p>
+												<p><label>Secret Answer</label> Los Angeles</p>
+												<p><label>Roles</label> Administrator 1</p>
+											</div>											
+										</div>
+										
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Edit Profile">
+								<div class="wrap-reset"> 
+									<div class="modal-body">											
+										<div class="row form-group">
+											<div class="col-sm-6 col-md-6">
+												<label for="">First Name</label>
+												<input type="text" name="" id="" class="form-control" value="Arnold">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Last Name</label>
+												<input type="text" name="" id="" class="form-control" value="">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">				
+												<label for="">Email Address</label>
+												<input type="emial" name="" id="" class="form-control" value="">
+											</div>
+											<div class="col-sm-6 col-md-6">				
+												<label for="">Phone</label>
+												<input type="text" name="" id="" class="form-control" value="212 1467 1212">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Zip Code</label>
+												<input type="text" name="" id="" class="form-control" value="90001">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Username</label>
+												<input type="text" name="" id="" class="form-control" value="admin">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Password</label>
+												<input type="password" name="" id="" class="form-control" value="*********">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Confirm Password</label>
+												<input type="password" name="" id="" class="form-control" value="*********">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Select Secret Question</label>
+												<select chosen="{width: '100%'}">
+													<option value="1" label="What was your favorite place to visit as a child?">What was your favourite place to visit as a child?</option>
+													<option value="2" label="Who is your favorite actor, musician, or artist?">Who is your favorite actor, musician, or artist?</option>
+													<option value="3" label="What is the name of your favorite pet?">What is the name of your favorite pet?</option>
+													<option value="4" label="In what city were you born?" selected >In what city were you born?</option>
+													<option value="5" label="What high school did you attend?">What high school did you attend?</option>
+													<option value="6" label="What is the name of your first school?">What is the name of your first school?</option>
+													<option value="7" label="What is your favorite movie?">What is your favorite movie?</option>
+													<option value="8" label="What is your mother's maiden name?">What is your mother's maiden name?</option>
+													<option value="9" label="What street did you grow up on?">What street did you grow up on?</option>
+													<option value="10" label="What was the make of your first car?">What was the make of your first car?</option>
+													<option value="11" label="When is your anniversary?">When is your anniversary?</option>
+													<option value="12" label="What is your favorite color?">What is your favorite color?</option>
+													<option value="13" label="What is your father's middle name?">What is your father's middle name?</option>
+													<option value="14" label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
+													<option value="15" label="What was your high school mascot?">What was your high school mascot?</option>
+												</select>
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Secret Answer</label>
+												<input type="text" name="" id="" class="form-control" value="Los Angeles">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Select Roles </label>
+												<select chosen="{width: '100%'}">
+													<option selected>Administrator 1</option>
+													<option>Administrator 2</option>
+													<option>Administrator 3</option>
+													<option>Administrator 4</option>
+													<option>Administrator 5</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<a ui-sref="app.administrator.admin" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</a>
+											<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Submit</button>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+						</uib-tabset>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

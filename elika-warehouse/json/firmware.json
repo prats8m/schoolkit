@@ -1,0 +1,92 @@
+[
+	{
+		"component":"Main Board",
+		"devicemodel":"Elika 76",
+		"createdate":"2016/08/01 17:52:03",
+		"hardware":"A0",      
+		"firmware":"010007",
+		"filestructure":"010001",
+		"description":"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+		"status":"Active"
+	},
+	{
+		"component":"Main Board",
+		"devicemodel":"Elika 460",
+		"createdate":"2016/08/19 19:35:25",
+		"hardware":"A1",      
+		"firmware":"010012",
+		"filestructure":"010014",
+		"description":"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+		"status":"Active"
+	},
+	{
+		"component":"Front Board",
+		"devicemodel":"Elika 460",
+		"createdate":"2016/08/01 17:53:45",
+		"hardware":"A0",      
+		"firmware":"010016",
+		"filestructure":"010018",
+		"description":"N/A",
+		"status":"Active"
+	},
+	{
+		"component":"VoIP",
+		"devicemodel":"Elika 460",
+		"createdate":"2016/08/19 19:37:39",
+		"hardware":"A0",      
+		"firmware":"010015",
+		"filestructure":"010024",
+		"description":"N/A",
+		"status":"Active"
+	},
+	{
+		"component":"VoIP",
+		"devicemodel":"Elika 2101",
+		"createdate":"2016/08/19 18:52:13",
+		"hardware":"A0",      
+		"firmware":"010018",
+		"filestructure":"N/A",
+		"description":"N/A",
+		"status":"Active"
+	},
+	{
+		"component":"VoIP",
+		"devicemodel":"Elika 92-S",
+		"createdate":"2016/08/01 17:54:42",
+		"hardware":"A0",      
+		"firmware":"010022",
+		"filestructure":"N/A",
+		"description":"N/A",
+		"status":"Active"
+	},
+	{
+		"component":"CellModule",
+		"devicemodel":"Elika 92-S",
+		"createdate":"2016/08/01 15:34:44",
+		"hardware":"A0",      
+		"firmware":"010028",
+		"filestructure":"N/A",
+		"description":"N/A",
+		"status":"Active"
+	},
+	{
+		"component":"CellModule",
+		"devicemodel":"Elika 460",
+		"createdate":"2016/08/01 14:50:22",
+		"hardware":"A1",      
+		"firmware":"010034",
+		"filestructure":"N/A",
+		"description":"N/A",
+		"status":"Active"
+	},
+	{
+		"component":"CellModule",
+		"devicemodel":"Elika 2101",
+		"createdate":"2016/08/01 13:55:34",
+		"hardware":"A1",      
+		"firmware":"010034",
+		"filestructure":"N/A",
+		"description":"N/A",
+		"status":"Active"
+	}
+]

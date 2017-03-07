@@ -874,10 +874,12 @@ app
 		  case 'nfc_code':
 		      break;
 		  case 'ble_code':
+		      // $scope.getBleList();
 		      break;
 		  default:
 
 	}
+}
 
 	$scope.removeCredential = function(id, type){
 		$http(
@@ -916,19 +918,30 @@ app
 		})
 	}
 
-	$scope.dashboardInit = function(){ 
-	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);   }  
-	 		if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
-				} 
-	 })  
-	 	.error(function (data, status, headers, config) {     }); } 
+$scope.dashboardInit = function(){ 
+	$http({
+		url: baseURL + 'user/dashboard',   
+		method: 'GET',   
+		dataType : 'JSON',   
+		headers: {    "Authorization": $cookies.get("token"),    
+									"Content-type": "application/json"   
+								}  
+		})  
+	.success(function(response) {   
+		if(response.status == true){   
+		 $rootScope.dashboardData = response.data;     
+		 console.log($rootScope.dashboardData);   }  
+		if(response.msg == 'Invalid_Token'){
+		toaster.pop('error','Session Expired');
+		$cookies.remove("token");
+		$location.path('/core/login');return false;
+		} 
+	})  
+	.error(function (data, status, headers, config) {     }); 
+} 
 
-	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
-	
+if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
+
 });
 
 'use strict';
@@ -2172,7 +2185,7 @@ app
 	
 });
 
-// 'use strict';
+'use strict';
 /**
  * @ngdoc function
  * @name minovateApp.controller:SettingCtrl

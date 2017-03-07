@@ -102,7 +102,7 @@
 						<div class="mt-40">
 							<a ui-sref="app.admin.device.device-settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-slategray">View Settings</a>
 							<a ui-sref="app.admin.device.service-plan({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk mr-5 ml-5">View Plan</a>
-							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
+							<a ng-click="showConfirm($event,device_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
 						</div>
 					</div> 
 					<div class="tile-body text-center bg-blue p-0"> 
@@ -133,8 +133,7 @@
 											</div>
 											<div class="form-group col-sm-6 col-md-6">
 												<label for="">Model Name</label>
-												<!-- <input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control" placeholder="" required disabled> -->
-												<select name="device_model" ng-model="editDevice.model_name" class="form-control" ng-options="model for model in deviceModel" required>
+												<select name="model_name" ng-model="editDevice.model_name" class="form-control" ng-options="model for model in deviceModel" required>
 													<option value="">Select</option>
 												</select>
 											</div>
@@ -143,6 +142,18 @@
 											<div class="form-group col-sm-6 col-md-6">
 												<label for="">Serial Number</label>
 												<input type="text" name="serial_no" id="" ng-model="editDevice.device_serial_no" class="form-control" placeholder="" required>
+											</div>
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Registration Code</label>
+												<input name="registration_code" ng-model="editDevice.device_registration_code" class="form-control" required />
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Facility</label>
+												<select type="text" name="facility_id" id="" ng-model="editDevice.device_facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList" class="form-control" placeholder="" required>
+													<option value="">Select</option>
+												</select>
 											</div>
 											<div class="col-sm-6 col-md-6">
 												<div class="row">
@@ -163,17 +174,15 @@
 											</div>												
 										</div>
 										<div class="row">
+											<div class="form-group col-sm-6 col-md-6">
+												<label for="">Doors</label><br/><!--doorList-->
+												<select ng-model="editDevice.door_id" multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
+												</select>
+											</div>
+										
 											<div class="form-group col-sm-6 col-md-6" >
 												<label for="">Technician</label><br/>
-												<!-- <select class="form-control">
-													<option>Arnold</option>
-													<option selected>Peter</option>
-													<option>Paracosm</option>
-													<option>Jason</option>
-													<option>Paul</option>
-													<option>Vin</option>
-													<option>Dwayne</option>
-												</select> -->
+												
 												<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="editDevice.technician_id" required>
 													<option value="">Select</option>
 												</select>

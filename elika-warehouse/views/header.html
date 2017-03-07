@@ -1,0 +1,113 @@
+<header class="clearfix">
+	<div class="branding">
+		<a class="brand" ui-sref="app.inventory.devices">
+			<span><strong>Elika</strong> Warehouse</span>
+		</a>
+		<a href="javascript:;" class="offcanvas-toggle visible-xs-inline" offcanvas-sidebar><i class="fa fa-bars"></i></a>
+	</div>
+	
+	<div class="topmenu pull-left">
+		<ul class="nav-right list-inline headmenu">
+			<li><a ui-sref="app.inventory.devices"><span>Inventory</span></a></li>
+			<li><a ui-sref="app.firmware.firmware-management"><span>Firmware</span></a></li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Warehouse Settings &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.administrator.roles">Roles Administration</a></li>
+					<li><a ui-sref="app.administrator.add-roles">Add Roles</a></li>
+					<li><a ui-sref="app.administrator.admin">Admin</a></li>
+				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<a href class="dropdown-toggle" uib-dropdown-toggle>
+					<span>Monitoring &nbsp;<fa name="angle-down"></fa></span>
+				</a>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.">Monitor Diagnostics</a></li>
+					<li><a ui-sref="app.">Reported Issues</a></li>
+				</ul>
+			</li>
+			<li><a ui-sref="app.help"><span>Help</span></a></li>
+		</ul>
+	</div>
+	
+	<ul class="nav-right pull-right list-inline headmenu">
+		<li class="dropdown messages" uib-dropdown>
+			<a href class="dropdown-toggle" uib-dropdown-toggle>
+				<img src="images/bell.png" class="sm-img"><span class="badge bg-lightred">4</span>
+			</a>
+			<div class="dropdown-menu pull-right with-arrow panel panel-default animated littleFadeInDown notification" role="menu">
+				<div class="panel-heading">You have <strong>4</strong> notifications.</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<a ui-sref="app.notifications" class="media">
+							<div class="media-left">
+								<span class="media-object media-icon bg-primary">
+									<fa name="bolt"></fa>
+								</span>
+							</div>
+							<div class="media-body">
+								<span class="block">New user registered</span>
+								<small class="text-muted">12 minutes ago</small>
+							</div>
+						</a>
+					</li>
+					<li class="list-group-item">
+						<a ui-sref="app.notifications" class="media">
+							<div class="media-left">
+								<span class="media-object media-icon bg-danger">
+									<fa name="ban"></fa>
+								</span>
+							</div>
+							<div class="media-body">
+								<span class="block">User Imrich cancelled account</span>
+								<small class="text-muted">6 minutes ago</small>
+							</div>
+						</a>
+					</li>					
+					<li class="list-group-item">
+						<a ui-sref="app.notifications" class="media">
+							<div class="media-left">
+								<span class=" media-object media-icon bg-greensea">
+									<fa name="lock"></fa>
+								</span>
+							</div>
+							<div class="media-body">
+								<span class="block">User Robert locked account</span>
+								<small class="text-muted">18 minutes ago</small>
+							</div>
+						</a>
+					</li>
+					<li class="list-group-item">
+						<a ui-sref="app.notifications" class="media">
+							<div class="media-left">
+								<span class="media-object media-icon bg-primary">
+									<fa name="bolt"></fa>
+								</span>
+							</div>
+							<div class="media-body">
+								<span class="block">New user registered</span>
+								<small class="text-muted">25 minutes ago</small>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div class="panel-footer">
+					<a ui-sref="app.notifications">Show all notifications <fa name="angle-right" class="pull-right"></fa></a>
+				</div>
+			</div>
+		</li>
+		<li class="dropdown nav-profile" uib-dropdown>
+			<a href class="dropdown-toggle" uib-dropdown-toggle>
+				<img src="images/avatar.jpg" alt="" class="img-circle size-30x30">
+				<span><username></username> <fa name="angle-down"></fa></span>
+			</a>
+			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">
+				<li><a ui-sref="app.profile-settings"><i class="fa fa-cog" aria-hidden="true"></i> Profile Settings</a></li>
+				<li><a ui-sref="core.login"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+			</ul>
+		</li>
+	</ul>
+</header>
