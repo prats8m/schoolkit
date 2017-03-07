@@ -1332,7 +1332,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('EditDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler, baseURL, $location) {
+  .controller('EditDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, $state, errorHandler, baseURL, $location) {
      $scope.page = {
       title: 'Edit Device',
     };
@@ -1341,7 +1341,7 @@ app
 	$scope.device_id = device_id
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete device?')
 		.content('')
@@ -1349,10 +1349,32 @@ app
 		.cancel('No')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$state.go('app.admin.device.devices');
+			//$state.go('app.admin.device.devices');
+			$http(
+			{
+				method: 'POST', 
+				url: baseURL+'device/delete',
+				data: {device_id:parseInt(id) , facility_id:parseInt($cookies.get('facilityId'))},
+				dataType : 'JSON', 
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": $cookies.get("token")
+				}
+			})
+			.success(function(response){
+				if(response.status == true){
+					toaster.pop('success',response.msg.replace(/_/g," "));
+					$state.go('app.admin.device.devices');
+				}else{
+					toaster.pop('error',response.msg.replace(/_/g," "));
+				}
+			}).error(function(){
+
+			});
+			
+			
 		}, function() {
-			$scope.result = 'You decided to keep device.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			toaster.pop('info','You decided to keep device.');
 		});
     };
 	
