@@ -91,7 +91,7 @@
 						<h1 class="custom-font">Facility</h1>
 						<ul class="controls">
 							<li class="addpopup">
-								<div ng-controller="ModalDemoCtrl">
+								<div>
 									<script type="text/ng-template" id="myModalContent.html">
 										<form name="addFacility" role="form" ng-validate>
 											<div class="modal-header"><h4 class="modal-title custom-font">Add Facility</h4></div>
@@ -134,12 +134,12 @@
 												</div>												
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="cancel_facility" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
-												<button type="submit" ng-click="save(facility,addFacility)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="cancel_facility"ng-click="$dismiss()"><i class="fa fa-arrow-left"></i> Cancel</button>
+												<button type="submit" ng-click="save(facility,addFacility);"class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 											</div>
 										</form>		
 									</script>
-									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Facility</span></a>
+									<a ng-click="addFacility()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Facility</span></a>
 								</div>
 							</li>
 						</ul>
@@ -234,7 +234,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-if="facilities" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()"  ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
