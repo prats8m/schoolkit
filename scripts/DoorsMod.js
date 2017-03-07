@@ -289,7 +289,7 @@ app
 		$scope.adoors = [];
 		$scope.listDoors = function(){
 			$http({
-				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&facility_id='+$cookies.get("facilityId"),
+				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo,
 				method: 'GET',
 				dataType : 'JSON',
 				headers: {

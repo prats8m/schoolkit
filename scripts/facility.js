@@ -57,7 +57,7 @@ app
 						$rootScope.fac_error = n.join(", ");
 					} else {
 						if (response.status == true) {
-							toaster.pop('success', 'Door added successfully.');
+							toaster.pop('success', 'Facility added successfully.');
 							$scope.addFacilityModal.dismiss('cancel');
 							$scope.facilityInit();
 						}
