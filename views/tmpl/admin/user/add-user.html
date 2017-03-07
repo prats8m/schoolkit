@@ -154,7 +154,7 @@
 														<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
 													</div>
 												</div>													
-												<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
+												<div ng-show="userData.status == 1" class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 													<label for="">Expiration Date</label>
 													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
 														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
@@ -212,7 +212,7 @@
 															</div>
 														</div>
 														<div class="modal-footer">
-															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c closeg" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+															<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c closeg" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
 															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 														</div>
 													</form>											
@@ -231,7 +231,7 @@
 													<tbody style="font-size:14px;">
 														<tr ng-repeat="assign_usergroup in assingned_usergroups">
 															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
-															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="unassignUserToUsergroup(assign_usergroup.usergroup_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+															<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="unassignUserToUsergroup(assign_usergroup.usergroup_id, usergroup.facility_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 														</tr>
 													</tbody>
 												</table>
@@ -295,7 +295,7 @@
 																		</select>
 																	</td>
 																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																		<a href="" uib-tooltip="Edit" ng-click="editCredential(accesscode, 'access_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																		<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
@@ -361,7 +361,7 @@
 																		</select>
 																	</td>
 																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																		<a href="" uib-tooltip="Edit" ng-click="editCredential(phone_code, 'phone_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																		<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>

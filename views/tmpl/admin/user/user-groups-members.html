@@ -11,7 +11,7 @@
 						<div class="bg-transparent usersbg">
 							<div class="row">
 								<div class="col-md-12">
-									<h3 class="custom-font">{{page.member}}</h3>
+									<h3 class="custom-font">{{page.title}}</h3>
 									<p>{{page.subtitle}}</p>									
 								</div>
 							</div>
@@ -97,8 +97,8 @@
 						<div class="thumb thumb-xxll mb-20">
 							<img class="img-circle" src="images/usergroups/officehrs.jpg" alt="">
 						</div>
-						<h3 class="mb-10"><strong>Office Hours</strong></h3>
-						<span class="text-muted">35 Users</span>
+						<h3 class="mb-10"><strong>{{currentSelectedGroupName}}</strong></h3>
+						<span class="text-muted">{{CurrentUserGroupUserCount}} Users</span>
 						<div class="mt-40">
 							<a ng-click="showConfirm($event, usergroup_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User Group</a>
 						</div>

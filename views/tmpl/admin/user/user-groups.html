@@ -84,7 +84,7 @@
 			</div>			
 		</div>
 	
-		<div class="row"  ng-controller="UserGroupsCtrl">
+		<div class="row" ng-init="getUserGroupList()">
 			<div class="col-md-12">	   
 				<section class="tile box-shadow">				
 					<div class="tile-header dvd dvd-btm">
@@ -241,72 +241,69 @@
 												<p>{{ user.usergroup_user_count }} Users</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a ui-sref="app.admin.user.user-groups-members({usergroup_id:user.usergroup_id})" class="btn btn-orange btn-border btn-rounded">View</a>
+												<a ui-sref="app.admin.user.user-groups-members({usergroup_id:user.usergroup_id,userGroupName:user.usergroup_name,userGroupUserCount:user.usergroup_user_count})" class="btn btn-orange btn-border btn-rounded">View</a>
 												<div ng-controller="ModalDemo1Ctrl">
 													<script type="text/ng-template" id="myModalContent1.html">
-															<div class="modal-header">
-																<h4 class="modal-title custom-font">Edit User Groups</h4>
-															</div>
-															<div class="modal-body hometabs p-0">		
-																<md-content class="md-padding tabsdemoDynamicHeight">
-																<md-tabs md-dynamic-height md-border-bottom>		
-																	<md-tab label="Group Name">
-																	<md-content>	
-																		<form name="editUserGroup" ng-submit="editUserGroupp(usergroupedit)" role="form" ng-validate="validationOptions">
+														<div class="modal-header">
+															<h4 class="modal-title custom-font">Edit User Groups</h4>
+														</div>
+														<div class="modal-body hometabs usergroups p-0">		
+															<md-content class="md-padding tabsdemoDynamicHeight p-0 pt-20">
+															<md-tabs md-dynamic-height md-border-bottom>		
+																<md-tab label="Group Name">
+																<md-content>	
+																	<form name="editUserGroup" ng-submit="editUserGroupp(usergroupedit)" role="form" ng-validate="validationOptions">
+																		<div class="p-15">
 																			<div class="row mt-10">
-																				<div class="form-group col-sm-12 col-md-12">
-																					<label for="">Group Name</label>
-																					<input type="text" name="usergroup_name" id="usergroup_name" class="form-control" ng-model="usergroupedit.usergroup_name" value="usergroupedit.usergroup_name" placeholder="">
-																				</div>
-																				<div class="form-group col-sm-12 col-md-12">
-																					<label for="">Facility{{usergroupedit.facilities}}</label><br/>
-																					<!-- <select class="form-control">
-																						<option selected>USA Corporate Services</option>
-																						<option>Aerzen USA Corporation</option>
-																					</select> -->
-																					<input type="text" name="facility_name" id="facility_name" class="form-control" ng-model="usergroupedit.facility_name" disabled placeholder="usergroupedit.facility_name">
-																				</div>
+																			<div class="form-group col-sm-12 col-md-12">
+																				<label for="">Group Name</label>
+																				<input type="text" name="usergroup_name" id="usergroup_name" class="form-control" ng-model="usergroupedit.usergroup_name" value="usergroupedit.usergroup_name" placeholder="">
 																			</div>
-																			<div class="row mt-20">
-																				<div class="col-sm-12 col-md-12">	
-																					<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Submit</button>
-																				</div>
+																			<div class="form-group col-sm-12 col-md-12">
+																				<label for="">Facility{{usergroupedit.facilities}}</label><br/>
+																				<input type="text" name="facility_name" id="facility_name" class="form-control" ng-model="usergroupedit.facility_name" disabled placeholder="usergroupedit.facility_name">
 																			</div>
-																		</form>			
-																	</md-content>
-																	</md-tab>
-																	
-																	<md-tab label="Door Schedule">
-																	<md-content>
-																		<div class="tile-body p-0">
-																			<table class="table table-bordered">
-																				<thead>
-																					<tr>
-																						<th>Door/Door Groups</th>
-																						<th width="222">Schedule Groups</th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr ng-repeat="doorlist in listDoorGroup">
-																						<td>{{doorlist.door_name}}</td>
-																						<td>
-																							<span class="loader" id="{{doorlist.ud_id}}" style="display: none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
-																							<select class="form-control" ng-model="schedule_id" ng-options="item.id as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id,doorlist.is_access_allowed)">
-																							<option value="">Select Schedule Group</option>
-																							</select>
-																						</td>
-																					</tr>
-																				</tbody>
-																			</table>
+																			</div>
+																			<div class="modal-footer" style="margin: 20px -15px -15px;">	
+																			<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																			<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
+																			</div>
 																		</div>
-																	</md-content>
-																	</md-tab>
-																</md-tabs>
+																	</form>			
 																</md-content>
-															</div>
-															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-															</div>							
+																</md-tab>
+																
+																<md-tab label="Door Schedule">
+																<md-content>
+																	<div class="tile-body p-15">
+																		<table class="table table-bordered">
+																			<thead>
+																				<tr>
+																					<th>Door/Door Groups</th>
+																					<th width="222">Schedule Groups</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr ng-repeat="doorlist in listDoorGroup">
+																					<td>{{doorlist.door_name}}</td>
+																					<td>
+																						<span class="loader" id="{{doorlist.ud_id}}" style="display: none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
+																						<select class="form-control" ng-model="schedule_id" ng-options="item.id as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id,doorlist.is_access_allowed)">
+																						<option value="">Select Schedule Group</option>
+																						</select>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																		<div class="modal-footer" style="margin: 20px -15px -15px;">
+																			<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																		</div>
+																	</div>
+																</md-content>
+																</md-tab>
+															</md-tabs>
+															</md-content>
+														</div>						
 													</script>
 													<a ng-click="showEditForm(user.usergroup_id,user.usergroup_name,user.usergroup_facility_id, user.facility.facility_name)" class="btn btn-success btn-border btn-rounded">Edit</a>
 												</div>												

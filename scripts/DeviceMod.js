@@ -151,6 +151,7 @@ app
 	
 	$scope.data = [];
 	$scope.pageNo = 1;
+	$scope.devicePageLimit = 8;
 	$scope.deviceInit = function(){
 		if(!$scope.searchText){
 			$scope.searchText = '';
@@ -159,7 +160,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-master-device?pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
+			url: baseURL+'device/list-master-device?pageNo='+$scope.pageNo+'&limit='+$scope.devicePageLimit,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -223,7 +224,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -239,9 +240,9 @@ app
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
 					$location.path('/core/login');
-					
-					
 				}
+				else if(response.msg=='No_Records_Found')
+					$scope.data =  [];
 			}
 		}).error(function(){
 
@@ -517,7 +518,6 @@ app
 
 		});	
 	}
-	$scope.dependentDeviceInit();
 	
 	$scope.deviceModelInit = function(){
 		$http({
@@ -981,7 +981,7 @@ app
 		$http({
 			method: 'POST', 
 			url: baseURL+'device/delete',
-			data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt($cookies.get("facilityId"))},
+			data: {device_id:parseInt($stateParams.device_id)},
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",

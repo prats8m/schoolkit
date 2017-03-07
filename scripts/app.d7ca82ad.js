@@ -65,9 +65,16 @@ var app = angular
     'ngValidate',
 	'toaster'
   ])
-  .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
+  .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.checkLogin = function(){
+      var loginToken = $cookies.get("token");
+      if(!loginToken){
+        $location.path('/core/login');
+      }
+    }
+    $rootScope.checkLogin();
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
 
       event.targetScope.$watch('$viewContentLoaded', function () {
@@ -264,7 +271,7 @@ var app = angular
 
 			//admin user user-groups-members
 				.state('app.admin.user.user-groups-members', {
-				  url: '/user-groups-members/:usergroup_id',
+				  url: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount',
 				  controller: 'UserGroupsCtrl',
 				  templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
 				})	
@@ -898,14 +905,13 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope) {
+  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location) {
 	  
 		
 	/* if($cookies.get('token')){
 		$state.go('app.admin.dashboard');
 	} */
 	
-
 	$scope.loginFunction = function(){
 		$scope.user.type = "web";
 		$http({
@@ -946,6 +952,12 @@ app
 		})
 
 	}
+
+  $scope.logout = function(){
+    debugger;
+    $cookies.remove('token');
+    $location.path('core/login');
+  }
 });
 
 'use strict';
@@ -1017,12 +1029,11 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DashboardCtrl', function($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL){
+  .controller('DashboardCtrl', function($scope, $mdDialog, $location, $http, $rootScope, $cookies, fileUpload, baseURL){
     $scope.page = {
 		title: 'Dashboard',
 		subtitle: 'So much more to see at a glance.'
     };
-	
 	$scope.dashboardInit = function(){
 		$http({
 			url: baseURL + 'user/dashboard',
