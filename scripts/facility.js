@@ -73,9 +73,9 @@ app
 		$scope.result = '';
 		$scope.showConfirm = function (ev) {
 			var confirm = $mdDialog.confirm()
-				.title('Would you like to delete Facility?')
-				.content('The standard chunk of Lorem Ipsum used.')
-				.ok('Delete')
+				.title('Delete facility is not available')
+				.content('')
+				// .ok('Delete')
 				.cancel('Cancel')
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
@@ -207,7 +207,7 @@ app
 				})
 				.success(function (response) {
 					if (response.status == true) {
-						$rootScope.dashboardData = response.data[0];
+						$scope.dashboardData = response.data[0];
 					}
 				})
 				.error(function (data, status, headers, config) {
@@ -287,7 +287,7 @@ app
 				.title('Would you like to delete device?')
 				.content('The standard chunk of Lorem Ipsum used.')
 				.ok('Delete')
-				.cancel('Cancel')
+				.cancel('ok')
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
 				$scope.result = 'Your device has been deleted successfully.';
