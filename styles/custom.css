@@ -2974,3 +2974,6 @@ input.ng-invalid-required.error {
 		float: left;
 	}
 }
+.btnMargin{
+    margin: 5px;
+}

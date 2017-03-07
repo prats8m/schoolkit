@@ -91,6 +91,7 @@ app
 			if(response.status == true){
 				toaster.pop('success','Device successfully added.');
 				$timeout(function(){$("#close").click();});
+				$scope.deviceInit();
 			}else{
 				
 				var n = [];
@@ -162,7 +163,7 @@ app
 	dataService.getData({device_id:$stateParams.device_id},baseUrl+'warehouse-device/view')
 	.success(function(response){
 		if(response.status){
-			$scope.device = response.data;
+			$scope.device = response.data[0];
 		}else{
 			toaster.pop('error',response.msg);
 		}
@@ -266,6 +267,12 @@ app
 app
   .filter('warehouseClientName', function() {
     return function(x) {
-        if(x == 'null'){return "Un-Registered";}else{ return x ;}
+        if(x == 'null'||x == null){return "Un-Registered";}else{ return x ;}
+	}
+   });
+app
+  .filter('warehouseDeviceFeatures', function() {
+    return function(x) {
+        if(x == 0){return "N/A";}else{ return "Yes";}
 	}
    });

@@ -271,7 +271,7 @@ var app = angular
 
 			//admin user user-groups-members
 				.state('app.admin.user.user-groups-members', {
-				  url: '/user-groups-members/:usergroup_id',
+				  url: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount',
 				  controller: 'UserGroupsCtrl',
 				  templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
 				})	
@@ -9722,7 +9722,7 @@ app.service('schedul', function($http, baseURL, $cookies) {
 //         }
 //     };
 // }]);
-app.constant('baseURL', 'http://35.162.244.123:8080/');
+
 
 app.directive('username', function username() {
       return {
@@ -9734,3 +9734,8 @@ app.directive('username', function username() {
 	  };
     });
     
+app.filter('emptyVal', function() {
+    return function(input) {
+      return (input == null || input == 'null' || input == 0)? 0 : input;
+    }
+});

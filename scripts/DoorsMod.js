@@ -132,6 +132,7 @@ app
 	$scope.facilityInit();
 	
 	$rootScope.submitAddDoor = function(submitData){
+		alert();
 		$http(
 		{
 			method: 'POST', 
@@ -145,7 +146,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				toaster.pop('success',response.msg.replace(/_/g,' '));
+				toaster.pop('success','Door added successfully.');
 				$scope.pageNo = 1;
 				$scope.listDoors();
 			}else{
@@ -229,7 +230,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 
-				toaster.pop('success',response.msg.replace(/_/g,' '));
+				toaster.pop('success','Door added successfully.');
 				$scope.pageNo = 1;
 				$scope.listDoors();
 				$timeout(function() {

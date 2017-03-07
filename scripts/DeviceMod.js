@@ -13,6 +13,8 @@ app
 		subtitle: 'So much more to see at a glance.'
     };
 	
+	$rootScope.device = {};
+	
 	$scope.result = '';
 	$rootScope.facilityId = $cookies.get("facilityId");
     $scope.showConfirm = function(id,ev) {
@@ -73,9 +75,9 @@ app
 		$scope.layout = 'grid';
 	};
 
-	$scope.getDoorsList = function(){
+	$rootScope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
+			url: baseURL+'door/list?facility_id='+$rootScope.device.facility_id,
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {
@@ -86,7 +88,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.doorList = response.data.data;
-				$scope.getTechnicianList();
+				//$scope.getTechnicianList();
 			}else{
 				
 			}
@@ -95,7 +97,7 @@ app
 
 		});
 	}
-	$scope.getDoorsList();
+	//$scope.getDoorsList();
 	
 	$rootScope.formSubmit = function(device,device_form){
 		
@@ -149,6 +151,7 @@ app
 	
 	$scope.data = [];
 	$scope.pageNo = 1;
+	$scope.devicePageLimit = 8;
 	$scope.deviceInit = function(){
 		if(!$scope.searchText){
 			$scope.searchText = '';
@@ -157,7 +160,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-master-device?pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
+			url: baseURL+'device/list-master-device?pageNo='+$scope.pageNo+'&limit='+$scope.devicePageLimit,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -221,7 +224,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL+'device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
+			url: baseURL+'device/list-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -237,9 +240,9 @@ app
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
 					$location.path('/core/login');
-					
-					
 				}
+				else if(response.msg=='No_Records_Found')
+					$scope.data =  [];
 			}
 		}).error(function(){
 
@@ -259,7 +262,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.doorList = response.data.data;
-				$scope.getTechnicianList();
+				//$scope.getTechnicianList();
 			}else{
 				
 			}
@@ -515,7 +518,6 @@ app
 
 		});	
 	}
-	$scope.dependentDeviceInit();
 	
 	$scope.deviceModelInit = function(){
 		$http({
@@ -979,7 +981,7 @@ app
 		$http({
 			method: 'POST', 
 			url: baseURL+'device/delete',
-			data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt($cookies.get("facilityId"))},
+			data: {device_id:parseInt($stateParams.device_id)},
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -1099,7 +1101,7 @@ app
 	
 	$scope.getDoorsList = function(){
 		$http({
-			url: baseURL+'door/list?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),
+			url: baseURL+'door/list?limits=100&pageNo=1',
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {

@@ -20,6 +20,7 @@ app
 			$scope.addFacilityModal = $uibModal.open({
 				templateUrl: 'myModalContent.html',
 				size: 'md',
+				scope: $scope,
 				resolve: {
 					items: function () {
 						return $scope.items;
@@ -74,7 +75,7 @@ app
 		$scope.showConfirm = function (ev) {
 			var confirm = $mdDialog.confirm()
 				.title('Would you like to delete Facility?')
-				.content('The standard chunk of Lorem Ipsum used.')
+				.content('')
 				.ok('Delete')
 				.cancel('Cancel')
 				.targetEvent(ev);
@@ -94,7 +95,13 @@ app
 				$scope.class = 'listview';
 			$scope.layout = 'list';
 		};
-
+		$scope.facilityZipCode = "asdad";
+		$scope.allowNumberOnly = function (evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                evt.preventDefault();
+        }
 		$scope.changeaClass = function () {
 			if ($scope.class === 'listview')
 				$scope.class = 'gridview';
@@ -207,7 +214,7 @@ app
 				})
 				.success(function (response) {
 					if (response.status == true) {
-						$rootScope.dashboardData = response.data[0];
+						$scope.dashboardData = response.data[0];
 					}
 				})
 				.error(function (data, status, headers, config) {
@@ -287,7 +294,7 @@ app
 				.title('Would you like to delete device?')
 				.content('The standard chunk of Lorem Ipsum used.')
 				.ok('Delete')
-				.cancel('Cancel')
+				.cancel('ok')
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
 				$scope.result = 'Your device has been deleted successfully.';
@@ -312,29 +319,6 @@ app
 			$scope.layout = 'grid';
 		};
 
-		// $http.get('http://localhost:8080/elika/json/admin/facility/users.json').success(function(response){
-		// 	$scope.users = response;
-		// 	$scope.totalDisplayed1 = 6;
-
-		// 	if($scope.users.length > $scope.totalDisplayed1) {
-		// 		$scope.lmbtn1 = {
-		// 			"display" : "block"
-		// 		};			
-		// 	} else {
-		// 		$scope.lmbtn1 = {
-		// 			"display" : "none"
-		// 		};
-		// 	}
-
-		// 	$scope.loadMore1 = function () {
-		// 		$scope.totalDisplayed1 += 6;
-		// 		if($scope.totalDisplayed1 > $scope.users.length) {				
-		// 			$scope.lmbtn1 = {
-		// 				"display" : "none"
-		// 			};	
-		// 		}			
-		// 	};		
-		// });
 
 		$scope.orderByMe = function (x) {
 			$scope.myOrderBy = x;
@@ -469,6 +453,7 @@ app
 
 
 
+
 		//Code starts to save facility device
 		$rootScope.saveFacilityDevice = function (facility_device) {
 			facility_device.facility_id = jQuery.parseJSON($cookies.get("facility")).facility_id;
@@ -513,34 +498,57 @@ app
  * Controller of the minovateApp
  */
 app
-	.controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+  .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
 
-		$scope.page = {
-			title: 'Facility Details',
-			subtitle: ''
-		};
-
-		$scope.imagePath = baseURL + 'elika/images/';
-
-		$http({
-				url: baseURL + 'facility/view/' + $stateParams.facility_id,
-				method: 'GET',
-				dataType: 'JSON',
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token"),
-				}
-			})
-			.success(function (response) {
-				$scope.facility = response.data;
-				//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
-			})
-			.error(function (response) {
-				console.log(response);
-			});
-
+    $scope.page = {
+		title: 'Facility Details',
+		subtitle: ''
+    };
+	
+	$scope.imagePath = baseURL+'elika/images/';
+	
+	$http({
+		url: baseURL+'facility/view/'+$stateParams.facility_id,
+		method: 'GET',
+		dataType : 'JSON',
+		headers: {
+			"Content-type": "application/json",
+			"Authorization": $cookies.get("token"),
+		}
+	})
+	.success(function(response) {
+		$scope.facility = response.data;
+	})
+	.error(function(response){
+		console.log(response);
 	});
-
+	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	if(!$rootScope.hasOwnProperty('dashboardData')){
+		$scope.dashboardInit();
+	}
+	
+  });
+  
+  
 
 'use strict';
 /**
@@ -551,14 +559,71 @@ app
  * Controller of the minovateApp
  */
 app
-	.controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+  .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
 
-		$scope.page = {
-			title: 'Facility Details',
-			subtitle: ''
-		};
+    $scope.page = {
+		title: 'Facility Details',
+		subtitle: ''
+    };
+	
+	$scope.imagePath = baseURL+'elika/images/';
+	
+	$http({
+		url: baseURL+'facility/view/'+$stateParams.facility_id,
+		method: 'GET',
+		dataType : 'JSON',
+		headers: {
+			"Content-type": "application/json",
+			"Authorization": $cookies.get("token"),
+		}
+	})
+	.success(function(response) {
+		$scope.facility = response.data;
+	})
+	.error(function(response){
+	});
+	
+	$scope.edit_facility = function(facility, editfacility){
+		if(!editfacility.validate()){
+			return false;
+		}
+		facility.timeZone = facility.facility_timezone;
+		facility.zip_code = ""+facility.facility_zipcode;
+		facility.status = facility.facility_status == 'Active' ? 1 : 0
+		$http({
+			url: baseURL+'facility/edit',
+			method: 'PUT',
+			data: facility,
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
 
-		$scope.imagePath = baseURL + 'elika/images/';
+			if(response.status == true){
+				toaster.pop('success','Facility Edited Successfully');
+			}else{
+				var n = [];
+				var arr = response.error;
+				if(arr != null){
+				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+				$scope.facility_edit_error = n.join(", ");
+				}		
+			}
+		})
+		.error(function(response){
+		});
+	};	
+	
+	$scope.edit_facility = function(facility, editfacility){
+		if(!editfacility.validate()){
+			return false;
+		}
+		facility.timeZone = facility.facility_timezone;
+		facility.zip_code = ""+facility.facility_zipcode;
+		//facility.status = facility.facility_status == 'Active' ? 1 : 0
 
 		$http({
 				url: baseURL + 'facility/view/' + $stateParams.facility_id,
@@ -612,47 +677,10 @@ app
 						}
 					}
 				})
-				.error(function (response) {});
-		};
-
-		$scope.edit_facility = function (facility, editfacility) {
-			if (!editfacility.validate()) {
-				return false;
-			}
-			facility.timeZone = facility.facility_timezone;
-			facility.zip_code = "" + facility.facility_zipcode;
-			//facility.status = facility.facility_status == 'Active' ? 1 : 0
-			$http({
-					url: baseURL + 'facility/edit',
-					method: 'PUT',
-					data: facility,
-					dataType: 'JSON',
-					headers: {
-						"Authorization": $cookies.get("token"),
-						"Content-type": "application/json"
-					}
-				})
-				.success(function (response) {
-
-					if (response.status == true) {
-						toaster.pop('success', 'Facility Edited Successfully');
-					} else {
-						var n = [];
-						var arr = response.error;
-						if (arr != null) {
-							$.each(arr, function (index, value) {
-								n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1);
-								$.each(value.messages, function (ind, value) {
-									n[index] += " " + value
-								})
-							});
-							$scope.facility_edit_error = n.join(", ");
-						}
-					}
-				})
 				.error(function (response) {
-					console.log(response);
+					
 				});
 		};
 
-	});
+	}
+  });
