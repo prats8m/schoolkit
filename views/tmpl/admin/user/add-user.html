@@ -102,11 +102,11 @@
 											<div class="row">
 												<div class="form-group col-sm-6 col-md-3">
 													<label for="">First Name</label>
-													<input type="text" name="first_name" id="first_name" ng-model="userData.first_name" class="form-control" required>
+													<input type="text" maxlength="30" name="first_name" id="first_name" ng-model="userData.first_name" class="form-control" required>
 												</div>
 												<div class="form-group col-sm-6 col-md-3">			
 													<label for="">Last Name</label>
-													<input type="text" name="last_name" id="last_name" ng-model="userData.last_name" class="form-control" required>
+													<input type="text" maxlength="30" name="last_name" id="last_name" ng-model="userData.last_name" class="form-control" required>
 												</div>
 												<div class="form-group col-sm-6 col-md-3">
 													<label for="">Email</label>
@@ -123,19 +123,19 @@
 											<div class="row">
 												<div class="form-group col-sm-6 col-md-3">
 													<label for="">Name as appears on LCD</label>
-													<input type="text" name="name_on_lcd" id="name_on_lcd" ng-model="userData.name_on_lcd" class="form-control" required>
+													<input type="text"maxlength="30"name="name_on_lcd" id="name_on_lcd" ng-model="userData.name_on_lcd" class="form-control" required>
 												</div>
 												<div class="form-group col-sm-6 col-md-3">			
 													<label for="">Phone</label>
-													<input type="text" name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" class="form-control" rangelength required>
+													<input type="text" maxlength="15" ng-keypress="allowNumberOnly($event);" name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" class="form-control" rangelength required>
 												</div>
 												<div class="form-group col-sm-6 col-md-3">
 													<label for="">Address</label>
-													<input type="emial" name="address" id="address" ng-model="userData.address" class="form-control" placeholder="" required>
+													<input type="text"  name="address" id="address" ng-model="userData.address" class="form-control" placeholder="" required>
 												</div>
 												<div class="form-group col-sm-6 col-md-3">
 													<label for="">Zip Code</label>
-													<input type="text" name="zip_code" id="zip_code" ng-model="userData.zip_code" class="form-control" required>
+													<input type="text" maxlength="6" name="zip_code" ng-keypress="allowNumberOnly($event);" id="zip_code" ng-model="userData.zip_code" class="form-control" required>
 												</div>
 											</div>
 											<div class="row" ng-controller="ActivebtnCtrl">

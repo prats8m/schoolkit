@@ -21,7 +21,12 @@ app
     	$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");	
     	$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
     }
-
+	$scope.allowNumberOnly = function (evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                evt.preventDefault();
+        }
 	$scope.result = '';
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
