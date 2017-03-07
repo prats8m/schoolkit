@@ -941,7 +941,6 @@ $scope.dashboardInit = function(){
 } 
 
 if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
-
 });
 
 'use strict';
@@ -963,7 +962,7 @@ app
 
 	$scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);   }  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;}  
 	 		if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
@@ -1813,16 +1812,17 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul,$uibModal, $log, $location) {  	
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL,$stateParams, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul,$uibModal, $log, $location) {  	
      $scope.page = {
       title: 'User Groups',
       subtitle: '',
       member: 'User Groups Members'
     };
-
+	$scope.currentSelectedGroupName = $stateParams.userGroupName;
+	$scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
     $scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);   }  
+	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;}  
 	 		if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
@@ -2084,8 +2084,6 @@ app
 
 		});
     }
-	$scope.getUserGroupList();
-	
 	$scope.userGroupDelete = function(id){
     	$http({
 			method: 'GET', 
@@ -2208,7 +2206,7 @@ app
 		$http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
 		.success(function(response) {  
 		 if(response.status == true){    
-		 	$rootScope.dashboardData = response.data;     console.log($rootScope.dashboardData);  
+		 	$rootScope.dashboardData = response.data;
 		 	 } 
 		 	if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');

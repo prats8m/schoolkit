@@ -84,7 +84,7 @@
 			</div>			
 		</div>
 	
-		<div class="row"  ng-controller="UserGroupsCtrl">
+		<div class="row" ng-init="getUserGroupList()">
 			<div class="col-md-12">	   
 				<section class="tile box-shadow">				
 					<div class="tile-header dvd dvd-btm">
@@ -241,7 +241,7 @@
 												<p>{{ user.usergroup_user_count }} Users</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a ui-sref="app.admin.user.user-groups-members({usergroup_id:user.usergroup_id})" class="btn btn-orange btn-border btn-rounded">View</a>
+												<a ui-sref="app.admin.user.user-groups-members({usergroup_id:user.usergroup_id,userGroupName:user.usergroup_name,userGroupUserCount:user.usergroup_user_count})" class="btn btn-orange btn-border btn-rounded">View</a>
 												<div ng-controller="ModalDemo1Ctrl">
 													<script type="text/ng-template" id="myModalContent1.html">
 														<div class="modal-header">
