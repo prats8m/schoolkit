@@ -264,7 +264,7 @@
 										<md-card ng-repeat="device in data">
 											<span class="moreitemsondevice">
 												<a ui-sref="app.admin.device.service-plan"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-												<a ui-sref="app.admin.settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
+												<a ui-sref="app.admin.device.device-settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
 											</span>
 											<a ui-sref="app.admin.device.device-details({device_id:device.device_id})"><img ng-src="images/device/elika-76-bronze.png" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
