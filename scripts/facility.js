@@ -208,7 +208,7 @@ app
 				})
 				.success(function (response) {
 					if (response.status == true) {
-						$scope.dashboardData = response.data[0];
+						$scope.dashboardData = response.data;
 					}
 				})
 				.error(function (data, status, headers, config) {
