@@ -249,6 +249,7 @@ app
 			if(response.status == true){
 				toaster.pop('success','Device successfully updated.');
 			}else{
+				
 				var n = [];
 				var arr = response.error;
 				if(arr != null){
@@ -266,6 +267,12 @@ app
 
 app
   .filter('warehouseClientName', function() {
+    return function(x) {
+        if(x == 'null'||x == null){return "Un-Registered";}else{ return x.facility_name ;}
+	}
+   });
+  app
+  .filter('warehouseClientNameInList', function() {
     return function(x) {
         if(x == 'null'||x == null){return "Un-Registered";}else{ return x ;}
 	}
