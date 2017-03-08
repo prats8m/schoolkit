@@ -68,13 +68,16 @@ var app = angular
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.checkLogin = function(){
       var loginToken = $cookies.get("token");
       if(!loginToken){
         $location.path('/core/login');
       }
-    }
-    $rootScope.checkLogin();
+      $rootScope.allowNumberOnly = function (evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31
+                && (charCode < 48 || charCode > 57))
+                evt.preventDefault();
+        }
     $rootScope.$on('$stateChangeSuccess', function(event, toState) {
 
       event.targetScope.$watch('$viewContentLoaded', function () {

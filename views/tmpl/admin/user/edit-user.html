@@ -212,6 +212,7 @@
 													<div class="form-group col-sm-3 col-md-3">
 														<label for="">Firstly Select facility</label><br/>
 														<select class="form-control"  ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id" ng-change="userNotAssignedGroup(facility)" >
+															<option value="">Select Facility</option>
 														</select>
 													</div>
 												</div>
@@ -229,18 +230,19 @@
 														<div class="hometabs">
 															<div class="overflow groupslists">
 																<div class="col-md-12 mt-20">
+																	<h3 class="custom-font ng-binding emptyMsg" ng-show="!usergroups.length">No User Group Available for Currently selected Facility. Please add a group to this Facility</h3>
 																		<ul>
 																			<li ng-repeat="user_group in usergroups">
 																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]"><i></i> {{user_group.usergroupName}} <small>({{user_group.count}} Users)</small></label>
 																			</li>
 																		</ul>
-																		<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
+																		<!--<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>-->
 																</div>
 															</div>
 														</div>
 														<div class="modal-footer">
 															<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c usergroup_edit" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
-															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+															<button ng-show="usergroups.length" type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 														</div>											
 													</form>
 												</script>

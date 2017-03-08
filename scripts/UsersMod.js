@@ -21,12 +21,6 @@ app
     	$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");	
     	$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
     }
-	$scope.allowNumberOnly = function (evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode != 46 && charCode > 31
-                && (charCode < 48 || charCode > 57))
-                evt.preventDefault();
-        }
 	$scope.result = '';
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
@@ -170,7 +164,6 @@ app
     }
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
-
 	$scope.facilityInit = function(){
 		$http(
 		{
@@ -185,6 +178,7 @@ app
 		.success(function(response){
 			if(response.status == true){	
 				$scope.facilityList = response.data.data;
+				$scope.facility = '';
 			}else{
 				
 			}
@@ -688,9 +682,9 @@ app
 			$scope.getAccessCodeList();
 			if(response.status == true){
 				// $scope.accesscode_error = response.msg;
-				$timeout(function() {
-				$(".accordion-toggle")[1].click();
-				});
+				// $timeout(function() {
+				// $(".accordion-toggle")[1].click();
+				// });
 				toaster.pop('success','Access Code Added Successfully');
 				
 			}else{
