@@ -14,6 +14,7 @@ app
       title: 'Users',
       subtitle: ''
     };
+	$scope.facility = "";
 	$rootScope.facilityId = $cookies.get("facilityId");
 
     if($cookies.get("user_id") == undefined)
