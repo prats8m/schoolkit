@@ -13,6 +13,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
 	$rootScope.addDoors = {};
+	$scope.hideLoadMore = false;
 	
 	$rootScope.facilityId = $cookies.get('facilityId');
 	
@@ -38,8 +39,8 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
-					$scope.result = 'Your Door has been deleted successfully.';
-					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					toaster.pop('success','Your Door has been deleted successfully.');
+				
 					var adoor = $scope.adoors;
 					var tempUser = [];
 					for(var i=0;i<adoor.length;i++){
@@ -48,6 +49,7 @@ app
 						}
 					}
 					$scope.adoors = tempUser;
+					$rootScope.dashboardData.door--;
 				}else{	
 					if(response.msg == 'Invalid_Token'){
 						toaster.pop('error','Session Expired');
@@ -84,29 +86,6 @@ app
 	$scope.pageNo = 1;
 	$scope.searchText = '';
 	
-	// $scope.doorsInit = function(){
-	// 	$http(
-	// 	{
-	// 		method: 'GET', 
-	// 		url: baseURL+'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId=3',
-	// 		dataType : 'JSON', 
-	// 		headers: {
-	// 			"Content-type": "application/json",
-	// 			"Authorization": $cookies.get("token")
-	// 		}
-	// 	})
-	// 	.success(function(response){
-	// 		if(response.status == true){
-	// 			$scope.data =  arrayPushService.arrayPush(response.data.data, $scope.data);
-	// 			$scope.pageNo = $scope.pageNo + 1 ;
-	// 		}else{
-				
-	// 		}
-	// 	}).error(function(){
-
-	// 	});
-	// }
-	
 	$scope.facilityInit = function(){
 		$http(
 		{
@@ -132,7 +111,7 @@ app
 	$scope.facilityInit();
 	
 	$rootScope.submitAddDoor = function(submitData){
-		alert();
+		//alert();
 		$http(
 		{
 			method: 'POST', 
@@ -149,6 +128,7 @@ app
 				toaster.pop('success','Door added successfully.');
 				$scope.pageNo = 1;
 				$scope.listDoors();
+				$rootScope.dashboardData.door++; 
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 			}
@@ -181,33 +161,8 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
-	
-	// $scope.dashboardInit = function(){
-	// 	$http({
-	// 		url: baseURL + 'user/dashboard',
-	// 		method: 'GET',
-	// 		dataType : 'JSON',
-	// 		headers: {
-	// 			"Authorization": $cookies.get("token"),
-	// 			"Content-type": "application/json"
-	// 		}
-	// 	})
-	// 	.success(function(response) {
-	// 		if(response.status == true){
-	// 			$rootScope.dashboardData = response.data[0];
-	// 			// console.log($rootScope.dashboardData);
-	// 		}
-	// 	})
-	// 	.error(function (data, status, headers, config) {
-			
-	// 	});
-	// }
-	// if(!$rootScope.hasOwnProperty('dashboardData')){
-	// 	$scope.dashboardInit();
-	// }
+
 
 	//Create Doors
 	$rootScope.doormsg = "";
@@ -233,6 +188,7 @@ app
 				toaster.pop('success','Door added successfully.');
 				$scope.pageNo = 1;
 				$scope.listDoors();
+				$rootScope.dashboardData.door++;
 				$timeout(function() {
 					$("#close").click();
 				});
@@ -258,7 +214,7 @@ app
 		$http(
 		{
 			method: 'GET', 
-			url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facility_id='+$cookies.get("facilityId"),
+			url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -300,7 +256,12 @@ app
 			})
 			.success(function(response) {
 				if(response.status == true){
-					$scope.adoors = arrayPushService.arrayPush(response.data.data,  $scope.adoors);
+					if($scope.pageNo != 1){
+						$scope.adoors = arrayPushService.arrayPush(response.data.data,  $scope.adoors);
+					}else{
+						$scope.adoors = response.data.data;
+					}
+					if(response.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
 					$scope.pageNo = $scope.pageNo + 1 ;
 				}else{
 					$rootScope.doormsg = response.msg;
@@ -444,6 +405,7 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
+					$rootScope.dashboardData.door--;
 					$location.path('/app/admin/door/doors');
 				}else{	
 					if(response.msg == 'Invalid_Token'){
@@ -490,9 +452,8 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
+	
 	
 });
 
@@ -548,6 +509,7 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
+					$rootScope.dashboardData.door--;
 					$location.path('/app/admin/door/doors');
 				}else{	
 					if(response.msg == 'Invalid_Token'){
@@ -627,9 +589,6 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
-	
   });
 

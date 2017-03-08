@@ -80,7 +80,7 @@ app
 	$rootScope.submitAddDevice = function(device,add_device){
 		$rootScope.errorMessage = '';
 		device.account_no = parseInt(device.account_no);
-		device.phone_no = parseInt(device.phone_no);
+		device.phone_no = device.phone_no;
 		device.device_cell = (! device.device_cell) ? 0 : device.device_cell;
 		device.device_voip = (! device.device_voip) ? 0 : device.device_voip;
 		device.device_camera = (! device.device_camera) ? 0 : device.device_camera;
@@ -235,7 +235,7 @@ app
 	$scope.submitEditDevice = function(device){
 		$rootScope.errorMessage = '';
 		device.account_no = parseInt(device.device_account_no);
-		device.phone_no = parseInt(device.device_phone_no);
+		device.phone_no = device.device_phone_no;
 		device.serial_no = device.device_serial_no;
 		device.reg_code = device.device_registration_code;
 		device.mac_address = device.device_mac_address;
@@ -249,7 +249,7 @@ app
 			if(response.status == true){
 				toaster.pop('success','Device successfully updated.');
 			}else{
-				
+
 				var n = [];
 				var arr = response.error;
 				if(arr != null){

@@ -16,8 +16,8 @@ app
 	$rootScope.device = {};
 	
 	$scope.result = '';
-	$rootScope.facilityId = $cookies.get("facilityId");
-    $scope.showConfirm = function(id,ev) {
+	//$rootScope.facilityId = $cookies.get("facilityId");
+    $scope.showConfirm = function(id,facility_id,ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete Device?')
 		.content('')
@@ -25,12 +25,12 @@ app
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function(){
-			
+			console.log(id);console.log(facility_id);
 			$http(
 			{
 				method: 'POST', 
 				url: baseURL+'device/delete',
-				data: {device_id:id , facility_id:parseInt($rootScope.facilityId)},
+				data: {device_id:id , facility_id:facility_id},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -90,7 +90,7 @@ app
 				$rootScope.doorList = response.data.data;
 				//$scope.getTechnicianList();
 			}else{
-				
+				$rootScope.doorList = [];
 			}
 		})
 		.error(function(){
@@ -264,7 +264,7 @@ app
 				$rootScope.doorList = response.data.data;
 				//$scope.getTechnicianList();
 			}else{
-				
+				$rootScope.doorList = [];
 			}
 		})	
 		.error(function(){
@@ -370,10 +370,7 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
-		
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images/';
 	
@@ -436,7 +433,7 @@ app
 	
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(facility_id,ev) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete device?')
 		.content('')
@@ -449,7 +446,7 @@ app
 			{
 				method: 'POST', 
 				url: baseURL+'device/delete',
-				data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt($rootScope.facilityId)},
+				data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt(facility_id)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -458,11 +455,13 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
-					$scope.result = 'Your device has been deleted successfully.';
-					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					//$scope.result = 'Your device has been deleted successfully.';
+					//$scope.statusclass = 'alert alert-danger alert-dismissable';
+					toaster.pop('success','Your device has been deleted successfully.');
 				}else{
-					$scope.result = response.msg.replace(/_/g,' ');
-					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					//$scope.result = response.msg.replace(/_/g,' ');
+					//$scope.statusclass = 'alert alert-danger alert-dismissable';
+					toaster.pop('error',response.msg.replace(/_/g,' '));
 				}
 			}).error(function(){
 
@@ -782,9 +781,8 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
+	
 	
 });
 
@@ -970,9 +968,8 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
+	
 	
 	$scope.deleteThisDevice = function(){
 		if(! confirm("Are you sure you want to delete this device.")){
@@ -1114,7 +1111,7 @@ app
 				$rootScope.doorList = response.data.data;
 				$scope.getTechnicianList();
 			}else{
-				
+				$rootScope.doorList = [];
 			}
 		})
 		.error(function(){
@@ -1291,9 +1288,8 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
+	
 	
 	$scope.facilityInit = function(){
 		$http(
@@ -1442,7 +1438,7 @@ app
 			if(response.status == true){
 				$scope.details = response.data;
 				$scope.editDevice = response.data;
-				$scope.editDevice.device_technician_id = $scope.editDevice.device_technician_id.toString();
+				$scope.editDevice.technician_id = $scope.editDevice.device_technician_id.toString();
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -1498,7 +1494,7 @@ app
 				$rootScope.doorList = response.data.data;
 				
 			}else{
-				
+				$rootScope.doorList = [];
 			}
 		})
 		.error(function(){
@@ -1518,8 +1514,8 @@ app
 		
 
 		$http({
-			url: baseURL+'device/add',
-			method: 'POST',
+			url: baseURL+'device/edit',
+			method: 'PUT',
 			data: device,
 			dataType : 'JSON',
 			headers: {
@@ -1575,8 +1571,7 @@ app
 			
 		});
 	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
 		$scope.dashboardInit();
-	}
+	
 	
 });
