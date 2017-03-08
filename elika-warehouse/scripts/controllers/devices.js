@@ -215,7 +215,7 @@ app
 	dataService.getData({device_id:$stateParams.device_id},baseUrl+'warehouse-device/view')
 	.success(function(response){
 		if(response.status){
-			$scope.device = response.data;
+			$scope.device = response.data[0];
 		}else{
 			toaster.pop('error',response.msg);
 		}
