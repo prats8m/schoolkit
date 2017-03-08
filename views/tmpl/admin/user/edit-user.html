@@ -322,7 +322,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -388,7 +388,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -451,7 +451,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href=""  ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -471,7 +471,11 @@
 															<label for="">NFC Code</label>
 															<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editNfc.nfc_code" required>
 														</div>
-														<div class="form-group col-sm-3 col-md-8">
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Facility Code</label>
+															<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editNfc.nfc_facility_code" name="editNfc" required>
+														</div>
+														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Assign Doors</label><br/>
 															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editNfc.door_id" multiple required>
 															</select>
@@ -509,7 +513,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{nfccode.Credential_Id}}', 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -573,7 +577,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>

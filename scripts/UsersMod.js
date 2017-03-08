@@ -1428,6 +1428,7 @@ app
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.details = {};
 		submitData.details.nfc_code = submitData.nfc_code;
+		submitData.details.nfc_facility_code = submitData.nfc_facility_code;
 		// submitData.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
 		submitData.credential_type = "nfc_code";
 		delete submitData.nfc_code;
@@ -1597,6 +1598,7 @@ app
 		submitData.details = {};
 		// submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_code));
 		submitData.details.rfid_card_no = JSON.stringify(parseInt(submitData.rfid_card_no));
+		submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_id));
 		submitData.credential_type = "rfid_code";
 		delete submitData.rfid_card_no;
 		delete submitData.rfid_facility_code;
@@ -1798,7 +1800,27 @@ app
 			}
 		})
 		.success(function(response){
-			$scope.getAccessCodeList();
+			// $scope.getAccessCodeList();
+			switch (type) {
+            case 'access_code':
+                $scope.getAccessCodeList();
+                break;
+            case 'phone_code':
+                $scope.getPhoneList();
+                break;
+            case 'rfid_code':
+            		$scope.getRfidList();
+            		break;
+            case 'nfc_code':
+                $scope.getNfcCodeList();
+                break;
+            case 'ble_code':
+                $scope.getBleList();
+                break;
+            default:
+
+        }
+			toaster.pop('success',response.msg.replace(/_/g,' '));
 			// $scope.door_lists = response.data;
 		})
 	}
