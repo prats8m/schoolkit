@@ -17,7 +17,9 @@ app
 	
 	$scope.result = '';
 	$rootScope.facilityId = $cookies.get("facilityId");
-    $scope.showConfirm = function(id,ev) {
+    $scope.showConfirm = function(id,facilityId,ev) {
+		console.log(id);
+		console.log(facilityId);
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete Device?')
 		.content('')
@@ -30,7 +32,7 @@ app
 			{
 				method: 'POST', 
 				url: baseURL+'device/delete',
-				data: {device_id:id , facility_id:parseInt($rootScope.facilityId)},
+				data: {device_id:id , facility_id:parseInt(facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -39,8 +41,9 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
-					$scope.result = 'Your Device has been deleted successfully.';
-					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					toaster.pop('success', 'Your Device has been deleted successfully');
+					// $scope.result = 'Your Device has been deleted successfully.';
+					// $scope.statusclass = 'alert alert-danger alert-dismissable';
 					var tempDevice = [];
 					for(var i=0;i < $scope.data.length;i++){
 						if(id != $scope.data[i].device_id){
@@ -49,8 +52,9 @@ app
 					}
 					$scope.data = tempDevice;
 				}else{
+					toaster.pop('error', 'Please try again');
 					$scope.result = response.msg.replace(/_/g,' ');
-					$scope.statusclass = 'alert alert-danger alert-dismissable';
+					// $scope.statusclass = 'alert alert-danger alert-dismissable';
 				}
 			}).error(function(){
 
@@ -100,7 +104,7 @@ app
 	//$scope.getDoorsList();
 	
 	$rootScope.formSubmit = function(device,device_form){
-		
+		console.log("asdasdads");
 		if(!device_form.validate()){
 			return false;
 		}
@@ -121,8 +125,10 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$scope.pageNo = 1;
+				$scope.dashboardInit();
+				$scope.deviceInit();
 				$timeout(function(){$("#close").click();})
-				$timeout(function(){$scope.deviceInit();})
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
 				if(response.msg == 'Validation_Error'){
@@ -149,7 +155,6 @@ app
 		});
 	}
 	
-	$scope.data = [];
 	$scope.pageNo = 1;
 	$scope.devicePageLimit = 8;
 	$scope.deviceInit = function(){
@@ -171,7 +176,7 @@ app
 			if(response.status == true){
 				//$scope.data =  arrayPushService.arrayPush(response.data.data, $scope.data);
 				$scope.data =  response.data.data;
-				$rootScope.deviceList =  $scope.data;
+				$rootScope.deviceList = response.data.data;
 				$scope.pageNo = $scope.pageNo + 1 ;
 				
 				$scope.totalDisplayed = 8;
@@ -210,8 +215,6 @@ app
 		}).error(function(){
 		});	
 	}
-
-	$scope.deviceInit();
 		
 	$scope.searchFunction = function(e){
 		if(e)
@@ -1269,7 +1272,6 @@ app
 
 		});	
 	}	
-	$scope.deviceInit();
 	
 	$scope.dashboardInit = function(){
 		$http({

@@ -96,12 +96,6 @@ app
 			$scope.layout = 'list';
 		};
 		$scope.facilityZipCode = "asdad";
-		$scope.allowNumberOnly = function (evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode != 46 && charCode > 31
-                && (charCode < 48 || charCode > 57))
-                evt.preventDefault();
-        }
 		$scope.changeaClass = function () {
 			if ($scope.class === 'listview')
 				$scope.class = 'gridview';
@@ -616,33 +610,8 @@ app
 		.error(function(response){
 		});
 	};	
-	
+	$scope.facility.timezone = "";
 	$scope.edit_facility = function(facility, editfacility){
-		if(!editfacility.validate()){
-			return false;
-		}
-		facility.timeZone = facility.facility_timezone;
-		facility.zip_code = ""+facility.facility_zipcode;
-		//facility.status = facility.facility_status == 'Active' ? 1 : 0
-
-		$http({
-				url: baseURL + 'facility/view/' + $stateParams.facility_id,
-				method: 'GET',
-				dataType: 'JSON',
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token"),
-				}
-			})
-			.success(function (response) {
-				$scope.facility = response.data;
-				//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
-			})
-			.error(function (response) {
-				console.log(response);
-			});
-
-		$scope.edit_facility = function (facility, editfacility) {
 			if (!editfacility.validate()) {
 				return false;
 			}
@@ -681,6 +650,4 @@ app
 					
 				});
 		};
-
-	}
   });
