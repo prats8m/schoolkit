@@ -1028,7 +1028,7 @@ app
 				$scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
 				$scope.editUser.address = angular.copy($scope.userData.user_address);
 				$scope.editUser.email = angular.copy($scope.userData.user_email);
-				$scope.editUser.expiration_date = angular.copy($scope.userData.user_expiration_date);
+				$scope.editUser.expiration_date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
 				$scope.editUser.status = angular.copy($scope.userData.user_status);
 				$scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
 				// $scope.editAccess.access_code = angular.copy($scope.userData.access_code);
