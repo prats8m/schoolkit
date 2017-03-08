@@ -50,7 +50,7 @@
 		</div>
 		
 		<div class="row" ng-controller="DeviceCtrl">
-			<div class="col-md-12"><!-- ng-model="searchText" ng-keyup="deviceInit($event)" --->
+			<div class="col-md-12">
 				<section class="tile box-shadow">
 					<div class="tile-header dvd dvd-btm">
 						<h1 class="custom-font">{{page.title}}</h1>
@@ -192,12 +192,13 @@
 								</div>
 							</div>
 							<div ng-class="class">
+							
 								<div class="glview">
 									<md-content>			
 										<md-card ng-repeat="device in devices | limitTo:totalDisplayed | filter:text | filter:title | filter:client | filter:serialno | filter:registrationcode | orderBy:myOrderBy">
 											<md-card-content>
 												<h2 class="md-title">{{ device.device_serial_no }}</h2>
-												<p><span>Client</span> : {{ device.facility_name | warehouseClientName}}</p>
+												<p><span>Client</span> : {{ device.facility_name | warehouseClientNameInList}}</p>
 												<!-- <p><span>Serial No.</span> : {{ device.device_serial_no }}</p> -->
 												<p><span>Reg Code</span> : {{ device.device_registration_code }}</p>
 												<!-- <p><span>Create Date</span> : {{ device.device_created_on | date :  "dd.MM.y"  }}</p> -->
