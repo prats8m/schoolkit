@@ -21,12 +21,6 @@ app
     	$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");	
     	$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
     }
-	$scope.allowNumberOnly = function (evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode != 46 && charCode > 31
-                && (charCode < 48 || charCode > 57))
-                evt.preventDefault();
-        }
 	$scope.result = '';
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
@@ -170,7 +164,6 @@ app
     }
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
-
 	$scope.facilityInit = function(){
 		$http(
 		{
@@ -185,6 +178,7 @@ app
 		.success(function(response){
 			if(response.status == true){	
 				$scope.facilityList = response.data.data;
+				$scope.facility = '';
 			}else{
 				
 			}
@@ -688,9 +682,9 @@ app
 			$scope.getAccessCodeList();
 			if(response.status == true){
 				// $scope.accesscode_error = response.msg;
-				$timeout(function() {
-				$(".accordion-toggle")[1].click();
-				});
+				// $timeout(function() {
+				// $(".accordion-toggle")[1].click();
+				// });
 				toaster.pop('success','Access Code Added Successfully');
 				
 			}else{
@@ -1034,7 +1028,7 @@ app
 				$scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
 				$scope.editUser.address = angular.copy($scope.userData.user_address);
 				$scope.editUser.email = angular.copy($scope.userData.user_email);
-				$scope.editUser.expiration_date = angular.copy($scope.userData.user_expiration_date);
+				$scope.editUser.expiration_date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
 				$scope.editUser.status = angular.copy($scope.userData.user_status);
 				$scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
 				// $scope.editAccess.access_code = angular.copy($scope.userData.access_code);
@@ -1199,6 +1193,7 @@ app
 				}
 				else{
 					$scope.userGroup = response.data;
+					$scope.groupcount = response.data.length;
 				}
 			}else{	
 				if(response.msg == 'Invalid_Token'){
@@ -1842,6 +1837,10 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      $rootScope.user_group_error = "";
+      $rootScope.user_group_success = "";
+      $rootScope.usergroupedit = {};
+      $rootScope.listDoorGroup = {};
       $timeout(function(){
     	$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").css("pointer-events", "none").css("opacity", "0.5");
     	});
@@ -1935,6 +1934,9 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
+				$timeout(function(){
+					$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
+				}, 1);
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click().css("pointer-events", "block").css("opacity", "1");});
 				$timeout(function(){
@@ -1942,9 +1944,6 @@ app
 						$scope.usergroups =[];
 						$scope.getUserGroupList();
 					});
-				$timeout(function(){
-					$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
-				});
 				// toaster.pop('success','User Group Added Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
@@ -1969,6 +1968,9 @@ app
     }
 
     $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed){
+    	if(is_access_allowed == null){
+    		return false;
+    	}
     	$("#"+ud_id).css("display", "block");
     	if(schedule_id != "No Access" && schedule_id != "Full Access"){
     		is_access_allowed = 2;
@@ -2011,12 +2013,11 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){	
-				$scope.x = schedul.getScheduleByFacility(facility_id);
 				$rootScope.listDoorGroup = {};
+				$scope.x = schedul.getScheduleByFacility(facility_id);
 				angular.forEach(response.data, function(value, key){          
 					 $rootScope.listDoorGroup[key] = value;
 					$rootScope.listDoorGroup[key].schedulelist = {};
-
 					// $rootScope.listDoorGroup[key].schedulelist[0] = {};
 					// $rootScope.listDoorGroup[key].schedulelist[0].name = value.schedule_name;
 					// $rootScope.listDoorGroup[key].schedulelist[0].id = value.schedule_id;
@@ -2164,7 +2165,9 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      // $rootScope.listDoorSchedule(group_id, facility_id);
       $rootScope.usergroupedit = {};
+      $rootScope.listDoorGroup = {};
       $rootScope.usergroupedit.usergroup_name = group_name;
       $rootScope.usergroupedit.usergroup_id = group_id;
 			$rootScope.usergroupedit.facility_id = facility_id;
@@ -2188,6 +2191,9 @@ app
 		.success(function(response){
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){
+					$rootScope.listDoorSchedule(usergroupedit.usergroup_id, usergroupedit.facility_id);
+				}, 1);
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click()});
 				$timeout(function(){
@@ -2195,9 +2201,6 @@ app
 						$scope.usergroups =[];
 						$scope.getUserGroupList();
 					});
-				$timeout(function(){
-					$rootScope.listDoorSchedule(usergroupedit.usergroup_id, usergroupedit.facility_id);
-				});
 
 			}else{
 				

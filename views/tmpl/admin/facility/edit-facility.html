@@ -101,7 +101,7 @@
 						<span class="text-muted">{{facility.facility_location}}</span>
 						<div class="mt-40">
 							<a ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Facility</a>
-							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete facility</a>
+							<button ng-click="showConfirm($event)" disabled class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete facility</button>
 						</div>
 					</div> 
 					<!--<div class="tile-body text-center p-0"> 
@@ -142,11 +142,11 @@
 										<div class="row">
 											<div class="form-group col-sm-6 col-md-6">
 												<label for="">Facility Name</label>
-												<input type="text" name="facility_name" id="" class="form-control" ng-model="facility.facility_name" required>
+												<input type="text" maxlength="30" name="facility_name" id="" class="form-control" ng-model="facility.facility_name" required>
 											</div>
 											<div class="form-group col-sm-6 col-md-6">
 												<label for="">Facility Location</label>
-												<input type="text" name="facility_location" id="" class="form-control" ng-model="facility.facility_location" required>
+												<input type="text" maxlength="30" name="facility_location" id="" class="form-control" ng-model="facility.facility_location" required>
 											</div>
 										</div>
 										<div class="row">
@@ -167,7 +167,7 @@
 											</div>
 											<div class="form-group col-sm-6 col-md-6">
 												<label for="">Zip Code</label>
-												<input type="text" name="zip" id="zip" class="form-control" ng-model="facility.facility_zipcode" placeholder="10001" required>
+												<input type="text" name="zip" maxlength="6" ng-keypress="allowNumberOnly($event);" id="zip" class="form-control" ng-model="facility.facility_zipcode" placeholder="10001" required>
 											</div>
 										</div>
 										<div class="form-group">
@@ -181,7 +181,7 @@
 											<div class="col-md-12">
 												<p></p>
 												<button back-button="" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-												<button type="submit" ng-click="edit_facility(facility,editfacility)" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+												<button type="submit" ng-click="edit_facility(facility,editfacility);" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
 											</div>
 										</div>
 									</div>

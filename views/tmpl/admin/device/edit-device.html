@@ -100,15 +100,15 @@
 						<h3 class="mb-10"><strong>{{details.device_name}}</strong></h3>
 						<span class="text-muted">{{details.device_model}}</span>
 						<div class="mt-40">
-							<a ui-sref="app.admin.device.device-settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-slategray">View Settings</a>
-							<a ui-sref="app.admin.device.service-plan({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk mr-5 ml-5">View Plan</a>
+							<!--<a ui-sref="app.admin.device.device-settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-slategray">View Settings</a>-->
+							<!--<a ui-sref="app.admin.device.service-plan({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk mr-5 ml-5">View Plan</a>-->
 							<a ng-click="showConfirm($event,device_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
 						</div>
 					</div> 
 					<div class="tile-body text-center bg-blue p-0"> 
 						<ul class="list-inline tbox m-0">
 							<li class="tcol p-10">
-								<h2 class="m-0">3</h2>
+								<h2 class="m-0">{{details.device_slave_count}}</h2>
 								<span class="text-transparent-white">Dependent Devices</span>
 							</li>
 						</ul>
