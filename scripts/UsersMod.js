@@ -1823,6 +1823,30 @@ app
       subtitle: '',
       member: 'User Groups Members'
     };
+
+    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.addGroupOpen = function(size) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function(){
+    	$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").css("pointer-events", "none").css("opacity", "0.5");
+    	});
+    };
+
 	$scope.currentSelectedGroupName = $stateParams.userGroupName;
 	$scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
     $scope.dashboardInit = function(){ 
@@ -1912,7 +1936,7 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click()});
+				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click().css("pointer-events", "block").css("opacity", "1");});
 				$timeout(function(){
 						$scope.pageNo = 1 ;
 						$scope.usergroups =[];

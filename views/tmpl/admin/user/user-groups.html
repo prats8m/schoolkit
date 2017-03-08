@@ -91,7 +91,7 @@
 						<h1 class="custom-font">{{page.title}}</h1>
 						<ul class="controls">
 							<li class="addpopup">
-								<div ng-controller="ModalDemoCtrl">
+								<div>
 									<script type="text/ng-template" id="myModalContent.html">
 										<div name="form1" role="form">
 											<div class="modal-header">
@@ -152,7 +152,7 @@
 																</tbody>
 															</table>
 															<div class="modal-footer" style="margin: 20px -15px -15px;">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
 															</div>
 														</div>
 													</md-content>
@@ -162,7 +162,7 @@
 											</div>
 										</div>								
 									</script>
-									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User Groups</span></a>
+									<a ng-click="addGroupOpen()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add User Groups</span></a>
 								</div>
 							</li>
 						</ul>
@@ -267,7 +267,7 @@
 																			</div>
 																			</div>
 																			<div class="modal-footer" style="margin: 20px -15px -15px;">	
-																			<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																			<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
 																			<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Next</button>	
 																			</div>
 																		</div>
@@ -290,15 +290,17 @@
 																					<td>{{doorlist.door_name}}</td>
 																					<td>
 																						<span class="loader" id="{{doorlist.ud_id}}" style="display: none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
-																						<select class="form-control" ng-model="schedule_id" ng-options="item.id as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id,doorlist.is_access_allowed)">
-																						<option value="">Select Schedule Group</option>
+																						<select class="form-control" ng-model="doorlist.is_access_allowed" ng-options="item.is_access_allowed as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(doorlist.schedule_id, doorlist.ud_id,doorlist.is_access_allowed)"  >
 																						</select>
+																						<!-- <select class="form-control" ng-model="schedule_id" ng-options="item.id as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id,doorlist.is_access_allowed)"> -->
+																					<!-- 	<option value="">Select Schedule Group</option>
+																						</select> -->
 																					</td>
 																				</tr>
 																			</tbody>
 																		</table>
 																		<div class="modal-footer" style="margin: 20px -15px -15px;">
-																			<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+																			<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
 																		</div>
 																	</div>
 																</md-content>
