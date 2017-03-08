@@ -1199,6 +1199,7 @@ app
 				}
 				else{
 					$scope.userGroup = response.data;
+					$scope.groupcount = response.data.length;
 				}
 			}else{	
 				if(response.msg == 'Invalid_Token'){
