@@ -108,7 +108,7 @@
 					<div class="tile-body text-center bg-blue p-0"> 
 						<ul class="list-inline tbox m-0">
 							<li class="tcol bg-blue dker p-10">
-								<h2 class="m-0">3</h2>
+								<h2 class="m-0">{{groupcount}}</h2>
 								<span class="text-transparent-white">User Groups</span>
 							</li>
 						</ul>
@@ -146,7 +146,7 @@
 												<div class="form-group col-sm-6 col-md-6">
 													<label for="">Profile Photo</label>
 													<div class="profilephoto">
-														<input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+														<!-- <input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1"> -->
 														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 													</div>
 												</div>
@@ -158,7 +158,7 @@
 												</div>
 												<div class="form-group col-sm-6 col-md-6">			
 													<label for="">Phone</label>
-													<input type="number" class="form-control" ng-keypress="onlyNumber($event)" id="user_phone_no" ng-model="editUser.user_phone_no">
+													<input type="text" class="form-control" ng-keypress="onlyNumber($event)" id="user_phone_no" ng-model="editUser.user_phone_no">
 												</div>
 												<div class="form-group col-sm-6 col-md-6">
 													<label for="">Address</label>

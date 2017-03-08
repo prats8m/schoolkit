@@ -812,6 +812,7 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$rootScope.assingned_usergroups = response.data;
+				$scope.groupcount = response.data.length;
 			}else{	
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -1165,6 +1166,9 @@ app
 				$scope.editassignedGroup();
 				user_group.usergrouparr = [];
 			});
+			$timeout(function() {
+					$scope.editdoorList();
+				});
 			$timeout(function(){$(".usergroup_edit").click(); });
 
 		}).error(function(){
@@ -1287,9 +1291,9 @@ app
 		}
 		submitData.status = submitData.user_status
 		submitData.user_id = parseInt($stateParams.user_id);
-		submitData.user_phone_no = parseInt(submitData.user_phone_no);
+		submitData.user_phone_no = submitData.user_phone_no;
 		submitData.name_on_lcd = submitData.user_name_on_lcd;
-		submitData.zipcode = parseInt(submitData.zipcode);
+		submitData.zipcode = parseInt(submitData.user_zipcode);
 		submitData.facility_id = parseInt($cookies.get("facilityId"));
 		submitData.expiration_date = submitData.expiration_date;
 		$rootScope.masters = [];
@@ -1382,7 +1386,10 @@ app
 						$cookies.remove("token");
 						$location.path('/core/login');
 					}
-					$scope.AccessCodeMessage = response.msg;
+					if(response.msg == 'InValid Data'){
+						toaster.pop('error','InValid Data');
+					}
+					// $scope.AccessCodeMessage = response.msg;
 					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 				}
 			}
@@ -1453,7 +1460,9 @@ app
 						$cookies.remove("token");
 						$location.path('/core/login');
 					}
-					
+					if(response.msg == 'InValid_Data'){
+						toaster.pop('error','InValid Data');
+					}
 					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 				}
 			}
@@ -1546,6 +1555,9 @@ app
 						$cookies.remove("token");
 						$location.path('/core/login');
 					}
+					if(response.msg == 'InValid_Data'){
+						toaster.pop('error','InValid Data');
+					}
 					
 					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 				}	
@@ -1618,6 +1630,9 @@ app
 						$cookies.remove("token");
 						$location.path('/core/login');
 					}
+					if(response.msg == 'InValid_Data'){
+						toaster.pop('error','InValid_Data');
+					}
 					
 					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
 				}
@@ -1685,7 +1700,10 @@ app
 					$cookies.remove("token");
 					$location.path('/core/login');
 				}
-				$rootScope.masters[0] = response.msg.replace(/_/g, " ");
+				if(response.msg == 'InValid_Data'){
+						toaster.pop('error','InValid Data');
+					}
+				// $rootScope.masters[0] = response.msg.replace(/_/g, " ");
 			}
 		}).error(function(){
 
