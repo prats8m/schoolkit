@@ -28,7 +28,7 @@ app
 			//Code to delete door
 			$http(
 			{
-				method: 'DELETE', 
+				method: 'DELETE, 
 				url: baseURL + 'door/delete/'+door_id,
 				dataType : 'JSON', 
 				headers: {

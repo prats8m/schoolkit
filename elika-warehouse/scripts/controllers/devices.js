@@ -267,7 +267,7 @@ app
 app
   .filter('warehouseClientName', function() {
     return function(x) {
-        if(x == 'null'||x == null){return "Un-Registered";}else{ return x ;}
+        if(x == 'null'||x == null){return "Un-Registered";}else{ return x.facility_name ;}
 	}
    });
 app
