@@ -313,11 +313,7 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$rootScope.facilityList = response.data.data;
-				/* for(var i=0;i<facilityList.length;i++){
-					if(parseInt(facilityList[i].facility_id) == parseInt($cookies.get('facilityId')))
-						$rootScope.FacilityName = facilityList[i].facility_name;
-				} */	
+				$rootScope.facilityList = response.data.data;	
 			}else{
 				
 			}
@@ -1340,7 +1336,7 @@ app
 	$scope.device_id = device_id
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev,id) {
+    $scope.showConfirm = function(ev,id,facilityId) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete device?')
 		.content('')
@@ -1353,7 +1349,7 @@ app
 			{
 				method: 'POST', 
 				url: baseURL+'device/delete',
-				data: {device_id:parseInt(id) , facility_id:parseInt($cookies.get('facilityId'))},
+				data: {device_id:parseInt(id) , facility_id:parseInt(facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",

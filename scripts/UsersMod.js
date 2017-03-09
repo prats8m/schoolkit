@@ -211,7 +211,7 @@ app
 		if(!user_form.validate({
 			rules: {
         user_phone_no: {
-            rangelength: [10,12]
+            rangelength: [10,15]
         }
 		}
    		 })){
@@ -224,6 +224,8 @@ app
 		userData.user_phone_no = parseInt(userData.user_phone_no);
 		userData.zip_code = parseInt(userData.zip_code);
 		userData.user_type = 'admin';
+		if(!userData.expiration_date)
+			userData.expiration_date = "";
 		// userData.facility_id = parseInt($cookies.get("facilityId"));;
 		if(userData.password != userData.cpassword){
 			alert("Password and Confirm password not matched");
