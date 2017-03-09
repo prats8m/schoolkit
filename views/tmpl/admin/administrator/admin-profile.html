@@ -1,0 +1,255 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent rolesbg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll">
+							<img class="img-circle" src="images/users/2.jpg" alt="">
+						</div>
+						<h4 class="mb-0"><strong>Arnold</strong></h4>
+						<span class="text-muted">+1 212 1467 1212</span>
+						<div class="mt-40">
+							<button class="btn btn-rounded-20 btn-sm btn-greensea">Send Message</button>
+							<button class="btn btn-rounded-20 btn-sm btn-lightred">Delete Admin</button>
+						</div>
+
+					</div> 
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol p-10">
+								<h2 class="m-0">Role</h2>
+								<span class="text-transparent-white">Admin</span>
+							</li>
+							<li class="tcol bg-blue dker p-10">
+								<h2 class="m-0">Access</h2>
+								<span class="text-transparent-white">Full Access</span>
+							</li>
+						</ul>
+					</div>  
+				</section>  
+			</div>
+			
+			<div class="col-sm-12 col-md-8"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<uib-tabset class="tabs-dark"> 
+							<uib-tab heading="Profile Detail">
+								<div class="wrap-reset"> 
+									<div class="profile-settings"> 
+										<div class="row">
+											<div class="form-group col-sm-12 profiledetail">
+												<p><label>Name</label> Arnold</p>
+												<p><label>Email</label> arnold1234@gmail.com</p>
+												<p><label>Phone</label> +1 212 1467 1212</p>
+												<p><label>Zip Code</label> 90001</p>
+												<p><label>Username</label> admin</p>
+												<p><label>Password</label> *********</p>
+												<p><label>Secret Question</label> In what city were you born?</p>
+												<p><label>Secret Answer</label> Los Angeles</p>
+												<p><label>Roles</label> Super Administrator</p>
+											</div>											
+										</div>
+										
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Edit Profile">
+								<div class="wrap-reset"> 
+									<div class="modal-body">											
+										<div class="row form-group">
+											<div class="col-sm-6 col-md-6">
+												<label for="">First Name</label>
+												<input type="text" name="" id="" class="form-control" value="Arnold">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Last Name</label>
+												<input type="text" name="" id="" class="form-control" value="">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">				
+												<label for="">Email Address</label>
+												<input type="emial" name="" id="" class="form-control" value="">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Profile Photo</label>
+												<div class="profilephoto">
+													<input ui-jq="filestyle" type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+													<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">				
+												<label for="">Phone</label>
+												<input type="text" name="" id="" class="form-control" value="212 1467 1212">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Zip Code</label>
+												<input type="text" name="" id="" class="form-control" value="90001">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Username</label>
+												<input type="text" name="" id="" class="form-control" value="admin">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Password</label>
+												<input type="password" name="" id="" class="form-control" value="*********">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Confirm Password</label>
+												<input type="password" name="" id="" class="form-control" value="*********">
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Admin Password</label>
+												<input type="password" name="" id="" class="form-control" value="*********">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Select Secret Question</label>
+												<select chosen="{width: '100%'}">
+													<option value="1" label="What was your favorite place to visit as a child?">What was your favourite place to visit as a child?</option>
+													<option value="2" label="Who is your favorite actor, musician, or artist?">Who is your favorite actor, musician, or artist?</option>
+													<option value="3" label="What is the name of your favorite pet?">What is the name of your favorite pet?</option>
+													<option value="4" label="In what city were you born?" selected >In what city were you born?</option>
+													<option value="5" label="What high school did you attend?">What high school did you attend?</option>
+													<option value="6" label="What is the name of your first school?">What is the name of your first school?</option>
+													<option value="7" label="What is your favorite movie?">What is your favorite movie?</option>
+													<option value="8" label="What is your mother's maiden name?">What is your mother's maiden name?</option>
+													<option value="9" label="What street did you grow up on?">What street did you grow up on?</option>
+													<option value="10" label="What was the make of your first car?">What was the make of your first car?</option>
+													<option value="11" label="When is your anniversary?">When is your anniversary?</option>
+													<option value="12" label="What is your favorite color?">What is your favorite color?</option>
+													<option value="13" label="What is your father's middle name?">What is your father's middle name?</option>
+													<option value="14" label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
+													<option value="15" label="What was your high school mascot?">What was your high school mascot?</option>
+												</select>
+											</div>
+											<div class="col-sm-6 col-md-6">
+												<label for="">Secret Answer</label>
+												<input type="text" name="" id="" class="form-control" value="Los Angeles">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<div class="col-sm-6 col-md-6">
+												<label for="">Select Roles </label>
+												<select chosen="{width: '100%'}">
+													<option>Data Operator Administrator</option>
+													<option>Assistant Administrator</option>
+													<option>Master Administrator</option>
+													<option selected>Super Administrator</option>
+													<option>Senior Administrator</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-click="cancel()">Cancel</button>
+											<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Submit</button>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+						</uib-tabset>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

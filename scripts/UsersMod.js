@@ -856,31 +856,31 @@ app
 	}
 
 
-// 	$scope.editCredential = function(cred_data, credential_type){
-// 		// $scope.accesscode.access_code = accesscode.Credential_Id;
-// 		// $scope.accesscode.access_code = accesscode.Credential_Id;
+	$scope.editCredential = function(cred_data, credential_type){
+		// $scope.accesscode.access_code = accesscode.Credential_Id;
+		// $scope.accesscode.access_code = accesscode.Credential_Id;
 
-// 		switch (credential_type) {
-// 		  case 'access_code':
-// 		      // $scope.getAccessCodeList();
-// 		      $scope.phoneCode.phone_code = cred_data.Credential_Id;
-// 		      $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
-// 		      $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
-// 		      $scope.Door_Name = cred_data.Door_Name;
-// 		      break;
-// 		  case 'phone_code':
-// 		      break;
-// 		  case 'rfid_code':
-// 		  		break;
-// 		  case 'nfc_code':
-// 		      break;
-// 		  case 'ble_code':
-// 		      // $scope.getBleList();
-// 		      break;
-// 		  default:
+		switch (credential_type) {
+		  case 'access_code':
+		      // $scope.getAccessCodeList();
+		      $scope.phoneCode.phone_code = cred_data.Credential_Id;
+		      $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
+		      $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
+		      $scope.Door_Name = cred_data.Door_Name;
+		      break;
+		  case 'phone_code':
+		      break;
+		  case 'rfid_code':
+		  		break;
+		  case 'nfc_code':
+		      break;
+		  case 'ble_code':
+		      // $scope.getBleList();
+		      break;
+		  default:
 
-// 	}
-// }
+	}
+}
 
 	$scope.removeCredential = function(id, type){
 		$http(
@@ -953,7 +953,7 @@ if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
  * Controller of the minovateApp
  */
 app
-  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
+  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog, $filter) {
      $scope.page = {
       title: 'Edit User',
       subtitle: ''
@@ -1107,6 +1107,34 @@ app
 		});
 	}
 	$scope.profileInit();
+
+	//Edit credentials on edit page
+	$scope.editCredential = function(cred_data, credential_type){
+		switch (credential_type) {
+		  case 'access_code':
+		      $scope.editAccess = {};
+		      $scope.editAccess.access_code = cred_data.Access_Code;
+		      $scope.editAccess.credential_id = cred_data.Credential_Id;
+		      $scope.editAccess.status = cred_data.status;
+		      var arr = [];
+		      angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+		      $scope.editAccess.door_id = arr;		       
+		      break;
+		  case 'phone_code':
+		      break;
+		  case 'rfid_code':
+		  		break;
+		  case 'nfc_code':
+		      break;
+		  case 'ble_code':
+		      // $scope.getBleList();
+		      break;
+		  default:
+
+		}
+	}
+	//End of credentials edit 
+
 
 	$scope.editdoorList = function(){
 		$http(
@@ -1358,10 +1386,19 @@ app
 		submitData.details = {};
 		submitData.details.access_code = JSON.stringify(parseInt(submitData.access_code));
 		delete submitData.access_code;
+		if(submitData.credential_id == null){
+			var meth = 'POST';
+			var url = baseURL + 'user/add-credential';
+		}
+		else{
+			submitData.uc_id = submitData.credential_id;
+			var meth = 'PUT';
+			var url = baseURL + 'user/edit-credential';
+		}
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL + 'user/add-credential',
+			method: meth, 
+			url: url,
 			dataType : 'JSON',
 			data:submitData,
 			headers: {
@@ -1370,6 +1407,7 @@ app
 			}
 			
 		}).success(function(response){
+			$scope.editAccess.credential_id = null;
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
 				$scope.getAccessCodeList();

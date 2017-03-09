@@ -278,6 +278,7 @@
 												<div class="row">
 													<form role="form"  ng-submit="submitEditAccessCode(editAccess, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
 														<div class="form-group col-sm-6 col-md-4">
+														<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editAccess.credential_id">
 															<label for="">Access Code</label>
 															<div style="position: relative">
 																<input type="text" name="access_code" id="access_code" class="form-control"  disabled ng-model="editAccess.access_code">
@@ -314,14 +315,14 @@
 																<tr ng-repeat="accesscode in access_code_list">
 																	<td>{{accesscode.Access_Code}}</td>
 																	<td>{{accesscode.Door_Name}} </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
+																	<td>{{accesscode.status == 1 ? 'Active' : 'Inactive'}} 
+																		<!-- <select style="border: 0; width: 100%;">
 																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
 																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
-																		</select>
+																		</select> -->
 																	</td>
 																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																		<a href="" uib-tooltip="Edit" ng-click="editCredential(accesscode, 'access_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																		<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
@@ -337,6 +338,7 @@
 											<div class="modal-body p-0">
 												<div class="row">
 													<form ng-submit="submitEditPhoneCode(phoneedit, phone_edit_form)" ng-validate="validationOptions" name="phone_edit_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="phoneedit.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Phone Code</label>
 															<div style="position: relative">
@@ -403,6 +405,7 @@
 											<div class="modal-body p-0">
 												<div class="row">
 													<form ng-submit="submitEditRFIDCode(editRfid, rfid_form)" name="rfid_form" ng-validate="validationOptions" >
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editRfid.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Card Number</label>
 															<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no" required>
@@ -467,6 +470,7 @@
 												<div class="row">
 													<span class="error">{{NfcCodeMessage}}</span>
 													<form ng-submit="submitEditNfcCode(editNfc, nfc_edit_form)" ng-validate="validationOptions" name="nfc_edit_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editNfc.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">NFC Code</label>
 															<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editNfc.nfc_code" required>
@@ -529,6 +533,7 @@
 												<div class="row">
 													<span class="error">{{ bleerror }}</span>
 													<form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editBle.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Username</label>
 															<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required>

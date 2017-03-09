@@ -13,6 +13,9 @@ app
 			title: 'Facility',
 			subtitle: ''
 		};
+		$scope.lmbtn = {
+			"display" : "none"
+		};
 
 		$rootScope.facility = {};
 		$scope.facilities = {};
