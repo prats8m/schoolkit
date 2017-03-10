@@ -3090,3 +3090,8 @@ input.ng-invalid-required.error {
 	font-size: 17px;
 	font-weight: 100;
 }
+
+.vxgplayer{
+	width: 97% !important; 
+	height: 480px !important;
+}

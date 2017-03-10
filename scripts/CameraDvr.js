@@ -94,9 +94,10 @@ app
 		$scope.layout = 'onecam';
 	};
 
-	$scope.cameraInit = function(){ 
+	$scope.cameraInit = function(start=1, limit=1){ 
+		
 		$http({
-			url: baseURL + 'camera/list?limits=8&pageNo=1&facility_id=All',   
+			url: baseURL + 'camera/list?start='+start+'&limit='+limit+'&facility_id=',   
 			method: 'GET',   
 			dataType : 'JSON',   
 			headers: {    
@@ -105,9 +106,30 @@ app
 								}  
 			})  
 		.success(function(response) {   
-			if(response.status == true){   
-			 $scope.cameras = response.data;     
-			 console.log($scope.cameras);   
+			if(response.status == true){  
+			switch (limit) {
+				  case 1:
+							$scope.changedClass();				      
+				      break;
+				  case 2:
+				      $scope.changecClass();
+				      break;
+				  case 4:
+				      $scope.changebClass();
+				      break;
+				  case 6:
+				      $scope.changeaClass();
+				      break;
+				  default:
+
+				}
+				
+			 $scope.cameras = response.data;
+			 $scope.ids = [];
+			 angular.forEach(response.data, function(value, key){
+      		$scope.ids[key] = value.camera_id;
+   			}); 
+			 $scope.camera_id = $scope.ids.join(",");
 			}  
 			if(response.msg == 'Invalid_Token'){
 				toaster.pop('error','Session Expired');
@@ -119,6 +141,31 @@ app
 	} 
 
 	$scope.cameraInit();
+
+	$scope.addCameraGroup = function(cam_group){ 
+			
+		$http({
+			url: baseURL + 'cameragroup/add',   
+			method: 'POST',   
+			dataType : 'JSON',
+			data : {group_name: 'abc', camera_id: $scope.camera_id.split(",")},   
+			headers: {    
+									"Authorization": $cookies.get("token"),    
+									"Content-type": "application/json"   
+								}  
+			})  
+		.success(function(response) {   
+			if(response.status == true){   
+			 toaster.pop('success','Camera Group Created');   
+			}  
+			if(response.msg == 'Invalid_Token'){
+				toaster.pop('error','Session Expired');
+				$cookies.remove("token");
+				$location.path('/core/login');return false;
+			} 
+		})  
+		.error(function (data, status, headers, config) {     }); 
+	} 
 	
 	$scope.imagePath = 'http://localhost/elika/images';
 }); 
