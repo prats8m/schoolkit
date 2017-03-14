@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceSettingsCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams)
+  .controller('DeviceSettingsCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams,dataService)
   {
     $scope.page = {
 		title: 'Settings',
@@ -85,32 +85,118 @@ app
 		var relayArr = $.map(relay, function(value, index) {
 			return [value];
 		});
-		$http(
-		{
-			method: 'PUT', 
-			url: baseURL+'door/assign-device',
-			dataType : 'JSON', 
-			data: {'device_id':parseInt($scope.device_id),'relays':relayArr},
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
+		dataService.putData({'device_id':parseInt($scope.device_id),'relays':relayArr},baseURL+'door/assign-device')
 		.success(function(response){
 			if(response.status == true){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
 			}else{
-				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
-					return false;
-				}else{
-					toaster.pop('error',response.msg.replace(/_/g,' '));
-				}
+				dataService.responseError(response);
 			}
-		}).error(function(){
-
 		});
 	}
+	
+	$scope.accessGrantKey = function(accessGrantKey){
+		dataService.postData({'device_id':parseInt($stateParams.device_id),'module':'access-grant-key','type':'gen','value':{'access-grant-key':accessGrantKey}},baseURL+'device/add-settings')
+		.success(function(response){
+			if(response.status == true){
+				toaster.pop('success',response.msg.replace(/_/g,' '));
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+
+	$scope.submitData = function(module,data){
+		dataService.postData({'device_id':parseInt($stateParams.device_id),'module':module,'type':'gen','value':data},baseURL+'device/add-settings')
+		.success(function(response){
+			if(response.status == true){
+				toaster.pop('success',response.msg.replace(/_/g,' '));
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+
+	$scope.getSetting = function(){
+		dataService.getData({'device_id':$stateParams.device_id,'type':'gen'},baseURL+'device/get-settings')
+		.success(function(response){
+			if(response.status == true){
+				$scope.device = response.data;
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+	$scope.getSetting();
 });
+
+/*==================================================================*/
+/*						DataService									*/
+/*==================================================================*/
+
+app.service('dataService',["$http","toaster","$cookies","$location",function($http,toaster,$cookies,$location) {
+	delete $http.defaults.headers.common['X-Requested-With'];
+	this.getData = function(param,url) {
+		return $http({
+			method: 'GET',
+			url: url,
+			params: param,
+			dataType : 'JSON', 
+			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
+		}).error(function(){
+			toaster.pop('error', 'Something went wrong.');
+		});
+	};
+	this.postData = function(data,url) {
+		return $http({
+			method: "POST",
+			url: url,
+			data: data,
+			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
+		}).error(function(){
+			toaster.pop('error', 'Something went wrong.');
+		});
+	};
+	this.putData = function(data,url) {
+		return $http({
+			method: "PUT",
+			url: url,
+			data: data,
+			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
+		}).error(function(){
+			toaster.pop('error', 'Something went wrong.');
+		});
+	};
+	this.deleteData = function(data,url) {
+		return $http({
+			method: "DELETE",
+			url: url,
+			//data: data,
+			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
+		}).error(function(){
+			toaster.pop('error', 'Something went wrong.');
+		});
+	};
+	this.login = function(data,url) {
+		return $http({url: url,
+			method: 'POST',
+			data: data,
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+			}
+		}).error(function(){
+			toaster.pop('error', 'Something went wrong.');
+		});
+	}
+	this.responseError = function(response){
+		if(response.msg == 'Invalid_Token'){
+			$cookies.remove("token");
+			toaster.pop('error','Session Expired');
+			$location.path('/core/login');return false;
+		}else{
+			toaster.pop('error',response.msg.replace(/_/g," "));
+		}
+	}
+
+}]);

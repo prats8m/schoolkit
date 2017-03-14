@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceCtrl', function ($scope, $mdDialog, $http,$rootScope,dataService,toaster,$timeout) {
+  .controller('DeviceCtrl', function ($scope, $mdDialog, $http,$rootScope,dataService,toaster,$timeout,$cookies,$location) {
     $scope.page = {
 		title: 'Devices',
     };
@@ -33,7 +33,7 @@ app
 			if(response.status){
 				toaster.pop('success','Device has been deleted successfully.');
 			}else{
-				toaster.pop('error',response.msg.replace(/_/g,' '));
+				dataService.responseError(response);
 			}
 			$timeout(function(){$scope.deviceInit()});
 		});
@@ -48,27 +48,31 @@ app
 		dataService.getData({limit:1000,pageNo:1,searchVal:$scope.searchText},
 			baseUrl+'warehouse-device/list')
 		.success(function(response){
-			$scope.devices = response.data.data;
-			$scope.totalDisplayed = 8;
-			
-			if($scope.devices.length > $scope.totalDisplayed) {
-				$scope.lmbtn = {
-					"display" : "block"
-				};			
-			} else {
-				$scope.lmbtn = {
-					"display" : "none"
-				};
-			}
-			
-			$scope.loadMore = function () {
-				$scope.totalDisplayed += 8;
-				if($scope.totalDisplayed > $scope.devices.length) {				
+			if(response.status){
+				$scope.devices = response.data.data;
+				$scope.totalDisplayed = 8;
+				
+				if($scope.devices.length > $scope.totalDisplayed) {
+					$scope.lmbtn = {
+						"display" : "block"
+					};			
+				} else {
 					$scope.lmbtn = {
 						"display" : "none"
-					};	
-				}			
-			};
+					};
+				}
+				
+				$scope.loadMore = function () {
+					$scope.totalDisplayed += 8;
+					if($scope.totalDisplayed > $scope.devices.length) {				
+						$scope.lmbtn = {
+							"display" : "none"
+						};	
+					}			
+				};
+			}else{
+				dataService.responseError(response);
+			}
 		});
 	}
 	$scope.deviceInit();
@@ -100,8 +104,7 @@ app
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.errorMessage = n.join(", ");
 				}
-				
-				toaster.pop('error',response.msg.replace(/_/g,' '));
+				dataService.responseError(response);
 			}
 		});
 	}
@@ -155,7 +158,7 @@ app
 				toaster.pop('success','Device has been deleted successfully.');
 				$state.go('app.inventory.devices');
 			}else{
-				toaster.pop('error',response.msg.replace(/_/g," "));
+				dataService.responseError(response);
 			}
 		});
 	}
@@ -165,7 +168,7 @@ app
 		if(response.status){
 			$scope.device = response.data[0];
 		}else{
-			toaster.pop('error',response.msg);
+			dataService.responseError(response);
 		}
 	});
 	
@@ -207,19 +210,22 @@ app
 				toaster.pop('success','Device has been deleted successfully.');
 				$state.go('app.inventory.devices');
 			}else{
-				toaster.pop('error',response.msg.replace(/_/g," "));
+				dataService.responseError(response);
 			}
 		});
 	}
 	
-	dataService.getData({device_id:$stateParams.device_id},baseUrl+'warehouse-device/view')
-	.success(function(response){
-		if(response.status){
-			$scope.device = response.data[0];
-		}else{
-			toaster.pop('error',response.msg);
-		}
-	});
+	$scope.dataInit = function(){
+		dataService.getData({device_id:$stateParams.device_id},baseUrl+'warehouse-device/view')
+		.success(function(response){
+			if(response.status){
+				$scope.device = response.data[0];
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+	$scope.dataInit();
 	
 	$scope.deviceModelInit = function(){
 		dataService.getData(null,baseUrl + 'device/models-list')
@@ -243,11 +249,11 @@ app
 		device.device_voip = (! device.device_voip)? 0 : device.device_voip;
 		device.device_camera = (! device.device_camera)? 0 : device.device_camera;
 		device.device_wiegand = (! device.device_wiegand)? 0 : device.device_wiegand;
-		//  console.log(JSON.stringify(device));
 		dataService.putData(device,baseUrl + 'device/edit-device-warehouse')
 		.success(function(response) {
 			if(response.status == true){
 				toaster.pop('success','Device successfully updated.');
+				//$scope.dataInit();
 			}else{
 
 				var n = [];
@@ -256,8 +262,7 @@ app
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.errorMessage = n.join(", ");
 				}
-				
-				toaster.pop('error',response.msg.replace(/_/g,' '));
+				dataService.responseError(response);
 			}
 		});
 	}
@@ -270,16 +275,16 @@ app
     return function(x) {
         if(x == 'null'||x == null){return "Un-Registered";}else{ return x.facility_name ;}
 	}
-   });
+});
   app
   .filter('warehouseClientNameInList', function() {
     return function(x) {
         if(x == 'null'||x == null){return "Un-Registered";}else{ return x ;}
 	}
-   });
+});
 app
   .filter('warehouseDeviceFeatures', function() {
     return function(x) {
         if(x == 0){return "N/A";}else{ return "Yes";}
 	}
-   });
+});

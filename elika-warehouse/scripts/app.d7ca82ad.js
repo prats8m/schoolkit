@@ -10,7 +10,7 @@
 
   /*jshint -W079 */
 
-var baseUrl = 'http://35.160.142.158:8080/';
+var baseUrl = 'http://35.162.244.123:8080/';
 var app = angular
   .module('minovateApp', [
     'ngAnimate',
@@ -63,6 +63,7 @@ var app = angular
     'ipsum',
     'angular-intro',
     'toaster',
+    'angular-loading-bar',
 	//'ngValidate',
     'dragularModule'
   ])
@@ -8757,7 +8758,7 @@ app
 /*						DataService									*/
 /*==================================================================*/
 
-app.service('dataService',["$http","toaster","$cookies",function($http,toaster,$cookies) {
+app.service('dataService',["$http","toaster","$cookies","$location",function($http,toaster,$cookies,$location) {
 	delete $http.defaults.headers.common['X-Requested-With'];
 	this.getData = function(param,url) {
 		return $http({
@@ -8810,6 +8811,15 @@ app.service('dataService',["$http","toaster","$cookies",function($http,toaster,$
 		}).error(function(){
 			toaster.pop('error', 'Something went wrong.');
 		});
+	}
+	this.responseError = function(response){
+		if(response.msg == 'Invalid_Token'){
+			$cookies.remove("token");
+			toaster.pop('error','Session Expired');
+			$location.path('/core/login');return false;
+		}else{
+			toaster.pop('error',response.msg.replace(/_/g," "));
+		}
 	}
 
 }]);

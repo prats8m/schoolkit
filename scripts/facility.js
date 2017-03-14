@@ -634,44 +634,12 @@ app
 		.error(function(response){
 		});
 	};	
-	
-	// $scope.edit_facility = function(facility, editfacility){
-	// 		if (!editfacility.validate()) {
-	// 			return false;
-	// 		}
-	// 		facility.timeZone = facility.facility_timezone;
-	// 		facility.zip_code = "" + facility.facility_zipcode;
-	// 		facility.status = facility.facility_status == 'Active' ? 1 : 0
-	// 		$http({
-	// 				url: baseURL + 'facility/edit',
-	// 				method: 'PUT',
-	// 				data: facility,
-	// 				dataType: 'JSON',
-	// 				headers: {
-	// 					"Authorization": $cookies.get("token"),
-	// 					"Content-type": "application/json"
-	// 				}
-	// 			})
-	// 			.success(function (response) {
+	});
 
-	// 				if (response.status == true) {
-	// 					toaster.pop('success', 'Facility Edited Successfully');
-	// 				} else {
-	// 					var n = [];
-	// 					var arr = response.error;
-	// 					if (arr != null) {
-	// 						$.each(arr, function (index, value) {
-	// 							n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1);
-	// 							$.each(value.messages, function (ind, value) {
-	// 								n[index] += " " + value
-	// 							})
-	// 						});
-	// 						$scope.facility_edit_error = n.join(", ");
-	// 					}
-	// 				}
-	// 			})
-	// 			.error(function (response) {
-					
-	// 			});
-	// 	};
-  });
+app
+  .filter('facilityStatus', function() {
+    return function(x) {
+        if(x == 0){return "In-Active";}else{ return "Active";}
+	}
+   });
+
