@@ -154,12 +154,12 @@
 														<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
 													</div>
 												</div>													
-												<div ng-show="userData.status == 1" class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
+												<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 													<label for="">Expiration Date</label>
 													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
+														<input type="text" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
 														<span class="input-group-btn">
-															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+															<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
 													</div>
 												</div>
@@ -182,6 +182,7 @@
 													<div class="form-group col-sm-3 col-md-3">
 														<label for="">Firstly Select facility</label><br/>
 														<select class="form-control"  ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id" ng-change="unassignedGroup(facility)" >
+															<option value="">Select</option>
 														</select>
 													</div>
 												</div>

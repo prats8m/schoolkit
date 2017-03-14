@@ -411,6 +411,20 @@ var app = angular
 			  controller: 'ScheduleGroupsCtrl',
 			  templateUrl: 'views/tmpl/subadmin/schedule/schedule-groups.html'
 			})
+
+			//admin schedule add-schedule
+			.state('app.admin.schedule.add-schedule', {
+				url: '/add-schedule',
+				controller: 'AddScheduleCtrl',
+				templateUrl: 'views/tmpl/admin/schedule/add-schedule.html'
+			})
+
+			//admin schedule holiday-schedule
+			.state('app.admin.schedule.holiday-schedules', {
+			  url: '/holiday-schedules',
+			  controller: 'HolidayScheduleCtrl',
+			  templateUrl: 'views/tmpl/admin/schedule/holiday-schedules.html'
+			})
 			
 			//subadmin schedule holiday-schedule
 			.state('app.subadmin.schedule.holiday-schedule', {
@@ -425,6 +439,13 @@ var app = angular
 				  controller: 'ViewHolidayScheduleCtrl',
 				  templateUrl: 'views/tmpl/subadmin/schedule/view-holiday-schedule.html'
 				})
+
+			//admin administrator roles
+			.state('app.admin.administrator.roles', {
+			  url: '/roles',
+			  controller: 'RoleCtrl',
+			  templateUrl: 'views/tmpl/admin/administrator/roles.html'
+			})
 			
 		//subadmin support
 		.state('app.subadmin.support', {
@@ -1604,31 +1625,6 @@ app
 	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
 }); 
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:CameraDVRCtrl
- * @description
- * # CameraDVRCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('CameraDVRCtrl', function ($scope, $http) {
-     $scope.page = {
-      title: 'Camera DVR',
-      subtitle: 'So much more to see at a glance.'
-    };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/videos';	
-	
-}); 
-  
-  
-
-/*-----------------------------------------------------------------
-			End code for controller
------------------------------------------------------------------*/
 
 
 'use strict';

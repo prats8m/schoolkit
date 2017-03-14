@@ -13,8 +13,12 @@ app
 			title: 'Facility',
 			subtitle: ''
 		};
+		$scope.lmbtn = {
+			"display" : "none"
+		};
 
 		$rootScope.facility = {};
+		$scope.facilities = {};
 		$rootScope.facility.status = 1;
 		$scope.addFacility = function () {
 			$scope.addFacilityModal = $uibModal.open({
@@ -208,7 +212,7 @@ app
 				})
 				.success(function (response) {
 					if (response.status == true) {
-						$scope.dashboardData = response.data[0];
+						$scope.dashboardData = response.data;
 					}
 				})
 				.error(function (data, status, headers, config) {
@@ -339,6 +343,7 @@ app
 				// });
 				// $cookies.put("facility", JSON.stringify(arr));
 				$scope.facility = response.data;
+				$scope.facility.timezone = "";
 				// $scope.facility.timeZone = response.data.facility_timezone;
 				//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 
@@ -512,6 +517,7 @@ app
 	})
 	.success(function(response) {
 		$scope.facility = response.data;
+		$scope.dashboardInit();
 	})
 	.error(function(response){
 		console.log(response);
@@ -576,7 +582,25 @@ app
 	})
 	.error(function(response){
 	});
-	
+	$scope.editFaciltyDashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
 	$scope.edit_facility = function(facility, editfacility){
 		if(!editfacility.validate()){
 			return false;
@@ -610,47 +634,7 @@ app
 		.error(function(response){
 		});
 	};	
-	$scope.facility.timezone = "";
-	$scope.edit_facility = function(facility, editfacility){
-			if (!editfacility.validate()) {
-				return false;
-			}
-			facility.timeZone = facility.facility_timezone;
-			facility.zip_code = "" + facility.facility_zipcode;
-			facility.status = facility.facility_status == 'Active' ? 1 : 0
-			$http({
-					url: baseURL + 'facility/edit',
-					method: 'PUT',
-					data: facility,
-					dataType: 'JSON',
-					headers: {
-						"Authorization": $cookies.get("token"),
-						"Content-type": "application/json"
-					}
-				})
-				.success(function (response) {
-
-					if (response.status == true) {
-						toaster.pop('success', 'Facility Edited Successfully');
-					} else {
-						var n = [];
-						var arr = response.error;
-						if (arr != null) {
-							$.each(arr, function (index, value) {
-								n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1);
-								$.each(value.messages, function (ind, value) {
-									n[index] += " " + value
-								})
-							});
-							$scope.facility_edit_error = n.join(", ");
-						}
-					}
-				})
-				.error(function (response) {
-					
-				});
-		};
-  });
+	});
 
 app
   .filter('facilityStatus', function() {
@@ -658,3 +642,4 @@ app
         if(x == 0){return "In-Active";}else{ return "Active";}
 	}
    });
+

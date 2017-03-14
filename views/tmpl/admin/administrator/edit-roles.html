@@ -1,0 +1,252 @@
+<div class="page page-users">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent rolesbg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row" ng-controller="EditRolesCtrl">
+			<div class="col-md-12">
+				<section class="tile box-shadow" fullscreen="isFullscreen06">
+					<div class="tile-header dvd dvd-btm">
+						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
+					</div>
+					
+					<div class="hometabs">
+						<div class="tile-body table-custom">
+							<form name="form1" role="form">
+								<div class="modal-body p-0">											
+									<div class="row">
+										<div class="form-group col-sm-12 col-md-3">
+											<label for="">Roles Name</label>
+											<input type="text" name="" id="" class="form-control mb-10" value="Data Operator Administrator">
+										</div>
+										<div class="form-group col-sm-12 col-md-2" ng-controller="ActivebtnCtrl">
+											<label for="">Status</label><br/>
+											<div class="btn-group btnrounded">
+												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+											</div>
+										</div>
+										<div class="form-group col-sm-12 col-md-4">
+											<label for="">Access administrator</label><br/>
+											<div class="row">
+												<div class="col-sm-12 col-md-6">
+													<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
+														<input name="customRadioAlt" type="radio"><i></i> Full Access
+													</label>
+												</div>
+												<div class="col-sm-12 col-md-6">
+													<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
+														<input name="customRadioAlt" type="radio" checked="checked"><i></i> Restricted Access
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="overflow mt-20 mb-40" ng-init="visibiltyUserGroup=false" ng-hide="visibiltyUserGroup">
+									<div class="hometabs">											
+										<md-content class="md-padding tabsdemoDynamicHeight p-0">
+											<md-tabs md-dynamic-height md-border-bottom>		
+												<md-tab label="Facility">
+													<md-content>
+														<div class="administratorlist">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Name</th>
+																			<th width="150" class="ta-c">View<br/><small>Activity, Doors, Devices</small></th>
+																			<th width="150" class="ta-c">Edit<br/><small>Doors, Devices</small></th>
+																			<th width="150" class="ta-c">Active Devices<br/><small>Unlock Door</small></th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr>
+																			<td>USA Corporate Services</td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																		</tr>
+																		<tr>
+																			<td>Aerzen USA Corporation</td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</md-content>
+												</md-tab>
+												
+												<md-tab label="Group">
+													<md-content>
+														<div class="administratorlist">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Name</th>
+																			<th width="125" class="ta-c">Add<br/><small>Users, User Groups</small></th>
+																			<th width="125" class="ta-c">View<br/><small>Users, User Groups</small></th>
+																			<th width="125" class="ta-c">Edit<br/><small>Users, User Groups</small></th>
+																			<th width="125" class="ta-c">Delete<br/><small>Users, User Groups</small></th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr>
+																			<td>24x7 Hours <small>(58 Users)</small></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																		</tr>
+																		<tr>
+																			<td>Office Hours <small>(72 Users)</small></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																		</tr>
+																		<tr>
+																			<td>Housekeeping Hours <small>(15 Users)</small></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</md-content>
+												</md-tab>
+
+												<md-tab label="Reports">
+													<md-content>
+														<div class="administratorlist">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Name</th>
+																			<th width="75" class="ta-c">Run</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr>
+																			<td>Active User Report (User Report)</td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" checked="checked"><i></i></label></td>
+																		</tr>
+																		<tr>
+																			<td>Daily Activity Report (Activity Report)</td>
+																			<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</md-content>
+												</md-tab>
+
+											</md-tabs>
+										</md-content>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-12 legend">
+										<a ui-sref="app.admin.administrator.roles" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</a>
+										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	
+	</div>
+</div>

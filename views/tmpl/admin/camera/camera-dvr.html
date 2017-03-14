@@ -1,10 +1,10 @@
 <div class="page admin">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
-	
-	<div class="pagecontent">	
-		<div class="row">		
+
+	<div class="pagecontent">
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,93 +12,93 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<p>{{page.subtitle}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
+						<div class="noback bg-blue">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
+						<div class="noback bg-slategray lt">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Doors</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
+						<div class="noback bg-lightred">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 		</div>
-		
+
 		<div class="row" ng-controller="CameraDVRCtrl">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="hometabs">
 						<div id="camerandvr" class="table-custom">
-							<uib-tabset class="tabs-dark"> 
+							<uib-tabset class="tabs-dark">
 								<uib-tab heading="Live Feeds">
-									<div class="wrap-reset m-0"> 
+									<div class="wrap-reset m-0">
 										<div class="profile-settings">
 											<div class="row pos-r mb-20">
-												<div class="col-sm-4 col-md-4">
+												<div class="col-sm-4 col-md-3">
 													<div class="gridlistbar ta-l">
 														<label class="control-label">No of Camera</label>
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'onecam'}"><i class="fa fa-stop" aria-hidden="true"></i></a>
+															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'onecam'}" ng-click="cameraInit(1,1)"><i class="fa fa-stop" aria-hidden="true"></i></a>
 															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
 																<li><a href="" ng-click="changedClass()">Camera 1</a></li>
 																<li><a href="" ng-click="changedClass()">Camera 2</a></li>
@@ -111,22 +111,22 @@
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'twocam'}"><i class="fa fa-pause" aria-hidden="true"></i></a>
 															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="" ng-click="changecClass()">Camera 1-2</a></li>
-																<li><a href="" ng-click="changecClass()">Camera 3-4</a></li>
-																<li><a href="" ng-click="changecClass()">Camera 5-6</a></li>
+																<li><a href="" ng-click="cameraInit(1,2)">Camera 1-2</a></li>
+																<li><a href="" ng-click="cameraInit(3,2)">Camera 3-4</a></li>
+																<li><a href="" ng-click="cameraInit(5,2)">Camera 5-6</a></li>
 															</ul>
 														</span>
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'fourcam'}"><i class="fa fa-th-large" aria-hidden="true"></i></a>
 															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="" ng-click="changebClass()">Camera 1-4</a></li>
-																<li><a href="" ng-click="changebClass()">Camera 2-6</a></li>
+																<li><a href="" ng-click="cameraInit(1,4)">Camera 1-4</a></li>
+																<li><a href="" ng-click="cameraInit(2,4)">Camera 2-6</a></li>
 															</ul>
 														</span>
-														<a href="" class="grid-icon" ng-class="{active: layout == 'sixcam'}" ng-click="changeaClass()"><i class="fa fa-th-large" aria-hidden="true" style="margin-right:-6px;"></i><i class="fa fa-th-large" aria-hidden="true"></i></a>
+														<a href="" class="grid-icon" ng-class="{active: layout == 'sixcam'}" ng-click="changeaClass()" ng-click="cameraInit(1,6)"><i class="fa fa-th-large" aria-hidden="true" style="margin-right:-6px;"></i><i class="fa fa-th-large" aria-hidden="true"></i></a>
 													</div>
 												</div>
-												<div class="col-sm-4 col-md-4">
+												<!-- <div class="col-sm-4 col-md-4">
 													<div class="gridlistbar ta-c">
 														<a href="" uib-tooltip="Refreshes the connections"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 														<a href="" uib-tooltip="Clears Live Feed"><i class="fa fa-eraser" aria-hidden="true"></i></a>
@@ -153,33 +153,54 @@
 														<a href="" ng-click="showConfirm($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 														<a href="" uib-tooltip="Makes the current camera group the default camera group"><i class="fa fa-home" aria-hidden="true"></i></a>
 													</div>
+												</div> -->
+												<div class="col-sm-4 col-md-5 gridlistbar ta-r">{{cam_group.camera_id}}
+													<div style="width: 60%;display: none;margin-right: 10px;" id="camform">
+														<form ng-submit="addCameraGroup(cam1group,camera_id)" name="cam_group">
+															<input type="hidden" ng-model="camera_id" name="">
+															<input type="text" class="form-control" name="group_name" ng-model="cam1group.group_name" style="display: inline-block; width: 70%;"
+															    value="ew">
+
+															<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" title="Submit" aria-label="Submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+															<button type="button" ng-click="hidecamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" title="Cancel"
+															    aria-label="Cancel"><i class="fa fa-times" aria-hidden="true"></i></button>
+														</form>
+													</div>
+													<button ng-click="showcamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" editable-text="user.name">{{ camgroup.name || 'empty' }}</button>
 												</div>
-												<div class="col-sm-2 col-md-2 pull-right">
-													<div class="gridlistbar ta-r">
-														<select class="form-control">
-															<option selected>Select the camera group</option>
-															<option>Camera group 1</option>
-															<option>Camera group 2</option>
-															<option>Camera group 3</option>
-															<option>Camera group 4</option>
-															<option>Camera group 5</option>
-															<option>Camera group 6</option>
-															<option>Camera group 7</option>
-															<option>Camera group 8</option>
-															<option>Camera group 9</option>
-														</select>
+												<div class="col-sm-2 col-md-4 pull-right">
+													<div class="row gridlistbar">
+														<div class="col-sm-12 col-md-6">
+															<select class="form-control"><option>Select Facility</option>></select>
+														</div>
+														<div class="col-sm-12 col-md-6 ta-r">
+															<select class="form-control">
+																<option selected>Select the camera group</option>
+																<option>Camera group 1</option>
+																<option>Camera group 2</option>
+																<option>Camera group 3</option>
+																<option>Camera group 4</option>
+																<option>Camera group 5</option>
+																<option>Camera group 6</option>
+																<option>Camera group 7</option>
+																<option>Camera group 8</option>
+																<option>Camera group 9</option>
+															</select>
+														</div>
 													</div>
 												</div>
 											</div>
-											<div ng-if="result">									
-												<div layout="row" ng-class="statusclass">									
+											<div ng-if="result">
+												<div layout="row" ng-class="statusclass">
 													{{result}}
 												</div>
 											</div>
-											<div ng-class="class">											
-												<div class="livevideo">
+											<div ng-class="class">
+												<div class="livevideo" ng-repeat="camera in cameras">
 													<div class="selectcam">
-														Camera 1
+														{{camera.camera_username}}{{camera.camera_id}}
+
+
 														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
 															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
@@ -194,145 +215,17 @@
 													</div>
 													<div class="video">
 														<div id="boundary">
-															<div id="vstage">
-																<video>
-																	<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-																	<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-																	<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
-																	Your browser does not support HTML5 video.
-																</video>
-															</div>
-															<div id="controls">
-																<div id="change">
-																	<button class="volumeup"><i class="fa fa-volume-up favolumeup" aria-hidden="true"></i></button>
-																	<button class="zoomin"><i class="fa fa-plus fazoomin" aria-hidden="true"></i></button>
-																	<button class="left"><i class="fa fa-chevron-left faleft" aria-hidden="true"></i></button>
-																	<button class="right"><i class="fa fa-chevron-right faright" aria-hidden="true"></i></button>
-																	<button class="play">&#x0011;</button>
-																	<button class="up"><i class="fa fa-chevron-up faup" aria-hidden="true"></i></button>
-																	<button class="down"><i class="fa fa-chevron-down fadown" aria-hidden="true"></i></button>
-																	<button class="zoomout"><i class="fa fa-minus fazoomout" aria-hidden="true"></i></button>
-																	<button class="volumedown"><i class="fa fa-volume-down favolumedown" aria-hidden="true"></i></button>
+
+															<div class="content-absolute">
+																<div id="vxg_media1" class="content">
 																</div>
 															</div>
+
 														</div>
 													</div>
-													<script>
-														$(document).ready(function(){
-															$('.play').click(function(){
-																$(this).parent('#change').addClass('widthinc');
-															});
-														});
-														(function(){
-														  var zoom = 1,
-															  rotate = 0;
-														  var vstage = document.getElementById('vstage'),
-															  v = document.getElementsByTagName('video')[0],
-															  controls = document.getElementById('controls');
-														  var properties = ['transform', 'WebkitTransform', 'MozTransform',
-																			'msTransform', 'OTransform'],
-															  prop = properties[0];  
-														  var i,j,t;
-														  for(i=0,j=properties.length;i<j;i++){
-															if(typeof vstage.style[properties[i]] !== 'undefined'){
-															  prop = properties[i];
-															  break;
-															}
-														  }
-														  v.style.left = 0;
-														  v.style.top = 0;
-														  controls.addEventListener('click',function(e){
-															t = e.target;
-															if(t.nodeName.toLowerCase()==='button' || t.nodeName.toLowerCase()==='i'){   
-															  switch(t.className){  
-																case 'play':
-																  if(v.paused){
-																	v.play();
-																	t.innerHTML = '&#x05C0;&#x05C0;';
-																  } else {
-																	v.pause();
-																	t.innerHTML = '&#x0011;';
-																  }
-																break;
-																
-																case 'zoomin':
-																  zoom = zoom + 0.1;
-																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
-																break;												
-																case 'fa fa-plus fazoomin':
-																  zoom = zoom + 0.1;
-																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
-																break;
-																
-																case 'zoomout':
-																  zoom = zoom - 0.1;
-																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
-																break;												
-																case 'fa fa-minus fazoomout':
-																  zoom = zoom - 0.1;
-																  v.style[prop]='scale('+zoom+') rotate('+rotate+'deg)';
-																break;
-																
-																case 'rotateleft':
-																  rotate = rotate + 5;
-																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
-																break;
-																
-																case 'rotateright':
-																  rotate = rotate - 5;
-																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
-																break;
-																
-																case 'left':
-																  v.style.left = (parseInt(v.style.left,10) - 5) + 'px';
-																break;
-																case 'fa fa-chevron-left faleft':
-																  v.style.left = (parseInt(v.style.left,10) - 5) + 'px';
-																break;
-																
-																case 'right':
-																  v.style.left = (parseInt(v.style.left,10) + 5) + 'px';
-																break;
-																case 'fa fa-chevron-right faright':
-																  v.style.left = (parseInt(v.style.left,10) + 5) + 'px';
-																break;
-																
-																case 'up':
-																  v.style.top = (parseInt(v.style.top,10) - 5) + 'px';
-																break;
-																case 'fa fa-chevron-up faup':
-																  v.style.top = (parseInt(v.style.top,10) - 5) + 'px';
-																break;
-																
-																case 'down':
-																  v.style.top = (parseInt(v.style.top,10) + 5) + 'px';
-																break;
-																case 'fa fa-chevron-down fadown':
-																  v.style.top = (parseInt(v.style.top,10) + 5) + 'px';
-																break;
-																
-																case 'reset':
-																  zoom = 1;
-																  rotate = 0;
-																  v.style.top = 0 + 'px';
-																  v.style.left = 0 + 'px';
-																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
-																break;
-																case 'fa fa-refresh farefresh':
-																  zoom = 1;
-																  rotate = 0;
-																  v.style.top = 0 + 'px';
-																  v.style.left = 0 + 'px';
-																  v.style[prop]='rotate('+rotate+'deg) scale('+zoom+')';
-																break;
-															  }
-															  e.preventDefault();
-															}
-														  },false);
-														})();
-													</script>
+
 												</div>
-												<div class="livevideo">
+												<!-- <div class="livevideo">
 													<div class="selectcam">
 														No Camera Selected
 														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
@@ -426,12 +319,12 @@
 													<div class="video">
 														
 													</div>
-												</div>
+												</div> -->
 											</div>
 										</div>
 									</div>
 								</uib-tab>
-								<uib-tab heading="Recorded Feeds">
+								<!-- <uib-tab heading="Recorded Feeds">
 									<div class="wrap-reset"> 
 										<div class="profile-settings"> 
 											<div class="row">
@@ -512,9 +405,9 @@
 																	</div>
 																	<div class="video">
 																		<video controls>
-																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
 																			Your browser does not support HTML5 video.
 																		</video>
 																	</div>
@@ -526,9 +419,9 @@
 																	</div>
 																	<div class="video">
 																		<video controls>
-																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
 																			Your browser does not support HTML5 video.
 																		</video>
 																	</div>
@@ -540,9 +433,9 @@
 																	</div>
 																	<div class="video">
 																		<video controls>
-																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
 																			Your browser does not support HTML5 video.
 																		</video>
 																	</div>
@@ -554,9 +447,9 @@
 																	</div>
 																	<div class="video">
 																		<video controls>
-																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
 																			Your browser does not support HTML5 video.
 																		</video>
 																	</div>
@@ -568,9 +461,9 @@
 																	</div>
 																	<div class="video">
 																		<video controls>
-																			<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
 																			Your browser does not support HTML5 video.
 																		</video>
 																	</div>
@@ -584,13 +477,36 @@
 											</div>
 										</div>
 									</div>
-								</uib-tab>
+								</uib-tab> -->
 							</uib-tabset>
 						</div>
 					</div>
 				</section>
 			</div>
-		</div>	
-		
+		</div>
+
 	</div>
 </div>
+<script>
+	// Chrome 1+
+	var isChrome = !!window.chrome && !!window.chrome.webstore;
+	setTimeout(function () {
+		vxgplayer('vxg_media_player1').onReadyStateChange(function (onreadyState) {
+			console.log("player LOADED: versionPLG=" + vxgplayer('vxg_media_player1').versionPLG() + " versionAPP=" +
+				vxgplayer('vxg_media_player1').versionAPP());
+			vxgplayer('vxg_media_player1').play();
+		});
+		vxgplayer('vxg_media_player1').onError(function (onErr) {
+			console.log("player ERROR: " + vxgplayer('vxg_media_player1').error());
+		});
+	}, 2000);
+	// Blink engine detection
+	var isBlink = (isChrome || isOpera) && !!window.CSS;
+	if (!isChrome) {
+		document.getElementById("vxg_media1").innerHTML =
+			"<embed id='player' type='application/x-vlc-plugin' class='lv_player'  name='player' target='rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4'   autoplay='yes'   loop='yes' toolbar=false  width='100%' height='480' />";
+	} else {
+		document.getElementById("vxg_media1").innerHTML =
+			'<div id="vxg_media_player1" class="vxgplayer" url="rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency="3000000" autostart controls avsync></div>';
+	}
+</script>

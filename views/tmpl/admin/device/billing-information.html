@@ -1,0 +1,221 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4 col-md-4" ng-controller="ServicePlanCtrl">
+				<section class="tile tile-simple">
+					<div class="tile-header dvd dvd-btm">
+						<h1 class="h1head">Elika 76</h1>
+					</div>
+					<div class="tile-widget">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="mt-0">Current Plan <small>Bronze</small></h3>
+								<div class="form-group">													
+									<div class="tile-body p-0">
+										<table class="table table-bordered tplans">
+											<thead>
+												<tr>
+													<th>Plan</th>
+													<th>Value</th>
+													<th class="ta-r">Price (in USA $)</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="plan in plans">
+													<td>{{plan.title}}</td>
+													<td>{{plan.value}}</td>
+													<td class="ta-r">{{plan.price}}</td>
+												</tr>
+											</tbody>
+										</table>
+										
+										<table class="table noborder">
+											<tbody>
+												<tr>
+													<td class="pt-20"><strong>Subtotal: $</strong></td>
+													<td class="pt-20 ta-r">39.95</td>
+												</tr>
+												<tr>
+													<td><strong>Tax: (8.00%)</strong></td>
+													<td class="ta-r">3.20</td>
+												</tr>
+												<tr>
+													<td class="pt-20"><strong>Total: $</strong></td>
+													<td class="pt-20 ta-r">43.15</td>
+												</tr>
+											</tbody>
+										</table>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group legend ta-c mb-0">
+							<p></p>
+							<a ui-sref="app.admin.device.change-service-plan" class="btn btn-rounded-20 btn-sm btn-blue">Change Plan</a>
+							<a ui-sref="app.admin.device.upgrade-service-plan" class="btn btn-rounded-20 btn-sm btn-lightred ml-5 mr-5">Upgrade Plan</a>
+							<a href class="btn btn-rounded-20 btn-sm btn-slategray">Remove Plan</a>
+						</div>
+					</div> 
+				</section>
+			</div>
+			
+			<div class="col-sm-8 col-md-8" ng-controller="BillingInfomationCtrl"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0">
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="custom-font">{{page.title}}</h1>
+						</div>
+						<div class="tile-body pt-0">
+							<div class="row">
+								<div class="modal-body col-sm-12 mt-5">
+									<div class="form-group row">
+										<div class="col-md-6">
+											<label for="">First Name</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+										<div class="col-md-6">												
+											<label for="">Last Name</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-6">
+											<label for="">Email Address</label>
+											<input type="emial" name="" id="" class="form-control" placeholder="">
+										</div>
+										<div class="col-md-6">
+											<label for="">Phone Number</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-6">
+											<label for="">Company Name</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+										<div class="col-md-6">
+											<label for="">Address</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-6">
+											<label for="">Address2</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+										<div class="col-md-6">
+											<label for="">City</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label for="">State</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+										<div class="col-md-6">
+											<label for="">Zip Code</label>
+											<input type="text" name="" id="" class="form-control" placeholder="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group legend">
+									<div class="col-md-12">
+										<p></p>
+										<a href back-button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Back</a>
+										<a ui-sref="app.admin.device.payment" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Next</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

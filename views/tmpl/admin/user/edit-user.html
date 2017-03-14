@@ -108,7 +108,7 @@
 					<div class="tile-body text-center bg-blue p-0"> 
 						<ul class="list-inline tbox m-0">
 							<li class="tcol bg-blue dker p-10">
-								<h2 class="m-0">3</h2>
+								<h2 class="m-0">{{groupcount}}</h2>
 								<span class="text-transparent-white">User Groups</span>
 							</li>
 						</ul>
@@ -146,7 +146,7 @@
 												<div class="form-group col-sm-6 col-md-6">
 													<label for="">Profile Photo</label>
 													<div class="profilephoto">
-														<input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+														<!-- <input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1"> -->
 														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
 													</div>
 												</div>
@@ -158,7 +158,7 @@
 												</div>
 												<div class="form-group col-sm-6 col-md-6">			
 													<label for="">Phone</label>
-													<input type="number" class="form-control" ng-keypress="onlyNumber($event)" id="user_phone_no" ng-model="editUser.user_phone_no">
+													<input type="text" class="form-control" ng-keypress="onlyNumber($event)" id="user_phone_no" ng-model="editUser.user_phone_no">
 												</div>
 												<div class="form-group col-sm-6 col-md-6">
 													<label for="">Address</label>
@@ -278,6 +278,7 @@
 												<div class="row">
 													<form role="form"  ng-submit="submitEditAccessCode(editAccess, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
 														<div class="form-group col-sm-6 col-md-4">
+														<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editAccess.credential_id">
 															<label for="">Access Code</label>
 															<div style="position: relative">
 																<input type="text" name="access_code" id="access_code" class="form-control"  disabled ng-model="editAccess.access_code">
@@ -314,15 +315,15 @@
 																<tr ng-repeat="accesscode in access_code_list">
 																	<td>{{accesscode.Access_Code}}</td>
 																	<td>{{accesscode.Door_Name}} </td>
-																	<td>
-																		<select style="border: 0; width: 100%;">
+																	<td>{{accesscode.status == 1 ? 'Active' : 'Inactive'}} 
+																		<!-- <select style="border: 0; width: 100%;">
 																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
 																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
-																		</select>
+																		</select> -->
 																	</td>
 																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" uib-tooltip="Edit" ng-click="editCredential(accesscode, 'access_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -337,6 +338,7 @@
 											<div class="modal-body p-0">
 												<div class="row">
 													<form ng-submit="submitEditPhoneCode(phoneedit, phone_edit_form)" ng-validate="validationOptions" name="phone_edit_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="phoneedit.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Phone Code</label>
 															<div style="position: relative">
@@ -388,7 +390,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -403,6 +405,7 @@
 											<div class="modal-body p-0">
 												<div class="row">
 													<form ng-submit="submitEditRFIDCode(editRfid, rfid_form)" name="rfid_form" ng-validate="validationOptions" >
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editRfid.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Card Number</label>
 															<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no" required>
@@ -451,7 +454,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href=""  ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -467,11 +470,16 @@
 												<div class="row">
 													<span class="error">{{NfcCodeMessage}}</span>
 													<form ng-submit="submitEditNfcCode(editNfc, nfc_edit_form)" ng-validate="validationOptions" name="nfc_edit_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editNfc.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">NFC Code</label>
 															<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editNfc.nfc_code" required>
 														</div>
-														<div class="form-group col-sm-3 col-md-8">
+														<div class="form-group col-sm-3 col-md-4">
+															<label for="">Facility Code</label>
+															<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editNfc.nfc_facility_code" name="editNfc" required>
+														</div>
+														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Assign Doors</label><br/>
 															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editNfc.door_id" multiple required>
 															</select>
@@ -509,7 +517,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{nfccode.Credential_Id}}', 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -525,6 +533,7 @@
 												<div class="row">
 													<span class="error">{{ bleerror }}</span>
 													<form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="editBle.credential_id">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Username</label>
 															<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required>
@@ -573,7 +582,7 @@
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential('{{blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>

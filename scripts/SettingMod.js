@@ -11,7 +11,7 @@ app
   {
     $scope.page = {
 		title: 'Settings',
-		subtitle: 'Place subtitle here...'
+		subtitle: ''
     };
 	
 	$scope.device_id = $stateParams.device_id;

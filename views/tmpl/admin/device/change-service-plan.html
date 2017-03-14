@@ -1,0 +1,221 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4 col-md-4">
+				<section class="tile tile-simple">
+					<div class="tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20">
+							<img class="img-circle" src="images/device/elika-76-bronze.png" alt="">
+						</div>
+						<h3 class="mb-10"><strong>Reception Room</strong></h3>
+						<span class="text-muted">Elika 76</span>
+						<span class="text-muted">Current Plan: Bronze</span>
+						<div class="mt-40">
+							<a ui-sref="app.admin.device.change-service-plan" class="btn btn-rounded-20 btn-sm btn-blue">Change Plan</a>
+							<a ui-sref="app.admin.device.upgrade-service-plan" class="btn btn-rounded-20 btn-sm btn-lightred ml-5 mr-5">Upgrade Plan</a>
+							<a href class="btn btn-rounded-20 btn-sm btn-slategray">Remove Plan</a>
+						</div>
+					</div> 
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol p-10">
+								<h2 class="m-0">3</h2>
+								<span class="text-transparent-white">Dependent Devices</span>
+							</li>
+						</ul>
+					</div>  
+				</section>
+			</div>
+			
+			<div class="col-sm-8 col-md-8" ng-controller="ChangeServicePlanCtrl"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0">
+						<div class="tile-header dvd dvd-btm">
+							<h1 class="custom-font">{{page.title}}</h1>
+						</div>
+						<div class="tile-body pt-0">
+							<div class="row">
+								<div class="col-sm-12">
+									<h4 class="mt-20 pt-10 mb-20">Choose you Data and Cellular Plan for this Elika Device.</h4>
+									<div class="form-group">													
+										<div class="tile-body p-0">
+											<table class="table table-bordered tplans">
+												<thead>
+													<tr>
+														<th style="width:28%;">&nbsp;</th>
+														<th style="width:18%;" class="ta-c">Bronze</th>
+														<th style="width:18%;" class="ta-c">Silver</th>
+														<th style="width:18%;" class="ta-c">Gold</th>
+														<th style="width:18%;" class="ta-c">Platinum</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Monthly Fee (in $)</td>
+														<td class="ta-c">39.95</td>
+														<td class="ta-c">59.95</td>
+														<td class="ta-c">79.95</td>
+														<td class="ta-c">99.95</td>
+													</tr>
+													<tr>
+														<td>Cloud Storage</td>
+														<td class="ta-c">Unlimited</td>
+														<td class="ta-c">Unlimited</td>
+														<td class="ta-c">Unlimited</td>
+														<td class="ta-c">Unlimited</td>
+													</tr>
+													<tr>
+														<td>Cellular Data</td>
+														<td class="ta-c">150 MB</td>
+														<td class="ta-c">500 MB</td>
+														<td class="ta-c">1 GB</td>
+														<td class="ta-c">Unlimited</td>
+													</tr>
+													<tr>
+														<td>Cellular Module</td>
+														<td class="ta-c">150 minutes</td>
+														<td class="ta-c">750 minutes</td>
+														<td class="ta-c">1500 minutes</td>
+														<td class="ta-c">Unlimited</td>
+													</tr>
+													<tr>
+														<td>Cellular Transferred</td>
+														<td class="ta-c">150</td>
+														<td class="ta-c">500</td>
+														<td class="ta-c">1000</td>
+														<td class="ta-c">Unlimited</td>
+													</tr>
+													<tr>
+														<td>VoIP</td>
+														<td class="ta-c">150 minutes</td>
+														<td class="ta-c">750 minutes</td>
+														<td class="ta-c">1500 minutes</td>
+														<td class="ta-c">Unlimited</td>
+													</tr>
+													<tr>
+														<td>&nbsp;</td>
+														<td class="ta-c">
+															<label class="checkbox checkbox-custom-alt">
+																<input name="customRadioAlt" type="radio" checked="checked"><i></i>
+															</label>
+														</td>
+														<td class="ta-c">
+															<label class="checkbox checkbox-custom-alt">
+																<input name="customRadioAlt" type="radio"><i></i>
+															</label>
+														</td>
+														<td class="ta-c">
+															<label class="checkbox checkbox-custom-alt">
+																<input name="customRadioAlt" type="radio"><i></i>
+															</label>
+														</td>
+														<td class="ta-c">
+															<label class="checkbox checkbox-custom-alt">
+																<input name="customRadioAlt" type="radio"><i></i>
+															</label>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="form-group legend">
+									<div class="col-md-12">
+										<p></p>
+										<a href back-button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</a>
+										<a ui-sref="app.admin.device.billing-information" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Next</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
