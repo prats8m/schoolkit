@@ -44,8 +44,7 @@ window.vxgplayer = function(id, options){
 			var html = ''
 			+ '<div class="vxgplayer-unsupport">'
 			+ '	<div class="vxgplayer-unsupport-content">'
-			+ '	<a href="http://www.videoexpertsgroup.com/player_start/">Click here for install plugin</a>'
-			+ '	<br/><br/> or visit in webstore <a href="https://chrome.google.com/webstore/detail/vxg-media-player/hncknjnnbahamgpjoafdebabmoamcnni" target="_blank">VXG Media Player</a>'
+			+ '	<a target="_blank" href="https://chrome.google.com/webstore/detail/vxg-media-player/hncknjnnbahamgpjoafdebabmoamcnni">Click here for install plugin</a>'
 			+ '	</div>'
 			+ '</div>';
 			player.innerHTML = html;
@@ -53,21 +52,21 @@ window.vxgplayer = function(id, options){
 		}
 
 		// magic run app
-		var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
-		if (!fs) {
-  			//console.log("RequestFileSystem failed");
-			window.location.href = "http://www.videoexpertsgroup.com/player_start/";
-		} else {
-  			fs(window.TEMPORARY,
-     		100,
-     		function(){
-			    //console.log("not in incognito mode");
-				window.location.href = "http://www.videoexpertsgroup.com/player_start/";
-  			},
-  			function(){
-			     //console.log("incognito mode");
-  			});
-		}
+		// var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
+		// if (!fs) {
+  		// 	//console.log("RequestFileSystem failed");
+		// 	window.location.href = "http://www.videoexpertsgroup.com/player_start/";
+		// } else {
+  		// 	fs(window.TEMPORARY,
+     	// 	100,
+     	// 	function(){
+		// 	    //console.log("not in incognito mode");
+		// 		window.location.href = "http://www.videoexpertsgroup.com/player_start/";
+  		// 	},
+  		// 	function(){
+		// 	     //console.log("incognito mode");
+  		// 	});
+		// }
 		//window.location.href = "http://videoexpertsgroup.com/player_start/";
 		window.vxgplayer.players[id] = new function(id, options){
 			var self = this;
