@@ -94,7 +94,7 @@ app
 		$scope.layout = 'onecam';
 	};
 
-	$scope.cameraInit = function(start=1, limit=1){ 
+	$scope.cameraInit = function(start, limit){ 
 		
 		$http({
 			url: baseURL + 'camera/list?start='+start+'&limit='+limit+'&facility_id=',   
