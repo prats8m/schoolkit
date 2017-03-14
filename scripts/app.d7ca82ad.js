@@ -62,6 +62,7 @@ var app = angular
     'ipsum',
     'angular-intro',
     'dragularModule',
+    'angular-loading-bar',
     'ngValidate',
 	'toaster'
   ])

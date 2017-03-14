@@ -1,1 +1,1 @@
-app.constant('baseURL', 'http://35.160.142.158:8080/');
+app.constant('baseURL', 'http://35.162.244.123:8080/');

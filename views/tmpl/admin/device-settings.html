@@ -12,7 +12,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<!--<p>{{page.subtitle}}</p>-->									
+									<!-- <p>{{page.subtitle}}</p> -->									
 								</div>
 							</div>
 						</div>
@@ -110,59 +110,60 @@
 											<div class="col-sm-9 col-md-9 col-lg-10 pl-0">
 												<div class="tab-content">												
 													<div class="tab-pane fade in active" id="gstab1">
-														<form ng-submit="accessGrantKey(device.dgs_access_granted_key)">
 														<h4><strong>Access Granted Key</strong></h4>
 														<div class="row mt-20">
 															<div class="form-group col-sm-4">
 																<label for="address1">Granted Key Number <small>(Default: #)</small></label>
-																<input type="text" class="form-control" ng-model="device.dgs_access_granted_key" id="address1" value="">
+																<input type="text" ng-model="device.dgs_access_granted_key" class="form-control" id="address1" value="">
 															</div>															
 														</div>
 														<div class="row">
-															<div class="form-group col-md-12 legend">
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+															<div class="form-group col-md-12 legend">			
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab2">
 														<form ng-submit="submitRelayDoor(relays)">
-														<h4><strong>Relay &amp; Door Setup</strong> <small>(Relay strike time range from 500 to 4500 ms - default 1000 ms)</small></h4>
-														<div ng-repeat="relay in relays" class="row mt-20">
-															<div class="col-sm-11 pr-0">
-																<div class="form-group row">
-																	<div class="col-sm-2 pr-0">						
-																		<label for="address1">Relay {{$index + 1}}</label>
-																		<input type="text" class="form-control" ng-model="relay.strike_time" id="address1" value="1000">
-																	</div>
-																	<div class="col-sm-3 pr-0">
-																		<label for="">Door</label><br/>
-																		<select chosen="{width: '100%'}" ng-model="relay.drd_door_id" ng-options="x.door_id as x.door_name for x in doorList">
+														<h4><strong>Relay &amp; Door Setup</strong> <small>(Range from 500 to 4500 ms - default 1000 ms)</small></h4>
+														<div class="form-group row" ng-repeat="relay in relays">
+															<div class="col-sm-3">						
+																<label for="address1">Relay {{$index + 1}} strike time</label>
+																<input type="text" class="form-control" id="address1" ng-model="relay.strike_time" value="1000">
+															</div>
+															<div class="col-sm-3">
+																<label for="">Door</label><br/>
+																<select chosen="{width: '100%'}" ng-model="relay.door_id" ng-options="x.door_id as x.door_name for x in doorList">
 																	
-																		</select>
-																	</div>
-																	<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">	
-																		<div class="col-sm-5 pl-0" style="width:auto;">
-																			<label for="">Door Ajar</label><br/>
-																			<div class="btn-group btnrounded">
-																				<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="1">Active</label>
-																				<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="0">Inactive</label>
-																			</div>
-																		</div>
-																		<div class="col-sm-6 plr-0" ng-hide="relay.drd_status=='Inactive'">
-																			<label for="">&nbsp;</label><br/>
-																			<select chosen="{width: '100%'}">
-																				<option value="">Sound alarm using Beeper</option>
-																				<option value="">Call/Text technician</option>
-																				<option value="">Call/Text/Email Notification to owner</option>
-																				<option value="">Take a snapshot through camera</option>
-																				<option value="">Record a short video using camera</option>
-																			</select>
-																		</div>
+																</select>
+															</div>
+															<div class="col-sm-6" ng-controller="ActivebtnCtrl">
+																<div class="col-sm-5">
+																	<label for="">Door Ajar</label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="relay.status" uib-btn-radio="1">Active</label>
+																		<label class="btn btn-default" ng-model="relay.status" uib-btn-radio="0">Inactive</label>
 																	</div>
 																</div>
+																<div class="col-sm-7" ng-hide="relay.status=='Inactive'">
+																	<label for="">&nbsp;</label><br/>
+																	<select chosen="{width: '100%'}">
+																		<option value="">Sound alarm using Beeper</option>
+																		<option value="">Call/Text technician</option>
+																		<option value="">Call/Text/Email Notification to owner</option>
+																		<option value="">Take a snapshot through camera</option>
+																		<option value="">Record a short video using camera</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														
+														<div class="row">
+															<div class="form-group col-md-12 legend">			
+																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" ng-disabled="relays.length==0">Save </button>
+																<button type="button" onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" >Cancel</button>
 															</div>
 														</div>
 														</form>
@@ -257,19 +258,18 @@
 													</div>
 																										
 													<div class="tab-pane fade" id="gstab4">
-														<form ng-submit="submitData('camera-setup',camera)">
 														<h4><strong>Camera Setup</strong></h4>
-														<div class="row mt-20">
+														<div class="row mt-20" ng-controller="ActivebtnCtrl">
 															<div class="form-group col-sm-4 col-md-3 col-lg-2">
 																<label for="address1">Picture Snapshots</label><br/>
 																<div class="btn-group btnrounded">
-																	<label class="btn btn-default" ng-model="camera.picsnap" uib-btn-radio="1">Active</label>
-																	<label class="btn btn-default" ng-model="camera.picsnap" uib-btn-radio="0">Inactive</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
 																</div>
 															</div>
-															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="camera.picsnap==0">
+															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="radioModel=='Inactive'">
 																<label for="">&nbsp;</label><br/>
-																<select ng-model="camera.picture_snapshot_access" chosen="{width: '100%'}">
+																<select chosen="{width: '100%'}">
 																	<option value="">Access Granted</option>
 																	<option value="">Access Denied</option>
 																	<option value="">Pre-defined Interval</option>
@@ -277,17 +277,17 @@
 																</select>
 															</div>
 														</div>
-														<div class="row mt-20">
+														<div class="row mt-20" ng-controller="ActivebtnCtrl">
 															<div class="form-group col-sm-4 col-md-3 col-lg-2">
 																<label for="address1">Video Recording</label><br/>
 																<div class="btn-group btnrounded">
-																	<label class="btn btn-default" ng-model="camera.videorecording" uib-btn-radio="1">Active</label>
-																	<label class="btn btn-default" ng-model="camera.videorecording" uib-btn-radio="0">Inactive</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
+																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
 																</div>
 															</div>
-															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="camera.videorecording==0">
+															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="radioModel=='Inactive'">
 																<label for="">&nbsp;</label><br/>
-																<select ng-model="camera.video_recording_access" chosen="{width: '100%'}">
+																<select chosen="{width: '100%'}">
 																	<option value="">Access Granted</option>
 																	<option value="">Access Denied</option>
 																	<option value="">Pre-defined Interval</option>
@@ -296,83 +296,77 @@
 															</div>
 														</div>
 														<div class="row">
-															<div class="form-group col-md-12 legend">
+															<div class="form-group col-md-12 legend">			
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab5">
-														<form ng-submit="submitData('talk-time-setup',device.dgs_talk_time)">
 														<h4><strong>Talk Time Setup</strong></h4>
 														<div class="row mt-20" ng-controller="mtSliderCtrl">
 															<div class="form-group col-sm-6 col-md-5 col-lg-3">
 																<label for="address1">Talk Time <small>(10–240 seconds, Default 30)</small></label>
-																<input type="text" class="form-control" id="" ng-model="device.dgs_talk_time">
+																<input type="text" class="form-control" id="" ng-model="rating1">
 															</div>
 															<div class="form-group mt-40 col-sm-12">
 																<div layout>
-																	<md-slider flex class="md-primary" md-discrete ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
+																	<md-slider flex class="md-primary" md-discrete ng-model="rating1" step="1" min="10" max="240" aria-label="rating"></md-slider>
 																</div>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab6">
 														<h4><strong>LED Setup</strong></h4>
-														<form ng-submit="submitData('led-setup',ledsetup)">
 														<div class="row mt-20">
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
-																<div class="row">
+																<div class="row" ng-controller="mtSliderCtrl">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">LED Keypad Setup</label><br/>
-																		<select ng-model="ledsetup.keypad_setup" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>On all the time</option>
-																			<option>On when no sun</option>
-																			<option>On when sun, off if no battery</option>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">On all the time</option>
+																			<option value="">On when no sun</option>
+																			<option value="">On when sun, off if no battery</option>
 																		</select>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="ledsetup.keypad_brightness">
+																		<input type="text" class="form-control" id="address1" ng-model="rating2">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="ledsetup.keypad_brightness" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating2" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
-																<div class="row">
+																<div class="row" ng-controller="mtSliderCtrl">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Courtesy Light Setup</label><br/>
-																		<select ng-model="ledsetup.courtesy_light_setup" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>On all the time</option>
-																			<option>On when no sun</option>
-																			<option>On when sun, off if no battery</option>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">On all the time</option>
+																			<option value="">On when no sun</option>
+																			<option value="">On when sun, off if no battery</option>
 																		</select>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="ledsetup.courtesy_brightness">
+																		<input type="text" class="form-control" id="address1" ng-model="rating3">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="ledsetup.courtesy_brightness" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating3" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -380,59 +374,55 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab7">
 														<h4><strong>Speaker &amp; Microphone Setup</strong></h4>
-														<form ng-submit="submitData('speaker-microphone-setup',microphonesetup)">
 														<div class="row mt-20">
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
-																<div class="row">
+																<div class="row" ng-controller="mtSliderCtrl">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Speaker Volume <small>(0-3, Default 2)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="microphonesetup.setup_speaker_volume">
+																		<input type="text" class="form-control" id="address1" ng-model="rating4">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
-																		<select ng-model="microphonesetup.speaker_volume_beeper" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>Only keypad feedback</option>
-																			<option>All events</option>
-																			<option>Keypad feedback &amp; All events</option>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">Only keypad feedback</option>
+																			<option value="">All events</option>
+																			<option value="">Keypad feedback &amp; All events</option>
 																		</select>
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="microphonesetup.setup_speaker_volume" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating4" step="1" min="0" max="3" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
-																<div class="row">
+																<div class="row" ng-controller="mtSliderCtrl">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Microphone Sensitivity <small>(0-3, Default 2)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="microphonesetup.microphone_sensitivity_beeper">
+																		<input type="text" class="form-control" id="address1" ng-model="rating5">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
-																		<select ng-model="microphonesetup.speaker_volume_beeper" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>On all the time</option>
-																			<option>On when no sun</option>
-																			<option>On when sun, off if no battery</option>
+																		<select chosen="{width: '100%'}">
+																			<option value="">Off all the time</option>
+																			<option value="">On all the time</option>
+																			<option value="">On when no sun</option>
+																			<option value="">On when sun, off if no battery</option>
 																		</select>
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="microphonesetup.microphone_sensitivity_beeper" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="rating5" step="1" min="0" max="3" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -440,11 +430,10 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab8">
@@ -534,61 +523,59 @@
 													
 													<div class="tab-pane fade" id="gstab9">
 														<h4><strong>Lockout Setup</strong></h4>
-														<form ng-submit="submitData('lockout-setup',lockout)">
 														<div class="row mt-20">
 															<div class="form-group col-sm-12">
 																<label for="">Lockout Items</label><br/>
 																<div class="row">
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="BLE" value="24x7" ng-model="lockout.ble" type="checkbox"><i></i> BLE
+																			<input name="BLE" value="24x7" type="checkbox"><i></i> BLE
 																		</label>
 																	</div>
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="NFC" value="24x7" ng-model="lockout.nfc" type="checkbox"><i></i> NFC
+																			<input name="NFC" value="24x7" type="checkbox"><i></i> NFC
 																		</label>
 																	</div>
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="NFC" value="24x7" ng-model="lockout.rfid" type="checkbox"><i></i> RFID
+																			<input name="NFC" value="24x7" type="checkbox"><i></i> RFID
 																		</label>
 																	</div>
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="NFC" value="24x7" ng-model="lockout.keypad" type="checkbox"><i></i> Keypad
+																			<input name="NFC" value="24x7" type="checkbox"><i></i> Keypad
 																		</label>
 																	</div>
 																</div>
 															</div>
 														</div>
 														<div class="row">
-															<div class="form-group col-sm-6">
+															<div class="form-group col-sm-6" ng-controller="mtSliderCtrl">
 																<label for="address1">Lockout Mode Max Tries <small>(3-10, Default 3)</small></label>
-																<input type="text" class="form-control" id="address1" ng-model="lockout.max_tries">
+																<input type="text" class="form-control" id="address1" ng-model="rating6">
 																<div class="form-group mt-40">
 																	<div layout>
-																		<md-slider flex class="md-primary" md-discrete ng-model="lockout.max_tries" step="1" min="3" max="10" aria-label="rating"></md-slider>
+																		<md-slider flex class="md-primary" md-discrete ng-model="rating6" step="1" min="3" max="10" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
-															<div class="form-group col-sm-6">
+															<div class="form-group col-sm-6" ng-controller="mtSliderCtrl">
 																<label for="address1">Lockout Period <small>(10–600 seconds, Default 60)</small></label>
-																<input type="text" class="form-control" id="address1" ng-model="lockout.period">
+																<input type="text" class="form-control" id="address1" ng-model="rating7">
 																<div class="form-group mt-40">
 																	<div layout>
-																		<md-slider flex class="md-primary" md-discrete ng-model="lockout.period" step="1" min="10" max="600" aria-label="rating"></md-slider>
+																		<md-slider flex class="md-primary" md-discrete ng-model="rating7" step="1" min="10" max="600" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
 													</div>
 												</div>
 											</div>

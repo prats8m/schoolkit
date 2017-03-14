@@ -651,3 +651,10 @@ app
 				});
 		};
   });
+
+app
+  .filter('facilityStatus', function() {
+    return function(x) {
+        if(x == 0){return "In-Active";}else{ return "Active";}
+	}
+   });
