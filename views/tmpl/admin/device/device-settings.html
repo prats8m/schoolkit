@@ -3,7 +3,7 @@
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
 	
-	<div class="pagecontent" ng-controller="DeviceSettingsCtrl">
+	<div class="pagecontent" >
 		<div class="row">		
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
@@ -84,7 +84,7 @@
 			</div>			
 		</div>
 		
-		<div class="row">		
+		<div class="row" ng-init="getGeneralSettings();getDoorListAdvanceSetting();">		
 			<div class="col-md-12"> 
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0"> 
@@ -114,14 +114,14 @@
 														<h4><strong>Access Granted Key</strong></h4>
 														<div class="row mt-20">
 															<div class="form-group col-sm-4">
-																<label for="address1">Granted Key Number <small>(Default: #)</small></label>
-																<input type="text" class="form-control" ng-model="device.dgs_access_granted_key" id="address1" value="">
+																<label for="address1">Granted Key Number <small>(Default: 0)</small></label>
+																<input type="number" class="form-control" ng-model="grantAccessKey.value" id="address1">
 															</div>															
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button type="submit" ng-click="setAccessGrantKey();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
 														</form>
@@ -263,17 +263,21 @@
 															<div class="form-group col-sm-4 col-md-3 col-lg-2">
 																<label for="address1">Picture Snapshots</label><br/>
 																<div class="btn-group btnrounded">
-																	<label class="btn btn-default" ng-model="camera.picsnap" uib-btn-radio="1">Active</label>
-																	<label class="btn btn-default" ng-model="camera.picsnap" uib-btn-radio="0">Inactive</label>
+																	<label class="btn btn-default" ng-model="deviceGeneralSettingModals.dgs_camera['snapshot-status']" uib-btn-radio="1">Active</label>
+																	<label class="btn btn-default" ng-model="deviceGeneralSettingModals.dgs_camera['snapshot-status']" uib-btn-radio="0">Inactive</label>
 																</div>
 															</div>
 															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="camera.picsnap==0">
 																<label for="">&nbsp;</label><br/>
-																<select ng-model="camera.picture_snapshot_access" chosen="{width: '100%'}">
-																	<option value="">Access Granted</option>
-																	<option value="">Access Denied</option>
-																	<option value="">Pre-defined Interval</option>
-																	<option value="">On Motion Detection</option>
+																<select Multipng-options=le multiple ng-model="deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']" chosen="{width: '100%'}">
+																	<option value="access-grant">Access Grant</option>
+																	<option value="access-deny">Access Deny</option>
+																	<option value="latch-code">Latch Code</option>
+																	<option value="motion-detect">Motion Detection</option>
+																	<option value="master-key">Master Key</option>
+																	<option value="lockout">Lockout</option>
+																	<option value="keypad-play">Keypad Play</option>
+																	<option value="tamper-detect">Tamper Detection</option>
 																</select>
 															</div>
 														</div>
@@ -281,75 +285,77 @@
 															<div class="form-group col-sm-4 col-md-3 col-lg-2">
 																<label for="address1">Video Recording</label><br/>
 																<div class="btn-group btnrounded">
-																	<label class="btn btn-default" ng-model="camera.videorecording" uib-btn-radio="1">Active</label>
-																	<label class="btn btn-default" ng-model="camera.videorecording" uib-btn-radio="0">Inactive</label>
+																	<label class="btn btn-default" ng-model="deviceGeneralSettingModals.dgs_camera['recording-status']" uib-btn-radio="1">Active</label>
+																	<label class="btn btn-default" ng-model="deviceGeneralSettingModals.dgs_camera['recording-status']" uib-btn-radio="0">Inactive</label>
 																</div>
 															</div>
 															<div class="form-group col-sm-5 col-md-4 col-lg-3" ng-hide="camera.videorecording==0">
 																<label for="">&nbsp;</label><br/>
-																<select ng-model="camera.video_recording_access" chosen="{width: '100%'}">
-																	<option value="">Access Granted</option>
-																	<option value="">Access Denied</option>
-																	<option value="">Pre-defined Interval</option>
-																	<option value="">On Motion Detection</option>
+																<select Multipng-options=le multiple ng-model="deviceGeneralSettingModals.dgs_camera['video-recording-access']" chosen="{width: '100%'}">
+																	<option value="access-grant">Access Grant</option>
+																	<option value="access-deny">Access Deny</option>
+																	<option value="latch-code">Latch Code</option>
+																	<option value="motion-detect">Motion Detection</option>
+																	<option value="master-key">Master Key</option>
+																	<option value="lockout">Lockout</option>
+																	<option value="keypad-play">Keypad Play</option>
+																	<option value="tamper-detect">Tamper Detection</option>
 																</select>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button ng-click="setCameraSettings();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
 														</form>
 													</div>
 													
 													<div class="tab-pane fade" id="gstab5">
-														<form ng-submit="submitData('talk-time-setup',device.dgs_talk_time)">
+														<!--<form ng-submit="submitData('talk-time-setup',device.dgs_talk_time)">-->
 														<h4><strong>Talk Time Setup</strong></h4>
 														<div class="row mt-20" ng-controller="mtSliderCtrl">
 															<div class="form-group col-sm-6 col-md-5 col-lg-3">
 																<label for="address1">Talk Time <small>(10–240 seconds, Default 30)</small></label>
-																<input type="text" class="form-control" id="" ng-model="device.dgs_talk_time">
+																<input type="text" class="form-control" id="" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']">
 															</div>
 															<div class="form-group mt-40 col-sm-12">
 																<div layout>
-																	<md-slider flex class="md-primary" md-discrete ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
+																	<md-slider flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']" md-discrete ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
 																</div>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button type="submit" ng-click="setTalkTime();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
-														</form>
+														<!--</form>-->
 													</div>
 													
 													<div class="tab-pane fade" id="gstab6">
 														<h4><strong>LED Setup</strong></h4>
-														<form ng-submit="submitData('led-setup',ledsetup)">
+														<!--<form ng-submit="submitData('led-setup',ledsetup)">-->
 														<div class="row mt-20">
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">LED Keypad Setup</label><br/>
-																		<select ng-model="ledsetup.keypad_setup" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>On all the time</option>
-																			<option>On when no sun</option>
-																			<option>On when sun, off if no battery</option>
+																		<select ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['led-key-setup']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																			<option value="off">Off all the time</option>
+																			<option value="on">On all the time</option>
+																			<option value="off-daylight">Off in day light</option>
 																		</select>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="ledsetup.keypad_brightness">
+																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="ledsetup.keypad_brightness" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -358,21 +364,19 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Courtesy Light Setup</label><br/>
-																		<select ng-model="ledsetup.courtesy_light_setup" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>On all the time</option>
-																			<option>On when no sun</option>
-																			<option>On when sun, off if no battery</option>
+																		<select ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['led-key-setup']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																			<option value="off">Off all the time</option>
+																			<option value="on">On all the time</option>
+																			<option value="off-daylight">Off in day light</option>
 																		</select>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="ledsetup.courtesy_brightness">
+																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="ledsetup.courtesy_brightness" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -380,36 +384,36 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button type="button" ng-click="setLEDConfiguration();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
-														</form>
+														<!--</form>-->
 													</div>
 													
 													<div class="tab-pane fade" id="gstab7">
 														<h4><strong>Speaker &amp; Microphone Setup</strong></h4>
-														<form ng-submit="submitData('speaker-microphone-setup',microphonesetup)">
+														<!--<form ng-submit="submitData('speaker-microphone-setup',microphonesetup)">-->
 														<div class="row mt-20">
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Speaker Volume <small>(0-3, Default 2)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="microphonesetup.setup_speaker_volume">
+																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
-																		<select ng-model="microphonesetup.speaker_volume_beeper" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>Only keypad feedback</option>
-																			<option>All events</option>
-																			<option>Keypad feedback &amp; All events</option>
+																		<select ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-beeper']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																			<option value="off">Off all the time</option>
+																			<option value="keypad">Keypad Feedback Only</option>
+																			<option value="access">Access Evenets</option>
+																			<option value="keypad-access">Keypad feedback &amp; All events</option>
+																			<option value="all">All events</option>
 																		</select>
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="microphonesetup.setup_speaker_volume" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']" step="1" min="0" max="3" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -418,21 +422,21 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Microphone Sensitivity <small>(0-3, Default 2)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="microphonesetup.microphone_sensitivity_beeper">
+																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
-																		<select ng-model="microphonesetup.speaker_volume_beeper" chosen="{width: '100%'}">
-																			<option value="">Select</option>
-																			<option>Off all the time</option>
-																			<option>On all the time</option>
-																			<option>On when no sun</option>
-																			<option>On when sun, off if no battery</option>
+																		<select ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-beeper']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																			<option value="off">Off all the time</option>
+																			<option value="keypad">Keypad Feedback Only</option>
+																			<option value="access">Access Evenets</option>
+																			<option value="keypad-access">Keypad feedback &amp; All events</option>
+																			<option value="all">All events</option>
 																		</select>
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="microphonesetup.microphone_sensitivity_beeper" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']" step="1" min="0" max="3" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -440,11 +444,11 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button type="button" ng-click="setSpeakerMicrophone();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
 															</div>
 														</div>
-														</form>
+														<!--</form>-->
 													</div>
 													
 													<div class="tab-pane fade" id="gstab8">
@@ -453,8 +457,8 @@
 															<div class="form-group col-sm-5">
 																<label for="address1">Call Button</label>
 																<select chosen="{width: '100%'}">
-																	<option value="">Dial a phone number</option>
-																	<option value="">LCD enter button</option>
+																	<option value="call">Dial a phone number</option>
+																	<option value="enter">LCD enter button</option>
 																</select>
 															</div>
 															<div class="form-group col-sm-5">
@@ -534,29 +538,29 @@
 													
 													<div class="tab-pane fade" id="gstab9">
 														<h4><strong>Lockout Setup</strong></h4>
-														<form ng-submit="submitData('lockout-setup',lockout)">
+														<!--<form ng-submit="submitData('lockout-setup',lockout)">-->
 														<div class="row mt-20">
 															<div class="form-group col-sm-12">
 																<label for="">Lockout Items</label><br/>
 																<div class="row">
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="BLE" value="24x7" ng-model="lockout.ble" type="checkbox"><i></i> BLE
+																			<input name="BLE" ng-click="createLockoutModeArray('ble');" ng-checked="lockoutMode.indexOf('ble') > -1" value="ble" type="checkbox"><i></i> BLE
 																		</label>
 																	</div>
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="NFC" value="24x7" ng-model="lockout.nfc" type="checkbox"><i></i> NFC
+																			<input name="NFC" ng-click="createLockoutModeArray('nfc');" value="nfc" ng-checked="lockoutMode.indexOf('nfc') > -1" type="checkbox"><i></i> NFC
 																		</label>
 																	</div>
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="NFC" value="24x7" ng-model="lockout.rfid" type="checkbox"><i></i> RFID
+																			<input name="RFID" ng-click="createLockoutModeArray('rfid');" value="rfid" ng-checked="lockoutMode.indexOf('rfid') > -1" type="checkbox"><i></i> RFID
 																		</label>
 																	</div>
 																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
-																			<input name="NFC" value="24x7" ng-model="lockout.keypad" type="checkbox"><i></i> Keypad
+																			<input name="KEYPAD" ng-click="createLockoutModeArray('access-code');" value="access-code" ng-checked="lockoutMode.indexOf('access-code') > -1" type="checkbox"><i></i> Keypad
 																		</label>
 																	</div>
 																</div>
@@ -565,30 +569,30 @@
 														<div class="row">
 															<div class="form-group col-sm-6">
 																<label for="address1">Lockout Mode Max Tries <small>(3-10, Default 3)</small></label>
-																<input type="text" class="form-control" id="address1" ng-model="lockout.max_tries">
+																<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']">
 																<div class="form-group mt-40">
 																	<div layout>
-																		<md-slider flex class="md-primary" md-discrete ng-model="lockout.max_tries" step="1" min="3" max="10" aria-label="rating"></md-slider>
+																		<md-slider flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']" md-discrete step="1" min="3" max="10" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
 															<div class="form-group col-sm-6">
 																<label for="address1">Lockout Period <small>(10–600 seconds, Default 60)</small></label>
-																<input type="text" class="form-control" id="address1" ng-model="lockout.period">
+																<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']">
 																<div class="form-group mt-40">
 																	<div layout>
-																		<md-slider flex class="md-primary" md-discrete ng-model="lockout.period" step="1" min="10" max="600" aria-label="rating"></md-slider>
+																		<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']" step="1" min="10" max="600" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button type="button" ng-click="setLockoutMode();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
-														</form>
+														<!--</form>-->
 													</div>
 												</div>
 											</div>
@@ -596,7 +600,7 @@
 									</div>
 								</div>
 							</uib-tab>
-							<uib-tab heading="Advance Settings">
+							<uib-tab ng-click="getAdvancedSettings();" heading="Advance Settings">
 								<div class="wrap-reset"> 
 									<div class="profile-settings"> 
 										<div class="row">
@@ -620,13 +624,13 @@
 														<div class="row mt-20">
 															<div class="form-group col-sm-6">
 																<label for="address1">Master Code</label>
-																<input type="text" class="form-control" id="address1" value="">
+																<input type="text" ng-model="deviceAdvanceSettingModals.das_master_code['master-code']" class="form-control" id="address1">
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button ng-click="setMasterCode();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
 													</div>
@@ -636,33 +640,25 @@
 														<div class="row mt-20">
 															<div class="form-group col-sm-6">
 																<label for="address1">Real-Time Clock</label>
-																<select chosen="{width: '100%'}">
-																	<option value="">USA (Alaska)</option>
-																	<option value="">USA (Samoa)</option>
-																	<option value="">USA (Pacific)</option>
-																	<option value="">USA (Eastern)</option>
-																	<option value="">USA (Hawaii-Aleutian)</option>
-																	<option value="">USA (Mountain)</option>
-																	<option value="">USA (Atlantic)</option>
-																	<option value="">USA (Central)</option>
-																	<option value="">USA (Chamorro)</option>
+																<select mg-model="deviceAdvanceSettingModals.das_clock_setting['time-zone']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																	<option value="UTC">USA (Pacific)</option>
 																</select>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-sm-3">
-																<input type="text" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
+																<input type="text" ng-model="advanceClockSetting.date" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
 															</div>
 															<div class="form-group col-sm-3 validtime">
 																<span ng-controller="TimepickerDemoCtrl">
-																	<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																	<uib-timepicker ng-model="advanceClockSetting.time" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
 																</span>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button ng-click="setClockSettings();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
 													</div>
@@ -727,23 +723,18 @@
 														<div class="row mt-20">
 															<div class="form-group col-sm-6">
 																<label for="address1">Latch Code</label>
-																<input type="text" class="form-control" id="address1" value="">
+																<input type="text" ng-model="deviceAdvanceSettingModals.das_latch_code['latch-code']" class="form-control" id="address1">
 															</div>
 															<div class="form-group col-sm-6">
 																<label for="">Access Gates</label><br/>
-																<select Multiple chosen="{width: '100%'}">
-																	<option value="">Main Gate Front</option>
-																	<option value="">Main Gate Back</option>
-																	<option value="">Pedestrian Gate</option>
-																	<option value="">Parking Gate</option>
-																	<option value="">Pool Gate</option>
+																<select ng-model="deviceAdvanceSettingModals.das_latch_code['access-gates']" Multiple chosen="{width: '100%'}"  ng-options="item.door_id as item.door_name for item in doorListAdvanceSetting">
 																</select>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button ng-click="setLatchCode();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
 													</div>
@@ -755,11 +746,11 @@
 																<label for="address1">Real-Time Clock</label>
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<input type="text" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
+																		<input type="text" ng-model="advanceDiagRealTime.date" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask" ui-options="{alias: 'dd/mm/yyyy'}">
 																	</div>
 																	<div class="form-group col-sm-6 validtime">
 																		<span ng-controller="TimepickerDemoCtrl">
-																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			<uib-timepicker ng-model="advanceDiagRealTime.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
 																		</span>
 																	</div>
 																</div>
@@ -767,26 +758,26 @@
 																	<div class="form-group col-sm-6 validtime">
 																		<label for="">Start Time <small>(HH:MM)</small></label>
 																		<span ng-controller="TimepickerDemoCtrl">
-																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			<uib-timepicker ng-model="advanceDiagRealTime.startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
 																		</span>
 																	</div>
 																	<div class="form-group col-sm-6 validtime">
 																		<label for="">End Time <small>(HH:MM)</small></label>
 																		<span ng-controller="TimepickerDemoCtrl">
-																			<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+																			<uib-timepicker ng-model="advanceDiagRealTime.endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
 																		</span>
 																	</div>
 																</div>
 															</div>
 															<div class="form-group col-sm-6">
 																<label for="address1">Description/Details of the diagnostic event</label>
-																<textarea class="form-control" style="height:116px;" ></textarea>
+																<textarea  ng-model="deviceAdvanceSettingModals.das_diagonastic['description']" class="form-control" style="height:116px;" ></textarea>
 															</div>
 														</div>
 														<div class="row">
 															<div class="form-group col-md-12 legend">			
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+																<button ng-click="setDiagnostics();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
 															</div>
 														</div>
 													</div>
