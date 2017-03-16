@@ -12,7 +12,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<!--<p>{{page.subtitle}}</p>-->									
 								</div>
 							</div>
 						</div>
@@ -166,7 +166,7 @@
 													</div>-->
 													<div class="form-group col-sm-6 col-md-6 pl-0" ng-hide="editDevice.device_type=='master'">
 														<label for="">&nbsp;</label>
-														<select class="form-control" ng-options="item.device_id as item.device_name for item in deviceData track by item.device_id" ng-model="editDevice.device_master_id">
+														<select class="form-control" ng-options="item.device_id as item.device_name for item in masterDevices" ng-model="editDevice.device_master_id">
 															<option value="">Select Primary Device</option>
 														</select>
 													</div>

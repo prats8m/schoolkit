@@ -396,7 +396,6 @@ app
 		}
 		device.technician_id = parseInt(device.technician_id);
 		device.serial_no = parseInt(device.serial_no);
-		//device.facility_id = parseInt($rootScope.facilityId);
 		
 		$http(
 		{
@@ -436,7 +435,6 @@ app
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			
 			$http(
 			{
 				method: 'POST', 
@@ -450,12 +448,8 @@ app
 			})
 			.success(function(response){
 				if(response.status == true){
-					//$scope.result = 'Your device has been deleted successfully.';
-					//$scope.statusclass = 'alert alert-danger alert-dismissable';
 					toaster.pop('success','Your device has been deleted successfully.');
 				}else{
-					//$scope.result = response.msg.replace(/_/g,' ');
-					//$scope.statusclass = 'alert alert-danger alert-dismissable';
 					toaster.pop('error',response.msg.replace(/_/g,' '));
 				}
 			}).error(function(){
@@ -559,7 +553,6 @@ app
 					toaster.pop('error','Session Expired');
 					$cookies.remove("token");
 					$location.path('/core/login');
-					
 				}
 			}
 		}).error(function(){
@@ -672,7 +665,6 @@ app
 		$http(
 		{
 			method: 'GET', 
-			//url: baseURL+'device/list-slave-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&facilityId='+$rootScope.facilityId,
 			url: baseURL+'device/list-slave-of-master-device?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id,
 			dataType : 'JSON', 
 			headers: {
@@ -1002,7 +994,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler, baseURL, $location,arrayPushService) {
+  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler,baseURL, $location, arrayPushService) {
     $scope.page = {
 		title: 'Dependent Devices',
 		subtitle: 'So much more to see at a glance.'
@@ -1344,7 +1336,6 @@ app
 		.cancel('No')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			//$state.go('app.admin.device.devices');
 			$http(
 			{
 				method: 'POST', 
@@ -1366,8 +1357,6 @@ app
 			}).error(function(){
 
 			});
-			
-			
 		}, function() {
 			toaster.pop('info','You decided to keep device.');
 		});
@@ -1548,7 +1537,31 @@ app
 		.error(function(){
 
 		});
-	}	
+	}
+	
+	$scope.getmasterDevice = function(){
+		$http({
+			url: baseURL + 'device/list-master-device',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Content-type": "application/json",
+				'Authorization': $cookies.get("token")
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.masterDevices = response.data.data;
+				console.log($rootScope.masterDevices);
+			}else{
+				$rootScope.masterDevices = [];
+			}
+		})
+		.error(function(){
+
+		});
+	}
+	$scope.getmasterDevice();
 	
 	$scope.dashboardInit = function(){
 		$http({
