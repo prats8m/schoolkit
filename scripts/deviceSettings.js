@@ -154,8 +154,8 @@ app
         $scope.advanceDiagRealTime = {
             date: "",
             time: new Date(),
-            startTime:new Date(),
-            endTime:new Date()
+            startTime: new Date(),
+            endTime: new Date()
         }
         $scope.getAdvancedSettings = function () {
             $scope.commonGetAPIData.type = "adv";
@@ -171,16 +171,16 @@ app
                 .success(function (response) {
                     if (response.status == true) {
                         $scope.deviceAdvanceSettingModals = response.data;
-                        if(response.data.das_clock_setting['real-time-clock']!=0)
-                            $scope.advanceClockSetting.time = response.data.das_clock_setting['real-time-clock'];
+                        if (response.data.das_clock_setting['real-time-clock'] != 0)
+                            $scope.advanceClockSetting.time = new Date(response.data.das_clock_setting['real-time-clock'] * 1000);
                         $scope.advanceClockSetting.date = decodeTimeStamp($scope.advanceClockSetting.time);
-                        if(response.data.das_diagonastic['real-time-clock']!=0)
-                            $scope.advanceDiagRealTime.time = response.data.das_diagonastic['real-time-clock'];
+                        if (response.data.das_diagonastic['real-time-clock'] != 0)
+                            $scope.advanceDiagRealTime.time = new Date(response.data.das_diagonastic['real-time-clock'] * 1000);
                         $scope.advanceDiagRealTime.date = decodeTimeStamp($scope.advanceDiagRealTime.time);
-                        if(response.data.das_diagonastic['start-time']!=0)
-                            $scope.advanceDiagRealTime.startTime = response.data.das_diagonastic['start-time'];
-                        if(response.data.das_diagonastic['end-time']!=0)
-                            $scope.advanceDiagRealTime.endTime = response.data.das_diagonastic['end-time'];
+                        if (response.data.das_diagonastic['start-time'] != 0)
+                            $scope.advanceDiagRealTime.startTime = new Date(response.data.das_diagonastic['start-time'] * 1000);
+                        if (response.data.das_diagonastic['end-time'] != 0)
+                            $scope.advanceDiagRealTime.endTime = new Date(response.data.das_diagonastic['end-time'] * 1000);
                     } else {
 
                     }
@@ -196,7 +196,7 @@ app
             commonSetHTTPService($scope.commonSetAPIData, 'Master Code Configured successfully.');
         }
         var decodeTimeStamp = function (stamp) {
-            var temp = new Date(stamp*1000);
+            var temp = new Date(stamp * 1000);
             return temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear();
         }
         var createTimeStamp = function (appliedDate, appliedTime) {
@@ -213,7 +213,7 @@ app
             var time = createTimeStamp($scope.advanceClockSetting.date, $scope.advanceClockSetting.time);
             $scope.commonSetAPIData.module = "clock-settings";
             $scope.commonSetAPIData.type = "adv";
-            $scope.commonSetAPIData.value['real-time-clock'] = Math.floor(time/1000);
+            $scope.commonSetAPIData.value['real-time-clock'] = Math.floor(time / 1000);
             $scope.commonSetAPIData.value['time-zone'] = $scope.deviceAdvanceSettingModals.das_clock_setting['time-zone'];
             commonSetHTTPService($scope.commonSetAPIData, 'Clock Configured successfully.');
         };
@@ -249,10 +249,14 @@ app
             var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
             $scope.commonSetAPIData.module = "diagnostics";
             $scope.commonSetAPIData.type = "adv";
-            $scope.commonSetAPIData.value['real-time-clock'] = Math.floor(time/1000);
-            $scope.commonSetAPIData.value['start-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime())/1000);
-            $scope.commonSetAPIData.value['end-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime())/1000);
+            $scope.commonSetAPIData.value['real-time-clock'] = Math.floor(time / 1000);
+            $scope.commonSetAPIData.value['start-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime()) / 1000);
+            $scope.commonSetAPIData.value['end-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime()) / 1000);
             $scope.commonSetAPIData.value['description'] = $scope.deviceAdvanceSettingModals.das_diagonastic['description'];
             commonSetHTTPService($scope.commonSetAPIData, 'Diagnostics Configured successfully.');
         };
+
+        // $scope.restrictLimit = function (e,min,max) {
+        //         e.preventDefault();
+        // }
     });

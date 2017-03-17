@@ -318,11 +318,11 @@
 														<div class="row mt-20" ng-controller="mtSliderCtrl">
 															<div class="form-group col-sm-6 col-md-5 col-lg-3">
 																<label for="address1">Talk Time <small>(10–240 seconds, Default 30)</small></label>
-																<input type="text" class="form-control" id="" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']">
+																<input ng-keypress="$event.preventDefault();" type="number" min="10" max="240" class="form-control" id="" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']">
 															</div>
 															<div class="form-group mt-40 col-sm-12">
 																<div layout>
-																	<md-slider flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']" md-discrete ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
+																	<md-slider min="10" max="240" flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']" md-discrete ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
 																</div>
 															</div>
 														</div>
@@ -351,11 +351,11 @@
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']">
+																		<input ng-keypress="$event.preventDefault();" min="0" max="100" type="number" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -372,11 +372,11 @@
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']">
+																		<input type="number" ng-keypress="$event.preventDefault();" min="0" max="100" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -399,7 +399,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Speaker Volume <small>(0-3, Default 2)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']">
+																		<input min="0" max="3" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
@@ -413,7 +413,7 @@
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="3" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']" step="1" min="0" max="3" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -422,7 +422,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Microphone Sensitivity <small>(0-3, Default 2)</small></label>
-																		<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']">
+																		<input min="0" max="3" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
@@ -436,7 +436,7 @@
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']" step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="3" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']" step="1" min="0" max="3" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -569,19 +569,19 @@
 														<div class="row">
 															<div class="form-group col-sm-6">
 																<label for="address1">Lockout Mode Max Tries <small>(3-10, Default 3)</small></label>
-																<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']">
+																<input min="3" max="10" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']">
 																<div class="form-group mt-40">
 																	<div layout>
-																		<md-slider flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']" md-discrete step="1" min="3" max="10" aria-label="rating"></md-slider>
+																		<md-slider min="3" max="10" flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']" md-discrete step="1" min="3" max="10" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
 															<div class="form-group col-sm-6">
 																<label for="address1">Lockout Period <small>(10–600 seconds, Default 60)</small></label>
-																<input type="text" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']">
+																<input min="10" max="600" type="number" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']">
 																<div class="form-group mt-40">
 																	<div layout>
-																		<md-slider flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']" step="1" min="10" max="600" aria-label="rating"></md-slider>
+																		<md-slider min="10" max="600" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']" step="1" min="10" max="600" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
@@ -624,7 +624,7 @@
 														<div class="row mt-20">
 															<div class="form-group col-sm-6">
 																<label for="address1">Master Code</label>
-																<input type="text" ng-model="deviceAdvanceSettingModals.das_master_code['master-code']" class="form-control" id="address1">
+																<input type="number"  ng-keypress="$event.preventDefault();" ng-model="deviceAdvanceSettingModals.das_master_code['master-code']" class="form-control" id="address1">
 															</div>
 														</div>
 														<div class="row">
