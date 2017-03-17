@@ -96,7 +96,7 @@
 											<div class="col-sm-3 col-md-3 col-lg-2">
 												<ul class="tabs-menu">
 													<li class="active"><a href="#gstab1" native-tab>Access Granted Key</a></li>
-													<li><a href="#gstab2" native-tab>Relay &amp; Door Setup</a></li>
+													<li><a ng-click="getReplayDoorList();" href="#gstab2" native-tab>Relay &amp; Door Setup</a></li>
 													<li><a href="#gstab3" native-tab>Expansion Board</a></li>
 													<li><a href="#gstab4" native-tab>Camera Setup</a></li>
 													<li><a href="#gstab5" native-tab>Talk Time Setup</a></li>
@@ -128,44 +128,49 @@
 													</div>
 
 													<div class="tab-pane fade" id="gstab2">
-														<form ng-submit="submitRelayDoor(relays)">
-															<h4><strong>Relay &amp; Door Setup</strong> <small>(Relay strike time range from 500 to 4500 ms - default 1000 ms)</small></h4>
-															<div ng-repeat="relay in relays" class="row mt-20">
-																<div class="col-sm-11 pr-0">
-																	<div class="form-group row">
-																		<div class="col-sm-2 pr-0">
-																			<label for="address1">Relay {{$index + 1}}</label>
-																			<input type="text" class="form-control" ng-model="relay.strike_time" id="address1" value="1000">
-																		</div>
-																		<div class="col-sm-3 pr-0">
-																			<label for="">Door</label><br/>
-																			<select chosen="{width: '100%'}" ng-model="relay.drd_door_id" ng-options="x.door_id as x.door_name for x in doorList">
-																	
+														<!--<form ng-submit="submitRelayDoor(relays)">-->
+														<h4><strong>Relay &amp; Door Setup</strong> <small>(Relay strike time range from 500 to 4500 ms - default 1000 ms)</small></h4>
+														<div ng-repeat="relay in relayNDoorGenSetting" class="row mt-20">
+															<div class="col-sm-11 pr-0">
+																<div class="form-group row">
+																	<h3>Relay {{$index + 1}}</h3>
+																	<div class="col-sm-2 pr-0">
+																		<label for="address1">Strike Time {{$index + 1}}</label>
+																		<input type="text" class="form-control" ng-model="relay.strike_time" id="address1" value="1000">
+																	</div>
+																	<div class="col-sm-3 pr-0">
+																		<label for="">Door</label><br/>
+																		<select chosen="{width: '100%'}" ng-model="relay.drd_door_id" ng-options="x.door_id as x.door_name for x in doorListAdvanceSetting">
 																		</select>
+																	</div>
+																	<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">
+																		<div class="col-sm-5 pl-0" style="width:auto;">
+																			<label for="">Door Ajar</label><br/>
+																			<div class="btn-group btnrounded">
+																				<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="1">Active</label>
+																				<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="0">Inactive</label>
+																			</div>
 																		</div>
-																		<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">
-																			<div class="col-sm-5 pl-0" style="width:auto;">
-																				<label for="">Door Ajar</label><br/>
-																				<div class="btn-group btnrounded">
-																					<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="1">Active</label>
-																					<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="0">Inactive</label>
-																				</div>
-																			</div>
-																			<div class="col-sm-6 plr-0" ng-hide="relay.drd_status=='Inactive'">
-																				<label for="">&nbsp;</label><br/>
-																				<select chosen="{width: '100%'}">
-																				<option value="">Sound alarm using Beeper</option>
-																				<option value="">Call/Text technician</option>
-																				<option value="">Call/Text/Email Notification to owner</option>
-																				<option value="">Take a snapshot through camera</option>
-																				<option value="">Record a short video using camera</option>
+																		<div class="col-sm-6 plr-0">
+																			<label for="">Interface Type</label><br/>
+																			<select ng-model="relay.drd_interface" chosen="{width: '100%'}">
+																				<option value=0>Master Relay</option>
+																				<option value=1>RS485</option>
+																				<option value=2>Wiegand</option>
+																				<option value=3>Take a snapshot through camera</option>
+																				<option value=4>CAN</option>
 																			</select>
-																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
-														</form>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">
+																<button ng-click="setRelayDoorSetup();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+															</div>
+														</div>
+														<!--</form>-->
 													</div>
 
 													<div class="tab-pane fade" id="gstab3">

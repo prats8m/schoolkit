@@ -42,8 +42,6 @@ app
                 .success(function (response) {
                     if (response.status == true) {
                         toaster.pop('success', msg);
-                    } else {
-
                     }
                 }).error(function () {
 
@@ -265,4 +263,57 @@ app
             data.value['call-button'] = $scope.deviceGeneralSettingModals.dgs_call_button['call-button'];
             commonSetHTTPService(data, 'Call Button Setup Configured successfully.');
         };
+
+        $scope.getReplayDoorList = function () {
+            $http({
+                    url: baseURL + 'device/get-device-relay?device_id=' + $scope.device_id,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    headers: {
+                        "Authorization": $cookies.get("token"),
+                        "Content-type": "application/json"
+                    }
+                })
+                .success(function (response) {
+                    if (response.status == true) {
+                        $scope.relayNDoorGenSetting = response.data;
+                    } else {}
+                })
+                .error(function (data, status, headers, config) {
+
+                });
+        };
+
+        $scope.setRelayDoorSetup = function () {
+            var data = {
+                device_id: $scope.device_id,
+                relays: []
+            }
+            for (var i = 0; i < $scope.relayNDoorGenSetting.length; i++) {
+                var singleObject = {};
+                singleObject.relay = $scope.relayNDoorGenSetting[i].drd_relay;
+                singleObject.door_id = $scope.relayNDoorGenSetting[i].drd_door_id;
+                singleObject.status = $scope.relayNDoorGenSetting[i].drd_status;
+                singleObject.strike_time = $scope.relayNDoorGenSetting[i].strike_time;
+                data.relays.push(singleObject);
+            }
+            $http({
+                    url: baseURL + 'door/assign-device',
+                    method: 'PUT',
+                    dataType: 'JSON',
+                    data: data,
+                    headers: {
+                        "Authorization": $cookies.get("token"),
+                        "Content-type": "application/json"
+                    }
+                })
+                .success(function (response) {
+                    if (response.status == true) {
+                        toaster.pop('success', "Relay & Door Setup configured successfully");
+                    }
+                })
+                .error(function (data, status, headers, config) {
+
+                });
+        }
     });
