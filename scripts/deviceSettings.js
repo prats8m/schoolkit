@@ -18,12 +18,15 @@ app
             type: ""
         };
 
-        $scope.commonSetAPIData = {
-            device_id: $scope.device_id,
-            module: "",
-            type: "",
-            value: {}
-        };
+        function commonSetAPIDataObject() {
+           return {
+                device_id: $scope.device_id,
+                module: "",
+                type: "",
+                value: {}
+            };
+            // return commonSetAPIData;
+        }
 
         var commonSetHTTPService = function (data, msg) {
             $http({
@@ -72,59 +75,64 @@ app
         };
 
         $scope.setAccessGrantKey = function () {
-            $scope.commonSetAPIData.module = "access-grant-key";
-            $scope.commonSetAPIData.type = "gen";
-            $scope.commonSetAPIData.value["access-grant-key"] = $scope.grantAccessKey.value;
-            commonSetHTTPService($scope.commonSetAPIData, 'Access Granted key changed successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "access-grant-key";
+            data.type = "gen";
+            data.value["access-grant-key"] = $scope.grantAccessKey.value;
+            commonSetHTTPService(data, 'Access Granted key changed successfully.');
         };
 
         $scope.setCameraSettings = function () {
-            $scope.commonSetAPIData.module = "camera-setup";
-            $scope.commonSetAPIData.type = "gen";
-            $scope.commonSetAPIData.value["picture-snapshot-access"] = $scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access'];
-            $scope.commonSetAPIData.value["snapshot-status"] = $scope.deviceGeneralSettingModals.dgs_camera['snapshot-status'];
-            $scope.commonSetAPIData.value["video-recording-access"] = $scope.deviceGeneralSettingModals.dgs_camera['video-recording-access'];
-            $scope.commonSetAPIData.value["recording-status"] = $scope.deviceGeneralSettingModals.dgs_camera['recording-status'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Camera Configured successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "camera-setup";
+            data.type = "gen";
+            data.value["picture-snapshot-access"] = $scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access'];
+            data.value["snapshot-status"] = $scope.deviceGeneralSettingModals.dgs_camera['snapshot-status'];
+            data.value["video-recording-access"] = $scope.deviceGeneralSettingModals.dgs_camera['video-recording-access'];
+            data.value["recording-status"] = $scope.deviceGeneralSettingModals.dgs_camera['recording-status'];
+            commonSetHTTPService(data, 'Camera Configured successfully.');
         };
 
         $scope.setTalkTime = function () {
-            $scope.commonSetAPIData.module = "talk-time-setup";
-            $scope.commonSetAPIData.type = "gen";
-            $scope.commonSetAPIData.value["talk-time"] = $scope.deviceGeneralSettingModals.dgs_talk_time['talk-time'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Talk Time Configured successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "talk-time-setup";
+            data.type = "gen";
+            data.value["talk-time"] = $scope.deviceGeneralSettingModals.dgs_talk_time['talk-time'];
+            commonSetHTTPService(data, 'Talk Time Configured successfully.');
         };
 
         $scope.setLEDConfiguration = function () {
-            $scope.commonSetAPIData.module = "led-setup";
-            $scope.commonSetAPIData.type = "gen";
-            $scope.commonSetAPIData.value['led-setup'] = {
+            var data = new commonSetAPIDataObject();
+            data.module = "led-setup";
+            data.type = "gen";
+            data.value['led-setup'] = {
                 'led-key-setup': ""
             };
-            $scope.commonSetAPIData.value['led-setup'] = {
+            data.value['led-setup'] = {
                 'brightness': ""
             };
-            $scope.commonSetAPIData.value['courtsey-led-setup'] = {
+            data.value['courtsey-led-setup'] = {
                 'led-key-setup': ""
             };
-            $scope.commonSetAPIData.value['courtsey-led-setup'] = {
+            data.value['courtsey-led-setup'] = {
                 'brightness': ""
             };
-            $scope.commonSetAPIData.value['led-setup']['led-key-setup'] = $scope.deviceGeneralSettingModals.dgs_led['led-setup']['led-key-setup'];
-            $scope.commonSetAPIData.value['led-setup']['brightness'] = $scope.deviceGeneralSettingModals.dgs_led['led-setup']['brightness'];
-            $scope.commonSetAPIData.value['courtsey-led-setup']['led-key-setup'] = $scope.deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['led-key-setup'];
-            $scope.commonSetAPIData.value['courtsey-led-setup']['brightness'] = $scope.deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness'];
-            commonSetHTTPService($scope.commonSetAPIData, 'LED Configured successfully.');
+            data.value['led-setup']['led-key-setup'] = $scope.deviceGeneralSettingModals.dgs_led['led-setup']['led-key-setup'];
+            data.value['led-setup']['brightness'] = $scope.deviceGeneralSettingModals.dgs_led['led-setup']['brightness'];
+            data.value['courtsey-led-setup']['led-key-setup'] = $scope.deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['led-key-setup'];
+            data.value['courtsey-led-setup']['brightness'] = $scope.deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness'];
+            commonSetHTTPService(data, 'LED Configured successfully.');
         };
 
         $scope.setSpeakerMicrophone = function () {
-            $scope.commonSetAPIData.module = "speaker-microphone-setup";
-            $scope.commonSetAPIData.type = "gen";
-            $scope.commonSetAPIData.value['speaker-beeper'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-beeper'];
-            $scope.commonSetAPIData.value['microphone-beeper'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-beeper'];
-            $scope.commonSetAPIData.value['speaker-volume'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-volume'];
-            $scope.commonSetAPIData.value['microphone-sensitivity'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Speaker and Microphone configured successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "speaker-microphone-setup";
+            data.type = "gen";
+            data.value['speaker-beeper'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-beeper'];
+            data.value['microphone-beeper'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-beeper'];
+            data.value['speaker-volume'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-volume'];
+            data.value['microphone-sensitivity'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity'];
+            commonSetHTTPService(data, 'Speaker and Microphone configured successfully.');
         };
 
         $scope.createLockoutModeArray = function (data) {
@@ -139,12 +147,13 @@ app
         };
 
         $scope.setLockoutMode = function () {
-            $scope.commonSetAPIData.module = "lockout-setup";
-            $scope.commonSetAPIData.type = "gen";
-            $scope.commonSetAPIData.value['lockout-mode'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'];
-            $scope.commonSetAPIData.value['max-tries'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['max-tries'];
-            $scope.commonSetAPIData.value['lockout-period'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-period'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Lockout Mode Configured successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "lockout-setup";
+            data.type = "gen";
+            data.value['lockout-mode'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'];
+            data.value['max-tries'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['max-tries'];
+            data.value['lockout-period'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-period'];
+            commonSetHTTPService(data, 'Lockout Mode Configured successfully.');
         };
 
         $scope.advanceClockSetting = {
@@ -190,10 +199,11 @@ app
         };
 
         $scope.setMasterCode = function () {
-            $scope.commonSetAPIData.module = "master-code";
-            $scope.commonSetAPIData.type = "adv";
-            $scope.commonSetAPIData.value['master-code'] = $scope.deviceAdvanceSettingModals.das_master_code['master-code'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Master Code Configured successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "master-code";
+            data.type = "adv";
+            data.value['master-code'] = $scope.deviceAdvanceSettingModals.das_master_code['master-code'];
+            commonSetHTTPService(data, 'Master Code Configured successfully.');
         }
         var decodeTimeStamp = function (stamp) {
             var temp = new Date(stamp * 1000);
@@ -210,12 +220,13 @@ app
             return time = time.setFullYear(parseInt(year));
         };
         $scope.setClockSettings = function () {
+            var data = new commonSetAPIDataObject();
             var time = createTimeStamp($scope.advanceClockSetting.date, $scope.advanceClockSetting.time);
-            $scope.commonSetAPIData.module = "clock-settings";
-            $scope.commonSetAPIData.type = "adv";
-            $scope.commonSetAPIData.value['real-time-clock'] = Math.floor(time / 1000);
-            $scope.commonSetAPIData.value['time-zone'] = $scope.deviceAdvanceSettingModals.das_clock_setting['time-zone'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Clock Configured successfully.');
+            data.module = "clock-settings";
+            data.type = "adv";
+            data.value['real-time-clock'] = Math.floor(time / 1000);
+            data.value['time-zone'] = $scope.deviceAdvanceSettingModals.das_clock_setting['time-zone'];
+            commonSetHTTPService(data, 'Clock Configured successfully.');
         };
 
         $scope.getDoorListAdvanceSetting = function () {
@@ -239,21 +250,23 @@ app
         };
 
         $scope.setLatchCode = function () {
-            $scope.commonSetAPIData.module = "latch-code";
-            $scope.commonSetAPIData.type = "adv";
-            $scope.commonSetAPIData.value['latch-code'] = $scope.deviceAdvanceSettingModals.das_latch_code['latch-code']
-            $scope.commonSetAPIData.value['access-gates'] = $scope.deviceAdvanceSettingModals.das_latch_code['access-gates'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Clock Configured successfully.');
+            var data = new commonSetAPIDataObject();
+            data.module = "latch-code";
+            data.type = "adv";
+            data.value['latch-code'] = $scope.deviceAdvanceSettingModals.das_latch_code['latch-code']
+            data.value['access-gates'] = $scope.deviceAdvanceSettingModals.das_latch_code['access-gates'];
+            commonSetHTTPService(data, 'Clock Configured successfully.');
         };
         $scope.setDiagnostics = function () {
+            var data = new commonSetAPIDataObject();
             var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
-            $scope.commonSetAPIData.module = "diagnostics";
-            $scope.commonSetAPIData.type = "adv";
-            $scope.commonSetAPIData.value['real-time-clock'] = Math.floor(time / 1000);
-            $scope.commonSetAPIData.value['start-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime()) / 1000);
-            $scope.commonSetAPIData.value['end-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime()) / 1000);
-            $scope.commonSetAPIData.value['description'] = $scope.deviceAdvanceSettingModals.das_diagonastic['description'];
-            commonSetHTTPService($scope.commonSetAPIData, 'Diagnostics Configured successfully.');
+            data.module = "diagnostics";
+            data.type = "adv";
+            data.value['real-time-clock'] = Math.floor(time / 1000);
+            data.value['start-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime()) / 1000);
+            data.value['end-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime()) / 1000);
+            data.value['description'] = $scope.deviceAdvanceSettingModals.das_diagonastic['description'];
+            commonSetHTTPService(data, 'Diagnostics Configured successfully.');
         };
 
         // $scope.restrictLimit = function (e,min,max) {
