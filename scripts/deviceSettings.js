@@ -19,7 +19,7 @@ app
         };
 
         function commonSetAPIDataObject() {
-           return {
+            return {
                 device_id: $scope.device_id,
                 module: "",
                 type: "",
@@ -105,18 +105,6 @@ app
             var data = new commonSetAPIDataObject();
             data.module = "led-setup";
             data.type = "gen";
-            // data.value['led-setup'] = {
-            //     'led-key-setup': ""
-            // };
-            // data.value['led-setup'] = {
-            //     'brightness': ""
-            // };
-            // data.value['courtesy-led-setup'] = {
-            //     'led-key-setup': ""
-            // };
-            // data.value['courtesy-led-setup'] = {
-            //     'brightness': ""
-            // };
             data.value['keypad-setup'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-setup'];
             data.value['keypad-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-brightness'];
             data.value['courtesy-light-setup'] = $scope.deviceGeneralSettingModals.dgs_led['courtesy-light-setup'];
@@ -269,4 +257,12 @@ app
             commonSetHTTPService(data, 'Diagnostics Configured successfully.');
         };
 
+        $scope.setCallButtonSetup = function () {
+            var data = new commonSetAPIDataObject();
+            var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
+            data.module = "call-button-setup";
+            data.type = "gen";
+            data.value['call-button'] = $scope.deviceGeneralSettingModals.dgs_call_button['call-button'];
+            commonSetHTTPService(data, 'Call Button Setup Configured successfully.');
+        };
     });
