@@ -343,7 +343,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">LED Keypad Setup</label><br/>
-																		<select ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['led-key-setup']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																		<select ng-model="deviceGeneralSettingModals.dgs_led['keypad-setup']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
 																			<option value="off">Off all the time</option>
 																			<option value="on">On all the time</option>
 																			<option value="off-daylight">Off in day light</option>
@@ -351,11 +351,11 @@
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input ng-keypress="$event.preventDefault();" min="0" max="100" type="number" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']">
+																		<input ng-keypress="$event.preventDefault();" min="0" max="100" type="number" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['keypad-brightness']">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['keypad-brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -364,7 +364,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Courtesy Light Setup</label><br/>
-																		<select ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['led-key-setup']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
+																		<select ng-model="deviceGeneralSettingModals.dgs_led['courtesy-light-setup']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
 																			<option value="off">Off all the time</option>
 																			<option value="on">On all the time</option>
 																			<option value="off-daylight">Off in day light</option>
@@ -372,11 +372,11 @@
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="address1">Brightness <small>(0-100, Default 70)</small></label>
-																		<input type="number" ng-keypress="$event.preventDefault();" min="0" max="100" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']">
+																		<input type="number" ng-keypress="$event.preventDefault();" min="0" max="100" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_led['courtesy-brightness']">
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['courtesy-brightness']" step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -624,7 +624,7 @@
 														<div class="row mt-20">
 															<div class="form-group col-sm-6">
 																<label for="address1">Master Code</label>
-																<input type="number"  ng-keypress="$event.preventDefault();" ng-model="deviceAdvanceSettingModals.das_master_code['master-code']" class="form-control" id="address1">
+																<input type="number"  ng-model="deviceAdvanceSettingModals.das_master_code['master-code']" class="form-control" id="address1">
 															</div>
 														</div>
 														<div class="row">

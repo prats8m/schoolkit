@@ -105,22 +105,22 @@ app
             var data = new commonSetAPIDataObject();
             data.module = "led-setup";
             data.type = "gen";
-            data.value['led-setup'] = {
-                'led-key-setup': ""
-            };
-            data.value['led-setup'] = {
-                'brightness': ""
-            };
-            data.value['courtsey-led-setup'] = {
-                'led-key-setup': ""
-            };
-            data.value['courtsey-led-setup'] = {
-                'brightness': ""
-            };
-            data.value['led-setup']['led-key-setup'] = $scope.deviceGeneralSettingModals.dgs_led['led-setup']['led-key-setup'];
-            data.value['led-setup']['brightness'] = $scope.deviceGeneralSettingModals.dgs_led['led-setup']['brightness'];
-            data.value['courtsey-led-setup']['led-key-setup'] = $scope.deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['led-key-setup'];
-            data.value['courtsey-led-setup']['brightness'] = $scope.deviceGeneralSettingModals.dgs_led['courtsey-led-setup']['brightness'];
+            // data.value['led-setup'] = {
+            //     'led-key-setup': ""
+            // };
+            // data.value['led-setup'] = {
+            //     'brightness': ""
+            // };
+            // data.value['courtesy-led-setup'] = {
+            //     'led-key-setup': ""
+            // };
+            // data.value['courtesy-led-setup'] = {
+            //     'brightness': ""
+            // };
+            data.value['keypad-setup'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-setup'];
+            data.value['keypad-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-brightness'];
+            data.value['courtesy-light-setup'] = $scope.deviceGeneralSettingModals.dgs_led['courtesy-light-setup'];
+            data.value['courtesy-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['courtesy-brightness'];
             commonSetHTTPService(data, 'LED Configured successfully.');
         };
 
@@ -148,7 +148,7 @@ app
 
         $scope.setLockoutMode = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "lockout-setup";
+            data.module = "lockout";
             data.type = "gen";
             data.value['lockout-mode'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'];
             data.value['max-tries'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['max-tries'];
@@ -269,7 +269,4 @@ app
             commonSetHTTPService(data, 'Diagnostics Configured successfully.');
         };
 
-        // $scope.restrictLimit = function (e,min,max) {
-        //         e.preventDefault();
-        // }
     });
