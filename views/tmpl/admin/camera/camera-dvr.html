@@ -168,7 +168,7 @@
 															</script>
 															<a ng-click="open()" uib-tooltip="Updates the current camera group" ng-if="!isaddCameraGroup"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
 														</div>
-														<a href="" ng-click="showConfirm($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														<a href="" ng-if="!isaddCameraGroup && selectedCameraGroup" ng-click="showConfirm($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 														<a href="" uib-tooltip="Makes the current camera group the default camera group"><i class="fa fa-home" aria-hidden="true"></i></a>
 													</div>
 												</div>
@@ -194,9 +194,10 @@
 																<!--<option value="">Select Facility</option>-->
 															<!--</select>-->
 														<!--</div>-->
+
 															<div class="col-sm-12 col-md-6 ta-r">
-															<select class="form-control" ng-model="selectedCameraGroup" ng-change="UpdateCamerasBasedOnCameraGroup(selectedCameraGroup)" ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
-																<option value="">Select the camera group</option>
+															<select id="cameraGroupDD" class="form-control" ng-model="selectedCameraGroup" ng-change="UpdateCamerasBasedOnCameraGroup(selectedCameraGroup)" ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
+																<option value="" disabled>Select the camera group</option>
 
 															</select>
 														</div>

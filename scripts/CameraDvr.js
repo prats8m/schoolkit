@@ -15,6 +15,7 @@ app
 		name: 'Add Camera group'
 		};
 
+      $rootScope.cameraidsToCreateGroup=[];
   $scope.dashboardInit = function(){ 
 	$http({
 		url: baseURL + 'user/dashboard',   
@@ -58,8 +59,23 @@ app
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Camera group has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+            $scope.deleteCameraGroup($scope.selectedCameraGroup,function (isDeleted) {
+                if(isDeleted){
+                    $scope.getfacilites('','','',function (lstfacilities,lstCameraGroup) {
+                        $scope.selectedCameraGroup=null;
+                        setTimeout(function () {
+                            $('#cameraGroupDD').val('')
+                        },1000)
+                        $scope.result = 'Camera group has been deleted successfully.';
+                        $scope.statusclass = 'alert alert-danger alert-dismissable';
+                    });
+                }
+                else {
+                    $scope.result = 'Unable to delete Camera Group.';
+                    $scope.statusclass = 'alert alert-danger alert-dismissable';
+                }
+            })
+
 		}, function() {
 			$scope.result = 'You decided to keep camera group.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
@@ -172,8 +188,12 @@ app
 	$scope.cameraInit();
 
 
+
 	$scope.UpdateCamerasBasedOnCameraGroup=function (selectedCameraGroup) {
+
 		if(selectedCameraGroup){
+            $scope.result = '';
+            $scope.statusclass = '';
 			$scope.selectedCameraGroup=selectedCameraGroup;
             var camerasForSelectedGroup=[];
 			camerasForSelectedGroup=$scope.cameraGroupList.filter(function (obj) {
@@ -202,6 +222,7 @@ app
                             $rootScope.cameraidsToCreateGroup.push(sortedCamArr[i].camera_id);
                         }
                     }
+
 
                     switch (filteredCams.length) {
                         case 1:
@@ -240,7 +261,15 @@ app
 	$scope.setTotalVideosToWatch=function (camLayoutType,startIndex,endIndex) {
         $scope.filteredCamerasToShow=[];
         $rootScope.cameraidsToCreateGroup=[];
-        $scope.selectedCameraGroup='';
+        $scope.selectedCameraGroup=null;
+
+            setTimeout(function () {
+                        $('#cameraGroupDD').val('')
+            },1000)
+
+
+        $scope.result = '';
+        $scope.statusclass = '';
 		var sortedCamArr=$filter('orderBy')($scope.cameras, 'camera_id');
 		if(sortedCamArr && sortedCamArr.length>0){
                     for(var i=startIndex;i<=endIndex;i++){
@@ -259,15 +288,7 @@ app
 
 		};
 
-      $scope.updatedIndexForCameraDropDownForFourCam=0;
-	$scope.updateLatestIndexForFourCam=function (index) {
-		$scope.updatedIndexForCameraDropDownForFourCam=index;
-    }
 
-      $scope.updatedIndexForCameraDropDownForSixCam=0;
-      $scope.updateLatestIndexForSixCam=function (index) {
-          $scope.updatedIndexForCameraDropDownForSixCam=index;
-      }
       $scope.generateLayoutForCamDisplay = function() {
       	var layoutIcons=[1,2,4,6];
 
@@ -318,14 +339,13 @@ app
             }
 		  }
 
-
-
               $scope.setTotalVideosToWatch(1,1,1);
 
 
       }
+
       $scope.selectedCameraGroup=null;
-      $scope.getCameraGroups=function () {
+      $scope.getCameraGroups=function (cb) {
           $scope.cameraGroupList=[];
           $http.get(baseURL+'cameragroup/list',
               {headers: {
@@ -340,17 +360,18 @@ app
                   }
                   else if(resp.status==true && resp.data){
                       $scope.cameraGroupList=resp.data;
+                      cb($scope.cameraGroupList);
 
                   }
 
               })
               .error(function (error) {
-
+                  cb([]);
               })
       };
 
 	$scope.selectedFacility=null;
-	$scope.getfacilites=function (srchitem,limit,pageNo) {
+	$scope.getfacilites=function (srchitem,limit,pageNo,cb) {
         $scope.facilityList=[];
 		$http.get(baseURL+'facility/list?search_val='+srchitem+'&limit='+limit+'&pageNo='+pageNo,
 			{headers: {
@@ -365,12 +386,16 @@ app
                 }
 				else if(resp.status==true && resp.data){
                     $scope.facilityList=resp.data.data;
-                    $scope.getCameraGroups();
+                    $scope.getCameraGroups(function (lstCameraGroup) {
+                        cb($scope.facilityList,lstCameraGroup);
+                    });
 				}
 
             })
 			.error(function (error) {
-                $scope.getCameraGroups();
+                $scope.getCameraGroups(function (lstCameraGroup) {
+                    cb($scope.facilityList,lstCameraGroup);
+                });
             })
     };
 
@@ -384,18 +409,51 @@ app
 			for(var i=0;i<$scope.filteredCamerasToShow.length;i++){
 				if($scope.filteredCamerasToShow[i].camera_id==existingCamID){
                     $scope.filteredCamerasToShow.splice(i,1,selectedCam[0]);
+
+                    for(var j=0;j<$rootScope.cameraidsToCreateGroup.length;j++){
+                        if($rootScope.cameraidsToCreateGroup[j]==existingCamID){
+                            $rootScope.cameraidsToCreateGroup.splice(j,1,selectedCam[0].camera_id);
+                         break;
+                        }
+                    }
+
                     setTimeout(function () {
                         callPlayer(selectedCam[0].camera_id,selectedCam[0].vedio_url);
                     },2000);
                     break;
 				}
 			}
-
-
 		}
     }
 
-	$scope.getfacilites('','','');
+
+      $scope.deleteCameraGroup=function (cg_id,cb) {
+          $http.get(baseURL+'cameragroup/delete?cameragroup_id='+cg_id,
+              {headers: {
+                  "Authorization": $cookies.get("token"),
+                  "Content-type": "application/json"
+              }})
+              .success(function (resp) {
+                  if(resp.msg == 'Invalid_Token'){
+                      toaster.pop('error','Session Expired');
+                      $cookies.remove("token");
+                      $location.path('/core/login');return false;
+                      cb(resp.status);
+                  }
+                  else{
+                    cb(resp.status);
+                  }
+
+              })
+              .error(function (error) {
+                  cb(false);
+              })
+      };
+
+
+      $scope.getfacilites('','','',function (lstfacilities,lstCameragroup) {
+
+      });
 
 	$scope.imagePath = 'http://localhost/elika/images';
 })
@@ -404,7 +462,7 @@ app
 
 //........Add Camera Group Controllers Modal.....................
 
-.controller('addCameraGroupCTRL', function ($scope, $uibModal, $log, $rootScope,baseURL,$http,$cookies,toaster) {
+.controller('addCameraGroupCTRL', function ($scope, $uibModal, $log, $rootScope,baseURL,$http,$cookies,toaster,$filter) {
 
     $scope.cam1group={
         group_name:'',
@@ -427,6 +485,64 @@ app
             .success(function(response) {
                 if(response.status == true){
                     toaster.pop('success','Camera Group Created');
+
+                    $scope.getfacilites('','','',function (lstfacilities,lstCameragroup) {
+
+                        var newAddedCameraGroup=[];
+                        newAddedCameraGroup=lstCameragroup.filter(function (obj) {
+                            return (obj.cg_name===$scope.cam1group.group_name)
+                        })
+                        if($scope.cam1group){
+
+                                $scope.selectedCameraGroup=newAddedCameraGroup[0].cg_id;
+
+                            if($scope.cameraGroupList){
+                                setTimeout(function () {
+                                    for(var i=0;i<$scope.cameraGroupList.length;i++){
+                                        if($scope.cameraGroupList[i].cg_id==$scope.selectedCameraGroup){
+                                            $('#cameraGroupDD').val($scope.selectedCameraGroup)
+                                            break;
+                                        }
+                                    }
+                                },1000)
+                            }
+
+
+                            switch ($scope.cam1group.camera_id.length){
+                                    case 1:
+                                        $scope.changedClass();
+                                        break;
+                                    case 2:
+                                        $scope.changecClass();
+                                        break;
+                                    case 3:
+                                    case 4:
+                                        $scope.changebClass();
+                                        break;
+                                    case 5:
+                                    case 6:
+                                        $scope.changeaClass();
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+
+                        }
+                        $scope.cam1group={
+                            group_name:'',
+                            camera_id:[]
+                        };
+                    });
+
+
+                }
+                else {
+                    toaster.pop('error','Unable to create Camera Group');
+                    $scope.cam1group={
+                        group_name:'',
+                        camera_id:[]
+                    };
                 }
                 if(response.msg == 'Invalid_Token'){
                     toaster.pop('error','Session Expired');
@@ -434,40 +550,20 @@ app
                     $location.path('/core/login');return false;
                     $location.path('/core/login');return false;
                 }
-                $scope.cam1group={
-                    group_name:'',
-                    camera_id:[]
-                };
-                $scope.getfacilites('','','');
-                if($scope.cam1group){
-                    switch ($scope.cam1group.length){
-                        case 1:
-                        	$scope.changedClass();
-                            break;
-                        case 2:
-                            $scope.changecClass();
-                            break;
-                        case 4:
-                            $scope.changebClass();
-                            break;
-                        case 6:
-                            $scope.changeaClass();
-                            break;
-                        default:
-                            break;
-                    }
-				}
+
+
 
             })
             .error(function (data, status, headers, config) {
-                $scope.getfacilites('','','');
+                $scope.getfacilites('','','',function (lstfacilities,lstCameragroup) {
+                    
+                });
 			});
     }
 
     $scope.open = function(size) {
 
         $scope.cam1group.camera_id=angular.copy($rootScope.cameraidsToCreateGroup);
-        $rootScope.cameraidsToCreateGroup=[];
         var modalInstance = $uibModal.open({
             templateUrl: 'addCameraGroupUI.html',
             controller: 'addCameraGroupCTRLInstance',
