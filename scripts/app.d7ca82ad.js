@@ -582,7 +582,7 @@ var app = angular
 		
 		.state('app.admin.device.device-settings', {
 		  url: '/device-settings/:device_id',
-		  controller: 'DeviceSettingsCtrl',
+		  controller: 'DeviceSettingController',
 		  templateUrl: 'views/tmpl/admin/device/device-settings.html'
 		})
 		
