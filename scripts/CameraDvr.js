@@ -66,6 +66,7 @@ app
                         setTimeout(function () {
                             $('#cameraGroupDD').val('')
                         },1000)
+
                         $scope.result = 'Camera group has been deleted successfully.';
                         $scope.statusclass = 'alert alert-danger alert-dismissable';
                     });
