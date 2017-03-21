@@ -1143,7 +1143,7 @@ app
 		}
 
 		device.technician_id = parseInt(device.technician_id);
-		device.serial_no = parseInt(device.serial_no);
+		//device.serial_no = parseInt(device.serial_no);
 		//device.facility_id = parseInt($rootScope.facilityId);
 
 		$http({
