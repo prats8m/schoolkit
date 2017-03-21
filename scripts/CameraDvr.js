@@ -50,8 +50,29 @@ app
 	}
 
 
+      $scope.checkIfCreateCameraGroupValidAnchor=function (ev) {
+          if(!$scope.isaddCameraGroup){
+              $scope.showConfirm(ev);
+              return true;
+          }
+          else{
+              return false;
+          }
+      }
+
+	$scope.checkIfDeleteCameraGroupValidAnchor=function (ev) {
+        if(!$scope.isaddCameraGroup && $scope.selectedCameraGroup){
+            $scope.showConfirm(ev);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 	$scope.result = '';
     $scope.showConfirm = function(ev) {
+
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete camera group?')
 		.content('')
@@ -246,9 +267,9 @@ app
 
                     setTimeout(function () {
                         for(var camInd=0;camInd<$scope.filteredCamerasToShow.length;camInd++){
-                            callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url);
+                            callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url,$scope.layout);
                         }
-                    },2000);
+                    },1000);
 				}
 			}
 		}
@@ -282,9 +303,9 @@ app
 
         setTimeout(function () {
             for(var camInd=0;camInd<$scope.filteredCamerasToShow.length;camInd++){
-                callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url);
+                callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url,$scope.layout);
             }
-		},2000);
+		},1000);
 
 
 		};
@@ -419,8 +440,8 @@ app
                     }
 
                     setTimeout(function () {
-                        callPlayer(selectedCam[0].camera_id,selectedCam[0].vedio_url);
-                    },2000);
+                        callPlayer(selectedCam[0].camera_id,selectedCam[0].vedio_url,$scope.layout);
+                    },1000);
                     break;
 				}
 			}
@@ -450,6 +471,11 @@ app
                   cb(false);
               })
       };
+
+
+	$scope.startRecording=function (cameraID) {
+        toaster.pop('Oops !! ','Recording is not working yet for Camera ID : '+cameraID);
+    };
 
 
       $scope.getfacilites('','','',function (lstfacilities,lstCameragroup) {

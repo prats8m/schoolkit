@@ -143,10 +143,10 @@
 
 													</div>
 												</div>
-												 <div class="col-sm-4 col-md-4">
+												 <div class="col-sm-4 col-md-6">
 													<div class="gridlistbar ta-c">
 														<a href="" uib-tooltip="Refreshes the connections"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-														<a href="" uib-tooltip="Clears Live Feed"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+														<!--<a href="" uib-tooltip="Clears Live Feed"><i class="fa fa-eraser" aria-hidden="true"></i></a>-->
 														<div ng-controller="addCameraGroupCTRL" style="display: inline-block; cursor: pointer;">
 															<script type="text/ng-template" id="addCameraGroupUI.html">
 																<form name="form1" role="form">
@@ -166,9 +166,9 @@
 																	</div>
 																</form>		
 															</script>
-															<a ng-click="open()" uib-tooltip="Updates the current camera group" ng-if="!isaddCameraGroup"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+															<a ng-click="!isaddCameraGroup?open():false" uib-tooltip="Updates the current camera group" ng-class="{disabledAnchor: $scope.isaddCameraGroup}"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
 														</div>
-														<a href="" ng-if="!isaddCameraGroup && selectedCameraGroup" ng-click="showConfirm($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														<a href="" ng-class="{disabledAnchor: !$scope.isaddCameraGroup && $scope.selectedCameraGroup}" ng-click="checkIfDeleteCameraGroupValidAnchor($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 														<a href="" uib-tooltip="Makes the current camera group the default camera group"><i class="fa fa-home" aria-hidden="true"></i></a>
 													</div>
 												</div>
@@ -186,7 +186,7 @@
 													<!--</div>-->
 													<!--<button ng-click="showcamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" editable-text="user.name" ng-disabled="isaddCameraGroup">{{ camgroup.name || 'empty' }}</button>-->
 												<!--</div>-->
-												<div class="col-sm-2 col-md-4 pull-right">
+												<div class="col-sm-2 col-md-3 pull-right">
 													<div class="row gridlistbar">
 														<!--<div class="col-sm-12 col-md-6">-->
 
@@ -195,9 +195,9 @@
 															<!--</select>-->
 														<!--</div>-->
 
-															<div class="col-sm-12 col-md-6 ta-r">
+															<div class="ta-r">
 															<select id="cameraGroupDD" class="form-control" ng-model="selectedCameraGroup" ng-change="UpdateCamerasBasedOnCameraGroup(selectedCameraGroup)" ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
-																<option value="" disabled>Select the camera group</option>
+																<option value="">Select the camera group</option>
 
 															</select>
 														</div>
@@ -231,6 +231,9 @@
 															<div class="content-absolute">
 																<div id="{{'vxg_media1'+camera.camera_id}}" class="content">
 																</div>
+															</div>
+															<div id="controls" ng-click="startRecording(camera.camera_id)">
+																<button class="recording"><i class="fa fa-circle"></i> Recording</button>
 															</div>
 
 														</div>
@@ -502,18 +505,39 @@
 <script>
 	// Chrome 1+
 
-	function callPlayer(cameraID,videoUrl){
+	function callPlayer(cameraID,videoUrl,layoutType){
         var isChrome = !!window.chrome && !!window.chrome.webstore;
+        var height='480px';
+        switch (layoutType){
+			case 'onecam':
+                height='480px';
+				break;
+            case 'twocam':
+            case 'fourcam':
+                height='350px';
+                break;
+            case 'sixcam':
+                height='222px';
+                break;
+			default:
+			    break;
+		}
         setTimeout(function () {
             vxgplayer('vxg_media_player1'+cameraID).onReadyStateChange(function (onreadyState) {
                 console.log("player LOADED: versionPLG=" + vxgplayer('vxg_media_player1'+cameraID).versionPLG() + " versionAPP=" +
                     vxgplayer('vxg_media_player1'+cameraID).versionAPP());
                 vxgplayer('vxg_media_player1'+cameraID).play();
+
+                 document.getElementById("vxg_media_player1"+cameraID).setAttribute("style","height:"+height);
             });
             vxgplayer('vxg_media_player1'+cameraID).onError(function (onErr) {
                 console.log("player ERROR: " + vxgplayer('vxg_media_player1'+cameraID).error());
+
+
+
+                document.getElementById("vxg_media_player1"+cameraID).setAttribute("style","height:"+height);
             });
-        }, 2000);
+        }, 1500);
         // Blink engine detection
         var isBlink = (isChrome || isOpera) && !!window.CSS;
 
@@ -521,16 +545,35 @@
             document.getElementById("vxg_media1"+cameraID).innerHTML =
                 "<embed id='player' type='application/x-vlc-plugin' class='lv_player'  name='player' target='rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4'   autoplay='yes'   loop='yes' toolbar=false  width='100%' height='480' />";
 
-            document.getElementById("player").setAttribute("target", videoUrl);
-            document.getElementById("player").setAttribute("id", "player"+cameraID);
-
+            	document.getElementById("player").setAttribute("target", videoUrl);
+                //document.getElementById("player").setAttribute("target", "rtsp://ss1c6.idc.mundu.tv:554/prf0/cid_29.sdp");
+                document.getElementById("player").setAttribute("id", "player"+cameraID);
 
         } else {
-            document.getElementById("vxg_media1"+cameraID).innerHTML =
-                '<div id="vxg_media_player1" class="vxgplayer" url="rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency="3000000" autostart controls avsync></div>';
 
-            document.getElementById("vxg_media_player1").setAttribute("url", videoUrl);
-            document.getElementById("vxg_media_player1").setAttribute("id", "vxg_media_player1"+cameraID);
+            //.........delete existing player......................
+            // search all vxgplayers
+            var els = document.getElementsByClassName("vxgplayer");
+            for (var i = 0; i < els.length; i++) {
+                if(els[i].id && els[i].id==="vxg_media_player1"+cameraID){
+                    vxgplayer("vxg_media_player1"+cameraID).dispose();
+                    break;
+                }else{
+                    console.error("Player has not id", els[i]);
+                }
+            }
+
+            setTimeout(function () {
+                document.getElementById("vxg_media1"+cameraID).innerHTML =
+                    '<div id="vxg_media_player1" class="vxgplayer" url="rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency="3000000" autostart controls avsync></div>';
+
+            		document.getElementById("vxg_media_player1").setAttribute("url", videoUrl);
+                    //document.getElementById("vxg_media_player1").setAttribute("url", "rtsp://ss1c6.idc.mundu.tv:554/prf0/cid_29.sdp");
+                    document.getElementById("vxg_media_player1").setAttribute("id", "vxg_media_player1"+cameraID);
+
+            },1000);
+
+
 
         }
 

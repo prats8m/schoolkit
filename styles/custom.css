@@ -1253,6 +1253,20 @@ video {
 	text-indent: -2px;
 }
 
+#boundary #controls button.recording {
+	right: 15px;
+	bottom: 15px;
+	width: 100px;
+	height: 42px;
+	background: rgba(0, 0, 0, 0.75);
+	border-radius: 21px;
+	transform: rotate(0deg);
+	font-size: 14px;
+	color: #ff8c8c;
+	text-indent: 0;
+	border: 1px solid #fff;
+}
+
 #boundary #controls #change.widthinc button.play {
 	text-indent: 0px;
 }
@@ -2001,6 +2015,10 @@ span.error {
 	margin-left: 0px!important;
 }
 
+#camerandvr .sixgrid .livevideo #boundary {
+	height: 222px;
+}
+
 #camerandvr .sixgrid .livevideo:nth-child(3n+2) {
 	margin-left: 20px!important;
 	margin-right: 20px;
@@ -2009,14 +2027,23 @@ span.error {
 #camerandvr .fourgrid .livevideo,
 #camerandvr .twogrid .livevideo {
 	width: 49.20%;
-	height: 383px;
+	height: 392px;
+}
+
+#camerandvr .fourgrid .livevideo #boundary,
+#camerandvr .twogrid .livevideo #boundary {
+	height: 350px;
 }
 
 #camerandvr .onegrid .livevideo {
-	width: 60%;
+	width: 750px;
 	float: none;
 	margin: 0 auto;
 	display: none;
+}
+
+#camerandvr .onegrid .livevideo #boundary {
+	height: 480px;
 }
 
 #camerandvr .selectcam {
@@ -2427,8 +2454,8 @@ input.ng-invalid-required.error {
 		width: 72%;
 		margin-bottom: 15px;
 	}
-	.onegrid #boundary #vstage {
-		height: 721px;
+	.onegrid #boundary #vstage{
+		height: 721px!important;
 	}
 	#camerandvr .fourgrid .livevideo,
 	#camerandvr .twogrid .livevideo {
@@ -2436,15 +2463,15 @@ input.ng-invalid-required.error {
 		height: 540px;
 	}
 	.twogrid #boundary #vstage,
-	.fourgrid #boundary #vstage {
-		height: 492px;
+	.fourgrid #boundary #vstage{
+		height: 492px!important;
 	}
 	#camerandvr .sixgrid .livevideo {
 		width: 32.60%;
-		height: 372px;
+		height: 372px
 	}
-	.sixgrid #boundary #vstage {
-		height: 324px;
+	.sixgrid #boundary #vstage{
+		height: 324px!important;
 	}
 	.page-dashboard .tcol a {
 		padding: 10px 0;
@@ -3091,7 +3118,6 @@ input.ng-invalid-required.error {
 	font-weight: 100;
 }
 
-.vxgplayer{
-	width: 97% !important; 
-	height: 480px !important;
+.disabledAnchor {
+	cursor: not-allowed;
 }
