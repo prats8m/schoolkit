@@ -2,7 +2,7 @@ window.vxgplayer = function(id, options){
 	window.vxgplayer.version="1.8.2"; //version is updated by 'npm run build'
 	window.vxgplayer.players = window.vxgplayer.players || {};
 	if(!document.getElementById(id)){
-		console.error(" Player with " + id + " did not found");
+		//console.error(" Player with " + id + " did not found");  //If player not found
 		return undefined;
 	}
 

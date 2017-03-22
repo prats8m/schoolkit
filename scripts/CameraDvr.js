@@ -50,15 +50,6 @@ app
 	}
 
 
-      $scope.checkIfCreateCameraGroupValidAnchor=function (ev) {
-          if(!$scope.isaddCameraGroup){
-              $scope.showConfirm(ev);
-              return true;
-          }
-          else{
-              return false;
-          }
-      }
 
 	$scope.checkIfDeleteCameraGroupValidAnchor=function (ev) {
         if(!$scope.isaddCameraGroup && $scope.selectedCameraGroup){
@@ -265,6 +256,7 @@ app
 
                     }
 
+                    $scope.resetAllMediaPlayers();
                     setTimeout(function () {
                         for(var camInd=0;camInd<$scope.filteredCamerasToShow.length;camInd++){
                             callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url,$scope.layout);
@@ -283,11 +275,15 @@ app
 	$scope.setTotalVideosToWatch=function (camLayoutType,startIndex,endIndex) {
         $scope.filteredCamerasToShow=[];
         $rootScope.cameraidsToCreateGroup=[];
-        $scope.selectedCameraGroup=null;
 
+        if($scope.selectedCameraGroup || $('#cameraGroupDD').val()!=''){
+
+            $scope.selectedCameraGroup=null;
             setTimeout(function () {
-                        $('#cameraGroupDD').val('')
+                $('#cameraGroupDD').val('')
             },1000)
+        }
+
 
 
         $scope.result = '';
@@ -301,6 +297,9 @@ app
 
 		}
 
+
+
+        $scope.resetAllMediaPlayers();
         setTimeout(function () {
             for(var camInd=0;camInd<$scope.filteredCamerasToShow.length;camInd++){
                 callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url,$scope.layout);
@@ -472,6 +471,18 @@ app
               })
       };
 
+
+	$scope.resetAllMediaPlayers=function () {
+        //.........delete existing player......................
+        // search all vxgplayers
+        for (var i = 0; i < $scope.cameras.length; i++) {
+            if($scope.cameras[i].camera_id && vxgplayer("vxg_media_player1"+$scope.cameras[i].camera_id)){
+                vxgplayer("vxg_media_player1"+$scope.cameras[i].camera_id).dispose();
+            }else{
+                //console.error("Player has not id while delete", els[i]);
+            }
+        }
+    }
 
 	$scope.startRecording=function (cameraID) {
         toaster.pop('Oops !! ','Recording is not working yet for Camera ID : '+cameraID);

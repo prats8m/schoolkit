@@ -4,8 +4,7 @@
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/CameraDvr.js" afterPath="$PROJECT_DIR$/scripts/CameraDvr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/config.js" afterPath="$PROJECT_DIR$/scripts/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/custom.css" afterPath="$PROJECT_DIR$/styles/custom.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/vxgplayer.js" afterPath="$PROJECT_DIR$/scripts/vxgplayer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,18 +26,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="323">
               <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -47,8 +36,8 @@
       <file leaf-file-name="camera-dvr.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="540" column="33" lean-forward="true" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
+            <state relative-caret-position="333">
+              <caret line="539" column="13" lean-forward="false" selection-start-line="539" selection-start-column="13" selection-end-line="539" selection-end-column="13" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
@@ -57,21 +46,36 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="vxgplayer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="692" column="43" lean-forward="true" selection-start-line="692" selection-start-column="43" selection-end-line="692" selection-end-column="43" />
+              <folding>
+                <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
+                <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
+                <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
+                <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/custom.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="53040">
               <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraDvr.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CameraDvr.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+            <state relative-caret-position="126">
+              <caret line="471" column="8" lean-forward="true" selection-start-line="471" selection-start-column="8" selection-end-line="471" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -81,36 +85,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selectedCameraGroup</find>
-      <find>deleteCameraGroup</find>
-      <find>$scope.selectedCameraGroup=null;</find>
-      <find>deletecam</find>
-      <find>callPlayer</find>
-      <find>vs</find>
-      <find>vxg_media_player1</find>
-      <find>onReadyStateChange</find>
-      <find>lv_player</find>
-      <find>boundary</find>
-      <find>ready</find>
-      <find>v</find>
-      <find>vxgplayer</find>
-      <find>vxgplayer(</find>
-      <find>dispo</find>
-      <find>vxg</find>
-      <find>delete</find>
-      <find>play</find>
-      <find>play</find>
-      <find>play =</find>
-      <find>self.play</find>
       <find>sixgrid</find>
       <find>settime</find>
-      <find>cameras</find>
       <find>settimeout</find>
       <find>disabled</find>
       <find>disabledAnchor</find>
       <find>add cam</find>
       <find>showc</find>
       <find>select the camera</find>
+      <find>checkIf</find>
+      <find>checkIfCreateCameraGroupValidAnchor</find>
+      <find>checkIfDeleteCameraGroupValidAnchor</find>
+      <find>delete</find>
+      <find>getfacilites</find>
+      <find>getCameraGroups</find>
+      <find>deleteCameraGroup</find>
+      <find>deletecame</find>
+      <find>$('#cameraGroupDD').val('')</find>
+      <find>setTimeout</find>
+      <find>deleteC</find>
+      <find>setto</find>
+      <find>camera_</find>
+      <find>cameras</find>
+      <find>dispo</find>
+      <find>call</find>
+      <find>boundry</find>
+      <find>did not found</find>
+      <find>settim</find>
+      <find>callpl</find>
+      <find>callp</find>
+      <find>resetAllMediaPlayers</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -119,11 +123,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scripts/vxgplayer.js" />
         <option value="$PROJECT_DIR$/styles/custom.css" />
+        <option value="$PROJECT_DIR$/scripts/config.js" />
+        <option value="$PROJECT_DIR$/scripts/vxgplayer.js" />
         <option value="$PROJECT_DIR$/scripts/CameraDvr.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" />
-        <option value="$PROJECT_DIR$/scripts/config.js" />
       </list>
     </option>
   </component>
@@ -153,8 +157,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -277,6 +279,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -367,12 +371,13 @@
       <option name="presentableId" value="Default" />
       <updated>1489984693169</updated>
       <workItem from="1489984694930" duration="20699000" />
-      <workItem from="1490070431781" duration="20108000" />
+      <workItem from="1490070431781" duration="26731000" />
+      <workItem from="1490157304895" duration="4389000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40807000" />
+    <option name="totallyTimeSpent" value="51819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -381,7 +386,6 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2496329" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1488" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -393,6 +397,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1488" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -433,11 +438,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
+            <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
+            <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
+            <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53040">
+          <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="41" lean-forward="true" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -462,7 +514,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="323">
           <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
           <folding />
         </state>
@@ -479,7 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="244" column="0" lean-forward="true" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -487,43 +538,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="229662" column="2371" lean-forward="false" selection-start-line="229662" selection-start-column="2371" selection-end-line="229662" selection-end-column="2371" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="485" column="43" lean-forward="true" selection-start-line="485" selection-start-column="43" selection-end-line="485" selection-end-column="43" />
-          <folding>
-            <marker date="1489753981923" expanded="true" signature="3530:3551" ph="..." />
-            <marker date="1489753981923" expanded="true" signature="3604:3617" ph="..." />
-            <marker date="1489753981923" expanded="true" signature="3670:3683" ph="..." />
-            <marker date="1489753981923" expanded="true" signature="4047:4060" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/custom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="53040">
           <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
+    <entry file="file://$PROJECT_DIR$/scripts/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="34">
+          <caret line="2" column="75" lean-forward="true" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="268" column="0" lean-forward="false" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="540" column="33" lean-forward="true" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
+        <state relative-caret-position="333">
+          <caret line="539" column="13" lean-forward="false" selection-start-line="539" selection-start-column="13" selection-end-line="539" selection-end-column="13" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
@@ -531,10 +574,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/config.js">
+    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+        <state relative-caret-position="207">
+          <caret line="692" column="43" lean-forward="true" selection-start-line="692" selection-start-column="43" selection-end-line="692" selection-end-column="43" />
+          <folding>
+            <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
+            <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
+            <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
+            <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="471" column="8" lean-forward="true" selection-start-line="471" selection-start-column="8" selection-end-line="471" selection-end-column="8" />
           <folding />
         </state>
       </provider>
