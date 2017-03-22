@@ -3121,3 +3121,7 @@ input.ng-invalid-required.error {
 .disabledAnchor {
 	cursor: not-allowed;
 }
+
+.singlePlayer{
+	height:480px;
+}

@@ -143,19 +143,21 @@
 
 													</div>
 												</div>
-												 <div class="col-sm-4 col-md-6">
+												<div class="col-sm-4 col-md-6">
 													<div class="gridlistbar ta-c">
 														<a href="" uib-tooltip="Refreshes the connections"><i class="fa fa-refresh" aria-hidden="true"></i></a>
 														<!--<a href="" uib-tooltip="Clears Live Feed"><i class="fa fa-eraser" aria-hidden="true"></i></a>-->
 														<div ng-controller="addCameraGroupCTRL" style="display: inline-block; cursor: pointer;">
 															<script type="text/ng-template" id="addCameraGroupUI.html">
 																<form name="form1" role="form">
-																	<div class="modal-header"><h4 class="modal-title custom-font">Create a new camera group</h4></div>
+																	<div class="modal-header">
+																		<h4 class="modal-title custom-font">Create a new camera group</h4>
+																	</div>
 																	<div class="modal-body mt-5">
 																		<div class="form-group row">
 																			<div class="col-sm-12 col-md-12">
 																				<label for="">Camera Group Name</label>
-																				<input type="text" name="" id="" class="form-control" placeholder="" ng-model="cameraGroupName" >
+																				<input type="text" name="" id="" class="form-control" placeholder="" ng-model="cameraGroupName">
 																				<!--<input type="hidden" ng-model="camera_ids" name="">-->
 																			</div>
 																		</div>
@@ -164,39 +166,41 @@
 																		<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
 																		<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="ok()"><i class="fa fa-arrow-right"></i> Ok</button>
 																	</div>
-																</form>		
+																</form>
 															</script>
 															<a ng-click="!isaddCameraGroup?open():false" uib-tooltip="Updates the current camera group" ng-class="{disabledAnchor: $scope.isaddCameraGroup}"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
 														</div>
-														<a href="" ng-class="{disabledAnchor: !$scope.isaddCameraGroup && $scope.selectedCameraGroup}" ng-click="checkIfDeleteCameraGroupValidAnchor($event)" uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														<a href="" ng-class="{disabledAnchor: !$scope.isaddCameraGroup && $scope.selectedCameraGroup}" ng-click="checkIfDeleteCameraGroupValidAnchor($event)"
+														 uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 														<a href="" uib-tooltip="Makes the current camera group the default camera group"><i class="fa fa-home" aria-hidden="true"></i></a>
 													</div>
 												</div>
 												<!--<div class="col-sm-4 col-md-5 gridlistbar ta-r">{{cam_group.camera_id}}-->
-													<!--<div style="width: 60%;display: none;margin-right: 10px;" id="camform">-->
-														<!--<form ng-submit="addCameraGroup()" name="cam_group">-->
-															<!--<input type="hidden" ng-model="cam1group.camera_id" name="">-->
-															<!--<input type="text" class="form-control" name="group_name" ng-model="cam1group.group_name" style="display: inline-block; width: 70%;"-->
-															    <!--value="ew">-->
+												<!--<div style="width: 60%;display: none;margin-right: 10px;" id="camform">-->
+												<!--<form ng-submit="addCameraGroup()" name="cam_group">-->
+												<!--<input type="hidden" ng-model="cam1group.camera_id" name="">-->
+												<!--<input type="text" class="form-control" name="group_name" ng-model="cam1group.group_name" style="display: inline-block; width: 70%;"-->
+												<!--value="ew">-->
 
-															<!--<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" title="Submit" aria-label="Submit"><i class="fa fa-check" aria-hidden="true"></i></button>-->
-															<!--<button type="button" ng-click="hidecamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" title="Cancel"-->
-															    <!--aria-label="Cancel"><i class="fa fa-times" aria-hidden="true"></i></button>-->
-														<!--</form>-->
-													<!--</div>-->
-													<!--<button ng-click="showcamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" editable-text="user.name" ng-disabled="isaddCameraGroup">{{ camgroup.name || 'empty' }}</button>-->
+												<!--<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" title="Submit" aria-label="Submit"><i class="fa fa-check" aria-hidden="true"></i></button>-->
+												<!--<button type="button" ng-click="hidecamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" title="Cancel"-->
+												<!--aria-label="Cancel"><i class="fa fa-times" aria-hidden="true"></i></button>-->
+												<!--</form>-->
+												<!--</div>-->
+												<!--<button ng-click="showcamadd()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" editable-text="user.name" ng-disabled="isaddCameraGroup">{{ camgroup.name || 'empty' }}</button>-->
 												<!--</div>-->
 												<div class="col-sm-2 col-md-3 pull-right">
 													<div class="row gridlistbar">
 														<!--<div class="col-sm-12 col-md-6">-->
 
-															<!--<select class="form-control" ng-model="selectedFacility" ng-change="cameraInit('Facility Name',selectedFacility)" ng-options="facility.facility_id as facility.facility_name for facility in facilityList track by facility.facility_id">-->
-																<!--<option value="">Select Facility</option>-->
-															<!--</select>-->
+														<!--<select class="form-control" ng-model="selectedFacility" ng-change="cameraInit('Facility Name',selectedFacility)" ng-options="facility.facility_id as facility.facility_name for facility in facilityList track by facility.facility_id">-->
+														<!--<option value="">Select Facility</option>-->
+														<!--</select>-->
 														<!--</div>-->
 
-															<div class="ta-r">
-															<select id="cameraGroupDD" class="form-control" ng-model="selectedCameraGroup" ng-change="UpdateCamerasBasedOnCameraGroup(selectedCameraGroup)" ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
+														<div class="ta-r">
+															<select id="cameraGroupDD" class="form-control" ng-model="selectedCameraGroup" ng-change="UpdateCamerasBasedOnCameraGroup(selectedCameraGroup)"
+															 ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
 																<option value="">Select the camera group</option>
 
 															</select>
@@ -210,128 +214,126 @@
 												</div>
 											</div>
 											<div ng-class="class">
-												<div class="livevideo" ng-repeat="camera in filteredCamerasToShow">
-													<div class="selectcam">
+												<div class="livevideo" ng-class="filteredCamerasToShow.length<=1? 'singlePlayer' : ''" ng-repeat=" camera in filteredCamerasToShow ">
+													<div class="selectcam ">
 														{{camera.camera_username}}
-
-
-														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li ng-repeat="cam in cameras">
-																	<a href="" ng-click="swapCameraWithExisting(camera.camera_id,cam.camera_id)">{{cam.camera_username}}</a>
+														<label class="control-label pull-right " uib-dropdown on-toggle="toggled(open) ">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down " aria-hidden="true "></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight ">
+																<li ng-repeat="cam in cameras ">
+																	<a href=" " ng-click="swapCameraWithExisting(camera.camera_id,cam.camera_id) ">{{cam.camera_username}}</a>
 																</li>
 
 															</ul>
 														</label>
 													</div>
-													<div class="video">
-														<div id="boundary">
+													<div class="video ">
+														<div id="boundary ">
 
-															<div class="content-absolute">
-																<div id="{{'vxg_media1'+camera.camera_id}}" class="content">
+															<div class="content-absolute ">
+																<div id="{{ 'vxg_media1'+camera.camera_id}} " class="content ">
 																</div>
 															</div>
-															<div id="controls" ng-click="startRecording(camera.camera_id)">
-																<button class="recording"><i class="fa fa-circle"></i> Recording</button>
-															</div>
+															<!--<div id="controls " ng-click="startRecording(camera.camera_id) ">
+																<button class="recording "><i class="fa fa-circle "></i> Recording</button>
+															</div>-->
 
 														</div>
 													</div>
 
 												</div>
-												<!-- <div class="livevideo">
-													<div class="selectcam">
+												<!-- <div class="livevideo ">
+													<div class="selectcam ">
 														No Camera Selected
-														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="">Camera 1</a></li>
-																<li><a href="">Camera 2</a></li>
-																<li><a href="">Camera 3</a></li>
-																<li><a href="">Camera 4</a></li>
-																<li><a href="">Camera 5</a></li>
-																<li><a href="">Camera 6</a></li>
+														<label class="control-label pull-right " uib-dropdown on-toggle="toggled(open) ">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down " aria-hidden="true "></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight ">
+																<li><a href=" ">Camera 1</a></li>
+																<li><a href=" ">Camera 2</a></li>
+																<li><a href=" ">Camera 3</a></li>
+																<li><a href=" ">Camera 4</a></li>
+																<li><a href=" ">Camera 5</a></li>
+																<li><a href=" ">Camera 6</a></li>
 															</ul>
 														</label>
 													</div>
-													<div class="video">
+													<div class="video ">
 														
 													</div>
 												</div>
-												<div class="livevideo">
-													<div class="selectcam">
+												<div class="livevideo ">
+													<div class="selectcam ">
 														No Camera Selected
-														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="">Camera 1</a></li>
-																<li><a href="">Camera 2</a></li>
-																<li><a href="">Camera 3</a></li>
-																<li><a href="">Camera 4</a></li>
-																<li><a href="">Camera 5</a></li>
-																<li><a href="">Camera 6</a></li>
+														<label class="control-label pull-right " uib-dropdown on-toggle="toggled(open) ">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down " aria-hidden="true "></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight ">
+																<li><a href=" ">Camera 1</a></li>
+																<li><a href=" ">Camera 2</a></li>
+																<li><a href=" ">Camera 3</a></li>
+																<li><a href=" ">Camera 4</a></li>
+																<li><a href=" ">Camera 5</a></li>
+																<li><a href=" ">Camera 6</a></li>
 															</ul>
 														</label>
 													</div>
-													<div class="video">
+													<div class="video ">
 														
 													</div>
 												</div>
-												<div class="livevideo">
-													<div class="selectcam">
+												<div class="livevideo ">
+													<div class="selectcam ">
 														No Camera Selected
-														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="">Camera 1</a></li>
-																<li><a href="">Camera 2</a></li>
-																<li><a href="">Camera 3</a></li>
-																<li><a href="">Camera 4</a></li>
-																<li><a href="">Camera 5</a></li>
-																<li><a href="">Camera 6</a></li>
+														<label class="control-label pull-right " uib-dropdown on-toggle="toggled(open) ">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down " aria-hidden="true "></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight ">
+																<li><a href=" ">Camera 1</a></li>
+																<li><a href=" ">Camera 2</a></li>
+																<li><a href=" ">Camera 3</a></li>
+																<li><a href=" ">Camera 4</a></li>
+																<li><a href=" ">Camera 5</a></li>
+																<li><a href=" ">Camera 6</a></li>
 															</ul>
 														</label>
 													</div>
-													<div class="video">
+													<div class="video ">
 														
 													</div>
 												</div>
-												<div class="livevideo">
-													<div class="selectcam">
+												<div class="livevideo ">
+													<div class="selectcam ">
 														No Camera Selected
-														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="">Camera 1</a></li>
-																<li><a href="">Camera 2</a></li>
-																<li><a href="">Camera 3</a></li>
-																<li><a href="">Camera 4</a></li>
-																<li><a href="">Camera 5</a></li>
-																<li><a href="">Camera 6</a></li>
+														<label class="control-label pull-right " uib-dropdown on-toggle="toggled(open) ">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down " aria-hidden="true "></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight ">
+																<li><a href=" ">Camera 1</a></li>
+																<li><a href=" ">Camera 2</a></li>
+																<li><a href=" ">Camera 3</a></li>
+																<li><a href=" ">Camera 4</a></li>
+																<li><a href=" ">Camera 5</a></li>
+																<li><a href=" ">Camera 6</a></li>
 															</ul>
 														</label>
 													</div>
-													<div class="video">
+													<div class="video ">
 														
 													</div>
 												</div>
-												<div class="livevideo">
-													<div class="selectcam">
+												<div class="livevideo ">
+													<div class="selectcam ">
 														No Camera Selected
-														<label class="control-label pull-right" uib-dropdown on-toggle="toggled(open)">
-															<a href uib-dropdown-toggle><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
-																<li><a href="">Camera 1</a></li>
-																<li><a href="">Camera 2</a></li>
-																<li><a href="">Camera 3</a></li>
-																<li><a href="">Camera 4</a></li>
-																<li><a href="">Camera 5</a></li>
-																<li><a href="">Camera 6</a></li>
+														<label class="control-label pull-right " uib-dropdown on-toggle="toggled(open) ">
+															<a href uib-dropdown-toggle><i class="fa fa-caret-down " aria-hidden="true "></i></a>
+															<ul class="dropdown-menu with-arrow animated littleFadeInRight ">
+																<li><a href=" ">Camera 1</a></li>
+																<li><a href=" ">Camera 2</a></li>
+																<li><a href=" ">Camera 3</a></li>
+																<li><a href=" ">Camera 4</a></li>
+																<li><a href=" ">Camera 5</a></li>
+																<li><a href=" ">Camera 6</a></li>
 															</ul>
 														</label>
 													</div>
-													<div class="video">
+													<div class="video ">
 														
 													</div>
 												</div> -->
@@ -339,14 +341,14 @@
 										</div>
 									</div>
 								</uib-tab>
-								 <uib-tab heading="Recorded Feeds">
-									<div class="wrap-reset">
-										<div class="profile-settings">
-											<div class="row">
-												<div class="col-sm-12 col-md-9 col-centered">
-													<div class="col-sm-3 col-md-3">
-														<label for="">Facility</label><br/>
-														<select class="form-control" disabled>
+								<uib-tab heading="Recorded Feeds ">
+									<div class="wrap-reset ">
+										<div class="profile-settings ">
+											<div class="row ">
+												<div class="col-sm-12 col-md-9 col-centered ">
+													<div class="col-sm-3 col-md-3 ">
+														<label for=" ">Facility</label><br/>
+														<select class="form-control " disabled>
 															<option selected>USA Corporate Services</option>
 															<option>Aerzen USA Corporation</option>
 															<option>Aerzen USA Corporation</option>
@@ -355,137 +357,137 @@
 															<option>Aerzen USA Corporation</option>
 														</select>
 													</div>
-													<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
-														<label for="">Date</label>
-														<div class="input-group">
-															<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-															<span class="input-group-btn">
-																<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+													<div class="col-sm-3 col-md-3 " ng-controller="DatepickerDemoCtrl ">
+														<label for=" ">Date</label>
+														<div class="input-group ">
+															<input type="text " class="form-control " uib-datepicker-popup="{{format}} " ng-model="dt " is-open="opened
+												 " datepicker-options="dateOptions "
+															    ng-required="true " close-text="Close " />
+															<span class="input-group-btn ">
+																<button type="button " class="btn btn-default " ng-click="open($event) " style="padding: 8px 14px;
+												 "><i class="glyphicon glyphicon-calendar "></i></button>
 															</span>
 														</div>
 													</div>
-													<div class="col-sm-3 col-md-3 validtime">
-														<label for="">Time <small>(Includes 10 min before & after)</small></label>
-														<span ng-controller="TimepickerDemoCtrl">
-															<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+													<div class="col-sm-3 col-md-3 validtime ">
+														<label for=" ">Time <small>(Includes 10 min before & after)</small></label>
+														<span ng-controller="TimepickerDemoCtrl ">
+															<uib-timepicker ng-model="mytime " ng-change="changed() " hour-step="hstep " minute-step="mstep
+												 " show-meridian="ismeridian "></uib-timepicker>
 														</span>
 													</div>
-													<div class="col-sm-3 col-md-3 validtime" ng-init="searchSection='reset'">
-														<label for="">&nbsp;</label><br/>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-model="searchSection" ng-click="searchSection = 'search'">Search</button>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="searchSection = 'reset'">Reset</button>
+													<div class="col-sm-3 col-md-3 validtime " ng-init="searchSection='reset' ">
+														<label for=" ">&nbsp;</label><br/>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a " ng-model="searchSection
+												 " ng-click="searchSection='search' ">Search</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a " ng-click="searchSection='reset' ">Reset</button>
 													</div>
 												</div>
 											</div>
-											<div class="row searchvideoitems" ng-init="searchSection = 'reset'">
-												<div class="col-md-12" ng-hide="searchSection == 'reset'">
-													<div class="row">
-														<div class="col-md-4">
-															<ul class="tabs-menu">
-																<li class="searchitems active">
-																	<a href="#gstab1" native-tab>
+											<div class="row searchvideoitems " ng-init="searchSection='reset' ">
+												<div class="col-md-12 " ng-hide="searchSection=='reset' ">
+													<div class="row ">
+														<div class="col-md-4 ">
+															<ul class="tabs-menu ">
+																<li class="searchitems active ">
+																	<a href="#gstab1 " native-tab>
 																		Main Entrance Camera
 																		<small>Front Entrance (Bethesda)</small>
 																	</a>
 																</li>
-																<li class="searchitems">
-																	<a href="#gstab2" native-tab>
+																<li class="searchitems ">
+																	<a href="#gstab2 " native-tab>
 																		Entrance to Hall
 																	</a>
 																</li>
-																<li class="searchitems">
-																	<a href="#gstab3" native-tab>
+																<li class="searchitems ">
+																	<a href="#gstab3 " native-tab>
 																		Klva and Smart
 																		<small>01/01 General Entrance</small>
 																	</a>
 																</li>
-																<li class="searchitems">
-																	<a href="#gstab4" native-tab>
+																<li class="searchitems ">
+																	<a href="#gstab4 " native-tab>
 																		Lobby Area
 																	</a>
 																</li>
-																<li class="searchitems">
-																	<a href="#gstab5" native-tab>
+																<li class="searchitems ">
+																	<a href="#gstab5 " native-tab>
 																		Lobby Entrance
 																		<small>South Lobby Entrance</small>
 																	</a>
 																</li>
 															</ul>
 														</div>
-														<div class="col-md-8">
-															<div class="tab-content">
-																<div class="livevideo tab-pane fade in active" id="gstab1">
-																	<div class="selectcam">
+														<!--<div class="col-md-8 ">
+															<div class="tab-content ">
+																<div class="livevideo tab-pane fade in active " id="gstab1 ">
+																	<div class="selectcam ">
 																		Main Entrance Camera <small>Front Entrance (Bethesda)</small>
 																	</div>
-																	<div class="video">
+																	<div class="video ">
 																		<video controls>
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
-																			Your browser does not support HTML5 video.
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4 " type="video/mp4 ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg " type="video/ogg ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm " type="video/webm "> Your browser does not support HTML5 video.
 																		</video>
 																	</div>
 																</div>
 
-																<div class="livevideo tab-pane fade" id="gstab2">
-																	<div class="selectcam">
+																<div class="livevideo tab-pane fade " id="gstab2 ">
+																	<div class="selectcam ">
 																		Entrance to Hall
 																	</div>
-																	<div class="video">
+																	<div class="video ">
 																		<video controls>
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
-																			Your browser does not support HTML5 video.
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4 " type="video/mp4 ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg " type="video/ogg ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm " type="video/webm "> Your browser does not support HTML5 video.
 																		</video>
 																	</div>
 																</div>
 
-																<div class="livevideo tab-pane fade" id="gstab3">
-																	<div class="selectcam">
+																<div class="livevideo tab-pane fade " id="gstab3 ">
+																	<div class="selectcam ">
 																		Klva and Smart <small>01/01 General Entrance</small>
 																	</div>
-																	<div class="video">
+																	<div class="video ">
 																		<video controls>
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
-																			Your browser does not support HTML5 video.
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4 " type="video/mp4 ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg " type="video/ogg ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm " type="video/webm "> Your browser does not support HTML5 video.
 																		</video>
 																	</div>
 																</div>
 
-																<div class="livevideo tab-pane fade" id="gstab4">
-																	<div class="selectcam">
+																<div class="livevideo tab-pane fade " id="gstab4 ">
+																	<div class="selectcam ">
 																		Lobby Area
 																	</div>
-																	<div class="video">
+																	<div class="video ">
 																		<video controls>
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
-																			Your browser does not support HTML5 video.
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4 " type="video/mp4 ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg " type="video/ogg ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm " type="video/webm "> Your browser does not support HTML5 video.
 																		</video>
 																	</div>
 																</div>
 
-																<div class="livevideo tab-pane fade" id="gstab5">
-																	<div class="selectcam">
+																<div class="livevideo tab-pane fade " id="gstab5 ">
+																	<div class="selectcam ">
 																		Lobby Entrance <small>South Lobby Entrance</small>
 																	</div>
-																	<div class="video">
+																	<div class="video ">
 																		<video controls>
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4" type="video/mp4">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg" type="video/ogg">
-																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm" type="video/webm">
-																			Your browser does not support HTML5 video.
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.mp4 " type="video/mp4 ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.ogg " type="video/ogg ">
+																			<source src="http://localhost/elika/elika_webapp2_dev_ui/videos/mov_bbb.webm " type="video/webm "> Your browser does not support HTML5 video.
 																		</video>
 																	</div>
 																</div>
 
 															</div>
-														</div>
+														</div>-->
 													</div>
 
 												</div>
@@ -503,88 +505,31 @@
 	</div>
 </div>
 <script>
-	// Chrome 1+
+	function callPlayer(cameraID, videoUrl) {
+		var isChrome = !!window.chrome && !!window.chrome.webstore;
+		setTimeout(function () {
+			vxgplayer('vxg_media_player1' + cameraID).onReadyStateChange(function (onreadyState) {
+				console.log("player LOADED: versionPLG=" + vxgplayer('vxg_media_player1' + cameraID).versionPLG() +
+					" versionAPP=" +
+					vxgplayer('vxg_media_player1' + cameraID).versionAPP());
+				vxgplayer('vxg_media_player1' + cameraID).play();
+			});
+			vxgplayer('vxg_media_player1' + cameraID).onError(function (onErr) {
+				console.log(" player ERROR: " + vxgplayer('vxg_media_player1' + cameraID).error());
+			});
+		}, 2000);
+		// Blink engine detection
+		var isBlink = (isChrome || isOpera) && !!window.CSS;
 
-	function callPlayer(cameraID,videoUrl,layoutType){
-        var isChrome = !!window.chrome && !!window.chrome.webstore;
-        var height='480px';
-        switch (layoutType){
-			case 'onecam':
-                height='480px';
-				break;
-            case 'twocam':
-            case 'fourcam':
-                height='350px';
-                break;
-            case 'sixcam':
-                height='222px';
-                break;
-			default:
-			    break;
-		}
-        setTimeout(function () {
-            vxgplayer('vxg_media_player1'+cameraID).onReadyStateChange(function (onreadyState) {
-                console.log("player LOADED: versionPLG=" + vxgplayer('vxg_media_player1'+cameraID).versionPLG() + " versionAPP=" +
-                    vxgplayer('vxg_media_player1'+cameraID).versionAPP());
-                vxgplayer('vxg_media_player1'+cameraID).play();
-
-                 document.getElementById("vxg_media_player1"+cameraID).setAttribute("style","height:"+height);
-            });
-            vxgplayer('vxg_media_player1'+cameraID).onError(function (onErr) {
-                console.log("player ERROR: " + vxgplayer('vxg_media_player1'+cameraID).error());
-
-
-
-                document.getElementById("vxg_media_player1"+cameraID).setAttribute("style","height:"+height);
-            });
-        }, 1500);
-        // Blink engine detection
-        var isBlink = (isChrome || isOpera) && !!window.CSS;
-
-        if (!isChrome) {
-            document.getElementById("vxg_media1"+cameraID).innerHTML =
-                "<embed id='player' type='application/x-vlc-plugin' class='lv_player'  name='player' target='rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4'   autoplay='yes'   loop='yes' toolbar=false  width='100%' height='480' />";
-
-            	//document.getElementById("player").setAttribute("target", videoUrl);
-                document.getElementById("player").setAttribute("target", "rtsp://masds03.htc.com.tw/Bird_On_Aware_QCIF_5fps_mpeg4_23k_amr-nb_12k.mp4");
-                document.getElementById("player").setAttribute("id", "player"+cameraID);
-
-        } else {
-
-            //.........delete existing player......................
-            // search all vxgplayers
-            var els = document.getElementsByClassName("vxgplayer");
-            for (var i = 0; i < els.length; i++) {
-                if(els[i].id && els[i].id==="vxg_media_player1"+cameraID){
-                    vxgplayer("vxg_media_player1"+cameraID).dispose();
-                    break;
-                }else{
-                    //console.error("Player has not id while delete", els[i]);
-                }
-            }
-
-            setTimeout(function () {
-                document.getElementById("vxg_media1"+cameraID).innerHTML =
-                    '<div id="vxg_media_player1" class="vxgplayer" url="rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency="3000000" autostart controls avsync></div>';
-
-            		//document.getElementById("vxg_media_player1").setAttribute("url", videoUrl);
-                    document.getElementById("vxg_media_player1").setAttribute("url", "rtsp://masds03.htc.com.tw/Bird_On_Aware_QCIF_5fps_mpeg4_23k_amr-nb_12k.mp4");
-                    document.getElementById("vxg_media_player1").setAttribute("id", "vxg_media_player1"+cameraID);
-
-            },1000);
-
-
-
-        }
-
-
-//        if (!isChrome) {
-//            document.getElementById("vxg_media1"+cameraID).innerHTML =
-//                "<embed id='player' type='application/x-vlc-plugin' class='lv_player'  name='player' target='rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4'   autoplay='yes'   loop='yes' toolbar=false  width='100%' height='480' />";
-//        } else {
-//            document.getElementById("vxg_media1"+cameraID).innerHTML =
-//                '<div id="vxg_media_player1" class="vxgplayer" url="rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency="3000000" autostart controls avsync></div>';
-//        }
-	};
-
+		if (!isChrome) {
+			document.getElementById("vxg_media1 " + cameraID).innerHTML =
+				"<embed id='player' type='application/x-vlc-plugin' class='lv_player' name='player' target='rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4' autoplay = 'yes' loop= 'yes' toolbar= false width= '100%' height= '480' />"; 
+				// document.getElementById("player").setAttribute("target", videoUrl);
+				 document.getElementById("player").setAttribute("id",
+			"player" + cameraID);
+		} else {
+			document.getElementById("vxg_media1" + cameraID).innerHTML = 
+			'<div id= "vxg_media_player1'+cameraID+'" class="vxgplayer" url= "rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency= "3000000" autostart controls avsync> </div>'; 
+			} 
+		};
 </script>
