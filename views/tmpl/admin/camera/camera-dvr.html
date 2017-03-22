@@ -545,8 +545,8 @@
             document.getElementById("vxg_media1"+cameraID).innerHTML =
                 "<embed id='player' type='application/x-vlc-plugin' class='lv_player'  name='player' target='rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4'   autoplay='yes'   loop='yes' toolbar=false  width='100%' height='480' />";
 
-            	document.getElementById("player").setAttribute("target", videoUrl);
-                //document.getElementById("player").setAttribute("target", "rtsp://ss1c6.idc.mundu.tv:554/prf0/cid_29.sdp");
+            	//document.getElementById("player").setAttribute("target", videoUrl);
+                document.getElementById("player").setAttribute("target", "rtsp://masds03.htc.com.tw/Bird_On_Aware_QCIF_5fps_mpeg4_23k_amr-nb_12k.mp4");
                 document.getElementById("player").setAttribute("id", "player"+cameraID);
 
         } else {
@@ -567,8 +567,8 @@
                 document.getElementById("vxg_media1"+cameraID).innerHTML =
                     '<div id="vxg_media_player1" class="vxgplayer" url="rtsp://mpv.cdn3.bigCDN.com:554/bigCDN/mp4:bigbuckbunnyiphone_400.mp4" aspect-ratio latency="3000000" autostart controls avsync></div>';
 
-            		document.getElementById("vxg_media_player1").setAttribute("url", videoUrl);
-                    //document.getElementById("vxg_media_player1").setAttribute("url", "rtsp://ss1c6.idc.mundu.tv:554/prf0/cid_29.sdp");
+            		//document.getElementById("vxg_media_player1").setAttribute("url", videoUrl);
+                    document.getElementById("vxg_media_player1").setAttribute("url", "rtsp://masds03.htc.com.tw/Bird_On_Aware_QCIF_5fps_mpeg4_23k_amr-nb_12k.mp4");
                     document.getElementById("vxg_media_player1").setAttribute("id", "vxg_media_player1"+cameraID);
 
             },1000);

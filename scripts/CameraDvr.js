@@ -407,10 +407,11 @@ app
                 }
 				else if(resp.status==true && resp.data){
                     $scope.facilityList=resp.data.data;
-                    $scope.getCameraGroups(function (lstCameraGroup) {
-                        cb($scope.facilityList,lstCameraGroup);
-                    });
 				}
+
+                $scope.getCameraGroups(function (lstCameraGroup) {
+                    cb($scope.facilityList,lstCameraGroup);
+                });
 
             })
 			.error(function (error) {
