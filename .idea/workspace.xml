@@ -4,7 +4,11 @@
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/CameraDvr.js" afterPath="$PROJECT_DIR$/scripts/CameraDvr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UsersMod.js" afterPath="$PROJECT_DIR$/scripts/UsersMod.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/config.js" afterPath="$PROJECT_DIR$/scripts/config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,12 +26,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="edit-user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
-              <folding />
+            <state relative-caret-position="347">
+              <caret line="471" column="71" lean-forward="false" selection-start-line="471" selection-start-column="71" selection-end-line="471" selection-end-column="71" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#uib-accordion-group#1;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -35,75 +41,51 @@
       <file leaf-file-name="camera-dvr.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="570" column="43" lean-forward="false" selection-start-line="570" selection-start-column="43" selection-end-line="570" selection-end-column="43" />
-              <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="107" column="32" lean-forward="true" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add-user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/add-user.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="447" column="71" lean-forward="true" selection-start-line="447" selection-start-column="71" selection-end-line="447" selection-end-column="71" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="app.d7ca82ad.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
+        <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="1043" column="3" lean-forward="true" selection-start-line="1043" selection-start-column="3" selection-end-line="1043" selection-end-column="3" />
-              <folding>
-                <marker date="1489753977814" expanded="true" signature="104333:104339" ph="'" />
-                <marker date="1489753977814" expanded="true" signature="121740:121774" ph="..." />
-                <marker date="1489753977814" expanded="true" signature="169913:169928" ph="..." />
-                <marker date="1489753977814" expanded="true" signature="170032:170065" ph="..." />
-                <marker date="1489753977814" expanded="true" signature="170104:170179" ph="..." />
-                <marker date="1489753977814" expanded="true" signature="171868:171885" ph="..." />
-                <marker date="1489753977814" expanded="true" signature="172050:172067" ph="..." />
-                <marker date="1489753977814" expanded="true" signature="172234:172281" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vxgplayer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="580" column="53" lean-forward="true" selection-start-line="580" selection-start-column="53" selection-end-line="580" selection-end-column="53" />
-              <folding>
-                <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
-                <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
-                <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
-                <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="46" />
+            <state relative-caret-position="226">
+              <caret line="2213" column="6" lean-forward="true" selection-start-line="2213" selection-start-column="6" selection-end-line="2213" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/custom.css">
+      <file leaf-file-name="UsersMod.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53040">
-              <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="200">
+              <caret line="650" column="33" lean-forward="true" selection-start-line="650" selection-start-column="33" selection-end-line="650" selection-end-column="33" />
+              <folding>
+                <element signature="e#62902#74658#0" expanded="false" />
+                <element signature="e#74984#78219#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraDvr.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CameraDvr.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="410" column="0" lean-forward="true" selection-start-line="410" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
+            <state relative-caret-position="209">
+              <caret line="180" column="49" lean-forward="true" selection-start-line="180" selection-start-column="49" selection-end-line="180" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -113,36 +95,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>disabledAnchor</find>
-      <find>add cam</find>
-      <find>showc</find>
-      <find>select the camera</find>
-      <find>checkIf</find>
-      <find>checkIfCreateCameraGroupValidAnchor</find>
-      <find>checkIfDeleteCameraGroupValidAnchor</find>
-      <find>getfacilites</find>
-      <find>getCameraGroups</find>
-      <find>deleteCameraGroup</find>
-      <find>deletecame</find>
-      <find>$('#cameraGroupDD').val('')</find>
-      <find>setTimeout</find>
-      <find>deleteC</find>
-      <find>setto</find>
-      <find>camera_</find>
-      <find>cameras</find>
-      <find>dispo</find>
-      <find>call</find>
-      <find>boundry</find>
-      <find>did not found</find>
-      <find>settim</find>
-      <find>callpl</find>
-      <find>callp</find>
-      <find>resetAllMediaPlayers</find>
       <find>readystate</find>
       <find>delete</find>
       <find>imagePath</find>
       <find>addcam</find>
       <find>player ha</find>
+      <find>callPlayer</find>
+      <find>getfa</find>
+      <find>credential_id</find>
+      <find>access code</find>
+      <find>edit-</find>
+      <find>controller</find>
+      <find>UserProfileCtrl</find>
+      <find>edit_</find>
+      <find>editCredential</find>
+      <find>getuser</find>
+      <find>phone_edit_form</find>
+      <find>getus</find>
+      <find>?</find>
+      <find>toggled</find>
+      <find>toggled</find>
+      <find>totalNoOfCameras</find>
+      <find>dele</find>
+      <find>submitEditPhoneCode</find>
+      <find>access</find>
+      <find>rfid</find>
+      <find>access</find>
+      <find>phone</find>
+      <find>access_code_list</find>
+      <find>&lt;/form&gt;</find>
+      <find>NFC</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,10 +134,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/styles/custom.css" />
-        <option value="$PROJECT_DIR$/scripts/config.js" />
         <option value="$PROJECT_DIR$/scripts/vxgplayer.js" />
+        <option value="$PROJECT_DIR$/scripts/config.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" />
         <option value="$PROJECT_DIR$/scripts/CameraDvr.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" />
+        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
       </list>
     </option>
   </component>
@@ -186,8 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -210,7 +193,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="videos" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -224,12 +207,66 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tmpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tmpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tmpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,11 +361,12 @@
       <workItem from="1490070431781" duration="26731000" />
       <workItem from="1490157304895" duration="5625000" />
       <workItem from="1490164826446" duration="3037000" />
+      <workItem from="1490243876769" duration="25538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56092000" />
+    <option name="totallyTimeSpent" value="81630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -391,11 +429,82 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9690">
+          <caret line="570" column="43" lean-forward="false" selection-start-line="570" selection-start-column="43" selection-end-line="570" selection-end-column="43" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17731">
+          <caret line="1043" column="3" lean-forward="true" selection-start-line="1043" selection-start-column="3" selection-end-line="1043" selection-end-column="3" />
+          <folding>
+            <marker date="1489753977814" expanded="true" signature="104333:104339" ph="'" />
+            <marker date="1489753977814" expanded="true" signature="121740:121774" ph="..." />
+            <marker date="1489753977814" expanded="true" signature="169913:169928" ph="..." />
+            <marker date="1489753977814" expanded="true" signature="170032:170065" ph="..." />
+            <marker date="1489753977814" expanded="true" signature="170104:170179" ph="..." />
+            <marker date="1489753977814" expanded="true" signature="171868:171885" ph="..." />
+            <marker date="1489753977814" expanded="true" signature="172050:172067" ph="..." />
+            <marker date="1489753977814" expanded="true" signature="172234:172281" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9860">
+          <caret line="580" column="53" lean-forward="true" selection-start-line="580" selection-start-column="53" selection-end-line="580" selection-end-column="53" />
+          <folding>
+            <marker date="1490243702577" expanded="true" signature="3786:3807" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3860:3873" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3926:3939" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="4303:4316" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53040">
+          <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9163">
           <caret line="539" column="13" lean-forward="false" selection-start-line="539" selection-start-column="13" selection-end-line="539" selection-end-column="13" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -405,10 +514,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3786:3807" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3860:3873" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3926:3939" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="4303:4316" ph="..." />
           </folding>
         </state>
       </provider>
@@ -443,7 +552,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -453,10 +561,10 @@
         <state relative-caret-position="119">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3786:3807" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3860:3873" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3926:3939" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="4303:4316" ph="..." />
           </folding>
         </state>
       </provider>
@@ -499,7 +607,6 @@
           <caret line="200" column="0" lean-forward="true" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -508,14 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
           <folding />
         </state>
       </provider>
@@ -548,39 +647,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/custom.css">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53040">
-          <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="580" column="53" lean-forward="true" selection-start-line="580" selection-start-column="53" selection-end-line="580" selection-end-column="53" />
-          <folding>
-            <marker date="1490161264897" expanded="true" signature="3555:3576" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="3629:3642" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="3695:3708" ph="..." />
-            <marker date="1490161264897" expanded="true" signature="4072:4085" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="46" />
+        <state relative-caret-position="17">
+          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="1043" column="3" lean-forward="true" selection-start-line="1043" selection-start-column="3" selection-end-line="1043" selection-end-column="3" />
+        <state relative-caret-position="17">
+          <caret line="1043" column="3" lean-forward="false" selection-start-line="1043" selection-start-column="3" selection-end-line="1043" selection-end-column="3" />
           <folding>
             <marker date="1489753977814" expanded="true" signature="104333:104339" ph="'" />
             <marker date="1489753977814" expanded="true" signature="121740:121774" ph="..." />
@@ -594,22 +672,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
+    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="570" column="43" lean-forward="false" selection-start-line="570" selection-start-column="43" selection-end-line="570" selection-end-column="43" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#uib-tab#0;n#uib-tabset#0;n#div#0;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <marker date="1490243702577" expanded="true" signature="3786:3807" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3860:3873" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="3926:3939" ph="..." />
+            <marker date="1490243702577" expanded="true" signature="4303:4316" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="2213" column="6" lean-forward="true" selection-start-line="2213" selection-start-column="6" selection-end-line="2213" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="410" column="0" lean-forward="true" selection-start-line="410" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
+        <state relative-caret-position="209">
+          <caret line="180" column="49" lean-forward="true" selection-start-line="180" selection-start-column="49" selection-end-line="180" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="107" column="32" lean-forward="true" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="471" column="71" lean-forward="false" selection-start-line="471" selection-start-column="71" selection-end-line="471" selection-end-column="71" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#uib-accordion-group#1;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/add-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="447" column="71" lean-forward="true" selection-start-line="447" selection-start-column="71" selection-end-line="447" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="650" column="33" lean-forward="true" selection-start-line="650" selection-start-column="33" selection-end-line="650" selection-end-column="33" />
+          <folding>
+            <element signature="e#62902#74658#0" expanded="false" />
+            <element signature="e#74984#78219#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

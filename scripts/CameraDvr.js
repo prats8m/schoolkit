@@ -421,6 +421,8 @@ app
             })
     };
 
+
+
 	$scope.swapCameraWithExisting=function (existingCamID,toBeReplaceID) {
 
         var selectedCam=[];

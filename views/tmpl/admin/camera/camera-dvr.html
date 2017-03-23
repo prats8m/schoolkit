@@ -99,7 +99,7 @@
 														<label class="control-label">No of Camera &nbsp;<span>{{totalNoOfCameras}}</span></label>
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'onecam'}"><i class="fa fa-stop" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+															<ul ng-if="totalNoOfCameras>0" class="dropdown-menu with-arrow animated littleFadeInRight">
 																<li ng-repeat="n in camDisplayGroup_1">
 																	<a href="" ng-click="setTotalVideosToWatch(1,n,n);changedClass();">Camera {{n}}</a>
 																</li>
@@ -108,7 +108,7 @@
 														</span>
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'twocam'}"><i class="fa fa-pause" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+															<ul ng-if="totalNoOfCameras>1" class="dropdown-menu with-arrow animated littleFadeInRight">
 																<li ng-repeat="n in camDisplayGroup_2">
 																	<a  href="" ng-click="setTotalVideosToWatch(2,n.startInd,n.endInd);changecClass();">Camera {{n.startInd}}-{{n.endInd}}</a>
 																</li>
@@ -117,7 +117,7 @@
 														</span>
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'fourcam'}"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+															<ul ng-if="totalNoOfCameras>2" class="dropdown-menu with-arrow animated littleFadeInRight">
 																<li ng-repeat="n in camDisplayGroup_4">
 																	<a  href="" ng-click="setTotalVideosToWatch(4,n.startInd,n.endInd);changebClass();">Camera {{n.startInd}}-{{n.endInd}}</a>
 
@@ -127,7 +127,7 @@
 														</span>
 														<span style="display: inline-block;" uib-dropdown on-toggle="toggled(open)">
 															<a href uib-dropdown-toggle class="list-icon" ng-class="{active: layout == 'sixcam'}"><i class="fa fa-th-large" aria-hidden="true" style="margin-right:-6px;"></i><i class="fa fa-th-large" aria-hidden="true"></i></a>
-															<ul class="dropdown-menu with-arrow animated littleFadeInRight">
+															<ul ng-if="totalNoOfCameras>4" class="dropdown-menu with-arrow animated littleFadeInRight">
 																<li ng-repeat="n in camDisplayGroup_6">
 																	<a href="" ng-click="setTotalVideosToWatch(6,n.startInd,n.endInd);changeaClass();">Camera {{n.startInd}}-{{n.endInd}}</a>
 
