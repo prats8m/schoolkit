@@ -750,7 +750,7 @@
 													<option value="1">USA Corporate Services</option>
 													<option value="2">Aerzen USA Corporation</option>
 												</select> -->
-												<select class="form-control" name="facility" ng-model="schedule.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList">
+												<select class="form-control" name="facility" ng-model="schedule.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList" required>
 													<option value="">Select</option>
 												</select>
 											</div>
@@ -760,8 +760,8 @@
 												<label for="">Block</label><br/>
 												<select class="form-control" name="block" ng-model="schedule.block" required>
 													<option value="">Select</option>
-													<option>hgkjhlkjlk</option>
-													<option>FGHBHLKx</option>
+													<option>Test Block 1</option>
+													<option>Test Block 2</option>
 												</select>
 											</div>
 											<div class="col-sm-12 col-md-6 form-group">
