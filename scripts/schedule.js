@@ -11,7 +11,7 @@ app
      $scope.page = {
       title: 'Add Schedule',
     };
-	
+	$scope.schedule = {};
 	
 	var table = $("#table");
 	var isMouseDown = false;
@@ -48,14 +48,15 @@ app
 				rowCells.eq(j).addClass("selected");
 			}
 		}
-		
+		$scope.schedule.schedule_start_date = table.find("tr").eq(rowStart).attr("value");
+		$scope.schedule.schedule_end_date = table.find("tr").eq(rowEnd).attr("value");
 	}
 
 	table.find("td").mousedown(function (e) {
 		isMouseDown = true;
 		var cell = $(this);
 
-		table.find(".selected").removeClass("selected"); // deselect everything
+		//table.find(".selected").removeClass("selected"); // deselect everything
 		
 		if (e.shiftKey) {
 			selectTo(cell);                
@@ -70,7 +71,7 @@ app
 	
 	.mouseover(function () {
 		if (!isMouseDown) return;
-		table.find(".selected").removeClass("selected");
+		//table.find(".selected").removeClass("selected");
 		selectTo($(this));
 	})
 	
@@ -108,16 +109,14 @@ app
 			});
 		});
 		
-		data.schedule_mon = mon[0]+"-"+mon[mon.length-1];
-		data.schedule_tue = tue[0]+"-"+tue[tue.length-1];
-		data.schedule_wed = wed[0]+"-"+wed[wed.length-1];
-		data.schedule_thu = thr[0]+"-"+thr[thr.length-1];
-		data.schedule_fri = fri[0]+"-"+fri[fri.length-1];
-		data.schedule_sat = sat[0]+"-"+sat[sat.length-1];
-		data.schedule_sun = sun[0]+"-"+sun[sun.length-1];
-		data.expiration;
+		data.schedule_mon = timeBlock(mon);
+		data.schedule_tue = timeBlock(tue);
+		data.schedule_wed = timeBlock(wed);
+		data.schedule_thu = timeBlock(thr);
+		data.schedule_fri = timeBlock(fri);
+		data.schedule_sat = timeBlock(sat);
+		data.schedule_sun = timeBlock(sun);
 		data.expiration = convert(data.expiration);
-		console.log(data);
 		
 		$http(
 		{
@@ -144,6 +143,26 @@ app
 
 		});	
 		
+	}
+	
+	function timeBlock(arr){
+		var returnArr = [];
+		var start = arr[0];
+		var end = arr[0];
+		for(var i=0; i < arr.length-1; i=i+2){
+			if(arr[i] == (arr[i+2]-1)){
+				end = arr[i+2];
+			}else{
+				var starttime = Number(start)+":00";
+				var endtime = Number(end)+1+":00";
+				returnArr.push({starttime: starttime, endtime: endtime});
+				start = arr[i+2];
+				end = arr[i+2];
+			}
+      
+		}
+		// returnArr.push({starttime: Number(start), endtime: Number(end)+1});
+		return returnArr;
 	}
 	
 	function convert(str) {
@@ -175,6 +194,26 @@ app
 		});
 	}
 	$scope.facilityInit();
+	
+	$scope.copyMonFri = function(){
+		$("#table").find("tr").each(function(){
+			if($(this).find("td:first-child").hasClass("selected")){
+				$(this).find("td:lt(5)").addClass("selected");
+			}
+		});
+	}
+	
+	$scope.copyMonSun = function(){
+		$("#table").find("tr").each(function(){
+			if($(this).find("td:first-child").hasClass("selected")){
+				$(this).find("td:lt(7)").addClass("selected");
+			}
+		});
+	}
+	
+	$scope.clearAll = function(){
+		$("#table tr td").removeClass("selected");
+	}
 	
 	$scope.imagePath = 'http://elikastaging.ml/images';	
 	
