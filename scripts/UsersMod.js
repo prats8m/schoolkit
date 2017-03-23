@@ -346,16 +346,30 @@ app
 			return false;
 		}
 		rfid.user_id = parseInt($cookies.get("user_id"));
-		rfid.details = {};
+        rfid.credential_type = "rfid_code";
+
+        rfid.details = {};
 		rfid.details.rfid_facility_id = JSON.stringify(parseInt(rfid.rfid_facility_code));
 		rfid.details.rfid_card_no = JSON.stringify(parseInt(rfid.rfid_card_no));
-		rfid.credential_type = "rfid_code";
 		delete rfid.rfid_card_no;
 		delete rfid.rfid_facility_code;
-		$http(
+
+        if(rfid.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            rfid.uc_id = rfid.credential_id;
+            delete rfid.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
+
+        $http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON', 
 			data:rfid,
 			headers: {
@@ -372,7 +386,15 @@ app
 				$timeout(function() {
 					$scope.getRfidList();
 				})
-				toaster.pop('success','RFID Added Successfully');
+
+                if(!rfid.uc_id){
+                    toaster.pop('success','RFID Added Successfully');
+                }
+                else {
+                    toaster.pop('success','RFID Updated Successfully');
+                }
+                $scope.rfid.credential_id = null;
+
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -423,17 +445,29 @@ app
 			return false;
 		}
 		phoneCode.user_id = parseInt($cookies.get("user_id"));
-		phoneCode.details = {};
+        phoneCode.credential_type = "phone_code";
+        phoneCode.details = {};
 		phoneCode.details.phone_code = phoneCode.phone_code;
 		phoneCode.details.phone_numbers = [];
 		phoneCode.details.phone_numbers[0] = phoneCode.phone_numbers;
-		phoneCode.credential_type = "phone_code";
 		delete phoneCode.phone_code;
 		delete phoneCode.phone_numbers;
+
+        if(phoneCode.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            phoneCode.uc_id = phoneCode.credential_id;
+            delete phoneCode.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON', 
 			data: phoneCode,
 			headers: {
@@ -449,7 +483,15 @@ app
 				$timeout(function(){
 					$scope.getPhoneList();
 				})
-				toaster.pop('success','Phone Code Added Successfully');
+
+                if(!phoneCode.uc_id){
+                    toaster.pop('success','Phone Code Added Successfully');
+                }
+                else {
+                    toaster.pop('success','Phone Code Updated Successfully');
+                }
+                $scope.phoneCode.credential_id = null;
+
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -499,15 +541,30 @@ app
 			$scope.blecode_error = "Please fill form.";
 			return false;
 		}
-		ble_code.details = {};
+        ble_code.user_id = parseInt($cookies.get("user_id"));
+        ble_code.credential_type = "ble_code";
+        ble_code.details = {};
 		ble_code.details.ble_username = ble_code.ble_name;
 		ble_code.details.ble_password = ble_code.ble_pass;
-		ble_code.user_id = parseInt($cookies.get("user_id"));
-		ble_code.credential_type = "ble_code";
+
+		delete ble_code.ble_name;
+		delete ble_code.ble_pass;
+
+        if(ble_code.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            ble_code.uc_id = ble_code.credential_id;
+            delete ble_code.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON', 
 			data: ble_code,
 			headers: {
@@ -520,7 +577,15 @@ app
 				$timeout(function(){
 					$scope.getBleList();
 				})
-				toaster.pop('success','BLE Code Added Successfully');
+
+                if(!ble_code.uc_id){
+                    toaster.pop('success','BLE Code Added Successfully');
+                }
+                else {
+                    toaster.pop('success','BLE Code Updated Successfully');
+                }
+                $scope.ble_code.credential_id = null;
+
 				
 			}else{
 				if(response.msg == 'Invalid_Token'){
@@ -587,17 +652,29 @@ app
 			return false;
 		}
 		savenfc.user_id = parseInt($cookies.get("user_id"));
-		savenfc.details = {};
-		savenfc.details.nfc_code = JSON.stringify(savenfc.nfc_code);
-		savenfc.details.nfc_facility_code = JSON.stringify(savenfc.nfc_facility_code);
+        savenfc.credential_type = "nfc_code";
+        savenfc.details = {};
+		savenfc.details.nfc_code = savenfc.nfc_code;
+		savenfc.details.nfc_facility_code = savenfc.nfc_facility_code;
 		// savenfc.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
-		savenfc.credential_type = "nfc_code";
 		delete savenfc.nfc_code;
 		delete savenfc.nfc_facility_code;
+
+        if(savenfc.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            savenfc.uc_id = savenfc.credential_id;
+            delete savenfc.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL + 'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON',
 			data:savenfc,
 			headers: {
@@ -607,13 +684,21 @@ app
 			
 		}).success(function(response){
 			if(response.status == true){
-				toaster.pop('success','Submitted Successfully');
 				$timeout(function() {
 					$(".accordion-toggle")[4].click();
 				});
 				$timeout(function() {
 					$scope.getNfcCodeList();
 				})
+
+                if(!savenfc.uc_id){
+                    toaster.pop('success','NFC Code Added Successfully');
+                }
+                else {
+                    toaster.pop('success','NFC Code Updated Successfully');
+                }
+                $scope.savenfc.credential_id = null;
+
 			}
 			else{
 				var arr = response.error;
@@ -668,12 +753,24 @@ app
 		accesscode.user_id = parseInt($cookies.get("user_id"));
 		accesscode.credential_type = "access_code";
 		accesscode.details = {};
-		accesscode.details.access_code = JSON.stringify(accesscode.access_code);
+		accesscode.details.access_code = accesscode.access_code;
 		delete accesscode.access_code;
+
+        if(accesscode.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            accesscode.uc_id = accesscode.credential_id;
+            delete accesscode.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL+'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON', 
 			data: accesscode,
 			headers: {
@@ -688,9 +785,15 @@ app
 				// $timeout(function() {
 				// $(".accordion-toggle")[1].click();
 				// });
-				toaster.pop('success','Access Code Added Successfully');
-				
-			}else{
+				if(!accesscode.uc_id){
+                    toaster.pop('success','Access Code Added Successfully');
+				}
+				else {
+                    toaster.pop('success','Access Code Updated Successfully');
+				}
+                $scope.accesscode.credential_id = null;
+
+            }else{
 				
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -859,29 +962,59 @@ app
 
 
 	$scope.editCredential = function(cred_data, credential_type){
-		// $scope.accesscode.access_code = accesscode.Credential_Id;
-		// $scope.accesscode.access_code = accesscode.Credential_Id;
+        switch (credential_type) {
+            case 'access_code':
+                $scope.accesscode = {};
+                $scope.accesscode.access_code = cred_data.Access_Code;
+                $scope.accesscode.credential_id = cred_data.Credential_Id;
+                $scope.accesscode.status = cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+                $scope.accesscode.door_id = arr;
+                break;
+            case 'phone_code':
+                $scope.phoneCode={};
+                $scope.phoneCode.credential_id=cred_data.Credential_Id
+                $scope.phoneCode.phone_code=cred_data.Detail.phone_code
+                $scope.phoneCode.phone_numbers=cred_data.Detail.phone_numbers[0]
+                $scope.phoneCode.status=cred_data.status
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+                $scope.phoneCode.door_id= arr;
+                break;
+            case 'rfid_code':
+                $scope.rfid={};
+                $scope.rfid.credential_id=cred_data.Credential_Id
+                $scope.rfid.rfid_card_no=cred_data.Detail.rfid_card_no
+                $scope.rfid.rfid_facility_code=cred_data.Detail.rfid_facility_id
+                $scope.rfid.status=cred_data.status
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+                $scope.rfid.door_id= arr;
+                break;
+            case 'nfc_code':
+                $scope.savenfc={};
+                $scope.savenfc.credential_id=cred_data.Credential_Id
+                $scope.savenfc.nfc_code=cred_data.Detail.nfc_code
+                $scope.savenfc.nfc_facility_code=cred_data.Detail.nfc_facility_code
+                $scope.savenfc.status=cred_data.status
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+                $scope.savenfc.door_id= arr;
+                break;
+            case 'ble_code':
+                $scope.ble_code={};
+                $scope.ble_code.credential_id=cred_data.Credential_Id
+                $scope.ble_code.ble_name=cred_data.Detail.ble_username
+                $scope.ble_code.ble_pass=cred_data.Detail.ble_password
+                $scope.ble_code.status=cred_data.status
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+                $scope.ble_code.door_id= arr;
+                break;
+            default:
 
-		switch (credential_type) {
-		  case 'access_code':
-		      // $scope.getAccessCodeList();
-		      $scope.phoneCode.phone_code = cred_data.Credential_Id;
-		      $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
-		      $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
-		      $scope.Door_Name = cred_data.Door_Name;
-		      break;
-		  case 'phone_code':
-		      break;
-		  case 'rfid_code':
-		  		break;
-		  case 'nfc_code':
-		      break;
-		  case 'ble_code':
-		      // $scope.getBleList();
-		      break;
-		  default:
-
-	}
+        }
 }
 
 	$scope.removeCredential = function(id, type){
@@ -1123,13 +1256,44 @@ app
 		      $scope.editAccess.door_id = arr;		       
 		      break;
 		  case 'phone_code':
-		      break;
+			  $scope.phoneedit={};
+		  	  $scope.phoneedit.credential_id=cred_data.Credential_Id
+              $scope.phoneedit.phone_code=cred_data.Detail.phone_code
+			  $scope.phoneedit.phone_numbers=cred_data.Detail.phone_numbers[0]
+			  $scope.phoneedit.status=cred_data.status
+              var arr = [];
+              angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+              $scope.phoneedit.door_id= arr;
+              break;
 		  case 'rfid_code':
+              $scope.editRfid={};
+              $scope.editRfid.credential_id=cred_data.Credential_Id
+              $scope.editRfid.rfid_card_no=cred_data.Detail.rfid_card_no
+              $scope.editRfid.rfid_facility_code=cred_data.Detail.rfid_facility_id
+              $scope.editRfid.status=cred_data.status
+              var arr = [];
+              angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+              $scope.editRfid.door_id= arr;
 		  		break;
 		  case 'nfc_code':
+              $scope.editNfc={};
+              $scope.editNfc.credential_id=cred_data.Credential_Id
+              $scope.editNfc.nfc_code=cred_data.Detail.nfc_code
+              $scope.editNfc.nfc_facility_code=cred_data.Detail.nfc_facility_code
+              $scope.editNfc.status=cred_data.status
+              var arr = [];
+              angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+              $scope.editNfc.door_id= arr;
 		      break;
 		  case 'ble_code':
-		      // $scope.getBleList();
+              $scope.editBle={};
+              $scope.editBle.credential_id=cred_data.Credential_Id
+              $scope.editBle.ble_name=cred_data.Detail.ble_username
+              $scope.editBle.ble_pass=cred_data.Detail.ble_password
+              $scope.editBle.status=cred_data.status
+              var arr = [];
+              angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+              $scope.editBle.door_id= arr;
 		      break;
 		  default:
 
@@ -1466,16 +1630,29 @@ app
 		// submitData.nfc_code = parseInt(submitData.nfc_code);
 		// submitData.nfc_facility_code = parseInt($cookies.get("facilityId"));
 		submitData.user_id = parseInt($stateParams.user_id);
+        submitData.credential_type = "nfc_code";
 		submitData.details = {};
 		submitData.details.nfc_code = submitData.nfc_code;
-		submitData.details.nfc_facility_code = submitData.nfc_facility_code;
+		submitData.details.nfc_facility_code = parseInt(submitData.nfc_facility_code);
 		// submitData.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
-		submitData.credential_type = "nfc_code";
+
 		delete submitData.nfc_code;
+        delete submitData.nfc_facility_code;
+
+        if(submitData.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            submitData.uc_id = submitData.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL + 'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON',
 			data:submitData,
 			headers: {
@@ -1484,6 +1661,7 @@ app
 			}
 			
 		}).success(function(response){
+            $scope.editNfc.credential_id = null;
 			if(response.status == true){
 				$scope.getNfcCodeList();
 				toaster.pop('success','Submitted Successfully');
@@ -1558,18 +1736,35 @@ app
 		// $.each($(".todo-list .ng-binding"), function(index, value){ 
 		// 	submitData.phone_numbers[index+1] = $(this).text();
 		// })
+
+        if(!phone_edit_form.validate()){
+            return false;
+        }
+
 		submitData.user_id = parseInt($stateParams.user_id);
+        submitData.credential_type = "phone_code";
 		submitData.details = {};
 		submitData.details.phone_code = submitData.phone_code;
 		submitData.details.phone_numbers = [];
 		submitData.details.phone_numbers[0] = submitData.phone_numbers;
-		submitData.credential_type = "phone_code";
+
 		delete submitData.phone_code;
 		delete submitData.phone_numbers;
+
+        if(submitData.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            submitData.uc_id = submitData.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL + 'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON',
 			data:submitData,
 			headers: {
@@ -1578,7 +1773,8 @@ app
 			}
 			
 		}).success(function(response){
-			
+
+            $scope.phoneedit.credential_id = null;
 			if(response.status == true){
 				toaster.pop('success','Submitted Successfully');
 				$scope.getPhoneList();
@@ -1635,17 +1831,28 @@ app
 		// submitData.rfid_card_no = parseInt(submitData.rfid_card_no);
 		// submitData.rfid_facility_code = parseInt(submitData.rfid_facility_code);
 		submitData.user_id = parseInt($stateParams.user_id);
+        submitData.credential_type = "rfid_code";
 		submitData.details = {};
 		// submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_code));
 		submitData.details.rfid_card_no = JSON.stringify(parseInt(submitData.rfid_card_no));
-		submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_id));
-		submitData.credential_type = "rfid_code";
+		submitData.details.rfid_facility_id = JSON.stringify(parseInt(submitData.rfid_facility_code));
 		delete submitData.rfid_card_no;
 		delete submitData.rfid_facility_code;
+
+        if(submitData.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            submitData.uc_id = submitData.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL + 'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON',
 			data:submitData,
 			headers: {
@@ -1654,6 +1861,7 @@ app
 			}
 			
 		}).success(function(response){
+            $scope.editRfid.credential_id = null;
 			if(response.status == true){
 				$scope.getRfidList();
 				toaster.pop('success',"Submitted Successfully");
@@ -1713,15 +1921,30 @@ app
 		// $scope.submitd.ble_name = submitData.ble_name;
 		// $scope.submitd.ble_status = submitData.ble_status;
 		// $scope.submitd.ble_pass = submitData.ble_pass;
-		submitData.details = {};
-		submitData.details.ble_username = submitData.ble_name;
+        submitData.user_id = parseInt($stateParams.user_id);
+        submitData.credential_type = "ble_code";
+        submitData.details = {};
+        submitData.details.ble_username = submitData.ble_name;
 		submitData.details.ble_password = submitData.ble_pass;
-		submitData.user_id = parseInt($stateParams.user_id);
-		submitData.credential_type = "ble_code";
+
+		delete submitData.ble_name;
+		delete submitData.ble_pass;
+
+        if(submitData.credential_id == null){
+            var meth = 'POST';
+            var url = baseURL + 'user/add-credential';
+        }
+        else{
+            submitData.uc_id = submitData.credential_id;
+            var meth = 'PUT';
+            var url = baseURL + 'user/edit-credential';
+        }
+
+
 		$http(
 		{
-			method: 'POST', 
-			url: baseURL + 'user/add-credential',
+			method: meth,
+			url: url,
 			dataType : 'JSON',
 			data: submitData,
 			headers: {
@@ -1730,6 +1953,7 @@ app
 			}
 			
 		}).success(function(response){
+            $scope.editBle.credential_id = null;
 			var arr = response.error;
 			$scope.getBleList();
 			if(response.error != ""){

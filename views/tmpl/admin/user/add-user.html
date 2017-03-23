@@ -253,6 +253,7 @@
 												<span class="error">{{accesscode_error}}</span>
 												<div class="row">
 												<form ng-submit="saveAccessCode(accesscode, access_code)" name="access_code" id="access_code" ng-validate="validationOptions">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="accesscode.credential_id">
 													<div class="form-group col-sm-3 col-md-3">
 														<label for="">Access Code</label>
 														<div style="position: relative">
@@ -272,8 +273,8 @@
 															<label class="btn btn-default" ng-model="accesscode.status" uib-btn-radio=0>Inactive</label>
 														</div>
 														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
-													</form>
 													</div>
+													</form>
 												</div>
 												<div class="mt-40">							
 													<div class="tile-body p-0 table-responsive">
@@ -292,8 +293,8 @@
 																	<td>{{accesscode.Door_Name}}  </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="accesscode.status == 1">Active</option>
+																			<option value="" ng-selected="accesscode.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
@@ -314,6 +315,7 @@
 											<span class="error">{{ phone_error }}</span>
 												<div class="row">
 													<form ng-submit="submitPhoneCode(phoneCode, phone_form)" name="phone_form" id="phone_code" ng-validate="validationOptions">
+														<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="phoneCode.credential_id">
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Phone Code</label>
 															<div style="position: relative">
@@ -358,8 +360,8 @@
 																	<td><div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div></td>
 																	<td>
 																	<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{phone_code.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{phone_code.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="phone_code.status == 1">Active</option>
+																			<option value="" ng-selected="phone_code.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
@@ -379,6 +381,7 @@
 											<div class="modal-body p-0">
 											<span class="error">{{ rfid_error }}</span>
 												<form ng-submit="saveRFID(rfid, rfid_form)" ng-validate="validationOptions" name="rfid_form">
+													<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="rfid.credential_id">
 													<div class="row">
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Card Number </label>
@@ -420,12 +423,12 @@
 																		<td>{{rfid_code.Door_Name}} </td>
 																		<td>
 																			<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{rfid_code.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{rfid_code.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="rfid_code.status == 1">Active</option>
+																			<option value="" ng-selected="rfid_code.status == 0">Inactive</option>
 																		</select>
 																		</td>
 																		<td class="credintialicon">
-																			<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																			<a href="" uib-tooltip="Edit" ng-click="editCredential(rfid_code, 'rfid_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																			<a href="" ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																		</td>
 																	</tr>
@@ -443,6 +446,8 @@
 											<div class="modal-body p-0">
 												<div class="row">
 													<form ng-submit="saveNFCcode(savenfc, nfc_form)" ng-validate="validationOptions" name="nfc_form">
+														<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="savenfc.credential_id">
+
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">NFC Code</label>
 															<div style="position: relative;">
@@ -486,12 +491,12 @@
 																	<td>{{nfccode.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{nfccode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{nfccode.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="nfccode.status == 1">Active</option>
+																			<option value="" ng-selected="nfccode.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																		<a href="" uib-tooltip="Edit" ng-click="editCredential(nfccode, 'nfc_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																		<a href="" ng-click="removeCredential('{{nfccode.Credential_Id}}', 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
@@ -508,6 +513,7 @@
 											<span class="error">{{ blecode_error }}</span>
 												<div class="row">
 													<form ng-submit="saveBLEcode(ble_code, ble_form)" ng-validate="validationOptions" name="ble_form">
+														<input type="hidden" name="credential_id" id="credential_id" class="form-control"  disabled ng-model="ble_code.credential_id">
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Username</label>
 															<input type="text" name="ble_name" id="" class="form-control mb-10" placeholder="" ng-model="ble_code.ble_name" required>
@@ -549,12 +555,12 @@
 																	<td>{{blecode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{blecode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{blecode.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="blecode.status == 1">Active</option>
+																			<option value="" ng-selected="blecode.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																		<a href="" uib-tooltip="Edit" ng-click="editCredential(blecode, 'ble_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																		<a href="" ng-click="removeCredential('{{ blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
