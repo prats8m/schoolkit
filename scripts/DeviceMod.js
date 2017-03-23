@@ -153,7 +153,7 @@ app
 	
 	$scope.pageNo = 1;
 	$scope.devicePageLimit = 8;
-	//alert();
+	
 	$scope.deviceInit = function(){
 		if(!$scope.searchText){
 			$scope.searchText = '';

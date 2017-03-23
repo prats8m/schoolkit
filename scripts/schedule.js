@@ -218,3 +218,147 @@ app
 	$scope.imagePath = 'http://elikastaging.ml/images';	
 	
 });
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ScheduleGroupsCtrl
+ * @description
+ * # ScheduleGroupsCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('ScheduleGroupsCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService) {
+     $scope.page = {
+      title: 'Schedule Groups',
+      subtitle: 'So much more to see at a glance.'
+    };
+	
+	$scope.status = '  ';
+    $scope.showConfirm = function(ev) {
+		var confirm = $mdDialog.confirm()		
+		.title('Would you like to delete schedule groups?')
+		.content('The standard chunk of Lorem Ipsum used.')
+		.ok('Delete')
+		.cancel('Cancel')
+		.targetEvent(ev);
+		$mdDialog.show(confirm).then(function() {
+			$scope.status = 'Your schedule groups has been deleted successfully.';
+			$scope.statusclass = 'alert alert-danger alert-dismissable';
+		}, function() {
+			$scope.status = 'You decided to keep schedule groups.';
+			$scope.statusclass = 'alert alert-success alert-dismissable';
+		});
+    };
+	
+	$scope.layout = 'grid';
+	$scope.class = 'gridview';
+	$scope.changeClass = function(){
+		if ($scope.class === 'gridview')
+		$scope.class = 'listview';
+		$scope.layout = 'list';
+	};
+	
+	$scope.changeaClass = function(){
+		if ($scope.class === 'listview')
+		$scope.class = 'gridview';
+		$scope.layout = 'grid';
+	};
+	
+	
+
+	$scope.scheduleInit = function(){
+		if(!$scope.searchText){
+			$scope.searchText = '';
+		}
+		//$http.get('http://localhost:8080/elika/json/admin/schedules.json')
+		dataService.getData(null,baseURL+'schedule/list')
+		.success(function(response){
+			$scope.schedules = response.data.data;
+			$scope.totalDisplayed = 8;
+			
+			if($scope.schedules.length > $scope.totalDisplayed) {
+				$scope.lmbtn = {
+					"display" : "block"
+				};			
+			} else {
+				$scope.lmbtn = {
+					"display" : "none"
+				};
+			}
+			
+			$scope.loadMore = function () {
+				$scope.totalDisplayed += 8;
+				if($scope.totalDisplayed > $scope.schedules.length) {				
+					$scope.lmbtn = {
+						"display" : "none"
+					};	
+				}			
+			};		
+		});
+	}
+	$scope.scheduleInit();
+
+	$scope.searchFunction = function(e){
+		if(e)
+		if(e.keyCode!=13){return false;}
+		if(!$scope.searchText){
+			$scope.searchText = '';
+		}
+		$scope.pageNo = 1;
+		
+		$http(
+		{
+			method: 'GET', 
+			url: baseURL+'schedule/list?search_val='+$scope.searchText,
+			dataType : 'JSON', 
+			headers: {
+				"Content-type": "application/json",
+				"Authorization": $cookies.get("token")
+			}
+		})
+		.success(function(response){
+			if(response.status == true){
+				$scope.schedules =  response.data.data;
+				$scope.totalDisplayed = 8;
+			
+				if($scope.schedules.length > $scope.totalDisplayed) {
+					$scope.lmbtn = {
+						"display" : "block"
+					};			
+				} else {
+					$scope.lmbtn = {
+						"display" : "none"
+					};
+				}
+				
+				$scope.loadMore = function () {
+					$scope.totalDisplayed += 8;
+					if($scope.totalDisplayed > $scope.schedules.length) {				
+						$scope.lmbtn = {
+							"display" : "none"
+						};	
+					}			
+				};
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}else if(response.msg=='No_Record_Found'){
+					$scope.schedules =  [];
+				}
+			}
+		}).error(function(){
+
+		});	
+	}
+	
+	$scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }
+	
+	$scope.imagePath = 'http://localhost:8080/elika/images';
+		
+});

@@ -12,7 +12,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<!--<p>{{page.subtitle}}</p>-->									
 								</div>
 							</div>
 						</div>
@@ -114,8 +114,8 @@
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
 										<div class="col-sm-8 col-md-9 search">
-											<input type="text" class="form-control" placeholder="Search by text....">
-											<button class="btn btn-default br-2-r" type="button">Search</button>
+											<input type="text" class="form-control" placeholder="Search by text...." ng-model="searchText" ng-keypress="searchFunction($event)">
+											<button class="btn btn-default br-2-r" ng-click="searchFunction()" type="button">Search</button>
 										</div>
 										<div class="col-sm-4 col-md-3 profilephoto csvupload">
 											<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
@@ -146,7 +146,7 @@
 								</div>
 							</div>
 							<div ng-if="status">									
-								<div layout="row" ng-class="statusclass">									
+								<div layout="row" ng-class="statusclass">							
 									{{status}}
 								</div>
 							</div>
@@ -155,13 +155,13 @@
 									<md-content>			
 										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy">
 											<md-card-content>
-												<h2 class="md-title">{{ schedule.title }}</h2>
-												<p>{{ schedule.status }}</p>
-												<p>{{ schedule.expirationdate }}</p>
+												<h2 class="md-title">{{ schedule.schedule_name }}</h2>
+												<p>{{ schedule.schedule_status }}</p>
+												<!--<p>{{ schedule.expirationdate }}</p>-->
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-schedule-groups">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.schedule.edit-schedule-groups">Edit</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-schedule-groups({schedule_id:schedule.schedule_id})">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.schedule.edit-schedule-groups({schedule_id:schedule.schedule_id})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
 											</div>
 										</md-card>										
