@@ -146,20 +146,22 @@ app
 	}
 	
 	function timeBlock(arr){
-		returnArr = [];
+		var returnArr = [];
 		var start = arr[0];
 		var end = arr[0];
 		for(var i=0; i < arr.length-1; i=i+2){
 			if(arr[i] == (arr[i+2]-1)){
 				end = arr[i+2];
 			}else{
-				returnArr.push({starttime: Number(start), endtime: Number(end)+1});
+				var starttime = Number(start)+":00";
+				var endtime = Number(end)+1+":00";
+				returnArr.push({starttime: starttime, endtime: endtime});
 				start = arr[i+2];
 				end = arr[i+2];
 			}
       
 		}
-		returnArr.push({starttime: Number(start), endtime: Number(end)+1});
+		// returnArr.push({starttime: Number(start), endtime: Number(end)+1});
 		return returnArr;
 	}
 	

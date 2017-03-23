@@ -103,10 +103,11 @@ app
             var data = new commonSetAPIDataObject();
             data.module = "led-setup";
             data.type = "gen";
-            data.value['keypad-setup'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-setup'];
+            data.value['keypad-setup'] = parseInt($scope.deviceGeneralSettingModals.dgs_led['keypad-setup']);
             data.value['keypad-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-brightness'];
-            data.value['courtesy-light-setup'] = $scope.deviceGeneralSettingModals.dgs_led['courtesy-light-setup'];
+            data.value['courtesy-light-setup'] = parseInt($scope.deviceGeneralSettingModals.dgs_led['courtesy-light-setup']);
             data.value['courtesy-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['courtesy-brightness'];
+            console.log(data);
             commonSetHTTPService(data, 'LED Configured successfully.');
         };
 
@@ -114,8 +115,8 @@ app
             var data = new commonSetAPIDataObject();
             data.module = "speaker-microphone-setup";
             data.type = "gen";
-            data.value['speaker-beeper'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-beeper'];
-            data.value['microphone-beeper'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-beeper'];
+            data.value['speaker-beeper'] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker['speaker-beeper']);
+            data.value['microphone-beeper'] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker['microphone-beeper']);
             data.value['speaker-volume'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-volume'];
             data.value['microphone-sensitivity'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity'];
             commonSetHTTPService(data, 'Speaker and Microphone configured successfully.');

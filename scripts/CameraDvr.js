@@ -256,7 +256,6 @@ app
 
                     }
 
-                    $scope.resetAllMediaPlayers();
                     setTimeout(function () {
                         for(var camInd=0;camInd<$scope.filteredCamerasToShow.length;camInd++){
                             callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url,$scope.layout);
@@ -267,7 +266,7 @@ app
 		}
 		else {
             $scope.changedClass();
-            $scope.setTotalVideosToWatch(1,1,1);
+           // $scope.setTotalVideosToWatch(1,1,1);
 		}
     }
 
@@ -299,7 +298,7 @@ app
 
 
 
-        $scope.resetAllMediaPlayers();
+       // $scope.resetAllMediaPlayers();
         setTimeout(function () {
             for(var camInd=0;camInd<$scope.filteredCamerasToShow.length;camInd++){
                 callPlayer($scope.filteredCamerasToShow[camInd].camera_id,$scope.filteredCamerasToShow[camInd].vedio_url,$scope.layout);
@@ -478,9 +477,9 @@ app
 	$scope.resetAllMediaPlayers=function () {
         //.........delete existing player......................
         // search all vxgplayers
-        for (var i = 0; i < $scope.cameras.length; i++) {
-            if($scope.cameras[i].camera_id && vxgplayer("vxg_media_player1"+$scope.cameras[i].camera_id)){
-                vxgplayer("vxg_media_player1"+$scope.cameras[i].camera_id).dispose();
+        for (var i = 0; i < $scope.filteredCamerasToShow.length; i++) {
+            if($scope.filteredCamerasToShow[i].camera_id && vxgplayer("vxg_media_player"+$scope.filteredCamerasToShow[i].camera_id)){
+                vxgplayer("vxg_media_player"+$scope.filteredCamerasToShow[i].camera_id).dispose();
             }else{
                 //console.error("Player has not id while delete", els[i]);
             }
