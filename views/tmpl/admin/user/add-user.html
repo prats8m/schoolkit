@@ -115,8 +115,37 @@
 												<div class="form-group col-sm-6 col-md-3">
 													<label for="">Profile Photo</label>
 													<div class="profilephoto">
-														<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+														<!--<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">-->
+														<div class="bootstrap-filestyle input-group">
+
+															<!--<input type="text" class="form-control " disabled="">-->
+															<!--<span class="group-span-filestyle input-group-btn" tabindex="0">-->
+																<!--<label for="profilep-2" class="btn btn-default ">-->
+																	<!--<span class="glyphicon fa fa-inbox"></span>-->
+																	<!--Find file-->
+																<!--</label>-->
+															<!--</span>-->
+
+															<input type="file" accept="image/*" file-model = "myFile" id="profilePicAddUpdate" name="fileupload" style="display: none" onchange="HandleInputTypeFilechange();" tabindex="-1"/>
+															<input type="text" class="form-control " required id="profilePicFileName" readonly="true"/>
+															<!--<input type="button" value="Click to select file" id="fakeBrowse" onclick="HandleBrowseClick();"/>-->
+															<span class="group-span-filestyle input-group-btn" tabindex="0" id="fakeBrowse" ng-click="HandleProfilePicAddUpdateClick();">
+															<label for="profilep-2" class="btn btn-default ">
+															<span class="glyphicon fa fa-inbox"></span>
+															Find file
+															</label>
+															</span>
+
+														</div>
+														<script>
+                                                            function HandleInputTypeFilechange() {
+                                                                var fileinput = document.getElementById("profilePicAddUpdate");
+                                                                var textinput = document.getElementById("profilePicFileName");
+                                                                textinput.value = fileinput.value;
+                                                            };
+														</script>
+
+
 													</div>
 												</div>
 											</div>

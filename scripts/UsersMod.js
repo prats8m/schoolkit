@@ -205,6 +205,38 @@ app
 	}
 	$scope.doorList();
 
+
+
+      $scope.HandleProfilePicAddUpdateClick=function () {
+          var fileinput = document.getElementById("profilePicAddUpdate");
+          fileinput.click();
+      }
+
+      $scope.uploadProfilePic=function (file) {
+          var fd = new FormData();
+          fd.append('file', file);
+
+          $http.post(baseURL+'user/pic-upload',
+              {headers: {
+                  "Authorization": $cookies.get("token"),
+                  "Content-type": undefined
+              }},fd,{transformRequest: angular.identity})
+              .success(function (resp) {
+                  if(resp.msg == 'Invalid_Token'){
+                      toaster.pop('error','Session Expired');
+                      $cookies.remove("token");
+                      $location.path('/core/login');return false;
+                  }
+                  else if(resp.status==true){
+                      toaster.pop('Success','Profile pic updated successfully');
+                  }
+
+              })
+              .error(function (error) {
+
+              })
+      }
+
 	$scope.userData = {};
 	$scope.userData.status = 1;
 	$scope.submitUserData = function(userData, user_form){
@@ -267,6 +299,8 @@ app
 			$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
 			$scope.accesscode.access_code_status = 'Active';
 			if(response.status == true){
+                var file = $scope.myFile;
+               // $scope.uploadProfilePic(file);
 				$cookies.put("user_id", response.data.user_id);
 				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");	
 				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
@@ -1478,6 +1512,38 @@ app
 	return [day, month, year].join('/');
 	}
 	
+	
+
+	$scope.HandleProfilePicAddUpdateClick=function () {
+        var fileinput = document.getElementById("profilePicAddUpdate");
+        fileinput.click();
+    }
+    
+    $scope.uploadProfilePic=function (file) {
+        var fd = new FormData();
+        fd.append('file', file);
+
+        $http.post(baseURL+'user/pic-upload',
+            {headers: {
+                "Authorization": $cookies.get("token"),
+                "Content-type": undefined
+            }},fd,{transformRequest: angular.identity})
+			.success(function (resp) {
+                if(resp.msg == 'Invalid_Token'){
+                    toaster.pop('error','Session Expired');
+                    $cookies.remove("token");
+                    $location.path('/core/login');return false;
+                }
+                else if(resp.status==true){
+                    toaster.pop('Success','Profile pic updated successfully');
+                }
+
+            })
+			.error(function (error) {
+
+            })
+    }
+	
 	var n = [];
 	$scope.submitEditUser = function(submitData, user_edit){
 		if(!user_edit.validate()){
@@ -1491,6 +1557,7 @@ app
 		submitData.facility_id = parseInt($cookies.get("facilityId"));
 		submitData.expiration_date = submitData.expiration_date;
 		$rootScope.masters = [];
+
 		$http(
 		{
 			method: 'PUT', 
@@ -1504,6 +1571,8 @@ app
 		}).success(function(response){
 			
 			if(response.status == true){
+                var file = $scope.myFile;
+               // $scope.uploadProfilePic(file);
 				$scope.profileInit
 				toaster.pop('success','Submitted Successfully');
 				$scope.editUserMessage = "";
@@ -2272,7 +2341,7 @@ app
 		});
     }
 
-    $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed){
+    $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed,userGroupBehaviour){
     	if(is_access_allowed == null){
     		return false;
     	}
@@ -2285,7 +2354,7 @@ app
 					method: 'PUT', 
 					url: baseURL+'usergroup/edit-door-schedule',
 					dataType : 'JSON', 
-					data : {"ud_id":ud_id,"is_access_allowed":is_access_allowed,"schedule_id":schedule_id},
+					data : {"ud_id":ud_id,"is_access_allowed":is_access_allowed,"schedule_id":schedule_id,"type":userGroupBehaviour},
 					headers: {
 					"Content-type": "application/json",
 					"Authorization": $cookies.get("token")
