@@ -299,8 +299,8 @@ app
 			$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
 			$scope.accesscode.access_code_status = 'Active';
 			if(response.status == true){
-                var file = $scope.myFile;
-                $scope.uploadProfilePic(file);
+               // var file = $scope.myFile;
+                //$scope.uploadProfilePic(file);
 				$cookies.put("user_id", response.data.user_id);
 				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");	
 				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
@@ -1586,8 +1586,8 @@ app
 		}).success(function(response){
 			
 			if(response.status == true){
-                var file = $scope.myFile;
-                $scope.uploadProfilePic(file);
+                //var file = $scope.myFile;
+                //$scope.uploadProfilePic(file);
 				$scope.profileInit
 				toaster.pop('success','Submitted Successfully');
 				$scope.editUserMessage = "";
