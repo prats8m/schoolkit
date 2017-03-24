@@ -145,7 +145,7 @@
 																			<!-- <select class="form-control selectpicker" ng-model="{{doorlist.schedulelist.is_access_allowed}}:{{doorlist.is_access_allowed}}" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id, this.selected)">
 																				<option value="{{item.id}}:{{item.is_access_allowed}}" ng-repeat="item in doorlist.schedulelist" >{{item.name}}</option>
 																			</select> -->
-																			<select class="form-control" ng-model="doorlist.is_access_allowed" ng-options="item.is_access_allowed as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(doorlist.schedule_id, doorlist.ud_id,doorlist.is_access_allowed)"  >
+																			<select class="form-control" ng-model="doorlist.is_access_allowed" ng-options="item.is_access_allowed as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(doorlist.schedule_id, doorlist.ud_id,doorlist.is_access_allowed,'add')"  >
 																			</select>
 																		</td>
 																	</tr>
@@ -279,6 +279,7 @@
 																<md-tab label="Door Schedule" ng-click="listDoorSchedule(usergroupedit.usergroup_id, usergroupedit.facility_id)">
 																<md-content>
 																	<div class="tile-body p-15">
+																		<span style="color: green;">{{user_group_success}}</span>
 																		<table class="table table-bordered">
 																			<thead>
 																				<tr>
@@ -291,7 +292,7 @@
 																					<td>{{doorlist.door_name}}</td>
 																					<td>
 																						<span class="loader" id="{{doorlist.ud_id}}" style="display: none;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
-																						<select class="form-control" ng-model="doorlist.is_access_allowed" ng-options="item.is_access_allowed as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(doorlist.schedule_id, doorlist.ud_id,doorlist.is_access_allowed)"  >
+																						<select class="form-control" ng-model="doorlist.is_access_allowed" ng-options="item.is_access_allowed as item.name for item in doorlist.schedulelist" ng-change="addDoorScheduleUserGroup(doorlist.schedule_id, doorlist.ud_id,doorlist.is_access_allowed,'edit')"  >
 																						</select>
 																						
 																					</td>
