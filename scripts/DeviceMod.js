@@ -27,8 +27,8 @@ app
 			$http(
 			{
 				method: 'DELETE', 
-				url: baseURL+'device/delete',
-				data: {device_id:id , facility_id:facility_id},
+				url: baseURL+'device/delete?device_id='+id,
+				//data: {device_id:id , facility_id:facility_id},
 
 				dataType : 'JSON', 
 				headers: {
@@ -463,9 +463,9 @@ app
 		$mdDialog.show(confirm).then(function() {
 			$http(
 			{
-				method: 'POST', 
-				url: baseURL+'device/delete',
-				data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt(facility_id)},
+				method: 'DELETE',
+				url: baseURL+'device/delete?device_id='+parseInt($stateParams.device_id),
+				//data: {device_id:parseInt($stateParams.device_id) , facility_id:parseInt(facility_id)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -995,9 +995,9 @@ app
 			return false;
 		}
 		$http({
-			method: 'POST', 
-			url: baseURL+'device/delete',
-			data: {device_id:parseInt($stateParams.device_id)},
+			method: 'DELETE',
+			url: baseURL+'device/delete?device_id='+parseInt($stateParams.device_id),
+			//data: {device_id:parseInt($stateParams.device_id)},
 			dataType : 'JSON', 
 			headers: {
 				"Content-type": "application/json",
@@ -1050,9 +1050,9 @@ app
 			
 			$http(
 			{
-				method: 'POST', 
-				url: baseURL+'device/delete',
-				data: {device_id:parseInt(id) , facility_id:parseInt($rootScope.facilityId)},
+				method: 'DELETE',
+				url: baseURL+'device/delete?device_id='+parseInt(id),
+				//data: {device_id:parseInt(id) , facility_id:parseInt($rootScope.facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",
@@ -1388,8 +1388,8 @@ app
 			$http(
 			{
 				method: 'DELETE', 
-				url: baseURL+'device/delete',
-				data: {device_id:parseInt(id) , facility_id:parseInt(facilityId)},
+				url: baseURL+'device/delete?device_id='+parseInt(id),
+				//data: {device_id:parseInt(id) , facility_id:parseInt(facilityId)},
 				dataType : 'JSON', 
 				headers: {
 					"Content-type": "application/json",

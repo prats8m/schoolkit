@@ -191,9 +191,9 @@ app
 	$scope.doorList = function(){
 		$http(
 		{
-			method: 'GET', 
+			method: 'GET',
 			url: baseURL+'user/list-door-credential/'+parseInt($cookies.get("user_id")),
-			dataType : 'JSON', 
+			dataType : 'JSON',
 			headers: {
 				"Content-type": "application/json",
 				"Authorization": $cookies.get("token")
@@ -203,7 +203,9 @@ app
 			$rootScope.door_lists = response.data;
 		})
 	}
-	$scope.doorList();
+
+	//unnecesarily call............
+	//$scope.doorList();
 
 
 
@@ -1536,7 +1538,7 @@ app
                 url: baseURL+'user/pic-upload',
               //  dataType : 'JSON',
                 headers: {
-                    "Content-type": "multipart/form-data",
+                    "Content-type": undefined,
                     "Authorization": $cookies.get("token")
                 },
 				data:fd
