@@ -74,9 +74,14 @@ app
 		$scope.layout = 'grid';
 	};
 
+
+	//........This method has been updated to change URL........................
+
 	$rootScope.getDoorsList = function(){
+
 		$http({
-			url: baseURL+'door/list?facility_id='+$rootScope.device.facility_id,
+			 //url: baseURL+'door/list?facility_id='+$rootScope.device.facility_id,
+            url: baseURL+'door/list-door-not-assigned-to-device?facility_id='+$rootScope.device.facility_id,
 			method: 'GET',
 			dataType : 'JSON',
 			headers: {

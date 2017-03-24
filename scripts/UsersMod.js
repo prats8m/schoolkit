@@ -300,7 +300,7 @@ app
 			$scope.accesscode.access_code_status = 'Active';
 			if(response.status == true){
                 var file = $scope.myFile;
-               // $scope.uploadProfilePic(file);
+                $scope.uploadProfilePic(file);
 				$cookies.put("user_id", response.data.user_id);
 				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");	
 				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
@@ -1523,11 +1523,26 @@ app
         var fd = new FormData();
         fd.append('file', file);
 
-        $http.post(baseURL+'user/pic-upload',
-            {headers: {
-                "Authorization": $cookies.get("token"),
-                "Content-type": undefined
-            }},fd,{transformRequest: angular.identity})
+        // $http.post(baseURL+'user/pic-upload',
+        //     {headers: {
+        //         "Authorization": $cookies.get("token"),
+        //         "Content-type": undefined
+        //     }},fd,{transformRequest: angular.identity})
+
+
+        $http(
+            {
+                method: 'POST',
+                url: baseURL+'user/pic-upload',
+              //  dataType : 'JSON',
+                headers: {
+                    "Content-type": "multipart/form-data",
+                    "Authorization": $cookies.get("token")
+                },
+				data:fd
+
+            })
+
 			.success(function (resp) {
                 if(resp.msg == 'Invalid_Token'){
                     toaster.pop('error','Session Expired');
@@ -1572,7 +1587,7 @@ app
 			
 			if(response.status == true){
                 var file = $scope.myFile;
-               // $scope.uploadProfilePic(file);
+                $scope.uploadProfilePic(file);
 				$scope.profileInit
 				toaster.pop('success','Submitted Successfully');
 				$scope.editUserMessage = "";
