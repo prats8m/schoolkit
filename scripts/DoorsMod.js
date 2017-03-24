@@ -102,7 +102,11 @@ app
 				$rootScope.facilityList = response.data.data;
 				$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));	
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		}).error(function(){
 
@@ -131,6 +135,11 @@ app
 				$rootScope.dashboardData.door++; 
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		}).error(function(){
 
@@ -194,6 +203,11 @@ app
 				});
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g,' '));
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		})
 		.error(function (data, status, headers, config) {
@@ -334,8 +348,16 @@ app
 				}
 		})
 		.success(function(response){
-			$scope.doorData = response.data;
-			$scope.facilityInit();
+			if(response.status == true){
+				$scope.doorData = response.data;
+				$scope.facilityInit();
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
+			}
 		})
 	}	
 
@@ -357,7 +379,11 @@ app
 				$scope.facilityList = response.data.data;
 				$scope.doorData.facility_id = parseInt($cookies.get('facilityId'));	
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		}).error(function(){
 
@@ -379,7 +405,16 @@ app
 			}
 		})
 		.success(function(response){
+			if(response.status == ture){
+
 			toaster.pop('success',response.msg.replace(/_/g," "));
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
+			}
 		})
 	}
 
@@ -446,6 +481,12 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.dashboardData = response.data;
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		})
 		.error(function (data, status, headers, config) {
@@ -481,7 +522,11 @@ app
 				$rootScope.facilityList = response.data.data;
 				$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));	
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		}).error(function(){
 
@@ -583,6 +628,12 @@ app
 			if(response.status == true){
 				$rootScope.dashboardData = response.data;
 				// console.log($rootScope.dashboardData);
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		})
 		.error(function (data, status, headers, config) {

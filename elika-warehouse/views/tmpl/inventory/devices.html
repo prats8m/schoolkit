@@ -72,7 +72,7 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Account Number/ICCID</label>
-														<input type="text" name="" id="" ng-model="device.account_no" class="form-control" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="">
+														<input type="text" name="" id="" ng-model="device.account_no" class="form-control" maxlength="10" ng-keypress='onlyNumber($event)' placeholder="">
 													</div>
 												</div>
 												<div class="row">
@@ -88,7 +88,7 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Phone Number</label>
-														<input type="text" name="" id="" class="form-control" ng-model="device.phone_no" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="">
+														<input type="text" name="" id="" class="form-control" ng-model="device.phone_no" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" ng-keypress='onlyNumber($event)' placeholder="">
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Bluetooth Mac Id</label>

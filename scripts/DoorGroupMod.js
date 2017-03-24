@@ -175,6 +175,11 @@ app
 				$scope.statusclass = 'alert alert-danger alert-dismissable';
 			}else{
 				toaster.pop('error',response.msg.replace(/_/g," "));
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		})
 		.error(function(){

@@ -134,7 +134,9 @@ app
 				toaster.pop('success','Submit Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
 				}else{
 					
 				}
@@ -187,7 +189,11 @@ app
 			if(response.status == true){
 				$rootScope.facilityList = response.data.data;	
 			}else{
-				
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
 			}
 		}).error(function(){
 

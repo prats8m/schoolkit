@@ -259,10 +259,10 @@
 							<div ng-class="class">
 								<div class="glview" ng-init="deviceInit()">
 									<md-content>			
-										<md-card ng-repeat="device in data">
+										<md-card ng-repeat="device in data | limitTo:totalDisplayed">
 											<span class="moreitemsondevice">
 												<a ui-sref="app.admin.device.service-plan"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-												<a ui-sref="app.admin.device.device-settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
+												<a ui-sref="app.admin.device.view-device({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
 											</span>
 											<a ui-sref="app.admin.device.device-details({device_id:device.device_id})"><img ng-src="images/device/elika-76-bronze.png" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
@@ -277,7 +277,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="deviceInit()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
