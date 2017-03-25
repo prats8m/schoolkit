@@ -13,6 +13,7 @@ app
     };
 	
 	$scope.result = '';
+	$scope.devices = [];
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete device?')
@@ -76,6 +77,9 @@ app
 				};
 			}else{
 				dataService.responseError(response);
+				if($scope.devices.length == 0){
+					$scope.lmbtn = {"display":"none"};	
+				}
 			}
 		});
 	}
@@ -104,9 +108,12 @@ app
 				
 				var n = [];
 				var arr = response.error;
-				if(arr != null){
+				if(Array.isArray(arr) && arr != null){
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.errorMessage = n.join(", ");
+				}
+				if(response.msg == 'Invalid_Token'){
+					$timeout(function(){$("#close").click();});
 				}
 				dataService.responseError(response);
 			}
@@ -266,7 +273,7 @@ app
 
 				var n = [];
 				var arr = response.error;
-				if(arr != null){
+				if(Array.isArray(fruits) && arr != null){
 				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
 				$rootScope.errorMessage = n.join(", ");
 				}

@@ -72,7 +72,7 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Account Number/ICCID</label>
-														<input type="text" name="" id="" ng-model="device.account_no" class="form-control" maxlength="10" ng-keypress='onlyNumber($event)' placeholder="">
+														<input type="text" name="" id="" ng-model="device.account_no" class="form-control" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)||event.charCode == 8" maxlength="16" placeholder="">
 													</div>
 												</div>
 												<div class="row">
@@ -88,11 +88,11 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Phone Number</label>
-														<input type="text" name="" id="" class="form-control" ng-model="device.phone_no" pattern="^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" ng-keypress='onlyNumber($event)' placeholder="">
+														<input type="text" name="" id="" class="form-control" ng-model="device.phone_no" pattern="^(?:\+|00|011)[. ()-]*(?:\d[. ()-]*){11,12}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" ng-keypress='onlyNumber($event)' placeholder="+1 201 555 0123">
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Bluetooth Mac Id</label>
-														<input type="text" name="" id="" class="form-control" ng-model="device.mac_address" pattern="^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$" oninvalid="setCustomValidity('Please enter valid mac address')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="">
+														<input type="text" name="" id="" class="form-control" ng-model="device.mac_address" pattern="^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$" oninvalid="setCustomValidity('Please enter valid mac address')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="" required>
 													</div>
 												</div>
 												<div class="row">
@@ -204,8 +204,8 @@
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.inventory.view-device({device_id:device.device_id})">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.inventory.edit-device({device_id:device.device_id})">Update</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,device.device_id)">Delete</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.inventory.edit-device({device_id:device.device_id})" ng-disabled="device.facility_name!='null'">Update</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,device.device_id)" ng-disabled="device.facility_name!='null'">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

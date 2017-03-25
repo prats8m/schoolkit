@@ -8758,8 +8758,10 @@ app
 /*						DataService									*/
 /*==================================================================*/
 
-app.service('dataService',["$http","toaster","$cookies","$location",function($http,toaster,$cookies,$location) {
+app.service('dataService',["$http","toaster","$cookies","$location","$rootScope",function($http,toaster,$cookies,$location,$rootScope) {
 	delete $http.defaults.headers.common['X-Requested-With'];
+	$rootScope.lastMessage = "";
+	var msg = "Something went wrong.";
 	this.getData = function(param,url) {
 		return $http({
 			method: 'GET',
@@ -8767,7 +8769,9 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 			params: param,
 			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
 		}).error(function(){
-			toaster.pop('error', 'Something went wrong.');
+			if($rootScope.lastMessage != msg)
+				toaster.pop('error', msg);
+			$rootScope.lastMessage = msg;
 		});
 	};
 	this.postData = function(data,url) {
@@ -8777,7 +8781,9 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 			data: data,
 			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
 		}).error(function(){
-			toaster.pop('error', 'Something went wrong.');
+			if($rootScope.lastMessage != msg)
+				toaster.pop('error', msg);
+			$rootScope.lastMessage = msg;
 		});
 	};
 	this.putData = function(data,url) {
@@ -8787,7 +8793,8 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 			data: data,
 			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
 		}).error(function(){
-			toaster.pop('error', 'Something went wrong.');
+			if($rootScope.lastMessage != msg)
+				toaster.pop('error', msg);$rootScope.lastMessage = msg;
 		});
 	};
 	this.deleteData = function(data,url) {
@@ -8797,7 +8804,8 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 			//data: data,
 			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
 		}).error(function(){
-			toaster.pop('error', 'Something went wrong.');
+			if($rootScope.lastMessage != msg)
+				toaster.pop('error', msg);$rootScope.lastMessage = msg;
 		});
 	};
 	this.login = function(data,url) {
@@ -8809,17 +8817,25 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 				"Content-type": "application/json",
 			}
 		}).error(function(){
-			toaster.pop('error', 'Something went wrong.');
+			if($rootScope.lastMessage != msg)
+				toaster.pop('error', msg);$rootScope.lastMessage = msg;
 		});
 	}
 	this.responseError = function(response){
 		if(response.msg == 'Invalid_Token'){
 			$cookies.remove("token");
-			toaster.pop('error','Session Expired');
-			$location.path('/core/login');return false;
+			if($rootScope.lastMessage != response.msg)
+				toaster.pop('error','Session Expired');
+			$location.path('/core/login');
+		}else if(response.msg == 'No_Records_Found'){
+			if($rootScope.lastMessage != response.msg)
+				toaster.pop('info','No device Exist.');
 		}else{
-			toaster.pop('error',response.msg.replace(/_/g," "));
+			if($rootScope.lastMessage != response.msg)
+				toaster.pop('error',response.msg.replace(/_/g," "));
 		}
+		$rootScope.lastMessage = response.msg;
+
 	}
 
 }]);
