@@ -84,7 +84,7 @@ app
 	$rootScope.getDoorsList = function(){
 
 		$http({
-			 //url: baseURL+'door/list?facility_id='+$rootScope.device.facility_id,
+			//  url: baseURL+'door/list?facility_id='+$rootScope.device.facility_id,
             url: baseURL+'door/list-door-not-assigned-to-device?facility_id='+$rootScope.device.facility_id,
 			method: 'GET',
 			dataType : 'JSON',
@@ -95,7 +95,7 @@ app
 		})
 		.success(function(response) {
 			if(response.status == true){
-				$rootScope.doorList = response.data.data;
+				$rootScope.doorList = response.data;
 				//$scope.getTechnicianList();
 			}else{
 				$rootScope.doorList = [];
