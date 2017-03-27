@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope,$filter,toaster) {
+  .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope,$filter,toaster,$sce) {
      $scope.page = {
       title: 'Camera DVR',
     };
@@ -73,7 +73,8 @@ app
 		$mdDialog.show(confirm).then(function() {
             $scope.deleteCameraGroup($scope.selectedCameraGroup,function (isDeleted) {
                 if(isDeleted){
-                    $scope.getfacilites('','','',function (lstfacilities,lstCameraGroup) {
+
+                    $scope.getCameraGroups(function (lstCameraGroup) {
                         $scope.selectedCameraGroup=null;
                         setTimeout(function () {
                             $('#cameraGroupDD').val('')
@@ -486,9 +487,114 @@ app
         }
     }
 
+
+    $scope.recordedFeedsSearchObj={
+        facility:null,
+        dt:new Date(),
+        mytime:new Date()
+    }
+      $scope.searchSection='reset';
+    $scope.getCamerasOnSearchItems=function () {
+
+	    if($scope.recordedFeedsSearchObj.facility){
+	        $scope.recordedCameraFeedsAfterSearch=[];
+            $scope.searchSection='Search';
+
+
+
+           // utilitySvc.callHttpService('camera/list?facility_id='+$scope.recordedFeedsSearchObj.facility,'GET',{},'response_key_Result');
+           //  $scope.response_key_Result=utilitySvc.response_key_Result;
+           //
+           //
+           //  $scope.$watch('response_key_Result',function (nval,oval) {
+           //      console.log('Data is : '+JSON.stringify($scope.response_key_Result));
+           //  })
+
+            $http({
+                url: baseURL + 'camera/list?facility_id='+$scope.recordedFeedsSearchObj.facility,
+                method: 'GET',
+                dataType : 'JSON',
+                headers: {
+                    "Authorization": $cookies.get("token"),
+                    "Content-type": "application/json"
+                }
+            })
+                .success(function(response) {
+                    if(response.status == true){
+
+                        $scope.recordedCameraFeedsAfterSearch=response.data.data;
+                    }
+                    if(response.msg == 'Invalid_Token'){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');return false;
+                    }
+                })
+                .error(function (data, status, headers, config) {
+
+                });
+
+        }
+    }
+
+    $scope.resetRecordedCamSearchCriteria=function () {
+        $scope.searchSection='reset';
+    }
+
+
+    $scope.isrecordedFeedCameraVideosAvailable=false;
+    $scope.getRecordedFeedVideosByCameraID=function (cameraObj) {
+        $scope.recordedFeedCameraPlayerHeader=cameraObj.camera_username;
+        $scope.recordedFeedCameraPlayerSubHeader=cameraObj.camera_subscription_model;
+        $http({
+            url: baseURL + 's3/list?camera_id=25',//+cameraObj.camera_id,//25
+            method: 'GET',
+            dataType : 'JSON',
+            headers: {
+                "Authorization": $cookies.get("token"),
+                "Content-type": "application/json"
+            }
+        })
+            .success(function(response) {
+                if(response.status == true){
+
+                    setTimeout(function () {
+                      var videoDOM=document.getElementById('recordedFeedVideoPlayer');
+                      videoDOM.innerHTML='';
+                      var sourcehtml='';
+                      if(response.data){
+                          $scope.isrecordedFeedCameraVideosAvailable=true;
+                          for(var i=0;i<response.data.length;i++){
+                              sourcehtml+='<source src="'+response.data[i]+'" type="video/mp4">';
+                          }
+                          videoDOM.innerHTML=sourcehtml;
+                          videoDOM.load();
+                          videoDOM.play();
+                      }
+
+                    },1000)
+
+                }
+                if(response.msg == 'Invalid_Token'){
+                    toaster.pop('error','Session Expired');
+                    $cookies.remove("token");
+                    $location.path('/core/login');return false;
+                }
+            })
+            .error(function (data, status, headers, config) {
+                $scope.isrecordedFeedCameraVideosAvailable=false;
+            });
+    }
+
+      $scope.trustSrc = function(src) {
+          return $sce.trustAsResourceUrl(src);
+      }
+
 	$scope.startRecording=function (cameraID) {
         toaster.pop('Oops !! ','Recording is not working yet for Camera ID : '+cameraID);
     };
+
+
 
 
       $scope.getfacilites('','','',function (lstfacilities,lstCameragroup) {
