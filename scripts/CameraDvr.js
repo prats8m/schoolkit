@@ -547,7 +547,7 @@ app
         $scope.recordedFeedCameraPlayerHeader=cameraObj.camera_username;
         $scope.recordedFeedCameraPlayerSubHeader=cameraObj.camera_subscription_model;
         $http({
-            url: baseURL + 's3/list?camera_id=25',//+cameraObj.camera_id,//25
+            url: baseURL + 's3/list?camera_id='+cameraObj.camera_id,//25
             method: 'GET',
             dataType : 'JSON',
             headers: {
