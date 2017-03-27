@@ -9663,3 +9663,16 @@ app.filter('emptyVal', function() {
       return (input == null || input == 'null' || input == 0)? 0 : input;
     }
 });
+app.directive("number",function(){
+	return {
+		restrict: 'A',
+		link:function(scope,element,attrs){
+			element.on('keypress',function(e){
+				console.log(e);
+				if(!((e.charCode >= 48 && e.charCode <= 57)||e.charCode == 0)){
+					e.preventDefault();
+				}
+			});
+		}
+	}
+});

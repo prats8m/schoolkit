@@ -27,10 +27,6 @@ app
 			toaster.pop('info','You decided to keep device.');
 		});
     };
-
-    $scope.onlyNumber = function(event){
-    	if((event.charCode >= 48 && event.charCode <= 57)||event.charCode == 8){return true;}
-    }
 	
 	$scope.deleteDevice = function(id){
 		dataService.deleteData(null,baseUrl+'warehouse-device/delete?device_id='+id)
@@ -225,10 +221,6 @@ app
 			}
 		});
 	}
-
-	$scope.onlyNumber = function(event){
-    	if((event.charCode >= 48 && event.charCode <= 57)||event.charCode == 8){return true;}
-    }
 	
 	$scope.dataInit = function(){
 		dataService.getData({device_id:$stateParams.device_id},baseUrl+'warehouse-device/view')
