@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .controller('DeviceSettingController', function ($scope, $mdDialog, $http, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, dataService) {
+    .controller('DeviceSettingController', function ($scope, $mdDialog, $http, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, dataService, $rootScope) {
         $scope.page = {
             title: 'Settings',
             subtitle: ''
@@ -317,4 +317,32 @@ app
 
                 });
         }
+
+
+        $scope.dashboardInit = function(){
+        $http({
+            url: baseURL + 'user/dashboard',
+            method: 'GET',
+            dataType : 'JSON',
+            headers: {
+                "Authorization": $cookies.get("token"),
+                "Content-type": "application/json"
+            }
+        })
+        .success(function(response) {
+            if(response.status == true){
+                $rootScope.dashboardData = response.data;
+            }else{
+                if(response.msg == 'Invalid_Token'){
+                    toaster.pop('error','Session Expired');
+                    $cookies.remove("token");
+                    $location.path('/core/login');return false;
+                }
+            }
+        })
+        .error(function (data, status, headers, config) {
+            
+        });
+    }
+        $scope.dashboardInit();
     });
