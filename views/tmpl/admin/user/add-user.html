@@ -186,7 +186,7 @@
 												<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 													<label for="">Expiration Date</label>
 													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
+														<input type="text" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="userData.expiration_date"/>
 														<span class="input-group-btn">
 															<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -406,7 +406,7 @@
 										</uib-accordion-group>
 													
 										<uib-accordion-group is-open="status.open2" class="panel-default">
-											<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
+											<uib-accordion-heading >RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
 											<div class="modal-body p-0">
 											<span class="error">{{ rfid_error }}</span>
 												<form ng-submit="saveRFID(rfid, rfid_form)" ng-validate="validationOptions" name="rfid_form">
@@ -580,7 +580,7 @@
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="blecode in ble_code_list">
 																	<td>{{blecode.Detail.ble_username}}</td>
-																	<td>{{blecode.Detail.ble_password}}</td>
+																	<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																	<td>{{blecode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">

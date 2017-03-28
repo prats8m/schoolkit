@@ -17,11 +17,43 @@ app
 	$scope.facility = "";
 	$rootScope.facilityId = $cookies.get("facilityId");
 
-    if($cookies.get("user_id") == undefined)
-    {
-    	$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");	
-    	$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
-    }
+	$timeout(function () {
+        if($cookies.get("user_id") == undefined)
+        {
+          //  $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
+          //  $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
+        }
+    },500);
+
+
+    // $scope.cleanAccordionFormObject=function (tthis,UI,objectType) {
+		// switch (UI){
+		// 	case 'Add User':
+		// 		switch (objectType){
+		// 			case 'accessCode':
+		// 				$scope.accesscode={};
+		// 				break;
+    //                 case 'phoneCode':
+    //                     $scope.phoneCode={};
+    //                     break;
+    //                 case 'rfid':
+    //                     $scope.rfid={};
+    //                     break;
+    //                 case 'savenfc':
+    //                     $scope.savenfc={};
+    //                     break;
+    //                 case 'ble_code':
+    //                     $scope.ble_code={};
+    //                     break;
+		// 			default:
+		// 				break;
+		// 		}
+		// 		break;
+		// 	default:
+		// 		break;
+		// }
+    // }
+
 	$scope.result = '';
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
@@ -953,7 +985,7 @@ app
 		.success(function(response){
 			if(response.status == true){
 				$rootScope.assingned_usergroups = response.data;
-				$scope.groupcount = response.data.length;
+				$scope.groupcount = response.data.length?response.data.length:0;
 			}else{	
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
@@ -1565,6 +1597,10 @@ app
 	$scope.submitEditUser = function(submitData, user_edit){
 		if(!user_edit.validate()){
 			return false;
+		}
+		if(submitData.password!=submitData.cnf_pass){
+			toaster.pop('Warning!! ','Password and Confirm Password should be same');
+			return;
 		}
 		submitData.status = submitData.user_status
 		submitData.user_id = parseInt($stateParams.user_id);

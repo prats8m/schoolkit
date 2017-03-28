@@ -94,6 +94,11 @@ var app = angular
         }, 200);
       });
       $rootScope.containerClass = toState.containerClass;
+
+        if (toState.name ==="app.admin.user.add-user") {
+            $cookies.remove("user_id");
+        }
+
     });
   }])
 
@@ -3081,6 +3086,7 @@ app
       $scope.dt = new Date();
     };
 
+      $scope.mindate = new Date();
     $scope.today();
 
     $scope.clear = function () {
@@ -3107,7 +3113,7 @@ app
     $scope.dateOptions = {
       formatYear: 'yy',
       startingDay: 1,
-      'class': 'datepicker'
+		'class': 'datepicker'
     };
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
