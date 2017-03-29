@@ -1826,7 +1826,7 @@ html.boxed-layout {
   transition: right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335), padding-right 0.25s cubic-bezier(0.6, 0.04, 0.98, 0.335); }
   #header .branding {
     background-color: #493d55;
-    width: 200px;
+    width: auto;
     height: 45px;
     float: left;
     padding: 0 15px; }
@@ -6091,6 +6091,7 @@ ol.list-type {
     width: 160px; }
   .thumb.thumb-xxll {
 	width: 200px;
+	border-radius: 50%;
 	margin-bottom: 10px; }
   .thumb .thumb-header,
   .thumb .thumb-body {

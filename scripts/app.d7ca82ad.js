@@ -206,7 +206,12 @@ var app = angular
 	  controller: 'EditDeviceCtrl',
 	  templateUrl: 'views/tmpl/admin/device/edit-dependent-device.html'
 	})
-			
+		//admin activity
+		.state('app.admin.activity', {
+		  url: '/activity',
+		  controller: 'ActivityCtrl',
+		  templateUrl: 'views/tmpl/admin/activity.html'
+		})	
 
 	/*-----------------------------------------------------------------
 				End code for default pages

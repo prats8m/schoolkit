@@ -1,0 +1,234 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent usersbg">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row" ng-controller="ActivityCtrl">
+			<div class="col-sm-12 col-md-8 col-lg-9">
+				<section class="tile box-shadow" fullscreen="isFullscreen06">
+					<div class="tile-header dvd dvd-btm">
+						<h1 class="custom-font"><strong>Activity log</strong></h1>
+					</div>
+					<div class="filteractivity mt-20">
+						<div class="wrap-reset"> 
+							<div class="profile-settings"> 
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-centered">
+										<div class="col-sm-4 col-md-5">
+											<label for="">Auto Refresh</label><br/>
+											<select class="form-control w-240" disabled>
+												<option selected>None</option>
+												<option>15 Sec</option>
+												<option>30 Sec</option>
+												<option>1 min</option>
+												<option>15 min</option>
+												<option>30 min</option>
+											</select>
+										</div>
+										<div class="col-sm-8 col-md-7 ta-r">
+											<label for="">&nbsp;</label><br/>
+											<select class="form-control w-240" style="display: inline-block;" disabled>
+												<option>Select Door</option>
+												<option>Main Gate Front</option>
+												<option>Main Gate Back</option>
+												<option>Exit Gate Front</option>
+												<option>Exit Gate Back</option>
+												<option>Parking Entry Gate</option>
+												<option>Parking Exit Gate</option>
+												<option>Pool Gate</option>
+												<option>Gym Gate</option>
+											</select>
+											<button class="btn btn-default btn-rounded" disabled style="padding: 12px 10px;"><i class="fa fa-unlock-alt"></i> Unlock Door</button>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row mt-20 mb-20">
+									<div class="col-sm-12 col-md-12 col-centered">
+										<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
+											<label for="">Date/Time</label>
+											<div class="input-group">
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" disabled />
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;" disabled><i class="glyphicon glyphicon-calendar"></i></button>
+												</span>
+											</div>
+										</div>
+										<div class="col-sm-3 col-md-3">
+											<label for="">Event</label><br/>
+											<select class="form-control" ng-model="event_id" ng-change="eventFetch()" ng-options="x.event_id as x.event_name for x in event_types">
+												<option value="">Select</option>
+											</select>
+										</div>
+										<div class="col-sm-3 col-md-3">
+											<label for="">Facility</label><br/>
+											<select class="form-control" ng-model="facility_id" ng-options="x.facility_id as x.facility_name for x in facility" ng-change="getDeviceList()">
+												<option value="">Select</option>
+											</select>
+										</div>
+										<div class="col-sm-3 col-md-3">
+											<label for="">Device</label><br/>
+											<select class="form-control" ng-model="device_id" ng-change="eventFetch()" ng-options="x.device_id as x.device_name for x in devices">
+												<option value="">Select</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div ng-if="result">									
+						<div layout="row" ng-class="statusclass">									
+							{{result}}
+						</div>
+					</div>
+					
+					<div class="hometabs">
+						<div class="tile-body table-custom">
+							<div class="table-responsive">
+								<table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-custom">
+									<thead>
+										<tr>
+											<th><span>Date/Time</span></th>
+											<th><span>User</span></th>
+											<th><span>Event</span></th>
+											<th><span>Facility</span></th>
+											<th><span>Door</span></th>
+											<th><span>Device</span></th>
+											<th width="100">Video Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="active in activities">
+											<td>{{active.timestamp}}</td>
+											<td>{{active.user.user_first_name + " " + active.user.user_last_name}}</td>
+											<td>{{active.event_type}}</td>
+											<td>{{active.facility.facility_name}}</td>
+											<td>{{active.door.door_name}}</td>
+											<td>{{active.device.device_name}}</td>
+											<td class="customicon ta-c">
+												<a href="" uib-tooltip="View Playback"><i class="fa fa-eye" aria-hidden="true" disabled></i></a>
+												<a href="" ng-click="showConfirm($event)" uib-tooltip="Delete" disabled><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</section>
+						
+			</div>
+			
+			<div class="col-sm-4 col-md-4 col-lg-3">
+				<section class="tile tile-simple activity">
+					<div class="tile-widget">
+						<div class="row">
+							<div class="form-group col-sm-12">
+								<h3 class="mt-0">User Image</h3>					
+								<div class="tile-body p-0">
+									<img src="images/avatar.jpg" class="userimg" alt="">
+								</div>
+							</div>
+							<div class="form-group col-sm-12">
+								<h3 class="mt-40">Video Playback</h3>					
+								<div class="tile-body p-0">
+									<video controls>
+										<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
+										<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
+										<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+										Your browser does not support HTML5 video.
+									</video>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</section>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
