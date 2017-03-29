@@ -215,7 +215,7 @@
 												<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 													<label for="">Expiration Date</label>
 													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expiration_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expiration_date" min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 														<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -599,7 +599,8 @@
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="blecode in ble_code_list">
 																	<td>{{blecode.Detail.ble_username}}</td>
-																	<td>{{blecode.Detail.ble_password}}</td>
+																	<!--<td>{{blecode.Detail.ble_password}}</td>-->
+																	<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																	<td>{{blecode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">

@@ -253,19 +253,15 @@
 												<div class="col-sm-12 col-md-9 col-centered ">
 													<div class="col-sm-3 col-md-3 ">
 														<label for=" ">Facility</label><br/>
-														<select class="form-control " disabled>
-															<option selected>USA Corporate Services</option>
-															<option>Aerzen USA Corporation</option>
-															<option>Aerzen USA Corporation</option>
-															<option>Aerzen USA Corporation</option>
-															<option>Aerzen USA Corporation</option>
-															<option>Aerzen USA Corporation</option>
+														<select class="form-control " ng-model="recordedFeedsSearchObj.facility" ng-options="facility.facility_id as facility.facility_name for facility in facilityList track by facility.facility_id">
+															<option value="">Select Facility</option>
+
 														</select>
 													</div>
 													<div class="col-sm-3 col-md-3 " ng-controller="DatepickerDemoCtrl ">
 														<label for=" ">Date</label>
 														<div class="input-group ">
-															<input type="text " class="form-control " uib-datepicker-popup="{{format}} " ng-model="dt " is-open="opened
+															<input type="text " class="form-control " uib-datepicker-popup="{{format}} " ng-model="recordedFeedsSearchObj.dt " is-open="opened
 												 " datepicker-options="dateOptions " ng-required="true " close-text="Close " />
 															<span class="input-group-btn ">
 																<button type="button " class="btn btn-default " ng-click="open($event) " style="padding: 8px 14px;
@@ -280,48 +276,115 @@
 												 " show-meridian="ismeridian "></uib-timepicker>
 														</span>
 													</div>
-													<div class="col-sm-3 col-md-3 validtime " ng-init="searchSection='reset' ">
+													<div class="col-sm-3 col-md-3 validtime ">
 														<label for=" ">&nbsp;</label><br/>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a " ng-model="searchSection
-												 " ng-click="searchSection='search' ">Search</button>
-														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a " ng-click="searchSection='reset' ">Reset</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a " ng-click="getCamerasOnSearchItems() ">Search</button>
+														<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a " ng-click="resetRecordedCamSearchCriteria()">Reset</button>
 													</div>
 												</div>
 											</div>
-											<div class="row searchvideoitems " ng-init="searchSection='reset' ">
+											<div class="row searchvideoitems ">
 												<div class="col-md-12 " ng-hide="searchSection=='reset' ">
 													<div class="row ">
 														<div class="col-md-4 ">
 															<ul class="tabs-menu ">
-																<li class="searchitems active ">
-																	<a href="#gstab1 " native-tab>
-																		Main Entrance Camera
-																		<small>Front Entrance (Bethesda)</small>
-																	</a>
-																</li>
-																<li class="searchitems ">
-																	<a href="#gstab2 " native-tab>
-																		Entrance to Hall
-																	</a>
-																</li>
-																<li class="searchitems ">
-																	<a href="#gstab3 " native-tab>
-																		Klva and Smart
-																		<small>01/01 General Entrance</small>
-																	</a>
-																</li>
-																<li class="searchitems ">
-																	<a href="#gstab4 " native-tab>
-																		Lobby Area
-																	</a>
-																</li>
-																<li class="searchitems ">
-																	<a href="#gstab5 " native-tab>
-																		Lobby Entrance
-																		<small>South Lobby Entrance</small>
+
+
+																<li class="searchitems" ng-repeat="rec_feed_cam in recordedCameraFeedsAfterSearch" ng-click="getRecordedFeedVideosByCameraID(rec_feed_cam)">
+																	<a href="{{rec_feed_cam.camera_facility_id+'_'+rec_feed_cam.camera_id}}" native-tab>
+																		{{rec_feed_cam.camera_username}}
+																		<small>{{rec_feed_cam.camera_subscription_model}}</small>
 																	</a>
 																</li>
 															</ul>
+														</div>
+														<div class="col-md-8">
+															<div class="tab-content">
+
+																<div ng-show="isrecordedFeedCameraVideosAvailable" class="livevideo tab-pane fade active in" id="recordedFeedVideoPlayerDIV">
+																<div class="selectcam">
+																	{{recordedFeedCameraPlayerHeader}} <small>{{recordedFeedCameraPlayerSubHeader}}</small>
+																</div>
+																<div class="video">
+																<video id="recordedFeedVideoPlayer" controls="">
+																<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
+																<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																Your browser does not support HTML5 video.
+																</video>
+																</div>
+																</div>
+
+																<!--<div class="livevideo tab-pane fade active in" id="gstab1">-->
+																	<!--<div class="selectcam">-->
+																		<!--Main Entrance Camera <small>Front Entrance (Bethesda)</small>-->
+																	<!--</div>-->
+																	<!--<div class="video">-->
+																		<!--<video controls="">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																			<!--Your browser does not support HTML5 video.-->
+																		<!--</video>-->
+																	<!--</div>-->
+																<!--</div>-->
+
+																<!--<div class="livevideo tab-pane fade" id="gstab2">-->
+																	<!--<div class="selectcam">-->
+																		<!--Entrance to Hall-->
+																	<!--</div>-->
+																	<!--<div class="video">-->
+																		<!--<video controls="">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																			<!--Your browser does not support HTML5 video.-->
+																		<!--</video>-->
+																	<!--</div>-->
+																<!--</div>-->
+
+																<!--<div class="livevideo tab-pane fade" id="gstab3">-->
+																	<!--<div class="selectcam">-->
+																		<!--Klva and Smart <small>01/01 General Entrance</small>-->
+																	<!--</div>-->
+																	<!--<div class="video">-->
+																		<!--<video controls="">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																			<!--Your browser does not support HTML5 video.-->
+																		<!--</video>-->
+																	<!--</div>-->
+																<!--</div>-->
+
+																<!--<div class="livevideo tab-pane fade" id="gstab4">-->
+																	<!--<div class="selectcam">-->
+																		<!--Lobby Area-->
+																	<!--</div>-->
+																	<!--<div class="video">-->
+																		<!--<video controls="">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																			<!--Your browser does not support HTML5 video.-->
+																		<!--</video>-->
+																	<!--</div>-->
+																<!--</div>-->
+
+																<!--<div class="livevideo tab-pane fade" id="gstab5">-->
+																	<!--<div class="selectcam">-->
+																		<!--Lobby Entrance <small>South Lobby Entrance</small>-->
+																	<!--</div>-->
+																	<!--<div class="video">-->
+																		<!--<video controls="">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
+																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																			<!--Your browser does not support HTML5 video.-->
+																		<!--</video>-->
+																	<!--</div>-->
+																<!--</div>-->
+
+															</div>
 														</div>
 													</div>
 

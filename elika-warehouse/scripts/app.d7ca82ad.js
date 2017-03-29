@@ -2226,7 +2226,8 @@ app
       $scope.dt = new Date();
     };
 
-    $scope.today();
+      $scope.mindate = new Date();
+      $scope.today();
 
     $scope.clear = function () {
       $scope.dt = null;
@@ -2253,7 +2254,8 @@ app
       formatYear: 'yy',
       startingDay: 1,
       'class': 'datepicker'
-    };
+
+  };
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
