@@ -19,7 +19,7 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 			method: 'GET',
 			url: url,
 			params: param,
-			dataType : 'JSON', 
+			//dataType : 'JSON', 
 			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
 		}).error(function(){
 			toaster.pop('error', 'Something went wrong.');

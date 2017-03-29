@@ -96,7 +96,7 @@ app
 		.success(function(response) {
 			if(response.status == true){
 				$rootScope.doorList = response.data;
-				//$scope.getTechnicianList();
+				
 			}else{
 				$rootScope.doorList = [];
 				if(response.msg == 'Invalid_Token'){
@@ -1486,8 +1486,14 @@ app
 				$scope.details = response.data;
 				$scope.editDevice = response.data;
 				$scope.editDevice.technician_id = $scope.editDevice.device_technician_id;
-				$scope.editDevice.door_id = $scope.editDevice.doors;
-
+				//$scope.editDevice.door_id = $scope.editDevice.doors;
+				var obj = $scope.editDevice.doors;
+    			var tmpArray = [];
+				for (var prop in obj) {
+				  tmpArray.push(Number(prop));
+				}
+				$scope.editDevice.door_id = tmpArray;
+				console.log($scope.editDevice.door_id);
 			}else{
 				if(response.msg == 'Invalid_Token'){
 					toaster.pop('error','Session Expired');
