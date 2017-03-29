@@ -99,7 +99,7 @@
 												<div class="row">
 													<div class="form-group col-sm-12 col-md-12">
 														<label for="">Device Name</label>
-														<input type="text" maxlength="30" name="device_name" ng-model="device.device_name" id="" class="form-control" placeholder="" required>
+														<input type="text" maxlength="30" name="device_name" ng-model="device.device_name" id="" class="form-control" placeholder="" required autocomplete="off">
 													</div>
 													
 												</div>
@@ -159,7 +159,7 @@
 											</div>
 										</form>		
 									</script>
-									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Devices</span></a>
+									<a ng-click="open();resetDeviceModel();" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Devices</span></a>
 								</div>								
 							</li>
 							<li class="addpopup">

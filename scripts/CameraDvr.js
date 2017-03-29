@@ -486,7 +486,6 @@ app
         camera_id:[]
     };
 
-
     $scope.addCameraGroup = function(){
         utilitySvc.callHttpService('cameragroup/add','POST',$scope.cam1group,function (succResponse) {
             if(succResponse.status){
@@ -546,7 +545,6 @@ app
     }
 
     $scope.open = function(size) {
-
         $scope.cam1group.camera_id=angular.copy($rootScope.cameraidsToCreateGroup);
         var modalInstance = $uibModal.open({
             templateUrl: 'addCameraGroupUI.html',
@@ -558,9 +556,7 @@ app
                 }
             }
         });
-
         modalInstance.result.then(function (selectedItem) {
-
             $scope.cam1group= selectedItem;
             $scope.addCameraGroup();
 
@@ -568,32 +564,20 @@ app
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-
-
-
-
-
 })
 
     .controller('addCameraGroupCTRLInstance', function ($scope, $uibModalInstance, items) {
-
         $scope.cameraGroupName = '';
         $scope.ok = function () {
             items.group_name=$scope.cameraGroupName;
             $uibModalInstance.close(items);
         };
-
         $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
         };
-
         $scope.next = function(){
-
         }
-
     })
-
-
 
 //.........................................................
 

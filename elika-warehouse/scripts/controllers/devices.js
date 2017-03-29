@@ -11,7 +11,8 @@ app
     $scope.page = {
 		title: 'Devices',
     };
-	
+
+
 	$scope.result = '';
 	$scope.devices = [];
     $scope.showConfirm = function(ev,id) {
