@@ -31,7 +31,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
 									<span class="text-lg">Doors</span>
 								</div>
 							</div>
@@ -73,7 +73,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -156,13 +156,13 @@
 										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy">
 											<md-card-content>
 												<h2 class="md-title">{{ schedule.schedule_name }}</h2>
-												<p>{{ schedule.schedule_status }}</p>
+												<p>{{ schedule.schedule_status | scheduleFilter }}</p>
 												<!--<p>{{ schedule.expirationdate }}</p>-->
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-schedule-groups({schedule_id:schedule.schedule_id})">View</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-schedule({schedule_id:schedule.schedule_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.schedule.edit-schedule-groups({schedule_id:schedule.schedule_id})">Edit</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,schedule.schedule_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
