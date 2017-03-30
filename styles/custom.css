@@ -833,9 +833,8 @@ a.serplan:hover {
 .crystalcove {
 	width: 66%;
     height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .covertext {
@@ -876,10 +875,9 @@ a.serplan:hover {
 .myshortcuts {
 	background: rgba(0,0,0,0.9);
     width: 34%;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    right: 0;
+    overflow: hidden;
+    display: inline-block;
+    float: right;
 }
 
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent {
@@ -2390,6 +2388,11 @@ span.edittxt {position: absolute;
     margin-bottom: 25px;
 }
 
+.slimscrolls {
+	max-height: 293px;
+	margin-bottom: 20px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-2 {
         left: -85px
@@ -2704,11 +2707,8 @@ span.edittxt {position: absolute;
 	.addusers {
 		margin: -1px -5px 0 0;
 	}
-	.crystalcove {
-		width: 70%;
-	}
-	.myshortcuts {
-		width: 30%;
+	.slimscrolls {
+		max-height: 449px;
 	}
 	.myshortcuts ul li .icons {
 		height: 54px;
@@ -2718,9 +2718,6 @@ span.edittxt {position: absolute;
 	.myshortcuts ul li a {
 		height: 54px;
 		font-size: 18px;
-	}
-	.crystalcove, .myshortcuts {
-		height: 530px;
 	}
 }
 
@@ -2774,6 +2771,9 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
 	}
+	.slimscrolls {
+		max-height: 355px;
+	}
 }
 
 @media only screen and (max-width: 1365px) {
@@ -2794,6 +2794,24 @@ span.edittxt {position: absolute;
 	}
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
+	}
+	.crystalcove {
+		width: 64%;
+	}
+	.myshortcuts {
+		width: 36%;
+	}
+	.covertext span {
+		font-size: 24px;
+	}
+	.covertext span strong {
+		font-size: 40px;
+	}
+	.covertext span  strong:after {
+		bottom: -50px;
+	}	
+	.card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
+		font-size: 20px;
 	}
 }
 
@@ -2820,7 +2838,7 @@ span.edittxt {position: absolute;
 	}
 	.topmenu  {
 		width: 225px;
-		position: absolute;
+		position: fixed;
 		height: 100%;
 		transition: 0.25s;
 		left: -100%;
@@ -2999,6 +3017,23 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
 	}
+	.crystalcove {
+		width: 60%;
+	}
+	.myshortcuts {
+		width: 40%;
+	}
+	.covertext span {
+		font-size: 20px;
+	}
+	.covertext span strong {
+		font-size: 36px;
+	}
+	.covertext span strong:after {
+		bottom: -45px;
+		margin-left: -50px;
+		width: 100px;
+	}
 }
 
 @media only screen and (max-width: 1139px) {
@@ -3081,20 +3116,8 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(4n+4) {
 		margin-right: 0;
 	}
-	.myshortcuts {
-		width: 38%;
-	}
-	.crystalcove {
-		width: 62%;
-	}
-	.covertext span  strong {
-		font-size: 40px;
-	}
-	.covertext span {
-		font-size: 24px;
-	}
-	.covertext span  strong:after {
-		bottom: -50px;
+	.slimscrolls {
+		max-height: 303px;
 	}
 }
 
@@ -3250,10 +3273,8 @@ span.edittxt {position: absolute;
 	.covertext span {
 		font-size: 20px;
 	}
-	.covertext span strong:after {
-		bottom: -40px;
-		width: 100px;
-		margin-left: -50px;
+	.slimscrolls {
+		max-height: 268px;
 	}
 }
 
@@ -3503,9 +3524,3 @@ span.edittxt {position: absolute;
 		width: 65%!important;
 	}
 }
-.singlePlayer{
-	height:480px;
-}
-
-.clckevent .panel .panel-heading .panel-title .accordion-toggle{padding: 0px;}
-.clckevent .panel .panel-heading .panel-title .accordion-toggle > span > div{padding: 10px 15px;}

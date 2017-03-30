@@ -1,9 +1,10 @@
 <header class="clearfix">
 	<div class="branding">
 		<a class="brand" ui-sref="app.admin.dashboard">
-			<span><strong>Elika</strong> Access System</span>
+			<span><strong>Elika</strong> Access Systems</span>
 		</a>
 	</div>
+	
 	<div class="mobmenu">
 		<a href="javascript:;" class="animated-arrow">
 			<span></span>
@@ -143,13 +144,12 @@
 		<li class="dropdown nav-profile" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
 				<img src="images/avatar.jpg" alt="" class="img-circle size-30x30">
-				<span><username></username><fa name="angle-down"></fa></span>
-				
+				<span><span class="uname">John Rockwell</span> <fa name="angle-down"></fa></span>
 			</a>
 			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">
 				<li><a ui-sref="app.admin.profile-settings"><i class="fa fa-cog" aria-hidden="true"></i> Profile Settings</a></li>
 				<li><a ui-sref="app.admin.help.faqs"><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li>
-				<li><a ng-click="logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+				<li><a ui-sref="core.login"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -158,14 +158,6 @@
 	$(document).ready(function() {
 		var winw = $(window).width();
 		var winh = $(window).height();
-		
-		var openmmenuh = winh - 45;
-		
-		if(winw<1280) {
-			$('.topmenu').attr('style','height:'+openmmenuh+'px;');
-		};		
-		
-		$(window).on('resize',function(){location.reload();});
 		
 		$('.animated-arrow').click(function(){
 			$(this).toggleClass('openmenu');
