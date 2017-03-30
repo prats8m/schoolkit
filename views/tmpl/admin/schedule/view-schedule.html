@@ -5,10 +5,10 @@
 	
 	<div class="pagecontent">
 		<div class="row">		
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
-						<div class="bg-transparent">
+						<div class="bg-transparent schedulebg">
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
@@ -18,305 +18,97 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue">						
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-fax fa-5x"></i>
+					<div class="noback bg-blue">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">15</p>
-									<span class="text-lg">Primary Devices</span>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<span class="text-lg">Devices</span>
 								</div>
 							</div>
 						</div>
+					</div>
 					</a>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">					
-					<a ui-sref="app.admin.device.dependent-devices">
-						<div class="noback bg-greensea">
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-mobile fa-5x"></i>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
 								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">7</p>
-									<span class="text-lg">Dependent Devices</span>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
 								</div>
 							</div>
 						</div>
+					</div>
 					</a>
 				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-						<div class="noback bg-lightred">						
-							<div class="row">
-								<div class="col-xs-4 ta-c">
-									<i class="fa fa-users fa-5x"></i>
-								</div>
-								<div class="col-xs-8">								
-									<p class="text-elg text-strong mt-5 mb-5">95</p>
-									<span class="text-lg">Users</span>
+					<div class="noback bg-lightred">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
 								</div>
 							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
 						</div>
+					</div>
 					</a>
 				</div>
 			</div>			
 		</div>
 	
 		<div class="row">
-			<div class="col-md-4">
-				<section class="tile tile-simple">
-					<div class="tile-widget p-30 text-center">
-						<div class="thumb thumb-xxll">
-							<img class="img-circle" src="images/noimage.jpg" alt="">
-						</div>
-						<h4 class="mb-0"><strong>Office-Weekdays</strong></h4>
-						<span class="text-muted">11:00 AM - 05:00 PM</span>
-						<div class="mt-40">				
-							<button class="btn btn-rounded-20 btn-sm btn-greensea">Inactive Schedule</button>
-							<button class="btn btn-rounded-20 btn-sm btn-lightred">Delete Schedule</button>
-						</div>
-
-					</div> 
-					<div class="tile-body text-center bg-blue p-0"> 
-						<ul class="list-inline tbox m-0">
-							<!--li class="tcol p-10">
-								<h2 class="m-0">4</h2>
-								<span class="text-transparent-white">Keys</span>
-							</li-->
-							<li class="tcol bg-blue dker p-10">
-								<h2 class="m-0">3</h2>
-								<span class="text-transparent-white">Schedule Groups</span>
-							</li>
-						</ul>
-					</div>  
-				</section> 
-				
+			<div class="col-md-12"> 
 				<section class="tile tile-simple"> 
-					<div class="tile-header">
-						<h1 class="custom-font"><strong>Description</strong></h1>
-					</div> 
-					<div class="tile-body">
-						<p class="text-default lt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p> 
-					</div> 
-				</section> 
-			</div>
-			
-			<div class="col-md-8"> 
-				<section class="tile tile-simple"> 
-					<div class="tile-body p-0"> 
-						<uib-tabset class="tabs-dark"> 
-							<uib-tab heading="Profile Detail">
-								<div class="wrap-reset"> 
-									<div class="profile-settings"> 
-									
-										<div class="row">
-											<div class="form-group col-md-12 legend">
-												<h4><strong>Configuration Details</strong></h4>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-sm-12 profiledetail">
-												<p><label>Timer Name</label> Office-Weekdays</p>
-												<p><label>Status</label> Active</p>
-												<p><label>Access</label> Allowed</p>
-												<p><label>Access Time</label> 11:00 AM - 05:00 PM</p>
-												<p><label>Access Days</label> Monday, Wednesday, Thursday</p>
-												<p><label>Expire Date</label> 11/05/2017</p> 
-											</div>											
-										</div>
-										
-										<div class="row mt-40">
-											<div class="form-group col-md-12 legend">
-												<h4><strong>Schedule</strong> Groups</h4>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12">													
-												<div class="tile-body p-0">
-													<table class="table table-bordered">
-														<thead>
-															<tr>
-																<th>Schedule Name</th>
-																<th>Facility</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>Office Hrs Schedule</td>
-																<td>USA Corporate Services</td>
-															</tr>
-															<tr>
-																<td>Cleaning Schedule</td>
-																<td>Aerzen USA Corporation</td>
-															</tr>
-															<tr>
-																<td>Meeting Schedule</td>
-																<td>USA Corporate Services</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-										
+					<div class="tile-body"> 
+						<div class="wrap-reset"> 
+							<div class="profile-settings">
+								<div class="row">
+									<div class="form-group col-md-12 legend">
+										<h4><strong>Configuration Details</strong> <span class="pull-right"><a style="font-size: 14px;" ui-sref="app.admin.schedule.edit-schedule-groups">Edit</a></span></h4>
 									</div>
-								</div>
-							</uib-tab>
-							<uib-tab heading="Edit Profile">
-								<div class="wrap-reset"> 
-									<div class="profile-settings"> 
-									
-										<div class="row">
-											<div class="form-group col-md-12 legend">
-												<h4><strong>Configuration Details</strong></h4>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-sm-6">
-												<label for="first-name">Timer Name</label>
-												<input type="text" class="form-control" id="first-name" value="Office-Weekdays">
-											</div>
-											<div class="form-group account col-sm-6" style="margin-top:0;">
-												<div class="row">
-													<div class="col-sm-6">
-														<label for="">Start Time <small>(HH:MM)</small></label>
-														<span ng-controller="TimepickerDemoCtrl">
-															<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
-														</span>
-													</div>
-													<div class="col-sm-6">
-														<label for="">End Time <small>(HH:MM)</small></label>
-														<span ng-controller="TimepickerDemoCtrl">
-															<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
-														</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-sm-6">
-												<label for="">Days</label><br/>
-												<div class="btn-group btnrounded" ng-controller="DaysCtrl">
-													<label class="btn btn-default" ng-model="checkModel.Mo" uib-btn-checkbox checked>Mon</label>
-													<label class="btn btn-default" ng-model="checkModel.Tu" uib-btn-checkbox>Tue</label>
-													<label class="btn btn-default" ng-model="checkModel.We" uib-btn-checkbox checked>Wed</label>
-													<label class="btn btn-default" ng-model="checkModel.Th" uib-btn-checkbox checked>Thr</label>
-													<label class="btn btn-default" ng-model="checkModel.Fr" uib-btn-checkbox>Fri</label>
-													<label class="btn btn-default" ng-model="checkModel.Sa" uib-btn-checkbox>Sat</label>
-													<label class="btn btn-default" ng-model="checkModel.Su" uib-btn-checkbox>Sun</label>
-												</div>
-											</div>
-											<div class="form-group col-sm-6" ng-controller="DatepickerDemoCtrl">
-												<label for="">Expiration Date</label>
-												<input type="text" class="form-control" id="mask02" ui-jq="inputmask" ui-options="{alias: 'mm/dd/yyyy'}">
-											</div>
-										</div>
-										
-										<div class="row">	
-											<div class="form-group col-sm-6">
-												<div class="row">
-													<div class="col-sm-6">
-														<label for="">Access</label><br/>
-														<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Allowed</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Denied</label>
-														</div>
-													</div>
-													<div class="col-sm-6">
-														<label for="">Status</label><br/>
-														<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-															<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row mt-40">
-											<div class="form-group col-md-12 legend">
-												<h4><strong><br/>Schedule</strong> Groups</h4>												
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="col-md-12 legend">
-												<h5 class="pull-left"><strong>Assigned Groups</strong></h5>
-												<button class="btn btn-default btn-rounded btn-ef btn-ef-5 btn-ef-5b mb-10 pull-right"><i class="fa fa-plus"></i> <span>Add Schedule Groups</span></button>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12">													
-												<div class="tile-body p-0">
-													<table class="table table-bordered">
-														<thead>
-															<tr>
-																<th>Group Name</th>
-																<th>Facility</th>
-																<th>Action</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>Office Hrs Schedule</td>
-																<td>USA Corporate Services</td>
-																<td>
-																	<button type="button" class="btn btn-success btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-edit"></i> <span>Edit</span></button>
-																	<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-																</td>
-															</tr>
-															<tr>
-																<td>Cleaning Schedule</td>
-																<td>Aerzen USA Corporation</td>
-																<td>
-																	<button type="button" class="btn btn-success btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-edit"></i> <span>Edit</span></button>
-																	<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-																</td>
-															</tr>
-															<tr>
-																<td>Meeting Schedule</td>
-																<td>USA Corporate Services</td>
-																<td>
-																	<button type="button" class="btn btn-success btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-edit"></i> <span>Edit</span></button>
-																	<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-																</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="form-group col-md-12 legend mt-20">
-												<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
-												<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
-											</div>
-										</div>
-										
-									</div>
-
-								</div>
-							</uib-tab>
-						</uib-tabset>
+								</div>								
+								<div class="row">
+									<div class="form-group col-sm-12 profiledetail">
+										<p><label>Timer Name</label> {{ViewSchedule.schedule_name}}</p>
+										<p><label>Status</label> {{ViewSchedule.schedule_status | scheduleFilter }}</p>
+										<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date}}</p>
+										<p>&nbsp;</p>
+										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
+										<p><label>Start Time</label> {{ViewSchedule.schedule_start_time}}:00:00</p>
+										<p><label>End Time</label> {{ViewSchedule.schedule_end_time}}:00:00</p>
+									</div>											
+								</div>	
+								
+							</div>
+						</div>
 					</div>
 				</section>
 			</div>

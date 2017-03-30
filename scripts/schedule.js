@@ -221,6 +221,33 @@ app
 		$("#table tr td").removeClass("selected");
 	}
 	
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');
+				}
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	$scope.dashboardInit();
+
 	$scope.imagePath = 'http://elikastaging.ml/images';	
 	
 });
@@ -240,21 +267,31 @@ app
       title: 'Schedule Groups',
       subtitle: 'So much more to see at a glance.'
     };
+
+    $scope.deleteSchedule = function(id){
+    	dataService.deleteData(null, baseURL + "schedule/delete?schedule_id="+id)
+    	.success(function(response){
+    		if(response.status){
+    			toaster.pop('success','Your schedule groups has been deleted successfully.');
+    			$scope.scheduleInit();
+    		}else{
+    			dataService.responseError(response);
+    		}
+    	});
+    }
 	
 	$scope.status = '  ';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete schedule groups?')
-		.content('The standard chunk of Lorem Ipsum used.')
+		//.content('The standard chunk of Lorem Ipsum used.')
 		.ok('Delete')
 		.cancel('Cancel')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.status = 'Your schedule groups has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			$scope.deleteSchedule(id);
 		}, function() {
-			$scope.status = 'You decided to keep schedule groups.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			toaster.pop('info','You decided to keep schedule groups.');
 		});
     };
 	
@@ -364,7 +401,88 @@ app
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
     }
+
+	$scope.dashboardInit = function(){
+		$http({
+			url: baseURL + 'user/dashboard',
+			method: 'GET',
+			dataType : 'JSON',
+			headers: {
+				"Authorization": $cookies.get("token"),
+				"Content-type": "application/json"
+			}
+		})
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}else{
+				if(response.msg == 'Invalid_Token'){
+					toaster.pop('error','Session Expired');
+					$cookies.remove("token");
+					$location.path('/core/login');return false;
+				}
+			}
+		})
+		.error(function (data, status, headers, config) {
+			
+		});
+	}
+	$scope.dashboardInit();
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 		
+});
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ViewScheduleCtrl
+ * @description
+ * # ViewScheduleCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('ViewScheduleCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService,$stateParams) {
+     $scope.page = {
+      title: 'Schedule',
+      subtitle: 'So much more to see at a glance.'
+    };
+
+    dataService.getData(null,baseURL + "schedule/view?schedule_id="+$stateParams.schedule_id)
+    .success(function(response){
+    	if(response.status){
+    		$scope.ViewSchedule = response.data[0];
+    		console.log($scope.ViewSchedule);
+    	}else{
+
+    	}
+    });
+
+    $scope.dashboardInit = function(){
+		
+		dataService.getData(null, baseURL + 'user/dashboard')
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.dashboardData = response.data;
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+	$scope.dashboardInit();
+	
+	$scope.imagePath = 'http://localhost:8080/elika/images';	
+	
+});
+
+
+app.filter('scheduleFilter',function(){
+	return function(input){
+		if(input == 1){
+			return 'Active';
+		}else{
+			return 'In Active';
+		}
+	}
 });

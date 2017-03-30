@@ -39,9 +39,10 @@
 	$(document).ready(function() {
 		var winw = $(window).width();
 	    var winh = $(window).height();
-		/*alert(winw);
-		alert(winh);*/
-		if(winh>450 && winw > 1140) {
+		
+		$(window).on('resize',function(){location.reload();});
+		
+		if(winh>449 && winw > 1139) {
 			var popuph = document.getElementById('hpopup').offsetHeight;
 			var mtop = popuph - 45;
 			$('.w-450').css({

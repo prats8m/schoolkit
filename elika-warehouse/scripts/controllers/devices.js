@@ -89,7 +89,7 @@ app
 	$rootScope.submitAddDevice = function(device,add_device){
 		$rootScope.errorMessage = '';
 		device.account_no = parseInt(device.account_no);
-		device.phone_no = device.phone_no;
+		//device.phone_no = device.phone_no;
 		device.device_cell = (! device.device_cell) ? 0 : device.device_cell;
 		device.device_voip = (! device.device_voip) ? 0 : device.device_voip;
 		device.device_camera = (! device.device_camera) ? 0 : device.device_camera;
