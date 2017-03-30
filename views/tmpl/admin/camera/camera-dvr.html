@@ -301,90 +301,43 @@
 														<div class="col-md-8">
 															<div class="tab-content">
 
-																<div ng-show="isrecordedFeedCameraVideosAvailable" class="livevideo tab-pane fade active in" id="recordedFeedVideoPlayerDIV">
+																<div class="livevideo tab-pane fade active in" id="recordedFeedVideoPlayerDIV">
 																<div class="selectcam">
 																	{{recordedFeedCameraPlayerHeader}} <small>{{recordedFeedCameraPlayerSubHeader}}</small>
 																</div>
 																<div class="video">
-																<video id="recordedFeedVideoPlayer" controls="">
-																<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
-																<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
-																Your browser does not support HTML5 video.
-																</video>
-																</div>
+																	<video id="recordedFeedVideoPlayer" controls="" poster="./././././images/no_video.png">
+																	<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
+																	Your browser does not support HTML5 video.
+																	</video>
 																</div>
 
-																<!--<div class="livevideo tab-pane fade active in" id="gstab1">-->
-																	<!--<div class="selectcam">-->
-																		<!--Main Entrance Camera <small>Front Entrance (Bethesda)</small>-->
-																	<!--</div>-->
-																	<!--<div class="video">-->
-																		<!--<video controls="">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
-																			<!--Your browser does not support HTML5 video.-->
-																		<!--</video>-->
-																	<!--</div>-->
-																<!--</div>-->
+<script>
+    $('#recordedFeedVideoPlayer').on('loadstart', function (event) {
+         		$(this).attr("poster", "./././././images/loadingvideo.gif");
+           // alert('loading');
+    });
+    $('#recordedFeedVideoPlayer').on('canplay', function (event) {
+       // alert('canPLay');
+        $(this).removeAttr("poster");
+    });
+    $('#recordedFeedVideoPlayer').on('abort', function (event) {
+       // alert('aborted');
+    });
+    $('#recordedFeedVideoPlayer').on('suspend', function (event) {
+       // alert('suspend');
+    });
+</script>
 
-																<!--<div class="livevideo tab-pane fade" id="gstab2">-->
-																	<!--<div class="selectcam">-->
-																		<!--Entrance to Hall-->
-																	<!--</div>-->
-																	<!--<div class="video">-->
-																		<!--<video controls="">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
-																			<!--Your browser does not support HTML5 video.-->
-																		<!--</video>-->
-																	<!--</div>-->
-																<!--</div>-->
 
-																<!--<div class="livevideo tab-pane fade" id="gstab3">-->
-																	<!--<div class="selectcam">-->
-																		<!--Klva and Smart <small>01/01 General Entrance</small>-->
-																	<!--</div>-->
-																	<!--<div class="video">-->
-																		<!--<video controls="">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
-																			<!--Your browser does not support HTML5 video.-->
-																		<!--</video>-->
-																	<!--</div>-->
-																<!--</div>-->
 
-																<!--<div class="livevideo tab-pane fade" id="gstab4">-->
-																	<!--<div class="selectcam">-->
-																		<!--Lobby Area-->
-																	<!--</div>-->
-																	<!--<div class="video">-->
-																		<!--<video controls="">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
-																			<!--Your browser does not support HTML5 video.-->
-																		<!--</video>-->
-																	<!--</div>-->
-																<!--</div>-->
+																</div>
+																<div class="gridlistbar ta-c">
+																	<button ng-disabled="isrecordedFeedCamPreviousVideoButtonEnable" ng-click="changeVideo('prev')"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+																	<button ng-disabled="isrecordedFeedCamNextVideoButtonEnable" ng-click="changeVideo('next')"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+																</div>
 
-																<!--<div class="livevideo tab-pane fade" id="gstab5">-->
-																	<!--<div class="selectcam">-->
-																		<!--Lobby Entrance <small>South Lobby Entrance</small>-->
-																	<!--</div>-->
-																	<!--<div class="video">-->
-																		<!--<video controls="">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">-->
-																			<!--<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">-->
-																			<!--Your browser does not support HTML5 video.-->
-																		<!--</video>-->
-																	<!--</div>-->
-																<!--</div>-->
-
-															</div>
+																</div>
 														</div>
 													</div>
 

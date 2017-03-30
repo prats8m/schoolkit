@@ -3472,3 +3472,10 @@ span.edittxt {position: absolute;
 
 .clckevent .panel .panel-heading .panel-title .accordion-toggle{padding: 0px;}
 .clckevent .panel .panel-heading .panel-title .accordion-toggle > span > div{padding: 10px 15px;}
+
+a.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}
