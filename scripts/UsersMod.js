@@ -20,39 +20,39 @@ app
 	$timeout(function () {
         if($cookies.get("user_id") == undefined)
         {
-          //  $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
-          //  $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
+            $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
+            $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
         }
     },500);
 
 
-    // $scope.cleanAccordionFormObject=function (tthis,UI,objectType) {
-		// switch (UI){
-		// 	case 'Add User':
-		// 		switch (objectType){
-		// 			case 'accessCode':
-		// 				$scope.accesscode={};
-		// 				break;
-    //                 case 'phoneCode':
-    //                     $scope.phoneCode={};
-    //                     break;
-    //                 case 'rfid':
-    //                     $scope.rfid={};
-    //                     break;
-    //                 case 'savenfc':
-    //                     $scope.savenfc={};
-    //                     break;
-    //                 case 'ble_code':
-    //                     $scope.ble_code={};
-    //                     break;
-		// 			default:
-		// 				break;
-		// 		}
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
-    // }
+    $scope.cleanAccordionFormObject=function (UI,objectType) {
+		switch (UI){
+			case 'Add User':
+				switch (objectType){
+					case 'accessCode':
+						$scope.accesscode={};
+						break;
+                    case 'phoneCode':
+                        $scope.phoneCode={};
+                        break;
+                    case 'rfid':
+                        $scope.rfid={};
+                        break;
+                    case 'savenfc':
+                        $scope.savenfc={};
+                        break;
+                    case 'ble_code':
+                        $scope.ble_code={};
+                        break;
+					default:
+						break;
+				}
+				break;
+			default:
+				break;
+		}
+    }
 
 	$scope.result = '';
     $scope.showConfirm = function(ev,id) {
@@ -281,6 +281,12 @@ app
         }
 		}
    		 })){
+
+			var parDIV=$('#expirationdate-error').parents("div");
+			var errorlabel=$('#'+parDIV[0].id).children('label');
+			$('#'+errorlabel[0].id).remove();
+            var html=$('#'+parDIV[0].id)[0].outerHTML+errorlabel[0].outerHTML;
+            $('#'+parDIV[1].id).append(errorlabel[0].outerHTML);
 			return false;
 		}
 		if(userData == undefined){
@@ -294,7 +300,7 @@ app
 			userData.expiration_date = "";
 		// userData.facility_id = parseInt($cookies.get("facilityId"));;
 		if(userData.password != userData.cpassword){
-			alert("Password and Confirm password not matched");
+			alert("Password and Confirm password should be same");
 			return false;
 		}
 		// var fileData = {};
@@ -1158,11 +1164,43 @@ if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 app
   .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog, $filter) {
      $scope.page = {
-      title: 'Edit User',
+      title: $location.path().indexOf('view-user')>=0?'View User':'Edit User',
       subtitle: ''
     };
+
 	$scope.editUser = {};
 	$("#mask02").datepicker();
+
+
+      $scope.cleanAccordionFormObject=function (UI,objectType) {
+          switch (UI){
+              case 'Edit User':
+                  switch (objectType){
+                      case 'editAccess':
+                          $scope.editAccess={};
+                          break;
+                      case 'phoneedit':
+                          $scope.phoneedit={};
+                          break;
+                      case 'editRfid':
+                          $scope.editRfid={};
+                          break;
+                      case 'editNfc':
+                          $scope.editNfc={};
+                          break;
+                      case 'editBle':
+                          $scope.editBle={};
+                          break;
+                      default:
+                          break;
+                  }
+                  break;
+              default:
+                  break;
+          }
+      }
+
+
 
 	$scope.dashboardInit = function(){ 
 	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  

@@ -111,7 +111,11 @@ app
 		});
 	}
 	//$scope.getDoorsList();
-	
+
+      $scope.resetDeviceModel=function () {
+          $rootScope.device={};
+      }
+
 	$rootScope.formSubmit = function(device,device_form){
 		//console.log("asdasdads");
 		if(!device_form.validate()){
@@ -1184,7 +1188,10 @@ app
 	}
 	//$scope.getDoorsList();
 	$scope.getTechnicianList();	
-	
+
+	$scope.resetDependentDeviceModel=function () {
+		$rootScope.device={};
+    }
 	
 	$rootScope.formSubmit = function(device,device_form){
 		if(!device_form.validate()){

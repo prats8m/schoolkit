@@ -3466,3 +3466,9 @@ span.edittxt {position: absolute;
 		width: 65%!important;
 	}
 }
+.singlePlayer{
+	height:480px;
+}
+
+.clckevent .panel .panel-heading .panel-title .accordion-toggle{padding: 0px;}
+.clckevent .panel .panel-heading .panel-title .accordion-toggle > span > div{padding: 10px 15px;}

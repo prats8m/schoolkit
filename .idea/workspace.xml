@@ -2,20 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/crystalcove.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/loader_89.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/activity.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/tmpl/admin/activity.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js" afterPath="$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/elika-warehouse/views/tmpl/inventory/devices.html" afterPath="$PROJECT_DIR$/elika-warehouse/views/tmpl/inventory/devices.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/CameraDvr.js" afterPath="$PROJECT_DIR$/scripts/CameraDvr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UsersMod.js" afterPath="$PROJECT_DIR$/scripts/UsersMod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UtilitySvc.js" afterPath="$PROJECT_DIR$/scripts/UtilitySvc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/DeviceMod.js" afterPath="$PROJECT_DIR$/scripts/DeviceMod.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/SettingMod.js" afterPath="$PROJECT_DIR$/scripts/SettingMod.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" afterPath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/config.js" afterPath="$PROJECT_DIR$/scripts/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/support/technician-profile.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/support/technician-profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/support/technician.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/support/technician.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/user-profile.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/user-profile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/loading-bar.js" afterPath="$PROJECT_DIR$/scripts/loading-bar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/custom.css" afterPath="$PROJECT_DIR$/styles/custom.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/loading-bar.css" afterPath="$PROJECT_DIR$/styles/loading-bar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/main.1be6a35c.css" afterPath="$PROJECT_DIR$/styles/main.1be6a35c.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/header.html" afterPath="$PROJECT_DIR$/views/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,100 +37,188 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.d7ca82ad.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
+      <file leaf-file-name="add-user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/add-user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="2226" column="6" lean-forward="true" selection-start-line="2226" selection-start-column="6" selection-end-line="2226" selection-end-column="6" />
+            <state relative-caret-position="205">
+              <caret line="197" column="130" lean-forward="true" selection-start-line="197" selection-start-column="130" selection-end-line="197" selection-end-column="130" />
               <folding>
-                <marker date="1490708020121" expanded="true" signature="77741:77747" ph="'" />
-                <marker date="1490708020121" expanded="true" signature="95148:95182" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="143321:143336" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="143440:143473" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="143512:143587" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="145276:145293" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="145458:145475" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="145642:145689" ph="..." />
-                <marker date="1490708020121" expanded="true" signature="242658:242661" ph="{...}" />
+                <element signature="n#div#0;n#uib-accordion-group#0;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#uib-accordion-group#1;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#uib-accordion-group#2;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#uib-accordion-group#3;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#uib-accordion-group#4;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.d7ca82ad.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
+      <file leaf-file-name="UsersMod.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="3088" column="34" lean-forward="true" selection-start-line="3088" selection-start-column="34" selection-end-line="3088" selection-end-column="34" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1490705864092" expanded="true" signature="102540:102546" ph="'" />
-                <marker date="1490705864092" expanded="true" signature="119947:119981" ph="..." />
-                <marker date="1490705864092" expanded="true" signature="168120:168135" ph="..." />
-                <marker date="1490705864092" expanded="true" signature="168239:168272" ph="..." />
-                <marker date="1490705864092" expanded="true" signature="168311:168386" ph="..." />
-                <marker date="1490705864092" expanded="true" signature="170075:170092" ph="..." />
-                <marker date="1490705864092" expanded="true" signature="170257:170274" ph="..." />
-                <marker date="1490705864092" expanded="true" signature="170441:170488" ph="..." />
+                <element signature="e#67709#79510#0" expanded="false" />
+                <element signature="e#79836#83071#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view-user.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/view-user.html">
+      <file leaf-file-name="devices.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/devices.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="140" column="54" lean-forward="false" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="54" />
+            <state relative-caret-position="219">
+              <caret line="102" column="20" lean-forward="false" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="camera-dvr.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
+      <file leaf-file-name="custom.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/styles/custom.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="303" column="113" lean-forward="false" selection-start-line="303" selection-start-column="78" selection-end-line="303" selection-end-column="113" />
+            <state relative-caret-position="264">
+              <caret line="3474" column="0" lean-forward="true" selection-start-line="3474" selection-start-column="0" selection-end-line="3474" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="technician-profile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/support/technician-profile.html">
+      <file leaf-file-name="devices.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/controllers/devices.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="327" column="62" lean-forward="false" selection-start-line="327" selection-start-column="62" selection-end-line="327" selection-end-column="62" />
+            <state relative-caret-position="238">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-profile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/user/user-profile.html">
+      <file leaf-file-name="DeviceMod.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/DeviceMod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="269" column="66" lean-forward="false" selection-start-line="269" selection-start-column="66" selection-end-line="269" selection-end-column="66" />
-              <folding />
+            <state relative-caret-position="187">
+              <caret line="1188" column="28" lean-forward="false" selection-start-line="1188" selection-start-column="28" selection-end-line="1188" selection-end-column="28" />
+              <folding>
+                <marker date="1490792049493" expanded="true" signature="305:2677" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36100:36105" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36100:36284" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36100:36314" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36109:36280" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36150:36275" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36392:36773" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36408:36609" ph="{&quot;method&quot;: 'GET'...}" />
+                <marker date="1490792049493" expanded="true" signature="36516:36605" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+                <marker date="1490792049493" expanded="true" signature="36640:36744" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36672:36725" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36729:36740" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36838:37302" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="36848:37044" ph="{&quot;method&quot;: 'GET'...}" />
+                <marker date="1490792049493" expanded="true" signature="36951:37040" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+                <marker date="1490792049493" expanded="true" signature="37076:37270" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="37108:37226" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="37230:37266" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="37382:38653" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="37663:37858" ph="{&quot;method&quot;: 'PUT'...}" />
+                <marker date="1490792049493" expanded="true" signature="37765:37854" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+                <marker date="1490792049493" expanded="true" signature="37890:38621" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="37922:37987" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="37991:38617" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38092:38440" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38123:38353" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38363:38434" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38480:38612" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38692:39313" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38702:38896" ph="{&quot;method&quot;: 'GET'...}" />
+                <marker date="1490792049493" expanded="true" signature="38803:38892" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+                <marker date="1490792049493" expanded="true" signature="38928:39281" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="38960:39060" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="39064:39277" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="39140:39272" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="39377:39802" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="39387:39570" ph="{&quot;method&quot;: 'GET'...}" />
+                <marker date="1490792049493" expanded="true" signature="39477:39566" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+                <marker date="1490792049493" expanded="true" signature="39602:39736" ph="{...}" />
+                <marker date="1490792049493" expanded="true" signature="39634:39732" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/user/users.html">
+      <file leaf-file-name="dependent-devices.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="159" column="44" lean-forward="true" selection-start-line="159" selection-start-column="44" selection-end-line="159" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="147">
+              <caret line="162" column="38" lean-forward="true" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="38" />
+              <folding>
+                <marker date="1490792049455" expanded="true" signature="6970:11962" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7013:11950" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7050:10453" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7102:7813" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7117:7796" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7853:9956" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7880:9941" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="7929:8250" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="8315:9925" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="8363:9908" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="8434:9691" ph="..." />
+                <marker date="1490792049455" expanded="false" signature="9853:9859" ph=" " />
+                <marker date="1490792049455" expanded="false" signature="9859:9865" ph=" " />
+                <marker date="1490792049455" expanded="true" signature="9996:10439" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10047:10424" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10481:10598" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10540:10584" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10628:11937" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10657:11923" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10679:11749" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10807:11716" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="10991:11190" ph="..." />
+                <marker date="1490792049455" expanded="true" signature="11268:11695" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CameraDvr.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CameraDvr.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="436" column="38" lean-forward="true" selection-start-line="436" selection-start-column="38" selection-end-line="436" selection-end-column="38" />
+            <state relative-caret-position="193">
+              <caret line="422" column="5" lean-forward="true" selection-start-line="422" selection-start-column="5" selection-end-line="422" selection-end-column="5" />
+              <folding>
+                <element signature="e#578#786#0" expanded="false" />
+                <element signature="e#1048#1244#0" expanded="false" />
+                <element signature="e#1305#2466#0" expanded="false" />
+                <element signature="e#3570#4933#0" expanded="false" />
+                <element signature="e#5032#7501#0" expanded="false" />
+                <element signature="e#7579#8653#0" expanded="false" />
+                <element signature="e#8711#11175#0" expanded="false" />
+                <element signature="e#11259#11703#0" expanded="false" />
+                <element signature="e#11794#12485#0" expanded="false" />
+                <element signature="e#12560#13490#0" expanded="false" />
+                <element signature="e#13771#14298#0" expanded="false" />
+                <element signature="e#14498#15130#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UtilitySvc.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/UtilitySvc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="facility.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/facility.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -143,36 +235,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>callPl</find>
-      <find>ngSanitize</find>
-      <find>recordedFeedCameraDomID</find>
-      <find>lstrecordedFeedCameraVidoesByCameraID</find>
-      <find>300</find>
-      <find>cameras</find>
-      <find>succResponse.succMsg</find>
-      <find>callPlayer</find>
-      <find>utilitySvc.callHttpService</find>
-      <find>assignUserGroup</find>
-      <find>contains('User Groups')</find>
-      <find>Save and Next</find>
-      <find>add-use</find>
-      <find>(&quot;user_id&quot;)</find>
-      <find>BLE Code</find>
-      <find>BLE</find>
-      <find>Access Code</find>
-      <find>AccordionDemoCtrl</find>
-      <find>controller</find>
-      <find>Access</find>
-      <find>access</find>
-      <find>status.open1</find>
-      <find>cleanAccordionFormObject</find>
       <find>Confirm</find>
       <find>toggle</find>
-      <find>Expiration Date</find>
       <find>DatepickerDemoCtrl</find>
-      <find>Account</find>
       <find>RecordedFee</find>
       <find>isrecordedFeedCameraVideosAvailable</find>
+      <find>Account</find>
+      <find>Confirm Password</find>
+      <find>Edit</find>
+      <find>Edit User</find>
+      <find>edit-user</find>
+      <find>view-user</find>
+      <find>&lt;uib-accordion-heading&gt;</find>
+      <find>access</find>
+      <find>Access</find>
+      <find>AddUserCtrl</find>
+      <find>Credentials</find>
+      <find>getDoorsList</find>
+      <find>ng-repeat</find>
+      <find>ng-rep</find>
+      <find>Session Expired</find>
+      <find>Expiration Date</find>
+      <find>This field is required.</find>
+      <find>userexp</find>
+      <find>add coni</find>
+      <find>add Facility</find>
+      <find>add device</find>
+      <find>add devices</find>
+      <find>controller</find>
+      <find>User Groups</find>
+      <find>add confi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,16 +273,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/styles/custom.css" />
         <option value="$PROJECT_DIR$/scripts/vxgplayer.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" />
-        <option value="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" />
-        <option value="$PROJECT_DIR$/scripts/DeviceMod.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/config.js" />
         <option value="$PROJECT_DIR$/scripts/UtilitySvc.js" />
-        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
-        <option value="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" />
         <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/device/device-details.html" />
@@ -199,11 +286,19 @@
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/view-schedule.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/support/technician-profile.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/support/technician.html" />
-        <option value="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/user-profile.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" />
-        <option value="$PROJECT_DIR$/scripts/CameraDvr.js" />
         <option value="$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js" />
+        <option value="$PROJECT_DIR$/scripts/CameraDvr.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/user/add-user.html" />
+        <option value="$PROJECT_DIR$/scripts/facility.js" />
+        <option value="$PROJECT_DIR$/elika-warehouse/scripts/controllers/devices.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html" />
+        <option value="$PROJECT_DIR$/scripts/DeviceMod.js" />
+        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" />
+        <option value="$PROJECT_DIR$/styles/custom.css" />
       </list>
     </option>
   </component>
@@ -234,6 +329,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -348,7 +444,59 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="facility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tmpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="door" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tmpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="device" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -388,7 +536,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
+              <option name="myItemId" value="styles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,24 +547,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika-warehouse" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika-warehouse" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -426,13 +556,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Digiworld-Dashboard/Web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js.eslint.eslintPackage" value="" />
   </component>
@@ -526,12 +655,13 @@
       <workItem from="1490330285035" duration="25244000" />
       <workItem from="1490591068257" duration="23186000" />
       <workItem from="1490621604843" duration="290000" />
-      <workItem from="1490675937301" duration="24902000" />
+      <workItem from="1490675937301" duration="25263000" />
+      <workItem from="1490763879471" duration="20857000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156140000" />
+    <option name="totallyTimeSpent" value="177358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -586,72 +716,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8007">
-          <caret line="471" column="8" lean-forward="true" selection-start-line="471" selection-start-column="8" selection-end-line="471" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <marker date="1490275909783" expanded="true" signature="3786:3807" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="3860:3873" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="3926:3939" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="4303:4316" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="4802:4823" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="4889:4902" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="5037:5050" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="5103:5116" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="5325:5339" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="6172:6205" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53040">
-          <caret line="3120" column="15" lean-forward="false" selection-start-line="3120" selection-start-column="1" selection-end-line="3120" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="78" lean-forward="false" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -671,7 +735,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#578#786#0" expanded="false" />
+            <element signature="e#1048#1244#0" expanded="false" />
+            <element signature="e#1305#2466#0" expanded="false" />
+            <element signature="e#3570#4933#0" expanded="false" />
+            <element signature="e#5032#7501#0" expanded="false" />
+            <element signature="e#7579#8653#0" expanded="false" />
+            <element signature="e#8711#11175#0" expanded="false" />
+            <element signature="e#11259#11703#0" expanded="false" />
+            <element signature="e#11794#12485#0" expanded="false" />
+            <element signature="e#12560#13490#0" expanded="false" />
+            <element signature="e#13771#14298#0" expanded="false" />
+            <element signature="e#14498#15130#0" expanded="false" />
+            <element signature="e#15353#16550#0" expanded="false" />
+            <element signature="e#17405#19828#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -703,20 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/controllers/devices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/devices.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4675">
-          <caret line="276" column="50" lean-forward="true" selection-start-line="276" selection-start-column="50" selection-end-line="276" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/users.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1462">
@@ -731,29 +796,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/DeviceMod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="17" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/vxgplayer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25908">
           <caret line="1524" column="17" lean-forward="false" selection-start-line="1523" selection-start-column="4" selection-end-line="1524" selection-end-column="17" />
-          <folding>
-            <marker date="1490275909783" expanded="true" signature="3786:3807" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="3860:3873" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="3926:3939" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="4303:4316" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="4802:4823" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="4889:4902" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="5037:5050" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="5103:5116" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="5325:5339" ph="..." />
-            <marker date="1490275909783" expanded="true" signature="6172:6205" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -773,13 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="2116" column="56" lean-forward="false" selection-start-line="2116" selection-start-column="56" selection-end-line="2116" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/media.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -796,61 +835,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/UtilitySvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/vendor.4c173da6.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="42126" column="11" lean-forward="false" selection-start-line="42126" selection-start-column="11" selection-end-line="42126" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="1605" column="60" lean-forward="true" selection-start-line="1605" selection-start-column="60" selection-end-line="1605" selection-end-column="60" />
-          <folding>
-            <element signature="e#78642#81877#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/device-details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="475" column="169" lean-forward="true" selection-start-line="475" selection-start-column="169" selection-end-line="475" selection-end-column="169" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/facility/facility-details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="395" column="169" lean-forward="false" selection-start-line="395" selection-start-column="169" selection-end-line="395" selection-end-column="169" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="170" column="82" lean-forward="false" selection-start-line="170" selection-start-column="82" selection-end-line="170" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -878,38 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/support/technician.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="214" column="186" lean-forward="false" selection-start-line="214" selection-start-column="186" selection-end-line="214" selection-end-column="186" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/add-user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="186" column="66" lean-forward="false" selection-start-line="186" selection-start-column="66" selection-end-line="186" selection-end-column="66" />
-          <folding>
-            <element signature="n#uib-accordion-group#1;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#uib-accordion-group#2;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#uib-accordion-group#3;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#uib-accordion-group#4;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#uib-accordion-group#4;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="217" column="184" lean-forward="false" selection-start-line="217" selection-start-column="184" selection-end-line="217" selection-end-column="184" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#uib-accordion-group#4;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -918,42 +874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/view-user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="140" column="54" lean-forward="false" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/schedule/view-holiday-schedule.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="263" column="62" lean-forward="false" selection-start-line="263" selection-start-column="62" selection-end-line="263" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/support/technician-profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="327" column="62" lean-forward="false" selection-start-line="327" selection-start-column="62" selection-end-line="327" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/user/user-profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="269" column="66" lean-forward="false" selection-start-line="269" selection-start-column="66" selection-end-line="269" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/user/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="159" column="44" lean-forward="true" selection-start-line="159" selection-start-column="44" selection-end-line="159" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -974,61 +898,346 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/facility/facility-details.html">
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="399" column="114" lean-forward="false" selection-start-line="399" selection-start-column="114" selection-end-line="399" selection-end-column="114" />
+        <state relative-caret-position="5134">
+          <caret line="303" column="113" lean-forward="false" selection-start-line="303" selection-start-column="78" selection-end-line="303" selection-end-column="113" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html">
+    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="303" column="113" lean-forward="false" selection-start-line="303" selection-start-column="78" selection-end-line="303" selection-end-column="113" />
+        <state relative-caret-position="37842">
+          <caret line="2226" column="6" lean-forward="false" selection-start-line="2226" selection-start-column="6" selection-end-line="2226" selection-end-column="6" />
+          <folding>
+            <marker date="1490792049217" expanded="true" signature="77741:77747" ph="'" />
+            <marker date="1490792049217" expanded="true" signature="95148:95182" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="143321:143336" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="143440:143473" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="143512:143587" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="145276:145293" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="145458:145475" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="145642:145689" ph="..." />
+            <marker date="1490792049217" expanded="true" signature="242658:242661" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elika-warehouse/views/tmpl/administrator/admin-profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="199" column="0" lean-forward="true" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/administrator/admin-profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="255" column="0" lean-forward="true" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/administrator/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="212" column="50" lean-forward="true" selection-start-line="212" selection-start-column="50" selection-end-line="212" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/support/technician.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="422" column="98" lean-forward="false" selection-start-line="422" selection-start-column="98" selection-end-line="422" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/facility/facility-details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="569" column="122" lean-forward="false" selection-start-line="569" selection-start-column="122" selection-end-line="569" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/support/technician-profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="450" column="62" lean-forward="false" selection-start-line="450" selection-start-column="62" selection-end-line="450" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/user/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="326" column="98" lean-forward="false" selection-start-line="326" selection-start-column="98" selection-end-line="326" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/user/user-profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="416" column="62" lean-forward="false" selection-start-line="416" selection-start-column="62" selection-end-line="416" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/view-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="144" column="55" lean-forward="true" selection-start-line="144" selection-start-column="55" selection-end-line="144" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="361" column="52" lean-forward="true" selection-start-line="361" selection-start-column="52" selection-end-line="361" selection-end-column="52" />
+          <folding>
+            <element signature="n#div#0;n#uib-accordion-group#0;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#1;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#2;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#3;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#4;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="3088" column="34" lean-forward="true" selection-start-line="3088" selection-start-column="34" selection-end-line="3088" selection-end-column="34" />
+        <state relative-caret-position="258">
+          <caret line="9630" column="17" lean-forward="true" selection-start-line="9630" selection-start-column="17" selection-end-line="9630" selection-end-column="17" />
           <folding>
-            <marker date="1490705864092" expanded="true" signature="102540:102546" ph="'" />
-            <marker date="1490705864092" expanded="true" signature="119947:119981" ph="..." />
-            <marker date="1490705864092" expanded="true" signature="168120:168135" ph="..." />
-            <marker date="1490705864092" expanded="true" signature="168239:168272" ph="..." />
-            <marker date="1490705864092" expanded="true" signature="168311:168386" ph="..." />
-            <marker date="1490705864092" expanded="true" signature="170075:170092" ph="..." />
-            <marker date="1490705864092" expanded="true" signature="170257:170274" ph="..." />
-            <marker date="1490705864092" expanded="true" signature="170441:170488" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="102698:102704" ph="'" />
+            <marker date="1490792049356" expanded="true" signature="120105:120139" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="168278:168293" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="168397:168430" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="168469:168544" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="170233:170250" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="170415:170432" ph="..." />
+            <marker date="1490792049356" expanded="true" signature="170599:170646" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/device-details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="2226" column="6" lean-forward="true" selection-start-line="2226" selection-start-column="6" selection-end-line="2226" selection-end-column="6" />
+        <state relative-caret-position="135">
+          <caret line="474" column="114" lean-forward="false" selection-start-line="474" selection-start-column="114" selection-end-line="474" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/facility/facility-details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="394" column="114" lean-forward="false" selection-start-line="394" selection-start-column="114" selection-end-line="394" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="170" column="82" lean-forward="false" selection-start-line="170" selection-start-column="82" selection-end-line="170" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/subadmin/facility/facility.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="95" column="142" lean-forward="false" selection-start-line="95" selection-start-column="142" selection-end-line="95" selection-end-column="142" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/facility/facility.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="101" column="125" lean-forward="false" selection-start-line="101" selection-start-column="117" selection-end-line="101" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/facility.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/controllers/devices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="162" column="38" lean-forward="true" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="38" />
           <folding>
-            <marker date="1490708020121" expanded="true" signature="77741:77747" ph="'" />
-            <marker date="1490708020121" expanded="true" signature="95148:95182" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="143321:143336" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="143440:143473" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="143512:143587" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="145276:145293" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="145458:145475" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="145642:145689" ph="..." />
-            <marker date="1490708020121" expanded="true" signature="242658:242661" ph="{...}" />
+            <marker date="1490792049455" expanded="true" signature="6970:11962" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7013:11950" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7050:10453" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7102:7813" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7117:7796" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7853:9956" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7880:9941" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="7929:8250" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="8315:9925" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="8363:9908" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="8434:9691" ph="..." />
+            <marker date="1490792049455" expanded="false" signature="9853:9859" ph=" " />
+            <marker date="1490792049455" expanded="false" signature="9859:9865" ph=" " />
+            <marker date="1490792049455" expanded="true" signature="9996:10439" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10047:10424" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10481:10598" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10540:10584" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10628:11937" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10657:11923" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10679:11749" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10807:11716" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="10991:11190" ph="..." />
+            <marker date="1490792049455" expanded="true" signature="11268:11695" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/DeviceMod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1188" column="28" lean-forward="false" selection-start-line="1188" selection-start-column="28" selection-end-line="1188" selection-end-column="28" />
+          <folding>
+            <marker date="1490792049493" expanded="true" signature="305:2677" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36100:36105" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36100:36284" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36100:36314" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36109:36280" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36150:36275" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36392:36773" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36408:36609" ph="{&quot;method&quot;: 'GET'...}" />
+            <marker date="1490792049493" expanded="true" signature="36516:36605" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+            <marker date="1490792049493" expanded="true" signature="36640:36744" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36672:36725" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36729:36740" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36838:37302" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="36848:37044" ph="{&quot;method&quot;: 'GET'...}" />
+            <marker date="1490792049493" expanded="true" signature="36951:37040" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+            <marker date="1490792049493" expanded="true" signature="37076:37270" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="37108:37226" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="37230:37266" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="37382:38653" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="37663:37858" ph="{&quot;method&quot;: 'PUT'...}" />
+            <marker date="1490792049493" expanded="true" signature="37765:37854" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+            <marker date="1490792049493" expanded="true" signature="37890:38621" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="37922:37987" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="37991:38617" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38092:38440" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38123:38353" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38363:38434" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38480:38612" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38692:39313" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38702:38896" ph="{&quot;method&quot;: 'GET'...}" />
+            <marker date="1490792049493" expanded="true" signature="38803:38892" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+            <marker date="1490792049493" expanded="true" signature="38928:39281" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="38960:39060" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="39064:39277" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="39140:39272" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="39377:39802" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="39387:39570" ph="{&quot;method&quot;: 'GET'...}" />
+            <marker date="1490792049493" expanded="true" signature="39477:39566" ph="{&quot;Content-type&quot;: &quot;application/json&quot;...}" />
+            <marker date="1490792049493" expanded="true" signature="39602:39736" ph="{...}" />
+            <marker date="1490792049493" expanded="true" signature="39634:39732" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/add-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="197" column="130" lean-forward="true" selection-start-line="197" selection-start-column="130" selection-end-line="197" selection-end-column="130" />
+          <folding>
+            <element signature="n#div#0;n#uib-accordion-group#0;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#1;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#2;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#3;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#uib-accordion-group#4;n#uib-accordion#0;n#div#0;n#md-content#0;n#md-tab#2;n#md-tabs#0;n#md-content#0;n#div#1;n#div#0;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/CameraDvr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="436" column="38" lean-forward="true" selection-start-line="436" selection-start-column="38" selection-end-line="436" selection-end-column="38" />
+        <state relative-caret-position="193">
+          <caret line="422" column="5" lean-forward="true" selection-start-line="422" selection-start-column="5" selection-end-line="422" selection-end-column="5" />
+          <folding>
+            <element signature="e#578#786#0" expanded="false" />
+            <element signature="e#1048#1244#0" expanded="false" />
+            <element signature="e#1305#2466#0" expanded="false" />
+            <element signature="e#3570#4933#0" expanded="false" />
+            <element signature="e#5032#7501#0" expanded="false" />
+            <element signature="e#7579#8653#0" expanded="false" />
+            <element signature="e#8711#11175#0" expanded="false" />
+            <element signature="e#11259#11703#0" expanded="false" />
+            <element signature="e#11794#12485#0" expanded="false" />
+            <element signature="e#12560#13490#0" expanded="false" />
+            <element signature="e#13771#14298#0" expanded="false" />
+            <element signature="e#14498#15130#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/UtilitySvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#67709#79510#0" expanded="false" />
+            <element signature="e#79836#83071#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/devices.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="102" column="20" lean-forward="false" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="3474" column="0" lean-forward="true" selection-start-line="3474" selection-start-column="0" selection-end-line="3474" selection-end-column="0" />
           <folding />
         </state>
       </provider>

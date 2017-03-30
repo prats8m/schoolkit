@@ -18,9 +18,10 @@ app
 		};
 
 		$rootScope.facility = {};
-		$scope.facilities = {};
+		$scope.facilities = [];
 		$rootScope.facility.status = 1;
 		$scope.addFacility = function () {
+			$scope.facility={};
 			$scope.addFacilityModal = $uibModal.open({
 				templateUrl: 'myModalContent.html',
 				size: 'md',
