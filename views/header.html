@@ -1,9 +1,8 @@
-<header class="clearfix" ng-controller="LoginCtrl">
+<header class="clearfix">
 	<div class="branding">
 		<a class="brand" ui-sref="app.admin.dashboard">
 			<span><strong>Elika</strong> Access System</span>
 		</a>
-		<a href="javascript:;" class="offcanvas-toggle visible-xs-inline" offcanvas-sidebar><i class="fa fa-bars"></i></a>
 	</div>
 	<div class="mobmenu">
 		<a href="javascript:;" class="animated-arrow">
@@ -154,31 +153,33 @@
 			</ul>
 		</li>
 	</ul>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var winw = $(window).width();
-			var winh = $(window).height();
-			
-			var openmmenuh = winh - 45;
-			
-			if(winw<1280) {
-				$('.topmenu').attr('style','height:'+openmmenuh+'px;');
-			};		
-			
-			$('.animated-arrow').click(function(){
-				$(this).toggleClass('openmenu');
-				$(this).parent().siblings('.topmenu').toggleClass('openmmenu');
-				$('.page').toggleClass('bodyfix');
-				$('.view-container').toggleClass('bodygray');
-			});
-			
-			$('#content, .topmenu .dropdown-menu > li > a, #header .topmenu .nav-right > li > a').click(function(){
-				$('.view-container').removeClass('bodygray');
-				$('.animated-arrow').removeClass('openmenu');
-				$('.topmenu').removeClass('openmmenu');
-				$('.page').removeClass('bodyfix');
-			});
-			
-		});
-	</script>
 </header>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var winw = $(window).width();
+		var winh = $(window).height();
+		
+		var openmmenuh = winh - 45;
+		
+		if(winw<1280) {
+			$('.topmenu').attr('style','height:'+openmmenuh+'px;');
+		};		
+		
+		$(window).on('resize',function(){location.reload();});
+		
+		$('.animated-arrow').click(function(){
+			$(this).toggleClass('openmenu');
+			$(this).parent().siblings('.topmenu').toggleClass('openmmenu');
+			$('.page').toggleClass('bodyfix');
+			$('.view-container').toggleClass('bodygray');
+		});
+		
+		$('#content, .topmenu .dropdown-menu > li > a, #header .topmenu .nav-right > li > a').click(function(){
+			$('.view-container').removeClass('bodygray');
+			$('.animated-arrow').removeClass('openmenu');
+			$('.topmenu').removeClass('openmmenu');
+			$('.page').removeClass('bodyfix');
+		});
+		
+	});
+</script>

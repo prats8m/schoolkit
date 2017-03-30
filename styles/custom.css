@@ -147,10 +147,10 @@ textarea.form-control {
 .profilephoto .user-profilep {
     font-size: 13px;
     position: absolute;
-    left: -75px;
+    left: 0;
     top: 0;
     padding: 8px 0;
-    width: 101%;
+    width: 100%;
     background-color: #eee
 }
 
@@ -831,9 +831,11 @@ a.serplan:hover {
 }
 
 .crystalcove {
-	float: left;
 	width: 66%;
-	height: 370px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 .covertext {
@@ -874,8 +876,10 @@ a.serplan:hover {
 .myshortcuts {
 	background: rgba(0,0,0,0.9);
     width: 34%;
-    float: right;
-    height: 370px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    right: 0;
 }
 
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent {
@@ -1082,12 +1086,13 @@ a.serplan:hover {
 }
 
 .glview md-card .md-actions a {
-    padding: 6px 14px;
+    padding: 6px 0;
     font-size: 14px;
     text-transform: capitalize;
-    display: block;
+    display: inline-block;
     margin: 10px 5px 0;
-    font-weight: 600
+    font-weight: 600;
+	width: 65px;
 }
 
 .glview md-card .facilityname {
@@ -3076,6 +3081,21 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(4n+4) {
 		margin-right: 0;
 	}
+	.myshortcuts {
+		width: 38%;
+	}
+	.crystalcove {
+		width: 62%;
+	}
+	.covertext span  strong {
+		font-size: 40px;
+	}
+	.covertext span {
+		font-size: 24px;
+	}
+	.covertext span  strong:after {
+		bottom: -50px;
+	}
 }
 
 @media only screen and (max-width: 919px) {
@@ -3217,6 +3237,23 @@ span.edittxt {position: absolute;
 	}
 	.wrap-reset .glview md-card:nth-child(4n+4) {
 		margin-right: 2%;
+	}
+	.crystalcove {
+		width: 55%;
+	}
+	.myshortcuts {
+		width: 45%;
+	}
+	.covertext span strong {
+		font-size: 30px;
+	}
+	.covertext span {
+		font-size: 20px;
+	}
+	.covertext span strong:after {
+		bottom: -40px;
+		width: 100px;
+		margin-left: -50px;
 	}
 }
 
@@ -3362,7 +3399,7 @@ span.edittxt {position: absolute;
 	}
 	.page-dashboard .card-container, .card-container {
 		float: none;
-		width: 100%;
+		width: 100%!important;
 		padding: 0 15px;
 	}
 	.glview md-card {
