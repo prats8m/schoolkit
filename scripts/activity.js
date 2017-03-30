@@ -4,92 +4,7 @@ app
 		title: 'Activity',
     };
 	
-	/*$scope.activities = [{
-      datetime: '10:10:42 AM EST',
-	  user: 'Jhone',
-	  event: 'abc',
-	  facility: 'USA Services Corporate',
-	  door: 'Front Gate',
-	  device: 'Elika-76',
-    },{
-      datetime: '10:09:22 AM EST',
-	  user: 'Karley',
-	  event: 'holiday',
-	  facility: 'USA Cloud Firm',
-	  door: 'Pool Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '09:55:22 PM EST',
-	  user: 'bob',
-	  event: 'wowjoe',
-	  facility: 'USA Cloud Firm',
-	  door: 'Parking Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '09:40:42 AM EST',
-	  user: 'John',
-	  event: 'abc event',
-	  facility: 'USA Services Corporate',
-	  door: 'Front Gate',
-	  device: 'Elika-76',
-    },{
-      datetime: '09:32:12 AM EST',
-	  user: 'Karley',
-	  event: 'holiday meet',
-	  facility: 'USA Cloud Firm',
-	  door: 'Pool Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '08:35:52 PM EST',
-	  user: 'bob',
-	  event: 'wowenjoy',
-	  facility: 'USA Cloud Firm',
-	  door: 'Parking Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '10:10:32 AM EST',
-	  user: 'Jhone',
-	  event: 'abc',
-	  facility: 'USA Services Corporate',
-	  door: 'Front Gate',
-	  device: 'Elika-76',
-    },{
-      datetime: '10:09:02 AM EST',
-	  user: 'Karley',
-	  event: 'holiday',
-	  facility: 'USA Cloud Firm',
-	  door: 'Pool Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '09:55:22 PM EST',
-	  user: 'bob',
-	  event: 'wowjoe',
-	  facility: 'USA Cloud Firm',
-	  door: 'Parking Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '09:40:12 AM EST',
-	  user: 'John',
-	  event: 'abc event',
-	  facility: 'USA Services Corporate',
-	  door: 'Front Gate',
-	  device: 'Elika-76',
-    },{
-      datetime: '09:32:42 AM EST',
-	  user: 'Karley',
-	  event: 'holiday meet',
-	  facility: 'USA Cloud Firm',
-	  door: 'Pool Gate',
-	  device: 'Elika-2101',
-    },{
-      datetime: '08:35:02 PM EST',
-	  user: 'bob',
-	  event: 'wowenjoy',
-	  facility: 'USA Cloud Firm',
-	  door: 'Parking Gate',
-	  device: 'Elika-2101',
-    }];
-*/
+	
     $scope.getFacilityList = function(){
 
 		dataService.getData(null,baseURL + "facility/list")
@@ -129,7 +44,7 @@ app
 				for (var x in event_type) {
         	tmp.push({event_name:x,event_id:event_type[x]});
     		}
-				console.log(tmp);
+				//console.log(tmp);
 				$scope.event_types = tmp;
 			}else{
 				$scope.devices = [];
@@ -146,7 +61,7 @@ app
 		if($scope.device_id){params += '&device_id='+$scope.device_id;}else{params += '&device_id=null';}
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id=null';}
 
-	dataService.getData(null,baseURL + "event/list-event" + params)
+	dataService.getData(null,baseURL + "event/list-event" + params + "&searchVal=&limits=1000&pageNo=1")
 //	dataService.getData(null,baseURL + "event/list-event" + "?facility_id=null&device_id=null&event_id=null")
 	.success(function(response) {
 		if(response.status == true){
