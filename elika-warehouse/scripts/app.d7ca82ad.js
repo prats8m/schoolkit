@@ -10,7 +10,8 @@
 
   /*jshint -W079 */
 
-var baseUrl = 'http://35.162.244.123:8080/';
+//var baseUrl = 'http://35.162.244.123:8080/';
+var baseUrl = 'http://35.160.142.158:8080/';
 var app = angular
   .module('minovateApp', [
     'ngAnimate',
@@ -8880,3 +8881,17 @@ app.directive("number",function(){
 		}
 	}
 });
+app.directive('logoutBtn', ['$location','$cookies', function($location,$cookies) {
+
+  function link(scope, element, attrs) {
+    element.bind('click',function(){
+    	$cookies.remove("token");
+		$location.path('/core/login');
+    });
+  }
+
+  return {
+  	restrict: 'A',
+    link: link
+  };
+}]);

@@ -64,6 +64,9 @@ app
                         $scope.deviceGeneralSettingModals = response.data;
                         $scope.grantAccessKey.value = response.data.dgs_access_granted_key["access-grant-key"];
                         $scope.lockoutMode = response.data.dgs_lockout_mode['lockout-mode'];
+                        $scope.deviceGeneralSettingModals.dgs_camera['video-recording-access'] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera['video-recording-access']);
+                        $scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']=$scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']);
+
                     } else {
 
                     }
@@ -84,12 +87,29 @@ app
             var data = new commonSetAPIDataObject();
             data.module = "camera-setup";
             data.type = "gen";
-            data.value["picture-snapshot-access"] = $scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access'];
+            var vedioArr=[];
+
+            data.value["picture-snapshot-access"] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']);
             data.value["snapshot-status"] = $scope.deviceGeneralSettingModals.dgs_camera['snapshot-status'];
-            data.value["video-recording-access"] = $scope.deviceGeneralSettingModals.dgs_camera['video-recording-access'];
+            data.value["video-recording-access"] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera['video-recording-access']);
             data.value["recording-status"] = $scope.deviceGeneralSettingModals.dgs_camera['recording-status'];
             commonSetHTTPService(data, 'Camera Configured successfully.');
-        };
+        }; 
+
+        $scope.parseIntArr=function(data){
+            var response=[];
+            for(var i=0;i<data.length;i++){
+                response[i]=parseInt(data[i])
+            }
+            return response;
+        }
+        $scope.parseStringArr=function(data){
+            var response=[];
+            for(var i=0;i<data.length;i++){
+                response[i]=data[i].toString();
+            }
+            return response;
+        }
 
         $scope.setTalkTime = function () {
             var data = new commonSetAPIDataObject();
