@@ -9687,3 +9687,16 @@ app.directive("number",function(){
 		}
 	}
 });
+
+app.directive('logoutBtn', ['$interval', function($interval) {
+
+  function link(scope, element, attrs) {
+    element.bind('click',function(){
+    	alert("You have clicked!");
+    });
+  }
+
+  return {
+    link: link
+  };
+}]);
