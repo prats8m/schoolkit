@@ -2,7 +2,7 @@
 
 
 app
-.factory('utilitySvc',['$http','baseURL','$cookies','toaster',function ($http,baseURL,$cookies,toaster) {
+.factory('utilitySvc',['$http','baseURL','$cookies','toaster','$rootScope','$location',function ($http,baseURL,$cookies,toaster,$rootScope,$location) {
 
    var factoryResp=this;
    // factoryResp.response_key_Result={};
@@ -33,9 +33,12 @@ app
                     });
                 }
                 if(response.msg == 'Invalid_Token'){
-                    toaster.pop('error','Session Expired');
-                    $cookies.remove("token");
-                    $location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
                 }
             })
             .error(function (data, status, headers, config) {

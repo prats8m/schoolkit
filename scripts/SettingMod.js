@@ -69,9 +69,12 @@ app.service('dataService',["$http","toaster","$cookies","$location",function($ht
 	}
 	this.responseError = function(response){
 		if(response.msg == 'Invalid_Token'){
-			$cookies.remove("token");
-			toaster.pop('error','Session Expired');
-			$location.path('/core/login');return false;
+            $rootScope.logoutSessionExpiredMassageCount++;
+            if($rootScope.logoutSessionExpiredMassageCount==1){
+                toaster.pop('error','Session Expired');
+                $cookies.remove("token");
+                $location.path('/core/login');
+            }
 		}else{
 			toaster.pop('error',response.msg.replace(/_/g," "));
 		}

@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('FacilityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL, toaster, $timeout, $uibModal) {
+	.controller('FacilityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL, toaster, $timeout, $uibModal,$location) {
 
 		$scope.page = {
 			title: 'Facility',
@@ -144,17 +144,29 @@ app
 					'Authorization': $cookies.get("token")
 				}
 			}).success(function (response) {
-				$scope.facilities = response["data"]["data"];
-				$scope.totalDisplayed = 8;
+				if(response.status){
+                    $scope.facilities = response["data"]["data"];
+                    $scope.totalDisplayed = 8;
 
-				if (response.data.count > $scope.totalDisplayed) {
-					$scope.lmbtn = {
-						"display": "block"
-					};
-				} else {
-					$scope.lmbtn = {
-						"display": "none"
-					};
+                    if (response.data.count > $scope.totalDisplayed) {
+                        $scope.lmbtn = {
+                            "display": "block"
+                        };
+                    } else {
+                        $scope.lmbtn = {
+                            "display": "none"
+                        };
+                    }
+				}
+				else {
+                    if(response.msg == 'Invalid_Token'){
+                        $rootScope.logoutSessionExpiredMassageCount++;
+                        if($rootScope.logoutSessionExpiredMassageCount==1){
+                            toaster.pop('error','Session Expired');
+                            $cookies.remove("token");
+                            $location.path('/core/login');
+                        }
+                    }
 				}
 
 			});
@@ -236,7 +248,7 @@ app
  * Controller of the minovateApp
  */
 app
-	.controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+	.controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location) {
 
 		$scope.page = {
 			title: 'Facility Details',
@@ -348,9 +360,12 @@ app
 				// $scope.facility.timeZone = response.data.facility_timezone;
 				//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			})
 			.error(function (response) {
@@ -381,9 +396,12 @@ app
 				} else {
 					$scope.result = response.msg.replace(/_/g, ' ');
 					if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                        $rootScope.logoutSessionExpiredMassageCount++;
+                        if($rootScope.logoutSessionExpiredMassageCount==1){
+                            toaster.pop('error','Session Expired');
+                            $cookies.remove("token");
+                            $location.path('/core/login');
+                        }
 				}
 				}
 
@@ -485,9 +503,12 @@ app
 					} else {
 						toaster.pop('error', response.msg.replace(/_/g, ' '));
 						if(response.msg == 'Invalid_Token'){
-							toaster.pop('error','Session Expired');
-							$cookies.remove("token");
-							$location.path('/core/login');return false;
+                            $rootScope.logoutSessionExpiredMassageCount++;
+                            if($rootScope.logoutSessionExpiredMassageCount==1){
+                                toaster.pop('error','Session Expired');
+                                $cookies.remove("token");
+                                $location.path('/core/login');
+                            }
 						}
 					}
 				})
@@ -512,7 +533,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+  .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location) {
 
     $scope.page = {
 		title: 'Facility Details',
@@ -536,9 +557,12 @@ app
 			$scope.dashboardInit();
 		}else{
 			if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                $rootScope.logoutSessionExpiredMassageCount++;
+                if($rootScope.logoutSessionExpiredMassageCount==1){
+                    toaster.pop('error','Session Expired');
+                    $cookies.remove("token");
+                    $location.path('/core/login');
+                }
 				}
 		}
 	})
@@ -561,9 +585,12 @@ app
 				$rootScope.dashboardData = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -588,7 +615,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope) {
+  .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location) {
 
     $scope.page = {
 		title: 'Facility Details',
@@ -612,9 +639,12 @@ app
 		$scope.facility = response.data;
 		}else{
 			if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                $rootScope.logoutSessionExpiredMassageCount++;
+                if($rootScope.logoutSessionExpiredMassageCount==1){
+                    toaster.pop('error','Session Expired');
+                    $cookies.remove("token");
+                    $location.path('/core/login');
+                }
 				}
 		}
 	})
@@ -635,9 +665,12 @@ app
 				$rootScope.dashboardData = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})

@@ -10,4 +10,4 @@ app.constant("appConstants", {
     error: "Error !! ",
     success:"Success !! "
 
-})
+});
