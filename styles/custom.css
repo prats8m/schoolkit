@@ -147,10 +147,10 @@ textarea.form-control {
 .profilephoto .user-profilep {
     font-size: 13px;
     position: absolute;
-    left: -75px;
+    left: 0;
     top: 0;
     padding: 8px 0;
-    width: 101%;
+    width: 100%;
     background-color: #eee
 }
 
@@ -831,9 +831,10 @@ a.serplan:hover {
 }
 
 .crystalcove {
-	float: left;
 	width: 66%;
-	height: 370px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .covertext {
@@ -874,8 +875,9 @@ a.serplan:hover {
 .myshortcuts {
 	background: rgba(0,0,0,0.9);
     width: 34%;
+    overflow: hidden;
+    display: inline-block;
     float: right;
-    height: 370px;
 }
 
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent {
@@ -1082,12 +1084,13 @@ a.serplan:hover {
 }
 
 .glview md-card .md-actions a {
-    padding: 6px 14px;
+    padding: 6px 0;
     font-size: 14px;
     text-transform: capitalize;
-    display: block;
+    display: inline-block;
     margin: 10px 5px 0;
-    font-weight: 600
+    font-weight: 600;
+	width: 65px;
 }
 
 .glview md-card .facilityname {
@@ -2385,6 +2388,11 @@ span.edittxt {position: absolute;
     margin-bottom: 25px;
 }
 
+.slimscrolls {
+	max-height: 293px;
+	margin-bottom: 20px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-2 {
         left: -85px
@@ -2699,11 +2707,8 @@ span.edittxt {position: absolute;
 	.addusers {
 		margin: -1px -5px 0 0;
 	}
-	.crystalcove {
-		width: 70%;
-	}
-	.myshortcuts {
-		width: 30%;
+	.slimscrolls {
+		max-height: 449px;
 	}
 	.myshortcuts ul li .icons {
 		height: 54px;
@@ -2713,9 +2718,6 @@ span.edittxt {position: absolute;
 	.myshortcuts ul li a {
 		height: 54px;
 		font-size: 18px;
-	}
-	.crystalcove, .myshortcuts {
-		height: 530px;
 	}
 }
 
@@ -2769,6 +2771,9 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
 	}
+	.slimscrolls {
+		max-height: 355px;
+	}
 }
 
 @media only screen and (max-width: 1365px) {
@@ -2789,6 +2794,24 @@ span.edittxt {position: absolute;
 	}
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
+	}
+	.crystalcove {
+		width: 64%;
+	}
+	.myshortcuts {
+		width: 36%;
+	}
+	.covertext span {
+		font-size: 24px;
+	}
+	.covertext span strong {
+		font-size: 40px;
+	}
+	.covertext span  strong:after {
+		bottom: -50px;
+	}	
+	.card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
+		font-size: 20px;
 	}
 }
 
@@ -2815,7 +2838,7 @@ span.edittxt {position: absolute;
 	}
 	.topmenu  {
 		width: 225px;
-		position: absolute;
+		position: fixed;
 		height: 100%;
 		transition: 0.25s;
 		left: -100%;
@@ -2994,6 +3017,23 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
 	}
+	.crystalcove {
+		width: 60%;
+	}
+	.myshortcuts {
+		width: 40%;
+	}
+	.covertext span {
+		font-size: 20px;
+	}
+	.covertext span strong {
+		font-size: 36px;
+	}
+	.covertext span strong:after {
+		bottom: -45px;
+		margin-left: -50px;
+		width: 100px;
+	}
 }
 
 @media only screen and (max-width: 1139px) {
@@ -3075,6 +3115,9 @@ span.edittxt {position: absolute;
 	}
 	.wrap-reset .glview md-card:nth-child(4n+4) {
 		margin-right: 0;
+	}
+	.slimscrolls {
+		max-height: 303px;
 	}
 }
 
@@ -3217,6 +3260,21 @@ span.edittxt {position: absolute;
 	}
 	.wrap-reset .glview md-card:nth-child(4n+4) {
 		margin-right: 2%;
+	}
+	.crystalcove {
+		width: 55%;
+	}
+	.myshortcuts {
+		width: 45%;
+	}
+	.covertext span strong {
+		font-size: 30px;
+	}
+	.covertext span {
+		font-size: 20px;
+	}
+	.slimscrolls {
+		max-height: 268px;
 	}
 }
 
@@ -3362,7 +3420,7 @@ span.edittxt {position: absolute;
 	}
 	.page-dashboard .card-container, .card-container {
 		float: none;
-		width: 100%;
+		width: 100%!important;
 		padding: 0 15px;
 	}
 	.glview md-card {
@@ -3472,3 +3530,10 @@ span.edittxt {position: absolute;
 
 .clckevent .panel .panel-heading .panel-title .accordion-toggle{padding: 0px;}
 .clckevent .panel .panel-heading .panel-title .accordion-toggle > span > div{padding: 10px 15px;}
+
+a.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}

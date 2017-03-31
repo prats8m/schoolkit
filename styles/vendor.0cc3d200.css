@@ -8521,7 +8521,7 @@ input[type="reset"], input[type="submit"], html input[type="button"], button {
   cursor: pointer;
   -webkit-appearance: button; }
   input[type="reset"][disabled], input[type="submit"][disabled], html input[type="button"][disabled], button[disabled] {
-    cursor: default; }
+    cursor: default; opacity: 0.25;}
 
 textarea {
   vertical-align: top;
@@ -11349,7 +11349,9 @@ md-card {
   md-card md-card-content {
     padding: 16px; }
   md-card .md-actions {
-    margin: 0; }
+    margin: 0;
+text-align: center;
+display: block;	}
     md-card .md-actions .md-button {
       margin-bottom: 8px;
       margin-top: 8px;
