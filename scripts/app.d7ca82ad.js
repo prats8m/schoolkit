@@ -9598,6 +9598,7 @@ app.directive('fileModel', ['$parse', function ($parse) {
                }
             };
          }]);
+
 app.service('fileUpload', ['$http', function ($http) {
             this.uploadFileToUrl = function(file, uploadUrl){
                var fd = new FormData();
@@ -9642,21 +9643,34 @@ app.service('schedul', function($http, baseURL, $cookies) {
 
 });
 
-// app.directive('fileModel', ['$parse', function ($parse) {
-//     return {
-//         restrict: 'A',
-//         link: function(scope, element, attrs) {
-//             var model = $parse(attrs.fileModel);
-//             var modelSetter = model.assign;
-            
-//             element.bind('change', function(){
-//                 scope.$apply(function(){
-//                     modelSetter(scope, element[0].files[0]);
-//                 });
-//             });
-//         }
-//     };
-// }]);
+
+//...Anchor tag disable Directive..............................................................
+app.directive('aDisabled', function() {
+    return {
+        compile: function(tElement, tAttrs, transclude) {
+            //Disable ngClick
+            tAttrs["ngClick"] = "!("+tAttrs["aDisabled"]+") && ("+tAttrs["ngClick"]+")";
+
+            //return a link function
+            return function (scope, iElement, iAttrs) {
+
+                //Toggle "disabled" to class when aDisabled becomes true
+                scope.$watch(iAttrs["aDisabled"], function(newValue) {
+                    if (newValue !== undefined) {
+                        iElement.toggleClass("disabled", newValue);
+                    }
+                });
+
+                //Disable href on click
+                iElement.on("click", function(e) {
+                    if (scope.$eval(iAttrs["aDisabled"])) {
+                        e.preventDefault();
+                    }
+                });
+            };
+        }
+    };
+});
 
 
 app.directive('username', function username() {

@@ -8521,7 +8521,7 @@ input[type="reset"], input[type="submit"], html input[type="button"], button {
   cursor: pointer;
   -webkit-appearance: button; }
   input[type="reset"][disabled], input[type="submit"][disabled], html input[type="button"][disabled], button[disabled] {
-    cursor: default; }
+    cursor: default; opacity: 0.25;}
 
 textarea {
   vertical-align: top;

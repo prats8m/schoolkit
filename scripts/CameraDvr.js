@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope,$filter,toaster,$sce,utilitySvc,appConstants) {
+  .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope,$filter,toaster,$sce,utilitySvc,appConstants,$timeout) {
      $scope.page = {
       title: 'Camera DVR',
     };
@@ -19,7 +19,7 @@ app
   $scope.dashboardInit = function(){
       utilitySvc.callHttpService('user/dashboard','GET',{},function (succResponse) {
           if(succResponse.status){
-              $rootScope.dashboardData = succResponse.data;
+              $rootScope.dashboardData = succResponse.data?succResponse.data:[];
           }
           else {
               toaster.pop(appConstants.oops,succResponse.msg);
@@ -148,8 +148,8 @@ app
                    $scope.cameras=[];
                }
                else {
-                   $scope.totalNoOfCameras=succResponse.data.count;
-                   $scope.cameras = succResponse.data.data;
+                   $scope.totalNoOfCameras=succResponse.data?succResponse.data.count:0;
+                   $scope.cameras = succResponse.data?succResponse.data.data:[];
                }
                $scope.generateLayoutForCamDisplay();
            }
@@ -408,7 +408,7 @@ app
             $scope.searchSection='Search';
            utilitySvc.callHttpService('camera/list?facility_id='+$scope.recordedFeedsSearchObj.facility,'GET',{},function (succResponse) {
                if(succResponse.status){
-                   $scope.recordedCameraFeedsAfterSearch=succResponse.data.data;
+                   $scope.recordedCameraFeedsAfterSearch=succResponse.data?succResponse.data.data:[];
                    toaster.pop(appConstants.success,succResponse.msg);
                }
                else {
@@ -423,43 +423,91 @@ app
     }
 
 
-    $scope.isrecordedFeedCameraVideosAvailable=false;
     $scope.getRecordedFeedVideosByCameraID=function (cameraObj) {
+        $scope.recordedFeedvideosUrl=[];
+        $scope.currentRunningRecordedFeedVideoIndex=-1;
         $scope.recordedFeedCameraPlayerHeader=cameraObj.camera_username;
         $scope.recordedFeedCameraPlayerSubHeader=cameraObj.camera_subscription_model;
         //cameraObj.camera_id=25;
         utilitySvc.callHttpService('s3/list?camera_id='+cameraObj.camera_id,'GET',{},function (succResp) {
+            var videoDOM=document.getElementById('recordedFeedVideoPlayer');
+                videoDOM.pause();
+                videoDOM.innerHTML='';
             if(succResp.status){
-                setTimeout(function () {
-                    var videoDOM=document.getElementById('recordedFeedVideoPlayer');
-                    videoDOM.innerHTML='';
-                    var sourcehtml='';
-                    if(succResp.data){
-                        $scope.isrecordedFeedCameraVideosAvailable=true;
-                        $scope.$apply();
-                        for(var i=0;i<succResp.data.length;i++){
-                            sourcehtml+='<source src="'+succResp.data[i]+'" type="video/mp4">';
-                        }
-                        videoDOM.innerHTML=sourcehtml;
-                        videoDOM.load();
-                        videoDOM.play();
-                    }
+                $scope.recordedFeedvideosUrl=succResp.data?succResp.data:[];
+                if($scope.recordedFeedvideosUrl.length>0){
+                        $scope.changeVideo('next');
+                }
+                else {
+                    $('#recordedFeedVideoPlayer').attr("poster", "./././././images/no_video.png");
+                    toaster.pop(appConstants.oops,'No Recorded Feeds available for this camera');
+                }
 
-                },1000)
             }
             else {
+                $('#recordedFeedVideoPlayer').attr("poster", "./././././images/no_video.png");
                 toaster.pop(appConstants.error,succResponse.msg);
             }
         })
 
-    }
+    };
 
+    $scope.changeRecordedCamFeedVideoSource=function () {
+        if($scope.currentRunningRecordedFeedVideoIndex>=0 && $scope.currentRunningRecordedFeedVideoIndex<$scope.recordedFeedvideosUrl.length){
+            var videoDOM=document.getElementById('recordedFeedVideoPlayer');
+            if(videoDOM.innerHTML!=''){
+                    videoDOM.pause();
+                    videoDOM.innerHTML='';
+            }
+            videoDOM.innerHTML='<source src="'+$scope.recordedFeedvideosUrl[$scope.currentRunningRecordedFeedVideoIndex]+'" type="video/mp4">';
+            $timeout(function () {
+                videoDOM.load();
+                videoDOM.play();
+            },1000);
+
+            if($scope.recordedFeedvideosUrl.length>1){
+                    if($scope.currentRunningRecordedFeedVideoIndex==0){
+                        $scope.isrecordedFeedCamPreviousVideoButtonEnable=true;
+                        $scope.isrecordedFeedCamNextVideoButtonEnable=false;
+                    }
+                    else if($scope.currentRunningRecordedFeedVideoIndex==$scope.recordedFeedvideosUrl.length-1){
+                        $scope.isrecordedFeedCamPreviousVideoButtonEnable=false;
+                        $scope.isrecordedFeedCamNextVideoButtonEnable=true;
+                    }
+                    else {
+                        $scope.isrecordedFeedCamPreviousVideoButtonEnable=false;
+                        $scope.isrecordedFeedCamNextVideoButtonEnable=false;
+                    }
+            }
+        }
+    };
+
+
+    $scope.isrecordedFeedCamNextVideoButtonEnable=true;
+    $scope.isrecordedFeedCamPreviousVideoButtonEnable=true;
+    $scope.changeVideo=function (videoState) {
+
+        if($scope.recordedFeedvideosUrl.length>0){
+            switch (videoState){
+                case 'prev':
+                    $scope.currentRunningRecordedFeedVideoIndex--;
+                    $scope.changeRecordedCamFeedVideoSource();
+                    break;
+                case 'next':
+                    $scope.currentRunningRecordedFeedVideoIndex++;
+                    $scope.changeRecordedCamFeedVideoSource();
+                    break;
+                default:
+                    break;
+            }
+        }
+       };
 
     // This function is used to resolve video URL while binding in <video><source src='{{trustSrc(url of video)}}'/></video>
 
       $scope.trustSrc = function(src) {
           return $sce.trustAsResourceUrl(src);
-      }
+      };
 
 	$scope.startRecording=function (cameraID) {
         toaster.pop(appConstants.oops,'Recording is not working yet for Camera ID : '+cameraID);
@@ -585,4 +633,7 @@ app
 /*-----------------------------------------------------------------
 			End code for controller
 -----------------------------------------------------------------*/
+
+
+
 
