@@ -50,9 +50,12 @@ app
 					toaster.pop('error', 'Please try again');
 					$scope.result = response.msg.replace(/_/g,' ');
 					if(response.msg == 'Invalid_Token'){
-						toaster.pop('error','Session Expired');
-						$cookies.remove("token");
-						$location.path('/core/login');return false;
+                        $rootScope.logoutSessionExpiredMassageCount++;
+                        if($rootScope.logoutSessionExpiredMassageCount==1){
+                            toaster.pop('error','Session Expired');
+                            $cookies.remove("token");
+                            $location.path('/core/login');
+						}
 					}
 				}
 			}).error(function(){
@@ -100,9 +103,12 @@ app
 			}else{
 				$rootScope.doorList = [];
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -158,9 +164,12 @@ app
 					}
 				}
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -216,11 +225,14 @@ app
 				
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
-				if(response.msg == 'No_Records_Found'){
+				else if(response.msg == 'No_Records_Found'){
 					$("#loadMoreBtn").text("No More Records");
 					$("#loadMoreBtn").attr("disabled","disabled");
 				}
@@ -254,9 +266,12 @@ app
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 				else if(response.msg=='No_Records_Found')
 					$scope.data =  [];
@@ -358,9 +373,12 @@ app
 				$rootScope.deviceModel = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -385,9 +403,12 @@ app
 				$rootScope.dashboardData = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -443,9 +464,12 @@ app
 				toaster.pop('success','Submit Successfully');
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}else{
 					toaster.pop('error',response.msg.replace(/_/g,' '));
 				}
@@ -526,9 +550,12 @@ app
 				$scope.editDevice.device_technician_id = $scope.editDevice.device_technician_id.toString();
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 					
 				}
 			}
@@ -580,9 +607,12 @@ app
 				$scope.dependent_devices = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		}).error(function(){
@@ -607,9 +637,12 @@ app
 				//$scope.dependent_devices = response.data.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 					
 				}
 			}
@@ -648,10 +681,12 @@ app
 				toaster.pop('success','Submitted Successfully!');
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
-					return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}else{toaster.pop('success',response.msg.replace(/_/g, " "));}
 			}
 		}).error(function(){
@@ -708,9 +743,12 @@ app
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 					
 				}
 			}
@@ -766,9 +804,12 @@ app
 				$scope.getTechnicianList();
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 				
 			}
@@ -897,9 +938,12 @@ app
 				//$scope.editDevice.device_technician_id = $scope.editDevice.device_technician_id.toString();
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 										
 				}
 			}
@@ -931,9 +975,12 @@ app
 				toaster.pop('success','Submitted Successfully!');
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}else{toaster.pop('success',response.msg.replace(/_/g, " "));}
 			}
 		}).error(function(){
@@ -981,9 +1028,12 @@ app
 				$rootScope.dashboardData = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -1015,9 +1065,12 @@ app
 			}else{
 				toaster.pop('error','Something went wrong.');
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		}).error(function(){
@@ -1071,9 +1124,12 @@ app
 					$scope.result = response.msg.replace(/_/g,' ');
 					$scope.statusclass = 'alert alert-danger alert-dismissable';
 					if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                        $rootScope.logoutSessionExpiredMassageCount++;
+                        if($rootScope.logoutSessionExpiredMassageCount==1){
+                            toaster.pop('error','Session Expired');
+                            $cookies.remove("token");
+                            $location.path('/core/login');
+                        }
 				}
 				}
 			}).error(function(){
@@ -1117,12 +1173,15 @@ app
 				$scope.dependentDevice = arrayPushService.arrayPush(response.data.data, $scope.dependentDevice);
 				if(response.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
 			}else{
-				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                $scope.hideLoadMore = true;
+                if(response.msg == 'Invalid_Token'){
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
-				$scope.hideLoadMore = true;
 			}
 		}).error(function(){
 
@@ -1147,9 +1206,12 @@ app
 			}else{
 				$rootScope.doorList = [];
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -1177,9 +1239,12 @@ app
 				$rootScope.technicianList = response.data;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		}).error(function(){
@@ -1231,9 +1296,12 @@ app
 					}
 				}
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -1260,9 +1328,12 @@ app
 				//$scope.dependentDevice = arrayPushService.arrayPush(response.data.data, $scope.dependentDevice);
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 					
 				}
 			}	
@@ -1299,11 +1370,14 @@ app
 				$scope.pageNo = $scope.pageNo + 1 ;
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
-				if(response.msg == 'No_Records_Found'){
+				else if(response.msg == 'No_Records_Found'){
 					$("#loadMoreBtn").text("No More Records");
 					$("#loadMoreBtn").attr("disabled","disabled");
 				}
@@ -1410,9 +1484,12 @@ app
 				}else{
 					toaster.pop('error',response.msg.replace(/_/g," "));
 					if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                        $rootScope.logoutSessionExpiredMassageCount++;
+                        if($rootScope.logoutSessionExpiredMassageCount==1){
+                            toaster.pop('error','Session Expired');
+                            $cookies.remove("token");
+                            $location.path('/core/login');
+                        }
 				}
 				}
 			}).error(function(){
@@ -1496,10 +1573,12 @@ app
 				console.log($scope.editDevice.door_id);
 			}else{
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');
-					
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		}).error(function(){
@@ -1595,9 +1674,12 @@ app
 					}
 				}
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})
@@ -1623,9 +1705,12 @@ app
 			}else{
 				$rootScope.masterDevices = [];
 				if(response.msg == 'Invalid_Token'){
-					toaster.pop('error','Session Expired');
-					$cookies.remove("token");
-					$location.path('/core/login');return false;
+                    $rootScope.logoutSessionExpiredMassageCount++;
+                    if($rootScope.logoutSessionExpiredMassageCount==1){
+                        toaster.pop('error','Session Expired');
+                        $cookies.remove("token");
+                        $location.path('/core/login');
+                    }
 				}
 			}
 		})

@@ -78,8 +78,9 @@ var app = angular
             if (charCode != 46 && charCode > 31
                 && (charCode < 48 || charCode > 57))
                 evt.preventDefault();
-        }
-    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+        };
+      $rootScope.logoutSessionExpiredMassageCount=0;
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 
       event.targetScope.$watch('$viewContentLoaded', function () {
 
@@ -98,8 +99,18 @@ var app = angular
         if (toState.name ==="app.admin.user.add-user") {
             $cookies.remove("user_id");
         }
+        if (toState.name ==="core.login") {
+            $rootScope.logoutSessionExpiredMassageCount=0;
+        }
 
     });
+
+
+
+      $rootScope.$on('$locationChangeStart', function(event, toUrl, fromUrl) {
+          console.log(toUrl);
+      });
+
   }])
 
   .config(['uiSelectConfig', function (uiSelectConfig) {
