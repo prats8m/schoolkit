@@ -1020,50 +1020,7 @@ app
     }; */
 });
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:ForgotPasswordCtrl
- * @description
- * # ForgotPasswordCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('ForgotPasswordCtrl', function ($scope, $state) {
-    $scope.login = function() {
-		$state.go('core.otp');
-    };
-});
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:OTPCtrl
- * @description
- * # OTPCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('OTPCtrl', function ($scope, $state) {
-    $scope.login = function() {
-		$state.go('core.create-new-password');
-    };
-});
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:CreatePasswordCtrl
- * @description
- * # CreatePasswordCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('CreatePasswordCtrl', function ($scope, $state) {
-    $scope.login = function() {
-		$state.go('core.login');
-    };
-});
   
 'use strict';
 /**

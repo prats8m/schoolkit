@@ -99,7 +99,7 @@
 									<div class="form-group col-sm-12 profiledetail">
 										<p><label>Timer Name</label> {{ViewSchedule.schedule_name}}</p>
 										<p><label>Status</label> {{ViewSchedule.schedule_status | scheduleFilter }}</p>
-										<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date}}</p>
+										<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>
 										<p>&nbsp;</p>
 										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
 										<p><label>Start Time</label> {{ViewSchedule.schedule_start_time}}:00:00</p>
