@@ -42,6 +42,7 @@ app
 
     $scope.submitOTP = function(requestData){
     	requestData.email = $cookies.get('forgetpasswordemail');
+    	requestData.otp = parseInt(requestData.otp);
     	dataService.postData(requestData,baseURL + 'user/check-otp')
     	.success(function(response){
     		if(response.status){
