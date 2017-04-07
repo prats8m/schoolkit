@@ -20,11 +20,11 @@ app
                 dataType : appConstants.dataType,
                 headers: {
                     Authorization: $cookies.get(appConstants.sessionTokenCookieID),
-                    "Content-type": appConstants.contentType
+                    "Content-type": url.indexOf('pic-upload')<0? appConstants.contentType:undefined
                 },
                 params:params
             })
-                .success(function(response) {
+                .success(function(response, status, headers, config) {
                     if(response.status == true){
                         cb(respStructure={
                             status:response.status,
@@ -54,10 +54,10 @@ app
                 })
                 .error(function (data, status, headers, config) {
                     cb(respStructure={
-                        status:data.status,
-                        data:data.data,
-                        msg:data.msg,
-                        error:data.error
+                        status:status=false,
+                        data:data,
+                        msg:appConstants.somethingwrong,
+                        error:null
                     });
                 });
 

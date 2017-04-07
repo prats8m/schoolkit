@@ -8,7 +8,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, fileUpload) {
+  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, appConstants,userSvc) {
 
      $scope.page = {
       title: 'Users',
@@ -255,30 +255,17 @@ app
           fileinput.click();
       }
 
-      $scope.uploadProfilePic=function (file) {
+      $scope.uploadProfilePic=function (file,user_id) {
           var fd = new FormData();
+          fd.append('user_id',user_id);
           fd.append('file', file);
 
-          $http.post(baseURL+'user/pic-upload',
-              {headers: {
-                  "Authorization": $cookies.get("token"),
-                  "Content-type": undefined
-              }},fd,{transformRequest: angular.identity})
-              .success(function (resp) {
-                  if(resp.msg == 'Invalid_Token'){
-                      toaster.pop('error','Session Expired');
-                      $cookies.remove("token");
-                      $location.path('/core/login');return false;
-                  }
-                  else if(resp.status==true){
-                      toaster.pop('Success','Profile pic updated successfully');
-                  }
-
-              })
-              .error(function (error) {
-
-              })
-      }
+          userSvc.uploadProfilePic(appConstants.userpicupload,appConstants.postMethod,{},fd,function (succResponse) {
+              if(succResponse.status){
+                  toaster.pop(appConstants.success,appConstants._successImageUpload);
+              }
+          });
+      };
 
 	$scope.userData = {};
 	$scope.userData.status = 1;
@@ -290,7 +277,6 @@ app
         }
 		}
    		 })){
-
 			var parDIV=$('#expirationdate-error').parents("div");
 			var errorlabel=$('#'+parDIV[0].id).children('label');
 			$('#'+errorlabel[0].id).remove();
@@ -298,112 +284,50 @@ app
             $('#'+parDIV[1].id).append(errorlabel[0].outerHTML);
 			return false;
 		}
-		if(userData == undefined){
-			$rootScope.user_error = "Please fill form.";
+		if(!userData){
+			$rootScope.user_error = appConstants.incompleteform;
 			return false;
 		}
 		userData.user_phone_no = parseInt(userData.user_phone_no);
 		userData.zip_code = parseInt(userData.zip_code);
-		userData.user_type = 'admin';
+		userData.user_type = appConstants.usertype.admin;
 		if(!userData.expiration_date)
-			userData.expiration_date = "";
+			userData.expiration_date = appConstants.empty;
 		// userData.facility_id = parseInt($cookies.get("facilityId"));;
 		if(userData.password != userData.cpassword){
-			alert("Password and Confirm password should be same");
+			alert(appConstants.messageOncheckifpwdAndcnfrmpwdSame);
 			return false;
 		}
-		// var fileData = {};
-		// fileData.file = userData.photo;
-		// userData.photo = userData.photo.name;
 		delete userData.photo;
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'user/add',
-			dataType : 'JSON', 
-			data:userData,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
+        userSvc.submitUserData(appConstants.useradd,appConstants.postMethod,{},userData,function (succResponse) {
+            $scope.user_error = appConstants.empty;
+            $scope.accesscode = {};
+            var x = Math.floor(Math.random()*9999999999) + 10000;
+            $scope.accesscode.access_code = parseInt((appConstants.empty+x).substring(8, length));
+            $scope.accesscode.access_code_status = appConstants.active;
+        	if(succResponse.status){
+                var file = $scope.myFile;
+                $scope.uploadProfilePic(file,succResponse.data.user_id);
+                $cookies.put("user_id", succResponse.data.user_id);
+                $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
+                $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
+                $("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
+                $timeout(function() {
+                    $(".ng-scope:contains(User Groups)").trigger( "click" );
+                    // $(".ng-scope:contains(Credentials)").trigger( "click" );
+                });
+                $timeout(function(){
+                    $scope.facilityInit();
+                });
+                $timeout(function() {
+                    $scope.assignedGroup();
+                });
+            }
+            else {
+                $scope.user_error = succResponse.msg;
 			}
-		})
-		.success(function(response){
-			// fileData.user_id = response.data.user_id;
-			// var formData = fileData.file;
-			// console.log(fileData.file);
- 		// 	$http(
-			// {
-			// 	method: 'POST', 
-			// 	url: baseURL+'user/pic-upload',
-			// 	dataType : 'JSON', 
-			// 	data: {"user_id": response.data.user_id, "file":formData},
-			// 	headers: {
-			// 		"Content-type": "application/json",
-			// 		"Authorization": $cookies.get("token")
-			// 	}
-			// });
-			$scope.user_error = "";
-			$scope.accesscode = {};
-			var x = Math.floor(Math.random()*9999999999) + 10000;
-			$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
-			$scope.accesscode.access_code_status = 'Active';
-			if(response.status == true){
-               // var file = $scope.myFile;
-                //$scope.uploadProfilePic(file);
-				$cookies.put("user_id", response.data.user_id);
-				$("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");	
-				$("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
-				$("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
-				$timeout(function() {
-				$(".ng-scope:contains(User Groups)").trigger( "click" );
-				// $(".ng-scope:contains(Credentials)").trigger( "click" );
-				});
-				$timeout(function(){
-					$scope.facilityInit();
-				});
-				$timeout(function() {
-					$scope.assignedGroup();
-				});
-				// $timeout(function() {
-				// 	$scope.unassignedGroup(facility_id);
-				// });
-				// $timeout(function() {
-				// 	$scope.getRfidList();
-				// });
-				// $timeout(function() {
-				// 	$scope.getPhoneList();
-				// });
-				// $timeout(function() {
-				// 	$scope.getBleList();
-				// });
-				// $timeout(function() {
-				// 	$scope.getNfcCodeList();
-				// })
-			}else{
-
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-				
-				var n = [];
-				var arr = response.error;
-				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$scope.user_error = n.join(", ");
-				}
-				else{
-					$scope.user_error = response.msg.replace(/_/g,' ');
-				}
-				
-			}
-		}).error(function(){
-		});
-	}
+        });
+	};
 	$scope.rfid = {};
 	$scope.rfid.status = 1;
 
@@ -1023,8 +947,10 @@ app
 		})
 		.success(function(response){
 			if(response.status == true){
-				$rootScope.assingned_usergroups = response.data;
-				$scope.groupcount = response.data.length?response.data.length:0;
+				if(response.data){
+                    $rootScope.assingned_usergroups = response.data;
+                    $scope.groupcount = response.data.length?response.data.length:0;
+				}
 			}else{	
 				if(response.msg == 'Invalid_Token'){
                     $rootScope.logoutSessionExpiredMassageCount++;
@@ -1204,7 +1130,7 @@ if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
  * Controller of the minovateApp
  */
 app
-  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog, $filter) {
+  .controller('UserProfileCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog, $filter,appConstants,userSvc) {
      $scope.page = {
       title: $location.path().indexOf('view-user')>=0?'View User':'Edit User',
       subtitle: ''
@@ -1645,55 +1571,50 @@ app
 	if (day.length < 2) day = '0' + day;
 
 	return [day, month, year].join('/');
-	}
-	
-	
+	};
+
+
 
 	$scope.HandleProfilePicAddUpdateClick=function () {
         var fileinput = document.getElementById("profilePicAddUpdate");
         fileinput.click();
-    }
-    
-    $scope.uploadProfilePic=function (file) {
+    };
+
+    $scope.uploadProfilePic=function (file,user_id) {
         var fd = new FormData();
+        fd.append('user_id',user_id);
         fd.append('file', file);
 
-        // $http.post(baseURL+'user/pic-upload',
-        //     {headers: {
-        //         "Authorization": $cookies.get("token"),
-        //         "Content-type": undefined
-        //     }},fd,{transformRequest: angular.identity})
+        userSvc.uploadProfilePic(appConstants.userpicupload,appConstants.postMethod,{},fd,function (succResponse) {
+            if(succResponse.status){
+				toaster.pop(appConstants.success,appConstants._successImageUpload);
+            }
+        });
 
+        //......... Working code for Profile Pic upload.................................................................
 
-        $http(
-            {
-                method: 'POST',
-                url: baseURL+'user/pic-upload',
-              //  dataType : 'JSON',
-                headers: {
-                    "Content-type": undefined,
-                    "Authorization": $cookies.get("token")
-                },
-				data:fd
+        // $http.post(baseURL+'user/pic-upload',fd,
+			// {
+			// 	transformRequest: angular.identity,
+			// 	headers: {
+			// 		"Authorization": $cookies.get("token"),
+			// 		"Content-type": undefined
+			// 	}}
+        //     ).success(function (resp) {
+        //         if(resp.msg == 'Invalid_Token'){
+        //             toaster.pop('error','Session Expired');
+        //             $cookies.remove("token");
+        //             $location.path('/core/login');return false;
+        //         }
+        //         else if(resp.status==true){
+        //             toaster.pop('Success','Profile pic updated successfully');
+        //         }
+        //     })
+			// .error(function (error) {})
 
-            })
+        //..............................................................................................................
+    };
 
-			.success(function (resp) {
-                if(resp.msg == 'Invalid_Token'){
-                    toaster.pop('error','Session Expired');
-                    $cookies.remove("token");
-                    $location.path('/core/login');return false;
-                }
-                else if(resp.status==true){
-                    toaster.pop('Success','Profile pic updated successfully');
-                }
-
-            })
-			.error(function (error) {
-
-            })
-    }
-	
 	var n = [];
 	$scope.submitEditUser = function(submitData, user_edit){
 		if(!user_edit.validate()){
@@ -1703,7 +1624,7 @@ app
 		// 	toaster.pop('Warning!! ','Password and Confirm Password should be same');
 		// 	return;
 		// }
-		submitData.status = submitData.user_status
+		submitData.status = submitData.user_status;
 		submitData.user_id = parseInt($stateParams.user_id);
 		submitData.user_phone_no = submitData.user_phone_no;
 		submitData.name_on_lcd = submitData.user_name_on_lcd;
@@ -1711,63 +1632,36 @@ app
 		submitData.facility_id = parseInt($cookies.get("facilityId"));
 		submitData.expiration_date = submitData.expiration_date;
 		$rootScope.masters = [];
-
-		$http(
-		{
-			method: 'PUT', 
-			url: baseURL + 'user/edit',
-			dataType : 'JSON',
-			data:submitData,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		}).success(function(response){
-			
-			if(response.status == true){
-                //var file = $scope.myFile;
-                //$scope.uploadProfilePic(file);
-				$scope.profileInit
-				toaster.pop('success','Submitted Successfully');
-				$scope.editUserMessage = "";
-			}else{
-				// toaster.pop('error',response.msg);
-				var arr = response.error;
-				if(response.error != ""){
-					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$scope.editUserMessage = n.join(", ");
+        userSvc.submitEditUser(appConstants.useredit,appConstants.putMethod,{},submitData,function (succResponse) {
+            $scope.editUserMessage = appConstants.empty;
+            if(succResponse.status){
+                var file = $scope.myFile;
+                $scope.uploadProfilePic(file,$stateParams.user_id);
+                $scope.profileInit();
+                toaster.pop(appConstants.success,appConstants.submitSuccessfully);
+            }
+            else {
+                if(succResponse.error && succResponse.error.length>0){
+                    $rootScope.masters[0]=succResponse.error[0];
 				}
-				else{
-                    $rootScope.masters[0] = response.msg.replace(/_/g, " ");
-                    if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
-                        }
-					}
-					
-
+				else {
+                    $scope.editUserMessage=succResponse.msg;
 				}
-			}
-			//$scope.submitEditAccessCode(submitData);
-		}).error(function(){
-			toaster.pop('success','Something went wrong!');
-		});
-	}
+            }
+        });
+	};
 
 	$scope.generateAccessCode = function(){ 
 		// $scope.editUser.access_code = Date.now();
 		// $scope.accesscode = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
 		$scope.editAccess.access_code = parseInt((""+x).substring(8, length));
-	}
+	};
 
 	$scope.generatePhoneCode = function(){
 		var x = Math.floor(Math.random()*9999999999) + 10000;
 		$scope.phoneedit.phone_code = (""+x).substring(8, length);
-	}
+	};
 	
 	$scope.submitEditAccessCode = function(submitData, access_edit_form){
 		if(!access_edit_form.validate()){

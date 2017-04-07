@@ -40,6 +40,9 @@ app.constant("appConstants", {
     dooradd:'door/add',
     doorview:'door/view',
     dooredit:'door/edit',
+    userpicupload:'user/pic-upload',
+    useradd:'user/add',
+    useredit:'user/edit',
 
     //...........................................................................
 
@@ -254,6 +257,19 @@ app.constant("appConstants", {
     cameragroupcreated:'Camera Group Created',
 
     //............................................................................
+
+
+    //...........User.......................................................
+
+    _successImageUpload:'Image uploaded successfully',
+    incompleteform:'Please fill form',
+    usertype:{admin:'admin'},
+    messageOncheckifpwdAndcnfrmpwdSame:'Password and Confirm password should be same',
+
+    //............................................................................
+
+
+
 
 
 
