@@ -76,6 +76,7 @@ app
     	.success(function(response){
     		if(response.status){
     			toaster.pop('success', response.msg.replace(/_/g," "));
+    			$cookies.remove('forgetpasswordemail');
     			$scope.login();
     		}else{
     			dataService.responseError(response);

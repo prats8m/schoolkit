@@ -954,9 +954,12 @@ app
   .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location) {
 	  
 		
-	/* if($cookies.get('token')){
-		$state.go('app.admin.dashboard');
-	} */
+	$scope.user = {};
+	$scope.setCookies = function(){
+		$scope.user.username = $cookies.get('username');
+		$scope.user.password = $cookies.get('password');
+	}
+	$scope.setCookies();
 	
 	$scope.loginFunction = function(){
 		$scope.user.type = "web";
@@ -984,6 +987,11 @@ app
 						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
 						$cookies.put('userFirstName', response.data.userFirstName,{expiry:now});
 						$cookies.put('userLastName', response.data.userLastName,{expiry:now});
+						if($scope.rememberme){
+							$cookies.put('username', $scope.user.username);
+							$cookies.put('password', $scope.user.password);
+						}
+						
 					}
 					$state.go('app.admin.dashboard');
 				}
