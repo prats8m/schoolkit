@@ -287,7 +287,7 @@ app
     			dataService.responseError(response);
     		}
     	});
-    }
+    };
 	
 	$scope.status = '  ';
     $scope.showConfirm = function(ev,id) {

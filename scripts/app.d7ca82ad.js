@@ -80,7 +80,8 @@ var app = angular
                 evt.preventDefault();
         };
       $rootScope.logoutSessionExpiredMassageCount=0;
-    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+
+      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 
       event.targetScope.$watch('$viewContentLoaded', function () {
 
@@ -997,7 +998,7 @@ app
 			
 		})
 
-	}
+	};
 
   $scope.logout = function(){
     $cookies.remove('token');
@@ -1074,31 +1075,18 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DashboardCtrl', function($scope, $mdDialog, $location, $http, $rootScope, $cookies, fileUpload, baseURL){
+  .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc){
     $scope.page = {
-		title: 'Dashboard',
-		subtitle: 'So much more to see at a glance.'
+		title: appConstants.dashboardTitle,
+		subtitle: appConstants.dashboardSubTitle
     };
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-				// console.log($rootScope.dashboardData);
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+        dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data?succResponse.data:[];
+            }
+        });
+	};
 	$scope.dashboardInit();
 });
 
@@ -9713,11 +9701,11 @@ app.directive("number",function(){
 	}
 });
 
-app.directive('logoutBtn', ['$interval', function($interval) {
-
+app.directive('logoutBtn', ['$location','$cookies', function($location,$cookies) {
   function link(scope, element, attrs) {
     element.bind('click',function(){
-    	alert("You have clicked!");
+        $cookies.remove("token");
+        $location.path('/core/login');
     });
   }
 
@@ -9725,3 +9713,20 @@ app.directive('logoutBtn', ['$interval', function($interval) {
     link: link
   };
 }]);
+
+app
+    .filter('facilityStatus', function() {
+        return function(x) {
+            if(x == 0){return "In-Active";}else{ return "Active";}
+        }
+    });
+
+app.filter('deviceFeatureFilter', function() {
+    return function(input) {
+        if(input == 1){
+            return "online";
+        }else{
+            return "offline";
+        }
+    }
+});

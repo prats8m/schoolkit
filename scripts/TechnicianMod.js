@@ -7,72 +7,56 @@
  * Controller of the minovateApp
  */
 app
-  .controller('TechnicianCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler) {
+  .controller('TechnicianCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,appConstants,technicianSvc) {
      $scope.page = {
-      title: 'Technician',
-      subtitle: 'So much more to see at a glance.'
-    };	
-	
+      title: appConstants.technicianUiTitle,
+      subtitle: appConstants.dashboardSubTitle
+    };
 	$scope.status = '  ';
     $scope.showConfirm = function(ev) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete your user?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants.deleteuserconfirmationmessage)
+		.content(appConstants.content)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.status = 'Your user has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			$scope.status = appConstants._successfullyuserdeletedmessage;
+			$scope.statusclass = appConstants.dangerstatusClass;
 		}, function() {
-			$scope.status = 'You decided to keep your users.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			$scope.status = appConstants._canceluserfromdelete;
+			$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
+	$scope.layout = appConstants.gridLayout;
+	$scope.class = appConstants.gridviewClass;
 	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
+		if ($scope.class === appConstants.gridviewClass)
+		$scope.class = appConstants.listviewClass;
+		$scope.layout = appConstants.listLayout;
 	};
 	
 	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
+		if ($scope.class === appConstants.listviewClass)
+		$scope.class = appConstants.gridviewClass;
+		$scope.layout = appConstants.gridLayout;
 	};
-
 	
 	$scope.getTechnicians = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'technician/list',
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.technicianList = response.data;
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-	}
+        technicianSvc.getTechnicians(appConstants.technicianlist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.technicianList = succResponse.data;
+            }
+        });
+	};
 	$scope.getTechnicians();
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
-    }
+    };
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	
 });
 
@@ -87,10 +71,10 @@ app
 app
   .controller('TechnicianProfileCtrl', function ($scope, $http) {
      $scope.page = {
-      title: 'Technician',
-      subtitle: 'So much more to see at a glance.'
+      title: appConstants.technicianProfileUiTitle,
+      subtitle: appConstants.dashboardSubTitle
     };
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	
 });

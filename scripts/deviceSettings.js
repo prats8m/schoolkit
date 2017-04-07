@@ -1,10 +1,10 @@
 'use strict';
 
 app
-    .controller('DeviceSettingController', function ($scope, $mdDialog, $http, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, dataService, $rootScope) {
+    .controller('DeviceSettingController', function ($scope, $mdDialog, $http, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, dataService, $rootScope,appConstants,devicesSvc) {
         $scope.page = {
-            title: 'Settings',
-            subtitle: ''
+            title: appConstants.settings,
+            subtitle: appConstants.empty
         };
 
         $scope.deviceGeneralSettingModals = {};
@@ -15,85 +15,60 @@ app
         $scope.device_id = parseInt($stateParams.device_id);
         $scope.commonGetAPIData = {
             device_id: $scope.device_id,
-            type: ""
+            type: appConstants.empty
         };
 
         function commonSetAPIDataObject() {
             return {
                 device_id: $scope.device_id,
-                module: "",
-                type: "",
+                module: appConstants.empty,
+                type: appConstants.empty,
                 value: {}
             };
             // return commonSetAPIData;
         }
 
         var commonSetHTTPService = function (data, msg) {
-            $http({
-                    method: 'POST',
-                    url: baseURL + 'device/add-settings',
-                    dataType: 'JSON',
-                    data: data,
-                    headers: {
-                        "Content-type": "application/json",
-                        "Authorization": $cookies.get("token")
-                    }
-                })
-                .success(function (response) {
-                    if (response.status == true) {
-                        toaster.pop('success', msg);
-                    }
-                }).error(function () {
-
-                });
+            devicesSvc.commonSetHTTPService(appConstants.deviceaddsettings,appConstants.postMethod,{},data,function (succResponse) {
+                if(succResponse.status){
+                    toaster.pop(appConstants.success, msg);
+                }
+            });
         };
 
         $scope.getGeneralSettings = function () {
-            $scope.commonGetAPIData.type = "gen";
-            $http({
-                    method: 'GET',
-                    url: baseURL + 'device/get-settings?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type,
-                    dataType: 'JSON',
-                    headers: {
-                        "Content-type": "application/json",
-                        "Authorization": $cookies.get("token")
-                    }
-                })
-                .success(function (response) {
-                    if (response.status == true) {
-                        $scope.deviceGeneralSettingModals = response.data;
-                        $scope.grantAccessKey.value = response.data.dgs_access_granted_key["access-grant-key"];
-                        $scope.lockoutMode = response.data.dgs_lockout_mode['lockout-mode'];
-                        $scope.deviceGeneralSettingModals.dgs_camera['video-recording-access'] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera['video-recording-access']);
-                        $scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']=$scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']);
+            $scope.commonGetAPIData.type = appConstants.deviceSettings.commonGetAPIData.type;
+            devicesSvc.getGeneralSettings(appConstants.devicegetsettings+'?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.deviceGeneralSettingModals = succResponse.data;
+                    $scope.grantAccessKey.value = succResponse.data.dgs_access_granted_key[appConstants.deviceSettings.accessgrantkey];
+                    $scope.lockoutMode = succResponse.data.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode];
+                    $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess]);
+                    $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]=$scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
 
-                    } else {
-
-                    }
-                }).error(function () {
-
-                });
+                }
+            });
         };
 
         $scope.setAccessGrantKey = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "access-grant-key";
-            data.type = "gen";
-            data.value["access-grant-key"] = $scope.grantAccessKey.value;
-            commonSetHTTPService(data, 'Access Granted key changed successfully.');
+            data.module = appConstants.deviceSettings.accessgrantkey;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.accessgrantkey] = $scope.grantAccessKey.value;
+            commonSetHTTPService(data,appConstants._successaccessgrantkeychangesmessage);
         };
 
         $scope.setCameraSettings = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "camera-setup";
-            data.type = "gen";
+            data.module = appConstants.deviceSettings.camerasetup;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
             var vedioArr=[];
 
-            data.value["picture-snapshot-access"] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera['picture-snapshot-access']);
-            data.value["snapshot-status"] = $scope.deviceGeneralSettingModals.dgs_camera['snapshot-status'];
-            data.value["video-recording-access"] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera['video-recording-access']);
-            data.value["recording-status"] = $scope.deviceGeneralSettingModals.dgs_camera['recording-status'];
-            commonSetHTTPService(data, 'Camera Configured successfully.');
+            data.value[appConstants.deviceSettings.picturesnapshotsaccess] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
+            data.value[appConstants.deviceSettings.snapshotsstatus] = $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.snapshotsstatus];
+            data.value[appConstants.deviceSettings.videorecordingaccess] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess]);
+            data.value[appConstants.deviceSettings.recordingstatus] = $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.recordingstatus];
+            commonSetHTTPService(data, appConstants._successCameraConfigured);
         }; 
 
         $scope.parseIntArr=function(data){
@@ -102,120 +77,107 @@ app
                 response[i]=parseInt(data[i])
             }
             return response;
-        }
+        };
         $scope.parseStringArr=function(data){
             var response=[];
             for(var i=0;i<data.length;i++){
                 response[i]=data[i].toString();
             }
             return response;
-        }
+        };
 
         $scope.setTalkTime = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "talk-time-setup";
-            data.type = "gen";
-            data.value["talk-time"] = $scope.deviceGeneralSettingModals.dgs_talk_time['talk-time'];
-            commonSetHTTPService(data, 'Talk Time Configured successfully.');
+            data.module = appConstants.deviceSettings.talktimesetup;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.talktime] = $scope.deviceGeneralSettingModals.dgs_talk_time[appConstants.deviceSettings.talktime];
+            commonSetHTTPService(data, appConstants._successTaltimeConfigured);
         };
 
         $scope.setLEDConfiguration = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "led-setup";
-            data.type = "gen";
-            data.value['keypad-setup'] = parseInt($scope.deviceGeneralSettingModals.dgs_led['keypad-setup']);
-            data.value['keypad-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['keypad-brightness'];
-            data.value['courtesy-light-setup'] = parseInt($scope.deviceGeneralSettingModals.dgs_led['courtesy-light-setup']);
-            data.value['courtesy-brightness'] = $scope.deviceGeneralSettingModals.dgs_led['courtesy-brightness'];
+            data.module = appConstants.deviceSettings.ledsetup;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.keypadsetup] = parseInt($scope.deviceGeneralSettingModals.dgs_led[appConstants.deviceSettings.keypadsetup]);
+            data.value[appConstants.deviceSettings.keypadbrightness] = $scope.deviceGeneralSettingModals.dgs_led[appConstants.deviceSettings.keypadbrightness];
+            data.value[appConstants.deviceSettings.courtesylightsetup] = parseInt($scope.deviceGeneralSettingModals.dgs_led[appConstants.deviceSettings.courtesylightsetup]);
+            data.value[appConstants.deviceSettings.courtesybrightness] = $scope.deviceGeneralSettingModals.dgs_led[appConstants.deviceSettings.courtesybrightness];
             console.log(data);
-            commonSetHTTPService(data, 'LED Configured successfully.');
+            commonSetHTTPService(data, appConstants._successledConfigured);
         };
 
         $scope.setSpeakerMicrophone = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "speaker-microphone-setup";
-            data.type = "gen";
-            data.value['speaker-beeper'] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker['speaker-beeper']);
-            data.value['microphone-beeper'] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker['microphone-beeper']);
-            data.value['speaker-volume'] = $scope.deviceGeneralSettingModals.dgs_speaker['speaker-volume'];
-            data.value['microphone-sensitivity'] = $scope.deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity'];
-            commonSetHTTPService(data, 'Speaker and Microphone configured successfully.');
+            data.module = appConstants.deviceSettings.speakermicrophonesetup;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.speakerbeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.speakerbeeper]);
+            data.value[appConstants.deviceSettings.microphonebeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonebeeper]);
+            data.value[appConstants.deviceSettings.speakervolume] = $scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.speakervolume];
+            data.value[appConstants.deviceSettings.microphonesensitivity] = $scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonesensitivity];
+            commonSetHTTPService(data, appConstants._successspeakerandmicrophoneconfigured);
         };
 
         $scope.createLockoutModeArray = function (data) {
-            var idx = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'].indexOf(data);
+            var idx = $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode].indexOf(data);
             // is currently selected
             if (idx > -1) {
-                $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'].splice(idx, 1);
+                $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode].splice(idx, 1);
             } else {
-                $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'].push(data);
+                $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode].push(data);
             }
-            console.log($scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode']);
+            console.log($scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode]);
         };
 
         $scope.setLockoutMode = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "lockout";
-            data.type = "gen";
-            data.value['lockout-mode'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-mode'];
-            data.value['max-tries'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['max-tries'];
-            data.value['lockout-period'] = $scope.deviceGeneralSettingModals.dgs_lockout_mode['lockout-period'];
-            commonSetHTTPService(data, 'Lockout Mode Configured successfully.');
+            data.module = appConstants.deviceSettings.lockout;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.lockoutmode] = $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode];
+            data.value[appConstants.deviceSettings.maxtries] = $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.maxtries];
+            data.value[appConstants.deviceSettings.lockoutperiod] = $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutperiod];
+            commonSetHTTPService(data, appConstants._successlockoutmodeconfigured);
         };
 
         $scope.advanceClockSetting = {
-            date: "",
+            date: appConstants.empty,
             time: new Date()
-        }
+        };
         $scope.advanceDiagRealTime = {
-            date: "",
+            date: appConstants.empty,
             time: new Date(),
             startTime: new Date(),
             endTime: new Date()
-        }
+        };
         $scope.getAdvancedSettings = function () {
-            $scope.commonGetAPIData.type = "adv";
-            $http({
-                    method: 'GET',
-                    url: baseURL + 'device/get-settings?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type,
-                    dataType: 'JSON',
-                    headers: {
-                        "Content-type": "application/json",
-                        "Authorization": $cookies.get("token")
-                    }
-                })
-                .success(function (response) {
-                    if (response.status == true) {
-                        $scope.deviceAdvanceSettingModals = response.data;
-                        if (response.data.das_clock_setting['real-time-clock'] != 0)
-                            $scope.advanceClockSetting.time = new Date(response.data.das_clock_setting['real-time-clock'] * 1000);
-                        $scope.advanceClockSetting.date = decodeTimeStamp($scope.advanceClockSetting.time);
-                        if (response.data.das_diagonastic['real-time-clock'] != 0)
-                            $scope.advanceDiagRealTime.time = new Date(response.data.das_diagonastic['real-time-clock'] * 1000);
-                        $scope.advanceDiagRealTime.date = decodeTimeStamp($scope.advanceDiagRealTime.time);
-                        if (response.data.das_diagonastic['start-time'] != 0)
-                            $scope.advanceDiagRealTime.startTime = new Date(response.data.das_diagonastic['start-time'] * 1000);
-                        if (response.data.das_diagonastic['end-time'] != 0)
-                            $scope.advanceDiagRealTime.endTime = new Date(response.data.das_diagonastic['end-time'] * 1000);
-                    } else {
-
-                    }
-                }).error(function () {
-
-                });
+            $scope.commonGetAPIData.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
+            devicesSvc.getAdvancedSettings(appConstants.devicegetsettings+'?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.deviceAdvanceSettingModals = succResponse.data;
+                    if (succResponse.data.das_clock_setting[appConstants.deviceSettings.realtimeclock] != 0)
+                        $scope.advanceClockSetting.time = new Date(succResponse.data.das_clock_setting[appConstants.deviceSettings.realtimeclock] * 1000);
+                    $scope.advanceClockSetting.date = decodeTimeStamp($scope.advanceClockSetting.time);
+                    if (succResponse.data.das_diagonastic[appConstants.deviceSettings.realtimeclock] != 0)
+                        $scope.advanceDiagRealTime.time = new Date(succResponse.data.das_diagonastic[appConstants.deviceSettings.realtimeclock] * 1000);
+                    $scope.advanceDiagRealTime.date = decodeTimeStamp($scope.advanceDiagRealTime.time);
+                    if (succResponse.data.das_diagonastic[appConstants.deviceSettings.starttime] != 0)
+                        $scope.advanceDiagRealTime.startTime = new Date(succResponse.data.das_diagonastic[appConstants.deviceSettings.starttime] * 1000);
+                    if (succResponse.data.das_diagonastic[appConstants.deviceSettings.endtime] != 0)
+                        $scope.advanceDiagRealTime.endTime = new Date(succResponse.data.das_diagonastic[appConstants.deviceSettings.endtime] * 1000);
+                }
+            });
         };
 
         $scope.setMasterCode = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "master-code";
-            data.type = "adv";
-            data.value['master-code'] = $scope.deviceAdvanceSettingModals.das_master_code['master-code'];
-            commonSetHTTPService(data, 'Master Code Configured successfully.');
-        }
+            data.module = appConstants.deviceSettings.mastercode;
+            data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
+            data.value[appConstants.deviceSettings.mastercode] = $scope.deviceAdvanceSettingModals.das_master_code[appConstants.deviceSettings.mastercode];
+            commonSetHTTPService(data, appConstants._successmastercodeconfigured);
+        };
         var decodeTimeStamp = function (stamp) {
             var temp = new Date(stamp * 1000);
             return temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear();
-        }
+        };
         var createTimeStamp = function (appliedDate, appliedTime) {
             var fullDate = appliedDate;
             var date = fullDate.slice(fullDate.indexOf("/") - 2, fullDate.indexOf("/"));
@@ -229,87 +191,63 @@ app
         $scope.setClockSettings = function () {
             var data = new commonSetAPIDataObject();
             var time = createTimeStamp($scope.advanceClockSetting.date, $scope.advanceClockSetting.time);
-            data.module = "clock-settings";
-            data.type = "adv";
-            data.value['real-time-clock'] = Math.floor(time / 1000);
-            data.value['time-zone'] = $scope.deviceAdvanceSettingModals.das_clock_setting['time-zone'];
-            commonSetHTTPService(data, 'Clock Configured successfully.');
+            data.module = appConstants.deviceSettings.clocksettings;
+            data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
+            data.value[appConstants.deviceSettings.realtimeclock] = Math.floor(time / 1000);
+            data.value[appConstants.deviceSettings.timezone] = $scope.deviceAdvanceSettingModals.das_clock_setting[appConstants.deviceSettings.timezone];
+            commonSetHTTPService(data, appConstants._successclockconfigured);
         };
 
         $scope.getDoorListAdvanceSetting = function () {
-            $http({
-                    url: baseURL + 'door/list-door-for-deviceid?deviceId=' + $scope.device_id,
-                    method: 'GET',
-                    dataType: 'JSON',
-                    headers: {
-                        "Authorization": $cookies.get("token"),
-                        "Content-type": "application/json"
-                    }
-                })
-                .success(function (response) {
-                    if (response.status == true) {
-                        $scope.doorListAdvanceSetting = response.data;
-                    } else {}
-                })
-                .error(function (data, status, headers, config) {
-
-                });
+            devicesSvc.getDoorListAdvanceSetting(appConstants.doorlistfordeviceid+'?deviceId=' + $scope.device_id,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.doorListAdvanceSetting = succResponse.data;
+                }
+            });
         };
 
         $scope.setLatchCode = function () {
             var data = new commonSetAPIDataObject();
-            data.module = "latch-code";
-            data.type = "adv";
-            data.value['latch-code'] = $scope.deviceAdvanceSettingModals.das_latch_code['latch-code']
-            data.value['access-gates'] = $scope.deviceAdvanceSettingModals.das_latch_code['access-gates'];
-            commonSetHTTPService(data, 'Clock Configured successfully.');
+            data.module = appConstants.deviceSettings.latchcode;
+            data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
+            data.value[appConstants.deviceSettings.latchcode] = $scope.deviceAdvanceSettingModals.das_latch_code[appConstants.deviceSettings.latchcode];
+            data.value[appConstants.deviceSettings.accessgates] = $scope.deviceAdvanceSettingModals.das_latch_code[appConstants.deviceSettings.accessgates];
+            commonSetHTTPService(data, appConstants._successlatchcodeconfigured);
         };
         $scope.setDiagnostics = function () {
             var data = new commonSetAPIDataObject();
             var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
-            data.module = "diagnostics";
-            data.type = "adv";
-            data.value['real-time-clock'] = Math.floor(time / 1000);
-            data.value['start-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime()) / 1000);
-            data.value['end-time'] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime()) / 1000);
-            data.value['description'] = $scope.deviceAdvanceSettingModals.das_diagonastic['description'];
-            commonSetHTTPService(data, 'Diagnostics Configured successfully.');
+            data.module = appConstants.deviceSettings.diagnostics;
+            data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
+            data.value[appConstants.deviceSettings.realtimeclock] = Math.floor(time / 1000);
+            data.value[appConstants.deviceSettings.starttime] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime()) / 1000);
+            data.value[appConstants.deviceSettings.endtime] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime()) / 1000);
+            data.value[appConstants.deviceSettings.description] = $scope.deviceAdvanceSettingModals.das_diagonastic[appConstants.deviceSettings.description];
+            commonSetHTTPService(data, appConstants._successdiagnosticsconfigured);
         };
 
         $scope.setCallButtonSetup = function () {
             var data = new commonSetAPIDataObject();
             var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
-            data.module = "call-button-setup";
-            data.type = "gen";
-            data.value['call-button'] = $scope.deviceGeneralSettingModals.dgs_call_button['call-button'];
-            commonSetHTTPService(data, 'Call Button Setup Configured successfully.');
+            data.module = appConstants.deviceSettings.callbuttonsetup;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.callbutton] = $scope.deviceGeneralSettingModals.dgs_call_button[appConstants.deviceSettings.callbutton];
+            commonSetHTTPService(data, appConstants._successcallbuttonconfigured);
         };
 
         $scope.getReplayDoorList = function () {
-            $http({
-                    url: baseURL + 'device/get-device-relay?device_id=' + $scope.device_id,
-                    method: 'GET',
-                    dataType: 'JSON',
-                    headers: {
-                        "Authorization": $cookies.get("token"),
-                        "Content-type": "application/json"
-                    }
-                })
-                .success(function (response) {
-                    if (response.status == true) {
-                        $scope.relayNDoorGenSetting = response.data;
-                    } else {}
-                })
-                .error(function (data, status, headers, config) {
-
-                });
+            devicesSvc.getReplayDoorList(appConstants.getdevicerelay+'?deviceId=' + $scope.device_id,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.relayNDoorGenSetting = succResponse.data;
+                }
+            });
         };
 
         $scope.setRelayDoorSetup = function () {
             var data = {
                 device_id: $scope.device_id,
                 relays: []
-            }
+            };
             for (var i = 0; i < $scope.relayNDoorGenSetting.length; i++) {
                 var singleObject = {};
                 singleObject.relay = $scope.relayNDoorGenSetting[i].drd_relay;
@@ -318,54 +256,20 @@ app
                 singleObject.strike_time = $scope.relayNDoorGenSetting[i].strike_time;
                 data.relays.push(singleObject);
             }
-            $http({
-                    url: baseURL + 'door/assign-device',
-                    method: 'PUT',
-                    dataType: 'JSON',
-                    data: data,
-                    headers: {
-                        "Authorization": $cookies.get("token"),
-                        "Content-type": "application/json"
-                    }
-                })
-                .success(function (response) {
-                    if (response.status == true) {
-                        toaster.pop('success', "Relay & Door Setup configured successfully");
-                    }
-                })
-                .error(function (data, status, headers, config) {
-
-                });
-        }
-
+            devicesSvc.setRelayDoorSetup(appConstants.doorassigndevice,appConstants.putMethod,{},data,function (succResponse) {
+                if(succResponse.status){
+                    toaster.pop(appConstants.success, appConstants._successrelayanddoorsetupconfigured);
+                }
+            });
+        };
 
         $scope.dashboardInit = function(){
-        $http({
-            url: baseURL + 'user/dashboard',
-            method: 'GET',
-            dataType : 'JSON',
-            headers: {
-                "Authorization": $cookies.get("token"),
-                "Content-type": "application/json"
-            }
-        })
-        .success(function(response) {
-            if(response.status == true){
-                $rootScope.dashboardData = response.data;
-            }else{
-                if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
+
+            devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $rootScope.dashboardData = succResponse.data;
                 }
-            }
-        })
-        .error(function (data, status, headers, config) {
-            
-        });
-    }
+            });
+    };
         $scope.dashboardInit();
     });

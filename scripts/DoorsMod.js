@@ -7,224 +7,118 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout,$location) {
+  .controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout,$location,appConstants,doorsSvc) {
      $scope.page = {
-      title: 'Doors',
-      subtitle: 'So much more to see at a glance.'
+      title: appConstants.doorsUITitle,
+      subtitle: appConstants.dashboardSubTitle
     };
 	$rootScope.addDoors = {};
 	$scope.hideLoadMore = false;
-	
 	$rootScope.facilityId = $cookies.get('facilityId');
 	
-	$scope.result = '';
+	$scope.result = appConstants.empty;
     $scope.showConfirm = function(ev, door_id) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants.doorsdeleteconfirmationmessage)
+		.content(appConstants.empty)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
 			//Code to delete door
-			$http(
-			{
-				method: 'DELETE', 
-				url: baseURL + 'door/delete/'+door_id,
-				dataType : 'JSON', 
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
-				}
-			})
-			.success(function(response){
-				if(response.status == true){
-					toaster.pop('success','Your Door has been deleted successfully.');
-				
-					var adoor = $scope.adoors;
-					var tempUser = [];
-					for(var i=0;i<adoor.length;i++){
-						if(door_id != adoor[i].door_id){
-							tempUser.push(adoor[i]);
-						}
-					}
-					$scope.adoors = tempUser;
-					$rootScope.dashboardData.door--;
-				}else{
-                    toaster.pop('error',response.msg.replace(/_/g,' '));
-                    if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
+            doorsSvc.deletedoors(appConstants.doordelete+door_id,appConstants.delete,{},{},function (succResponse) {
+                if(succResponse.status){
+                    toaster.pop(appConstants.success,appConstants._successfuldoorsdelete);
+                    var adoor = $scope.adoors;
+                    var tempUser = [];
+                    for(var i=0;i<adoor.length;i++){
+                        if(door_id != adoor[i].door_id){
+                            tempUser.push(adoor[i]);
                         }
-					}
-				}
-			}).error(function(){
-
-			});
-			
+                    }
+                    $scope.adoors = tempUser;
+                    $rootScope.dashboardData.door--;
+                }
+            });
 			//Code end to delete door
 		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			$scope.result = appConstants._messageoncanceltodeletedoors;
+			$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
+	$scope.layout = appConstants.gridLayout;
+	$scope.class = appConstants.gridviewClass;
 	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
+		if ($scope.class === appConstants.gridviewClass)
+		$scope.class = appConstants.listviewClass;
+		$scope.layout = appConstants.listLayout;
 	};
 	
 	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
+		if ($scope.class === appConstants.listviewClass)
+		$scope.class = appConstants.gridviewClass;
+		$scope.layout = appConstants.gridLayout;
 	};
 	
 	$scope.pageNo = 1;
-	$scope.searchText = '';
+	$scope.searchText = appConstants.empty;
 	
 	$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$rootScope.facilityList = response.data.data;
-				$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));	
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+        doorsSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.facilityList = succResponse.data.data;
+                $rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));
+            }
+        });
+	};
 	$scope.facilityInit();
 	
 	$rootScope.submitAddDoor = function(submitData){
-		//alert();
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'door/add',
-			dataType : 'JSON', 
-			data : submitData, 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				toaster.pop('success','Door added successfully.');
-				$scope.pageNo = 1;
-				$scope.listDoors();
-				$rootScope.dashboardData.door++; 
-			}else{
-				toaster.pop('error',response.msg.replace(/_/g,' '));
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+        doorsSvc.submitAddDoor(appConstants.dooradd,appConstants.postMethod,{},submitData,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,appConstants._successfulldoorsadded);
+                $scope.pageNo = 1;
+                $scope.listDoors();
+                $rootScope.dashboardData.door++;
+            }
+        });
+	};
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
-    }
+    };
 	
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-				// console.log($rootScope.dashboardData);
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+        doorsSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
 		$scope.dashboardInit();
 
 
 	//Create Doors
-	$rootScope.doormsg = "";
+	$rootScope.doormsg = appConstants.empty;
 	$rootScope.createDoor = function(door, create_door){
 		if(!create_door.validate()){
 			return false;
 		}
 		//door.facility_id = parseInt($cookies.get("facilityId"));
 		door.description = " ";
-		$http({
-			url: baseURL + 'door/add',
-			method: 'POST',
-			dataType : 'JSON',
-			data: door,
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-
-				toaster.pop('success','Door added successfully.');
-				$scope.pageNo = 1;
-				$scope.listDoors();
-				$rootScope.dashboardData.door++;
-				$timeout(function() {
-					$("#close").click();
-				});
-			}else{
-				toaster.pop('error',response.msg.replace(/_/g,' '));
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-		});
-	}
+        doorsSvc.createDoor(appConstants.dooradd,appConstants.postMethod,{},door,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,appConstants._successfulldoorsadded);
+                $scope.pageNo = 1;
+                $scope.listDoors();
+                $rootScope.dashboardData.door++;
+                $timeout(function() {
+                    $("#close").click();
+                });
+            }
+        });
+	};
 		//End of create door
 
 		//Search Door
@@ -232,105 +126,53 @@ app
 		if(e)
 		if(e.keyCode!=13){return false;}
 		if(!$scope.searchText){
-			$scope.searchText = '';
+			$scope.searchText = appConstants.empty;
 		}
 		$scope.pageNo = 1;
 		$scope.users =[];
-		
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.adoors = response.data.data;
-				$scope.pageNo = $scope.pageNo + 1 ;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-				$scope.adoors = [];
-			}
-		}).error(function(){
-
-		});	
-	}
+            doorsSvc.searchFunction(appConstants.doorlist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+                $scope.adoors = [];
+                if(succResponse.status){
+                    $scope.adoors = succResponse.data.data;
+                    $scope.pageNo = $scope.pageNo + 1 ;
+                }
+            });
+	};
 
 		//End of search door
 
 		//List Doors
 		$scope.pageNo = 1;
-		$scope.searchText = '';
+		$scope.searchText = appConstants.empty;
 		$scope.adoors = [];
 		$scope.listDoors = function(){
-			$http({
-				url: baseURL + 'door/list?limit=8&pageNo='+$scope.pageNo,
-				method: 'GET',
-				dataType : 'JSON',
-				headers: {
-					"Authorization": $cookies.get("token"),
-					"Content-type": "application/json"
-				}
-			})
-			.success(function(response) {
-				if(response.status == true){
-					if($scope.pageNo != 1){
-						$scope.adoors = arrayPushService.arrayPush(response.data.data,  $scope.adoors);
-					}else{
-						$scope.adoors = response.data.data;
-					}
-					if(response.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
-					$scope.pageNo = $scope.pageNo + 1 ;
-				}else{
-					$rootScope.doormsg = response.msg;
-				}
-			})
-			.error(function (data, status, headers, config) {
-				
-		});
-		}
+            doorsSvc.listDoors(appConstants.doorlist+'?limit=8&pageNo='+$scope.pageNo,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    if($scope.pageNo != 1){
+                        $scope.adoors = arrayPushService.arrayPush(succResponse.data.data,  $scope.adoors);
+                    }else{
+                        $scope.adoors = succResponse.data.data;
+                    }
+                    if(succResponse.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
+                    $scope.pageNo = $scope.pageNo + 1 ;
+                }
+                else{
+                    $rootScope.doormsg = succResponse.msg;
+                }
+            });
+		};
 		$scope.listDoors();
 		//End of list doors
-		
 		$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$rootScope.facilityList = response.data.data;
-				/* for(var i=0;i<facilityList.length;i++){
-					if(parseInt(facilityList[i].facility_id) == parseInt($cookies.get('facilityId')))
-						$rootScope.FacilityName = facilityList[i].facility_name;
-				} */	
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-	}
+			doorsSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+				if(succResponse.status){
+					$rootScope.facilityList = succResponse.data.data;
+				}
+			});
+		};
 	$scope.facilityInit();
 
-	$scope.imagePath = 'http://localhost/elika/elika/images';
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	
 });
 
@@ -343,152 +185,67 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDoorCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
+  .controller('ViewDoorCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog,appConstants,doorsSvc) {
      $scope.page = {
-      title: 'Doors Details',
-      subtitle: 'So much more to see at a glance.'
+      title: appConstants.viewdoordetailsUITitle,
+      subtitle: appConstants.dashboardSubTitle
     };
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	// $scope.doorData = {};
 	// $scope.doorData.door_status = 1;
 	$scope.doorInit = function(){
-		$http({
-			url: baseURL + 'door/view?doorId='+$stateParams.door_id,
-				method: 'GET',
-				dataType : 'JSON',
-				headers: {
-					"Authorization": $cookies.get("token"),
-					"Content-type": "application/json" 
-				}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.doorData = response.data;
-				$scope.facilityInit();
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-	}	
+       doorsSvc.doorInit(appConstants.doorview+'?doorId='+$stateParams.door_id,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.doorData = succResponse.data;
+                $scope.facilityInit();
+            }
+        });
+	};
 
 	$scope.doorInit();
 
 	$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.facilityList = response.data.data;
-				$scope.doorData.facility_id = parseInt($cookies.get('facilityId'));	
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+        doorsSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.facilityList = succResponse.data.data;
+                $scope.doorData.facility_id = parseInt($cookies.get('facilityId'));
+            }
+        });
+	};
 
 	$scope.editDoordata = function(doorData, door_data){
 		doorData.facility_id = doorData.facility.facility_id;
 		delete doorData.facility;
-		$http(
-		{
-			method: 'PUT', 
-			url: baseURL+'door/edit',
-			dataType : 'JSON', 
-			data: doorData,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == ture){
+        doorsSvc.editDoordata(appConstants.dooredit,appConstants.putMethod,{},doorData,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,succResponse.msg);
+            }
+        });
+	};
 
-			toaster.pop('success',response.msg.replace(/_/g," "));
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-	}
-
-	$scope.result = '';
+	$scope.result = appConstants.empty;
     $scope.showConfirm = function(ev, door_id) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants.doorsdeleteconfirmationmessage)
+		.content(appConstants.empty)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
 			//Code to delete door
-			$http(
-			{
-				method: 'DELETE', 
-				url: baseURL + 'door/delete/'+door_id,
-				dataType : 'JSON', 
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
-				}
-			})
-			.success(function(response){
-				if(response.status == true){
-					$rootScope.dashboardData.door--;
-					$location.path('/app/admin/door/doors');
-				}else{
-                    toaster.pop('error',response.msg.replace(/_/g,' '));
-                    if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
-                        }
-					}
-				}
-			}).error(function(){
-
-			});
+            doorsSvc.deletedoors(appConstants.doordelete+door_id,appConstants.deleteMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $rootScope.dashboardData.door--;
+                    $location.path('/app/admin/door/doors');
+                }
+            });
 			//Code end to delete door
-
-			
 		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			$scope.result = appConstants._messageoncanceltodeletedoors;
+			$scope.statusclass = appConstants.successstatusClass;
 		});
     };
-
 	if($stateParams.type == "edit"){
 		$timeout(function() {
 			$("a:contains('Edit Door')").click();
@@ -496,135 +253,63 @@ app
 	}
 	
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+        doorsSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
 		$scope.dashboardInit();
-	
-	
+
 });
 
 app
-  .controller('EditDoorCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog) {
+  .controller('EditDoorCtrl', function ($scope,$http,$cookies, $stateParams, baseURL, $rootScope,$location,toaster,$timeout, $mdDialog,appConstants,doorsSvc) {
 		$scope.page = {
-			title: 'Edit Door',
+			title: appConstants.editdoorUiTitle
 		};
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	
 	$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$rootScope.facilityList = response.data.data;
-				$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));	
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+        doorsSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.facilityList = succResponse.data.data;
+                $rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));
+            }
+        });
+	};
 	
 	$scope.showConfirm = function(ev, door_id) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants.doorsdeleteconfirmationmessage)
+		.content(appConstants.empty)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
 			//Code to delete door
-			$http(
-			{
-				method: 'DELETE', 
-				url: baseURL + 'door/delete/'+door_id,
-				dataType : 'JSON', 
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
-				}
-			})
-			.success(function(response){
-				if(response.status == true){
-					$rootScope.dashboardData.door--;
-					$location.path('/app/admin/door/doors');
-				}else{
-                    toaster.pop('error',response.msg.replace(/_/g,' '));
-                    if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
-                        }
-					}
-				}
-			}).error(function(){
-
-			});
+            doorsSvc.deletedoors(appConstants.doordelete+door_id,appConstants.deleteMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $rootScope.dashboardData.door--;
+                    $location.path('/app/admin/door/doors');
+                }
+            });
 			//Code end to delete door
 		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			$scope.result = appConstants._messageoncanceltodeletedoors;
+			$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
 	$scope.doorInit = function(){
-		$http({
-			url: baseURL + 'door/view?doorId='+$stateParams.door_id,
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json" 
-			}
-		})
-		.success(function(response){
-			$scope.doorData = response.data;
-			$scope.facilityInit();
-		})
-	}	
+        doorsSvc.doorInit(appConstants.doorview+'?doorId='+$stateParams.door_id,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.doorData = succResponse.data;
+                $scope.facilityInit();
+            }
+        });
+	};
 
 	$scope.doorInit();
 	
@@ -634,51 +319,21 @@ app
 		}		
 		doorData.facility_id = parseInt(doorData.facility_id );
 		delete doorData.facility;
-		$http(
-		{	
-			method: 'PUT', 
-			url: baseURL+'door/edit',
-			dataType : 'JSON', 
-			data: doorData,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			toaster.pop('success',response.msg.replace(/_/g," "));
-		})
-	}
+
+        doorsSvc.editDoordata(appConstants.dooredit,appConstants.putMethod,{},doorData,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,succResponse.msg);
+            }
+        });
+	};
 	
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-				// console.log($rootScope.dashboardData);
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+        doorsSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
 		$scope.dashboardInit();
   });
 

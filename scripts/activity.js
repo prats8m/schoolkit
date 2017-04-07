@@ -1,79 +1,64 @@
 app
-  .controller('ActivityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,dataService) {
+  .controller('ActivityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,appConstants,activitiesSvc) {
     $scope.page = {
-		title: 'Activity',
+		title: appConstants.activitiesTitle
     };
-	
-	
-    $scope.getFacilityList = function(){
 
-		dataService.getData(null,baseURL + "facility/list")
-		.success(function(response) {
-			if(response.status == true){
-				$scope.facility = response.data.data;
-			}else{
-				dataService.responseError(response);
-			}
-		});
-	}
+    $scope.getFacilityList = function(){
+        activitiesSvc.getFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.facility = succResponse.data.data;
+            }
+        });
+	};
 	$scope.getFacilityList();
-	
 
     $scope.getDeviceList = function(){
-
-    	if(!$scope.facility_id){$scope.devices = [];return false;}
-		dataService.getData(null,baseURL + "device/list-master-device?facilityId="+$scope.facility_id)
-		.success(function(response) {
-			if(response.status == true){
-				$scope.devices = response.data.data;
-				$scope.eventFetch();	
-			}else{
-				$scope.devices = [];
-				dataService.responseError(response);
-			}
-		});
-	}
+        if(!$scope.facility_id){$scope.devices = [];return false;}
+        activitiesSvc.getDeviceList(appConstants.devicelistmaster+'?facilityId='+$scope.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+            $scope.devices = [];
+        	if(succResponse.status){
+                $scope.devices = succResponse.data.data;
+                $scope.eventFetch();
+            }
+        });
+	};
 
 	$scope.getEventTypeList = function(){
-
-		dataService.getData(null,baseURL + "event/list-event-type")
-		.success(function(response) {
-			if(response.status == true){
-				var event_type = response.data;
-				var tmp = [];
-				for (var x in event_type) {
-        	tmp.push({event_name:x,event_id:event_type[x]});
-    		}
-				//console.log(tmp);
-				$scope.event_types = tmp;
-			}else{
-				$scope.devices = [];
-				dataService.responseError(response);
-			}
-		});
-	}
+        activitiesSvc.getEventTypeList(appConstants.listeventtype,appConstants.getMethod,{},{},function (succResponse) {
+        	if(succResponse.status){
+                var event_type = succResponse.data;
+                var tmp = [];
+                for (var x in event_type) {
+                    tmp.push({event_name:x,event_id:event_type[x]});
+                }
+                //console.log(tmp);
+                $scope.event_types = tmp;
+            }
+            else {
+                $scope.devices = [];
+            }
+        });
+	};
 	$scope.getEventTypeList();
+
 
 	$scope.eventFetch = function(){
 		// var requestData = {facility_id:$scope.facility_id,event_id:null,facility_id:null};
-		var params = '?';
-		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id=null';}
-		if($scope.device_id){params += '&device_id='+$scope.device_id;}else{params += '&device_id=null';}
-		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id=null';}
+		var params = appConstants.questionMark;
+		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
+		if($scope.device_id){params += '&device_id='+$scope.device_id;}else{params += '&device_id='+appConstants.null;}
+		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
+        activitiesSvc.eventFetch(appConstants.listevent,appConstants.getMethod,{},{},function (succResponse) {
+            $scope.activities = [];
+            if(succResponse.status){
+                $scope.activities = succResponse.data.data;
+            }
+        });
+};
 
-	dataService.getData(null,baseURL + "event/list-event" + params + "&searchVal=&limits=1000&pageNo=1")
-//	dataService.getData(null,baseURL + "event/list-event" + "?facility_id=null&device_id=null&event_id=null")
-	.success(function(response) {
-		if(response.status == true){
-			$scope.activities = response.data.data;	
-			console.log($scope.activities);			
-		}else{
-			$scope.activities = [];
-			dataService.responseError(response);
-		}
-	});
-}
 $scope.eventFetch();
+
 				$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
 				$scope.dtColumnDefs = [
 					DTColumnDefBuilder.newColumnDef(0),
@@ -84,6 +69,4 @@ $scope.eventFetch();
 					DTColumnDefBuilder.newColumnDef(5),
 					DTColumnDefBuilder.newColumnDef(6).notSortable()
 				];
-	
-	
 });

@@ -7,14 +7,14 @@
  * Controller of the minovateApp
  */
 app
-	.controller('FacilityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, fileUpload, baseURL, toaster, $timeout, $uibModal,$location) {
+	.controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout,baseURL, $uibModal,appConstants,facilitiesSvc,dashboardSvc) {
 
 		$scope.page = {
-			title: 'Facility',
-			subtitle: ''
+			title: appConstants.facilityTitle,
+			subtitle: appConstants.facilitySubTitle
 		};
 		$scope.lmbtn = {
-			"display" : "none"
+			display : appConstants.none
 		};
 
 		$rootScope.facility = {};
@@ -40,198 +40,114 @@ app
 			}
 			//(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
 			// $scope.fileupload = fileUpload.uploadFileToUrl(facility.profile_pic, "")
-			$http({
-					url: baseURL + 'facility/add',
-					method: 'POST',
-					data: facility,
-					dataType: 'JSON',
-					headers: {
-						"Authorization": $cookies.get("token"),
-						"Content-type": "application/json"
-					}
-				})
-				.success(function (response) {
-					var n = [];
-					var arr = response.error;
-					if (response.error != null) {
-						$.each(arr, function (index, value) {
-							n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1);
-							$.each(value.messages, function (ind, value) {
-								n[index] += " " + value
-							})
-						});
-						$rootScope.fac_error = n.join(", ");
-					} else {
-						if (response.status == true) {
-							toaster.pop('success', 'Facility added successfully.');
-							$scope.addFacilityModal.dismiss('cancel');
-							$scope.facilityInit();
-						}
-						$rootScope.fac_error = response.msg.replace(/_/g, " ");
-					}
+            facilitiesSvc.addfacility(appConstants.facilityAdd,appConstants.postMethod,{},facility,function (succResponse) {
+                if(succResponse.status){
+                    toaster.pop(appConstants.success,appConstants._successfacilityAdd);
+                    $scope.addFacilityModal.dismiss(appConstants.cancel);
+                    $scope.facilityInit();
+                    $rootScope.fac_error = succResponse.msg.replace(/_/g, " ");
+                }
+                else {
+                    $rootScope.fac_error = succResponse.msg;
+				}
+            });
+		};
 
-				})
-				.error(function (data, status, headers, config) {
-					console.log(data);
-				});
-		}
-
-		$scope.result = '';
+		$scope.result = appConstants.empty;
 		$scope.showConfirm = function (ev) {
 			var confirm = $mdDialog.confirm()
-				.title('Would you like to delete Facility?')
-				.content('')
-				.ok('Delete')
-				.cancel('Cancel')
+				.title(appConstants._deleteFacilityConfirm)
+				.content(appConstants.empty)
+				.ok(appConstants.delete)
+				.cancel(appConstants.Cancel)
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
-				$scope.result = 'Your Facility has been deleted successfully.';
-				$scope.statusclass = 'alert alert-danger alert-dismissable';
+				$scope.result = appConstants._successDeleteFacility;
+				$scope.statusclass = appConstants.dangerstatusClass;
 			}, function () {
-				$scope.result = 'You decided to keep Facility.';
-				$scope.statusclass = 'alert alert-success alert-dismissable';
+				$scope.result = appConstants._cancelFacilityDelete;
+				$scope.statusclass = appConstants.successstatusClass;
 			});
 		};
 
-		$scope.layout = 'grid';
-		$scope.class = 'gridview';
+		$scope.layout = appConstants.gridLayout;
+		$scope.class = appConstants.gridviewClass;
 		$scope.changeClass = function () {
-			if ($scope.class === 'gridview')
-				$scope.class = 'listview';
-			$scope.layout = 'list';
+			if ($scope.class === appConstants.gridviewClass)
+				$scope.class = appConstants.listviewClass;
+			$scope.layout = appConstants.listLayout;
 		};
 		$scope.facilityZipCode = "asdad";
 		$scope.changeaClass = function () {
-			if ($scope.class === 'listview')
-				$scope.class = 'gridview';
-			$scope.layout = 'grid';
+			if ($scope.class === appConstants.listviewClass)
+				$scope.class = appConstants.gridviewClass;
+			$scope.layout = appConstants.gridLayout;
 		};
 
 		$rootScope.search_facility = function () {
 			//$scope.search;
-			$http({
-				url: baseURL + 'facility/list',
-				headers: {
-					'Content-type': 'application/json',
-					'Authorization': $cookies.get("token")
-				},
-				params: {
-					limit: 20,
-					page_no: 1,
-					search_val: $scope.search
-				},
-				method: 'GET',
-				dataType: 'JSON'
-			}).success(function (response) {
-				if (response.status == true) {
-					$scope.facilities = response["data"]["data"];
-				} else {
-					$scope.facilities = [];
-				}
-			});
+            facilitiesSvc.searchfacility(appConstants.facilitylist,appConstants.getMethod,{limit: 20,page_no: 1,search_val: $scope.search},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.facilities = succResponse["data"]["data"]?succResponse["data"]["data"]:[];
+                }
+            });
 		};
-		$scope.facilityInit = function () {
-			$http({
-				url: baseURL + 'facility/list',
-				params: {
-					limit: 8,
-					page_no: 1
-				},
-				method: 'GET',
-				dataType: 'JSON',
-				headers: {
-					'Content-type': 'application/json',
-					'Authorization': $cookies.get("token")
-				}
-			}).success(function (response) {
-				if(response.status){
-                    $scope.facilities = response["data"]["data"];
-                    $scope.totalDisplayed = 8;
 
-                    if (response.data.count > $scope.totalDisplayed) {
+		$scope.facilityInit = function () {
+            facilitiesSvc.facility_Init(appConstants.facilitylist,appConstants.getMethod,{limit: 8,page_no: 1},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.facilities = succResponse["data"]["data"]?succResponse["data"]["data"]:[];
+                    $scope.totalDisplayed = 8;
+                    if (succResponse.data.count > $scope.totalDisplayed) {
                         $scope.lmbtn = {
-                            "display": "block"
+                            display: appConstants.block
                         };
                     } else {
                         $scope.lmbtn = {
-                            "display": "none"
+                            display: appConstants.none
                         };
                     }
-				}
-				else {
-                    if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
-                        }
-                    }
-				}
+                }
+            });
+		};
 
-			});
-		}
 		$scope.facilityInit();
 		$scope.LoadMoreLimit = 8;
 		$scope.LoadMorePage = 2;
 		$scope.totalDisplayed = 8;
-		$scope.loadMore = function () {
-			$http({
-				url: baseURL + 'facility/list',
-				params: {
-					limit: 8,
-					pageNo: $scope.LoadMorePage,
-				},
-				method: 'GET',
-				dataType: 'JSON',
-				headers: {
-					'Content-type': 'application/json',
-					'Authorization': $cookies.get("token")
-				}
-			}).success(function (response) {
-				$scope.facilities = $scope.facilities.concat(response.data.data);
-				// $scope.facilities.push(response.data.data);
-				console.log($scope.facilities)
-				$scope.totalDisplayed += 8;
-				$scope.LoadMorePage++;
-				if (response.data.count > $scope.totalDisplayed) {
-					$scope.lmbtn = {
-						"display": "block"
-					};
-				} else {
-					$scope.lmbtn = {
-						"display": "none"
-					};
-				}
 
-			});
+		$scope.loadMore = function () {
+            facilitiesSvc.searchfacility(appConstants.facilitylist,appConstants.getMethod,{limit: 8,pageNo: $scope.LoadMorePage},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.facilities = $scope.facilities.concat(succResponse["data"]["data"]?succResponse["data"]["data"]:[]);
+                    $scope.totalDisplayed += 8;
+                    $scope.LoadMorePage++;
+                    if (succResponse.data.count > $scope.totalDisplayed) {
+                        $scope.lmbtn = {
+                            display: appConstants.block
+                        };
+                    } else {
+                        $scope.lmbtn = {
+                            display: appConstants.none
+                        };
+                    }
+                }
+            });
 		};
 
 		$scope.orderByMe = function (x) {
 			$scope.myOrderBy = x;
-		}
+		};
 
-		$scope.imagePath = 'http://localhost:8080/elika/images/';
+        $scope.imagePath = baseURL + appConstants.imagePath;
 
 		$scope.dashboardInit = function () {
-			$http({
-					url: baseURL + 'user/dashboard',
-					method: 'GET',
-					dataType: 'JSON',
-					headers: {
-						"Authorization": $cookies.get("token"),
-						"Content-type": "application/json"
-					}
-				})
-				.success(function (response) {
-					if (response.status == true) {
-						$scope.dashboardData = response.data;
-					}
-				})
-				.error(function (data, status, headers, config) {
-
-				});
-		}
+            dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.dashboardData = succResponse.data?succResponse.data:[];
+                }
+            });
+		};
 		if (!$rootScope.hasOwnProperty('dashboardData')) {
 			$scope.dashboardInit();
 		}
@@ -248,278 +164,137 @@ app
  * Controller of the minovateApp
  */
 app
-	.controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location) {
+	.controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc) {
 
 		$scope.page = {
-			title: 'Facility Details',
-			subtitle: ''
+			title: appConstants.facilityDetailsTitle,
+			subtitle: appConstants.facilityDetailsSubTitle
 		};
 		$scope.timezones = {
 			model: null,
-			availableOptions: [{
-					id: 'AKST',
-					name: 'USA (Alaska)'
-				},
-				{
-					id: 'UTC-11',
-					name: 'USA (Samoa)'
-				},
-				{
-					id: 'PST',
-					name: 'USA (Pacific)'
-				},
-				{
-					id: 'EST',
-					name: 'USA (Eastern)'
-				},
-				{
-					id: 'HST',
-					name: 'USA (Hawaii-Aleutian)'
-				},
-				{
-					id: 'MST',
-					name: 'USA (Mountain)'
-				},
-				{
-					id: 'AST',
-					name: 'USA (Atlantic)'
-				},
-				{
-					id: 'CST',
-					name: 'USA (Central)'
-				},
-				{
-					id: 'UTC+10',
-					name: 'USA (Chamorro)'
-				}
-			]
+			availableOptions: appConstants.availableTimeZoneOptions
 		};
 		//Code to default select device type
 		$rootScope.facility_device = {};
-		$rootScope.facility_device.device_type = 'Primary';
+		$rootScope.facility_device.device_type = appConstants.primaryDevice;
 		//Code ends to default select device type
 
 		$scope.result = '';
 		$scope.showConfirm = function (ev) {
 			var confirm = $mdDialog.confirm()
-				.title('Would you like to delete device?')
-				.content('The standard chunk of Lorem Ipsum used.')
-				.ok('Delete')
-				.cancel('ok')
+				.title(appConstants._deletePrimaryDevice)
+				.content(appConstants.content)
+				.ok(appConstants.delete)
+				.cancel(appConstants.ok)
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
-				$scope.result = 'Your device has been deleted successfully.';
-				$scope.statusclass = 'alert alert-danger alert-dismissable';
+				$scope.result = appConstants._successdeleteDevice;
+				$scope.statusclass = appConstants.dangerstatusClass;
 			}, function () {
-				$scope.result = 'You decided to keep device.';
-				$scope.statusclass = 'alert alert-success alert-dismissable';
+				$scope.result = appConstants._canceldevicedelete;
+				$scope.statusclass = appConstants.successstatusClass;
 			});
 		};
 
-		$scope.layout = 'grid';
-		$scope.class = 'gridview';
+		$scope.layout = appConstants.gridLayout;
+		$scope.class = appConstants.gridviewClass;
 		$scope.changeClass = function () {
-			if ($scope.class === 'gridview')
-				$scope.class = 'listview';
-			$scope.layout = 'list';
+			if ($scope.class === appConstants.gridviewClass)
+				$scope.class = appConstants.listviewClass;
+			$scope.layout = appConstants.listLayout;
 		};
 
 		$scope.changeaClass = function () {
-			if ($scope.class === 'listview')
-				$scope.class = 'gridview';
-			$scope.layout = 'grid';
+			if ($scope.class === appConstants.listviewClass)
+				$scope.class = appConstants.gridviewClass;
+			$scope.layout = appConstants.gridLayout;
 		};
 
 
 		$scope.orderByMe = function (x) {
 			$scope.myOrderBy = x;
-		}
+		};
 
 		// if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
 		// {
 		// 	$stateParams = {};
 		// 	$stateParams.facility_id = $stateParams.id;
 		// }
-		$http({
-				url: baseURL + 'facility/view/' + $stateParams.facility_id,
-				method: 'GET',
-				dataType: 'JSON',
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token"),
-				}
-			})
-			.success(function (response) {
-				// var arr = {};
-				// $.each(response.data, function(index, value){
-				// 	arr[index] = value;
-				// });
-				// $cookies.put("facility", JSON.stringify(arr));
-				$scope.facility = response.data;
-				$scope.facility.timezone = "";
-				// $scope.facility.timeZone = response.data.facility_timezone;
-				//$scope.facility.facility_status = response.data.facility_status ? 'Active' : 'Inactive';
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
+
+		$scope.getFacilityDetailsUIData=function () {
+			facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.facility = succResponse.data;
+                    $scope.facility.timezone = appConstants.empty;
+                }
+                $scope.getListMasterDevice();
+            });
+        };
+        $scope.getFacilityDetailsUIData();
+
+        $scope.getListMasterDevice=function () {
+            facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster,appConstants.getMethod,{limit: 20,pageNo: 1,facilityId: $stateParams.facility_id},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.devices = succResponse.data.data;
+                    $scope.totalDisplayed = 6;
+                    if ($scope.devices.length > $scope.totalDisplayed) {
+                        $scope.lmbtn = {
+                            display: appConstants.block
+                        };
+                    } else {
+                        $scope.lmbtn = {
+                            display: appConstants.none
+                        };
                     }
-				}
-			})
-			.error(function (response) {
-				console.log(response);
-			});
-		// $rootScope.facilityName = jQuery.parseJSON($cookies.get("facility")).facility_name;
-
-		// Code starts for facility master device
-
-		$http({
-				url: baseURL + 'device/list-master-device',
-				method: 'GET',
-				dataType: 'JSON',
-				params: {
-					limit: 20,
-					pageNo: 1,
-					facilityId: $stateParams.facility_id
-				},
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token"),
-				}
-			})
-			.success(function (response) {
-				if (response.status == true) {
-					$scope.devices = response.data.data;
-					$scope.totalDisplayed = 6;
-				} else {
-					$scope.result = response.msg.replace(/_/g, ' ');
-					if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
-                        }
-				}
-				}
-
-				if ($scope.devices.length > $scope.totalDisplayed) {
-					$scope.lmbtn = {
-						"display": "block"
-					};
-				} else {
-					$scope.lmbtn = {
-						"display": "none"
-					};
-				}
-
-				// $scope.loadMore = function () {
-				// 	$scope.totalDisplayed += 6;
-				// 	if ($scope.totalDisplayed > $scope.devices.length) {
-				// 		$scope.lmbtn = {
-				// 			"display": "none"
-				// 		};
-				// 	}
-				// };
-			});
-
-		//Code ends for facility master device 
-
+                }
+                else {
+                    $scope.result = succResponse.msg;
+                }
+            });
+        }
 
 		//Code starts to search facility device by text
 		$scope.search_facility_device = function (facility) {
-			$http({
-					url: baseURL + 'device/list-master-device',
-					method: 'GET',
-					dataType: 'JSON',
-					params: {
-						limit: 20,
-						pageNo: 1,
-						facilityId: $stateParams.facility_id,
-						searchVal: facility.search_val
-					},
-					headers: {
-						"Content-type": "application/json",
-						"Authorization": $cookies.get("token"),
-					}
-				})
-				.success(function (response) {
-					if (response.status == true) {
-						$scope.devices = response.data.data;
-						$scope.totalDisplayed = 6;
-						$scope.result = "";
-					} else {
-						$scope.result = response.msg.replace(/_/g, ' ');
-					}
+            facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster,appConstants.getMethod,{limit: 20,pageNo: 1,facilityId: $stateParams.facility_id,searchVal: facility.search_val},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.devices = succResponse.data.data;
+                    $scope.totalDisplayed = 6;
+                    $scope.result = appConstants.empty;
 
-					if ($scope.devices.length > $scope.totalDisplayed) {
-						$scope.lmbtn = {
-							"display": "block"
-						};
-					} else {
-						$scope.lmbtn = {
-							"display": "none"
-						};
-					}
-
-					// $scope.loadMore = function () {
-					// 	$scope.totalDisplayed += 6;
-					// 	if ($scope.totalDisplayed > $scope.devices.length) {
-					// 		$scope.lmbtn = {
-					// 			"display": "none"
-					// 		};
-					// 	}
-					// };
-				});
-		}
+                    if ($scope.devices.length > $scope.totalDisplayed) {
+                        $scope.lmbtn = {
+                            display: appConstants.block
+                        };
+                    } else {
+                        $scope.lmbtn = {
+                            display: appConstants.none
+                        };
+                    }
+				}
+                else {
+                    $scope.result = succResponse.msg;
+                }
+            });
+		};
 
 		//Code ends to search facility device by text
 
-
-
-
-
 		//Code starts to save facility device
 		$rootScope.saveFacilityDevice = function (facility_device) {
-			facility_device.facility_id = jQuery.parseJSON($cookies.get("facility")).facility_id;
+			facility_device.facility_id = jQuery.parseJSON($cookies.get(appConstants.facilitycookieID)).facility_id;
 			facility_device.serial_no = parseInt(facility_device.serial_no);
 			facility_device.technician_id = parseInt(facility_device.technician_id);
 			facility_device.registration_code = "1234";
-			$http({
-					url: baseURL + 'device/add',
-					method: 'POST',
-					data: facility_device,
-					dataType: 'JSON',
-					headers: {
-						"Authorization": $cookies.get("token"),
-						"Content-type": "application/json"
-					}
-				})
-				.success(function (response) {
-					if (response.status == true) {
-						toaster.pop('success', 'Facility Added Successfully');
-					} else {
-						toaster.pop('error', response.msg.replace(/_/g, ' '));
-						if(response.msg == 'Invalid_Token'){
-                            $rootScope.logoutSessionExpiredMassageCount++;
-                            if($rootScope.logoutSessionExpiredMassageCount==1){
-                                toaster.pop('error','Session Expired');
-                                $cookies.remove("token");
-                                $location.path('/core/login');
-                            }
-						}
-					}
-				})
-				.error(function (response) {
-					console.log(response);
-				});
 
-		}
+            facilitiesSvc.saveFacilityDevice(appConstants.deviceadd,appConstants.postMethod,{},facility_device,function (succResponse) {
+                if(succResponse.status){
+                    toaster.pop(appConstants.success, appConstants._successfacilityAdd);
+                }
+            });
+		};
 		//Code ends to save facility device
 
-		$scope.imagePath = baseURL + 'elika/images/';
+		$scope.imagePath = baseURL + appConstants.imagePath;
 
 	});
 
@@ -533,78 +308,33 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location) {
-
+  .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc,dashboardSvc) {
     $scope.page = {
-		title: 'Facility Details',
-		subtitle: ''
+		title: appConstants.facilityDetailsTitle,
+		subtitle: appConstants.facilityDetailsSubTitle
     };
-	
-	$scope.imagePath = baseURL+'elika/images/';
-	
-	$http({
-		url: baseURL+'facility/view/'+$stateParams.facility_id,
-		method: 'GET',
-		dataType : 'JSON',
-		headers: {
-			"Content-type": "application/json",
-			"Authorization": $cookies.get("token"),
-		}
-	})
-	.success(function(response) {
-		if(response.status){
-			$scope.facility = response.data;
-			$scope.dashboardInit();
-		}else{
-			if(response.msg == 'Invalid_Token'){
-                $rootScope.logoutSessionExpiredMassageCount++;
-                if($rootScope.logoutSessionExpiredMassageCount==1){
-                    toaster.pop('error','Session Expired');
-                    $cookies.remove("token");
-                    $location.path('/core/login');
-                }
-				}
-		}
-	})
-	.error(function(response){
-		console.log(response);
-	});
-	
+	$scope.imagePath = baseURL+appConstants.imagePath;
+
+      $scope.getFacilityDetailsUIData=function () {
+          facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+              if(succResponse.status){
+                  $scope.facility = succResponse.data;
+                  $scope.dashboardInit();
+              }
+          });
+      };
+
+      $scope.getFacilityDetailsUIData();
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
-	if(!$rootScope.hasOwnProperty('dashboardData')){
-		$scope.dashboardInit();
-	}
-	
+        dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
   });
-  
-  
+
+
 
 'use strict';
 /**
@@ -615,108 +345,50 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location) {
+  .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc,dashboardSvc) {
 
     $scope.page = {
-		title: 'Facility Details',
-		subtitle: ''
+		title: appConstants.facilityDetailsTitle,
+		subtitle: appConstants.facilityDetailsSubTitle
     };
 	
-	$scope.imagePath = baseURL+'elika/images/';
-	
-	$http({
-		url: baseURL+'facility/view/'+$stateParams.facility_id,
-		method: 'GET',
-		dataType : 'JSON',
-		headers: {
-			"Content-type": "application/json",
-			"Authorization": $cookies.get("token"),
-		}
-	})
-	.success(function(response) {
-		if(response.status){
+	$scope.imagePath = baseURL+appConstants.imagePath;
 
-		$scope.facility = response.data;
-		}else{
-			if(response.msg == 'Invalid_Token'){
-                $rootScope.logoutSessionExpiredMassageCount++;
-                if($rootScope.logoutSessionExpiredMassageCount==1){
-                    toaster.pop('error','Session Expired');
-                    $cookies.remove("token");
-                    $location.path('/core/login');
+
+	$scope.getFacilityViewData=function () {
+            facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.facility = succResponse.data;
                 }
-				}
-		}
-	})
-	.error(function(response){
-	});
+            });
+    };
+
+      $scope.getFacilityViewData();
 	$scope.editFaciltyDashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+        dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
+
 	$scope.edit_facility = function(facility, editfacility){
 		if(!editfacility.validate()){
 			return false;
 		}
 		facility.timeZone = facility.facility_timezone;
-		facility.zip_code = ""+facility.facility_zipcode;
-		facility.status = facility.facility_status == 'Active' ? 1 : 0
-		$http({
-			url: baseURL+'facility/edit',
-			method: 'PUT',
-			data: facility,
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
+		facility.zip_code = appConstants.empty+facility.facility_zipcode;
+		facility.status = facility.facility_status == appConstants.active ? 1 : 0;
 
-			if(response.status == true){
-				toaster.pop('success','Facility Edited Successfully');
-			}else{
-				var n = [];
-				var arr = response.error;
-				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1) ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$scope.facility_edit_error = n.join(", ");
-				}		
+
+        facilitiesSvc.edit_facility(appConstants.facilityedit,appConstants.putMethod,{},facility,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,appConstants._editFacilitySuccess);
+            }
+            else {
+                $scope.facility_edit_error = succResponse.msg;
 			}
-		})
-		.error(function(response){
-		});
+        });
 	};	
 	});
-
-app
-  .filter('facilityStatus', function() {
-    return function(x) {
-        if(x == 0){return "In-Active";}else{ return "Active";}
-	}
-   });
 

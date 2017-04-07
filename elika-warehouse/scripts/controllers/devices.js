@@ -28,7 +28,7 @@ app
 			toaster.pop('info','You decided to keep device.');
 		});
     };
-	
+
 	$scope.deleteDevice = function(id){
 		dataService.deleteData(null,baseUrl+'warehouse-device/delete?device_id='+id)
 		.success(function(response){
