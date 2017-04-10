@@ -594,7 +594,14 @@ var app = angular
 		  controller: 'DashboardCtrl',
 		  templateUrl: 'views/tmpl/admin/dashboard.html'
 		})
-		
+
+        //admin profile settings
+        .state('app.admin.profile-settings', {
+            url: '/profile-settings',
+            controller: 'profileSettingCtrl',
+            templateUrl: 'views/tmpl/admin/profile-settings.html'
+        })
+
 		//admin settings
 		.state('app.admin.settings', {
 		  url: '/settings/:device_id',

@@ -62,5 +62,10 @@ app
                 });
 
         };
+
+        factoryResp.logoutfacilityWeb = function(){
+            $cookies.remove(appConstants.sessionTokenCookieID);
+            $location.path('/core/login');
+        };
         return factoryResp;
     }]);

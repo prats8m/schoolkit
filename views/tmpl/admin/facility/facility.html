@@ -236,7 +236,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()"  ng-style="lmbtn">Load more</button>
+									<button ng-if="facilities && facilities.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()"  ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

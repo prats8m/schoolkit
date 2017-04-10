@@ -2258,11 +2258,11 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL,$stateParams, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul,$uibModal, $log, $location) {  	
+  .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL,$stateParams, $rootScope, $cookies, toaster, arrayPushService,$timeout,schedul,$uibModal, $log, $location,appConstants,userSvc) {
      $scope.page = {
-      title: 'User Groups',
-      subtitle: '',
-      member: 'User Groups Members'
+      title: appConstants._titleUserGroups,
+      subtitle: appConstants.empty,
+      member: appConstants._membersUserGroups
     };
 
     $scope.items = ['item1', 'item2', 'item3'];
@@ -2283,8 +2283,8 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-      $rootScope.user_group_error = "";
-      $rootScope.user_group_success = "";
+      $rootScope.user_group_error = appConstants.empty;
+      $rootScope.user_group_success = appConstants.empty;
       $rootScope.usergroupedit = {};
       $rootScope.listDoorGroup = {};
       $timeout(function(){
@@ -2294,74 +2294,53 @@ app
 
 	$scope.currentSelectedGroupName = $stateParams.userGroupName;
 	$scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
-    $scope.dashboardInit = function(){ 
-	 $http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-	 	.success(function(response) {   if(response.status == true){    $rootScope.dashboardData = response.data;}  
-	 		if(response.msg == 'Invalid_Token'){
-                $rootScope.logoutSessionExpiredMassageCount++;
-                if($rootScope.logoutSessionExpiredMassageCount==1){
-                    toaster.pop('error','Session Expired');
-                    $cookies.remove("token");
-                    $location.path('/core/login');
-                }
-				} 
-	 })  
-	 	.error(function (data, status, headers, config) {     }); } ;
+    $scope.dashboardInit = function(){
+        userSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data?succResponse.data:[];
+            }
+        });
+    } ;
 
-
-	 	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
+	if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
+	$scope.layout = appConstants.gridLayout;
+	$scope.class = appConstants.gridviewClass;
 	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
+		if ($scope.class === appConstants.gridviewClass)
+		$scope.class = appConstants.listviewClass;
+		$scope.layout = appConstants.listLayout;
 	};
 	
 	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
+		if ($scope.class === appConstants.listviewClass)
+		$scope.class = appConstants.gridviewClass;
+		$scope.layout = appConstants.gridLayout;
 	};
 	
-	$scope.result = '';
+	$scope.result = appConstants.empty;
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete User Group?')
-		.content('')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants._deleteusergroupconfirmationmessage)
+		.content(appConstants.empty)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
 			$scope.userGroupDelete(id);
 		}, function() {
-			$scope.result = 'You decided to keep User Group.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			$scope.result = appConstants._cancelusergroupdeleteioonmessage;
+			$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
 	$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){	
-				$rootScope.facilityList = response.data.data;
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-	}
+        userSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.facilityList = succResponse.data.data;
+            }
+        });
+	};
 	$scope.facilityInit();
 
     $rootScope.saveUserGroup = function(usergroup, group_form){
@@ -2369,238 +2348,135 @@ app
 			return false;
 		}
 		//usergroup.facility_id = parseInt($cookies.get("facilityId"));
-		$rootScope.user_group_error = "";
-		$http({
-			method: 'POST', 
-			url: baseURL + 'usergroup/add',
-			dataType : 'JSON',
-			data:usergroup,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-
-		})
-		.success(function(response){
-			if(response.status == true){
-				$timeout(function(){
-					$rootScope.listDoorSchedule(response.data.user_group_id, usergroup.facility_id);
-				}, 1);
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click().css("pointer-events", "block").css("opacity", "1");});
-				$timeout(function(){
-						$scope.pageNo = 1 ;
-						$scope.usergroups =[];
-						$scope.getUserGroupList();
-					});
-				// toaster.pop('success','User Group Added Successfully');
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-				
-				var n = [];
-				var arr = response.error;
-				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.user_group_error = n.join(", ");
-				}
-				else{
-					$rootScope.user_group_error = response.msg.replace(/_/g,' ');
-				}	
-			}
-		}).error(function(){
-
-		});
-    }
+		$rootScope.user_group_error = appConstants.empty;
+        userSvc.saveUserGroup(appConstants.usergroupadd,appConstants.postMethod,{},usergroup,function (succResponse) {
+            if(succResponse.status){
+                $timeout(function(){
+                    $rootScope.listDoorSchedule(succResponse.data.user_group_id, usergroup.facility_id);
+                }, 1);
+                $timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
+                $timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click().css("pointer-events", "block").css("opacity", "1");});
+                $timeout(function(){
+                    $scope.pageNo = 1 ;
+                    $scope.usergroups =[];
+                    $scope.getUserGroupList();
+                });
+            }
+            else {
+                $rootScope.user_group_error=succResponse.msg;
+            }
+        });
+    };
 
     $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed,userGroupBehaviour){
     	if(is_access_allowed == null){
     		return false;
     	}
-    	$("#"+ud_id).css("display", "block");
+    	$("#"+ud_id).css(display, appConstants.block);
     	if(schedule_id != "No Access" && schedule_id != "Full Access"){
     		is_access_allowed = 2;
     	}
-			$http(
-				{
-					method: 'PUT', 
-					url: baseURL+'usergroup/edit-door-schedule',
-					dataType : 'JSON', 
-					data : {"ud_id":ud_id,"is_access_allowed":is_access_allowed,"schedule_id":schedule_id,"type":userGroupBehaviour},
-					headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
-				}
-			})
-			.success(function(response){
-				if(response.status == true){
-					$rootScope.user_group_success = response.msg.replace(/_/g,' ');
-				}
-				else{
-					$rootScope.user_group_success = response.msg.replace(/_/g,' ');
-				}
-					$timeout(function(){
-						$("#"+ud_id).css("display", "none");
-					});
-
-			})
-    }
+        userSvc.addDoorScheduleUserGroup(appConstants.usergroupeditdoorschedule,appConstants.putMethod,{},{ud_id:ud_id,is_access_allowed:is_access_allowed,schedule_id:schedule_id,type:userGroupBehaviour},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.user_group_success = succResponse.msg;
+            }
+            else {
+                $rootScope.user_group_success = succResponse.msg;
+            }
+            $timeout(function(){
+                $("#"+ud_id).css(display, appConstants.none);
+            });
+        });
+    };
 
     $rootScope.listDoorSchedule = function(usergroup_id, facility_id){
-    	$http(
-		{
-			method: 'GET', 
-			url: baseURL+'usergroup/list-door-schedule?usergroup_id='+usergroup_id,
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){	
-				$rootScope.listDoorGroup = {};
-				$scope.x = schedul.getScheduleByFacility(facility_id);
-				angular.forEach(response.data, function(value, key){          
-					 $rootScope.listDoorGroup[key] = value;
-					$rootScope.listDoorGroup[key].schedulelist = {};
-					// $rootScope.listDoorGroup[key].schedulelist[0] = {};
-					// $rootScope.listDoorGroup[key].schedulelist[0].name = value.schedule_name;
-					// $rootScope.listDoorGroup[key].schedulelist[0].id = value.schedule_id;
-					// $rootScope.listDoorGroup[key].schedule_id = value.schedule_name;
-					$scope.x.success(function(resp){
-						angular.forEach(resp.data, function(val, k){
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)] = {};
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)].name = val.schedule_name;
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)].id = val.schedule_id;
-							$rootScope.listDoorGroup[key].schedulelist[parseInt(k)].is_access_allowed = val.is_access_allowed;
-						});
-					});
+        userSvc.listDoorSchedule(appConstants.usergrouplistdoorschedule+'?usergroup_id='+usergroup_id,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.listDoorGroup = {};
+                $scope.x = schedul.getScheduleByFacility(facility_id);
+                angular.forEach(succResponse.data, function(value, key){
+                    $rootScope.listDoorGroup[key] = value;
+                    $rootScope.listDoorGroup[key].schedulelist = {};
+                    $scope.x.success(function(resp){
+                        angular.forEach(resp.data, function(val, k){
+                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)] = {};
+                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)].name = val.schedule_name;
+                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)].id = val.schedule_id;
+                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)].is_access_allowed = val.is_access_allowed;
+                        });
+                    });
+                });
+            }
         });
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-    }
+    };
 
    $scope.searchFunction = function(e){
 		if(e)
 		if(e.keyCode!=13){return false;}
 		if(!$scope.searchText){
-			$scope.searchText = '';
+			$scope.searchText = appConstants.empty;
 		}
 		$scope.pageNo = 1;
 		$scope.usergroups =[];
-		$http({
-			method: 'GET', 
-			url: baseURL + 'usergroup/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.usergroups = arrayPushService.arrayPush(response.data.data, $scope.usergroups);
-				$scope.pageNo = $scope.pageNo + 1 ;
-			}else{
-				if(response.data == null){
-					$(".f-wm:contains(Load more)").text("No more data available").css( "opacity" , 0.7);
-				}
-				
-			}
-		}).error(function(){
+       userSvc.searchFunction(appConstants.usergrouplist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+           if(succResponse.status){
+               $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
+               $scope.pageNo = $scope.pageNo + 1 ;
+           }
+           else {
+               if(succResponse.data == null){
+                   $(".f-wm:contains(Load more)").text(appConstants.nomoredataavailable).css( "opacity" , 0.7);
+               }
+		   }
+       });
+	};
 
-		});
-
-		}
 		$scope.pageNo = 1;
 		$scope.usergroups =[];
-		$scope.searchText = "";
+		$scope.searchText = appConstants.empty;
 	
 	$scope.getUserGroupList = function(){
-		// console.log(e);
-		// if(e)
-		// if(e.keyCode!=13){return false;}
-		// if(!$scope.searchValue){
-		// 	$scope.searchValue = '';
-		// }
-    	$http({
-			method: 'GET', 
-			url: baseURL + 'usergroup/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.usergroups = arrayPushService.arrayPush(response.data.data, $scope.usergroups);
-				$scope.pageNo = $scope.pageNo + 1 ;
-				$scope.totalDisplayed = 8;
-				if(response.data.count > 8) {
-				$scope.lmbtn = {
-					"display" : "block"
-				};			
-				} else {
-				$scope.lmbtn = {
-					"display" : "none"
-				};
-				}
-			}else{
-				
+        userSvc.getUserGroupList(appConstants.usergrouplist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
+                $scope.pageNo = $scope.pageNo + 1 ;
+                $scope.totalDisplayed = 8;
+                if(succResponse.data.count > 8) {
+                    $scope.lmbtn = {
+                        display : appConstants.block
+                    };
+                } else {
+                    $scope.lmbtn = {
+                        display : appConstants.none
+                    };
+                }
+            }
+            else {
+                if(succResponse.data == null){
+                    $(".f-wm:contains(Load more)").text(appConstants.nomoredataavailable).css( "opacity" , 0.7);
+                }
+            }
+        });
+    };
 
-				if(response.data == null){
-					$(".f-wm:contains(Load more)").text("No more data available").css( "opacity" , 0.7);
-				}
-				
-			}
-		}).error(function(){
-
-		});
-    }
 	$scope.userGroupDelete = function(id){
-    	$http({
-			method: 'GET', 
-			url: baseURL + 'usergroup/delete?usergroup_id='+id,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.result = 'Your User Group has been deleted successfully.';
-				$scope.statusclass = 'alert alert-danger alert-dismissable';
-				var ug = $scope.usergroups;
-				var temp = [];
-				for(var i=0; i < ug.length; i++){
-					if(ug[i].usergroup_id != id)
-						temp.push(ug[i]);
-				}
-				$scope.usergroups = temp;
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-    }
+        userSvc.userGroupDelete(appConstants.usergroupdelete+'?usergroup_id='+id,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.result = appConstants._successDeleteUserGroup;
+                $scope.statusclass = appConstants.dangerstatusClass;
+                var ug = $scope.usergroups;
+                var temp = [];
+                for(var i=0; i < ug.length; i++){
+                    if(ug[i].usergroup_id != id)
+                        temp.push(ug[i]);
+                }
+                $scope.usergroups = temp;
+            }
+        });
+    };
 
   $scope.showEditForm = function(group_id, group_name, facility_id, facility_name, size) {
   	$scope.items = ['item1', 'item2', 'item3'];
-
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent1.html',
         controller: 'ModalInstanceCtrl',
@@ -2611,7 +2487,6 @@ app
           }
         }
       });
-
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
       }, function () {
@@ -2630,43 +2505,28 @@ app
 	
 	$rootScope.editUserGroupp = function(usergroupedit){
 		// delete usergroupedit.facility_name;
-    	$http({
-			method: 'PUT', 
-			url: baseURL + 'usergroup/edit',
-			dataType : 'JSON',
-			data:usergroupedit,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				toaster.pop('success',response.msg.replace(/_/g,' '));
-				$timeout(function(){
-					$rootScope.listDoorSchedule(usergroupedit.usergroup_id, usergroupedit.facility_id);
-				}, 1);
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
-				$timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click()});
-				$timeout(function(){
-						$scope.pageNo = 1 ;
-						$scope.usergroups =[];
-						$scope.getUserGroupList();
-					});
-
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-    }
+        userSvc.editUserGroupp(appConstants.usergroupedit,appConstants.putMethod,{},usergroupedit,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,succResponse.msg.replace(/_/g,' '));
+                $timeout(function(){
+                    $rootScope.listDoorSchedule(usergroupedit.usergroup_id, usergroupedit.facility_id);
+                }, 1);
+                $timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Group Name')").css("pointer-events", "none").css("opacity", "0.5")});
+                $timeout(function(){$("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").click()});
+                $timeout(function(){
+                    $scope.pageNo = 1 ;
+                    $scope.usergroups =[];
+                    $scope.getUserGroupList();
+                });
+            }
+        });
+    };
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
-    }
+    };
 	
-	$scope.imagePath = baseURL+'elika/images';	
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	
 });
 
@@ -2679,130 +2539,85 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams)
+  .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, $stateParams,appConstants,userSvc)
 		{
-			 $scope.page = {
-      title: 'User Groups',
-      subtitle: '',
-      member: 'User Groups Members'
-    };
+
+		 $scope.page = {
+		  title: appConstants._titleUserGroups,
+		  subtitle: appConstants.empty,
+		  member: appConstants._membersUserGroups
+		};
 
 		$scope.usergroup_id = $stateParams.usergroup_id;
 
-		$scope.dashboardInit = function(){ 
-		$http({url: baseURL + 'user/dashboard',   method: 'GET',   dataType : 'JSON',   headers: {    "Authorization": $cookies.get("token"),    "Content-type": "application/json"   }  })  
-		.success(function(response) {  
-		 if(response.status == true){    
-		 	$rootScope.dashboardData = response.data;
-		 	 } 
-		 	if(response.msg == 'Invalid_Token'){
-                $rootScope.logoutSessionExpiredMassageCount++;
-                if($rootScope.logoutSessionExpiredMassageCount==1){
-                    toaster.pop('error','Session Expired');
-                    $cookies.remove("token");
-                    $location.path('/core/login');
+		$scope.dashboardInit = function(){
+            userSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $rootScope.dashboardData = succResponse.data?succResponse.data:[];
                 }
-				} 
-		 	})  
-		.error(function (data, status, headers, config) {     }); } 
+            });
+		};
 
-		if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
+		if(!$rootScope.hasOwnProperty('dashboardData'))
+		{
+			$scope.dashboardInit();
+		};
 
 		$scope.usergroupDetail = function(){
-			$http({
-			method: 'GET', 
-			url: baseURL + 'usergroup/list-user-by-usergroup?usergroup_id='+$stateParams.usergroup_id,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-			.success(function(response){
-				$scope.usergroupslist = response.data;
-			})
-		}
-		$scope.usergroupDetail();
+            userSvc.usergroupDetail(appConstants.listuserbyusergroup+'?usergroup_id='+$stateParams.usergroup_id,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.usergroupslist = succResponse.data;
+                }
+            });
+		};
 
+		$scope.usergroupDetail();
 
 		//User Group Delete
 		$scope.showConfirm = function(ev,id) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete User Group?')
-		.content('')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.userGroupDetailDelete(id);
-		}, function() {
-			$scope.result = 'You decided to keep User Group.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
+			var confirm = $mdDialog.confirm()
+				.title(appConstants._deleteusergroupconfirmationmessage)
+				.content(appConstants.empty)
+				.ok(appConstants.delete)
+				.cancel(appConstants.cancel)
+				.targetEvent(ev);
+			$mdDialog.show(confirm).then(function() {
+				$scope.userGroupDetailDelete(id);
+			}, function() {
+				$scope.result = appConstants._cancelusergroupdeleteioonmessage;
+				$scope.statusclass = appConstants.successstatusClass;
+			});
+		};
 
     $scope.userGroupDetailDelete = function(id){
-    	$http({
-			method: 'GET', 
-			url: baseURL + 'usergroup/delete?usergroup_id='+id,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.result = 'Your User Group has been deleted successfully.';
-				$scope.statusclass = 'alert alert-danger alert-dismissable';
-				var ug = $scope.usergroups;
-				var temp = [];
-				for(var i=0; i < ug.length; i++){
-					if(ug[i].usergroup_id != id)
-						temp.push(ug[i]);
-				}
-				$scope.usergroups = temp;
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-    }
+        userSvc.userGroupDetailDelete(appConstants.usergroupdelete+'?usergroup_id='+id,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.result = appConstants._successDeleteUserGroup;
+                $scope.statusclass = appConstants.dangerstatusClass;
+                var ug = $scope.usergroups;
+                var temp = [];
+                for(var i=0; i < ug.length; i++){
+                    if(ug[i].usergroup_id != id)
+                        temp.push(ug[i]);
+                }
+                $scope.usergroups = temp;
+            }
+        });
+    };
 		//End Of User Group Delete
 		
 	$scope.unassignUserGroupDetail = function(user_id){
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'user/remove-usergroup',
-			dataType : 'JSON', 
-			data: { "user_id": user_id, "user_group_id": parseInt($stateParams.usergroup_id) },
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				toaster.pop('success','User group removed.');
-			}else{	
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-			$timeout(function() {
-				$scope.editassignedGroup();
-			});
-			$timeout(function(){$rootScope.userNotAssignedGroup(facility_id);})
-		}).error(function(){
-
-		});
+        userSvc.unassignUserGroupDetail(appConstants.removeusergroup,appConstants.postMethod,{},{user_id: user_id, user_group_id: parseInt($stateParams.usergroup_id)},function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,appConstants._successUserGroupRemoved);
+                $timeout(function() {
+                    $scope.editassignedGroup();
+                });
+                $timeout(function(){
+                	$rootScope.userNotAssignedGroup(facility_id);
+                })
+            }
+        });
 	}
 
   });
