@@ -223,7 +223,300 @@ app
             });
         };
 
+        userSvcSvcResp.profileInit=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
 
+        userSvcSvcResp.editdoorList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.assignEditUserGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.editassignedGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.userNotAssignedGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.deleteGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitEditAccessCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+
+                    if(succResponse.msg == 'InValid_Data'){
+                        toaster.pop(appConstants.error,appConstants.invaliddata);
+                    }
+                    else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                            toaster.pop(appConstants.oops,succResponse.msg);
+                        }
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.getAccessCodeList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitEditNfcCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+
+                    if(succResponse.msg == 'InValid_Data'){
+                        toaster.pop(appConstants.error,appConstants.invaliddata);
+                    }
+                    else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                            toaster.pop(appConstants.oops,succResponse.msg);
+                        }
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.getNfcCodeList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.getPhoneList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitEditPhoneCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+
+                    if(succResponse.msg == 'InValid_Data'){
+                        toaster.pop(appConstants.error,appConstants.invaliddata);
+                    }
+                    else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                            toaster.pop(appConstants.oops,succResponse.msg);
+                        }
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.getRfidList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitEditRFIDCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+
+                    if(succResponse.msg == 'InValid_Data'){
+                        toaster.pop(appConstants.error,appConstants.invaliddata);
+                    }
+                    else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                            toaster.pop(appConstants.oops,succResponse.msg);
+                        }
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.getBleList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitEditBLECode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    if(succResponse.msg == 'InValid_Data'){
+                        toaster.pop(appConstants.error,appConstants.invaliddata);
+                    }
+                    else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                            toaster.pop(appConstants.oops,succResponse.msg);
+                        }
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.unassignUserGroupEdit=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.deleteUser=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.removeCredential=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg);
+                    cb(succResponse);
+                }
+            });
+        };
 
         return userSvcSvcResp;
     }]);

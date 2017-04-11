@@ -1109,7 +1109,7 @@ app
 		$scope.layout = 'grid';
 	};
 	
-	$http.get('http://localhost:8080:8080/elika/json/admin/roles.json').success(function(response){
+	$http.get('http://localhost:8080/elika/json/admin/roles.json').success(function(response){
 		$scope.roles = response;
 		$scope.totalDisplayed = 8;
 		

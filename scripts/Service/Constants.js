@@ -54,6 +54,16 @@ app.constant("appConstants", {
     usergroupedit:'usergroup/edit',
     listsecretquestions:'list-secret-ques',
     updatesecretquestions:'update-secret-ques',
+    userviewuserdetails:'user/view-user-details',
+    userlistdoorcredential:'user/list-door-credential/',
+    userassignusergrouop:'user/assign-usergroup',
+    usergroupassignedtouser:'user/usergroup-assigned-to-user',
+    usergroupnotassignedtouser:'user/usergroup-not-assigned-to-user',
+    useraddcredentials:'user/add-credential',
+    usereditcredential:'user/edit-credential',
+    credentiallist:'credential/list',
+    userdelete:'user/delete',
+    userdeletecredential:'user/delete-credential',
 
 
 
@@ -70,9 +80,10 @@ app.constant("appConstants", {
 
     //..............Generics.....................................................
     oops: "Oops !! ",
-    error: "Error !! ",
-    success:"Success !! ",
-    info:'Info',
+    error: "error",
+    success:"success",
+    info:'info',
+    warning:'warning',
     none:"none",
     block:'block',
     inlineblock:'inline-block',
@@ -86,11 +97,13 @@ app.constant("appConstants", {
     imagePath:'elika/images/',
     content:'The standard chunk of Lorem Ipsum used.',
     active:'Active',
-    inactive:'In-Active',
+    inactive:'Inactive',
+    na:'NA',
     reset:'Reset',
     search:'Search',
     submitSuccessfully:'Submit Successfully',
     somethingwrong:'Something went wrong',
+    invaliddata:'InValid Data',
 
     //...........................................................................
 
@@ -287,6 +300,12 @@ app.constant("appConstants", {
     _successDeleteUserGroup:'Your User Group has been deleted successfully',
     _successUserGroupRemoved:'User group removed',
     nomoredataavailable:'No more data available',
+    _titleviewUser:'View User',
+    _titleEditUser:'Edit User',
+    nousergroupassigned:'No UserGroup Assigned',
+    confirmationusergroupdeletemessage:'Are you sure you want to Delete This User Group ?',
+    _deleteuserconfirmationmessage:'Would you like to delete User ?',
+    _canceluserdeletionmessage:'You decided to keep User',
 
     //............................................................................
 

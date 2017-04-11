@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/DeviceMod.js" afterPath="$PROJECT_DIR$/scripts/DeviceMod.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/Constants.js" afterPath="$PROJECT_DIR$/scripts/Service/Constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/profileSettings.js" afterPath="$PROJECT_DIR$/scripts/profileSettings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/profile-settings.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/profile-settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/UserSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/UserSvc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UsersMod.js" afterPath="$PROJECT_DIR$/scripts/UsersMod.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" afterPath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/header.html" afterPath="$PROJECT_DIR$/views/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,31 +26,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="profileSettings.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/profileSettings.js">
+      <file leaf-file-name="UserSvc.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/Service/UserSvc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profileSettingsSvc.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="41" column="10" lean-forward="true" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+            <state relative-caret-position="356">
+              <caret line="507" column="39" lean-forward="false" selection-start-line="507" selection-start-column="39" selection-end-line="507" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -64,6 +46,104 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="119" column="29" lean-forward="true" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roles.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/permissions/roles.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="89" column="48" lean-forward="false" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.d7ca82ad.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="543">
+              <caret line="1142" column="0" lean-forward="true" selection-start-line="1142" selection-start-column="0" selection-end-line="1142" selection-end-column="0" />
+              <folding>
+                <marker date="1491912307154" expanded="true" signature="102454:102460" ph="'" />
+                <marker date="1491912307154" expanded="true" signature="119861:119895" ph="..." />
+                <marker date="1491912307154" expanded="true" signature="168034:168049" ph="..." />
+                <marker date="1491912307154" expanded="true" signature="168153:168186" ph="..." />
+                <marker date="1491912307154" expanded="true" signature="168225:168300" ph="..." />
+                <marker date="1491912307154" expanded="true" signature="169989:170006" ph="..." />
+                <marker date="1491912307154" expanded="true" signature="170171:170188" ph="..." />
+                <marker date="1491912307154" expanded="true" signature="170355:170402" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devices.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/devices.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="157" column="56" lean-forward="false" selection-start-line="157" selection-start-column="56" selection-end-line="157" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeviceMod.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/DeviceMod.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="82" column="9" lean-forward="true" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+              <folding>
+                <element signature="e#7725#14229#0" expanded="false" />
+                <element signature="e#14588#18013#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="toaster.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/toaster.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="12" column="523" lean-forward="false" selection-start-line="12" selection-start-column="523" selection-end-line="12" selection-end-column="523" />
+              <folding>
+                <marker date="1489753971168" expanded="true" signature="6333:6340" ph="×" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsersMod.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="1129" column="32" lean-forward="true" selection-start-line="1129" selection-start-column="32" selection-end-line="1129" selection-end-column="32" />
+              <folding>
+                <element signature="e#311#34043#0" expanded="false" />
+                <element signature="e#34379#62422#0" expanded="false" />
+                <element signature="e#74009#76853#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -75,36 +155,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SettingCtrl</find>
-      <find>app.admin.profile-settings</find>
-      <find>dashboard</find>
-      <find>dash</find>
-      <find>dashbo</find>
-      <find>$location.path</find>
-      <find>usergroup/list-user-by-usergroup</find>
-      <find>usergroupDetail</find>
-      <find>unassignUserGroupDetail</find>
-      <find>user/remove-usergroup</find>
-      <find>Would you like to delete User Group</find>
-      <find>You decided to keep User Group</find>
-      <find>alert alert-success alert-dismissable</find>
-      <find>dashboardInit</find>
-      <find>usergroup/add</find>
-      <find>usergroup/edit-door-schedule</find>
-      <find>usergroup/list-door-schedule</find>
-      <find>facilityInit</find>
-      <find>usergroup/list</find>
-      <find>No more data available</find>
-      <find>searchFunction</find>
+      <find>user/list-door-credential/</find>
+      <find>user/assign-usergroup</find>
+      <find>assignEditUserGroup</find>
+      <find>user/usergroup-assigned-to-user</find>
+      <find>No UserGroup Assigned</find>
+      <find>editassignedGroup</find>
+      <find>user/usergroup-not-assigned-to-user</find>
+      <find>userNotAssignedGroup</find>
       <find>usergroup/delete</find>
-      <find>Your User Group has been deleted successfully</find>
-      <find>alert alert-danger alert-dismissable</find>
-      <find>userGroupDelete</find>
-      <find>usergroup/edit</find>
-      <find>editUserGroup</find>
-      <find>removeCredential</find>
-      <find>Load More</find>
-      <find>load more</find>
+      <find>deleteGroup</find>
+      <find>Are you sure you want to Delete This User Group</find>
+      <find>uploadProfilePic</find>
+      <find>credential/list</find>
+      <find>user/add-credential</find>
+      <find>user/edit-credential</find>
+      <find>user/remove-usergroup</find>
+      <find>submitEditUser</find>
+      <find>User group removed</find>
+      <find>Would you like to delete User</find>
+      <find>unassignUserGroupEdit</find>
+      <find>user/delete</find>
+      <find>You decided to keep User</find>
+      <find>alert alert-success alert-dismissable</find>
+      <find>deleteUser</find>
+      <find>Roles</find>
+      <find>user/delete-credential</find>
+      <find>controller</find>
+      <find>permissions.roles</find>
+      <find>schedule</find>
+      <find>Add Configuration Device</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,22 +210,16 @@
         <option value="$PROJECT_DIR$/scripts/Service/cameraDVRSvc.js" />
         <option value="$PROJECT_DIR$/scripts/Service/dashboardSvc.js" />
         <option value="$PROJECT_DIR$/scripts/Service/devicesSvc.js" />
-        <option value="$PROJECT_DIR$/scripts/DeviceMod.js" />
         <option value="$PROJECT_DIR$/scripts/CameraDvr.js" />
         <option value="$PROJECT_DIR$/scripts/DoorGroupMod.js" />
         <option value="$PROJECT_DIR$/scripts/Service/doorsSvc.js" />
         <option value="$PROJECT_DIR$/scripts/DoorsMod.js" />
         <option value="$PROJECT_DIR$/scripts/Service/technicianSvc.js" />
         <option value="$PROJECT_DIR$/scripts/TechnicianMod.js" />
-        <option value="$PROJECT_DIR$/views/header.html" />
         <option value="$PROJECT_DIR$/scripts/schedule.js" />
-        <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" />
-        <option value="$PROJECT_DIR$/scripts/Service/UserSvc.js" />
-        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/view-user.html" />
-        <option value="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" />
         <option value="$PROJECT_DIR$/elika-warehouse/views/tmpl/administrator/roles.html" />
         <option value="$PROJECT_DIR$/elika-warehouse/views/tmpl/diagnostics-reports/monitor-diagnostics-and-reported-issues.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/administrator/roles.html" />
@@ -153,7 +227,6 @@
         <option value="$PROJECT_DIR$/views/tmpl/admin/door/doors.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/facility/facility-details.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/facility/facility.html" />
-        <option value="$PROJECT_DIR$/views/tmpl/admin/permissions/roles.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/schedule-groups.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/support/technician.html" />
@@ -161,9 +234,16 @@
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/users.html" />
         <option value="$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js" />
-        <option value="$PROJECT_DIR$/scripts/Service/Constants.js" />
         <option value="$PROJECT_DIR$/scripts/profileSettings.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/profile-settings.html" />
+        <option value="$PROJECT_DIR$/scripts/Service/Constants.js" />
+        <option value="$PROJECT_DIR$/scripts/Service/UserSvc.js" />
+        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/permissions/roles.html" />
+        <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
+        <option value="$PROJECT_DIR$/views/header.html" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/device/devices.html" />
+        <option value="$PROJECT_DIR$/scripts/DeviceMod.js" />
       </list>
     </option>
   </component>
@@ -283,32 +363,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="device" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -323,51 +377,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="camera" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elika_webapp2_dev_ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -493,12 +503,12 @@
       <workItem from="1491456173883" duration="22037000" />
       <workItem from="1491540257217" duration="15572000" />
       <workItem from="1491801673056" duration="19668000" />
-      <workItem from="1491884739969" duration="2786000" />
+      <workItem from="1491884739969" duration="19069000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336380000" />
+    <option name="totallyTimeSpent" value="352663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -507,6 +517,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24743778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22712934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -518,7 +529,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22712934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -553,27 +563,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/activity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="11" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/hsOptions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/jquery.validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/loading-bar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -623,17 +612,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="8854" column="25" lean-forward="false" selection-start-line="8854" selection-start-column="25" selection-end-line="8854" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/vendor.4c173da6.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333489">
           <caret line="19587" column="4" lean-forward="false" selection-start-line="19587" selection-start-column="4" selection-end-line="19587" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -641,6 +624,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="128" column="44" lean-forward="true" selection-start-line="128" selection-start-column="44" selection-end-line="128" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -648,13 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="11" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="20" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="163" column="44" lean-forward="true" selection-start-line="163" selection-start-column="44" selection-end-line="163" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -729,31 +706,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="1018" column="3" lean-forward="true" selection-start-line="1018" selection-start-column="3" selection-end-line="1018" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="68" column="10" lean-forward="true" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/forgetpassword.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/UserSvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="212" column="37" lean-forward="false" selection-start-line="212" selection-start-column="37" selection-end-line="212" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -764,17 +720,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/DeviceMod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="131" column="13" lean-forward="true" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elika-warehouse/views/tmpl/administrator/roles.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="140" column="77" lean-forward="true" selection-start-line="140" selection-start-column="44" selection-end-line="140" selection-end-column="77" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -782,6 +732,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="201" column="79" lean-forward="true" selection-start-line="201" selection-start-column="79" selection-end-line="201" selection-end-column="79" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -796,13 +747,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
           <caret line="252" column="6" lean-forward="true" selection-start-line="252" selection-start-column="6" selection-end-line="252" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/devices.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="279" column="174" lean-forward="false" selection-start-line="279" selection-start-column="174" selection-end-line="279" selection-end-column="174" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -810,6 +755,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="225" column="100" lean-forward="true" selection-start-line="225" selection-start-column="100" selection-end-line="225" selection-end-column="100" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -817,6 +763,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="689" column="50" lean-forward="true" selection-start-line="689" selection-start-column="50" selection-end-line="689" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -824,13 +771,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="239" column="38" lean-forward="true" selection-start-line="239" selection-start-column="38" selection-end-line="239" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/permissions/roles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="231" column="38" lean-forward="true" selection-start-line="231" selection-start-column="38" selection-end-line="231" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -838,6 +779,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="268" column="83" lean-forward="false" selection-start-line="268" selection-start-column="44" selection-end-line="268" selection-end-column="83" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -852,6 +794,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="589" column="26" lean-forward="true" selection-start-line="589" selection-start-column="26" selection-end-line="589" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -866,6 +809,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="317" column="85" lean-forward="true" selection-start-line="317" selection-start-column="85" selection-end-line="317" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#md-card#0;n#md-content#0;n#div#0;n#div#2;n#div#0;n#div#1;n#section#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -873,28 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="190" column="38" lean-forward="true" selection-start-line="190" selection-start-column="38" selection-end-line="190" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="2433" column="26" lean-forward="true" selection-start-line="2433" selection-start-column="26" selection-end-line="2433" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="55" column="25" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/profile-settings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="210" column="71" lean-forward="true" selection-start-line="210" selection-start-column="71" selection-end-line="210" selection-end-column="71" />
           <folding />
         </state>
       </provider>
@@ -909,9 +833,139 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="41" column="10" lean-forward="true" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+        <state relative-caret-position="51">
+          <caret line="3" column="87" lean-forward="false" selection-start-line="3" selection-start-column="87" selection-end-line="3" selection-end-column="87" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/activitiesSvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="65" column="4" lean-forward="true" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/UserSvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="507" column="39" lean-forward="false" selection-start-line="507" selection-start-column="39" selection-end-line="507" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="1129" column="32" lean-forward="true" selection-start-line="1129" selection-start-column="32" selection-end-line="1129" selection-end-column="32" />
+          <folding>
+            <element signature="e#311#34043#0" expanded="false" />
+            <element signature="e#34379#62422#0" expanded="false" />
+            <element signature="e#74009#76853#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/profile-settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="210" column="71" lean-forward="true" selection-start-line="210" selection-start-column="71" selection-end-line="210" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="119" column="29" lean-forward="true" selection-start-line="119" selection-start-column="29" selection-end-line="119" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/app.d7ca82ad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="529" column="14" lean-forward="false" selection-start-line="529" selection-start-column="14" selection-end-line="529" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/permissions/roles.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="89" column="48" lean-forward="false" selection-start-line="89" selection-start-column="48" selection-end-line="89" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="1142" column="0" lean-forward="true" selection-start-line="1142" selection-start-column="0" selection-end-line="1142" selection-end-column="0" />
+          <folding>
+            <marker date="1491912307154" expanded="true" signature="102454:102460" ph="'" />
+            <marker date="1491912307154" expanded="true" signature="119861:119895" ph="..." />
+            <marker date="1491912307154" expanded="true" signature="168034:168049" ph="..." />
+            <marker date="1491912307154" expanded="true" signature="168153:168186" ph="..." />
+            <marker date="1491912307154" expanded="true" signature="168225:168300" ph="..." />
+            <marker date="1491912307154" expanded="true" signature="169989:170006" ph="..." />
+            <marker date="1491912307154" expanded="true" signature="170171:170188" ph="..." />
+            <marker date="1491912307154" expanded="true" signature="170355:170402" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/device/devices.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="157" column="56" lean-forward="false" selection-start-line="157" selection-start-column="56" selection-end-line="157" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elika-warehouse/scripts/toaster.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="523" lean-forward="false" selection-start-line="12" selection-start-column="523" selection-end-line="12" selection-end-column="523" />
+          <folding>
+            <marker date="1489753971168" expanded="true" signature="6333:6340" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/DeviceMod.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="82" column="9" lean-forward="true" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+          <folding>
+            <element signature="e#7725#14229#0" expanded="false" />
+            <element signature="e#14588#18013#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

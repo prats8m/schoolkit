@@ -81,6 +81,7 @@ app
 		if(!device_form.validate()){
 			return false;
 		}
+       // toaster.clear();  //clears all toast messages
 		device.technician_id = parseInt(device.technician_id);
 		//device.serial_no = parseInt(device.serial_no);
 		//device.facility_id = parseInt($rootScope.facilityId);
@@ -96,7 +97,7 @@ app
                 $rootScope.masters = [];
                 $rootScope.masters = succResponse.error ;
             }
-        });
+		});
 	};
 	
 	$scope.pageNo = 1;
