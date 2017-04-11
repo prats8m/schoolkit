@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('AddScheduleCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout) {
+  .controller('AddScheduleCtrl', function ($scope,appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout) {
      $scope.page = {
       title: 'Add Schedule',
     };
@@ -82,128 +82,23 @@ app
 	$(document).mouseup(function () {
 		isMouseDown = false;
 	});
-	
-	$scope.submitSchedule = function(data){
-		
-		var mon = [];	var tue = [];	var wed = [];	var thr = [];	var fri = [];	var sat = [];	var sun = [];
-		var myTable = $("#table");
-		myTable.find( "tr" ).each(function(){
-			$(this).find("td").each(function(){
-				if($(this).hasClass("selected")){
-					if($(this).hasClass("mon")){
-						mon.push($(this).parent().attr("class"));
-					}else if($(this).hasClass("tue")){
-						tue.push($(this).parent().attr("class"));
-					}else if($(this).hasClass("wed")){
-						wed.push($(this).parent().attr("class"));
-					}else if($(this).hasClass("thr")){
-						thr.push($(this).parent().attr("class"));
-					}else if($(this).hasClass("fri")){
-						fri.push($(this).parent().attr("class"));
-					}else if($(this).hasClass("sat")){
-						sat.push($(this).parent().attr("class"));
-					}else if($(this).hasClass("sun")){
-						sun.push($(this).parent().attr("class"));
-					}
-				}
-			});
-		});
-		
-		data.schedule_mon = timeBlock(mon);
-		data.schedule_tue = timeBlock(tue);
-		data.schedule_wed = timeBlock(wed);
-		data.schedule_thu = timeBlock(thr);
-		data.schedule_fri = timeBlock(fri);
-		data.schedule_sat = timeBlock(sat);
-		data.schedule_sun = timeBlock(sun);
-		data.expiration = convert(data.expiration);
-		
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'schedule/add',
-			dataType : 'JSON',
-			data: data,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				toaster.pop('success','Submit Successfully');
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}else{
-					
-				}
-			}
-		}).error(function(){
 
-		});	
-		
+
+	$scope.submitSchedule = function(data){
+		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
+        	if(succResponse.status){
+                toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+            }
+        });
 	}
-	
-	function timeBlock(arr){
-		var returnArr = [];
-		var start = arr[0];
-		var end = arr[0];
-		for(var i=0; i < arr.length-1; i=i+2){
-			if(arr[i] == (arr[i+2]-1)){
-				end = arr[i+2];
-			}else{
-				var starttime = Number(start)+":00";
-				var endtime = Number(end)+1+":00";
-				returnArr.push({starttime: starttime, endtime: endtime});
-				start = arr[i+2];
-				end = arr[i+2];
-			}
-      
-		}
-		// returnArr.push({starttime: Number(start), endtime: Number(end)+1});
-		return returnArr;
-	}
-	
-	function convert(str) {
-		var date = new Date(str),
-			mnth = ("0" + (date.getMonth()+1)).slice(-2),
-			day  = ("0" + date.getDate()).slice(-2);
-		return [ date.getFullYear(), mnth, day ].join("-");
-	}
+
 	
 	$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$rootScope.facilityList = response.data.data;	
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
+		scheduleSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod,{},{},function (succResponse) {
+        	if(succResponse.status){
+                $rootScope.facilityList = succResponse.data.data;
+            }
+        });
 	}
 	$scope.facilityInit();
 	
@@ -228,33 +123,12 @@ app
 	}
 	
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+        scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
 	$scope.dashboardInit();
 
 	$scope.imagePath = 'http://elikastaging.ml/images';	
@@ -271,12 +145,12 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ScheduleGroupsCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService) {
+  .controller('ScheduleGroupsCtrl', function ($scope,appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService) {
      $scope.page = {
       title: 'Schedule Groups',
       subtitle: 'So much more to see at a glance.'
     };
-
+    /*
     $scope.deleteSchedule = function(id){
     	dataService.deleteData(null, baseURL + "schedule/delete?schedule_id="+id)
     	.success(function(response){
@@ -288,19 +162,28 @@ app
     		}
     	});
     };
+    */
+    $scope.deleteSchedule = function(id){
+    	scheduleSvc.deleteSchedule(appConstants.scheduleDelete,appConstants.deleteMethod,{schedule_id:id},{},function (succResponse) {
+            if(succResponse.status){
+                toaster.pop('success',appConstants.deleteSchedule);
+    			$scope.scheduleInit();
+            }
+        });
+    };
 	
 	$scope.status = '  ';
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete schedule groups?')
-		//.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants._deleteScheduleGroupMessage)
+		.content(appConstants.empty)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
 			$scope.deleteSchedule(id);
 		}, function() {
-			toaster.pop('info','You decided to keep schedule groups.');
+			toaster.pop(appConstants.info,appConstants._canceltoDeleteScheduleGroup);
 		});
     };
 	
@@ -324,7 +207,34 @@ app
 		if(!$scope.searchText){
 			$scope.searchText = '';
 		}
+
+		scheduleSvc.scheduleInit(appConstants.scheduleList,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.schedules = succResponse.data.data;
+				$scope.totalDisplayed = 8;
+				
+				if($scope.schedules.length > $scope.totalDisplayed) {
+					$scope.lmbtn = {
+						"display" : "block"
+					};			
+				} else {
+					$scope.lmbtn = {
+						"display" : "none"
+					};
+				}
+				
+				$scope.loadMore = function () {
+					$scope.totalDisplayed += 8;
+					if($scope.totalDisplayed > $scope.schedules.length) {				
+						$scope.lmbtn = {
+							"display" : "none"
+						};	
+					}			
+				};
+            }
+        });
 		//$http.get('http://localhost:8080/elika/json/admin/schedules.json')
+		/*
 		dataService.getData(null,baseURL+'schedule/list')
 		.success(function(response){
 			$scope.schedules = response.data.data;
@@ -349,10 +259,15 @@ app
 				}			
 			};		
 		});
+		*/
 	}
 	$scope.scheduleInit();
 
 	$scope.searchFunction = function(e){
+
+
+
+
 		if(e)
 		if(e.keyCode!=13){return false;}
 		if(!$scope.searchText){
@@ -415,33 +330,13 @@ app
     }
 
 	$scope.dashboardInit = function(){
-		$http({
-			url: baseURL + 'user/dashboard',
-			method: 'GET',
-			dataType : 'JSON',
-			headers: {
-				"Authorization": $cookies.get("token"),
-				"Content-type": "application/json"
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		})
-		.error(function (data, status, headers, config) {
-			
-		});
-	}
+
+        scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
 	$scope.dashboardInit();
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
@@ -458,7 +353,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewScheduleCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService,$stateParams) {
+  .controller('ViewScheduleCtrl', function ($scope,appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService,$stateParams) {
      $scope.page = {
       title: 'Schedule',
       subtitle: 'So much more to see at a glance.'
@@ -475,16 +370,13 @@ app
     });
 
     $scope.dashboardInit = function(){
-		
-		dataService.getData(null, baseURL + 'user/dashboard')
-		.success(function(response) {
-			if(response.status == true){
-				$rootScope.dashboardData = response.data;
-			}else{
-				dataService.responseError(response);
-			}
-		});
-	}
+
+        scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
 	$scope.dashboardInit();
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';	

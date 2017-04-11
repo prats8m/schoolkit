@@ -692,6 +692,7 @@ var app = angular
 				  params: {type: "type"}
 				})
 				
+			
 		
 		//admin device
 		.state('app.admin.device', {
