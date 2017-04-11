@@ -685,6 +685,13 @@ var app = angular
 				  params: {type: "type"}
 				})
 				
+				//admin profile settings
+				.state('app.admin.profile-settings', {
+				  url: '/profile-settings',
+				  controller: 'SettingCtrl',
+				  templateUrl: 'views/tmpl/admin/profile-settings.html'
+				})
+				
 		
 		//admin device
 		.state('app.admin.device', {

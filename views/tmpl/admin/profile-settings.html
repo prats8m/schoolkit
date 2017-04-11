@@ -1,0 +1,243 @@
+<div class="page page-profile">
+	<div class="pageheader backpage">		
+		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+	
+	<div class="pagecontent" ng-controller="SettingCtrl">
+		<div class="row">		
+			<div class="dnone card-container col-sm-3 col-md-3">
+				<div class="card">
+					<div class="bg-dashboard">
+						<div class="bg-transparent">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="custom-font">{{page.title}}</h3>
+									<p>{{page.subtitle}}</p>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue cardheight">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt cardheight">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred cardheight">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<div class="thumb thumb-xxll mb-20 rel">
+							<img class="img-circle" src="images/avatar.jpg" alt="">
+							<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+							<span class="edittxt">Change</span>
+						</div>
+						<h3 class="mb-10"><strong>Jhon Rockwell</strong></h3>
+						<span class="text-muted">You're logged in as admin@vvdntech.com</span>
+						<span class="text-muted">+1 212 1467 1212</span>
+						<div class="form-group profiledetail mt-40">
+							<p><label>Last access time</label> : before 45min</p>
+							<p><label>Member Since</label> : 12 April, 2015</p>
+						</div>
+						<div class="mt-40">
+							<a href="" class="btn btn-rounded-20 btn-sm btn-blue"><i class="fa fa-circle"></i> Active</a>
+						</div>
+					</div>   
+				</section>
+			</div>
+			
+			<div class="col-sm-12 col-md-8" ng-controller="SettingCtrl"> 
+				<section class="tile tile-simple"> 
+					<div class="tile-body p-0"> 
+						<uib-tabset class="tabs-dark"> 
+						
+							<uib-tab heading="Change Password">
+								<div class="wrap-reset">
+									<div class="form-group legend">
+										<h4><strong>Change</strong> Password</h4>
+									</div>
+									<form name="form1" role="form">
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-xs-12 col-sm-6 col-md-6">
+													<div class="form-group overflow">
+														<label for="">Current Password</label>
+														<input type="password" name="" id="" class="form-control" value="">
+													</div>
+													<div class="form-group overflow">
+														<label for="">New Password</label>
+														<input type="password" name="" id="" class="form-control" value="">
+													</div>
+													<div class="form-group overflow">
+														<label for="">Confirm New Password</label>
+														<input type="password" name="" id="" class="form-control" value="">
+													</div>
+												</div>
+											</div>
+											<div class="form-group row legend">
+												<div class="col-md-12">
+													<p></p>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</uib-tab>
+							
+							<uib-tab heading="Manage Account">
+								<div class="wrap-reset">
+									<div class="form-group legend">
+										<h4><strong>Update</strong> Profile</h4>
+									</div>
+									<form name="form1" role="form">
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-xs-12 col-sm-6 col-md-6">
+													<div class="form-group overflow">
+														<label for="">New Email</label>
+														<input type="email" name="" id="" class="form-control" value="">
+													</div>
+													<div class="form-group overflow">
+														<label for="">Confirm New Email</label>
+														<input type="email" name="" id="" class="form-control" value="">
+													</div>
+													<div class="form-group overflow">
+														<label for="">Current password</label>
+														<input type="password" name="" id="" class="form-control" value="">
+													</div>
+												</div>
+											</div>
+											<div class="form-group row legend">
+												<div class="col-md-12">
+													<p></p>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</uib-tab>
+							
+							<uib-tab heading="Change Security Questions">
+								<div class="wrap-reset">
+									<div class="form-group legend">
+										<h4><strong>Security</strong> Questions</h4>
+									</div>
+									<form name="form1" role="form">
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-xs-12 col-sm-6 col-md-6">
+													<div class="form-group overflow">
+														<label for="">Select Secret Question</label>
+														<select id="selectedQuestion1" name="selectedQuestion1" class="form-control">
+															<option value="?" selected="selected">Select Secret Question</option>
+															<option value="1" label="What was your favorite place to visit as a child?">What was your favourite place to visit as a child?</option>
+															<option value="2" label="Who is your favorite actor, musician, or artist?">Who is your favorite actor, musician, or artist?</option>
+															<option value="3" label="What is the name of your favorite pet?">What is the name of your favorite pet?</option>
+															<option value="4" label="In what city were you born?">In what city were you born?</option>
+															<option value="5" label="What high school did you attend?">What high school did you attend?</option>
+															<option value="6" label="What is the name of your first school?">What is the name of your first school?</option>
+															<option value="7" label="What is your favorite movie?">What is your favorite movie?</option>
+															<option value="8" label="What is your mother's maiden name?">What is your mother's maiden name?</option>
+															<option value="9" label="What street did you grow up on?">What street did you grow up on?</option>
+															<option value="10" label="What was the make of your first car?">What was the make of your first car?</option>
+															<option value="11" label="When is your anniversary?">When is your anniversary?</option>
+															<option value="12" label="What is your favorite color?">What is your favorite color?</option>
+															<option value="13" label="What is your father's middle name?">What is your father's middle name?</option>
+															<option value="14" label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
+															<option value="15" label="What was your high school mascot?">What was your high school mascot?</option>
+														</select>
+													</div>
+													<div class="form-group overflow">
+														<label for="">Answer</label>
+														<input type="text" name="" id="" class="form-control" value="">
+													</div>
+													<div class="form-group overflow">
+														<label for="">Current password</label>
+														<input type="password" name="" id="" class="form-control" value="">
+													</div>
+												</div>
+											</div>
+											<div class="form-group row legend">
+												<div class="col-md-12">
+													<p></p>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
+													<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</uib-tab>
+							
+						</uib-tabset>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

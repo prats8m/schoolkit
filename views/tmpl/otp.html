@@ -9,17 +9,42 @@
 	</div>
 	<div class="page page-core page-login core-new">
 		<div id="hpopup" class="container w-450 p-40 bg-white text-center login-box-shadow borderradius6">
-			<h2 class="login-h2 text-greensea">One Time Password</h2>
-			<form name="form" class="form-validation mt-20" ng-submit="submitOTP(user)" novalidate>
+			<h2 class="login-h2 text-greensea">OTP/Security Question</h2>
+			<form name="form" class="form-validation mt-20" ng-submit="formSubmit(user)" novalidate>
 			
-				<p class="help-block text-left" style="font-weight: 400; font-size: 16px; margin-bottom: 30px;">The OTP has been send on your e-mail address.</p>
-				
-				<div class="form-group">
-					<input type="text" class="form-control underline-input" placeholder="One Time Password" maxlength="6" ng-model="user.otp" required>
+				<div class="row text-left" >					
+					<div class="col-sm-12 col-md-6">
+						<label class="checkbox checkbox-custom-alt ml-0 mb-0" ng-click="visibiltyUserGroup=true" ng-init="user.type='otp'">
+							<input name="customRadioAlt" type="radio" ng-model="user.type" value="otp" ><i></i> OTP
+						</label>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
+							<input name="customRadioAlt" type="radio" ng-model="user.type" value="secret_ques"><i></i> Security Question
+						</label>
+					</div>
+				</div>
+				<div class="row" ng-init="visibiltyUserGroup=false" ng-show="visibiltyUserGroup">
+					<div class="col-sm-12 col-md-12 form-group">
+						<p class="help-block text-left mt-20" style="font-weight: 400; font-size: 14px; margin-bottom: 30px;">The OTP has been send on your e-mail address.</p>
+						<input type="text" class="form-control underline-input" placeholder="One Time Password" maxlength="6" ng-model="user.otp" required>
+					</div>
+				</div>
+				<div class="row mt-20">
+					<div class="col-sm-12 col-md-12 mt-10" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
+						<div class="form-group">
+							<select id="selectedQuestion1" name="selectedQuestion1" class="form-control underline-input mb-20" ng-model="user.secret_ques_id" ng-options="q.sq_id as q.sq_question for q in questionsList">
+								<option value="">Select Secret Question</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control underline-input" placeholder="Answer" ng-model="user.answer" required>
+						</div>
+					</div>
 				</div>
 				
 				<div class="form-group text-left mt-20">  
-					<button type="submit" class="btn btn-grey b-0 br-2 mt-10 m-0-auto"  ng-disabled='form.$invalid'>Submit</button>
+					<button type="submit" class="btn btn-grey b-0 br-2 mt-10 m-0-auto">Submit</button>
 				</div>
 			</form>
 			<div class="bg-slategray dker seagreen wrap-reset negmargin40 mt-20">
@@ -28,23 +53,3 @@
 		</div>
 	</div>	
 </section>
-<script type="text/javascript">
-	$(document).ready(function() {
-		var winw = $(window).width();
-	    var winh = $(window).height();
-		
-		//$(window).on('resize',function(){location.reload();});
-		
-		if(winh>449 && winw > 1139) {
-			var popuph = document.getElementById('hpopup').offsetHeight;
-			var mtop = popuph - 45;
-			$('.w-450').css({
-				'position' : 'absolute',
-				'left' : '50%',
-				'top' : '50%',	        
-				'margin-top' : -mtop/2,
-				'margin-left' : -30,
-			});
-		}
-	});
-</script>

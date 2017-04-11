@@ -40,6 +40,11 @@ app.constant("appConstants", {
     dooradd:'door/add',
     doorview:'door/view',
     dooredit:'door/edit',
+    scheduleadd:'schedule/add',
+    scheduleDelete:'schedule/delete',
+    scheduleList:'schedule/list',
+    listSecretQuestions:'list-secret-ques',
+    forgetPassword:'user/forget-password',
 
     //...........................................................................
 
@@ -252,6 +257,19 @@ app.constant("appConstants", {
     nocamerafoundonfilter:'No camera found for this filter',
     norecordedFeedfound:'No Recorded Feeds available for this camera',
     cameragroupcreated:'Camera Group Created',
+
+
+    //..................Schedule..................................................
+
+    //............................................................................
+
+    deleteSchedule:'Your schedule groups has been deleted successfully.',
+    _deleteScheduleGroupMessage:'Would you like to delete schedule groups?',
+    _successfullScheduleGroupDeleted:'Schedule group has been deleted successfully',
+    _failedTodeleteScheduleGroup:'Unable to delete schedule groups.',
+    _canceltoDeleteScheduleGroup:'You decided to keep schedule groups.',
+
+
 
     //............................................................................
 

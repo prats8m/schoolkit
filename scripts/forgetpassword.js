@@ -12,7 +12,10 @@ app
 		$state.go('core.otp');
     };
 
+
+
     $scope.submitForgetPassword = function(requestData){
+        requestData.type = 'otp';
     	dataService.postData(requestData,baseURL + 'user/forget-password')
     	.success(function(response){
     		if(response.status){
@@ -35,10 +38,19 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('OTPCtrl', function ($scope, $state, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,dataService) {
+  .controller('OTPCtrl', function ($scope, $state,forgetpasswordSvc,appConstants, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,dataService) {
     $scope.login = function() {
 		$state.go('core.create-new-password');
     };
+
+    $scope.formSubmit = function(requestData){
+        
+        if(requestData.type == 'secret_ques'){
+            $scope.submitSecretQuestion(requestData);
+        }else{
+             $scope.submitOTP(requestData);
+        }
+    }
 
     $scope.submitOTP = function(requestData){
     	requestData.email = $cookies.get('forgetpasswordemail');
@@ -53,6 +65,23 @@ app
     		}
     	});
     }
+
+    $scope.questionsInit = function(){
+        forgetpasswordSvc.questionsInit(appConstants.listSecretQuestions,appConstants.getMethod,{},{}, function(succResponse){
+            $scope.questionsList = succResponse.data;
+        });
+    }
+    $scope.questionsInit();
+    
+    $scope.submitSecretQuestion = function(requestData){
+        requestData.email = $cookies.get('forgetpasswordemail');
+        forgetpasswordSvc.submitSecretQuestion(appConstants.forgetPassword,appConstants.postMethod,{},requestData, function(succResponse){
+            if(succResponse.status){
+                $scope.login();
+            }
+        });
+    }
+
 });
 
 
