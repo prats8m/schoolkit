@@ -40,11 +40,31 @@ app.constant("appConstants", {
     dooradd:'door/add',
     doorview:'door/view',
     dooredit:'door/edit',
+
     scheduleadd:'schedule/add',
     scheduleDelete:'schedule/delete',
     scheduleList:'schedule/list',
     listSecretQuestions:'list-secret-ques',
     forgetPassword:'user/forget-password',
+
+    userpicupload:'user/pic-upload',
+    useradd:'user/add',
+    useredit:'user/edit',
+    manageaccount:'manage-account',
+    listuserbyusergroup:'usergroup/list-user-by-usergroup',
+    usergroupdelete:'usergroup/delete',
+    removeusergroup:'user/remove-usergroup',
+    usergroupadd:'usergroup/add',
+    usergroupeditdoorschedule:'usergroup/edit-door-schedule',
+    usergrouplistdoorschedule:'usergroup/list-door-schedule',
+    usergrouplist:'usergroup/list',
+    usergroupedit:'usergroup/edit',
+    listsecretquestions:'list-secret-ques',
+    updatesecretquestions:'update-secret-ques',
+
+
+
+
 
     //...........................................................................
 
@@ -272,6 +292,33 @@ app.constant("appConstants", {
 
 
     //............................................................................
+
+
+    //...........User.............................................................
+
+    _successImageUpload:'Image uploaded successfully',
+    incompleteform:'Please fill form',
+    usertype:{admin:'admin'},
+    messageOncheckifpwdAndcnfrmpwdSame:'Password and Confirm password should be same',
+
+    _titleUserGroups:'User Groups',
+    _membersUserGroups:'User Groups Members',
+    _deleteusergroupconfirmationmessage:'Would you like to delete User Group ?',
+    _cancelusergroupdeleteioonmessage:'You decided to keep User Group',
+    _successDeleteUserGroup:'Your User Group has been deleted successfully',
+    _successUserGroupRemoved:'User group removed',
+    nomoredataavailable:'No more data available',
+
+    //............................................................................
+
+    //...............Profile Settings................................................
+
+    titileProfileSettings:'Profile Setting',
+
+    //...............................................................................
+
+
+
 
 
 

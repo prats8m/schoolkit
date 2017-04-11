@@ -245,7 +245,7 @@
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<button ui-sref="app.admin.user.user-groups-members({usergroup_id:user.usergroup_id,userGroupName:user.usergroup_name,userGroupUserCount:user.usergroup_user_count})" class="btn btn-orange btn-border btn-rounded btnMargin">View</button>
-												<div ng-controller="ModalDemo1Ctrl">
+												<div ng-controller="ModalDemo1Ctrl" style="display: inline-block;">
 													<script type="text/ng-template" id="myModalContent1.html">
 														<div class="modal-header">
 															<h4 class="modal-title custom-font">Edit User Groups</h4>
@@ -315,7 +315,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getUserGroupList()" ng-style="lmbtn" >Load more</button>
+									<button ng-if="usergroups && usergroups.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getUserGroupList()" ng-style="lmbtn" >Load more</button>
 								</div>
 							</div>
 						</div>

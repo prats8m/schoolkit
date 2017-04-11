@@ -3,7 +3,9 @@
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
 	
-	<div class="pagecontent" ng-controller="SettingCtrl">
+
+	<div class="pagecontent">
+
 		<div class="row">		
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
@@ -22,7 +24,9 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
+
+					<div class="noback bg-blue">						
+
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -31,7 +35,9 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -43,7 +49,9 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
+
+					<div class="noback bg-slategray lt">						
+
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -52,7 +60,9 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+
 									<span class="text-lg">Doors</span>
 								</div>
 							</div>
@@ -64,7 +74,9 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
+
+					<div class="noback bg-lightred">						
+
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -73,7 +85,9 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
+
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -107,7 +121,9 @@
 				</section>
 			</div>
 			
-			<div class="col-sm-12 col-md-8" ng-controller="SettingCtrl"> 
+
+			<div class="col-sm-12 col-md-8">
+
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0"> 
 						<uib-tabset class="tabs-dark"> 
@@ -152,21 +168,25 @@
 									<div class="form-group legend">
 										<h4><strong>Update</strong> Profile</h4>
 									</div>
-									<form name="form1" role="form">
+
+									<form name="form1" role="form" ng-submit="updateLoggedInUserProfile()">
+
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">New Email</label>
-														<input type="email" name="" id="" class="form-control" value="">
+
+														<input type="email" name="" id="" ng-model="profileSettings.manageAccount.new_email" class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Email</label>
-														<input type="email" name="" id="" class="form-control" value="">
+														<input type="email" name="" id="" class="form-control" ng-model="profileSettings.manageAccount.confirm_email" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Current password</label>
-														<input type="password" name="" id="" class="form-control" value="">
+														<input type="password" name="" id="" class="form-control" ng-model="profileSettings.manageAccount.current_password" value="">
+
 													</div>
 												</div>
 											</div>
@@ -187,7 +207,9 @@
 									<div class="form-group legend">
 										<h4><strong>Security</strong> Questions</h4>
 									</div>
-									<form name="form1" role="form">
+
+									<form name="form1" role="form" ng-submit="changeSecurityQuestion()">
+
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
@@ -210,6 +232,7 @@
 															<option value="13" label="What is your father's middle name?">What is your father's middle name?</option>
 															<option value="14" label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
 															<option value="15" label="What was your high school mascot?">What was your high school mascot?</option>
+
 														</select>
 													</div>
 													<div class="form-group overflow">
@@ -219,6 +242,7 @@
 													<div class="form-group overflow">
 														<label for="">Current password</label>
 														<input type="password" name="" id="" class="form-control" value="">
+
 													</div>
 												</div>
 											</div>

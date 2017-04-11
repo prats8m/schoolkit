@@ -194,13 +194,13 @@
 																	<td>{{accesscode.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="accesscode.status == 1">Active</option>
+																			<option value="" ng-selected="accesscode.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential({{accesscode.Credential_Id}}, 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential(accesscode.Credential_Id, 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -260,13 +260,13 @@
 																	<td><div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div></td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{phone_code.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{phone_code.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="phone_code.status == 1">Active</option>
+																			<option value="" ng-selected="phone_code.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential({{phone_code.Credential_Id}}, 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential(phone_code.Credential_Id, 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -323,13 +323,13 @@
 																	<td>{{rfid_code.Door_Name}} </td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{rfid_code.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{rfid_code.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="rfid_code.status == 1">Active</option>
+																			<option value="" ng-selected="rfid_code.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential({{rfid_code.Credential_Id}}, 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential(rfid_code.Credential_Id, 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -381,13 +381,13 @@
 																	<td>{{nfccode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{nfccode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{nfccode.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="nfccode.status == 1">Active</option>
+																			<option value="" ng-selected="nfccode.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential({{nfccode.Credential_Id}}, 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential(nfccode.Credential_Id, 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>
@@ -445,13 +445,13 @@
 																	<td>{{blecode.Door_Name}}</td>
 																	<td>
 																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{blecode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{blecode.status == 0}}">Inactive</option>
+																			<option value="" ng-selected="blecode.status == 1">Active</option>
+																			<option value="" ng-selected="blecode.status == 0">Inactive</option>
 																		</select>
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential({{blecode.Credential_Id}}, 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		<a href="" ng-click="removeCredential(blecode.Credential_Id, 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																	</td>
 																</tr>
 															</tbody>

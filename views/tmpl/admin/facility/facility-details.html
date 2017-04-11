@@ -300,7 +300,7 @@
 														</div>
 													</md-card>
 												</md-content>
-												<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+												<button ng-if="devices && devices.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
 											</div>
 										</div>
 									</div>
@@ -686,7 +686,7 @@
 														</div>
 													</md-card>
 												</md-content>
-												<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore1()" ng-style="lmbtn1">Load more</button>
+												<button ng-if="users && users.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore1()" ng-style="lmbtn1">Load more</button>
 											</div>
 										</div>
 									</div>
