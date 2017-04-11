@@ -52,6 +52,11 @@ app.constant("appConstants", {
     usergrouplistdoorschedule:'usergroup/list-door-schedule',
     usergrouplist:'usergroup/list',
     usergroupedit:'usergroup/edit',
+    listsecretquestions:'list-secret-ques',
+    updatesecretquestions:'update-secret-ques',
+
+
+
 
     //...........................................................................
 
