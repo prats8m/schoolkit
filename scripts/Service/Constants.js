@@ -40,13 +40,11 @@ app.constant("appConstants", {
     dooradd:'door/add',
     doorview:'door/view',
     dooredit:'door/edit',
-
     scheduleadd:'schedule/add',
     scheduleDelete:'schedule/delete',
     scheduleList:'schedule/list',
     listSecretQuestions:'list-secret-ques',
     forgetPassword:'user/forget-password',
-
     userpicupload:'user/pic-upload',
     useradd:'user/add',
     useredit:'user/edit',
@@ -71,6 +69,7 @@ app.constant("appConstants", {
     credentiallist:'credential/list',
     userdelete:'user/delete',
     userdeletecredential:'user/delete-credential',
+    userlist:'user/list',
 
 
 
@@ -323,16 +322,30 @@ app.constant("appConstants", {
     nomoredataavailable:'No more data available',
     _titleviewUser:'View User',
     _titleEditUser:'Edit User',
+    adduser:'Add User',
+
     nousergroupassigned:'No UserGroup Assigned',
     confirmationusergroupdeletemessage:'Are you sure you want to Delete This User Group ?',
     _deleteuserconfirmationmessage:'Would you like to delete User ?',
     _canceluserdeletionmessage:'You decided to keep User',
+    titleUsersUI:'Users',
+    rfidaddedsuccessfully:'RFID Added Successfully',
+    rfidupdatedsuccessfully:'RFID Updated Successfully',
+    phonecodeupdatedsuccessfully:'Phone Code Updated Successfully',
+    phonecodeaddedsuccessfully:'Phone Code Added Successfully',
+    blecodeupdatedsuccessfully:'BLE Code Updated Successfully',
+    blecodeaddedsuccessfully:'BLE Code Added Successfully',
+    nfccodeaddedsuccessfully:'NFC Code Added Successfully',
+    nfccodeupdatedsuccessfully:'NFC Code Updated Successfully',
+    accesscodeupdatedsuccessfully:'Access Code Updated Successfully',
+    accesscodeaddedsuccessfully:'Access Code Added Successfully',
 
     //............................................................................
 
     //...............Profile Settings................................................
 
     titileProfileSettings:'Profile Setting',
+    _successemailIDchangesconfirmationmessage:'your email ID has been changed successfully, you will get a varification email shortly with email varificationon link on your new registered email id. Please click on the link to login into the Facility Web Application ',
 
     //...............................................................................
 

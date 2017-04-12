@@ -44,7 +44,8 @@ app
                 if(succResponse.status){
                     $scope.profileSettings.manageAccount={};
                     toaster.pop(appConstants.success,succResponse.msg.replace(/_/g,' '));
-                    //utilitySvc.logoutfacilityWeb()
+                    alert(appConstants._successemailIDchangesconfirmationmessage);
+                    utilitySvc.logoutfacilityWeb()
                 }
             });
         };

@@ -77,7 +77,7 @@ app
 	$scope.getDoorGroupList();
 	
 	$scope.getDoorsList = function(){
-        doorsSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1&facility_id='+$cookies.get("facilityId"),appConstants.getMethod,{},{},function (succResponse) {
+        doorsSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.doorList = succResponse.data.data;
             }

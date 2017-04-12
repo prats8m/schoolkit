@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .factory('utilitySvc',['$http','baseURL','$cookies','toaster','$rootScope','$location','appConstants',function ($http,baseURL,$cookies,toaster,$rootScope,$location,appConstants) {
+    .factory('utilitySvc',['$http','baseURL','$cookies','toaster','$rootScope','$location','appConstants','$modalStack',function ($http,baseURL,$cookies,toaster,$rootScope,$location,appConstants,$modalStack) {
 
         var factoryResp=this;
 
@@ -38,8 +38,8 @@ app
                             $rootScope.logoutSessionExpiredMassageCount++;
                             if($rootScope.logoutSessionExpiredMassageCount==1){
                                 toaster.pop(appConstants.error,appConstants.sessionExp);
-                                $cookies.remove(appConstants.sessionTokenCookieID);
-                                $location.path('/core/login');
+                                $modalStack.dismissAll('LoggedOut'); // close all opened modals................
+                                factoryResp.logoutfacilityWeb();
                             }
                         }
                         else {

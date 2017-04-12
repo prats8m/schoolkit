@@ -11,10 +11,10 @@ app
   .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, appConstants,userSvc) {
 
      $scope.page = {
-      title: 'Users',
-      subtitle: ''
+      title: appConstants.titleUsersUI,
+      subtitle: appConstants.empty
     };
-	$scope.facility = "";
+	$scope.facility = appConstants.empty;
 	$rootScope.facilityId = $cookies.get("facilityId");
 
 	$timeout(function () {
@@ -25,10 +25,9 @@ app
         }
     },500);
 
-
     $scope.cleanAccordionFormObject=function (UI,objectType) {
 		switch (UI){
-			case 'Add User':
+			case appConstants.adduser:
 				switch (objectType){
 					case 'accessCode':
 						$scope.accesscode={};
@@ -52,214 +51,120 @@ app
 			default:
 				break;
 		}
-    }
+    };
 
-	$scope.result = '';
+	$scope.result = appConstants.empty;
     $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete User?')
-		.content('')
-		.ok('Delete')
-		.cancel('Cancel')
+		.title(appConstants._deleteuserconfirmationmessage)
+		.content(appConstants.empty)
+		.ok(appConstants.delete)
+		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			
-			
-			$http(
-			{
-				method: 'DELETE', 
-				url: baseURL + 'user/delete?user_id='+id,
-				dataType : 'JSON', 
-				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
-				}
-			})
-			.success(function(response){
-				if(response.status == true){
-					$scope.result = 'Your User has been deleted successfully.';
-					$scope.statusclass = 'alert alert-danger alert-dismissable';
-					toaster.pop('success',$scope.result);
-					var users = $scope.users;
-					var tempUser = [];
-					for(var i=0;i<users.length;i++){
-						if(id != users[i].user_id){
-							tempUser.push(users[i]);
-						}
-					}
-					$scope.users = tempUser;
-				}else{
-                    toaster.pop('error',response.msg.replace(/_/g,' '));
-                    if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
+            userSvc.deleteUser(appConstants.userdelete+'?user_id='+id,appConstants.deleteMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.result = appConstants._successfullyuserdeletedmessage;
+                    $scope.statusclass = appConstants.dangerstatusClass;
+                    toaster.pop(appConstants.success,$scope.result);
+                    var users = $scope.users;
+                    var tempUser = [];
+                    for(var i=0;i<users.length;i++){
+                        if(id != users[i].user_id){
+                            tempUser.push(users[i]);
                         }
-					}
-				}
-			}).error(function(){
-
-			});
-			
-			
+                    }
+                    $scope.users = tempUser;
+                }
+            });
 		}, function() {
-			$scope.result = 'You decided to keep User.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			$scope.result = appConstants._canceluserdeletionmessage;
+			$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
+	$scope.layout = appConstants.gridLayout;
+	$scope.class = appConstants.gridviewClass;
 	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
+		if ($scope.class === appConstants.gridviewClass)
+		$scope.class = appConstants.listviewClass;
+		$scope.layout = appConstants.listLayout;
 	};
 	
 	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
+		if ($scope.class === appConstants.listviewClass)
+		$scope.class = appConstants.gridviewClass;
+		$scope.layout = appConstants.gridLayout;
 	};
 	
 	
 	$scope.pageNo = 1;
-	$scope.searchText = '';
+	$scope.searchText = appConstants.empty;
 	$scope.users = [];
 	$scope.usersInit = function(){
-		
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
+        userSvc.usersInit(appConstants.userlist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.users =  arrayPushService.arrayPush(succResponse.data.data, $scope.users);
+                $scope.pageNo = $scope.pageNo + 1 ;
+            }
+            else {
+                if(succResponse.data == null){
+                    $(".f-wm:contains(Load more)").text(appConstants.nomoredataavailable).css( "opacity" , 0.7);
+                }
 			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.users =  arrayPushService.arrayPush(response.data.data, $scope.users);
-				$scope.pageNo = $scope.pageNo + 1 ;
-			}else{
-				if(response.data == null){
-					$(".f-wm:contains(Load more)").text("No more data available").css( "opacity" , 0.7);
-				}
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+        });
+	};
 	$scope.usersInit();
 	
 	$scope.searchFunction = function(e){
 		if(e)
 		if(e.keyCode!=13){return false;}
 		if(!$scope.searchText){
-			$scope.searchText = '';
+			$scope.searchText = appConstants.empty;
 		}
 		$scope.pageNo = 1;
 		$scope.users =[];
-		
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'user/list?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.users =  response.data.data;
-				$scope.pageNo = $scope.pageNo + 1 ;
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});	
-	}
+        userSvc.searchFunction(appConstants.userlist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.users =  succResponse.data.data;
+                $scope.pageNo = $scope.pageNo + 1 ;
+            }
+        });
+	};
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
-    }
+    };
 	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
+	$scope.imagePath = baseURL+appConstants.imagePath;
 	$scope.facilityInit = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'facility/list',
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){	
-				$scope.facilityList = response.data.data;
-				$scope.facility = '';
-			}else{
-				
-			}
-		}).error(function(){
-
-		});
-	}
+        userSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.facilityList = succResponse.data.data;
+                $scope.facility = appConstants.empty;
+            }
+        });
+	};
 	
 	$scope.doorList = function(){
-		$http(
-		{
-			method: 'GET',
-			url: baseURL+'user/list-door-credential/'+parseInt($cookies.get("user_id")),
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			$rootScope.door_lists = response.data;
-		})
-	}
+        userSvc.doorList(appConstants.userlistdoorcredential+parseInt($cookies.get("user_id")),appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.door_lists = succResponse.data;
+            }
+        });
+	};
 
 	//unnecesarily call............
 	//$scope.doorList();
-
-
-
       $scope.HandleProfilePicAddUpdateClick=function () {
           var fileinput = document.getElementById("profilePicAddUpdate");
           fileinput.click();
-      }
+      };
 
       $scope.uploadProfilePic=function (file,user_id) {
           var fd = new FormData();
           fd.append('user_id',user_id);
           fd.append('file', file);
-
           userSvc.uploadProfilePic(appConstants.userpicupload,appConstants.postMethod,{},fd,function (succResponse) {
               if(succResponse.status){
                   toaster.pop(appConstants.success,appConstants._successImageUpload);
@@ -332,27 +237,19 @@ app
 	$scope.rfid.status = 1;
 
 	$scope.getRfidList = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'credential/list?user_id='+parseInt($cookies.get("user_id"))+'&type=rfid_code',
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-			
-		}).success(function(response){
-			$scope.rfid_code_list = response.data;
-		})
-	}
+        userSvc.getRfidList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=rfid_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.rfid_code_list = succResponse.data;
+            }
+        });
+	};
 	
 	$scope.saveRFID = function(rfid, rfid_form){
 		if(!rfid_form.validate()){
 			return false;
 		}
 		if(rfid == undefined){
-			$rootScope.rfid_error = "Please fill form.";
+			$rootScope.rfid_error = appConstants.incompleteform;
 			return false;
 		}
 		rfid.user_id = parseInt($cookies.get("user_id"));
@@ -365,92 +262,51 @@ app
 		delete rfid.rfid_facility_code;
 
         if(rfid.credential_id == null){
-            var meth = 'POST';
-            var url = baseURL + 'user/add-credential';
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
         }
         else{
             rfid.uc_id = rfid.credential_id;
             delete rfid.credential_id;
-            var meth = 'PUT';
-            var url = baseURL + 'user/edit-credential';
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
         }
-
-
-        $http(
-		{
-			method: meth,
-			url: url,
-			dataType : 'JSON', 
-			data:rfid,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			$scope.rfid_error = "";
-			if(response.status == true){
-				$timeout(function() {
-					$(".accordion-toggle")[3].click();
-				});
-				$timeout(function() {
-					$scope.getRfidList();
-				})
-
+        userSvc.saveRFID(url,meth,{},rfid,function (succResponse) {
+            $scope.rfid_error = appConstants.empty;
+        	if(succResponse.status){
+                $timeout(function() {
+                    $(".accordion-toggle")[3].click();
+                });
+                $timeout(function() {
+                    $scope.getRfidList();
+                });
                 if(!rfid.uc_id){
-                    toaster.pop('success','RFID Added Successfully');
+                    toaster.pop(appConstants.success,appConstants.rfidaddedsuccessfully);
                 }
                 else {
-                    toaster.pop('success','RFID Updated Successfully');
+                    toaster.pop(appConstants.success,appConstants.rfidupdatedsuccessfully);
                 }
                 $scope.rfid.credential_id = null;
-
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-				
-				var n = [];
-				var arr = response.error;
-				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$scope.rfid_error = n.join(", ");
-				}
-				else{
-					$scope.rfid_error = response.msg.replace(/_/g,' ');
-				}
+            }
+            else {
+                $scope.rfid_error=succResponse.msg;
 			}
-		}).error(function(){
-
-		});
-	}
+        });
+	};
 
 	$scope.phoneCode = {};
 	var x = Math.floor(Math.random()*9999999999) + 10000;
-	$scope.phoneCode.phone_code = (""+x).substring(8, length);
+	$scope.phoneCode.phone_code = (appConstants.empty+x).substring(8, length);
 	$scope.phoneCode.status = 1;
 
 
 	$scope.getPhoneList = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'credential/list?user_id='+parseInt($cookies.get("user_id"))+'&type=phone_code',
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-			
-		}).success(function(response){
-			$scope.phone_code_list = response.data;
-		})
-	}
+        userSvc.getPhoneList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=phone_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.phone_code_list = succResponse.data;
+            }
+        });
+	};
 	
 	$scope.phoneCode.status = 1;
 	$scope.submitPhoneCode = function(phoneCode, phone_form){
@@ -467,85 +323,44 @@ app
 		delete phoneCode.phone_numbers;
 
         if(phoneCode.credential_id == null){
-            var meth = 'POST';
-            var url = baseURL + 'user/add-credential';
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
         }
         else{
             phoneCode.uc_id = phoneCode.credential_id;
             delete phoneCode.credential_id;
-            var meth = 'PUT';
-            var url = baseURL + 'user/edit-credential';
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
         }
-
-		$http(
-		{
-			method: meth,
-			url: url,
-			dataType : 'JSON', 
-			data: phoneCode,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$timeout(function() {
-					$(".accordion-toggle")[2].click();
-				});
-				$timeout(function(){
-					$scope.getPhoneList();
-				})
-
+        userSvc.submitPhoneCode(url,meth,{},phoneCode,function (succResponse) {
+            if(succResponse.status){
+                $timeout(function() {
+                    $(".accordion-toggle")[2].click();
+                });
+                $timeout(function(){
+                    $scope.getPhoneList();
+                });
                 if(!phoneCode.uc_id){
-                    toaster.pop('success','Phone Code Added Successfully');
+                    toaster.pop(appConstants.success,appConstants.phonecodeaddedsuccessfully);
                 }
                 else {
-                    toaster.pop('success','Phone Code Updated Successfully');
+                    toaster.pop(appConstants.appConstants.success,appConstants.phonecodeupdatedsuccessfully);
                 }
                 $scope.phoneCode.credential_id = null;
-
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-				
-				var n = [];
-				var arr = response.error;
-				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.phone_error = n.join(", ");
-				}
-				else{
-					$rootScope.phone_error = response.msg.replace(/_/g,' ');
-				}	
-			}
-		}).error(function(){
-
-		});
-	}
+            }
+            else {
+                $rootScope.phone_error=succResponse.msg;
+            }
+        });
+	};
 
 	$scope.getBleList = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'credential/list?user_id='+parseInt($cookies.get("user_id"))+'&type=ble_code',
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-			
-		}).success(function(response){
-			$scope.ble_code_list = response.data;
-		})
-	}
-	
+        userSvc.getBleList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=ble_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.ble_code_list = succResponse.data;
+            }
+        });
+	};
 
 	$scope.ble_code = {};
 	$scope.ble_code.status = 1;
@@ -554,7 +369,7 @@ app
 			return false;
 		}
 		if(ble_code == undefined){
-			$scope.blecode_error = "Please fill form.";
+			$scope.blecode_error = appConstants.incompleteform;
 			return false;
 		}
         ble_code.user_id = parseInt($cookies.get("user_id"));
@@ -562,107 +377,64 @@ app
         ble_code.details = {};
 		ble_code.details.ble_username = ble_code.ble_name;
 		ble_code.details.ble_password = ble_code.ble_pass;
-
 		delete ble_code.ble_name;
 		delete ble_code.ble_pass;
 
         if(ble_code.credential_id == null){
-            var meth = 'POST';
-            var url = baseURL + 'user/add-credential';
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
         }
         else{
             ble_code.uc_id = ble_code.credential_id;
             delete ble_code.credential_id;
-            var meth = 'PUT';
-            var url = baseURL + 'user/edit-credential';
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
         }
-
-		$http(
-		{
-			method: meth,
-			url: url,
-			dataType : 'JSON', 
-			data: ble_code,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$timeout(function(){
-					$scope.getBleList();
-				})
-
+        userSvc.saveBLEcode(url,meth,{},ble_code,function (succResponse) {
+            if(succResponse.status){
+                $timeout(function(){
+                    $scope.getBleList();
+                });
                 if(!ble_code.uc_id){
-                    toaster.pop('success','BLE Code Added Successfully');
+                    toaster.pop(appConstants.success,appConstants.blecodeaddedsuccessfully);
                 }
                 else {
-                    toaster.pop('success','BLE Code Updated Successfully');
+                    toaster.pop(appConstants.success,appConstants.blecodeupdatedsuccessfully);
                 }
                 $scope.ble_code.credential_id = null;
-
-				
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-
-				var n = [];
-				var arr = response.error;
-				if(arr != null){
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' '); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.blecode_error = n.join(", ");
-				}
-				else{
-					$rootScope.blecode_error = response.msg.replace(/_/g,' ');
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+            }
+            else {
+                $rootScope.blecode_error=succResponse.msg;
+            }
+        });
+	};
 
 	$scope.generateAddAccessCode = function(){ 
 		// $scope.accesscode = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
-		$scope.accesscode.access_code = parseInt((""+x).substring(8, length));
-	}
+		$scope.accesscode.access_code = parseInt((appConstants.empty+x).substring(8, length));
+	};
 
 	$rootScope.generateAddPhoneCode = function(){
 		// $scope.phoneCode = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
-		$scope.phoneCode.phone_code = (""+x).substring(8, length);
-	}
+		$scope.phoneCode.phone_code = (appConstants.empty+x).substring(8, length);
+	};
 
 	$scope.generateNFCCode = function(){
 		// $scope.savenfc = {};
 		var x = Math.floor(Math.random()*9999999999) + 10000;
-		$scope.savenfc.nfc_code = (""+x).substring(8, length);
-	}
+		$scope.savenfc.nfc_code = (appConstants.empty+x).substring(8, length);
+	};
 
 	//NFC code edit
 	$scope.getNfcCodeList = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'credential/list?user_id='+parseInt($cookies.get("user_id"))+'&type=nfc_code',
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-			
-		}).success(function(response){
-			$scope.nfc_code_list = response.data;
-		})
-	}
-
+        userSvc.getNfcCodeList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=nfc_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.nfc_code_list = succResponse.data;
+            }
+        });
+	};
 
 	$scope.savenfc = {};
 	$scope.savenfc.status = 1;
@@ -678,92 +450,46 @@ app
 		// savenfc.details.nfc_facility_id = JSON.stringify(parseInt($cookies.get("facilityId")));
 		delete savenfc.nfc_code;
 		delete savenfc.nfc_facility_code;
-
         if(savenfc.credential_id == null){
-            var meth = 'POST';
-            var url = baseURL + 'user/add-credential';
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
         }
         else{
             savenfc.uc_id = savenfc.credential_id;
             delete savenfc.credential_id;
-            var meth = 'PUT';
-            var url = baseURL + 'user/edit-credential';
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
         }
-
-		$http(
-		{
-			method: meth,
-			url: url,
-			dataType : 'JSON',
-			data:savenfc,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-			
-		}).success(function(response){
-			if(response.status == true){
-				$timeout(function() {
-					$(".accordion-toggle")[4].click();
-				});
-				$timeout(function() {
-					$scope.getNfcCodeList();
-				})
-
+        userSvc.saveNFCcode(url,meth,{},savenfc,function (succResponse) {
+            if(succResponse.status){
+                $timeout(function() {
+                    $(".accordion-toggle")[4].click();
+                });
+                $timeout(function() {
+                    $scope.getNfcCodeList();
+                });
                 if(!savenfc.uc_id){
-                    toaster.pop('success','NFC Code Added Successfully');
+                    toaster.pop(appConstants.success,appConstants.nfccodeaddedsuccessfully);
                 }
                 else {
-                    toaster.pop('success','NFC Code Updated Successfully');
+                    toaster.pop(appConstants.success,appConstants.nfccodeupdatedsuccessfully);
                 }
                 $scope.savenfc.credential_id = null;
-
-			}
-			else{
-				var arr = response.error;
-				if(response.error != "" && response.error != null){
-					var n = [];
-					$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-					$rootScope.NFCCodeMessage = n.join(", ");
-				}
-				else{
-					if(response.msg == 'Invalid_Token'){
-                        $rootScope.logoutSessionExpiredMassageCount++;
-                        if($rootScope.logoutSessionExpiredMassageCount==1){
-                            toaster.pop('error','Session Expired');
-                            $cookies.remove("token");
-                            $location.path('/core/login');
-                        }
-					}
-					
-					//$rootScope.masters[0] = response.msg.replace(/_/g, " ");
-				}
-			}
-			
-			
-			//$scope.submitEditPhoneCode(submitData);
-		}).error(function(){
-
-		});
-	}
+            }
+            else {
+                $rootScope.NFCCodeMessage=succResponse.msg;
+            }
+        });
+	};
 
 	//End Of NFC Code Edit
-
 	$scope.getAccessCodeList = function(){
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL + 'credential/list?user_id='+parseInt($cookies.get("user_id"))+'&type=access_code',
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-			
-		}).success(function(response){
-			$scope.access_code_list = response.data;
-		})
-	}
+        userSvc.getAccessCodeList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=access_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.access_code_list = succResponse.data;
+            }
+        });
+	};
 	//$scope.getAccessCodeList();
 
 	$scope.accesscode = {};
@@ -777,67 +503,35 @@ app
 		accesscode.details = {};
 		accesscode.details.access_code = accesscode.access_code;
 		delete accesscode.access_code;
-
         if(accesscode.credential_id == null){
-            var meth = 'POST';
-            var url = baseURL + 'user/add-credential';
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
         }
         else{
             accesscode.uc_id = accesscode.credential_id;
             delete accesscode.credential_id;
-            var meth = 'PUT';
-            var url = baseURL + 'user/edit-credential';
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
         }
-
-		$http(
-		{
-			method: meth,
-			url: url,
-			dataType : 'JSON', 
-			data: accesscode,
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			$scope.getAccessCodeList();
-			if(response.status == true){
-				// $scope.accesscode_error = response.msg;
-				// $timeout(function() {
-				// $(".accordion-toggle")[1].click();
-				// });
-				if(!accesscode.uc_id){
-                    toaster.pop('success','Access Code Added Successfully');
-				}
-				else {
-                    toaster.pop('success','Access Code Updated Successfully');
-				}
+        userSvc.saveAccessCode(url,meth,{},accesscode,function (succResponse) {
+            if(succResponse.status){
+                $timeout(function () {
+                    $scope.getAccessCodeList();
+                });
+                if(!accesscode.uc_id){
+                    toaster.pop(appConstants.success,appConstants.accesscodeaddedsuccessfully);
+                }
+                else {
+                    toaster.pop(appConstants.success,appConstants.accesscodeupdatedsuccessfully);
+                }
                 $scope.accesscode.credential_id = null;
+            }
+            else {
+                $rootScope.accesscode_error=succResponse.msg;
+            }
+        });
+	};
 
-            }else{
-				
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-
-				var n = [];
-				var arr = response.error;
-				$.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-				$rootScope.accesscode_error = n.join(", ");
-				// if (n.length == 0)
-				// $scope.accesscode_error = response.msg.replace(/_/g,' ');
-				
-			}
-		}).error(function(){
-
-		});
-	}
 	$rootScope.usergroup = {};
 	$rootScope.usergroup.usergrouparr = [];
 
@@ -847,158 +541,70 @@ app
 			if(value == true){
 				arr.push(index);
 			}
-		 })
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'user/assign-usergroup',
-			dataType : 'JSON', 
-			data: { "user_id": parseInt($cookies.get("user_id")), "user_group_id": arr , "facility_id": user_group.facility_id},
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.usergroupmsg = response.msg;
-				$timeout(function() {
-					$scope.doorList();
-				});
-				$timeout(function() {
-					$scope.getAccessCodeList();
-				});
-				$timeout(function() {
-					$(".closeg").click();
-				});
-			}else{	
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-				$rootScope.usergroupmsg = response.msg;
-
-			}
-			$timeout(function() {
-				$scope.assignedGroup();
-				user_group.usergrouparr = [];
-			}, 1000);
-			$timeout(function() {
-				$scope.unassignedGroup(user_group.facility_id);
-			}, 1000);
-		}).error(function(){
-
-		});
-
-	}
+		 });
+      userSvc.assignUserGroup(appConstants.userassignusergrouop,appConstants.postMethod,{},{ user_id: parseInt($cookies.get("user_id")), user_group_id: arr , facility_id: user_group.facility_id},function (succResponse) {
+            if(succResponse.status){
+                $scope.usergroupmsg = succResponse.msg;
+                $timeout(function() {
+                    $scope.doorList();
+                });
+                $timeout(function() {
+                    $scope.getAccessCodeList();
+                });
+                $timeout(function() {
+                    $(".closeg").click();
+                });
+            }
+            else {
+                $rootScope.usergroupmsg = succResponse.msg;
+            }
+            $timeout(function() {
+                $scope.assignedGroup();
+                user_group.usergrouparr = [];
+            }, 1000);
+            $timeout(function() {
+                $scope.unassignedGroup(user_group.facility_id);
+            }, 1000);
+        });
+	};
 
 
 	$rootScope.unassignUserToUsergroup = function(user_group_id, facility_id){
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'user/remove-usergroup',
-			dataType : 'JSON', 
-			data: { "user_id": parseInt($cookies.get("user_id")), "user_group_id": user_group_id },
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.unassignedUserGroup = "User group removed.";
-			}else{	
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-			$timeout(function() {
-				$scope.assignedGroup();
-			}, 1000);
-			$timeout(function() {
-				$scope.unassignedGroup(facility_id);
-			}, 1000);
-		}).error(function(){
+        userSvc.unassignUserToUsergroup(appConstants.removeusergroup,appConstants.postMethod,{},{ user_id: parseInt($cookies.get("user_id")), user_group_id: user_group_id },function (succResponse) {
+            if(succResponse.status){
+                $scope.unassignedUserGroup = appConstants._successUserGroupRemoved;
+            }
+            $timeout(function() {
+                $scope.assignedGroup();
+            }, 1000);
+            $timeout(function() {
+                $scope.unassignedGroup(facility_id);
+            }, 1000);
 
-		});
-	}
+        });
+	};
 
 	$scope.assignedGroup = function(){
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'user/usergroup-assigned-to-user',
-			dataType : 'JSON', 
-			data: { "user_id": parseInt($cookies.get("user_id")) },
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				if(response.data){
-                    $rootScope.assingned_usergroups = response.data;
-                    $scope.groupcount = response.data.length?response.data.length:0;
-				}
-			}else{	
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
+        userSvc.assignedGroup(appConstants.usergroupassignedtouser,appConstants.postMethod,{},{user_id: parseInt($cookies.get("user_id"))},function (succResponse) {
+            if(succResponse.status){
+                if(succResponse.data){
+                    $rootScope.assingned_usergroups = succResponse.data;
+                    $scope.groupcount = succResponse.data.length?succResponse.data.length:0;
+                }
+            }
+        });
+	};
 
 	$scope.unassignedGroup = function(facility_id){
-		$http(
-		{
-			method: 'POST', 
-			url: baseURL+'user/usergroup-not-assigned-to-user',
-			dataType : 'JSON', 
-			data: { "user_id": parseInt($cookies.get("user_id")), "facility_id":  facility_id},
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$rootScope.usergroup = {};
-				$rootScope.usergroup.facility_id = facility_id;
-				$rootScope.usergroups = response.data;
-			}else{	
-				$rootScope.usergroups = {};
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}
-			}
-		}).error(function(){
-
-		});
-	}
-
+        userSvc.unassignedGroup(appConstants.usergroupnotassignedtouser,appConstants.postMethod,{},{user_id: parseInt($cookies.get("user_id")), facility_id:  facility_id},function (succResponse) {
+            $rootScope.usergroups = {};
+            if(succResponse.status){
+                $rootScope.usergroup = {};
+                $rootScope.usergroup.facility_id = facility_id;
+                $rootScope.usergroups = succResponse.data;
+            }
+        });
+	};
 
 	$scope.editCredential = function(cred_data, credential_type){
         switch (credential_type) {
@@ -1013,40 +619,40 @@ app
                 break;
             case 'phone_code':
                 $scope.phoneCode={};
-                $scope.phoneCode.credential_id=cred_data.Credential_Id
-                $scope.phoneCode.phone_code=cred_data.Detail.phone_code
-                $scope.phoneCode.phone_numbers=cred_data.Detail.phone_numbers[0]
-                $scope.phoneCode.status=cred_data.status
+                $scope.phoneCode.credential_id=cred_data.Credential_Id;
+                $scope.phoneCode.phone_code=cred_data.Detail.phone_code;
+                $scope.phoneCode.phone_numbers=cred_data.Detail.phone_numbers[0];
+                $scope.phoneCode.status=cred_data.status;
                 var arr = [];
                 angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
                 $scope.phoneCode.door_id= arr;
                 break;
             case 'rfid_code':
                 $scope.rfid={};
-                $scope.rfid.credential_id=cred_data.Credential_Id
-                $scope.rfid.rfid_card_no=cred_data.Detail.rfid_card_no
-                $scope.rfid.rfid_facility_code=cred_data.Detail.rfid_facility_id
-                $scope.rfid.status=cred_data.status
+                $scope.rfid.credential_id=cred_data.Credential_Id;
+                $scope.rfid.rfid_card_no=cred_data.Detail.rfid_card_no;
+                $scope.rfid.rfid_facility_code=cred_data.Detail.rfid_facility_id;
+                $scope.rfid.status=cred_data.status;
                 var arr = [];
                 angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
                 $scope.rfid.door_id= arr;
                 break;
             case 'nfc_code':
                 $scope.savenfc={};
-                $scope.savenfc.credential_id=cred_data.Credential_Id
-                $scope.savenfc.nfc_code=cred_data.Detail.nfc_code
-                $scope.savenfc.nfc_facility_code=cred_data.Detail.nfc_facility_code
-                $scope.savenfc.status=cred_data.status
+                $scope.savenfc.credential_id=cred_data.Credential_Id;
+                $scope.savenfc.nfc_code=cred_data.Detail.nfc_code;
+                $scope.savenfc.nfc_facility_code=cred_data.Detail.nfc_facility_code;
+                $scope.savenfc.status=cred_data.status;
                 var arr = [];
                 angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
                 $scope.savenfc.door_id= arr;
                 break;
             case 'ble_code':
                 $scope.ble_code={};
-                $scope.ble_code.credential_id=cred_data.Credential_Id
-                $scope.ble_code.ble_name=cred_data.Detail.ble_username
-                $scope.ble_code.ble_pass=cred_data.Detail.ble_password
-                $scope.ble_code.status=cred_data.status
+                $scope.ble_code.credential_id=cred_data.Credential_Id;
+                $scope.ble_code.ble_name=cred_data.Detail.ble_username;
+                $scope.ble_code.ble_pass=cred_data.Detail.ble_password;
+                $scope.ble_code.status=cred_data.status;
                 var arr = [];
                 angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
                 $scope.ble_code.door_id= arr;
@@ -1054,69 +660,41 @@ app
             default:
 
         }
-}
+};
 
 	$scope.removeCredential = function(id, type){
-		$http(
-		{
-			method: 'DELETE', 
-			url: baseURL+'user/delete-credential?credential_id='+id+'&type='+type,			
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-
-			switch (type) {
-            case 'access_code':
-                $scope.getAccessCodeList();
-                break;
-            case 'phone_code':
-                $scope.getPhoneList();
-                break;
-            case 'rfid_code':
-            		$scope.getRfidList();
-            		break;
-            case 'nfc_code':
-                $scope.getNfcCodeList();
-                break;
-            case 'ble_code':
-                $scope.getBleList();
-                break;
-            default:
-
-        }
-			
-			// $scope.door_lists = response.data;
-		})
-	}
-
-$scope.dashboardInit = function(){ 
-	$http({
-		url: baseURL + 'user/dashboard',   
-		method: 'GET',   
-		dataType : 'JSON',   
-		headers: {    "Authorization": $cookies.get("token"),    
-									"Content-type": "application/json"   
-								}  
-		})  
-	.success(function(response) {   
-		if(response.status == true){   
-		 $rootScope.dashboardData = response.data;     
-		 console.log($rootScope.dashboardData);   }  
-		if(response.msg == 'Invalid_Token'){
-            $rootScope.logoutSessionExpiredMassageCount++;
-            if($rootScope.logoutSessionExpiredMassageCount==1){
-                toaster.pop('error','Session Expired');
-                $cookies.remove("token");
-                $location.path('/core/login');
+        userSvc.removeCredential(appConstants.userdeletecredential+'?credential_id='+id+'&type='+type,appConstants.deleteMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                switch (type) {
+                    case 'access_code':
+                        $scope.getAccessCodeList();
+                        break;
+                    case 'phone_code':
+                        $scope.getPhoneList();
+                        break;
+                    case 'rfid_code':
+                        $scope.getRfidList();
+                        break;
+                    case 'nfc_code':
+                        $scope.getNfcCodeList();
+                        break;
+                    case 'ble_code':
+                        $scope.getBleList();
+                        break;
+                    default:
+                        break;
+                }
             }
-		} 
-	})  
-	.error(function (data, status, headers, config) {     }); 
-} 
+        });
+	};
+
+$scope.dashboardInit = function(){
+    userSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+        if(succResponse.status){
+            $rootScope.dashboardData = succResponse.data;
+        }
+    });
+};
 
 if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 });
@@ -1926,7 +1504,7 @@ app
     	if(is_access_allowed == null){
     		return false;
     	}
-    	$("#"+ud_id).css(display, appConstants.block);
+    	$("#"+ud_id).css("display", appConstants.block);
     	if(schedule_id != "No Access" && schedule_id != "Full Access"){
     		is_access_allowed = 2;
     	}
@@ -1938,7 +1516,7 @@ app
                 $rootScope.user_group_success = succResponse.msg;
             }
             $timeout(function(){
-                $("#"+ud_id).css(display, appConstants.none);
+                $("#"+ud_id).css("display", appConstants.none);
             });
         });
     };

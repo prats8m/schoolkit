@@ -12,7 +12,7 @@ app
                 }
                 else {
                     succResponse.msg= succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -24,7 +24,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -36,7 +36,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -50,7 +50,7 @@ app
                 }
                 else {
                     succResponse.msg=succResponse.msg.replace(/_/g," ");
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -63,7 +63,7 @@ app
                 }
                 else {
                     succResponse.msg=succResponse.msg.replace(/_/g," ");
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -76,7 +76,7 @@ app
                 }
                 else {
                     succResponse.msg=succResponse.msg.replace(/_/g," ");
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -88,7 +88,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -101,7 +101,7 @@ app
                 }
                 else {
                     succResponse.msg=succResponse.msg.replace(/_/g," ");
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -113,7 +113,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -126,7 +126,7 @@ app
                 }
                 else {
                     succResponse.msg=succResponse.msg.replace(/_/g," ");
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -138,7 +138,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -150,7 +150,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -162,7 +162,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -176,7 +176,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

@@ -11,7 +11,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -23,7 +23,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -35,7 +35,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -47,7 +47,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

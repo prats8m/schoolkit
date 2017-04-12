@@ -11,7 +11,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -32,7 +32,7 @@ app
                     else{
                         succResponse.msg= succResponse.msg.replace(/_/g,' ');
                     }
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -54,7 +54,7 @@ app
                         succResponse.error=[];
                         succResponse.error[0]= succResponse.msg.replace(/_/g,' ');
                     }
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -66,7 +66,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -78,7 +78,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -90,7 +90,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -102,7 +102,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -114,7 +114,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -136,7 +136,7 @@ app
                         succResponse.msg = response.msg.replace(/_/g,' ');
                     }
 
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -150,7 +150,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -164,7 +164,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -177,7 +177,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -190,7 +190,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -204,7 +204,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -217,7 +217,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -230,7 +230,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -243,7 +243,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -256,7 +256,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -269,7 +269,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -282,7 +282,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -295,7 +295,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -317,7 +317,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            toaster.pop(appConstants.oops,succResponse.msg);
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -331,7 +331,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -353,7 +353,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            toaster.pop(appConstants.oops,succResponse.msg);
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -367,7 +367,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -379,7 +379,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -401,7 +401,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            toaster.pop(appConstants.oops,succResponse.msg);
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -415,7 +415,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -437,7 +437,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            toaster.pop(appConstants.oops,succResponse.msg);
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -451,7 +451,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -472,7 +472,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            toaster.pop(appConstants.oops,succResponse.msg);
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -486,7 +486,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -499,7 +499,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -512,7 +512,193 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    toaster.pop(appConstants.oops,succResponse.msg);
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.usersInit=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.doorList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.saveRFID=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                        }
+                        else {
+                            succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                            toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                        }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitPhoneCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    if(succResponse.error != appConstants.empty && succResponse.error != null){
+                        var n=[];
+                        var arr = succResponse.error;
+                        $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                        succResponse.msg = n.join(", ");
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    else {
+                        succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+
+        userSvcSvcResp.saveBLEcode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    if(succResponse.error != appConstants.empty && succResponse.error != null){
+                        var n=[];
+                        var arr = succResponse.error;
+                        $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                        succResponse.msg = n.join(", ");
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    else {
+                        succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.saveNFCcode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    if(succResponse.error != appConstants.empty && succResponse.error != null){
+                        var n=[];
+                        var arr = succResponse.error;
+                        $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                        succResponse.msg = n.join(", ");
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    else {
+                        succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.saveAccessCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    if(succResponse.error != appConstants.empty && succResponse.error != null){
+                        var n=[];
+                        var arr = succResponse.error;
+                        $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                        succResponse.msg = n.join(", ");
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    else {
+                        succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                        toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    }
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.assignUserGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.unassignUserToUsergroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.assignedGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.unassignedGroup=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.oops,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

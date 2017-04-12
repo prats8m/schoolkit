@@ -26,11 +26,11 @@ app
         $scope.dashboardInit();
 
         $scope.showcamadd = function(){
-            $("#camform").css(display, appConstants.inlineblock);
+            $("#camform").css("display", appConstants.inlineblock);
 
         };
         $scope.hidecamadd = function(){
-            $("#camform").css(display, appConstants.none);
+            $("#camform").css("display", appConstants.none);
 
         };
 
