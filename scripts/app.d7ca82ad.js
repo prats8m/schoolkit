@@ -298,7 +298,7 @@ var app = angular
 			//admin user user-groups-members
 				.state('app.admin.user.user-groups-members', {
 				  url: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount',
-				  controller: 'UserGroupsCtrl',
+				  controller: 'UserGroupsDetailCtrl',  //'UserGroupsCtrl',
 				  templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
 				})	
 			
@@ -967,7 +967,7 @@ app
 	$scope.setCookies = function(){
 		$scope.user.username = $cookies.get('username');
 		$scope.user.password = $cookies.get('password');
-	}
+	};
 	$scope.setCookies();
 	
 	$scope.loginFunction = function(){

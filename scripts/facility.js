@@ -20,6 +20,7 @@ app
 		$rootScope.facility = {};
 		$scope.facilities = [];
 		$rootScope.facility.status = 1;
+		$scope.usTimeZonesForFacility=appConstants.availableTimeZoneOptions;
 		$scope.addFacility = function () {
 			$scope.facility={};
 			$scope.addFacilityModal = $uibModal.open({
@@ -54,16 +55,25 @@ app
 		};
 
 		$scope.result = appConstants.empty;
-		$scope.showConfirm = function (ev) {
+		$scope.showConfirm = function (ev,facilityId) {
 			var confirm = $mdDialog.confirm()
 				.title(appConstants._deleteFacilityConfirm)
 				.content(appConstants.empty)
 				.ok(appConstants.delete)
-				.cancel(appConstants.Cancel)
+				.cancel(appConstants.cancel)
 				.targetEvent(ev);
 			$mdDialog.show(confirm).then(function () {
-				$scope.result = appConstants._successDeleteFacility;
-				$scope.statusclass = appConstants.dangerstatusClass;
+                facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
+                    if(succResponse.status){
+                        $scope.result = appConstants._successDeleteFacility;
+                        $scope.statusclass = appConstants.dangerstatusClass;
+                        $scope.facilityInit();
+                    }
+                    else {
+                        $scope.result = succResponse.msg;
+                        $scope.statusclass = appConstants.dangerstatusClass;
+                    }
+                });
 			}, function () {
 				$scope.result = appConstants._cancelFacilityDelete;
 				$scope.statusclass = appConstants.successstatusClass;
@@ -315,6 +325,31 @@ app
     };
 	$scope.imagePath = baseURL+appConstants.imagePath;
 
+      $scope.showConfirm = function (ev,facilityId) {
+          var confirm = $mdDialog.confirm()
+              .title(appConstants._deleteFacilityConfirm)
+              .content(appConstants.empty)
+              .ok(appConstants.delete)
+              .cancel(appConstants.cancel)
+              .targetEvent(ev);
+          $mdDialog.show(confirm).then(function () {
+              facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
+                  if(succResponse.status){
+                      $scope.result = appConstants._successDeleteFacility;
+                      $scope.statusclass = appConstants.dangerstatusClass;
+                      $location.path('/app/admin/facility/facility');
+                  }
+                  else {
+                      $scope.result = succResponse.msg;
+                      $scope.statusclass = appConstants.dangerstatusClass;
+                  }
+              });
+          }, function () {
+              $scope.result = appConstants._cancelFacilityDelete;
+              $scope.statusclass = appConstants.successstatusClass;
+          });
+      };
+
       $scope.getFacilityDetailsUIData=function () {
           facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
               if(succResponse.status){
@@ -348,7 +383,7 @@ app
   .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc,dashboardSvc) {
 
     $scope.page = {
-		title: appConstants.facilityDetailsTitle,
+		title:$location.path().indexOf('view-facility')>=0?appConstants.facilityDetailsTitle:appConstants.facilityedittitle,
 		subtitle: appConstants.facilityDetailsSubTitle
     };
 	
@@ -379,8 +414,6 @@ app
 		facility.timeZone = facility.facility_timezone;
 		facility.zip_code = appConstants.empty+facility.facility_zipcode;
 		facility.status = facility.facility_status == appConstants.active ? 1 : 0;
-
-
         facilitiesSvc.edit_facility(appConstants.facilityedit,appConstants.putMethod,{},facility,function (succResponse) {
             if(succResponse.status){
                 toaster.pop(appConstants.success,appConstants._editFacilitySuccess);
@@ -389,6 +422,32 @@ app
                 $scope.facility_edit_error = succResponse.msg;
 			}
         });
-	};	
-	});
+	};
+
+      $scope.showConfirm = function (ev,facilityId) {
+          var confirm = $mdDialog.confirm()
+              .title(appConstants._deleteFacilityConfirm)
+              .content(appConstants.empty)
+              .ok(appConstants.delete)
+              .cancel(appConstants.cancel)
+              .targetEvent(ev);
+          $mdDialog.show(confirm).then(function () {
+              facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
+                  if(succResponse.status){
+                      $scope.result = appConstants._successDeleteFacility;
+                      $scope.statusclass = appConstants.dangerstatusClass;
+                      $location.path('/app/admin/facility/facility');
+                  }
+                  else {
+                      $scope.result = succResponse.msg;
+                      $scope.statusclass = appConstants.dangerstatusClass;
+                  }
+              });
+          }, function () {
+              $scope.result = appConstants._cancelFacilityDelete;
+              $scope.statusclass = appConstants.successstatusClass;
+          });
+      };
+
+  });
 

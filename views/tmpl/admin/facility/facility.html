@@ -108,17 +108,8 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Time Zone</label>
-														<select class="form-control" ng-model="facility.timezone" required>
+														<select class="form-control" ng-model="facility.timezone" ng-options="tz.name as tz.name for tz in usTimeZonesForFacility track by tz.id" required>
 															<option value="">Select</option>
-															<option>USA (Alaska)</option>
-															<option>USA (Samoa)</option>
-															<option>USA (Pacific)</option>
-															<option>USA (Eastern)</option>
-															<option>USA (Hawaii-Aleutian)</option>
-															<option>USA (Mountain)</option>
-															<option>USA (Atlantic)</option>
-															<option>USA (Central)</option>
-															<option>USA (Chamorro)</option>
 														</select>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
@@ -232,7 +223,7 @@
 												<a class="btn btn-orange btn-border btn-rounded btnMargin" ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded btnMargin" ui-sref="app.admin.facility.edit-facility({facility_id:facility.facility_id})">Edit</a>
 												<!-- <a class="btn btn-danger btn-border btn-rounded btnMargin" disabled ng-click="showConfirm($event)">Delete</a> -->
-												<a class="btn btn-danger btn-border btn-rounded btnMargin" disabled >Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded btnMargin" ng-click="showConfirm($event,facility.facility_id)" >Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

@@ -81,23 +81,22 @@ app
 		if(!device_form.validate()){
 			return false;
 		}
-       // toaster.clear();  //clears all toast messages
-		device.technician_id = parseInt(device.technician_id);
-		//device.serial_no = parseInt(device.serial_no);
-		//device.facility_id = parseInt($rootScope.facilityId);
-        devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
-            if(succResponse.status){
-                toaster.pop(appConstants.success,succResponse.msg);
-                $scope.pageNo = 1;
-                $rootScope.dashboardData.primary_device++;
-                $scope.deviceInit();
-                $timeout(function(){$("#close").click();})
-            }
-            else {
-                $rootScope.masters = [];
-                $rootScope.masters = succResponse.error ;
-            }
-		});
+            device.technician_id = parseInt(device.technician_id);
+            //device.serial_no = parseInt(device.serial_no);
+            //device.facility_id = parseInt($rootScope.facilityId);
+            devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
+                if(succResponse.status){
+                    toaster.pop(appConstants.success,succResponse.msg);
+                    $scope.pageNo = 1;
+                    $rootScope.dashboardData.primary_device++;
+                    $scope.deviceInit();
+                    $timeout(function(){$("#close").click();})
+                }
+                else {
+                    $rootScope.masters = [];
+                    $rootScope.masters = succResponse.error ;
+                }
+            });
 	};
 	
 	$scope.pageNo = 1;
@@ -546,7 +545,6 @@ app
 		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-
             devicesSvc.deleteDevice(appConstants.devicedelete+'?device_id='+parseInt(id),appConstants.deleteMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $scope.result = appConstants._successdeletedependentDevice;

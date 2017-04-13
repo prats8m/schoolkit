@@ -70,6 +70,7 @@ app.constant("appConstants", {
     userdelete:'user/delete',
     userdeletecredential:'user/delete-credential',
     userlist:'user/list',
+    facilitydelete:'facility/delete',
 
 
 
@@ -148,6 +149,7 @@ app.constant("appConstants", {
     facilityTitle:'Facility',
     facilitySubTitle:'',
     facilityDetailsTitle:'Facility Details',
+    facilityedittitle:'Facility Edit',
     facilityDetailsSubTitle:'',
     _successfacilityAdd:'Facility added successfully.',
     _deleteFacilityConfirm:'Would you like to delete Facility ?',

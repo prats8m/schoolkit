@@ -561,10 +561,10 @@ app
             $timeout(function() {
                 $scope.assignedGroup();
                 user_group.usergrouparr = [];
-            }, 1000);
+            }, 500);
             $timeout(function() {
                 $scope.unassignedGroup(user_group.facility_id);
-            }, 1000);
+            }, 500);
         });
 	};
 
@@ -576,10 +576,10 @@ app
             }
             $timeout(function() {
                 $scope.assignedGroup();
-            }, 1000);
+            }, 500);
             $timeout(function() {
                 $scope.unassignedGroup(facility_id);
-            }, 1000);
+            }, 500);
 
         });
 	};
@@ -1592,7 +1592,7 @@ app
     };
 
 	$scope.userGroupDelete = function(id){
-        userSvc.userGroupDelete(appConstants.usergroupdelete+'?usergroup_id='+id,appConstants.getMethod,{},{},function (succResponse) {
+        userSvc.userGroupDelete(appConstants.usergroupdelete+'?usergroup_id='+id,appConstants.deleteMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.result = appConstants._successDeleteUserGroup;
                 $scope.statusclass = appConstants.dangerstatusClass;
@@ -1722,17 +1722,11 @@ app
 		};
 
     $scope.userGroupDetailDelete = function(id){
-        userSvc.userGroupDetailDelete(appConstants.usergroupdelete+'?usergroup_id='+id,appConstants.getMethod,{},{},function (succResponse) {
+        userSvc.userGroupDetailDelete(appConstants.usergroupdelete+'?usergroup_id='+id,appConstants.deleteMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.result = appConstants._successDeleteUserGroup;
                 $scope.statusclass = appConstants.dangerstatusClass;
-                var ug = $scope.usergroups;
-                var temp = [];
-                for(var i=0; i < ug.length; i++){
-                    if(ug[i].usergroup_id != id)
-                        temp.push(ug[i]);
-                }
-                $scope.usergroups = temp;
+                $location.path('/app/admin/user/user-groups');
             }
         });
     };
