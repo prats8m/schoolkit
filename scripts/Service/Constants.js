@@ -71,6 +71,7 @@ app.constant("appConstants", {
     userdeletecredential:'user/delete-credential',
     userlist:'user/list',
     facilitydelete:'facility/delete',
+    userchangepassword:'user/change-password',
 
 
 

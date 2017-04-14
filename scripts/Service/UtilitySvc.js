@@ -13,8 +13,8 @@ app
         };
 
         factoryResp.callHttpService=function (url,method,params,data,cb) {
-            toaster.clear();  //clears all toast messages
-            $timeout(function () {
+           // toaster.clear();  //clears all toast messages
+            //$timeout(function () {
                 $http({
                     url: baseURL + url,
                     method: method,
@@ -65,12 +65,15 @@ app
                             error:null
                         });
                     });
-            },500);
+           // },500);
         };
 
         factoryResp.logoutfacilityWeb = function(){
-            $cookies.remove(appConstants.sessionTokenCookieID);
-            $location.path('/core/login');
+            $timeout(function () {
+                toaster.clear();  //clears all toast messages
+                $cookies.remove(appConstants.sessionTokenCookieID);
+                $location.path('/core/login');
+            },1500);
         };
         return factoryResp;
     }]);

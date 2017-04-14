@@ -7,6 +7,11 @@ app
         //..Model......................................
 
         $scope.profileSettings={
+            changepassword:{
+                current_password:null,
+                new_password:null,
+                confirm_password: null
+            },
           manageAccount:{
               new_email:null,
               confirm_email:null,
@@ -45,7 +50,7 @@ app
                     $scope.profileSettings.manageAccount={};
                     toaster.pop(appConstants.success,succResponse.msg.replace(/_/g,' '));
                     alert(appConstants._successemailIDchangesconfirmationmessage);
-                    utilitySvc.logoutfacilityWeb()
+                    utilitySvc.logoutfacilityWeb();
                 }
             });
         };
@@ -59,6 +64,15 @@ app
             });
         };
 
+        $scope.changeloggedInuserPassword=function () {
+            profileSettingsSvc.changeloggedInuserPassword(appConstants.userchangepassword,appConstants.postMethod,{},$scope.profileSettings.changepassword,function (succResponse) {
+                if(succResponse.status){
+                    $scope.profileSettings.changepassword={};
+                    toaster.pop(appConstants.success,succResponse.msg.replace(/_/g,' '));
+                    utilitySvc.logoutfacilityWeb();
+                }
+            });
+        };
         //.....Init
         $scope.dashboardInit();
     });

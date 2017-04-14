@@ -211,8 +211,10 @@ app
             $scope.accesscode.access_code = parseInt((appConstants.empty+x).substring(8, length));
             $scope.accesscode.access_code_status = appConstants.active;
         	if(succResponse.status){
-                var file = $scope.myFile;
-                $scope.uploadProfilePic(file,succResponse.data.user_id);
+        	    if($scope.myFile){
+                    var file = $scope.myFile;
+                    $scope.uploadProfilePic(file,succResponse.data.user_id);
+                }
                 $cookies.put("user_id", succResponse.data.user_id);
                 $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
                 $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
@@ -1055,8 +1057,10 @@ app
         userSvc.submitEditUser(appConstants.useredit,appConstants.putMethod,{},submitData,function (succResponse) {
             $scope.editUserMessage = appConstants.empty;
             if(succResponse.status){
-                var file = $scope.myFile;
-                $scope.uploadProfilePic(file,$stateParams.user_id);
+                if($scope.myFile){
+                    var file = $scope.myFile;
+                    $scope.uploadProfilePic(file,$stateParams.user_id);
+                }
                 $scope.profileInit();
                 toaster.pop(appConstants.success,appConstants.submitSuccessfully);
             }
