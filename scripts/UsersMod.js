@@ -167,7 +167,7 @@ app
           fd.append('file', file);
           userSvc.uploadProfilePic(appConstants.userpicupload,appConstants.postMethod,{},fd,function (succResponse) {
               if(succResponse.status){
-                  toaster.pop(appConstants.success,appConstants._successImageUpload);
+                  //toaster.pop(appConstants.success,appConstants._successImageUpload);
               }
           });
       };
@@ -1009,8 +1009,9 @@ app
         fd.append('file', file);
         userSvc.uploadProfilePic(appConstants.userpicupload,appConstants.postMethod,{},fd,function (succResponse) {
             if(succResponse.status){
-				toaster.pop(appConstants.success,appConstants._successImageUpload);
+				//toaster.pop(appConstants.success,appConstants._successImageUpload);
             }
+            $scope.profileInit();
         });
 
         //......... Working code for Profile Pic upload.................................................................
@@ -1061,7 +1062,7 @@ app
                     var file = $scope.myFile;
                     $scope.uploadProfilePic(file,$stateParams.user_id);
                 }
-                $scope.profileInit();
+                //$scope.profileInit();
                 toaster.pop(appConstants.success,appConstants.submitSuccessfully);
             }
             else {
