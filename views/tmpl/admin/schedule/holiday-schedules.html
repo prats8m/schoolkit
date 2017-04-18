@@ -1,10 +1,10 @@
 <div class="page page-users">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
-	
+
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,78 +12,78 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<p>{{page.subtitle}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
+						<div class="noback bg-blue cardheight">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
+						<div class="noback bg-slategray lt cardheight">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Doors</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
+						<div class="noback bg-lightred cardheight">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
@@ -91,86 +91,66 @@
 						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
 						<ul class="controls">
 							<li class="addpopup">
-								<div ng-controller="ModalDemoCtrl">
-									<script type="text/ng-template" id="myModalContent.html">
+								<div ng-controller="addHolidaySchedularCTRL">
+									<script type="text/ng-template" id="myholidaySchedularModalContent.html">
 										<div class="modal-header"><h4 class="modal-title custom-font">Create Holiday Schedule</h4></div>
 										<div class="hometabs">
 											<div class="row">
-												<div class="col-md-9 pr-0" style="width: 920px;" ng-controller="CalendarCtrl">
-													<div class="tbox tbox-sm">
-														<div class="tcol w-md bg-tr-white lt b-r">
-															<div class="p-15 bg-white mt-10">
-																<button type="button" class="btn btn-greensea btn-xs mb-10 pull-right b-0" ng-click="addEvent()" uib-tooltip="Doule-click to calendar day to add event" tooltip-placement="bottom"><i class="fa fa-plus"></i></button>
-																<h4 class="custom-font text-default m-0">Schedule Groups</h4>
-															</div>
-															<div class="p-15" style="height: 440px; overflow-x: hidden; overflow-y: auto;">
-																<div ng-repeat="e in events" class="pl-10 mb-10 event-control {{e.className[0]}} b-2x b-greensea">
-																	<input ng-model="e.title" placeholder="Holiday/Schedule Name" class="form-control input-sm input-unstyled">
-																	<a class="pull-right text-muted event-remove" ng-click="remove($index)"><i class="fa fa-trash-o"></i></a>
-																	<div class="text-xs text-muted">{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}</div>
-																</div>
-															</div>
-														</div>
-														<div class="tcol" style="width: 660px;">
-															<div class="p-15">
-																<div class="fc-overlay">
-																	<div class="panel b-solid">
-																		<h4 class="text-light mt-0">{{event.title}}</h4>
-																		<div class="b-b b-solid mb-10"></div>
-																		<div class="text-muted"><i class="icon-calendar mr-5"></i> {{event.start | date:'medium'}}</div>
-																		<div class="text-muted" ng-show='event.end'><i class="icon-clock mr-5"></i> {{event.end | date:'medium'}}</div>
-																		<div class="text-muted" ng-show='event.location'><i class="icon-pointer mr-5"></i> {{event.location}}</div>
-																		<div class="mt-10">{{event.info}}</div>
-																	</div>
-																</div>
-																<div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="col-md-3 pl-0 below1139">		
-													<div class="account" style="padding: 15px;">		
+												<div class="col-md-12 below1139">
+													<div class="account" style="padding: 15px;">
 														<div class="form-group row">
 															<div class="col-md-12">
 																<label for="">Schedule Name</label>
-																<input type="text" name="" id="" class="form-control" placeholder="">
-															</div>
-														</div>	
-														<div class="form-group row">
-															<div class="col-md-12" ng-controller="DatepickerDemoCtrl">
-																<label for="">Start Date</label>
-																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-																	<span class="input-group-btn">
-																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
-																	</span>
-																</div>
+																<input type="text" name="" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" placeholder="">
 															</div>
 														</div>
-														<div class="form-group row">
-															<div class="col-md-12" ng-controller="DatepickerDemoCtrl">
-																<label for="">End Date</label>
+														<div class="row">
+															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+																<label for="">Start Date</label>
 																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_start_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>
 																</div>
+															</div>
+															<div class="col-sm-6 col-md-6 form-group">
+																<label for="">Start Time</label><br/>
+																<select class="form-control" ng-model="addHolidayScheduleObj.hs_starttime" ng-options="time as time for time in starttimedropdown track by time">
+																	<option value="">Select Time</option>
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+																<label for="">End Date</label>
+																<div class="input-group">
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_end_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																	<span class="input-group-btn">
+																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																	</span>
+																</div>
+															</div>
+															<div class="col-sm-6 col-md-6 form-group">
+																<label for="">End Time</label><br/>
+																<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time">
+																	<option value="">Select Time</option>
+																</select>
 															</div>
 														</div>
 														<div class="form-group row calstatus" ng-controller="ActivebtnCtrl">
-															<div class="col-md-12 mb-20">
+															<div class="col-md-6 pr-0 mb-20">
 																<label for="">Status</label><br/>
 																<div class="btn-group btnrounded">
-																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																	<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																	<label class="btn btn-default" ng-model="addHolidayScheduleObj.hs_status" uib-btn-radio="'1'" style="padding:12px 20px">Active</label>
+																	<label class="btn btn-default" ng-model="addHolidayScheduleObj.hs_status" uib-btn-radio="'0'" style="padding:12px 20px">Inactive</label>
 																</div>
 															</div>
-															<div class="col-md-12" ng-hide="radioModel=='Inactive'">
+															<div class="col-md-6" ng-hide="radioModel=='Inactive'">
 																<div ng-controller="DatepickerDemoCtrl">
 																	<label for="">Expiration Date</label>
 																	<div class="input-group">
-																		<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																		<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_expiration" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																		<span class="input-group-btn">
 																			<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																		</span>
@@ -184,15 +164,15 @@
 										</div>
 										<div class="modal-footer">
 											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="ok()"><i class="fa fa-arrow-right"></i> Submit</button>
 										</div>
 									</script>
-									<a ng-click="open('lg')" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Holiday Schedule</span></a>
+									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Holiday Schedule</span></a>
 								</div>
 							</li>
 						</ul>
 					</div>
-					
+
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-20">
@@ -213,7 +193,7 @@
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
 										<div class="col-sm-8 col-md-9 search">
-											<input type="text" class="form-control" placeholder="Search by text....">
+											<input type="text" class="form-control" ng-model="searchText" placeholder="Search by text....">
 											<button class="btn btn-default br-2-r" type="button">Search</button>
 										</div>
 										<div class="col-sm-4 col-md-3 profilephoto csvupload">
@@ -231,7 +211,7 @@
 								</div>
 								<div class="filterfields" ng-hide="filtershow">
 									<div class="col-sm-4 col-md-4">
-										<label for="fbtext" class="control-label">Search by text</label> 
+										<label for="fbtext" class="control-label">Search by text</label>
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
 									</div>
 									<div class="col-sm-4 col-md-4">
@@ -244,36 +224,207 @@
 									</div>
 								</div>
 							</div>
-							<div ng-if="status">									
-								<div layout="row" ng-class="statusclass">									
+							<div ng-if="status">
+								<div layout="row" ng-class="statusclass">
 									{{status}}
 								</div>
 							</div>
 							<div ng-class="class">
 								<div class="glview">
-									<md-content>			
-										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:days | orderBy:myOrderBy">
+									<md-content>
+										<md-card ng-repeat="schedule in lstHolidaySchedular | filter:text | filter:title | filter:days | orderBy:myOrderBy">
 											<md-card-content>
-												<h2 class="md-title">{{ schedule.title }}</h2>
-												<p>{{ schedule.status }}</p>
-												<p>{{ schedule.starttime }} - {{ schedule.endtime }}</p>
-												<p>{{ schedule.days }}</p>
+												<h2 class="md-title">{{ schedule.hs_name }}</h2>
+												<p>{{ schedule.hs_status==1?'Active':'InActive' }}</p>
+												<p><strong>Start Date:&nbsp;</strong>{{ schedule.hs_start_date.date+' '+schedule.hs_start_date.time }}</p>
+												<p><strong>End Date:&nbsp;</strong>{{ schedule.hs_end_date.date+' '+schedule.hs_end_date.time}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-holiday-schedule">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.schedule.edit-holiday-schedule">Edit</a>
+												<div ng-controller="ModalDemo1Ctrl" style="display: inline-block;">
+													<script type="text/ng-template" id="myModalContent1.html">
+														<div class="modal-header"><h4 class="modal-title custom-font">Edit Holiday Schedule</h4></div>
+														<div class="hometabs">
+															<div class="row">
+																<div class="col-md-12 below1139">
+																	<div class="account" style="padding: 15px;">
+																		<div class="form-group row">
+																			<div class="col-md-12">
+																				<label for="">Schedule Name</label>
+																				<input type="text" name="" id="" class="form-control" placeholder="Office-Weekdays">
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+																				<label for="">Start Date</label>
+																				<div class="input-group">
+																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																					<span class="input-group-btn">
+																						<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																					</span>
+																				</div>
+																			</div>
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">Start Time</label><br/>
+																				<select class="form-control">
+																					<option value="">12:00 AM</option>
+																					<option value="">12:30 AM</option>
+																					<option value="">1:00 AM</option>
+																					<option value="">1:30 AM</option>
+																					<option value="">2:00 AM</option>
+																					<option value="">2:30 AM</option>
+																					<option value="">3:00 AM</option>
+																					<option value="">3:30 AM</option>
+																					<option value="">4:00 AM</option>
+																					<option value="">4:30 AM</option>
+																					<option value="">5:00 AM</option>
+																					<option value="">5:30 AM</option>
+																					<option value="">6:00 AM</option>
+																					<option value="">6:30 AM</option>
+																					<option value="">7:00 AM</option>
+																					<option value="">7:30 AM</option>
+																					<option value="">8:00 AM</option>
+																					<option value="">8:30 AM</option>
+																					<option value="">9:00 AM</option>
+																					<option value="">9:30 AM</option>
+																					<option value="">10:00 AM</option>
+																					<option value="">10:30 AM</option>
+																					<option value="" selected>11:00 AM</option>
+																					<option value="">11:30 AM</option>
+																					<option value="">12:00 PM</option>
+																					<option value="">12:30 PM</option>
+																					<option value="">1:00 PM</option>
+																					<option value="">1:30 PM</option>
+																					<option value="">2:00 PM</option>
+																					<option value="">2:30 PM</option>
+																					<option value="">3:00 PM</option>
+																					<option value="">3:30 PM</option>
+																					<option value="">4:00 PM</option>
+																					<option value="">4:30 PM</option>
+																					<option value="">5:00 PM</option>
+																					<option value="">5:30 PM</option>
+																					<option value="">6:00 PM</option>
+																					<option value="">6:30 PM</option>
+																					<option value="">7:00 PM</option>
+																					<option value="">7:30 PM</option>
+																					<option value="">8:00 PM</option>
+																					<option value="">8:30 PM</option>
+																					<option value="">9:00 PM</option>
+																					<option value="">9:30 PM</option>
+																					<option value="">10:00 PM</option>
+																					<option value="">10:30 PM</option>
+																					<option value="">11:00 PM</option>
+																					<option value="">11:30 PM</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+																				<label for="">End Date</label>
+																				<div class="input-group">
+																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																					<span class="input-group-btn">
+																						<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																					</span>
+																				</div>
+																			</div>
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">End Time</label><br/>
+																				<select class="form-control">
+																					<option value="">12:00 AM</option>
+																					<option value="">12:30 AM</option>
+																					<option value="">1:00 AM</option>
+																					<option value="">1:30 AM</option>
+																					<option value="">2:00 AM</option>
+																					<option value="">2:30 AM</option>
+																					<option value="">3:00 AM</option>
+																					<option value="">3:30 AM</option>
+																					<option value="">4:00 AM</option>
+																					<option value="">4:30 AM</option>
+																					<option value="">5:00 AM</option>
+																					<option value="">5:30 AM</option>
+																					<option value="">6:00 AM</option>
+																					<option value="">6:30 AM</option>
+																					<option value="">7:00 AM</option>
+																					<option value="">7:30 AM</option>
+																					<option value="">8:00 AM</option>
+																					<option value="">8:30 AM</option>
+																					<option value="">9:00 AM</option>
+																					<option value="">9:30 AM</option>
+																					<option value="">10:00 AM</option>
+																					<option value="">10:30 AM</option>
+																					<option value="">11:00 AM</option>
+																					<option value="">11:30 AM</option>
+																					<option value="">12:00 PM</option>
+																					<option value="">12:30 PM</option>
+																					<option value="">1:00 PM</option>
+																					<option value="">1:30 PM</option>
+																					<option value="">2:00 PM</option>
+																					<option value="">2:30 PM</option>
+																					<option value="">3:00 PM</option>
+																					<option value="">3:30 PM</option>
+																					<option value="">4:00 PM</option>
+																					<option value="">4:30 PM</option>
+																					<option value="">5:00 PM</option>
+																					<option value="" selected>5:30 PM</option>
+																					<option value="">6:00 PM</option>
+																					<option value="">6:30 PM</option>
+																					<option value="">7:00 PM</option>
+																					<option value="">7:30 PM</option>
+																					<option value="">8:00 PM</option>
+																					<option value="">8:30 PM</option>
+																					<option value="">9:00 PM</option>
+																					<option value="">9:30 PM</option>
+																					<option value="">10:00 PM</option>
+																					<option value="">10:30 PM</option>
+																					<option value="">11:00 PM</option>
+																					<option value="">11:30 PM</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="form-group row calstatus" ng-controller="ActivebtnCtrl">
+																			<div class="col-md-6 pr-0 mb-20">
+																				<label for="">Status</label><br/>
+																				<div class="btn-group btnrounded">
+																					<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'" style="padding:12px 20px">Active</label>
+																					<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'" style="padding:12px 20px">Inactive</label>
+																				</div>
+																			</div>
+																			<div class="col-md-6" ng-hide="radioModel=='Inactive'">
+																				<div ng-controller="DatepickerDemoCtrl">
+																					<label for="">Expiration Date</label>
+																					<div class="input-group">
+																						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																						<span class="input-group-btn">
+																							<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																						</span>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>
+														</div>
+													</script>
+													<a ng-click="open()" class="btn btn-success btn-border btn-rounded">Edit</a>
+												</div>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
 											</div>
-										</md-card>										
+										</md-card>
 									</md-content>
-									<button ng-if="schedules && schedules.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getHolidayScheduleList()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
 			</div>
-		</div>	
-	
+		</div>
+
 	</div>
 </div>

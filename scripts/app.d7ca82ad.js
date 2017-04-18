@@ -825,14 +825,7 @@ var app = angular
 			  controller: 'ScheduleGroupsCtrl',
 			  templateUrl: 'views/tmpl/admin/schedule/schedule-groups.html'
 			})
-			
-			//admin schedule holiday-schedule
-			.state('app.admin.schedule.holiday-schedule', {
-			  url: '/holiday-schedule',
-			  controller: 'HolidayScheduleCtrl',
-			  templateUrl: 'views/tmpl/admin/schedule/holiday-schedule.html'
-			})
-			
+
 				//admin schedule view-holiday-schedule
 				.state('app.admin.schedule.view-holiday-schedule', {
 				  url: '/view-holiday-schedule',
@@ -1366,75 +1359,6 @@ app
  * # HolidayScheduleCtrl
  * Controller of the minovateApp
  */
-app
-  .controller('HolidayScheduleCtrl', function ($scope, $mdDialog, $http) {
-     $scope.page = {
-      title: 'Holiday Schedule',
-      subtitle: 'So much more to see at a glance.'
-    };
-	
-	$scope.status = '  ';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete holiday schedule?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.status = 'Your holiday schedule has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.status = 'You decided to keep holiday schedule.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
-	$http.get('http://localhost:8080/elika/json/admin/schedules.json').success(function(response){
-		$scope.schedules = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.schedules.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.schedules.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';
-	
-});
 
 'use strict';
 /**
