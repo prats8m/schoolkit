@@ -5,7 +5,7 @@ app
 
         var HolidayScheduleSvcResp=this;
 
-        HolidayScheduleSvcResp.addHolidaySchedule=function(url,method,params,data,cb) {
+        HolidayScheduleSvcResp.addEditHolidaySchedule=function(url,method,params,data,cb) {
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
                     cb(succResponse);
@@ -42,6 +42,40 @@ app
                         if(succResponse.data[key].hs_created_on)
                             succResponse.data[key].hs_created_on=utilitySvc.getDateTimeFromTimeStamp(succResponse.data[key].hs_created_on*1000);
                     }
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        HolidayScheduleSvcResp.getSelectedHolidayScheduleDetail=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    if(succResponse.data){
+                        if(succResponse.data.hs_start_date)
+                            succResponse.data.hs_start_date=utilitySvc.getDateTimeFromTimeStamp(succResponse.data.hs_start_date*1000);
+                        if(succResponse.data.hs_end_date)
+                            succResponse.data.hs_end_date=utilitySvc.getDateTimeFromTimeStamp(succResponse.data.hs_end_date*1000);
+                        if(succResponse.data.hs_expiration)
+                            succResponse.data.hs_expiration=utilitySvc.getDateTimeFromTimeStamp(succResponse.data.hs_expiration*1000);
+                        if(succResponse.data.hs_created_on)
+                            succResponse.data.hs_created_on=utilitySvc.getDateTimeFromTimeStamp(succResponse.data.hs_created_on*1000);
+                    }
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        HolidayScheduleSvcResp.deleteHolidaySchedule=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
                     cb(succResponse);
                 }
                 else {

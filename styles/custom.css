@@ -2217,7 +2217,7 @@ span.error {
     display: block;
     float: none;
 	margin: 20px auto 0;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .cameradetail p label {
