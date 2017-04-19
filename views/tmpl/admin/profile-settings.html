@@ -117,21 +117,21 @@
 									<div class="form-group legend">
 										<h4><strong>Change</strong> Password</h4>
 									</div>
-									<form name="form1" role="form">
+									<form name="form1" role="form" ng-submit="changeloggedInuserPassword()">
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">Current Password</label>
-														<input type="password" name="" id="" class="form-control" value="">
+														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.current_password" class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">New Password</label>
-														<input type="password" name="" id="" class="form-control" value="">
+														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Password</label>
-														<input type="password" name="" id="" class="form-control" value="">
+														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.confirm_password" class="form-control" value="">
 													</div>
 												</div>
 											</div>
@@ -158,15 +158,15 @@
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">New Email</label>
-														<input type="email" name="" id="" ng-model="profileSettings.manageAccount.new_email" class="form-control" value="">
+														<input type="email" name="" id="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-model="profileSettings.manageAccount.new_email" class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Email</label>
-														<input type="email" name="" id="" class="form-control" ng-model="profileSettings.manageAccount.confirm_email" value="">
+														<input type="email" name="" id="" required class="form-control" ng-model="profileSettings.manageAccount.confirm_email" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Current password</label>
-														<input type="password" name="" id="" class="form-control" ng-model="profileSettings.manageAccount.current_password" value="">
+														<input type="password" name="" id="" required class="form-control" ng-model="profileSettings.manageAccount.current_password" value="">
 													</div>
 												</div>
 											</div>
@@ -193,17 +193,17 @@
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">Select Secret Question</label>
-														<select id="selectedQuestion1" name="selectedQuestion1" class="form-control" ng-model="profileSettings.changeSecurityQuestions.sq_id" ng-options="sques.sq_id as sques.sq_question for sques in lstSecurityQuestions track by sques.sq_id">
+														<select id="selectedQuestion1" name="selectedQuestion1" required class="form-control" ng-model="profileSettings.changeSecurityQuestions.sq_id" ng-options="sques.sq_id as sques.sq_question for sques in lstSecurityQuestions track by sques.sq_id">
 															<option value="">Select Secret Question</option>
 														</select>
 													</div>
 													<div class="form-group overflow">
 														<label for="">Answer</label>
-														<input type="text" name="" autocomplete="false" ng-model="profileSettings.changeSecurityQuestions.answer" class="form-control" value="">
+														<input type="text" name="" autocomplete="false" required ng-model="profileSettings.changeSecurityQuestions.answer" class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Current password</label>
-														<input type="password" name="" autocomplete="false" ng-model="profileSettings.changeSecurityQuestions.current_password" class="form-control" value="">
+														<input type="password" name="" autocomplete="false" required ng-model="profileSettings.changeSecurityQuestions.current_password" class="form-control" value="">
 													</div>
 												</div>
 											</div>

@@ -51,7 +51,7 @@ app
                 if(succResponse.status){
                     cb(succResponse);
                 }else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -92,7 +92,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -104,7 +104,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -116,7 +116,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -128,7 +128,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -140,7 +140,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg);
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

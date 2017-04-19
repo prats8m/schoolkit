@@ -40,13 +40,11 @@ app.constant("appConstants", {
     dooradd:'door/add',
     doorview:'door/view',
     dooredit:'door/edit',
-
     scheduleadd:'schedule/add',
     scheduleDelete:'schedule/delete',
     scheduleList:'schedule/list',
     listSecretQuestions:'list-secret-ques',
     forgetPassword:'user/forget-password',
-
     userpicupload:'user/pic-upload',
     useradd:'user/add',
     useredit:'user/edit',
@@ -61,6 +59,21 @@ app.constant("appConstants", {
     usergroupedit:'usergroup/edit',
     listsecretquestions:'list-secret-ques',
     updatesecretquestions:'update-secret-ques',
+    userviewuserdetails:'user/view-user-details',
+    userlistdoorcredential:'user/list-door-credential/',
+    userassignusergrouop:'user/assign-usergroup',
+    usergroupassignedtouser:'user/usergroup-assigned-to-user',
+    usergroupnotassignedtouser:'user/usergroup-not-assigned-to-user',
+    useraddcredentials:'user/add-credential',
+    usereditcredential:'user/edit-credential',
+    credentiallist:'credential/list',
+    userdelete:'user/delete',
+    userdeletecredential:'user/delete-credential',
+    userlist:'user/list',
+    facilitydelete:'facility/delete',
+    userchangepassword:'user/change-password',
+    holidayscheduleadd:'holiday-schedule/add',
+    holidayschedulelist:'holiday-schedule/list',
 
 
 
@@ -78,9 +91,10 @@ app.constant("appConstants", {
 
     //..............Generics.....................................................
     oops: "Oops !! ",
-    error: "Error !! ",
-    success:"Success !! ",
-    info:'Info',
+    error: "error",
+    success:"success",
+    info:'info',
+    warning:'warning',
     none:"none",
     block:'block',
     inlineblock:'inline-block',
@@ -94,11 +108,13 @@ app.constant("appConstants", {
     imagePath:'elika/images/',
     content:'The standard chunk of Lorem Ipsum used.',
     active:'Active',
-    inactive:'In-Active',
+    inactive:'Inactive',
+    na:'NA',
     reset:'Reset',
     search:'Search',
     submitSuccessfully:'Submit Successfully',
     somethingwrong:'Something went wrong',
+    invaliddata:'InValid Data',
 
     //...........................................................................
 
@@ -136,6 +152,7 @@ app.constant("appConstants", {
     facilityTitle:'Facility',
     facilitySubTitle:'',
     facilityDetailsTitle:'Facility Details',
+    facilityedittitle:'Facility Edit',
     facilityDetailsSubTitle:'',
     _successfacilityAdd:'Facility added successfully.',
     _deleteFacilityConfirm:'Would you like to delete Facility ?',
@@ -308,17 +325,44 @@ app.constant("appConstants", {
     _successDeleteUserGroup:'Your User Group has been deleted successfully',
     _successUserGroupRemoved:'User group removed',
     nomoredataavailable:'No more data available',
+    _titleviewUser:'View User',
+    _titleEditUser:'Edit User',
+    adduser:'Add User',
+
+    nousergroupassigned:'No UserGroup Assigned',
+    confirmationusergroupdeletemessage:'Are you sure you want to Delete This User Group ?',
+    _deleteuserconfirmationmessage:'Would you like to delete User ?',
+    _canceluserdeletionmessage:'You decided to keep User',
+    titleUsersUI:'Users',
+    rfidaddedsuccessfully:'RFID Added Successfully',
+    rfidupdatedsuccessfully:'RFID Updated Successfully',
+    phonecodeupdatedsuccessfully:'Phone Code Updated Successfully',
+    phonecodeaddedsuccessfully:'Phone Code Added Successfully',
+    blecodeupdatedsuccessfully:'BLE Code Updated Successfully',
+    blecodeaddedsuccessfully:'BLE Code Added Successfully',
+    nfccodeaddedsuccessfully:'NFC Code Added Successfully',
+    nfccodeupdatedsuccessfully:'NFC Code Updated Successfully',
+    accesscodeupdatedsuccessfully:'Access Code Updated Successfully',
+    accesscodeaddedsuccessfully:'Access Code Added Successfully',
 
     //............................................................................
 
     //...............Profile Settings................................................
 
     titileProfileSettings:'Profile Setting',
+    _successemailIDchangesconfirmationmessage:'your email ID has been changed successfully, you will get a varification email shortly with email varificationon link on your new registered email id. Please click on the link to login into the Facility Web Application ',
 
     //...............................................................................
 
+    //..............Holiday Schedules.........................................................
 
+    _titleHolidaySchedule:'Holiday Schedule',
+    _deleteholidayscheduleconfirmationmessage:'Would you like to delete holiday schedule ?',
+    _successdeleteholidayschedule:'Your holiday schedule has been deleted successfully',
+    _cancelholidayscheduledeletion:'You decided to keep holiday schedule',
+    _successholidayscheduleadded:'Holiday Schedule added successfully',
 
+    //........................................................................................
 
 
 
@@ -359,6 +403,65 @@ app.constant("appConstants", {
             id: 'UTC+10',
             name: 'USA (Chamorro)'
         }
+    ],
+
+    timedropdown:[
+        '12:00 AM',
+        '12:30 AM',
+        '1:00 AM',
+        '1:30 AM',
+        '2:00 AM',
+        '2:30 AM',
+        '3:00 AM',
+        '3:30 AM',
+        '4:00 AM',
+        '4:30 AM',
+        '5:00 AM',
+        '5:30 AM',
+        '6:00 AM',
+        '6:30 AM',
+        '7:00 AM',
+        '7:30 AM',
+        '8:00 AM',
+        '8:30 AM',
+        '9:00 AM',
+        '9:30 AM',
+        '10:00 AM',
+        '10:30 AM',
+        '11:00 AM',
+        '11:30 AM',
+        '12:00 PM',
+        '12:30 PM',
+        '1:00 PM',
+        '1:30 PM',
+        '2:00 PM',
+        '2:30 PM',
+        '3:00 PM',
+        '3:30 PM',
+        '4:00 PM',
+        '4:30 PM',
+        '5:00 PM',
+        '5:30 PM',
+        '6:00 PM',
+        '6:30 PM',
+        '7:00 PM',
+        '7:30 PM',
+        '8:00 PM',
+        '8:30 PM',
+        '9:00 PM',
+        '9:30 PM',
+        '10:00 PM',
+        '10:30 PM',
+        '11:00 PM',
+        '11:30 PM'
+    ],
+
+    monthNames:["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
     ]
+
+
+
+
 
 });

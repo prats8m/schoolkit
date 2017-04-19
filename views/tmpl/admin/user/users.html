@@ -84,7 +84,7 @@
 			</div>			
 		</div>
 		
-		<div class="row" ng-controller="UserCtrl">
+		<div class="row">
 			<div class="col-md-12">	   
 				<section class="tile box-shadow">
 					<div class="tile-header dvd dvd-btm">
@@ -175,7 +175,7 @@
 								<div class="glview">
 									<md-content>		
 										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
-											<a ui-sref="app.admin.user.user-profile"><img ng-src="images/image-not-available.jpg" class="md-card-image" alt="Washed Out"></a>
+											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{user.user_photo}}" onerror="this.onError=null;this.src='images/image-not-available.jpg';" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
 												<p>{{ user.user_phone_no }}</p>

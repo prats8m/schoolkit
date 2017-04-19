@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="minovateApp" ng-controller="MainCtrl" class="no-js {{containerClass}}">
+<html ng-app="minovateApp" class="no-js {{containerClass}}">
 <head>
 	<meta charset="utf-8">
 	<title>Elika - Web Admin UI</title>
@@ -40,7 +40,9 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-	<toaster-container></toaster-container>
+
+	<!--<toaster-container></toaster-container>-->
+<toaster-container toaster-options="{'limit':1}"></toaster-container>
 
     <!-- Application content -->
     <div id="wrap" ui-view autoscroll="false"></div>
@@ -48,7 +50,7 @@
     <!-- Page Loader -->
     <!--<div id="pageloader" page-loader></div>-->
    
-    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDB3LbvjIH_gtIOmNkYG1osHnKjaJKmBvE&libraries=weather,geometry,visualization,places,drawing&sensor=false&language=en&v=3.17'></script>
+    <!--<script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDB3LbvjIH_gtIOmNkYG1osHnKjaJKmBvE&libraries=weather,geometry,visualization,places,drawing&sensor=false&language=en&v=3.17'></script>-->
     <!--[if lt IE 9]>
     <script src="scripts/oldieshim.f2dbeece.js"></script>
     <![endif]-->
@@ -58,6 +60,7 @@
     <script src="scripts/loading-bar.js"></script>
 
     <script src="scripts/app.d7ca82ad.js"></script>
+
 
 	<!--...............Utility Files..................................................-->
 	<script src="scripts/Service/Constants.js"></script>
@@ -76,6 +79,8 @@
 
 	<script src="scripts/Service/UserSvc.js"></script>
 	<script src="scripts/Service/profileSettingsSvc.js"></script>
+
+	<script src="scripts/Service/holidayScheduleSvc.js"></script>
 
 	<!--..............................................................................-->
 
@@ -99,7 +104,11 @@
 	<script src="scripts/deviceSettings.js"></script>
 	<script src="scripts/vxgplayer.js"></script>
 	<script src="scripts/forgetpassword.js"></script>
+
 	<script src="scripts/profileSettings.js"></script>
+
+	<script src="scripts/holidaySchedule.js"></script>
+
 
 </body>
 </html>

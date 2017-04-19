@@ -26,11 +26,11 @@ app
         $scope.dashboardInit();
 
         $scope.showcamadd = function(){
-            $("#camform").css(display, appConstants.inlineblock);
+            $("#camform").css("display", appConstants.inlineblock);
 
         };
         $scope.hidecamadd = function(){
-            $("#camform").css(display, appConstants.none);
+            $("#camform").css("display", appConstants.none);
 
         };
 
@@ -130,7 +130,7 @@ app
                 if(succResponse.status){
                     $scope.changedClass();
                     if(succResponse.msg==='No_Record_Found'){
-                        toaster.pop(appConstants.oops,appConstants.nocamerafoundonfilter);
+                        toaster.pop(appConstants.error,appConstants.nocamerafoundonfilter);
                         $scope.totalNoOfCameras=0;
                         $scope.cameras=[];
                     }
@@ -425,7 +425,7 @@ app
                             videoDOM.load();
                             videoDOM.play();
                         },1000);
-                        toaster.pop(appConstants.oops,appConstants.norecordedFeedfound);
+                        toaster.pop(appConstants.error,appConstants.norecordedFeedfound);
                     }
                 }
                 else {
@@ -496,7 +496,7 @@ app
         };
 
         $scope.startRecording=function (cameraID) {
-            toaster.pop(appConstants.oops,'Recording is not working yet for Camera ID : '+cameraID);
+            toaster.pop(appConstants.error,'Recording is not working yet for Camera ID : '+cameraID);
         };
 
 
