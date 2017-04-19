@@ -17,6 +17,8 @@ app
 	var isMouseDown = false;
 	var startRowIndex = null;
 	var startCellIndex = null;
+	
+	var weekDay = [];
 
 	function selectTo(cell) {
 		
@@ -48,15 +50,26 @@ app
 				rowCells.eq(j).addClass("selected");
 			}
 		}
+		//table.find("td").eq(cellStart).attr("value");
+		var day = table.find("td").eq(cellEnd).attr("value");
+		if($.inArray(day,weekDay) == -1){
+			weekDay.push(day);
+		}
+		//console.log(rowStart + "-" + rowEnd);
 		$scope.schedule.schedule_start_date = table.find("tr").eq(rowStart).attr("value");
 		$scope.schedule.schedule_end_date = table.find("tr").eq(rowEnd).attr("value");
+		$scope.schedule.schedule_weekday = weekDay.join("-");
+		//console.log(table.find("tr").eq(rowEnd).attr("value"));
+		$scope.$digest();
 	}
 
 	table.find("td").mousedown(function (e) {
 		isMouseDown = true;
 		var cell = $(this);
 
-		//table.find(".selected").removeClass("selected"); // deselect everything
+		// table.find(".selected").removeClass("selected"); // deselect everything
+		
+		
 		
 		if (e.shiftKey) {
 			selectTo(cell);                
@@ -80,6 +93,7 @@ app
 	});
 
 	$(document).mouseup(function () {
+		weekDay = [];
 		isMouseDown = false;
 	});
 
@@ -120,6 +134,9 @@ app
 	
 	$scope.clearAll = function(){
 		$("#table tr td").removeClass("selected");
+		$scope.schedule.schedule_start_date = '';
+		$scope.schedule.schedule_end_date = '';
+		$scope.schedule.schedule_weekday = '';
 	}
 	
 	$scope.dashboardInit = function(){
@@ -131,7 +148,69 @@ app
 	};
 	$scope.dashboardInit();
 
+	$scope.blocks = [];
+	
+	$scope.updateBlock = function(){
+		var block = $scope.schedule.schedule_start_date + " - " + $scope.schedule.schedule_end_date + " " + $scope.schedule.schedule_weekday;
+		if($.inArray(block,$scope.blocks) == -1){
+			$scope.blocks.push(block);
+		}
+	}
+	$scope.deleteBlock = function(){
+		if(!$scope.schedule.block) return false;
+		var splitData = $scope.schedule.block.split(" ");
+		var startTime = splitData[0];
+		var endTime = splitData[2];
+		var days = splitData[3].split("-");
+		
+		var startTimeIndex = $("tr[time='"+startTime+"']").index();
+		var endTimeIndex = $("tr[time='"+endTime+"']").index();
+		$("#table").find("tr").each(function(i){
+			if(i >= startTimeIndex && i <= endTimeIndex){
+				for(var i=0; i < days.length; i++){
+					$(this).find("td[value='"+days[i]+"']").removeClass('selected');
+				}
+			}
+		});
+		var tmp = [];
+		for(var i=0;i<$scope.blocks.length;i++){
+			if($scope.schedule.block != $scope.blocks[i]){
+				tmp.push($scope.blocks[i]);
+			}
+		}
+		$scope.blocks = tmp;
+	}
+
 	$scope.imagePath = 'http://elikastaging.ml/images';	
+	
+	/***************************************************************************************/
+	
+	/***********************        Schdule Exceptions        ******************************/
+	
+	/***************************************************************************************/
+	
+	
+	$scope.exceptions = [];
+	$scope.exception ={
+		date:new Date()
+	};
+	
+	$scope.addException = function(exception){
+		var key = angular.copy($scope.exceptions.length + 1);
+		var obj = angular.copy(exception);
+		obj.key = key;
+		$scope.exceptions.push(obj);
+		//console.log($scope.exceptions);
+	}
+	
+	$scope.holidayScheduleList = function(data){
+		scheduleSvc.holidayScheduleList(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
+        	if(succResponse.status){
+                toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+            }
+        });
+	}
+	
 	
 });
 
