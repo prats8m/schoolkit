@@ -1505,8 +1505,12 @@ app
         });
     };
 
-    $rootScope.addDoorScheduleUserGroup = function(schedule_id, ud_id,is_access_allowed,userGroupBehaviour){
-    	if(is_access_allowed == null){
+    $rootScope.addDoorScheduleUserGroup = function(updatedSchedule,ud_id,is_access_allowed,userGroupBehaviour){
+    	var schedule_id=updatedSchedule.id;
+        is_access_allowed=updatedSchedule.is_access_allowed;
+
+
+        if(is_access_allowed == null){
     		return false;
     	}
     	$("#"+ud_id).css("display", appConstants.block);
@@ -1526,6 +1530,7 @@ app
         });
     };
 
+   // $scope.updatedSchedule=null;
     $rootScope.listDoorSchedule = function(usergroup_id, facility_id){
         userSvc.listDoorSchedule(appConstants.usergrouplistdoorschedule+'?usergroup_id='+usergroup_id,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
@@ -1533,14 +1538,14 @@ app
                 $scope.x = schedul.getScheduleByFacility(facility_id);
                 angular.forEach(succResponse.data, function(value, key){
                     $rootScope.listDoorGroup[key] = value;
-                    $rootScope.listDoorGroup[key].schedulelist = {};
+                    $rootScope.listDoorGroup[key].schedulelist = [];
                     $scope.x.success(function(resp){
                         angular.forEach(resp.data, function(val, k){
-                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)] = {};
-                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)].name = val.schedule_name;
-                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)].id = val.schedule_id;
-                            $rootScope.listDoorGroup[key].schedulelist[parseInt(k)].is_access_allowed = val.is_access_allowed;
+                            var obj={name:val.schedule_name,id:val.schedule_id,is_access_allowed:val.is_access_allowed};
+                            $rootScope.listDoorGroup[key].schedulelist.push(obj);
                         });
+                      //  $scope.updatedSchedule=$rootScope.listDoorGroup[key].schedulelist[1];
+
                     });
                 });
             }

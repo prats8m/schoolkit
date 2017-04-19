@@ -5,11 +5,10 @@ app
             subtitle: appConstants.dashboardSubTitle
         };
 
-        $scope.pageNo=0;
-        $scope.schedularLimit=8;
+        $scope.pageNo=1;
+        $scope.schedularLimit=10;
         $scope.searchText=appConstants.empty;
         $scope.status = appConstants.empty;
-        $scope.lstHolidaySchedular=[];
 
         $scope.showConfirm = function(ev) {
             var confirm = $mdDialog.confirm()
@@ -46,21 +45,41 @@ app
         };
 
         $scope.getHolidayScheduleList = function(){
-            $scope.pageNo++;
             HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist+'?limit='+$scope.schedularLimit+'&pageNo='+$scope.pageNo+'&search_val='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
-                    $scope.lstHolidaySchedular=$scope.lstHolidaySchedular.concat(succResponse.data);
-                   // $scope.lstHolidaySchedular = succResponse.data;
+                    if($scope.pageNo==1) {
+                        $scope.lstHolidaySchedular = [];
+                        $scope.lstHolidaySchedular = succResponse.data;
+                    }
+                    else{
+                        $scope.lstHolidaySchedular=$scope.lstHolidaySchedular.concat(succResponse.data);
+                    }
+                    $scope.manageHolidayScheduleListLoadMoreButton(succResponse.data.length);
                 }else {
                     if(succResponse.msg=='No_Record_Found'){
-                        $scope.lmbtn = {
-                            display : appConstants.none
-                        };
+                        $scope.manageHolidayScheduleListLoadMoreButton(0);
                     }
                 }
             });
         };
 
+        $scope.manageHolidayScheduleListLoadMoreButton=function (count) {
+            if (count<$scope.schedularLimit){
+                $scope.lmbtn = {
+                    display : appConstants.none
+                };
+            }
+            else {
+                $scope.lmbtn = {
+                    display : appConstants.block
+                };
+            }
+        };
+
+        $scope.loadMoreScheduleList=function () {
+            $scope.pageNo++;
+            $scope.getHolidayScheduleList();
+        };
 
         $scope.dashboardInit = function(){
             HolidayScheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
@@ -79,7 +98,7 @@ app
 
 //.....Add Holiday Schedular Modal..............................
 
-    .controller('addHolidaySchedularCTRL', function ($scope,$uibModal, $mdDialog,baseURL,appConstants,HolidayScheduleSvc,toaster) {
+    .controller('addHolidaySchedularCTRL', function ($scope,$uibModal,$log, $mdDialog,baseURL,appConstants,HolidayScheduleSvc,toaster) {
 
         $scope.open = function(size) {
             var modalInstance = $uibModal.open({
@@ -97,6 +116,7 @@ app
                 HolidayScheduleSvc.addHolidaySchedule(appConstants.holidayscheduleadd,appConstants.postMethod,{},selectedItem,function (succResponse) {
                     if(succResponse.status){
                         toaster.pop(appConstants.success,appConstants._successholidayscheduleadded);
+                        $scope.$parent.pageNo=1;
                         $scope.$parent.getHolidayScheduleList();
                     }
                 })
