@@ -953,7 +953,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location) {
+  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location,appConstants,utilitySvc) {
 	  
 		
 	$scope.user = {};
@@ -1009,9 +1009,16 @@ app
 
 	};
 
+      $scope.checkIfUserLoggedIn=function () {
+		  if($cookies.get(appConstants.sessionTokenCookieID)){
+              $state.go('app.admin.dashboard');
+		  }
+      };
+
+	$scope.checkIfUserLoggedIn();
+
   $scope.logout = function(){
-    $cookies.remove('token');
-    $location.path('core/login');
+      utilitySvc.logoutfacilityWeb();
   }
 });
 

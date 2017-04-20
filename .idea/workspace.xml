@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/Constants.js" afterPath="$PROJECT_DIR$/scripts/Service/Constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" afterPath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/config.js" afterPath="$PROJECT_DIR$/scripts/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/holidaySchedule.js" afterPath="$PROJECT_DIR$/scripts/holidaySchedule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/custom.css" afterPath="$PROJECT_DIR$/styles/custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,99 +22,63 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.d7ca82ad.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.d7ca82ad.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="831" column="54" lean-forward="false" selection-start-line="831" selection-start-column="31" selection-end-line="831" selection-end-column="54" />
+            <state relative-caret-position="286">
+              <caret line="1006" column="12" lean-forward="true" selection-start-line="1006" selection-start-column="12" selection-end-line="1006" selection-end-column="12" />
               <folding>
-                <marker date="1492599220124" expanded="true" signature="100467:100473" ph="'" />
-                <marker date="1492599220124" expanded="true" signature="117874:117908" ph="..." />
-                <marker date="1492599220124" expanded="true" signature="166047:166062" ph="..." />
-                <marker date="1492599220124" expanded="true" signature="166166:166199" ph="..." />
-                <marker date="1492599220124" expanded="true" signature="166238:166313" ph="..." />
-                <marker date="1492599220124" expanded="true" signature="168002:168019" ph="..." />
-                <marker date="1492599220124" expanded="true" signature="168184:168201" ph="..." />
-                <marker date="1492599220124" expanded="true" signature="168368:168415" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="100665:100671" ph="'" />
+                <marker date="1492690938761" expanded="true" signature="118072:118106" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="166245:166260" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="166364:166397" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="166436:166511" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="168200:168217" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="168382:168399" ph="..." />
+                <marker date="1492690938761" expanded="true" signature="168566:168613" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="holidayScheduleSvc.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="75" column="52" lean-forward="false" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="holidaySchedule.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/holidaySchedule.js">
+      <file leaf-file-name="UsersMod.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/styles/custom.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="2227" column="22" lean-forward="true" selection-start-line="2227" selection-start-column="22" selection-end-line="2227" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view-holiday-schedule.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+            <state relative-caret-position="104">
+              <caret line="1506" column="0" lean-forward="true" selection-start-line="1506" selection-start-column="0" selection-end-line="1506" selection-end-column="0" />
               <folding>
-                <element signature="e#2913#2919#0" expanded="true" />
-                <element signature="e#3010#3016#0" expanded="true" />
-                <element signature="e#3136#3142#0" expanded="true" />
-                <element signature="e#3293#3299#0" expanded="true" />
-                <element signature="e#3448#3454#0" expanded="true" />
+                <element signature="e#27293#28173#0" expanded="false" />
+                <element signature="e#28210#28472#0" expanded="false" />
+                <element signature="e#28608#28851#0" expanded="false" />
+                <element signature="e#34592#37180#0" expanded="false" />
+                <element signature="e#37244#37517#0" expanded="false" />
+                <element signature="e#37669#38688#0" expanded="false" />
+                <element signature="e#38729#39354#0" expanded="false" />
+                <element signature="e#39443#39872#0" expanded="false" />
+                <element signature="e#39979#40258#0" expanded="false" />
+                <element signature="e#40297#40574#0" expanded="false" />
+                <element signature="e#40628#40734#0" expanded="false" />
+                <element signature="e#66750#69384#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="holiday-schedules.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html">
+      <file leaf-file-name="user-groups.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="313" column="62" lean-forward="true" selection-start-line="313" selection-start-column="62" selection-end-line="313" selection-end-column="62" />
-              <folding>
-                <element signature="e#11244#11250#0" expanded="true" />
-                <element signature="e#11361#11367#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UtilitySvc.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="78" column="8" lean-forward="false" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
+            <state relative-caret-position="171">
+              <caret line="295" column="160" lean-forward="false" selection-start-line="295" selection-start-column="160" selection-end-line="295" selection-end-column="160" />
               <folding />
             </state>
           </provider>
@@ -137,8 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$scope.uploadProfilePic</find>
-      <find>$scope.uploadProfilePic=</find>
       <find>appConstants.oops</find>
       <find>toaster.pop(appConstants.success,appConstants._successImageUpload)</find>
       <find>admin/schedule/holiday-schedules</find>
@@ -165,8 +121,10 @@
       <find>addDoorScheduleUserGroup</find>
       <find>admin/user/user-groups</find>
       <find>admin/schedule/view-holiday-schedule</find>
-      <find>ng-controller</find>
       <find>#camerandvr .profile-settings .col-centered</find>
+      <find>ng-controller</find>
+      <find>login</find>
+      <find>loginc</find>
     </findStrings>
     <replaceStrings>
       <replace>toaster.pop(appConstants.error,succResponse.msg)</replace>
@@ -221,16 +179,16 @@
         <option value="$PROJECT_DIR$/views/tmpl/subadmin/schedule/holiday-schedule.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" />
-        <option value="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" />
-        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
-        <option value="$PROJECT_DIR$/scripts/config.js" />
-        <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
         <option value="$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js" />
         <option value="$PROJECT_DIR$/scripts/Service/Constants.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html" />
         <option value="$PROJECT_DIR$/scripts/holidaySchedule.js" />
         <option value="$PROJECT_DIR$/styles/custom.css" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html" />
+        <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
+        <option value="$PROJECT_DIR$/scripts/config.js" />
+        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
+        <option value="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" />
       </list>
     </option>
   </component>
@@ -260,7 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -419,9 +376,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -553,11 +525,12 @@
       <workItem from="1492429752116" duration="599000" />
       <workItem from="1492490704280" duration="20107000" />
       <workItem from="1492578219823" duration="7043000" />
+      <workItem from="1492690440396" duration="1982000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="444526000" />
+    <option name="totallyTimeSpent" value="446508000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -612,13 +585,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/add-user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="85" column="8" lean-forward="true" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/support/technician.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -877,14 +843,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1615">
           <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="183" column="154" lean-forward="false" selection-start-line="183" selection-start-column="154" selection-end-line="183" selection-end-column="154" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/view-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="75" column="52" lean-forward="false" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5321">
+          <caret line="313" column="62" lean-forward="true" selection-start-line="313" selection-start-column="62" selection-end-line="313" selection-end-column="62" />
+          <folding>
+            <element signature="e#11244#11250#0" expanded="false" />
+            <element signature="e#11361#11367#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/holidaySchedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37859">
+          <caret line="2227" column="22" lean-forward="true" selection-start-line="2227" selection-start-column="22" selection-end-line="2227" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="104" column="68" lean-forward="false" selection-start-line="104" selection-start-column="68" selection-end-line="104" selection-end-column="68" />
+          <folding>
+            <element signature="e#2913#2919#0" expanded="false" />
+            <element signature="e#3010#3016#0" expanded="false" />
+            <element signature="e#3136#3142#0" expanded="false" />
+            <element signature="e#3293#3299#0" expanded="false" />
+            <element signature="e#3448#3454#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="73" column="65" lean-forward="false" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="1495" column="36" lean-forward="true" selection-start-line="1495" selection-start-column="36" selection-end-line="1495" selection-end-column="36" />
+        <state relative-caret-position="104">
+          <caret line="1506" column="0" lean-forward="true" selection-start-line="1506" selection-start-column="0" selection-end-line="1506" selection-end-column="0" />
           <folding>
             <element signature="e#27293#28173#0" expanded="false" />
             <element signature="e#28210#28472#0" expanded="false" />
@@ -904,116 +957,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="294" column="197" lean-forward="false" selection-start-line="294" selection-start-column="197" selection-end-line="294" selection-end-column="197" />
+        <state relative-caret-position="171">
+          <caret line="295" column="160" lean-forward="false" selection-start-line="295" selection-start-column="160" selection-end-line="295" selection-end-column="160" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="78" column="8" lean-forward="false" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="183" column="154" lean-forward="false" selection-start-line="183" selection-start-column="154" selection-end-line="183" selection-end-column="154" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="831" column="54" lean-forward="false" selection-start-line="831" selection-start-column="31" selection-end-line="831" selection-end-column="54" />
+        <state relative-caret-position="286">
+          <caret line="1006" column="12" lean-forward="true" selection-start-line="1006" selection-start-column="12" selection-end-line="1006" selection-end-column="12" />
           <folding>
-            <marker date="1492599220124" expanded="true" signature="100467:100473" ph="'" />
-            <marker date="1492599220124" expanded="true" signature="117874:117908" ph="..." />
-            <marker date="1492599220124" expanded="true" signature="166047:166062" ph="..." />
-            <marker date="1492599220124" expanded="true" signature="166166:166199" ph="..." />
-            <marker date="1492599220124" expanded="true" signature="166238:166313" ph="..." />
-            <marker date="1492599220124" expanded="true" signature="168002:168019" ph="..." />
-            <marker date="1492599220124" expanded="true" signature="168184:168201" ph="..." />
-            <marker date="1492599220124" expanded="true" signature="168368:168415" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/view-user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="75" column="52" lean-forward="false" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/holiday-schedules.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="313" column="62" lean-forward="true" selection-start-line="313" selection-start-column="62" selection-end-line="313" selection-end-column="62" />
-          <folding>
-            <element signature="e#11244#11250#0" expanded="true" />
-            <element signature="e#11361#11367#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/holidaySchedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="53" column="10" lean-forward="true" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="2227" column="22" lean-forward="true" selection-start-line="2227" selection-start-column="22" selection-end-line="2227" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="99" column="0" lean-forward="true" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-          <folding>
-            <element signature="e#2913#2919#0" expanded="true" />
-            <element signature="e#3010#3016#0" expanded="true" />
-            <element signature="e#3136#3142#0" expanded="true" />
-            <element signature="e#3293#3299#0" expanded="true" />
-            <element signature="e#3448#3454#0" expanded="true" />
+            <marker date="1492690938761" expanded="true" signature="100665:100671" ph="'" />
+            <marker date="1492690938761" expanded="true" signature="118072:118106" ph="..." />
+            <marker date="1492690938761" expanded="true" signature="166245:166260" ph="..." />
+            <marker date="1492690938761" expanded="true" signature="166364:166397" ph="..." />
+            <marker date="1492690938761" expanded="true" signature="166436:166511" ph="..." />
+            <marker date="1492690938761" expanded="true" signature="168200:168217" ph="..." />
+            <marker date="1492690938761" expanded="true" signature="168382:168399" ph="..." />
+            <marker date="1492690938761" expanded="true" signature="168566:168613" ph="..." />
           </folding>
         </state>
       </provider>
