@@ -31,6 +31,7 @@ app
             });
             
             data.schedule_mon = scheduleSvcResp.timeBlock(mon);
+			//console.log(data.schedule_mon);
             data.schedule_tue = scheduleSvcResp.timeBlock(tue);
             data.schedule_wed = scheduleSvcResp.timeBlock(wed);
             data.schedule_thu = scheduleSvcResp.timeBlock(thr);
@@ -38,12 +39,6 @@ app
             data.schedule_sat = scheduleSvcResp.timeBlock(sat);
             data.schedule_sun = scheduleSvcResp.timeBlock(sun);
             data.expiration = scheduleSvcResp.convert(data.expiration);
-
-
-
-
-
-
 
 
 
@@ -61,21 +56,24 @@ app
 
         scheduleSvcResp.timeBlock = function(arr){
             var returnArr = [];
+			
+			var arr1 = arr.map(function (x) { 
+				return parseInt(x, 10); 
+			});
+			arr = arr1;
+			
             var start = arr[0];
             var end = arr[0];
             for(var i=0; i < arr.length-1; i=i+2){
-                if(arr[i] == (arr[i+2]-1)){
+				if(arr[i] == (arr[i+2]-1)){
                     end = arr[i+2];
                 }else{
                     var starttime = Number(start)+":00";
                     var endtime = Number(end)+1+":00";
-				   // var starttime = start;
-                   // var endtime = end;
                     returnArr.push({starttime: starttime, endtime: endtime});
                     start = arr[i+2];
                     end = arr[i+2];
                 }
-          
             }
             // returnArr.push({starttime: Number(start), endtime: Number(end)+1});
             return returnArr;

@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('AddScheduleCtrl', function ($scope,appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout) {
+  .controller('AddScheduleCtrl', function ($scope,appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,utilitySvc) {
      $scope.page = {
       title: 'Add Schedule',
     };
@@ -102,6 +102,7 @@ app
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
+		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.schedule_start_date);
 		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
@@ -243,19 +244,7 @@ app
       title: 'Schedule Groups',
       subtitle: 'So much more to see at a glance.'
     };
-    /*
-    $scope.deleteSchedule = function(id){
-    	dataService.deleteData(null, baseURL + "schedule/delete?schedule_id="+id)
-    	.success(function(response){
-    		if(response.status){
-    			toaster.pop('success','Your schedule groups has been deleted successfully.');
-    			$scope.scheduleInit();
-    		}else{
-    			dataService.responseError(response);
-    		}
-    	});
-    };
-    */
+    
     $scope.deleteSchedule = function(id){
     	scheduleSvc.deleteSchedule(appConstants.scheduleDelete,appConstants.deleteMethod,{schedule_id:id},{},function (succResponse) {
             if(succResponse.status){
@@ -300,8 +289,8 @@ app
 		if(!$scope.searchText){
 			$scope.searchText = '';
 		}
-
-		scheduleSvc.scheduleInit(appConstants.scheduleList,appConstants.getMethod,{},{},function (succResponse) {
+		var params = {limit:1000,pageNo:1,search_val:$scope.searchText};
+		scheduleSvc.scheduleInit(appConstants.scheduleList, appConstants.getMethod,params,{},function (succResponse) {
             if(succResponse.status){
                 $scope.schedules = succResponse.data.data;
 				$scope.totalDisplayed = 8;
@@ -326,48 +315,43 @@ app
 				};
             }
         });
-		//$http.get('http://localhost:8080/elika/json/admin/schedules.json')
-		/*
-		dataService.getData(null,baseURL+'schedule/list')
-		.success(function(response){
-			$scope.schedules = response.data.data;
-			$scope.totalDisplayed = 8;
-			
-			if($scope.schedules.length > $scope.totalDisplayed) {
-				$scope.lmbtn = {
-					"display" : "block"
-				};			
-			} else {
-				$scope.lmbtn = {
-					"display" : "none"
-				};
-			}
-			
-			$scope.loadMore = function () {
-				$scope.totalDisplayed += 8;
-				if($scope.totalDisplayed > $scope.schedules.length) {				
-					$scope.lmbtn = {
-						"display" : "none"
-					};	
-				}			
-			};		
-		});
-		*/
 	}
 	$scope.scheduleInit();
 
 	$scope.searchFunction = function(e){
-
-
-
-
 		if(e)
 		if(e.keyCode!=13){return false;}
 		if(!$scope.searchText){
 			$scope.searchText = '';
 		}
 		$scope.pageNo = 1;
-		
+		var params = {limit:1000,pageNo:1,search_val:$scope.searchText};
+		scheduleSvc.scheduleInit(appConstants.scheduleList, appConstants.getMethod,params,{},function (succResponse) {
+            if(succResponse.status){
+                $scope.schedules = succResponse.data.data;
+				$scope.totalDisplayed = 8;
+				
+				if($scope.schedules.length > $scope.totalDisplayed) {
+					$scope.lmbtn = {
+						"display" : "block"
+					};			
+				} else {
+					$scope.lmbtn = {
+						"display" : "none"
+					};
+				}
+				
+				$scope.loadMore = function () {
+					$scope.totalDisplayed += 8;
+					if($scope.totalDisplayed > $scope.schedules.length) {				
+						$scope.lmbtn = {
+							"display" : "none"
+						};	
+					}			
+				};
+            }
+        });
+		/*
 		$http(
 		{
 			method: 'GET', 
@@ -416,6 +400,7 @@ app
 		}).error(function(){
 
 		});	
+		*/
 	}
 	
 	$scope.orderByMe = function(x) {
