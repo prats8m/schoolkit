@@ -22,7 +22,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
+					<div class="noback bg-blue cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -31,7 +31,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -43,7 +43,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
+					<div class="noback bg-slategray lt cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -52,7 +52,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
 									<span class="text-lg">Doors</span>
 								</div>
 							</div>
@@ -64,7 +64,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
+					<div class="noback bg-lightred cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -73,7 +73,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -106,7 +106,7 @@
 													<th class="fri">Fri</th>
 													<th class="sat">Sat</th>
 													<th class="sun">Sun</th>
-													<th class="holidays">Holidays</th>
+													<!--th class="holidays">Holidays</th-->
 												</tr>
 											</thead>																
 										</table>
@@ -146,9 +146,7 @@
 														</td>
 														<td>
 															<table style="width:100%" cellspacing="0" id="table">
-
-																<tr value="12:00am" time="00:00" class="00">
-
+																<tr value="00:00" class="00">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -156,11 +154,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="12:30am" time="00:00" class="00">
-
+																<tr value="00:00" class="00">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -168,11 +164,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="1am" time="01:00" class="01">
-
+																<tr value="01:00" class="01">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -180,11 +174,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="1:30am" time="01:00" class="01">
-
+																<tr value="01:00" class="01">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -192,23 +184,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
-
-																</tr> 
-																<tr value="2am" time="02:00" class="02">
-
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="2:30am" time="02:00" class="02">
-
+																<tr value="02:00" class="02">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -216,11 +194,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="3am" time="03:00" class="03">
-
+																<tr value="02:00" class="02">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -228,11 +204,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="3:30am" time="03:00" class="03">
-
+																<tr value="03:00" class="03">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -240,11 +214,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="4am" class="04" time="04:00">
-
+																<tr value="03:00" class="03">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -252,11 +224,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="4:30am" class="04" time="04:00">
-
+																<tr value="04:00" class="04">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -264,11 +234,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="5am" class="05" time="05:00">
-
+																<tr value="04:00" class="04">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -276,11 +244,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-																
-																<tr value="5:30am" class="05" time="05:00">
-
+																<tr value="05:00" class="05">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -288,11 +254,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="6am" class="06" time="06:00">
-
+																<tr value="05:00" class="05">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -300,11 +264,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="6:30am" class="06" time="06:00">
-
+																<tr value="06:00" class="06">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -312,11 +274,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="7am" class="07" time="07:00">
-
+																<tr value="06:00" class="06">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -324,11 +284,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="7:30am" class="07" time="07:00">
-
+																<tr value="07:00" class="07">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -336,11 +294,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="8am" class="08" time="08:00">
-
+																<tr value="07:00" class="07">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -348,11 +304,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="8:30am" class="08" time="08:00">
-
+																<tr value="08:00" class="08">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -360,11 +314,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="9am" class="09" time="09:00">
-
+																<tr value="08:00" class="08">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -372,11 +324,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="9:30am" class="09" time="09:00">
-
+																<tr value="09:00" class="09">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -384,11 +334,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="10am" class="10" time="10:00">
-
+																<tr value="09:00" class="09">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -396,11 +344,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="10:30am" class="10" time="10:00">
-
+																<tr value="10:00" class="10">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -408,11 +354,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="11am" class="11" time="11:00">
-
+																<tr value="10:00" class="10">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -420,11 +364,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="11:30am" class="11" time="11:00">
-
+																<tr value="11:00" class="11">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -432,11 +374,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="12pm" class="12" time="12:00">
-
+																<tr value="11:00" class="11">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -444,11 +384,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="12:30pm" class="12" time="12:00">
-
+																<tr value="12:00" class="12">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -456,11 +394,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="1pm" class="13" time="13:00">
-
+																<tr value="12:00" class="12">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -468,11 +404,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="1:30pm" class="13" time="13:00">
-
+																<tr value="13:00" class="13">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -480,11 +414,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="2pm" class="14" time="14:00">
-
+																<tr value="13:00" class="13">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -492,11 +424,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="2:30pm" class="14" time="14:00">
-
+																<tr value="14:00" class="14">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -504,11 +434,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="3pm" class="15" time="15:00">
-
+																<tr value="14:00" class="14">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -516,11 +444,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="3:30pm" class="15" time="15:00">
-
+																<tr value="15:00" class="15">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -528,11 +454,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="4pm" class="16" time="16:00">
-
+																<tr value="15:00" class="15">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -540,11 +464,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="4:30pm" class="16" time="16:00">
-
+																<tr value="16:00" class="16">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -552,11 +474,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="5pm" class="17" time="17:00">
-
+																<tr value="16:00" class="16">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -564,11 +484,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="5:30pm" class="17" time="17:00">
-
+																<tr value="17:00" class="17">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -576,11 +494,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="6pm" class="18" time="18:00">
-
+																<tr value="17:00" class="17">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -588,11 +504,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="6:30pm" class="18" time="18:00">
-
+																<tr value="18:00" class="18">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -600,11 +514,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="7pm" class="19" time="19:00">
-
+																<tr value="18:00" class="18">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -612,11 +524,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="7:30pm" class="19" time="19:00">
-
+																<tr value="19:00" class="19">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -624,11 +534,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="8pm" class="20" time="20:00">
-
+																<tr value="19:00" class="19">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -636,11 +544,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="8:30pm" class="20" time="20:00">
-
+																<tr value="20:00" class="20">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -648,11 +554,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="9pm" class="21" time="21:00">
-
+																<tr value="20:00" class="20">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -660,11 +564,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="9:30pm" class="21" time="21:00">
-
+																<tr value="21:00" class="21">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -672,11 +574,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="10pm" class="22" time="22:00">
-
+																<tr value="21:00" class="21">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -684,11 +584,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="10:30pm" class="22" time="22:00">
-
+																<tr value="22:00" class="22">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -696,11 +594,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="11pm" class="23" time="23:00">
-
+																<tr value="22:00" class="22">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -708,11 +604,9 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
-
-																<tr value="11:30pm" class="23" time="23:00">
-
+																<tr value="23:00" class="23">
 																	<td class="nobrl mon" value="Monday">&nbsp;</td>
 																	<td class="tue" value="Tuesday">&nbsp;</td>
 																	<td class="wed" value="Wednesday">&nbsp;</td>
@@ -720,7 +614,17 @@
 																	<td class="fri" value="Friday">&nbsp;</td>
 																	<td class="sat" value="Saturday">&nbsp;</td>
 																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<td class="holidays" value="holidays">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
+																</tr>
+																<tr value="23:00" class="23">
+																	<td class="nobrl mon" value="Monday">&nbsp;</td>
+																	<td class="tue" value="Tuesday">&nbsp;</td>
+																	<td class="wed" value="Wednesday">&nbsp;</td>
+																	<td class="thr" value="Thursday">&nbsp;</td>
+																	<td class="fri" value="Friday">&nbsp;</td>
+																	<td class="sat" value="Saturday">&nbsp;</td>
+																	<td class="sun" value="Sunday">&nbsp;</td>
+																	<!--td class="holidays" value="holidays">&nbsp;</td-->
 																</tr>
 															</table>
 														</td>
@@ -728,160 +632,197 @@
 												</tbody>
 											</table>
 											<div class="copybtn">
-												<a ng-click="copyMonFri()" class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Copy Mon -> Mon-Fri</a>
-												<a ng-click="copyMonSun()" class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Copy Mon -> Mon-Sun</a>
-												<a ng-click="clearAll()" class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Clear All</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonFri()">Copy Mon -> Mon-Fri</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonSun()">Copy Mon -> Mon-Sun</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Clear All</a>
 											</div>
 										</div>
 									</div>
 								</div>														
-								<div class="modal-body col-md-5">		
-									<div class="account">	
-										<form name="myform" ng-submit="submitSchedule(schedule)">
+								<div class="modal-body col-md-5" ng-controller="ModalDemoCtrl">
+									<form ng-submit="submitSchedule(schedule)">
+									<div class="account">							
 										<div class="row mt-10">
 											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Schedule Name</label>
-												<input type="text" name="schedule_name" id="" class="form-control" ng-model="schedule.schedule_name" placeholder="" required>
+												<input type="text" ng-model="schedule.schedule_name" name="" id="" class="form-control" required>
 											</div>
 											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Facility</label>
-												<!-- <select class="form-control" name="facility" ng-model="schedule.facility_id" required>
-													<option value="">Select</option>
-													<option value="1">USA Corporate Services</option>
-													<option value="2">Aerzen USA Corporation</option>
-												</select> -->
-												<select class="form-control" name="facility" ng-model="schedule.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList" required>
+												<select class="form-control" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" required>
 													<option value="">Select</option>
 												</select>
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-sm-12 col-md-6 form-group">
-												<label for="">Block</label><br/>
-												<select class="form-control" name="block" ng-model="schedule.block" required>
-													<option value="">Select</option>
-													<option>Test Block 1</option>
-													<option>Test Block 2</option>
-												</select>
-											</div>
-											<div class="col-sm-12 col-md-6 form-group">
-												<label for="">&nbsp;</label><br/>
-												<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10" style="margin-top:1px;" disabled>Delete Block</button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-6 col-md-3 form-group">
-												<label for="">Start Time</label>
-												<input type="text" name="schedule_start_date" id="" class="form-control" ng-model="schedule.schedule_start_date" placeholder="" required>
-											</div>
-											<div class="col-sm-6 col-md-3 form-group">
-												<label for="">End Time</label>
-												<input type="text" name="schedule_end_date" id="" class="form-control" ng-model="schedule.schedule_end_date" placeholder="" required>
-											</div>
-											<div class="col-sm-6 col-md-6 form-group">
-												<label for="">&nbsp;</label><br/>
-												<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10" style="margin-top:1px;" disabled>Update Block</button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-12 col-md-12 form-group">
-												<label for="">Holidays Observed</label>
-												<textarea name="holiday" id="" class="form-control mb-10" placeholder="" disabled></textarea>
-												<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right" disabled>Add Holiday</button>
-												<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right mr-10" disabled>Remove</button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-12 col-md-12 form-group">
-												<label for="">Schedule Exceptions</label>
-												<textarea name="exceptions" id="" class="form-control" placeholder="" disabled>No exceptions</textarea>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-12 col-md-6 form-group">
-												<label for="">Type</label><br/>
-												<div class="row">
-													<div class="col-sm-12 col-md-6">
-														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-															<input name="customRadioAlt" type="radio" checked="checked" disabled><i></i> One Time
-														</label>
-													</div>
-													<div class="col-sm-12 col-md-6">
-														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-															<input name="customRadioAlt" type="radio" disabled><i></i> Repeating
-														</label>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row" ng-init="visibiltyUserGroup=false" ng-show="visibiltyUserGroup">
-											<div class="col-sm-12 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 												<label for="">Start Date</label>
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"  disabled />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"  required />
 													<span class="input-group-btn">
-														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;" disabled><i class="glyphicon glyphicon-calendar"></i></button>
+														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
 												</div>
 											</div>
+											
 										</div>
 										<div class="row">
-											<div class="col-sm-12 col-md-12" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
-												<label for="">Repeats every</label>
+											<div class="col-sm-12 col-md-6">
 												<div class="row">
 													<div class="col-sm-6 col-md-6 form-group">
-														<select class="form-control" name="repeat" disabled>
-															<option value="">First</option>
-															<option value="">Second</option>
-															<option value="">Third</option>
-															<option value="">Fourth</option>
-															<option value="">Fifth</option>
-														</select>
+														<label for="">Start Time</label>
+														<input type="text" name="" ng-model="schedule.schedule_start_time" id="" class="form-control">
 													</div>
 													<div class="col-sm-6 col-md-6 form-group">
-														<select class="form-control" name="day" disabled>
-															<option value="">Sunday</option>
-															<option value="">Monday</option>
-															<option value="">Tuesday</option>
-															<option value="">Wednesday</option>
-															<option value="">Thursday</option>
-															<option value="">Friday</option>
-															<option value="">Saturday</option>
-														</select>
+														<label for="">End Time</label>
+														<input type="text" name="" ng-model="schedule.schedule_end_time" id="" class="form-control">
+													</div>
+													<input type="hidden" name="" ng-model="schedule.schedule_weekday" id="" class="form-control">
+													<div class="col-sm-12 col-md-12 form-group">
+														<button type="button" ng-click="updateBlock()" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10 mt-5">Add Block</button>
 													</div>
 												</div>
 											</div>
+											<div class="col-sm-12 col-md-6 form-group">
+												<label for="">Block</label><br/>
+												<select class="form-control form-group pull-left" ng-model="schedule.block" ng-options="color for color in blocks">
+													<option value="">Select Block</option>
+												</select>
+												<button type="button" ng-click="deleteBlock()" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10 mt-5">Delete Block</button>
+											</div>
 										</div>
-										<div class="row">
-											<div class="col-sm-6 col-md-3 form-group">
-												<label for="">Starts at</label>
-												<input type="text" name="start_at" id="" class="form-control" placeholder="" value="12:00 AM" disabled>
-											</div>
-											<div class="col-sm-6 col-md-3 form-group">
-												<label for="">Ends at</label>
-												<input type="text" name="end_at" id="end_at" class="form-control" placeholder="" value="11:59 PM" disabled>
-											</div>
-											<div class="col-sm-6 col-md-6 form-group">
-												<label for="">&nbsp;</label><br/>
-												<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10" style="margin-top:1px;" disabled>Update</button>
-											</div>
-										</div>															
-										<div class="row" >
-											<div class="form-group col-sm-12 col-md-12">
+										
+										
+										<div>
+											<uib-accordion close-others="oneAtATime">
+												<uib-accordion-group is-open="status.open1" class="panel-default mt-20">
+													<uib-accordion-heading>Holidays Observed <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
+														<ul class="hslist">
+															<li ng-repeat="s in holidaySchedules" ng-if="s.isScheduleSelected">{{s.hs_name}}
+																<a href="" class="pull-right text-lightred" ng-click="s.isScheduleSelected=false">
+																	<i class="fa fa-trash-o" aria-hidden="true"></i>
+																</a>
+															</li>
+														</ul>
+														<button ng-click="open()" type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right">Add Holiday </button>
+												</uib-accordion-group>
+												
+												<uib-accordion-group is-open="status.open2" class="panel-default mt-20">
+													<uib-accordion-heading>Schedule Exceptions <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
+													<div class="row">
+														<div class="col-sm-12 col-md-12">
+															<ul class="hslist">
+																<li ng-repeat="e in exceptions">
+																	<span ng-if="e.type=='ONETIME'">{{e.status}} {{e.date| date:'dd-MMM-yyyy'}} from {{e.start_time}} to {{e.end_time}}</span> 
+																	<span ng-if="e.type=='REAPEATING'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
+																<a href="" class="pull-right text-lightred">
+																	<i class="fa fa-trash-o" aria-hidden="true"></i>
+																</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-12 col-md-6 form-group">
+															<label for="">Type</label><br/>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
+																		<input name="customRadioAlt" ng-model="exception.type" value="ONETIME" type="radio" ng-init="exception.type='ONETIME'"><i></i> One Time
+																	</label>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
+																		<input name="customRadioAlt" ng-model="exception.type" value="REAPEATING" type="radio"><i></i> Repeating
+																	</label>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row" ng-init="visibiltyUserGroup=false"  ng-show="visibiltyUserGroup">
+														<div class="col-sm-12 col-md-6 form-group">
+															<label for="">Date</label>
+															<div class="input-group" ng-controller="DatepickerDemoCtrl">
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.exception.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																<span class="input-group-btn">
+																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																</span>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-12 col-md-12" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
+															<label for="">Repeats every</label>
+															<div class="row">
+																<div class="col-sm-6 col-md-6 form-group">
+																	<select class="form-control" ng-model="exception.week">
+																		<option value="">Select</option>
+																		<option>First</option>
+																		<option>Second</option>
+																		<option>Third</option>
+																		<option>Fourth</option>
+																		<option>Fifth</option>
+																	</select>
+																</div>
+																<div class="col-sm-6 col-md-6 form-group">
+																	<select class="form-control" ng-model="exception.day">
+																		<option value="">Select</option>
+																		<option>Sunday</option>
+																		<option>Monday</option>
+																		<option>Tuesday</option>
+																		<option>Wednesday</option>
+																		<option>Thursday</option>
+																		<option>Friday</option>
+																		<option>Saturday</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-md-3 form-group">
+															<label for="">Starts at</label>
+															<input type="text" name="" id="" class="form-control" ng-model="exception.start_time">
+														</div>
+														<div class="col-sm-6 col-md-3 form-group">
+															<label for="">Ends at</label>
+															<input type="text" name="" id="" class="form-control" ng-model="exception.end_time">
+														</div>
+														<div class="col-sm-6 col-md-6 form-group">
+															<label for="">Enable or Disable</label><br/>
+															<select class="form-control" ng-model="exception.status">
+																<option value="">Select</option>
+																<option value="Enabled">Enabling Exception</option>
+																<option value="Disabled">Disabling Exception</option>
+															</select>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-12 col-md-6 form-group mt-20">
+															<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded" ng-click="addException(exception)" style="margin-top:1px;">Add Exception</button>
+														</div>
+													</div>
+												</uib-accordion-group>
+											</uib-accordion>
+										</div>
+																									
+										<div class="row" ng-init="schedule.schedule_status=1">
+											<div class="form-group col-sm-12 col-md-6">
 												<label for="">Status</label><br/>
-												<div class="btn-group btnrounded" ng-init="schedule.schedule_status=1">
+												<div class="btn-group btnrounded">
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="1">Active</label>
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="0">Inactive</label>
 												</div>
 											</div>
-											<div class="form-group col-sm-12 col-md-12" ng-hide="schedule.schedule_status==0" ng-init="mySwitch=true">
-												<label class="checkbox checkbox-custom-alt mb-0">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" ng-init="mySwitch=true">
+												<label for="">&nbsp;</label><br/>
+												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
 													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="mySwitch"><i></i> No Expirations
 												</label>											
 											</div>
-											<div class="form-group col-sm-6 col-md-6" ng-hide="mySwitch" ng-controller="DatepickerDemoCtrl">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="mySwitch" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
-													<input type="text" name="expiration" class="form-control" uib-datepicker-popup="{{format}}" ng-model="schedule.expiration" is-open="opened" datepicker-options="dateOptions" close-text="Close"  />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
@@ -892,12 +833,110 @@
 											<a ui-sref="app.admin.schedule.schedule-groups" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded ml-0" ng-click="cancel()">Cancel</a>
 											<button type="submit" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded">Save Schedule</button>
 										</div>
-										</form>
 									</div>
+									</form>
+									<script type="text/ng-template" id="myModalContent.html">
+										<div class="modal-header"><h4 class="modal-title custom-font">Holiday Schedules</h4></div>
+										<div class="hometabs">
+											<div class="overflow groupslists">
+												<div class="col-md-12 mt-20">
+													<ul>
+														<li ng-repeat="hs in holidaySchedules">
+															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" ng-model="hs.isScheduleSelected" id="hsck_{{hs.hs_id}}" ><i></i> {{hs.hs_name}}</label>
+														</li>
+														
+													</ul>
+													<a ui-sref="app.admin.schedule.holiday-schedules" ng-click="cancel()" class="pull-right mt-15 mb-20">Create Holiday Schedule </a>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+											<button type="submit" ng-click="submitHS()" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+										</div>											
+									</script>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!--<script type="text/javascript">
+						var table = $("#table");
+						var isMouseDown = false;
+						var startRowIndex = null;
+						var startCellIndex = null;
+
+						function selectTo(cell) {
+							
+							var row = cell.parent();    
+							var cellIndex = cell.index();
+							var rowIndex = row.index();
+							
+							var rowStart, rowEnd, cellStart, cellEnd;
+																			
+							if (rowIndex < startRowIndex) {
+								rowStart = rowIndex;
+								rowEnd = startRowIndex;
+							} else {
+								rowStart = startRowIndex;
+								rowEnd = rowIndex;
+							}
+							
+							if (cellIndex < startCellIndex) {
+								cellStart = cellIndex;
+								cellEnd = startCellIndex;
+							} else {
+								cellStart = startCellIndex;
+								cellEnd = cellIndex;
+							}
+							
+							for (var i = rowStart; i <= rowEnd; i++) {
+								var rowCells = table.find("tr").eq(i).find("td");
+								for (var j = cellStart; j <= cellEnd; j++) {
+									rowCells.eq(j).addClass("selected");
+								}
+							}
+							
+						}
+
+						table.find("td").mousedown(function (e) {
+							isMouseDown = true;
+							var cell = $(this);
+
+							table.find(".selected").removeClass("selected"); // deselect everything
+							
+							if (e.shiftKey) {
+								selectTo(cell);                
+							} else {
+								cell.addClass("selected");
+								startCellIndex = cell.index();
+								startRowIndex = cell.parent().index();
+							}
+							
+							return false; // prevent text selection
+						})
+						
+						.mouseover(function () {
+							if (!isMouseDown) return;
+							table.find(".selected").removeClass("selected");
+							selectTo($(this));
+						})
+						
+						.bind("selectstart", function () {
+							return false;
+						});
+
+						$(document).mouseup(function () {
+							isMouseDown = false;
+						});
+						
+						/*$.each($("#table tr"), function( index, value ) {
+							  if($( this ).children().hasClass("selected")){
+							console.log($(this)+""+index);
+							console.log($(this).attr('value'))
+
+							}
+							});*/
+					</script>-->
 				</section>
 			</div>
 		</div>

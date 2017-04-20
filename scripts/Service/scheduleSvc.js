@@ -31,6 +31,7 @@ app
             });
             
             data.schedule_mon = scheduleSvcResp.timeBlock(mon);
+			//console.log(data.schedule_mon);
             data.schedule_tue = scheduleSvcResp.timeBlock(tue);
             data.schedule_wed = scheduleSvcResp.timeBlock(wed);
             data.schedule_thu = scheduleSvcResp.timeBlock(thr);
@@ -38,12 +39,6 @@ app
             data.schedule_sat = scheduleSvcResp.timeBlock(sat);
             data.schedule_sun = scheduleSvcResp.timeBlock(sun);
             data.expiration = scheduleSvcResp.convert(data.expiration);
-
-
-
-
-
-
 
 
 
@@ -61,10 +56,16 @@ app
 
         scheduleSvcResp.timeBlock = function(arr){
             var returnArr = [];
+			
+			var arr1 = arr.map(function (x) { 
+				return parseInt(x, 10); 
+			});
+			arr = arr1;
+			
             var start = arr[0];
             var end = arr[0];
             for(var i=0; i < arr.length-1; i=i+2){
-                if(arr[i] == (arr[i+2]-1)){
+				if(arr[i] == (arr[i+2]-1)){
                     end = arr[i+2];
                 }else{
                     var starttime = Number(start)+":00";
@@ -73,7 +74,6 @@ app
                     start = arr[i+2];
                     end = arr[i+2];
                 }
-          
             }
             // returnArr.push({starttime: Number(start), endtime: Number(end)+1});
             return returnArr;
@@ -145,7 +145,40 @@ app
                 }
             });
         };
-
+		
+		scheduleSvcResp.holidayScheduleList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    /* for(var key in succResponse.data){
+                        if(succResponse.data[key].hs_start_date)
+                            succResponse.data[key].hs_start_date=utilitySvc.getDateTimeFromTimeStamp(succResponse.data[key].hs_start_date*1000);
+                        if(succResponse.data[key].hs_end_date)
+                            succResponse.data[key].hs_end_date=utilitySvc.getDateTimeFromTimeStamp(succResponse.data[key].hs_end_date*1000);
+                        if(succResponse.data[key].hs_expiration)
+                            succResponse.data[key].hs_expiration=utilitySvc.getDateTimeFromTimeStamp(succResponse.data[key].hs_expiration*1000);
+                        if(succResponse.data[key].hs_created_on)
+                            succResponse.data[key].hs_created_on=utilitySvc.getDateTimeFromTimeStamp(succResponse.data[key].hs_created_on*1000);
+                    } */
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+		
+		scheduleSvcResp.getHolidayIds = function(hsArray){
+			var tmpArray = [];
+			
+			for(var i=0; i < hsArray.length; i++){
+				if(hsArray[i].isScheduleSelected){
+					tmpArray.push(hsArray[i].hs_id);
+				}
+			}
+			return tmpArray;
+		};
+	
 
         return scheduleSvcResp;
     }]);

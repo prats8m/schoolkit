@@ -1088,7 +1088,7 @@ a.serplan:hover {
     font-size: 14px;
     text-transform: capitalize;
     display: inline-block;
-    margin: 10px 5px 0;
+    margin: 10px 4px 0;
     font-weight: 600;
 	width: 65px;
 }
@@ -1762,14 +1762,26 @@ md-card:hover .moreitemsondevice {
 
 .card-container .card .front,
 .card-container .card .noback {
-    border-radius: 5px
+    border-radius: 5px;
+	height: 170px;
+}
+
+.card-container .card .front.cardheight .row, .card-container .card .noback.cardheight .row {
+	height: 100%;
+}
+
+.card-container .card .front.cardheight .row  .col-xs-6, .card-container .card .noback.cardheight .row .col-xs-6 {
+	display: table;
+    height: 100%;
 }
 
 .iconbx {
-    padding: 49px 0 49px 0;
     background: rgba(0, 0, 0, .1);
     border-radius: 5px 0 0 5px;
+    display: table-cell;
     width: 100%;
+    height: 100%;
+    vertical-align: middle;
     text-align: center!important;
 }
 
@@ -1786,8 +1798,11 @@ md-card:hover .moreitemsondevice {
 }
 
 .itxt {
-    margin-top: 48px;
-    text-align: center
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+	text-align: center;
 }
 
 .border5, .br-5 {
@@ -2531,9 +2546,6 @@ span.edittxt {position: absolute;
 		padding: 15px 20px 15px;
 		border-radius: 5px;
 	}	
-	.iconbx {
-		padding: 65px 0 64px 0;
-	}
 	.iconbx img {
 		width: 125px;
 	}
@@ -2669,9 +2681,6 @@ span.edittxt {position: absolute;
 	.page-dashboard .adminroles .tile, .page-dashboard .holidayschedule .tile, .page-dashboard .historyreports .tile, .page-dashboard .technicians .tile {
 		margin-bottom: 10px;
 	}
-	.itxt {
-		margin-top: 62px;
-	}
 	.tcol.bg-blue a {
 		padding-top: 6px;
 	}
@@ -2709,6 +2718,7 @@ span.edittxt {position: absolute;
 	}
 	.slimscrolls {
 		max-height: 449px;
+		min-height: 449px;
 	}
 	.myshortcuts ul li .icons {
 		height: 54px;
@@ -2718,6 +2728,9 @@ span.edittxt {position: absolute;
 	.myshortcuts ul li a {
 		height: 54px;
 		font-size: 18px;
+	}
+	.card-container .card .front, .card-container .card .noback {
+		height: 248px;
 	}
 }
 
@@ -2736,9 +2749,6 @@ span.edittxt {position: absolute;
 	}
 	.cameradvr .above1800 img {
 		height: 49px;
-	}
-	.iconbx {
-		padding: 55px 0 55px 0;
 	}
 	.iconbx img {
 		width: 95px;
@@ -2773,6 +2783,9 @@ span.edittxt {position: absolute;
 	}
 	.slimscrolls {
 		max-height: 355px;
+	}
+	.card-container .card .front, .card-container .card .noback {
+		height: 201px;
 	}
 }
 
@@ -2812,6 +2825,9 @@ span.edittxt {position: absolute;
 	}	
 	.card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
 		font-size: 20px;
+	}
+	.slimscrolls {
+		max-height: 297px;
 	}
 }
 
@@ -3034,6 +3050,9 @@ span.edittxt {position: absolute;
 		margin-left: -50px;
 		width: 100px;
 	}
+	.slimscrolls {
+		max-height: 287px;
+	}
 }
 
 @media only screen and (max-width: 1139px) {
@@ -3128,9 +3147,6 @@ span.edittxt {position: absolute;
 	.iconbx img {
 		width: 60px;
 	}
-	.iconbx {
-		padding: 25px 0 25px 0;
-	}
 	.text-elg {
 		font-size: 40px !important;
 		line-height: 26px;
@@ -3158,11 +3174,18 @@ span.edittxt {position: absolute;
 		font-size: 16px;
 	}
 	.dashboardbg {
-		height: 341px!important;
+		height: 290px!important;
 	}
 	.card .back>.row>div a img {
 		width: 50px;
 		margin-bottom: 10px;
+	}
+	.doors {
+		margin-top: 10px;
+		width: 50%;
+	}
+	.card-container.doors .card .front {
+		height: 170px;
 	}
 	.cameradvr, .adminroles   {
 		margin-top: 10px;
@@ -3176,10 +3199,18 @@ span.edittxt {position: absolute;
 		padding: 20px !important;
 	}
 	.holidayschedule {
-		width: 60%;
+		width: 50%;
+		margin-top: 10px;
 	}
 	.historyreports, .technicians {
-		width: 40%;
+		width: 50%;
+	}
+	.page-dashboard .adminroles .tcol a h3 {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	.page-dashboard .adminroles .tile-simple .text-muted {
+		margin: 10px 0 12px;
 	}
 	.card-container .card .back>.row>div a img {
 		width: 50px;
@@ -3274,7 +3305,10 @@ span.edittxt {position: absolute;
 		font-size: 20px;
 	}
 	.slimscrolls {
-		max-height: 268px;
+		max-height: 218px;
+	}
+	.card-container .card .front, .card-container .card .noback {
+		height: 140px;
 	}
 }
 
@@ -3283,9 +3317,10 @@ span.edittxt {position: absolute;
 		padding: 15px;
 	}
 	.page-dashboard .card-container {
-		float: left;
-		width: 48.75%;
-		padding: 0 0 0 15px;
+		float: none;
+		width: 100%;
+		padding: 0 15px;
+		margin: 0 auto 20px;
 	}
 	.card-container {
 		position: relative;
@@ -3295,10 +3330,6 @@ span.edittxt {position: absolute;
 	}
 	.cameradvr, .adminroles {
 		margin-top: 5px;
-	}
-	.holidayschedule {
-		width: 97.35%!important;
-		margin: -5px 0;
 	}
 	.glview md-card {
 		width: 46%;
@@ -3376,6 +3407,15 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(4n+4) {
 		margin-right: 2.6%;
 	}
+	.crystalcove {
+		width: 60%;
+	}
+	.myshortcuts {
+		width: 40%;
+	}
+	.iconbx img {
+		width: auto;
+	}
 }
 
 @media only screen and (max-width: 599px) {
@@ -3416,7 +3456,31 @@ span.edittxt {position: absolute;
 		margin: 0px -15px -15px;
 	}
 	.dashboardbg {
-		height: 107px!important;
+		height: 390px!important;
+	}
+	.crystalcove {
+		width: 100%;
+		height: 85px;
+		margin-bottom: 15px;
+	}
+	.covertext span strong {
+		font-size: 26px;
+	}
+	.covertext span strong:after {
+		bottom: -30px;
+		height: 1px;
+	}
+	.covertext span {
+		font-size: 16px;
+	}
+	.myshortcuts {
+		width: 100%;
+	}
+	.myshortcuts ul li .icons {
+		width: 20%;
+	}
+	.myshortcuts ul li a {
+		width: 80%;
 	}
 	.page-dashboard .card-container, .card-container {
 		float: none;
@@ -3498,6 +3562,7 @@ span.edittxt {position: absolute;
 		float: left;
 		width: 70%!important;
 	}
+	
 }
 
 @media only screen and (max-width: 399px) {
@@ -3523,17 +3588,4 @@ span.edittxt {position: absolute;
 	.listview .glview md-card md-card-content {
 		width: 65%!important;
 	}
-}
-.singlePlayer{
-	height:480px;
-}
-
-.clckevent .panel .panel-heading .panel-title .accordion-toggle{padding: 0px;}
-.clckevent .panel .panel-heading .panel-title .accordion-toggle > span > div{padding: 10px 15px;}
-
-a.disabled {
-    color: #AAAAAA;
-    cursor: default;
-    pointer-events: none;
-    text-decoration: none;
 }
