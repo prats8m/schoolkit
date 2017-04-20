@@ -56,8 +56,8 @@ app
 			weekDay.push(day);
 		}
 		//console.log(rowStart + "-" + rowEnd);
-		$scope.schedule.schedule_start_date = table.find("tr").eq(rowStart).attr("value");
-		$scope.schedule.schedule_end_date = table.find("tr").eq(rowEnd).attr("value");
+		$scope.schedule.schedule_start_time = table.find("tr").eq(rowStart).attr("value");
+		$scope.schedule.schedule_end_time = table.find("tr").eq(rowEnd).attr("value");
 		$scope.schedule.schedule_weekday = weekDay.join("-");
 		//console.log(table.find("tr").eq(rowEnd).attr("value"));
 		$scope.$digest();
@@ -99,6 +99,9 @@ app
 
 
 	$scope.submitSchedule = function(data){
+		data.block = "";
+		data.schedule_exception_array = angular.copy($scope.exceptions);
+		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
@@ -134,8 +137,8 @@ app
 	
 	$scope.clearAll = function(){
 		$("#table tr td").removeClass("selected");
-		$scope.schedule.schedule_start_date = '';
-		$scope.schedule.schedule_end_date = '';
+		$scope.schedule.schedule_start_time = '';
+		$scope.schedule.schedule_end_time = '';
 		$scope.schedule.schedule_weekday = '';
 	}
 	
@@ -151,7 +154,7 @@ app
 	$scope.blocks = [];
 	
 	$scope.updateBlock = function(){
-		var block = $scope.schedule.schedule_start_date + " - " + $scope.schedule.schedule_end_date + " " + $scope.schedule.schedule_weekday;
+		var block = $scope.schedule.schedule_start_time + " - " + $scope.schedule.schedule_end_time + " " + $scope.schedule.schedule_weekday;
 		if($.inArray(block,$scope.blocks) == -1){
 			$scope.blocks.push(block);
 		}
@@ -200,17 +203,28 @@ app
 		var obj = angular.copy(exception);
 		obj.key = key;
 		$scope.exceptions.push(obj);
-		//console.log($scope.exceptions);
 	}
 	
+	$rootScope.holidaySchedules = [];
 	$scope.holidayScheduleList = function(data){
-		scheduleSvc.holidayScheduleList(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
+		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod,{},{},function (succResponse) {
         	if(succResponse.status){
-                toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+				$rootScope.holidaySchedules = succResponse.data;
             }
         });
 	}
 	
+	$scope.holidayScheduleList();
+	$scope.hsArray = [];
+	
+	
+	$rootScope.submitHS = function (id){
+		console.log($rootScope.holidaySchedules);
+	}
+	
+	$scope.removeHolidaySchdule = function(id){
+		
+	}
 	
 });
 

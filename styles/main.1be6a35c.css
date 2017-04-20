@@ -8539,7 +8539,6 @@ input[type="text"].ui-grid-filter-input {
     width: 100%;
     z-index: 9; }
     .card-container .card .front {
-      height: 100%;
       position: relative;
       width: 100%;
       padding: 28px;
