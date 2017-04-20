@@ -240,9 +240,9 @@
 												<p><strong>End Date:&nbsp;</strong>{{ schedule.hs_end_date.date+' '+schedule.hs_end_date.time}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-holiday-schedule">View</a>
-												<div ng-controller="ModalDemo1Ctrl" style="display: inline-block;">
-													<script type="text/ng-template" id="myModalContent1.html">
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-holiday-schedule({hs_id:schedule.hs_id})">View</a>
+												<div ng-controller="editHolidaySchedularCTRL" style="display: inline-block;">
+													<script type="text/ng-template" id="editmyholidaySchedularModalContent.html">
 														<div class="modal-header"><h4 class="modal-title custom-font">Edit Holiday Schedule</h4></div>
 														<div class="hometabs">
 															<div class="row">
@@ -251,14 +251,14 @@
 																		<div class="form-group row">
 																			<div class="col-md-12">
 																				<label for="">Schedule Name</label>
-																				<input type="text" name="" id="" class="form-control" placeholder="Office-Weekdays">
+																				<input type="text" name="" id="" ng-model="editHolidayScheduleObj.hs_name" class="form-control" placeholder="Office-Weekdays">
 																			</div>
 																		</div>
 																		<div class="row">
 																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																				<label for="">Start Date</label>
 																				<div class="input-group">
-																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editHolidayScheduleObj.hs_start_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																					<span class="input-group-btn">
 																						<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																					</span>
@@ -266,55 +266,8 @@
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">Start Time</label><br/>
-																				<select class="form-control">
-																					<option value="">12:00 AM</option>
-																					<option value="">12:30 AM</option>
-																					<option value="">1:00 AM</option>
-																					<option value="">1:30 AM</option>
-																					<option value="">2:00 AM</option>
-																					<option value="">2:30 AM</option>
-																					<option value="">3:00 AM</option>
-																					<option value="">3:30 AM</option>
-																					<option value="">4:00 AM</option>
-																					<option value="">4:30 AM</option>
-																					<option value="">5:00 AM</option>
-																					<option value="">5:30 AM</option>
-																					<option value="">6:00 AM</option>
-																					<option value="">6:30 AM</option>
-																					<option value="">7:00 AM</option>
-																					<option value="">7:30 AM</option>
-																					<option value="">8:00 AM</option>
-																					<option value="">8:30 AM</option>
-																					<option value="">9:00 AM</option>
-																					<option value="">9:30 AM</option>
-																					<option value="">10:00 AM</option>
-																					<option value="">10:30 AM</option>
-																					<option value="" selected>11:00 AM</option>
-																					<option value="">11:30 AM</option>
-																					<option value="">12:00 PM</option>
-																					<option value="">12:30 PM</option>
-																					<option value="">1:00 PM</option>
-																					<option value="">1:30 PM</option>
-																					<option value="">2:00 PM</option>
-																					<option value="">2:30 PM</option>
-																					<option value="">3:00 PM</option>
-																					<option value="">3:30 PM</option>
-																					<option value="">4:00 PM</option>
-																					<option value="">4:30 PM</option>
-																					<option value="">5:00 PM</option>
-																					<option value="">5:30 PM</option>
-																					<option value="">6:00 PM</option>
-																					<option value="">6:30 PM</option>
-																					<option value="">7:00 PM</option>
-																					<option value="">7:30 PM</option>
-																					<option value="">8:00 PM</option>
-																					<option value="">8:30 PM</option>
-																					<option value="">9:00 PM</option>
-																					<option value="">9:30 PM</option>
-																					<option value="">10:00 PM</option>
-																					<option value="">10:30 PM</option>
-																					<option value="">11:00 PM</option>
-																					<option value="">11:30 PM</option>
+																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_starttime" ng-options="time as time for time in editstarttimedropdown track by time">
+																					<option value="">Select Time</option>
 																				</select>
 																			</div>
 																		</div>
@@ -322,7 +275,7 @@
 																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																				<label for="">End Date</label>
 																				<div class="input-group">
-																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editHolidayScheduleObj.hs_end_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																					<span class="input-group-btn">
 																						<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																					</span>
@@ -330,55 +283,8 @@
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">End Time</label><br/>
-																				<select class="form-control">
-																					<option value="">12:00 AM</option>
-																					<option value="">12:30 AM</option>
-																					<option value="">1:00 AM</option>
-																					<option value="">1:30 AM</option>
-																					<option value="">2:00 AM</option>
-																					<option value="">2:30 AM</option>
-																					<option value="">3:00 AM</option>
-																					<option value="">3:30 AM</option>
-																					<option value="">4:00 AM</option>
-																					<option value="">4:30 AM</option>
-																					<option value="">5:00 AM</option>
-																					<option value="">5:30 AM</option>
-																					<option value="">6:00 AM</option>
-																					<option value="">6:30 AM</option>
-																					<option value="">7:00 AM</option>
-																					<option value="">7:30 AM</option>
-																					<option value="">8:00 AM</option>
-																					<option value="">8:30 AM</option>
-																					<option value="">9:00 AM</option>
-																					<option value="">9:30 AM</option>
-																					<option value="">10:00 AM</option>
-																					<option value="">10:30 AM</option>
-																					<option value="">11:00 AM</option>
-																					<option value="">11:30 AM</option>
-																					<option value="">12:00 PM</option>
-																					<option value="">12:30 PM</option>
-																					<option value="">1:00 PM</option>
-																					<option value="">1:30 PM</option>
-																					<option value="">2:00 PM</option>
-																					<option value="">2:30 PM</option>
-																					<option value="">3:00 PM</option>
-																					<option value="">3:30 PM</option>
-																					<option value="">4:00 PM</option>
-																					<option value="">4:30 PM</option>
-																					<option value="">5:00 PM</option>
-																					<option value="" selected>5:30 PM</option>
-																					<option value="">6:00 PM</option>
-																					<option value="">6:30 PM</option>
-																					<option value="">7:00 PM</option>
-																					<option value="">7:30 PM</option>
-																					<option value="">8:00 PM</option>
-																					<option value="">8:30 PM</option>
-																					<option value="">9:00 PM</option>
-																					<option value="">9:30 PM</option>
-																					<option value="">10:00 PM</option>
-																					<option value="">10:30 PM</option>
-																					<option value="">11:00 PM</option>
-																					<option value="">11:30 PM</option>
+																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_endtime" ng-options="time as time for time in editendtimedropdown track by time">
+																					<option value="">Select Time</option>
 																				</select>
 																			</div>
 																		</div>
@@ -386,15 +292,15 @@
 																			<div class="col-md-6 pr-0 mb-20">
 																				<label for="">Status</label><br/>
 																				<div class="btn-group btnrounded">
-																					<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'" style="padding:12px 20px">Active</label>
-																					<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'" style="padding:12px 20px">Inactive</label>
+																					<label class="btn btn-default" ng-model="editHolidayScheduleObj.hs_status" uib-btn-radio="'1'" style="padding:12px 20px">Active</label>
+																					<label class="btn btn-default" ng-model="editHolidayScheduleObj.hs_status" uib-btn-radio="'0'" style="padding:12px 20px">Inactive</label>
 																				</div>
 																			</div>
 																			<div class="col-md-6" ng-hide="radioModel=='Inactive'">
 																				<div ng-controller="DatepickerDemoCtrl">
 																					<label for="">Expiration Date</label>
 																					<div class="input-group">
-																						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editHolidayScheduleObj.hs_expiration" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																						<span class="input-group-btn">
 																							<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																						</span>
@@ -408,16 +314,16 @@
 														</div>
 														<div class="modal-footer">
 															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="ok()"><i class="fa fa-arrow-right"></i> Save</button>
 														</div>
 													</script>
-													<a ng-click="open()" class="btn btn-success btn-border btn-rounded">Edit</a>
+													<a ng-click="open(schedule)" class="btn btn-success btn-border btn-rounded">Edit</a>
 												</div>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,schedule.hs_id)">Delete</a>
 											</div>
 										</md-card>
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getHolidayScheduleList()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMoreScheduleList()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

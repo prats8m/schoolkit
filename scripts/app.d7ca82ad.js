@@ -828,7 +828,7 @@ var app = angular
 
 				//admin schedule view-holiday-schedule
 				.state('app.admin.schedule.view-holiday-schedule', {
-				  url: '/view-holiday-schedule',
+				  url: '/view-holiday-schedule/:hs_id',
 				  controller: 'ViewHolidayScheduleCtrl',
 				  templateUrl: 'views/tmpl/admin/schedule/view-holiday-schedule.html'
 				})

@@ -74,6 +74,9 @@ app.constant("appConstants", {
     userchangepassword:'user/change-password',
     holidayscheduleadd:'holiday-schedule/add',
     holidayschedulelist:'holiday-schedule/list',
+    holidayscheduleedit:'holiday-schedule/edit',
+    holidayscheduleview:'holiday-schedule/view',
+    holidayscheduledelete:'holiday-schedule/delete',
 
 
 
@@ -361,6 +364,7 @@ app.constant("appConstants", {
     _successdeleteholidayschedule:'Your holiday schedule has been deleted successfully',
     _cancelholidayscheduledeletion:'You decided to keep holiday schedule',
     _successholidayscheduleadded:'Holiday Schedule added successfully',
+    _successholidayscheduleedited:'Holiday Schedule edited successfully',
 
     //........................................................................................
 
