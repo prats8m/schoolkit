@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UsersMod.js" afterPath="$PROJECT_DIR$/scripts/UsersMod.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -39,21 +41,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user-groups.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="124" column="63" lean-forward="true" selection-start-line="124" selection-start-column="63" selection-end-line="124" selection-end-column="63" />
+            <state relative-caret-position="34">
+              <caret line="2" column="46" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersMod.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user-groups.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="152" column="64" lean-forward="true" selection-start-line="152" selection-start-column="64" selection-end-line="152" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsersMod.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1535" column="13" lean-forward="false" selection-start-line="1535" selection-start-column="13" selection-end-line="1535" selection-end-column="13" />
+            <state relative-caret-position="211">
+              <caret line="1542" column="46" lean-forward="true" selection-start-line="1542" selection-start-column="46" selection-end-line="1542" selection-end-column="46" />
               <folding>
                 <element signature="e#27293#28173#0" expanded="false" />
                 <element signature="e#28210#28472#0" expanded="false" />
@@ -66,8 +78,7 @@
                 <element signature="e#39979#40258#0" expanded="false" />
                 <element signature="e#40297#40574#0" expanded="false" />
                 <element signature="e#40628#40734#0" expanded="false" />
-                <element signature="e#69073#71707#0" expanded="false" />
-                <marker date="1492760892989" expanded="true" signature="63177:63966" ph="..." />
+                <element signature="e#67101#69735#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -176,8 +187,8 @@
         <option value="$PROJECT_DIR$/views/tmpl/admin/schedule/view-holiday-schedule.html" />
         <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
         <option value="$PROJECT_DIR$/scripts/config.js" />
-        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html" />
+        <option value="$PROJECT_DIR$/scripts/UsersMod.js" />
       </list>
     </option>
   </component>
@@ -541,12 +552,12 @@
       <workItem from="1492490704280" duration="20107000" />
       <workItem from="1492578219823" duration="7043000" />
       <workItem from="1492690440396" duration="1982000" />
-      <workItem from="1492750445997" duration="9151000" />
+      <workItem from="1492750445997" duration="11266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="455659000" />
+    <option name="totallyTimeSpent" value="457774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -913,14 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/door/door-groups.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -962,10 +965,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="46" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="152" column="64" lean-forward="true" selection-start-line="152" selection-start-column="64" selection-end-line="152" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/UsersMod.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1535" column="13" lean-forward="false" selection-start-line="1535" selection-start-column="13" selection-end-line="1535" selection-end-column="13" />
+        <state relative-caret-position="211">
+          <caret line="1542" column="46" lean-forward="true" selection-start-line="1542" selection-start-column="46" selection-end-line="1542" selection-end-column="46" />
           <folding>
             <element signature="e#27293#28173#0" expanded="false" />
             <element signature="e#28210#28472#0" expanded="false" />
@@ -978,17 +997,8 @@
             <element signature="e#39979#40258#0" expanded="false" />
             <element signature="e#40297#40574#0" expanded="false" />
             <element signature="e#40628#40734#0" expanded="false" />
-            <element signature="e#69073#71707#0" expanded="false" />
-            <marker date="1492760892989" expanded="true" signature="63177:63966" ph="..." />
+            <element signature="e#67101#69735#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/user-groups.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="124" column="63" lean-forward="true" selection-start-line="124" selection-start-column="63" selection-end-line="124" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
