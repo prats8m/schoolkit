@@ -1505,9 +1505,19 @@ app
         });
     };
 
-    $rootScope.addDoorScheduleUserGroup = function(updatedSchedule,ud_id,is_access_allowed,userGroupBehaviour){
-    	var schedule_id=updatedSchedule.id;
-        is_access_allowed=updatedSchedule.is_access_allowed;
+    $rootScope.addDoorScheduleUserGroup = function(doorObj,ud_id,is_access_allowed,userGroupBehaviour){
+
+        var schedule_id=doorObj.schedule_id;
+        for(var key in doorObj.schedulelist){
+            if(doorObj.schedulelist[key].id==doorObj.tempSchedulerId){
+                is_access_allowed=doorObj.schedulelist[key].is_access_allowed;
+                schedule_id=doorObj.tempSchedulerId;
+               // delete  doorObj.tempSchedulerId;
+                break;
+            }
+        }
+
+
 
 
         if(is_access_allowed == null){
@@ -1530,27 +1540,75 @@ app
         });
     };
 
-   // $scope.updatedSchedule=null;
+
+    //..............ScheduleList..........................................................
+
+      // $scope.setAlreadySelectedScheduleForDoors=function (facility_id) {
+      //     $scope.x = schedul.getScheduleByFacility(facility_id);
+      //         $scope.x.success(function(resp){
+      //             $scope.lstDoorSchedules=resp.data;
+      //
+      //             $timeout(function () {
+      //                 for(var key in $rootScope.listDoorGroup){
+      //                     for(var key2 in $scope.lstDoorSchedules){
+      //                         if($scope.lstDoorSchedules[key2].schedule_id==$rootScope.listDoorGroup[key].schedule_id){
+      //                             $rootScope.listDoorGroup[key].tempSchedulerId=$rootScope.listDoorGroup[key].schedule_id
+      //                             break;
+      //                         }
+      //                     }
+      //                 }
+      //             },3000);
+      //
+      //
+      //
+      //         });
+      // };
+
+      //..................................................................................
+
+
     $rootScope.listDoorSchedule = function(usergroup_id, facility_id){
         userSvc.listDoorSchedule(appConstants.usergrouplistdoorschedule+'?usergroup_id='+usergroup_id,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $rootScope.listDoorGroup = {};
+                $rootScope.listDoorGroup = [];
+
+              //  $rootScope.listDoorGroup[key] = succResponse.data;
+              //  $scope.setAlreadySelectedScheduleForDoors(facility_id);
+
+
+               //
                 $scope.x = schedul.getScheduleByFacility(facility_id);
+                var insertedInSuccess=0;
                 angular.forEach(succResponse.data, function(value, key){
                     $rootScope.listDoorGroup[key] = value;
                     $rootScope.listDoorGroup[key].schedulelist = [];
                     $scope.x.success(function(resp){
+                        insertedInSuccess++;
                         angular.forEach(resp.data, function(val, k){
                             var obj={name:val.schedule_name,id:val.schedule_id,is_access_allowed:val.is_access_allowed};
                             $rootScope.listDoorGroup[key].schedulelist.push(obj);
                         });
-                      //  $scope.updatedSchedule=$rootScope.listDoorGroup[key].schedulelist[1];
 
+                        if(insertedInSuccess==$rootScope.listDoorGroup.length){
+                            $timeout(function () {
+                                for(var key in $rootScope.listDoorGroup){
+                                    for(var key2 in $rootScope.listDoorGroup[key].schedulelist){
+                                        if($rootScope.listDoorGroup[key].schedule_id==$rootScope.listDoorGroup[key].schedulelist[key2].id){
+                                            $rootScope.listDoorGroup[key].tempSchedulerId=$rootScope.listDoorGroup[key].schedulelist[key2].id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            },2000);
+                        }
                     });
                 });
             }
         });
     };
+
+
+
 
    $scope.searchFunction = function(e){
 		if(e)
