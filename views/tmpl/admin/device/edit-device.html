@@ -166,7 +166,7 @@
 													</div>-->
 													<div class="form-group col-sm-6 col-md-6 pl-0" ng-hide="editDevice.device_type=='master'">
 														<label for="">&nbsp;</label>
-														<select class="form-control" ng-options="item.device_id as item.device_name for item in masterDevices" ng-model="editDevice.device_master_id">
+														<select required class="form-control" ng-options="item.device_id as item.device_name for item in masterDevices" ng-model="editDevice.device_master_id">
 															<option value="">Select Primary Device</option>
 														</select>
 													</div>

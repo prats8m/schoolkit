@@ -100,9 +100,7 @@ var app = angular
         if (toState.name ==="app.admin.user.add-user") {
             $cookies.remove("user_id");
         }
-        if (toState.name ==="core.login") {
-            $rootScope.logoutSessionExpiredMassageCount=0;
-        }
+         $rootScope.toasterPool='';
 
     });
 
@@ -957,6 +955,7 @@ app
 	  
 		
 	$scope.user = {};
+	$rootScope.toasterPool='';
 	$scope.setCookies = function(){
 		$scope.user.username = $cookies.get('username');
 		$scope.user.password = $cookies.get('password');

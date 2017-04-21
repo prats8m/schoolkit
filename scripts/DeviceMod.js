@@ -429,6 +429,7 @@ app
 		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
+            $scope.deleteThisDevice();
 			$scope.result = appConstants._successdeleteDevice;
 			$scope.statusclass = appConstants.dangerstatusClass;
 		}, function() {
@@ -467,7 +468,7 @@ app
 	
 	var device_id = $stateParams.device_id;
 	$scope.dependentDeviceInit = function(){
-        devicesSvc.dependentDeviceInit(appConstants.deviceview,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.dependentDeviceInit(appConstants.deviceview+'?device_id='+$stateParams.device_id,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.details = succResponse.data;
             }
@@ -529,7 +530,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler,baseURL, $location, arrayPushService,appConstants,devicesSvc) {
+  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler,baseURL, $location, arrayPushService,appConstants,devicesSvc,$timeout) {
     $scope.page = {
 		title: appConstants.dependentDevice+'s',
 		subtitle: appConstants.dashboardSubTitle
@@ -547,6 +548,12 @@ app
 		$mdDialog.show(confirm).then(function() {
             devicesSvc.deleteDevice(appConstants.devicedelete+'?device_id='+parseInt(id),appConstants.deleteMethod,{},{},function (succResponse) {
                 if(succResponse.status){
+                    for(var key in $scope.dependentDevice){
+                        if($scope.dependentDevice[key].device_id==parseInt(id)){
+                            $scope.dependentDevice.splice(key,1);
+                            break;
+                        }
+                    }
                     $scope.result = appConstants._successdeletedependentDevice;
                     $scope.statusclass = appConstants.dangerstatusClass;
                 }
@@ -588,7 +595,7 @@ app
             }
         });
 	};
-	$scope.getDependentDevice();
+      $scope.getDependentDevice();
 	
 	$scope.getDoorsList = function(){
         devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
@@ -616,7 +623,8 @@ app
     }
 	
 	$rootScope.formSubmit = function(device,device_form){
-		if(!device_form.validate()){
+
+        if(!device_form.validate()){
 			return false;
 		}
 		device.technician_id = parseInt(device.technician_id);
@@ -628,6 +636,7 @@ app
                 toaster.pop(appConstants.success,succResponse.msg);
                 $scope.pageNo = 1;
                 $scope.getDependentDevice();
+                $timeout(function(){$("#close").click();});
             }
             else {
                 $rootScope.masters = [];
@@ -668,8 +677,9 @@ app
 			}
         });
 	};
-	
-	$scope.dashboardInit = function(){
+      $scope.deviceInit();
+
+      $scope.dashboardInit = function(){
         devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
