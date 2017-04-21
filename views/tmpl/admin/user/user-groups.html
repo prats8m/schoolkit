@@ -145,7 +145,7 @@
 																			<!-- <select class="form-control selectpicker" ng-model="{{doorlist.schedulelist.is_access_allowed}}:{{doorlist.is_access_allowed}}" ng-change="addDoorScheduleUserGroup(schedule_id, doorlist.ud_id, this.selected)">
 																				<option value="{{item.id}}:{{item.is_access_allowed}}" ng-repeat="item in doorlist.schedulelist" >{{item.name}}</option>
 																			</select> -->
-																			<select class="form-control" ng-model="updatedSchedule" ng-options="item as item.name for item in doorlist.schedulelist track by item" ng-change="addDoorScheduleUserGroup(updatedSchedule, doorlist.ud_id,doorlist.is_access_allowed,'add')"  >
+																			<select class="form-control" ng-model="doorlist.tempSchedulerId" ng-options="item.id as item.name for item in doorlist.schedulelist track by item.id" ng-change="addDoorScheduleUserGroup(doorlist, doorlist.ud_id,doorlist.is_access_allowed,'add')"  >
 																			<option value="">Select Schedule</option>
 																			</select>
 																		</td>
