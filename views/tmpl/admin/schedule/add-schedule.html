@@ -711,13 +711,14 @@
 													<uib-accordion-heading>Schedule Exceptions <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
 													<div class="row">
 														<div class="col-sm-12 col-md-12">
+														
 															<ul class="hslist">
 																<li ng-repeat="e in exceptions">
 																	<span ng-if="e.type=='ONETIME'">{{e.status}} {{e.date| date:'dd-MMM-yyyy'}} from {{e.start_time}} to {{e.end_time}}</span> 
-																	<span ng-if="e.type=='REAPEATING'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
-																<a href="" class="pull-right text-lightred">
-																	<i class="fa fa-trash-o" aria-hidden="true"></i>
-																</a>
+																	<span ng-if="e.type=='REAPEATING'||e.type=='repeat'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
+																	<a href="" class="pull-right text-lightred">
+																		<i class="fa fa-trash-o" aria-hidden="true"></i>
+																	</a>
 																</li>
 															</ul>
 														</div>
@@ -743,7 +744,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date</label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.exception.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>
@@ -834,7 +835,9 @@
 											<button type="submit" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded">Save Schedule</button>
 										</div>
 									</div>
+									
 									</form>
+									
 									<script type="text/ng-template" id="myModalContent.html">
 										<div class="modal-header"><h4 class="modal-title custom-font">Holiday Schedules</h4></div>
 										<div class="hometabs">
@@ -855,6 +858,7 @@
 											<button type="submit" ng-click="submitHS()" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 										</div>											
 									</script>
+									
 								</div>
 							</div>
 						</div>

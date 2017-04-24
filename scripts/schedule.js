@@ -188,9 +188,7 @@ app
 	$scope.imagePath = 'http://elikastaging.ml/images';	
 	
 	/***************************************************************************************/
-	
-	/***********************        Schdule Exceptions        ******************************/
-	
+	/***************************        Schdule Exceptions        **************************/
 	/***************************************************************************************/
 	
 	
@@ -441,7 +439,6 @@ app
     .success(function(response){
     	if(response.status){
     		$scope.ViewSchedule = response.data[0];
-    		console.log($scope.ViewSchedule);
     	}else{
 
     	}
@@ -461,6 +458,152 @@ app
 	
 });
 
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ViewScheduleCtrl
+ * @description
+ * # ViewScheduleCtrl
+ * Controller of the minovateApp
+ */
+app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $mdDialog, $stateParams, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService){
+	
+	var table = $("#table");
+	var isMouseDown = false;
+	var startRowIndex = null;
+	var startCellIndex = null;
+
+	function selectTo(cell) {
+		
+		var row = cell.parent();    
+		var cellIndex = cell.index();
+		var rowIndex = row.index();
+		
+		var rowStart, rowEnd, cellStart, cellEnd;
+														
+		if (rowIndex < startRowIndex) {
+			rowStart = rowIndex;
+			rowEnd = startRowIndex;
+		} else {
+			rowStart = startRowIndex;
+			rowEnd = rowIndex;
+		}
+		
+		if (cellIndex < startCellIndex) {
+			cellStart = cellIndex;
+			cellEnd = startCellIndex;
+		} else {
+			cellStart = startCellIndex;
+			cellEnd = cellIndex;
+		}
+		
+		for (var i = rowStart; i <= rowEnd; i++) {
+			var rowCells = table.find("tr").eq(i).find("td");
+			for (var j = cellStart; j <= cellEnd; j++) {
+				rowCells.eq(j).addClass("selected");
+			}
+		}
+		
+	}
+
+	table.find("td").mousedown(function (e) {
+		isMouseDown = true;
+		var cell = $(this);
+
+		//table.find(".selected").removeClass("selected"); // deselect everything
+		
+		if (e.shiftKey) {
+			selectTo(cell);                
+		} else {
+			cell.addClass("selected");
+			startCellIndex = cell.index();
+			startRowIndex = cell.parent().index();
+		}
+		
+		return false; // prevent text selection
+	})	
+	.mouseover(function () {
+		if (!isMouseDown) return;
+		//table.find(".selected").removeClass("selected");
+		selectTo($(this));
+	})	
+	.bind("selectstart", function () {
+		return false;
+	});
+
+	$(document).mouseup(function () {
+		isMouseDown = false;
+	});
+	
+	$scope.viewSchedule = function(){
+		scheduleSvc.viewSchedule(appConstants.scheduleView, appConstants.getMethod,{schedule_id:$stateParams.schedule_id},{},function (succResponse) {
+        	if(succResponse.status){
+				$scope.schedule = succResponse.data;
+				$scope.holidayScheduleList();
+				var mon = $scope.schedule.schedule_mon;
+				var tue = $scope.schedule.schedule_tue;
+				var wed = $scope.schedule.schedule_wed;
+				var thu = $scope.schedule.schedule_thu;
+				var fri = $scope.schedule.schedule_fri;
+				var sat = $scope.schedule.schedule_sat;
+				var sun = $scope.schedule.schedule_sun;
+				scheduleSvc.getSelectedBlocks(mon,'mon');
+				scheduleSvc.getSelectedBlocks(tue,'tue');
+				scheduleSvc.getSelectedBlocks(wed,'wed');
+				scheduleSvc.getSelectedBlocks(thu,'thr');
+				scheduleSvc.getSelectedBlocks(fri,'fri');
+				scheduleSvc.getSelectedBlocks(sat,'sat');
+				scheduleSvc.getSelectedBlocks(sun,'sun');
+				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
+            }
+        });
+	};
+	$scope.viewSchedule();
+	
+	$scope.facilityInit = function(){
+		scheduleSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod,{},{},function (succResponse) {
+        	if(succResponse.status){
+                $rootScope.facilityList = succResponse.data.data;
+            }
+        });
+	}
+	$scope.facilityInit();
+	
+	$rootScope.holidaySchedules = [];
+	$scope.holidayScheduleList = function(data){
+		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod,{},{},function (succResponse) {
+        	if(succResponse.status){
+				$rootScope.holidaySchedules = succResponse.data;
+				$scope.setHolidays();
+            }
+        });
+	}
+	
+	
+	$scope.setHolidays = function(){
+		var arr = [];
+		var ho = $scope.schedule.holiday_observed;
+		var hs = $rootScope.holidaySchedules;
+		for(var i=0; i < ho.length; i++){
+			arr.push(ho[i].hs_id);
+		}
+		for(var i=0; i < hs.length; i++){
+			if(arr.indexOf( hs[i].hs_id ) != -1){
+				hs[i].isScheduleSelected = true;
+			}
+		}
+		$rootScope.holidaySchedules = hs;
+	}
+
+	$scope.addException = function(exception){
+		//alert("sss");
+		var key = angular.copy($scope.exceptions.length + 1);
+		var obj = angular.copy(exception);
+		obj.key = key;
+		$scope.exceptions.push(obj);
+	}
+		
+});
 
 app.filter('scheduleFilter',function(){
 	return function(input){
