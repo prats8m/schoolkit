@@ -100,9 +100,7 @@ var app = angular
         if (toState.name ==="app.admin.user.add-user") {
             $cookies.remove("user_id");
         }
-        if (toState.name ==="core.login") {
-            $rootScope.logoutSessionExpiredMassageCount=0;
-        }
+         $rootScope.toasterPool='';
 
     });
 
@@ -960,10 +958,11 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location) {
+  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location,appConstants,utilitySvc) {
 	  
 		
 	$scope.user = {};
+	$rootScope.toasterPool='';
 	$scope.setCookies = function(){
 		$scope.user.username = $cookies.get('username');
 		$scope.user.password = $cookies.get('password');
@@ -1016,9 +1015,16 @@ app
 
 	};
 
+      $scope.checkIfUserLoggedIn=function () {
+		  if($cookies.get(appConstants.sessionTokenCookieID)){
+              $state.go('app.admin.dashboard');
+		  }
+      };
+
+	$scope.checkIfUserLoggedIn();
+
   $scope.logout = function(){
-    $cookies.remove('token');
-    $location.path('core/login');
+      utilitySvc.logoutfacilityWeb();
   }
 });
 

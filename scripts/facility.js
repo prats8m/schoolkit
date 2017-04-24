@@ -22,6 +22,7 @@ app
 		$rootScope.facility.status = 1;
 		$scope.usTimeZonesForFacility=appConstants.availableTimeZoneOptions;
 		$scope.addFacility = function () {
+            $rootScope.fac_error=appConstants.empty;
 			$scope.facility={};
 			$scope.addFacilityModal = $uibModal.open({
 				templateUrl: 'myModalContent.html',

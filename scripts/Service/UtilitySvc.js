@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .factory('utilitySvc',['$http','baseURL','$cookies','toaster','$rootScope','$location','appConstants','$modalStack','$timeout',function ($http,baseURL,$cookies,toaster,$rootScope,$location,appConstants,$modalStack,$timeout) {
+    .factory('utilitySvc',['$http','baseURL','$cookies','toaster','$rootScope','$location','appConstants','$modalStack','$timeout','$interval',function ($http,baseURL,$cookies,toaster,$rootScope,$location,appConstants,$modalStack,$timeout,$interval) {
 
         var factoryResp=this;
 
@@ -12,9 +12,28 @@ app
             error:null
         };
 
+
+        //..........method to manage toast on early click................................................
+
+        factoryResp.setToastTimeToClose=function () {
+            var intervalObj=$interval(function () {
+                count++;
+                if(count>5){
+                    toaster.clear();
+                    $rootScope.toasterPool=appConstants.empty;
+                    $interval.cancel(intervalObj);
+                    count=0;
+                }
+            }, 1200);
+        };
+
+        //..............................................................................................
+        var count=0;
         factoryResp.callHttpService=function (url,method,params,data,cb) {
-           // toaster.clear();  //clears all toast messages
-            //$timeout(function () {
+            if(count==0 && $rootScope.toasterPool!=appConstants.empty){
+                factoryResp.setToastTimeToClose();
+            }
+
                 $http({
                     url: baseURL + url,
                     method: method,
@@ -40,12 +59,18 @@ app
                         }
                         else {
                             if(response.msg == 'Invalid_Token'){
-                                $rootScope.logoutSessionExpiredMassageCount++;
-                                if($rootScope.logoutSessionExpiredMassageCount==1){
+                                if($rootScope.toasterPool!=response.msg){
+                                    $rootScope.toasterPool=response.msg;
                                     toaster.pop(appConstants.error,appConstants.sessionExp);
-                                    $modalStack.dismissAll('LoggedOut'); // close all opened modals................
-                                    factoryResp.logoutfacilityWeb();
                                 }
+                                    factoryResp.logoutfacilityWeb();
+
+                                // $rootScope.logoutSessionExpiredMassageCount++;
+                                // if($rootScope.logoutSessionExpiredMassageCount==1){
+                                //     toaster.pop(appConstants.error,appConstants.sessionExp);
+                                //     $modalStack.dismissAll('LoggedOut'); // close all opened modals................
+                                //     factoryResp.logoutfacilityWeb();
+                                // }
                             }
                             else {
                                 cb(respStructure={
@@ -65,11 +90,11 @@ app
                             error:null
                         });
                     });
-           // },500);
         };
 
         factoryResp.logoutfacilityWeb = function(){
             $timeout(function () {
+                $modalStack.dismissAll('LoggedOut'); // close all opened modals................
                 toaster.clear();  //clears all toast messages
                 $cookies.remove(appConstants.sessionTokenCookieID);
                 $location.path('/core/login');

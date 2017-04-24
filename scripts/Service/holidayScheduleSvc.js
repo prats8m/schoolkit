@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .factory('HolidayScheduleSvc',['toaster','utilitySvc','appConstants',function (toaster,utilitySvc,appConstants) {
+    .factory('HolidayScheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',function (toaster,utilitySvc,appConstants,$rootScope) {
 
         var HolidayScheduleSvcResp=this;
 
@@ -11,7 +11,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
                     cb(succResponse);
                 }
             });
@@ -23,7 +23,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
                     cb(succResponse);
                 }
             });
@@ -45,7 +45,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
                     cb(succResponse);
                 }
             });
@@ -67,7 +67,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
                     cb(succResponse);
                 }
             });
@@ -79,7 +79,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
                     cb(succResponse);
                 }
             });

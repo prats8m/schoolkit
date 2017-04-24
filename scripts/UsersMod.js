@@ -1505,10 +1505,17 @@ app
         });
     };
 
-    $rootScope.addDoorScheduleUserGroup = function(updatedSchedule,ud_id,is_access_allowed,userGroupBehaviour){
-    	var schedule_id=updatedSchedule.id;
-        is_access_allowed=updatedSchedule.is_access_allowed;
+    $rootScope.addDoorScheduleUserGroup = function(doorObj,ud_id,is_access_allowed,userGroupBehaviour){
 
+        var schedule_id=doorObj.schedule_id;
+        for(var key in doorObj.schedulelist){
+            if(doorObj.schedulelist[key].id==doorObj.tempSchedulerId){
+                is_access_allowed=doorObj.schedulelist[key].is_access_allowed;
+                schedule_id=doorObj.tempSchedulerId;
+               // delete  doorObj.tempSchedulerId;
+                break;
+            }
+        }
 
         if(is_access_allowed == null){
     		return false;
@@ -1530,11 +1537,10 @@ app
         });
     };
 
-   // $scope.updatedSchedule=null;
     $rootScope.listDoorSchedule = function(usergroup_id, facility_id){
         userSvc.listDoorSchedule(appConstants.usergrouplistdoorschedule+'?usergroup_id='+usergroup_id,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $rootScope.listDoorGroup = {};
+                $rootScope.listDoorGroup = [];
                 $scope.x = schedul.getScheduleByFacility(facility_id);
                 angular.forEach(succResponse.data, function(value, key){
                     $rootScope.listDoorGroup[key] = value;
@@ -1544,13 +1550,16 @@ app
                             var obj={name:val.schedule_name,id:val.schedule_id,is_access_allowed:val.is_access_allowed};
                             $rootScope.listDoorGroup[key].schedulelist.push(obj);
                         });
-                      //  $scope.updatedSchedule=$rootScope.listDoorGroup[key].schedulelist[1];
-
+                        if($rootScope.listDoorGroup[key].schedule_id)
+                            $rootScope.listDoorGroup[key].tempSchedulerId=$rootScope.listDoorGroup[key].schedule_id.toString();
                     });
                 });
             }
         });
     };
+
+
+
 
    $scope.searchFunction = function(e){
 		if(e)
