@@ -11,9 +11,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){
-                        $rootScope.toasterPool=succResponse.msg;
-                        toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                        toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -34,7 +32,7 @@ app
                     else{
                         succResponse.msg= succResponse.msg.replace(/_/g,' ');
                     }
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -56,7 +54,7 @@ app
                         succResponse.error=[];
                         succResponse.error[0]= succResponse.msg.replace(/_/g,' ');
                     }
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -68,7 +66,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -80,7 +78,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -92,7 +90,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -104,7 +102,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -116,7 +114,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -138,7 +136,7 @@ app
                         succResponse.msg = response.msg.replace(/_/g,' ');
                     }
 
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -152,7 +150,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -166,7 +164,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -179,7 +177,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -192,7 +190,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -206,7 +204,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -219,7 +217,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -232,7 +230,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -245,7 +243,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -258,7 +256,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -271,7 +269,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -284,7 +282,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -297,7 +295,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -319,7 +317,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -333,7 +331,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -355,7 +353,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -369,7 +367,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -381,7 +379,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -403,7 +401,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -417,7 +415,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -439,7 +437,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -453,7 +451,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -474,7 +472,7 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                     }
                     cb(succResponse);
@@ -488,7 +486,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -501,7 +499,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -514,7 +512,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -527,7 +525,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -540,7 +538,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -557,11 +555,11 @@ app
                             var arr = succResponse.error;
                             $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                             succResponse.msg = n.join(", ");
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                         else {
                             succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                            if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                         }
                     cb(succResponse);
                 }
@@ -579,11 +577,11 @@ app
                         var arr = succResponse.error;
                         $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                         succResponse.msg = n.join(", ");
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     else {
                         succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     cb(succResponse);
                 }
@@ -602,11 +600,11 @@ app
                         var arr = succResponse.error;
                         $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                         succResponse.msg = n.join(", ");
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     else {
                         succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     cb(succResponse);
                 }
@@ -624,11 +622,11 @@ app
                         var arr = succResponse.error;
                         $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                         succResponse.msg = n.join(", ");
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     else {
                         succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     cb(succResponse);
                 }
@@ -646,11 +644,11 @@ app
                         var arr = succResponse.error;
                         $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
                         succResponse.msg = n.join(", ");
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     else {
                         succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                        if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     cb(succResponse);
                 }
@@ -664,7 +662,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -676,7 +674,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -688,7 +686,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -700,7 +698,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

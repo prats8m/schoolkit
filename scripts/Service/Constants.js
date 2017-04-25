@@ -2,6 +2,7 @@ app.constant("appConstants", {
 
     //........API URLs...........................................................
 
+    loginweb:'login-web',
     userDashboard:'user/dashboard',
     facilityAdd:'facility/add',
     facilitylist:'facility/list',
@@ -77,7 +78,10 @@ app.constant("appConstants", {
     holidayscheduleedit:'holiday-schedule/edit',
     holidayscheduleview:'holiday-schedule/view',
     holidayscheduledelete:'holiday-schedule/delete',
+    schedulelistschedule:'schedule/list-schedule',
 
+    shortcutslist:'shortcut/list',
+    shortcutadd:'shortcut/add',
 
 
 
@@ -118,6 +122,7 @@ app.constant("appConstants", {
     submitSuccessfully:'Submit Successfully',
     somethingwrong:'Something went wrong',
     invaliddata:'InValid Data',
+    apiNotFound:'API not found',
 
     //...........................................................................
 
@@ -145,10 +150,17 @@ app.constant("appConstants", {
 
     //...........................................................................
 
+    //.............Login.........................................................
+
+    invalidcredentials:'Please enter correct email id and password.',
+
+    //...........................................................................
+
 
     //.........Home/Dashboard....................................................
     dashboardTitle:'Dashboard',
     dashboardSubTitle:'So much more to see at a glance.',
+
     //...........................................................................
 
     //.........Facilities..........................................................
@@ -412,48 +424,48 @@ app.constant("appConstants", {
     timedropdown:[
         '12:00 AM',
         '12:30 AM',
-        '1:00 AM',
-        '1:30 AM',
-        '2:00 AM',
-        '2:30 AM',
-        '3:00 AM',
-        '3:30 AM',
-        '4:00 AM',
-        '4:30 AM',
-        '5:00 AM',
-        '5:30 AM',
-        '6:00 AM',
-        '6:30 AM',
-        '7:00 AM',
-        '7:30 AM',
-        '8:00 AM',
-        '8:30 AM',
-        '9:00 AM',
-        '9:30 AM',
+        '01:00 AM',
+        '01:30 AM',
+        '02:00 AM',
+        '02:30 AM',
+        '03:00 AM',
+        '03:30 AM',
+        '04:00 AM',
+        '04:30 AM',
+        '05:00 AM',
+        '05:30 AM',
+        '06:00 AM',
+        '06:30 AM',
+        '07:00 AM',
+        '07:30 AM',
+        '08:00 AM',
+        '08:30 AM',
+        '09:00 AM',
+        '09:30 AM',
         '10:00 AM',
         '10:30 AM',
         '11:00 AM',
         '11:30 AM',
         '12:00 PM',
         '12:30 PM',
-        '1:00 PM',
-        '1:30 PM',
-        '2:00 PM',
-        '2:30 PM',
-        '3:00 PM',
-        '3:30 PM',
-        '4:00 PM',
-        '4:30 PM',
-        '5:00 PM',
-        '5:30 PM',
-        '6:00 PM',
-        '6:30 PM',
-        '7:00 PM',
-        '7:30 PM',
-        '8:00 PM',
-        '8:30 PM',
-        '9:00 PM',
-        '9:30 PM',
+        '01:00 PM',
+        '01:30 PM',
+        '02:00 PM',
+        '02:30 PM',
+        '03:00 PM',
+        '03:30 PM',
+        '04:00 PM',
+        '04:30 PM',
+        '05:00 PM',
+        '05:30 PM',
+        '06:00 PM',
+        '06:30 PM',
+        '07:00 PM',
+        '07:30 PM',
+        '08:00 PM',
+        '08:30 PM',
+        '09:00 PM',
+        '09:30 PM',
         '10:00 PM',
         '10:30 PM',
         '11:00 PM',
@@ -462,6 +474,169 @@ app.constant("appConstants", {
 
     monthNames:["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
+    ],
+
+
+    dashboardShortcutsList:[
+        {
+            shortcutID:1,
+            shortcutName:'Facilities',
+            shortcutUrl:'app.admin.facility.facility',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:2,
+            shortcutName:'Primary Devices',
+            shortcutUrl:'app.admin.device.devices',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:3,
+            shortcutName:'Dependent Devices',
+            shortcutUrl:'app.admin.device.dependent-devices',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:4,
+            shortcutName:'Users',
+            shortcutUrl:'app.admin.user.users',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:5,
+            shortcutName:'Add User',
+            shortcutUrl:'app.admin.user.add-user',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:6,
+            shortcutName:'User Groups',
+            shortcutUrl:'app.admin.user.user-groups',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:7,
+            shortcutName:'Doors',
+            shortcutUrl:'app.admin.door.doors',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:8,
+            shortcutName:'Door Groups',
+            shortcutUrl:'app.admin.door.door-groups',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:9,
+            shortcutName:'Schedules',
+            shortcutUrl:'app.admin.schedule.schedule-groups',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:10,
+            shortcutName:'Add Schedule',
+            shortcutUrl:'app.admin.schedule.add-schedule',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:11,
+            shortcutName:'Holiday Schedules',
+            shortcutUrl:'app.admin.schedule.holiday-schedules',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:12,
+            shortcutName:'Roles',
+            shortcutUrl:'app.admin.administrator.roles',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:13,
+            shortcutName:'Add Roles',
+            shortcutUrl:'app.admin.administrator.add-roles',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:14,
+            shortcutName:'Admin',
+            shortcutUrl:'app.admin.administrator.admin',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:15,
+            shortcutName:'Live and Recorded Feeds',
+            shortcutUrl:'app.admin.camera.camera-dvr',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:16,
+            shortcutName:'Camera Directory',
+            shortcutUrl:'app.admin.setup.camera-directory',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },{
+            shortcutID:17,
+            shortcutName:'DVR Directory',
+            shortcutUrl:'app.admin.setup.dvr-directory',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },{
+            shortcutID:18,
+            shortcutName:'DVR Camera Directory',
+            shortcutUrl:'app.admin.setup.dvrcamera-directory',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:19,
+            shortcutName:'Activity',
+            shortcutUrl:'app.admin.activity',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:20,
+            shortcutName:'History and Reports',
+            shortcutUrl:'NA',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:21,
+            shortcutName:'Technicians',
+            shortcutUrl:'app.admin.support.technician',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:22,
+            shortcutName:'Help and FAQs',
+            shortcutUrl:'app.admin.help.faqs',
+            shortcutIcon:'fa fa-question',
+            status:false
+        },
+        {
+            shortcutID:23,
+            shortcutName:'Profile Settings',
+            shortcutUrl:'app.admin.profile-settings',
+            shortcutIcon:'fa fa-question',
+            status:false
+        }
     ]
 
 

@@ -11,7 +11,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if($rootScope.toasterPool!=succResponse.msg){                         $rootScope.toasterPool=succResponse.msg;                         toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));                     }
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

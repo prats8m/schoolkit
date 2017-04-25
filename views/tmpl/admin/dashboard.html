@@ -1,31 +1,43 @@
 <div class="page page-dashboard">
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="card-container col-sm-8 col-md-6">
 				<div class="card">
 					<div class="bg-dashboard dashboardbg">
 						<div class="bg-transparent">
-							<div class="row">
-								<div class="col-md-12">
-									<h3 class="custom-font h3link hvr-pulse-grow"><a ui-sref="app.admin.facility.facility">Facilities</a></h3>
-									<!--h3 class="custom-font h3link"><a ui-sref="app.admin.facility.facility-details">USA Corporate Services</a></h3-->
+							<div class="crystalcove">
+								<div class="covertext">
+									<span>
+										<strong>Crystal Cove</strong> Newport Coast
+									</span>
+								</div>
+							</div>
+							<div class="myshortcuts">
+								<h3>My Shortcuts <span class="pull-right addsc"><i class="fa fa-plus" aria-hidden="true" ng-click="openShortCutPopup()"></i></span></h3>
+								<div class="slimscrolls" style="overflow:auto;" slimscroll="{height: '100%'}">
+									<ul>
+										<li ng-repeat="shortcut in shortcutsForLoggedInUser | filter:{shortcutStatus:1}">
+											<span class="icons"><i class="{{shortcut.shortcutIcon}}" aria-hidden="true"></i></span>
+											<a ui-sref="{{shortcut.shortcutUrl}}"><span>{{shortcut.shortcutName}}</span></a>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
+			</div>
+			<div class="devices card-container col-sm-4 col-md-3">
 				<div class="card">
-					<div class="front bg-blue cardheight">						
+					<div class="front bg-blue cardheight">
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
 									<img src="images/device-icon.png" alt="">
 								</div>
 							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
+							<div class="col-xs-6">
+								<div class="itxt">
 									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device + dashboardData.dependent_device}}</p>
 									<span class="text-lg">Devices</span>
 								</div>
@@ -33,7 +45,7 @@
 						</div>
 					</div>
 					<div class="back bg-blue">
-						<div class="row">             
+						<div class="row">
 							<div class="col-xs-6">
 								<a ui-sref="app.admin.device.devices"><img src="images/device-icon.png" alt=""><br/>{{dashboardData.primary_device}} Primary</a>
 							</div>
@@ -43,10 +55,10 @@
 						</div>
 					</div>
 				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
+			</div>
+			<div class="users card-container col-sm-4 col-md-3">
 				<div class="card">
-					<div class="front bg-lightred">						
+					<div class="front bg-lightred cardheight">
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -54,54 +66,54 @@
 								</div>
 							</div>
 							<div class="col-xs-6">
-								<div class="itxt">								
+								<div class="itxt">
 									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
 									<span class="text-lg">Users</span>
-								</div>	
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="back bg-lightred">
-						<div class="row">             
+						<div class="row">
 							<div class="col-xs-6">
-									<a ui-sref="app.admin.user.users"><img src="images/users-icon.png" alt=""><br/>Users</a>
+								<a ui-sref="app.admin.user.users"><img src="images/users-icon.png" alt=""><br/>Users</a>
 							</div>
 							<div class="col-xs-6">
-									<a ui-sref="app.admin.user.user-groups"><img src="images/user-groups-icon.png" alt=""><br/>User Groups</a>
+								<a ui-sref="app.admin.user.user-groups"><img src="images/user-groups-icon.png" alt=""><br/>User Groups</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
+			</div>
+			<div class="doors card-container col-sm-4 col-md-3">
 				<div class="card">
-					<div class="front bg-slategray lt">						
+					<div class="front bg-slategray lt cardheight">
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
 									<img src="images/doors-icon.png" alt="">
 								</div>
 							</div>
-							<div class="col-xs-6">	
-							<div class="itxt">							
-								<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-								<span class="text-lg">Doors</span>
-							</div>	
+							<div class="col-xs-6">
+								<div class="itxt">
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+									<span class="text-lg">Doors</span>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="back bg-slategray">
-						<div class="row">         
+						<div class="row">
 							<div class="col-xs-6">
 								<a ui-sref="app.admin.door.doors"><img src="images/doors-icon.png" alt=""><br/>Doors</a>
 							</div>
 							<div class="col-xs-6">
-								<a ui-sref="app.admin.door.door-groups"><img src="images/door-groups-icon.png" alt=""><br/>Door Groups</a>	
+								<a ui-sref="app.admin.door.door-groups"><img src="images/door-groups-icon.png" alt=""><br/>Door Groups</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div class="cameradvr card-container col-sm-4 col-md-3 mb-10">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.camera.camera-dvr">
@@ -120,7 +132,7 @@
 						</ul>
 					</div>
 				</section>
-			</div>	
+			</div>
 			<div class="adminroles card-container col-sm-4 col-md-3">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.permissions.roles">
@@ -145,7 +157,7 @@
 						</ul>
 					</div>
 				</section>
-			</div>			
+			</div>
 			<div class="holidayschedule card-container col-sm-5 col-md-4">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.schedule.schedule-groups">
@@ -170,7 +182,7 @@
 						</ul>
 					</div>
 				</section>
-			</div>			
+			</div>
 			<div class="historyreports card-container col-sm-4 col-md-3">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.help.history-and-reports">
@@ -189,7 +201,7 @@
 						</ul>
 					</div>
 				</section>
-			</div>			
+			</div>
 			<div class="technicians card-container col-sm-3 col-md-2">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.support.technician">
@@ -209,6 +221,25 @@
 					</div>
 				</section>
 			</div>
+			<script type="text/ng-template" id="addshortcutondashboardModal.html">
+				<div class="modal-header"><h4 class="modal-title custom-font">My Shortcuts</h4></div>
+				<div class="hometabs">
+					<div class="overflow groupslists">
+						<div class="col-md-12 mt-20">
+							<ul>
+								<li ng-repeat="shortcuts in lstDashboardShortCuts">
+									<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" ng-model="shortcuts.shortcutStatus"><i></i> {{shortcuts.shortcutName}}</label>
+								</li>
+							</ul>
+							<p>&nbsp;</p>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+					<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="ok()"><i class="fa fa-arrow-right"></i> Submit</button>
+				</div>
+			</script>
 		</div>
 	</div>
 </div>

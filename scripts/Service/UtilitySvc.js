@@ -13,32 +13,16 @@ app
         };
 
 
-        //..........method to manage toast on early click................................................
 
-        factoryResp.setToastTimeToClose=function () {
-            var intervalObj=$interval(function () {
-                count++;
-                if(count>5){
-                    toaster.clear();
-                    $rootScope.toasterPool=appConstants.empty;
-                    $interval.cancel(intervalObj);
-                    count=0;
-                }
-            }, 1200);
-        };
-
-        //..............................................................................................
-        var count=0;
         factoryResp.callHttpService=function (url,method,params,data,cb) {
-            if(count==0 && $rootScope.toasterPool!=appConstants.empty){
-                factoryResp.setToastTimeToClose();
-            }
 
+            $timeout(function(){
                 $http({
                     url: baseURL + url,
                     method: method,
                     data:data,
                     dataType : appConstants.dataType,
+                    //timeout : 30000,
                     headers: {
                         Authorization: $cookies.get(appConstants.sessionTokenCookieID),
                         "Content-type": url.indexOf('pic-upload')<0? appConstants.contentType:undefined
@@ -46,39 +30,52 @@ app
                     params:params
                 })
                     .success(function(response, status, headers, config) {
-                        if(response.token){
-                            $cookies.put(appConstants.sessionTokenCookieID,response.token);
-                        }
-                        if(response.status == true){
+                        if(status==404){
                             cb(respStructure={
-                                status:response.status,
-                                data:response.data,
-                                msg:response.msg,
-                                error:response.error
+                                status:false,
+                                data:null,
+                                msg:'Error Code '+status+': '+appConstants.apiNotFound,
+                                error:null
                             });
                         }
                         else {
-                            if(response.msg == 'Invalid_Token'){
-                                if($rootScope.toasterPool!=response.msg){
-                                    $rootScope.toasterPool=response.msg;
-                                    toaster.pop(appConstants.error,appConstants.sessionExp);
-                                }
-                                    factoryResp.logoutfacilityWeb();
-
-                                // $rootScope.logoutSessionExpiredMassageCount++;
-                                // if($rootScope.logoutSessionExpiredMassageCount==1){
-                                //     toaster.pop(appConstants.error,appConstants.sessionExp);
-                                //     $modalStack.dismissAll('LoggedOut'); // close all opened modals................
-                                //     factoryResp.logoutfacilityWeb();
-                                // }
+                            if(response.token || (response.data && response.data.token)) {
+                                //     $cookies.put(appConstants.sessionTokenCookieID,response.token);
+                                var tkn=response.token || response.data.token;
+                                var now = new Date();
+                                var time = now.getTime();
+                                var expireTime = time + 1000 * 60;
+                                now.setTime(expireTime);
+                                $cookies.put(appConstants.sessionTokenCookieID, tkn, {expiry: now});
                             }
-                            else {
+                            if(response.status == true){
                                 cb(respStructure={
                                     status:response.status,
                                     data:response.data,
                                     msg:response.msg,
                                     error:response.error
                                 });
+                            }
+                            else {
+                                if(response.msg == 'Invalid_Token'){
+                                    toaster.pop(appConstants.error,appConstants.sessionExp);
+                                    factoryResp.logoutfacilityWeb();
+
+                                    // $rootScope.logoutSessionExpiredMassageCount++;
+                                    // if($rootScope.logoutSessionExpiredMassageCount==1){
+                                    //     toaster.pop(appConstants.error,appConstants.sessionExp);
+                                    //     $modalStack.dismissAll('LoggedOut'); // close all opened modals................
+                                    //     factoryResp.logoutfacilityWeb();
+                                    // }
+                                }
+                                else {
+                                    cb(respStructure={
+                                        status:response.status,
+                                        data:response.data,
+                                        msg:response.msg,
+                                        error:response.error
+                                    });
+                                }
                             }
                         }
                     })
@@ -90,6 +87,8 @@ app
                             error:null
                         });
                     });
+            },500);
+
         };
 
         factoryResp.logoutfacilityWeb = function(){
@@ -154,7 +153,34 @@ app
             return dateTimeObj;
         };
 
-
-
         return factoryResp;
     }]);
+
+
+//.........Interceptor For all HTTP Calls.....................................................
+
+function setCustomConfigsToHTTPCalls() {
+    return {
+        request: function(config) {
+            config.timeout = 30000;
+            return config;
+        },
+
+        requestError: function(config) {
+            return config;
+        },
+
+        response: function(res) {
+            return res;
+        },
+
+        responseError: function(res) {
+            return res;
+        }
+    }
+};
+app.factory('setCustomConfigsToHTTPCalls', setCustomConfigsToHTTPCalls);
+
+
+
+//............................................................................................

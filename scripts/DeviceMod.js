@@ -289,6 +289,26 @@ app
             }
         });
 	};
+
+	$scope.showDoorsForDevice=function (doors) {
+	    if(doors){
+            var drs='';
+            var totalkeyValues=Object.keys(doors).length;
+            var count=0;
+            for (var k in doors) {
+                if (doors.hasOwnProperty(k)) {
+                    count++;
+                    if(count<totalkeyValues){
+                        drs += doors[k]+', ';
+                    }
+                    else {
+                        drs+=doors[k];
+                    }
+                }
+            }
+            return drs;
+        }
+    };
 	
 	$scope.deviceModelInit = function(){
         devicesSvc.deviceModelInit(appConstants.devicemodellist,appConstants.getMethod,{},{},function (succResponse) {
@@ -475,7 +495,27 @@ app
         });
 	};
 	$scope.dependentDeviceInit();
-	
+
+      $scope.showDoorsForDevice=function (doors) {
+          if(doors){
+              var drs='';
+              var totalkeyValues=Object.keys(doors).length;
+              var count=0;
+              for (var k in doors) {
+                  if (doors.hasOwnProperty(k)) {
+                      count++;
+                      if(count<totalkeyValues){
+                          drs += doors[k]+', ';
+                      }
+                      else {
+                          drs+=doors[k];
+                      }
+                  }
+              }
+              return drs;
+          }
+      };
+
 	$scope.editFormSubmit = function(device){
 		device.registration_code = device.device_registration_code;
 		device.technician_id = parseInt(device.device_technician_id);

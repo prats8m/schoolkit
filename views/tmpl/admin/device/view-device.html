@@ -116,7 +116,7 @@
 				</section>
 			</div>
 			
-			<div class="col-sm-12 col-md-8" ng-controller="ViewDeviceCtrl" ng-init="dependentDeviceInit()"> 
+			<div class="col-sm-12 col-md-8" ng-init="dependentDeviceInit()">
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0"> 
 						<uib-tabset class="tabs-dark">
@@ -130,6 +130,7 @@
 											<div class="form-group profiledetail">
 												<p><label>Facility Name</label> {{details.facility_name}}</p>
 												<p><label>Device Name</label> {{details.device_name}}</p>
+												<p><label>Doors</label> {{showDoorsForDevice(details.doors)}}</p>
 												<p><label>Model Name</label> {{details.device_model}}</p>
 												<p><label>Serial No.</label> {{details.device_serial_no}}</p>
 												<p><label>Device Type</label> {{details.device_type}}</p>

@@ -100,8 +100,6 @@ var app = angular
         if (toState.name ==="app.admin.user.add-user") {
             $cookies.remove("user_id");
         }
-         $rootScope.toasterPool='';
-
     });
 
 
@@ -128,14 +126,15 @@ var app = angular
     $translateProvider.preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy(null);
   }])
-  
-  /* .config(function ($httpProvider) {
-  $httpProvider.defaults.headers.common = {};
-  $httpProvider.defaults.headers.post = {};
-  $httpProvider.defaults.headers.put = {};
-  $httpProvider.defaults.headers.patch = {};
-}) */
 
+
+  //.....Setting Up Interceotor.............................
+
+    .config(function($httpProvider) {
+        $httpProvider.interceptors.push('setCustomConfigsToHTTPCalls');
+    })
+
+	//......................................................
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     
 	$urlRouterProvider.otherwise('/core/login');
@@ -942,84 +941,6 @@ app
     $scope.currentLanguage = $translate.proposedLanguage() || $translate.use();
 });
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:LoginCtrl
- * @description
- * # LoginCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('LoginCtrl', function ($scope, $state,$http,$cookies,baseURL,$rootScope, $location,appConstants,utilitySvc) {
-	  
-		
-	$scope.user = {};
-	$rootScope.toasterPool='';
-	$scope.setCookies = function(){
-		$scope.user.username = $cookies.get('username');
-		$scope.user.password = $cookies.get('password');
-	};
-	$scope.setCookies();
-	
-	$scope.loginFunction = function(){
-		$scope.user.type = "web";
-		$http({
-			url: baseURL+'login-web',
-			method: 'POST',
-			data: $scope.user,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				if(response.msg == 'Login_Success'){
-					
-					var now = new Date();
-					var time = now.getTime();
-					var expireTime = time + 1000*60;
-					now.setTime(expireTime);
-					$cookies.put('token', response.data.token,{expiry:now});
-					$rootScope.current_user = response.data;
-					console.log($rootScope.current_user);
-					if(response.data.userType == 'admin'){
-						$cookies.put('facilityId', response.data.facilityId,{expiry:now});
-						$cookies.put('userFirstName', response.data.userFirstName,{expiry:now});
-						$cookies.put('userLastName', response.data.userLastName,{expiry:now});
-						if($scope.rememberme){
-							$cookies.put('username', $scope.user.username);
-							$cookies.put('password', $scope.user.password);
-						}
-						
-					}
-					$state.go('app.admin.dashboard');
-				}
-			}else{
-				if(response.msg == 'Invalid_Credentials'){
-					$scope.message = 'Please enter correct email id and password.';
-				}
-			}
-		})
-		.error(function(){
-			
-		})
-
-	};
-
-      $scope.checkIfUserLoggedIn=function () {
-		  if($cookies.get(appConstants.sessionTokenCookieID)){
-              $state.go('app.admin.dashboard');
-		  }
-      };
-
-	$scope.checkIfUserLoggedIn();
-
-  $scope.logout = function(){
-      utilitySvc.logoutfacilityWeb();
-  }
-});
 
 'use strict';
 /**
@@ -1037,30 +958,7 @@ app
 });
 
 
-  
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:DashboardCtrl
- * @description
- * # DashboardCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc){
-    $scope.page = {
-		title: appConstants.dashboardTitle,
-		subtitle: appConstants.dashboardSubTitle
-    };
-	$scope.dashboardInit = function(){
-        dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
-            if(succResponse.status){
-                $rootScope.dashboardData = succResponse.data?succResponse.data:[];
-            }
-        });
-	};
-	$scope.dashboardInit();
-});
+
 
 
 'use strict';
@@ -9527,15 +9425,15 @@ app.service('errorHandler',  function ($http,$location,toaster,$cookies) {
 	}
  });
 
-app.service('schedul', function($http, baseURL, $cookies) {
+app.service('schedul', function($http, baseURL, $cookies,appConstants) {
     this.getScheduleByFacility = function (facility_id) {
         return $http({
-				method: 'GET', 
-				url: baseURL+'schedule/list-schedule?facility_id='+facility_id,
-				dataType : 'JSON', 
+				method: appConstants.getMethod,
+				url: baseURL+appConstants.schedulelistschedule+'?facility_id='+facility_id,
+				dataType : appConstants.dataType,
 				headers: {
-					"Content-type": "application/json",
-					"Authorization": $cookies.get("token")
+					"Content-type": appConstants.contentType,
+					"Authorization": $cookies.get(appConstants.sessionTokenCookieID)
 				}
 				})
 				.success(function(response){
@@ -9583,7 +9481,7 @@ app.directive('username', function username() {
 			$scope.userLastName = $cookies.get('userLastName');
 		}
 	  };
-    });
+});
     
 app.filter('emptyVal', function() {
     return function(input) {
