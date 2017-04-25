@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Service/loginSVC.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/dashboard.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/DeviceMod.js" afterPath="$PROJECT_DIR$/scripts/DeviceMod.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/Constants.js" afterPath="$PROJECT_DIR$/scripts/Service/Constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/UserSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/UserSvc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" afterPath="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/activitiesSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/activitiesSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/adminSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/adminSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/cameraDVRSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/cameraDVRSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/dashboardSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/dashboardSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/devicesSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/devicesSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/doorsSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/doorsSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/facilitiesSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/facilitiesSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/forgetpasswordSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/forgetpasswordSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/profileSettingsSvc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/scheduleSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/scheduleSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/technicianSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/technicianSvc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" afterPath="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/header.html" afterPath="$PROJECT_DIR$/views/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/dashboard.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/view-dependent-device.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/view-dependent-device.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/view-device.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/view-device.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/door/view-door.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/door/view-door.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/view-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/view-user.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/schedule.js" afterPath="$PROJECT_DIR$/scripts/schedule.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/add-schedule.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/add-schedule.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/edit-schedule-groups.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/edit-schedule-groups.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/schedule-groups.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/schedule-groups.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,16 +36,126 @@
         <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
-                <marker date="1493125826882" expanded="true" signature="97858:97864" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="115265:115299" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="163438:163453" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="163557:163590" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="163629:163704" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="165393:165410" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="165575:165592" placeholder="..." />
-                <marker date="1493125826882" expanded="true" signature="165759:165806" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="3667:3836" placeholder="/*...*/" />
+                <marker date="1493127049339" expanded="true" signature="3854:3943" placeholder="{&quot;abstract&quot;: true...}" />
+                <marker date="1493127049339" expanded="true" signature="4008:4095" placeholder="{&quot;abstract&quot;: true...}" />
+                <marker date="1493127049339" expanded="true" signature="4136:4238" placeholder="{&quot;url&quot;: '/login'...}" />
+                <marker date="1493127049339" expanded="true" signature="4281:4386" placeholder="{&quot;url&quot;: '/signup'...}" />
+                <marker date="1493127049339" expanded="true" signature="4447:4578" placeholder="{&quot;url&quot;: '/forgot-password'...}" />
+                <marker date="1493127049339" expanded="true" signature="4632:4728" placeholder="{&quot;url&quot;: '/otp'...}" />
+                <marker date="1493127049339" expanded="true" signature="4794:4933" placeholder="{&quot;url&quot;: '/create-new-password'...}" />
+                <marker date="1493127049339" expanded="true" signature="5005:5144" placeholder="{&quot;url&quot;: '/view-primary-device/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="5216:5355" placeholder="{&quot;url&quot;: '/edit-primary-device/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="5447:5607" placeholder="{&quot;url&quot;: '/view-dependent-device/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="5699:5850" placeholder="{&quot;url&quot;: '/edit-dependent-device/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="5902:6011" placeholder="{&quot;url&quot;: '/activity'...}" />
+                <marker date="1493127049339" expanded="true" signature="6016:6183" placeholder="/*...*/" />
+                <marker date="1493127049339" expanded="true" signature="6187:6351" placeholder="/*...*/" />
+                <marker date="1493127049339" expanded="true" signature="6394:6463" placeholder="{&quot;url&quot;: '/subadmin'...}" />
+                <marker date="1493127049339" expanded="true" signature="6527:6642" placeholder="{&quot;url&quot;: '/dashboard'...}" />
+                <marker date="1493127049339" expanded="true" signature="6703:6814" placeholder="{&quot;url&quot;: '/settings'...}" />
+                <marker date="1493127049339" expanded="true" signature="6875:6938" placeholder="{&quot;url&quot;: '/facility'...}" />
+                <marker date="1493127049339" expanded="true" signature="7019:7178" placeholder="{&quot;url&quot;: '/facility'...}" />
+                <marker date="1493127049339" expanded="true" signature="7278:7478" placeholder="{&quot;url&quot;: '/facility-details/:facility_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="7534:7593" placeholder="{&quot;url&quot;: '/user'...}" />
+                <marker date="1493127049339" expanded="true" signature="7660:7771" placeholder="{&quot;url&quot;: '/users'...}" />
+                <marker date="1493127049339" expanded="true" signature="7859:8081" placeholder="{&quot;url&quot;: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount'...}" />
+                <marker date="1493127049339" expanded="true" signature="8162:8291" placeholder="{&quot;url&quot;: '/user-groups'...}" />
+                <marker date="1493127049339" expanded="true" signature="8375:8511" placeholder="{&quot;url&quot;: '/user-profile'...}" />
+                <marker date="1493127049339" expanded="true" signature="8573:8634" placeholder="{&quot;url&quot;: '/device'...}" />
+                <marker date="1493127049339" expanded="true" signature="8709:8828" placeholder="{&quot;url&quot;: '/devices'...}" />
+                <marker date="1493127049339" expanded="true" signature="8920:9064" placeholder="{&quot;url&quot;: '/device-details'...}" />
+                <marker date="1493127049339" expanded="true" signature="9176:9348" placeholder="{&quot;url&quot;: '/dependent-devices-details'...}" />
+                <marker date="1493127049339" expanded="true" signature="9402:9461" placeholder="{&quot;url&quot;: '/door'...}" />
+                <marker date="1493127049339" expanded="true" signature="9528:9639" placeholder="{&quot;url&quot;: '/doors'...}" />
+                <marker date="1493127049339" expanded="true" signature="9716:9843" placeholder="{&quot;url&quot;: '/view-door'...}" />
+                <marker date="1493127049339" expanded="true" signature="9923:10052" placeholder="{&quot;url&quot;: '/door-groups'...}" />
+                <marker date="1493127049339" expanded="true" signature="10124:10190" placeholder="{&quot;url&quot;: '/permissions'...}" />
+                <marker date="1493127049339" expanded="true" signature="10271:10389" placeholder="{&quot;url&quot;: '/roles'...}" />
+                <marker date="1493127049339" expanded="true" signature="10483:10619" placeholder="{&quot;url&quot;: '/view-roles'...}" />
+                <marker date="1493127049339" expanded="true" signature="10701:10820" placeholder="{&quot;url&quot;: '/admin'...}" />
+                <marker date="1493127049339" expanded="true" signature="10920:11066" placeholder="{&quot;url&quot;: '/admin-profile'...}" />
+                <marker date="1493127049339" expanded="true" signature="11134:11197" placeholder="{&quot;url&quot;: '/schedule'...}" />
+                <marker date="1493127049339" expanded="true" signature="11280:11407" placeholder="{&quot;url&quot;: '/schedules'...}" />
+                <marker date="1493127049339" expanded="true" signature="11501:11644" placeholder="{&quot;url&quot;: '/view-schedule'...}" />
+                <marker date="1493127049339" expanded="true" signature="11740:11885" placeholder="{&quot;url&quot;: '/schedule-groups'...}" />
+                <marker date="1493127049339" expanded="true" signature="11966:12096" placeholder="{&quot;url&quot;: '/add-schedule'...}" />
+                <marker date="1493127049339" expanded="true" signature="12186:12333" placeholder="{&quot;url&quot;: '/holiday-schedules'...}" />
+                <marker date="1493127049339" expanded="true" signature="12431:12579" placeholder="{&quot;url&quot;: '/holiday-schedule'...}" />
+                <marker date="1493127049339" expanded="true" signature="12689:12855" placeholder="{&quot;url&quot;: '/view-holiday-schedule'...}" />
+                <marker date="1493127049339" expanded="true" signature="12932:13049" placeholder="{&quot;url&quot;: '/roles'...}" />
+                <marker date="1493127049339" expanded="true" signature="13109:13171" placeholder="{&quot;url&quot;: '/support'...}" />
+                <marker date="1493127049339" expanded="true" signature="13254:13384" placeholder="{&quot;url&quot;: '/technician'...}" />
+                <marker date="1493127049339" expanded="true" signature="13486:13643" placeholder="{&quot;url&quot;: '/technician-profile'...}" />
+                <marker date="1493127049339" expanded="true" signature="13698:13757" placeholder="{&quot;url&quot;: '/help'...}" />
+                <marker date="1493127049339" expanded="true" signature="13854:14010" placeholder="{&quot;url&quot;: '/message-notification'...}" />
+                <marker date="1493127049339" expanded="true" signature="14100:14244" placeholder="{&quot;url&quot;: '/diagnostics-help'...}" />
+                <marker date="1493127049339" expanded="true" signature="14330:14468" placeholder="{&quot;url&quot;: '/history-events'...}" />
+                <marker date="1493127049339" expanded="true" signature="14526:14587" placeholder="{&quot;url&quot;: '/camera'...}" />
+                <marker date="1493127049339" expanded="true" signature="14668:14796" placeholder="{&quot;url&quot;: '/camera-dvr'...}" />
+                <marker date="1493127049339" expanded="true" signature="14801:14963" placeholder="/*...*/" />
+                <marker date="1493127049339" expanded="true" signature="14969:15130" placeholder="/*...*/" />
+                <marker date="1493127049339" expanded="true" signature="15167:15233" placeholder="{&quot;url&quot;: '/admin'...}" />
+                <marker date="1493127049339" expanded="true" signature="15310:15437" placeholder="{&quot;url&quot;: '/service-plan'...}" />
+                <marker date="1493127049339" expanded="true" signature="15514:15654" placeholder="{&quot;url&quot;: '/change-service-plan'...}" />
+                <marker date="1493127049339" expanded="true" signature="15733:15876" placeholder="{&quot;url&quot;: '/upgrade-service-plan'...}" />
+                <marker date="1493127049339" expanded="true" signature="15953:16093" placeholder="{&quot;url&quot;: '/billing-information'...}" />
+                <marker date="1493127049339" expanded="true" signature="16146:16252" placeholder="{&quot;url&quot;: '/payment'...}" />
+                <marker date="1493127049339" expanded="true" signature="16533:16645" placeholder="{&quot;url&quot;: '/dashboard'...}" />
+                <marker date="1493127049339" expanded="true" signature="16726:16887" placeholder="{&quot;url&quot;: '/profile-settings'...}" />
+                <marker date="1493127049339" expanded="true" signature="16940:17059" placeholder="{&quot;url&quot;: '/settings/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="17109:17261" placeholder="{&quot;url&quot;: '/device-settings/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="17316:17379" placeholder="{&quot;url&quot;: '/facility'...}" />
+                <marker date="1493127049339" expanded="true" signature="17454:17576" placeholder="{&quot;url&quot;: '/facility'...}" />
+                <marker date="1493127049339" expanded="true" signature="17664:17817" placeholder="{&quot;url&quot;: '/view-facility/:facility_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="17906:18059" placeholder="{&quot;url&quot;: '/edit-facility/:facility_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="18109:18168" placeholder="{&quot;url&quot;: '/user'...}" />
+                <marker date="1493127049339" expanded="true" signature="18229:18337" placeholder="{&quot;url&quot;: '/users'...}" />
+                <marker date="1493127049339" expanded="true" signature="18397:18515" placeholder="{&quot;url&quot;: '/add-user'...}" />
+                <marker date="1493127049339" expanded="true" signature="18583:18719" placeholder="{&quot;url&quot;: '/view-user/:user_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="18792:18928" placeholder="{&quot;url&quot;: '/edit-user/:user_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="19002:19128" placeholder="{&quot;url&quot;: '/user-groups'...}" />
+                <marker date="1493127049339" expanded="true" signature="19206:19378" placeholder="{&quot;url&quot;: '/user-profile/:user_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="19438:19499" placeholder="{&quot;url&quot;: '/device'...}" />
+                <marker date="1493127049339" expanded="true" signature="19568:19684" placeholder="{&quot;url&quot;: '/devices'...}" />
+                <marker date="1493127049339" expanded="true" signature="19770:19922" placeholder="{&quot;url&quot;: '/device-details/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="20020:20165" placeholder="{&quot;url&quot;: '/dependent-devices'...}" />
+                <marker date="1493127049339" expanded="true" signature="20271:20451" placeholder="{&quot;url&quot;: '/dependent-devices-details/:device_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="20499:20558" placeholder="{&quot;url&quot;: '/door'...}" />
+                <marker date="1493127049339" expanded="true" signature="20619:20727" placeholder="{&quot;url&quot;: '/doors'...}" />
+                <marker date="1493127049339" expanded="true" signature="20797:20926" placeholder="{&quot;url&quot;: '/edit-door/:door_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="21000:21163" placeholder="{&quot;url&quot;: '/view-door/:door_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="21237:21363" placeholder="{&quot;url&quot;: '/door-groups'...}" />
+                <marker date="1493127049339" expanded="true" signature="21429:21495" placeholder="{&quot;url&quot;: '/permissions'...}" />
+                <marker date="1493127049339" expanded="true" signature="21570:21685" placeholder="{&quot;url&quot;: '/roles'...}" />
+                <marker date="1493127049339" expanded="true" signature="21773:21906" placeholder="{&quot;url&quot;: '/view-roles'...}" />
+                <marker date="1493127049339" expanded="true" signature="21982:22098" placeholder="{&quot;url&quot;: '/admin'...}" />
+                <marker date="1493127049339" expanded="true" signature="22192:22335" placeholder="{&quot;url&quot;: '/admin-profile'...}" />
+                <marker date="1493127049339" expanded="true" signature="22397:22460" placeholder="{&quot;url&quot;: '/schedule'...}" />
+                <marker date="1493127049339" expanded="true" signature="22537:22661" placeholder="{&quot;url&quot;: '/schedules'...}" />
+                <marker date="1493127049339" expanded="true" signature="22749:22902" placeholder="{&quot;url&quot;: '/view-schedule/:schedule_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="23255:23397" placeholder="{&quot;url&quot;: '/schedule-groups'...}" />
+                <marker date="1493127049339" expanded="true" signature="23498:23668" placeholder="{&quot;url&quot;: '/view-holiday-schedule/:hs_id'...}" />
+                <marker date="1493127049339" expanded="true" signature="23722:23784" placeholder="{&quot;url&quot;: '/support'...}" />
+                <marker date="1493127049339" expanded="true" signature="23861:23988" placeholder="{&quot;url&quot;: '/technician'...}" />
+                <marker date="1493127049339" expanded="true" signature="24084:24238" placeholder="{&quot;url&quot;: '/technician-profile'...}" />
+                <marker date="1493127049339" expanded="true" signature="24287:24346" placeholder="{&quot;url&quot;: '/help'...}" />
+                <marker date="1493127049339" expanded="true" signature="24437:24590" placeholder="{&quot;url&quot;: '/message-notification'...}" />
+                <marker date="1493127049339" expanded="true" signature="24674:24815" placeholder="{&quot;url&quot;: '/diagnostics-help'...}" />
+                <marker date="1493127049339" expanded="true" signature="24895:25030" placeholder="{&quot;url&quot;: '/history-events'...}" />
+                <marker date="1493127049339" expanded="true" signature="25082:25143" placeholder="{&quot;url&quot;: '/camera'...}" />
+                <marker date="1493127049339" expanded="true" signature="25218:25343" placeholder="{&quot;url&quot;: '/camera-dvr'...}" />
+                <marker date="1493127049339" expanded="true" signature="25348:25507" placeholder="/*...*/" />
+                <marker date="1493127049339" expanded="true" signature="98121:98127" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="115528:115562" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="163701:163716" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="163820:163853" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="163892:163967" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="165656:165673" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="165838:165855" placeholder="..." />
+                <marker date="1493127049339" expanded="true" signature="166022:166069" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -105,8 +195,10 @@
         <entry file="file://$PROJECT_DIR$/scripts/Service/scheduleSvc.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="183" column="8" selection-start-line="183" selection-start-column="8" selection-end-line="183" selection-end-column="8" />
-              <folding />
+              <caret line="235" column="8" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
+              <folding>
+                <marker date="1493127049369" expanded="true" signature="7317:7344" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,11 +213,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UtilitySvc.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UtilitySvc.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44924405">
+            <state vertical-scroll-proportion="0.0">
               <caret line="91" column="10" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.35421166">
+              <caret line="631" column="10" selection-start-line="631" selection-start-column="10" selection-end-line="631" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -146,16 +248,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="707" column="8" selection-start-line="707" selection-start-column="8" selection-end-line="707" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="holidayScheduleSvc.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/Service/holidayScheduleSvc.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -258,7 +350,6 @@
         <option value="$PROJECT_DIR$/scripts/DeviceMod.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/door/view-door.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/camera/camera-dvr.html" />
-        <option value="$PROJECT_DIR$/scripts/Service/Constants.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/dashboard.html" />
         <option value="$PROJECT_DIR$/scripts/dashboard.js" />
         <option value="$PROJECT_DIR$/scripts/Service/dashboardSvc.js" />
@@ -268,6 +359,7 @@
         <option value="$PROJECT_DIR$/scripts/login.js" />
         <option value="$PROJECT_DIR$/scripts/Service/loginSVC.js" />
         <option value="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" />
+        <option value="$PROJECT_DIR$/scripts/Service/Constants.js" />
       </list>
     </option>
   </component>
@@ -336,6 +428,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -759,14 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="66" selection-start-line="88" selection-start-column="66" selection-end-line="88" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.8363636">
@@ -866,8 +968,10 @@
     <entry file="file://$PROJECT_DIR$/scripts/Service/scheduleSvc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="183" column="8" selection-start-line="183" selection-start-column="8" selection-end-line="183" selection-end-column="8" />
-          <folding />
+          <caret line="235" column="8" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
+          <folding>
+            <marker date="1493127049369" expanded="true" signature="7317:7344" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -890,16 +994,126 @@
     <entry file="file://$PROJECT_DIR$/scripts/app.d7ca82ad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
-            <marker date="1493125826882" expanded="true" signature="97858:97864" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="115265:115299" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="163438:163453" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="163557:163590" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="163629:163704" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="165393:165410" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="165575:165592" placeholder="..." />
-            <marker date="1493125826882" expanded="true" signature="165759:165806" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="3667:3836" placeholder="/*...*/" />
+            <marker date="1493127049339" expanded="true" signature="3854:3943" placeholder="{&quot;abstract&quot;: true...}" />
+            <marker date="1493127049339" expanded="true" signature="4008:4095" placeholder="{&quot;abstract&quot;: true...}" />
+            <marker date="1493127049339" expanded="true" signature="4136:4238" placeholder="{&quot;url&quot;: '/login'...}" />
+            <marker date="1493127049339" expanded="true" signature="4281:4386" placeholder="{&quot;url&quot;: '/signup'...}" />
+            <marker date="1493127049339" expanded="true" signature="4447:4578" placeholder="{&quot;url&quot;: '/forgot-password'...}" />
+            <marker date="1493127049339" expanded="true" signature="4632:4728" placeholder="{&quot;url&quot;: '/otp'...}" />
+            <marker date="1493127049339" expanded="true" signature="4794:4933" placeholder="{&quot;url&quot;: '/create-new-password'...}" />
+            <marker date="1493127049339" expanded="true" signature="5005:5144" placeholder="{&quot;url&quot;: '/view-primary-device/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="5216:5355" placeholder="{&quot;url&quot;: '/edit-primary-device/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="5447:5607" placeholder="{&quot;url&quot;: '/view-dependent-device/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="5699:5850" placeholder="{&quot;url&quot;: '/edit-dependent-device/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="5902:6011" placeholder="{&quot;url&quot;: '/activity'...}" />
+            <marker date="1493127049339" expanded="true" signature="6016:6183" placeholder="/*...*/" />
+            <marker date="1493127049339" expanded="true" signature="6187:6351" placeholder="/*...*/" />
+            <marker date="1493127049339" expanded="true" signature="6394:6463" placeholder="{&quot;url&quot;: '/subadmin'...}" />
+            <marker date="1493127049339" expanded="true" signature="6527:6642" placeholder="{&quot;url&quot;: '/dashboard'...}" />
+            <marker date="1493127049339" expanded="true" signature="6703:6814" placeholder="{&quot;url&quot;: '/settings'...}" />
+            <marker date="1493127049339" expanded="true" signature="6875:6938" placeholder="{&quot;url&quot;: '/facility'...}" />
+            <marker date="1493127049339" expanded="true" signature="7019:7178" placeholder="{&quot;url&quot;: '/facility'...}" />
+            <marker date="1493127049339" expanded="true" signature="7278:7478" placeholder="{&quot;url&quot;: '/facility-details/:facility_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="7534:7593" placeholder="{&quot;url&quot;: '/user'...}" />
+            <marker date="1493127049339" expanded="true" signature="7660:7771" placeholder="{&quot;url&quot;: '/users'...}" />
+            <marker date="1493127049339" expanded="true" signature="7859:8081" placeholder="{&quot;url&quot;: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount'...}" />
+            <marker date="1493127049339" expanded="true" signature="8162:8291" placeholder="{&quot;url&quot;: '/user-groups'...}" />
+            <marker date="1493127049339" expanded="true" signature="8375:8511" placeholder="{&quot;url&quot;: '/user-profile'...}" />
+            <marker date="1493127049339" expanded="true" signature="8573:8634" placeholder="{&quot;url&quot;: '/device'...}" />
+            <marker date="1493127049339" expanded="true" signature="8709:8828" placeholder="{&quot;url&quot;: '/devices'...}" />
+            <marker date="1493127049339" expanded="true" signature="8920:9064" placeholder="{&quot;url&quot;: '/device-details'...}" />
+            <marker date="1493127049339" expanded="true" signature="9176:9348" placeholder="{&quot;url&quot;: '/dependent-devices-details'...}" />
+            <marker date="1493127049339" expanded="true" signature="9402:9461" placeholder="{&quot;url&quot;: '/door'...}" />
+            <marker date="1493127049339" expanded="true" signature="9528:9639" placeholder="{&quot;url&quot;: '/doors'...}" />
+            <marker date="1493127049339" expanded="true" signature="9716:9843" placeholder="{&quot;url&quot;: '/view-door'...}" />
+            <marker date="1493127049339" expanded="true" signature="9923:10052" placeholder="{&quot;url&quot;: '/door-groups'...}" />
+            <marker date="1493127049339" expanded="true" signature="10124:10190" placeholder="{&quot;url&quot;: '/permissions'...}" />
+            <marker date="1493127049339" expanded="true" signature="10271:10389" placeholder="{&quot;url&quot;: '/roles'...}" />
+            <marker date="1493127049339" expanded="true" signature="10483:10619" placeholder="{&quot;url&quot;: '/view-roles'...}" />
+            <marker date="1493127049339" expanded="true" signature="10701:10820" placeholder="{&quot;url&quot;: '/admin'...}" />
+            <marker date="1493127049339" expanded="true" signature="10920:11066" placeholder="{&quot;url&quot;: '/admin-profile'...}" />
+            <marker date="1493127049339" expanded="true" signature="11134:11197" placeholder="{&quot;url&quot;: '/schedule'...}" />
+            <marker date="1493127049339" expanded="true" signature="11280:11407" placeholder="{&quot;url&quot;: '/schedules'...}" />
+            <marker date="1493127049339" expanded="true" signature="11501:11644" placeholder="{&quot;url&quot;: '/view-schedule'...}" />
+            <marker date="1493127049339" expanded="true" signature="11740:11885" placeholder="{&quot;url&quot;: '/schedule-groups'...}" />
+            <marker date="1493127049339" expanded="true" signature="11966:12096" placeholder="{&quot;url&quot;: '/add-schedule'...}" />
+            <marker date="1493127049339" expanded="true" signature="12186:12333" placeholder="{&quot;url&quot;: '/holiday-schedules'...}" />
+            <marker date="1493127049339" expanded="true" signature="12431:12579" placeholder="{&quot;url&quot;: '/holiday-schedule'...}" />
+            <marker date="1493127049339" expanded="true" signature="12689:12855" placeholder="{&quot;url&quot;: '/view-holiday-schedule'...}" />
+            <marker date="1493127049339" expanded="true" signature="12932:13049" placeholder="{&quot;url&quot;: '/roles'...}" />
+            <marker date="1493127049339" expanded="true" signature="13109:13171" placeholder="{&quot;url&quot;: '/support'...}" />
+            <marker date="1493127049339" expanded="true" signature="13254:13384" placeholder="{&quot;url&quot;: '/technician'...}" />
+            <marker date="1493127049339" expanded="true" signature="13486:13643" placeholder="{&quot;url&quot;: '/technician-profile'...}" />
+            <marker date="1493127049339" expanded="true" signature="13698:13757" placeholder="{&quot;url&quot;: '/help'...}" />
+            <marker date="1493127049339" expanded="true" signature="13854:14010" placeholder="{&quot;url&quot;: '/message-notification'...}" />
+            <marker date="1493127049339" expanded="true" signature="14100:14244" placeholder="{&quot;url&quot;: '/diagnostics-help'...}" />
+            <marker date="1493127049339" expanded="true" signature="14330:14468" placeholder="{&quot;url&quot;: '/history-events'...}" />
+            <marker date="1493127049339" expanded="true" signature="14526:14587" placeholder="{&quot;url&quot;: '/camera'...}" />
+            <marker date="1493127049339" expanded="true" signature="14668:14796" placeholder="{&quot;url&quot;: '/camera-dvr'...}" />
+            <marker date="1493127049339" expanded="true" signature="14801:14963" placeholder="/*...*/" />
+            <marker date="1493127049339" expanded="true" signature="14969:15130" placeholder="/*...*/" />
+            <marker date="1493127049339" expanded="true" signature="15167:15233" placeholder="{&quot;url&quot;: '/admin'...}" />
+            <marker date="1493127049339" expanded="true" signature="15310:15437" placeholder="{&quot;url&quot;: '/service-plan'...}" />
+            <marker date="1493127049339" expanded="true" signature="15514:15654" placeholder="{&quot;url&quot;: '/change-service-plan'...}" />
+            <marker date="1493127049339" expanded="true" signature="15733:15876" placeholder="{&quot;url&quot;: '/upgrade-service-plan'...}" />
+            <marker date="1493127049339" expanded="true" signature="15953:16093" placeholder="{&quot;url&quot;: '/billing-information'...}" />
+            <marker date="1493127049339" expanded="true" signature="16146:16252" placeholder="{&quot;url&quot;: '/payment'...}" />
+            <marker date="1493127049339" expanded="true" signature="16533:16645" placeholder="{&quot;url&quot;: '/dashboard'...}" />
+            <marker date="1493127049339" expanded="true" signature="16726:16887" placeholder="{&quot;url&quot;: '/profile-settings'...}" />
+            <marker date="1493127049339" expanded="true" signature="16940:17059" placeholder="{&quot;url&quot;: '/settings/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="17109:17261" placeholder="{&quot;url&quot;: '/device-settings/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="17316:17379" placeholder="{&quot;url&quot;: '/facility'...}" />
+            <marker date="1493127049339" expanded="true" signature="17454:17576" placeholder="{&quot;url&quot;: '/facility'...}" />
+            <marker date="1493127049339" expanded="true" signature="17664:17817" placeholder="{&quot;url&quot;: '/view-facility/:facility_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="17906:18059" placeholder="{&quot;url&quot;: '/edit-facility/:facility_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="18109:18168" placeholder="{&quot;url&quot;: '/user'...}" />
+            <marker date="1493127049339" expanded="true" signature="18229:18337" placeholder="{&quot;url&quot;: '/users'...}" />
+            <marker date="1493127049339" expanded="true" signature="18397:18515" placeholder="{&quot;url&quot;: '/add-user'...}" />
+            <marker date="1493127049339" expanded="true" signature="18583:18719" placeholder="{&quot;url&quot;: '/view-user/:user_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="18792:18928" placeholder="{&quot;url&quot;: '/edit-user/:user_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="19002:19128" placeholder="{&quot;url&quot;: '/user-groups'...}" />
+            <marker date="1493127049339" expanded="true" signature="19206:19378" placeholder="{&quot;url&quot;: '/user-profile/:user_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="19438:19499" placeholder="{&quot;url&quot;: '/device'...}" />
+            <marker date="1493127049339" expanded="true" signature="19568:19684" placeholder="{&quot;url&quot;: '/devices'...}" />
+            <marker date="1493127049339" expanded="true" signature="19770:19922" placeholder="{&quot;url&quot;: '/device-details/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="20020:20165" placeholder="{&quot;url&quot;: '/dependent-devices'...}" />
+            <marker date="1493127049339" expanded="true" signature="20271:20451" placeholder="{&quot;url&quot;: '/dependent-devices-details/:device_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="20499:20558" placeholder="{&quot;url&quot;: '/door'...}" />
+            <marker date="1493127049339" expanded="true" signature="20619:20727" placeholder="{&quot;url&quot;: '/doors'...}" />
+            <marker date="1493127049339" expanded="true" signature="20797:20926" placeholder="{&quot;url&quot;: '/edit-door/:door_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="21000:21163" placeholder="{&quot;url&quot;: '/view-door/:door_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="21237:21363" placeholder="{&quot;url&quot;: '/door-groups'...}" />
+            <marker date="1493127049339" expanded="true" signature="21429:21495" placeholder="{&quot;url&quot;: '/permissions'...}" />
+            <marker date="1493127049339" expanded="true" signature="21570:21685" placeholder="{&quot;url&quot;: '/roles'...}" />
+            <marker date="1493127049339" expanded="true" signature="21773:21906" placeholder="{&quot;url&quot;: '/view-roles'...}" />
+            <marker date="1493127049339" expanded="true" signature="21982:22098" placeholder="{&quot;url&quot;: '/admin'...}" />
+            <marker date="1493127049339" expanded="true" signature="22192:22335" placeholder="{&quot;url&quot;: '/admin-profile'...}" />
+            <marker date="1493127049339" expanded="true" signature="22397:22460" placeholder="{&quot;url&quot;: '/schedule'...}" />
+            <marker date="1493127049339" expanded="true" signature="22537:22661" placeholder="{&quot;url&quot;: '/schedules'...}" />
+            <marker date="1493127049339" expanded="true" signature="22749:22902" placeholder="{&quot;url&quot;: '/view-schedule/:schedule_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="23255:23397" placeholder="{&quot;url&quot;: '/schedule-groups'...}" />
+            <marker date="1493127049339" expanded="true" signature="23498:23668" placeholder="{&quot;url&quot;: '/view-holiday-schedule/:hs_id'...}" />
+            <marker date="1493127049339" expanded="true" signature="23722:23784" placeholder="{&quot;url&quot;: '/support'...}" />
+            <marker date="1493127049339" expanded="true" signature="23861:23988" placeholder="{&quot;url&quot;: '/technician'...}" />
+            <marker date="1493127049339" expanded="true" signature="24084:24238" placeholder="{&quot;url&quot;: '/technician-profile'...}" />
+            <marker date="1493127049339" expanded="true" signature="24287:24346" placeholder="{&quot;url&quot;: '/help'...}" />
+            <marker date="1493127049339" expanded="true" signature="24437:24590" placeholder="{&quot;url&quot;: '/message-notification'...}" />
+            <marker date="1493127049339" expanded="true" signature="24674:24815" placeholder="{&quot;url&quot;: '/diagnostics-help'...}" />
+            <marker date="1493127049339" expanded="true" signature="24895:25030" placeholder="{&quot;url&quot;: '/history-events'...}" />
+            <marker date="1493127049339" expanded="true" signature="25082:25143" placeholder="{&quot;url&quot;: '/camera'...}" />
+            <marker date="1493127049339" expanded="true" signature="25218:25343" placeholder="{&quot;url&quot;: '/camera-dvr'...}" />
+            <marker date="1493127049339" expanded="true" signature="25348:25507" placeholder="/*...*/" />
+            <marker date="1493127049339" expanded="true" signature="98121:98127" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="115528:115562" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="163701:163716" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="163820:163853" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="163892:163967" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="165656:165673" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="165838:165855" placeholder="..." />
+            <marker date="1493127049339" expanded="true" signature="166022:166069" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -930,8 +1144,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/Service/UtilitySvc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44924405">
+        <state vertical-scroll-proportion="0.0">
           <caret line="91" column="10" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/Constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35421166">
+          <caret line="631" column="10" selection-start-line="631" selection-start-column="10" selection-end-line="631" selection-end-column="10" />
           <folding />
         </state>
       </provider>

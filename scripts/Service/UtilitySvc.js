@@ -25,7 +25,7 @@ app
                     //timeout : 30000,
                     headers: {
                         Authorization: $cookies.get(appConstants.sessionTokenCookieID),
-                        "Content-type": url.indexOf('pic-upload')<0? appConstants.contentType:undefined
+                        "Content-type": url.indexOf('pic-upload') < 0 ? appConstants.contentType:undefined
                     },
                     params:params
                 })

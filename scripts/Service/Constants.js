@@ -79,7 +79,7 @@ app.constant("appConstants", {
     holidayscheduleview:'holiday-schedule/view',
     holidayscheduledelete:'holiday-schedule/delete',
     schedulelistschedule:'schedule/list-schedule',
-
+    scheduleView:'schedule/view',
     shortcutslist:'shortcut/list',
     shortcutadd:'shortcut/add',
 

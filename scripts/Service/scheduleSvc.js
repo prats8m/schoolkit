@@ -170,7 +170,6 @@ app
 		
 		scheduleSvcResp.getHolidayIds = function(hsArray){
 			var tmpArray = [];
-			
 			for(var i=0; i < hsArray.length; i++){
 				if(hsArray[i].isScheduleSelected){
 					tmpArray.push(hsArray[i].hs_id);
@@ -178,7 +177,60 @@ app
 			}
 			return tmpArray;
 		};
-	
+		
+		scheduleSvcResp.viewSchedule = function(url,method,params,data,cb){
+			utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                        
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+		};
+		
+		
+		
+		scheduleSvcResp.facilityInit = function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
 
+        scheduleSvcResp.getSelectedBlocks = function(x,classname) {
+            var table = $("#table");
+            for(var i=0;i<x.length;i++){
+                var startindex = $("#table tr[value='"+x[i].starttime+"']").index();
+                var endindex = $("#table tr[value='"+x[i].endtime+"']").index();
+                for(var j=startindex;j<endindex;j++){
+                    var row = table.find("tr").eq(j).find("."+classname);
+                    row.addClass('selected');
+                }
+            }
+        };
+        
+        scheduleSvcResp.setExceptions = function(x) {
+            var exceptions = [];
+            for(var i=0;i<x.length;i++){
+                var exception = {
+                    type:x[i].se_schedule_exception.frequency,
+                    status:x[i].se_schedule_exception.type,
+                    date:x[i].se_schedule_exception.start_date_time,
+                    start_time:x[i].se_schedule_exception.start_time,
+                    end_time:x[i].se_schedule_exception.end_time,
+                };
+                exceptions.push(exception);
+            }
+            return exceptions;
+        };
+        
         return scheduleSvcResp;
     }]);

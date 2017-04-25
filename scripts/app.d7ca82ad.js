@@ -815,6 +815,13 @@ var app = angular
 				  controller: 'ViewScheduleCtrl',
 				  templateUrl: 'views/tmpl/admin/schedule/view-schedule.html'
 				})
+				
+				//admin schedule view-schedule
+				.state('app.admin.schedule.edit-schedule-groups', {
+				  url: '/edit-schedule-groups/:schedule_id',
+				  controller: 'EditScheduleCtrl',
+				  templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
+				})
 			
 			//admin schedule schedule-groups
 			.state('app.admin.schedule.schedule-groups', {
