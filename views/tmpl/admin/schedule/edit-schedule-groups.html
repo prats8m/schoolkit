@@ -641,7 +641,7 @@
 								</div>
 
 								<div class="modal-body col-md-5" ng-controller="ModalDemoCtrl"><!-- controller="ModalDemoCtrl" -->	
-									<form ng-submit="submitEditSchedule()">
+									<form ng-submit="submitEditSchedule($parent.schedule)">
 									<div class="account">
 										<!--<div class="row mt-10">{{schedule}}</div>-->
 										<div class="row mt-10">
@@ -660,7 +660,7 @@
 											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 												<label for="">Start Date</label>
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"  required />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.$parent.schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
@@ -746,7 +746,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date</label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.exception.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>
@@ -825,7 +825,7 @@
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="mySwitch" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.$parent.schedule.schedule_expiration_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>

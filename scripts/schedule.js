@@ -466,7 +466,7 @@ app
  * # ViewScheduleCtrl
  * Controller of the minovateApp
  */
-app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $mdDialog, $stateParams, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService){
+app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $mdDialog, $stateParams, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService,utilitySvc){
 	
 	var table = $("#table");
 	var isMouseDown = false;
@@ -596,11 +596,23 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	}
 
 	$scope.addException = function(exception){
-		//alert("sss");
 		var key = angular.copy($scope.exceptions.length + 1);
 		var obj = angular.copy(exception);
 		obj.key = key;
 		$scope.exceptions.push(obj);
+	}
+
+	$scope.submitEditSchedule = function(data){
+		console.log($scope.schedule);
+		data.block = "";
+		data.schedule_exception_array = angular.copy($scope.exceptions);
+		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
+		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.schedule_start_date);
+		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod,{},$scope.schedule,function (succResponse) {
+        	if(succResponse.status){
+				toaster.pop(appConstants.success,appConstants.submitSuccessfully);
+            }
+        });
 	}
 		
 });

@@ -44,6 +44,7 @@ app.constant("appConstants", {
     scheduleadd:'schedule/add',
     scheduleDelete:'schedule/delete',
     scheduleList:'schedule/list',
+    scheduleEdit:'schedule/edit',
     listSecretQuestions:'list-secret-ques',
     forgetPassword:'user/forget-password',
     userpicupload:'user/pic-upload',
