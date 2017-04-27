@@ -41,11 +41,11 @@ app
                         if(succResponse.error != appConstants.empty){
                             var n = [];
                             var arr = succResponse.error;
-                            $.each(arr, function(index, value){ n[index] = value.property ; $.each(value.messages, function(ind, value){ n[index] += " "+value })});
-                            succResponse.error = n;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
                         }
                         else{
-                            succResponse.error[0] = succResponse.msg.replace(/_/g, " ");
+                            succResponse.msg = succResponse.msg.replace(/_/g, " ");
                         }
                     }
                     succResponse.msg= succResponse.msg.replace(/_/g,' ');

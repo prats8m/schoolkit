@@ -25,6 +25,9 @@ app
         }
     },500);
 
+          //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+
+
     $scope.cleanAccordionFormObject=function (UI,objectType) {
 		switch (UI){
 			case appConstants.adduser:

@@ -38,6 +38,14 @@ app
                                 error:null
                             });
                         }
+                        else if(!response && status==-1){
+                            cb(respStructure={
+                                status:false,
+                                data:null,
+                                msg:appConstants.timeout+': '+appConstants.responsenotfound,
+                                error:null
+                            });
+                        }
                         else {
                             if(response.token || (response.data && response.data.token)) {
                                 //     $cookies.put(appConstants.sessionTokenCookieID,response.token);
