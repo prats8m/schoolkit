@@ -37,7 +37,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             data.schedule_fri = scheduleSvcResp.timeBlock(fri);
             data.schedule_sat = scheduleSvcResp.timeBlock(sat);
             data.schedule_sun = scheduleSvcResp.timeBlock(sun);
-            data.expiration = scheduleSvcResp.convert(data.expiration);
+            //data.expiration = scheduleSvcResp.convert(data.expiration);
 
 
 
@@ -54,7 +54,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
 
 
         scheduleSvcResp.timeBlock = function(arr){
-            console.log(arr);
+            //console.log(arr);
             var returnArr = [];
 			
 			var arr1 = arr.map(function (x) { 

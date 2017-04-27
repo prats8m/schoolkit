@@ -102,10 +102,13 @@ app
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date));
+		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date))/1000;
+		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
+		
 		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+				$location.path('/app/admin/schedule/schedule-groups');
             }
         });
 	}
@@ -467,6 +470,11 @@ app
  */
 app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $mdDialog, $stateParams, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,dataService,utilitySvc){
 	
+	$scope.page = {
+      title: 'Schedule',
+      subtitle: 'So much more to see at a glance.'
+    };
+	
 	var table = $("#table");
 	var isMouseDown = false;
 	var startRowIndex = null;
@@ -538,8 +546,6 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		scheduleSvc.viewSchedule(appConstants.scheduleView, appConstants.getMethod,{schedule_id:$stateParams.schedule_id},{},function (succResponse) {
         	if(succResponse.status){
 				$scope.schedule = succResponse.data;
-				//$scope.schedule.schedule_start_date = succResponse.data.schedule_start_date * 100;
-				//$scope.schedule.schedule_expiration_date = succResponse.data.schedule_expiration_date * 100;
 				$scope.holidayScheduleList();
 				var mon = $scope.schedule.schedule_mon;
 				var tue = $scope.schedule.schedule_tue;
@@ -556,6 +562,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				scheduleSvc.getSelectedBlocks(sat,'sat');
 				scheduleSvc.getSelectedBlocks(sun,'sun');
 				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
+				$scope.schedule.schedule_start_date = $scope.schedule.schedule_start_date * 1000;
+				$scope.schedule.schedule_expiration_date = $scope.schedule.schedule_expiration_date * 1000;
             }
         });
 	};
@@ -608,7 +616,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.schedule_start_date);
+		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.schedule_start_date);
+		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.expiration);
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod,{},$scope.schedule,function (succResponse) {
         	if(succResponse.status){
 				toaster.pop(appConstants.success,appConstants.submitSuccessfully);

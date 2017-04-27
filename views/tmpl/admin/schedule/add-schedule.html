@@ -823,7 +823,7 @@
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="mySwitch" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.schedule.expiration" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
