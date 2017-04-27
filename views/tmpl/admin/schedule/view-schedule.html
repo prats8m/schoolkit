@@ -92,21 +92,20 @@
 							<div class="profile-settings">
 								<div class="row">
 									<div class="form-group col-md-12 legend">
-										<h4><strong>Configuration Details</strong> <span class="pull-right"><a style="font-size: 14px;" ui-sref="app.admin.schedule.edit-schedule-groups">Edit</a></span></h4>
+										<h4><strong>Configuration Details</strong> <span class="pull-right"><a style="font-size: 14px;" ui-sref="app.admin.schedule.edit-schedule-groups({schedule_id:ViewSchedule.schedule_id})">Edit</a></span></h4>
 									</div>
 								</div>								
 								<div class="row">
 									<div class="form-group col-sm-12 profiledetail">
 										<p><label>Timer Name</label> {{ViewSchedule.schedule_name}}</p>
-										<p><label>Status</label> {{ViewSchedule.schedule_status | scheduleFilter }}</p>
-										<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>
+										<p><label>Status</label> {{ViewSchedule.schedule_status | scheduleFilter}}</p>
+										<!--<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>-->
 										<p>&nbsp;</p>
 										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
-										<p><label>Start Time</label> {{ViewSchedule.schedule_start_time}}:00:00</p>
-										<p><label>End Time</label> {{ViewSchedule.schedule_end_time}}:00:00</p>
+										<p><label>Start Time</label> {{ViewSchedule.schedule_start_date | date :  "dd/MM/y"}}</p>
+										<p><label>End Time</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>
 									</div>											
-								</div>	
-								
+								</div>							
 							</div>
 						</div>
 					</div>

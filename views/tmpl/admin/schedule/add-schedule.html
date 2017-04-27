@@ -31,7 +31,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
 									<span class="text-lg">Devices</span>
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 							</div>
 							<div class="col-xs-6">	
 								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
 									<span class="text-lg">Doors</span>
 								</div>
 							</div>
@@ -73,7 +73,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
 									<span class="text-lg">Users</span>
 								</div>	
 							</div>
@@ -823,7 +823,7 @@
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="mySwitch" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.schedule.expiration" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
@@ -847,18 +847,16 @@
 														<li ng-repeat="hs in holidaySchedules">
 															<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" ng-model="hs.isScheduleSelected" id="hsck_{{hs.hs_id}}" ><i></i> {{hs.hs_name}}</label>
 														</li>
-														
 													</ul>
 													<a ui-sref="app.admin.schedule.holiday-schedules" ng-click="cancel()" class="pull-right mt-15 mb-20">Create Holiday Schedule </a>
 												</div>
 											</div>
 										</div>
 										<div class="modal-footer">
-											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-											<button type="submit" ng-click="submitHS()" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+											<button class="btn btn-success btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Save</button>
+											<!--<button type="submit" ng-click="submitHS()" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>-->	
 										</div>											
 									</script>
-									
 								</div>
 							</div>
 						</div>

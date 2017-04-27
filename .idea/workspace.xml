@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="81abfa3d-53cf-4e06-9560-3cf86967f21c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/DeviceMod.js" afterPath="$PROJECT_DIR$/scripts/DeviceMod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/Constants.js" afterPath="$PROJECT_DIR$/scripts/Service/Constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" afterPath="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/devicesSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/devicesSvc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Service/scheduleSvc.js" afterPath="$PROJECT_DIR$/scripts/Service/scheduleSvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UsersMod.js" afterPath="$PROJECT_DIR$/scripts/UsersMod.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/dependent-devices.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/device/edit-device.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/device/edit-device.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/user/view-user.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/user/view-user.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/schedule.js" afterPath="$PROJECT_DIR$/scripts/schedule.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/add-schedule.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/add-schedule.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/edit-schedule-groups.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/edit-schedule-groups.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tmpl/admin/schedule/view-schedule.html" afterPath="$PROJECT_DIR$/views/tmpl/admin/schedule/view-schedule.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,11 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit-user.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit-user.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4159132">
+            <state vertical-scroll-proportion="-4.3396225">
               <caret line="601" column="91" selection-start-line="601" selection-start-column="91" selection-end-line="601" selection-end-column="91" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scheduleSvc.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/Service/scheduleSvc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5610561">
+              <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -149,7 +154,6 @@
         <option value="$PROJECT_DIR$/scripts/app.d7ca82ad.js" />
         <option value="$PROJECT_DIR$/scripts/login.js" />
         <option value="$PROJECT_DIR$/scripts/Service/loginSVC.js" />
-        <option value="$PROJECT_DIR$/scripts/Service/scheduleSvc.js" />
         <option value="$PROJECT_DIR$/scripts/schedule.js" />
         <option value="$PROJECT_DIR$/scripts/Service/Constants.js" />
         <option value="$PROJECT_DIR$/scripts/Service/UtilitySvc.js" />
@@ -161,6 +165,7 @@
         <option value="$PROJECT_DIR$/scripts/DeviceMod.js" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/view-user.html" />
         <option value="$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html" />
+        <option value="$PROJECT_DIR$/scripts/Service/scheduleSvc.js" />
       </list>
     </option>
   </component>
@@ -365,6 +370,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elika_webapp2_dev_ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -501,9 +524,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22555205" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -827,14 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Service/scheduleSvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="43" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/schedule.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -956,8 +971,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/tmpl/admin/user/edit-user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4159132">
+        <state vertical-scroll-proportion="-4.3396225">
           <caret line="601" column="91" selection-start-line="601" selection-start-column="91" selection-end-line="601" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Service/scheduleSvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5610561">
+          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
           <folding />
         </state>
       </provider>
