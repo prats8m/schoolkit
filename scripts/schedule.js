@@ -102,7 +102,7 @@ app
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.schedule_start_date);
+		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date));
 		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
