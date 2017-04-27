@@ -254,11 +254,12 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             data.schedule_fri = scheduleSvcResp.timeBlock(fri);
             data.schedule_sat = scheduleSvcResp.timeBlock(sat);
             data.schedule_sun = scheduleSvcResp.timeBlock(sun);
-            data.expiration = scheduleSvcResp.convert(data.expiration);
+            // data.expiration = scheduleSvcResp.convert(data.expiration);
             data.block = "  ";
             data.facility_id = data.schedule_facility_id;
             data.schedule_start_date = data.schedule_start_date.toString();
-            data.schedule_end_date = data.schedule_expiration_date.toString();
+            data.schedule_end_date = data.expiration.toString();
+            data.expiration = data.expiration.toString();
 
 
 
@@ -271,6 +272,10 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                 }
             });
         };
+		
+		scheduleSvcResp.autoPopulateBlocks=function() {
+			
+		};
         
         return scheduleSvcResp;
     }]);

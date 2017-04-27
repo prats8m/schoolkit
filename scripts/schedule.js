@@ -474,7 +474,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
       title: 'Schedule',
       subtitle: 'So much more to see at a glance.'
     };
-	
+	/*
 	var table = $("#table");
 	var isMouseDown = false;
 	var startRowIndex = null;
@@ -541,6 +541,124 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	$(document).mouseup(function () {
 		isMouseDown = false;
 	});
+	*/
+	
+	var table = $("#table");
+	var isMouseDown = false;
+	var startRowIndex = null;
+	var startCellIndex = null;
+	
+	var weekDay = [];
+
+	function selectTo(cell) {
+		
+		var row = cell.parent();    
+		var cellIndex = cell.index();
+		var rowIndex = row.index();
+		
+		var rowStart, rowEnd, cellStart, cellEnd;
+		
+		if (rowIndex < startRowIndex) {
+			rowStart = rowIndex;
+			rowEnd = startRowIndex;
+		} else {
+			rowStart = startRowIndex;
+			rowEnd = rowIndex;
+		}
+		
+		if (cellIndex < startCellIndex) {
+			cellStart = cellIndex;
+			cellEnd = startCellIndex;
+		} else {
+			cellStart = startCellIndex;
+			cellEnd = cellIndex;
+		}
+		
+		for (var i = rowStart; i <= rowEnd; i++) {
+			var rowCells = table.find("tr").eq(i).find("td");
+			for (var j = cellStart; j <= cellEnd; j++) {
+				rowCells.eq(j).addClass("selected");
+			}
+		}
+		//table.find("td").eq(cellStart).attr("value");
+		var day = table.find("td").eq(cellEnd).attr("value");
+		if($.inArray(day,weekDay) == -1){
+			weekDay.push(day);
+		}
+		//console.log(rowStart + "-" + rowEnd);
+		$scope.schedule.schedule_start_time = table.find("tr").eq(rowStart).attr("value");
+		$scope.schedule.schedule_end_time = table.find("tr").eq(rowEnd).attr("value");
+		$scope.schedule.schedule_weekday = weekDay.join("-");
+		//console.log(table.find("tr").eq(rowEnd).attr("value"));
+		$scope.$digest();
+	}
+
+	table.find("td").mousedown(function (e) {
+		isMouseDown = true;
+		var cell = $(this);
+
+		// table.find(".selected").removeClass("selected"); // deselect everything
+		
+		
+		
+		if (e.shiftKey) {
+			selectTo(cell);                
+		} else {
+			cell.addClass("selected");
+			startCellIndex = cell.index();
+			startRowIndex = cell.parent().index();
+		}
+		
+		return false; // prevent text selection
+	})
+	
+	.mouseover(function () {
+		if (!isMouseDown) return;
+		//table.find(".selected").removeClass("selected");
+		selectTo($(this));
+	})
+	
+	.bind("selectstart", function () {
+		return false;
+	});
+
+	$(document).mouseup(function () {
+		weekDay = [];
+		isMouseDown = false;
+	});
+	
+	$scope.blocks = [];
+	
+	$scope.updateBlock = function(){
+		var block = $scope.schedule.schedule_start_time + " - " + $scope.schedule.schedule_end_time + " " + $scope.schedule.schedule_weekday;
+		if($.inArray(block,$scope.blocks) == -1){
+			$scope.blocks.push(block);
+		}
+	}
+	$scope.deleteBlock = function(){
+		if(!$scope.schedule.block) return false;
+		var splitData = $scope.schedule.block.split(" ");
+		var startTime = splitData[0];
+		var endTime = splitData[2];
+		var days = splitData[3].split("-");
+		
+		var startTimeIndex = $("tr[value='"+startTime+"']").index();
+		var endTimeIndex = $("tr[value='"+endTime+"']").index();
+		$("#table").find("tr").each(function(i){
+			if(i >= startTimeIndex && i <= endTimeIndex){
+				for(var i=0; i < days.length; i++){
+					$(this).find("td[value='"+days[i]+"']").removeClass('selected');
+				}
+			}
+		});
+		var tmp = [];
+		for(var i=0;i<$scope.blocks.length;i++){
+			if($scope.schedule.block != $scope.blocks[i]){
+				tmp.push($scope.blocks[i]);
+			}
+		}
+		$scope.blocks = tmp;
+	}
 	
 	$scope.viewSchedule = function(){
 		scheduleSvc.viewSchedule(appConstants.scheduleView, appConstants.getMethod,{schedule_id:$stateParams.schedule_id},{},function (succResponse) {
@@ -562,8 +680,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				scheduleSvc.getSelectedBlocks(sat,'sat');
 				scheduleSvc.getSelectedBlocks(sun,'sun');
 				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
-				$scope.schedule.schedule_start_date = $scope.schedule.schedule_start_date * 1000;
-				$scope.schedule.schedule_expiration_date = $scope.schedule.schedule_expiration_date * 1000;
+				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
+				$scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);
             }
         });
 	};
@@ -616,8 +734,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.schedule_start_date);
-		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.expiration);
+		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
+		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod,{},$scope.schedule,function (succResponse) {
         	if(succResponse.status){
 				toaster.pop(appConstants.success,appConstants.submitSuccessfully);
