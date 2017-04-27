@@ -438,15 +438,14 @@ app
     dataService.getData(null,baseURL + "schedule/view?schedule_id="+$stateParams.schedule_id)
     .success(function(response){
     	if(response.status){
-    		$scope.ViewSchedule = response.data[0];
+    		$scope.ViewSchedule = response.data;
     	}else{
 
     	}
     });
 
     $scope.dashboardInit = function(){
-
-        scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+        scheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
@@ -539,6 +538,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		scheduleSvc.viewSchedule(appConstants.scheduleView, appConstants.getMethod,{schedule_id:$stateParams.schedule_id},{},function (succResponse) {
         	if(succResponse.status){
 				$scope.schedule = succResponse.data;
+				//$scope.schedule.schedule_start_date = succResponse.data.schedule_start_date * 100;
+				//$scope.schedule.schedule_expiration_date = succResponse.data.schedule_expiration_date * 100;
 				$scope.holidayScheduleList();
 				var mon = $scope.schedule.schedule_mon;
 				var tue = $scope.schedule.schedule_tue;
@@ -603,7 +604,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	}
 
 	$scope.submitEditSchedule = function(data){
-		console.log($scope.schedule);
+		// console.log($scope.schedule);
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
@@ -614,6 +615,15 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
             }
         });
 	}
+
+	$scope.dashboardInit = function(){
+        scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
+	$scope.dashboardInit();
 		
 });
 

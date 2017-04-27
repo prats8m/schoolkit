@@ -1,7 +1,6 @@
 'use strict';
 
-app
-    .factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',function (toaster,utilitySvc,appConstants,$rootScope) {
+app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',function (toaster,utilitySvc,appConstants,$rootScope) {
 
         var scheduleSvcResp=this;
 
@@ -46,7 +45,7 @@ app
                 if(succResponse.status){
                     cb(succResponse);
                 }else {
-                        toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -55,6 +54,7 @@ app
 
 
         scheduleSvcResp.timeBlock = function(arr){
+            console.log(arr);
             var returnArr = [];
 			
 			var arr1 = arr.map(function (x) { 
@@ -64,7 +64,7 @@ app
 			
             var start = arr[0];
             var end = arr[0];
-            for(var i=0; i < arr.length-1; i=i+2){
+            for(var i=0; i <= arr.length-1; i=i+2){
 				if(arr[i] == (arr[i+2]-1)){
                     end = arr[i+2];
                 }else{
