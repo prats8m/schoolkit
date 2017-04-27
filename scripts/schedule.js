@@ -474,74 +474,6 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
       title: 'Schedule',
       subtitle: 'So much more to see at a glance.'
     };
-	/*
-	var table = $("#table");
-	var isMouseDown = false;
-	var startRowIndex = null;
-	var startCellIndex = null;
-
-	function selectTo(cell) {
-		
-		var row = cell.parent();    
-		var cellIndex = cell.index();
-		var rowIndex = row.index();
-		
-		var rowStart, rowEnd, cellStart, cellEnd;
-														
-		if (rowIndex < startRowIndex) {
-			rowStart = rowIndex;
-			rowEnd = startRowIndex;
-		} else {
-			rowStart = startRowIndex;
-			rowEnd = rowIndex;
-		}
-		
-		if (cellIndex < startCellIndex) {
-			cellStart = cellIndex;
-			cellEnd = startCellIndex;
-		} else {
-			cellStart = startCellIndex;
-			cellEnd = cellIndex;
-		}
-		
-		for (var i = rowStart; i <= rowEnd; i++) {
-			var rowCells = table.find("tr").eq(i).find("td");
-			for (var j = cellStart; j <= cellEnd; j++) {
-				rowCells.eq(j).addClass("selected");
-			}
-		}
-		
-	}
-
-	table.find("td").mousedown(function (e) {
-		isMouseDown = true;
-		var cell = $(this);
-
-		//table.find(".selected").removeClass("selected"); // deselect everything
-		
-		if (e.shiftKey) {
-			selectTo(cell);                
-		} else {
-			cell.addClass("selected");
-			startCellIndex = cell.index();
-			startRowIndex = cell.parent().index();
-		}
-		
-		return false; // prevent text selection
-	})	
-	.mouseover(function () {
-		if (!isMouseDown) return;
-		//table.find(".selected").removeClass("selected");
-		selectTo($(this));
-	})	
-	.bind("selectstart", function () {
-		return false;
-	});
-
-	$(document).mouseup(function () {
-		isMouseDown = false;
-	});
-	*/
 	
 	var table = $("#table");
 	var isMouseDown = false;
@@ -682,6 +614,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
 				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
 				$scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);
+				$scope.blocks = scheduleSvc.autoPopulateBlocks();
             }
         });
 	};
@@ -732,7 +665,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	$scope.submitEditSchedule = function(data){
 		// console.log($scope.schedule);
 		data.block = "";
-		data.schedule_exception_array = angular.copy($scope.exceptions);
+		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
 		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
@@ -751,6 +684,29 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
         });
 	};
 	$scope.dashboardInit();
+	
+	$scope.copyMonFri = function(){
+		$("#table").find("tr").each(function(){
+			if($(this).find("td:first-child").hasClass("selected")){
+				$(this).find("td:lt(5)").addClass("selected");
+			}
+		});
+	}
+	
+	$scope.copyMonSun = function(){
+		$("#table").find("tr").each(function(){
+			if($(this).find("td:first-child").hasClass("selected")){
+				$(this).find("td:lt(7)").addClass("selected");
+			}
+		});
+	}
+	
+	$scope.clearAll = function(){
+		$("#table tr td").removeClass("selected");
+		$scope.schedule.schedule_start_time = '';
+		$scope.schedule.schedule_end_time = '';
+		$scope.schedule.schedule_weekday = '';
+	}
 		
 });
 

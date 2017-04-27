@@ -716,7 +716,7 @@
 															<ul class="hslist">
 																<li ng-repeat="e in exceptions">
 																	<span ng-if="e.type=='ONETIME'">{{e.status}} {{e.date| date:'dd-MMM-yyyy'}} from {{e.start_time}} to {{e.end_time}}</span> 
-																	<span ng-if="e.type=='REAPEATING'||e.type=='repeat'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
+																	<span ng-if="e.type=='REAPEATING'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
 																	<a href="" class="pull-right text-lightred">
 																		<i class="fa fa-trash-o" aria-hidden="true"></i>
 																	</a>
@@ -855,7 +855,7 @@
 										</div>
 										<div class="modal-footer">
 											<button class="btn btn-success btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Save</button>
-											<!--<button type="submit" ng-click="submitHS()" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>-->	
+											
 										</div>											
 									</script>
 									</div>
@@ -863,84 +863,7 @@
 							</div>
 						</div>
 					</div>
-					<!--<script type="text/javascript">
-						var table = $("#table");
-						var isMouseDown = false;
-						var startRowIndex = null;
-						var startCellIndex = null;
-
-						function selectTo(cell) {
-							
-							var row = cell.parent();    
-							var cellIndex = cell.index();
-							var rowIndex = row.index();
-							
-							var rowStart, rowEnd, cellStart, cellEnd;
-																			
-							if (rowIndex < startRowIndex) {
-								rowStart = rowIndex;
-								rowEnd = startRowIndex;
-							} else {
-								rowStart = startRowIndex;
-								rowEnd = rowIndex;
-							}
-							
-							if (cellIndex < startCellIndex) {
-								cellStart = cellIndex;
-								cellEnd = startCellIndex;
-							} else {
-								cellStart = startCellIndex;
-								cellEnd = cellIndex;
-							}
-							
-							for (var i = rowStart; i <= rowEnd; i++) {
-								var rowCells = table.find("tr").eq(i).find("td");
-								for (var j = cellStart; j <= cellEnd; j++) {
-									rowCells.eq(j).addClass("selected");
-								}
-							}
-							
-						}
-
-						table.find("td").mousedown(function (e) {
-							isMouseDown = true;
-							var cell = $(this);
-
-							table.find(".selected").removeClass("selected"); // deselect everything
-							
-							if (e.shiftKey) {
-								selectTo(cell);                
-							} else {
-								cell.addClass("selected");
-								startCellIndex = cell.index();
-								startRowIndex = cell.parent().index();
-							}
-							
-							return false; // prevent text selection
-						})
-						
-						.mouseover(function () {
-							if (!isMouseDown) return;
-							table.find(".selected").removeClass("selected");
-							selectTo($(this));
-						})
-						
-						.bind("selectstart", function () {
-							return false;
-						});
-
-						$(document).mouseup(function () {
-							isMouseDown = false;
-						});
-						
-						/*$.each($("#table tr"), function( index, value ) {
-							  if($( this ).children().hasClass("selected")){
-							console.log($(this)+""+index);
-							console.log($(this).attr('value'))
-
-							}
-							});*/
-					</script>-->
+					
 				</section>
 			</div>
 		</div>

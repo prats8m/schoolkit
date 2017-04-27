@@ -211,9 +211,11 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             var exceptions = [];
             for(var i=0;i<x.length;i++){
                 var exception = {
-                    type:x[i].se_schedule_exception.frequency,
-                    status:x[i].se_schedule_exception.type,
-                    date:x[i].se_schedule_exception.start_date_time,
+                    type:x[i].se_schedule_exception.type,
+                    status:x[i].se_schedule_exception.status,
+                    week:x[i].se_schedule_exception.week,
+                    day:x[i].se_schedule_exception.day,
+                    date:x[i].se_schedule_exception.date,
                     start_time:x[i].se_schedule_exception.start_time,
                     end_time:x[i].se_schedule_exception.end_time,
                 };
@@ -267,14 +269,54 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                 if(succResponse.status){
                     cb(succResponse);
                 }else {
-                        toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
         };
 		
 		scheduleSvcResp.autoPopulateBlocks=function() {
-			
+			var blocks = [];
+			var mon = [];   var tue = [];   var wed = [];   var thr = [];   var fri = [];   var sat = [];   var sun = [];
+            var myTable = $("#table");
+            myTable.find( "tr" ).each(function(){
+                $(this).find("td").each(function(){
+                    if($(this).hasClass("selected")){
+                        if($(this).hasClass("mon")){
+                            mon.push($(this).parent().attr("value"));
+                        }else if($(this).hasClass("tue")){
+                            tue.push($(this).parent().attr("value"));
+                        }else if($(this).hasClass("wed")){
+                            wed.push($(this).parent().attr("value"));
+                        }else if($(this).hasClass("thr")){
+                            thr.push($(this).parent().attr("value"));
+                        }else if($(this).hasClass("fri")){
+                            fri.push($(this).parent().attr("value"));
+                        }else if($(this).hasClass("sat")){
+                            sat.push($(this).parent().attr("value"));
+                        }else if($(this).hasClass("sun")){
+                            sun.push($(this).parent().attr("value"));
+                        }
+                    }
+                });
+            });
+            
+            blocks['Monday'] = scheduleSvcResp.timeBlock(mon);
+            blocks['Tuesday'] = scheduleSvcResp.timeBlock(tue);
+            blocks['Wednesday'] = scheduleSvcResp.timeBlock(wed);
+            blocks['Thursday'] = scheduleSvcResp.timeBlock(thr);
+            blocks['Friday'] = scheduleSvcResp.timeBlock(fri);
+            blocks['Saturday'] = scheduleSvcResp.timeBlock(sat);
+            blocks['Sunday'] = scheduleSvcResp.timeBlock(sun);
+			console.log(blocks);
+			var blk = [];
+			for(var k in blocks){
+				for(var i=0; i < blocks[k].length; i++){
+					var b = blocks[k][i]['starttime'] + " - " + blocks[k][i]['endtime'] + " " + k;
+					blk.push(b);
+				}
+			}
+			return blk;
 		};
         
         return scheduleSvcResp;
