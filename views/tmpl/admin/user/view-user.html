@@ -193,10 +193,11 @@
 																	<td>{{accesscode.Access_Code}}</td>
 																	<td>{{accesscode.Door_Name}} </td>
 																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="accesscode.status == 1">Active</option>
-																			<option value="" ng-selected="accesscode.status == 0">Inactive</option>
-																		</select>
+																		<!--<select style="border: 0; width: 100%;">-->
+																			<!--<option value="" ng-selected="accesscode.status == 1">Active</option>-->
+																			<!--<option value="" ng-selected="accesscode.status == 0">Inactive</option>-->
+																		<!--</select>-->
+																		{{accesscode.status==0?'Inactive':'Active'}}
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -259,10 +260,11 @@
 																	<td>{{phone_code.Door_Name}}</td>
 																	<td><div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div></td>
 																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="phone_code.status == 1">Active</option>
-																			<option value="" ng-selected="phone_code.status == 0">Inactive</option>
-																		</select>
+																		<!--<select style="border: 0; width: 100%;">-->
+																			<!--<option value="" ng-selected="phone_code.status == 1">Active</option>-->
+																			<!--<option value="" ng-selected="phone_code.status == 0">Inactive</option>-->
+																		<!--</select>-->
+																		{{phone_code.status==0?'Inactive':'Active'}}
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -322,10 +324,11 @@
 																	<td>{{rfid_code.Detail.rfid_facility_id}}</td>
 																	<td>{{rfid_code.Door_Name}} </td>
 																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="rfid_code.status == 1">Active</option>
-																			<option value="" ng-selected="rfid_code.status == 0">Inactive</option>
-																		</select>
+																		<!--<select style="border: 0; width: 100%;">-->
+																			<!--<option value="" ng-selected="rfid_code.status == 1">Active</option>-->
+																			<!--<option value="" ng-selected="rfid_code.status == 0">Inactive</option>-->
+																		<!--</select>-->
+																		{{rfid_code.status==0?'Inactive':'Active'}}
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -380,10 +383,11 @@
 																	<td>{{nfccode.Detail.nfc_code}}</td>
 																	<td>{{nfccode.Door_Name}}</td>
 																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="nfccode.status == 1">Active</option>
-																			<option value="" ng-selected="nfccode.status == 0">Inactive</option>
-																		</select>
+																		<!--<select style="border: 0; width: 100%;">-->
+																			<!--<option value="" ng-selected="nfccode.status == 1">Active</option>-->
+																			<!--<option value="" ng-selected="nfccode.status == 0">Inactive</option>-->
+																		<!--</select>-->
+																		{{nfccode.status==0?'Inactive':'Active'}}
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -444,10 +448,11 @@
 																	<td>{{blecode.Detail.ble_password}}</td>
 																	<td>{{blecode.Door_Name}}</td>
 																	<td>
-																		<select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="blecode.status == 1">Active</option>
-																			<option value="" ng-selected="blecode.status == 0">Inactive</option>
-																		</select>
+																		<!--<select style="border: 0; width: 100%;">-->
+																			<!--<option value="" ng-selected="blecode.status == 1">Active</option>-->
+																			<!--<option value="" ng-selected="blecode.status == 0">Inactive</option>-->
+																		<!--</select>-->
+																		{{blecode.status==0?'Inactive':'Active'}}
 																	</td>
 																	<td class="credintialicon">
 																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

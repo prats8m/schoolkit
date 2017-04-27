@@ -40,8 +40,9 @@ app
                 }
             });
 		}, function() {
-			$scope.result =appConstants._canceldevicedelete;
-			$scope.statusclass = appConstants.successstatusClass;
+            toaster.pop(appConstants.error, appConstants._canceldevicedelete);
+			//$scope.result =appConstants._canceldevicedelete;
+			//$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
@@ -261,8 +262,9 @@ app
                 }
             });
 		}, function() {
-			$scope.result = appConstants._canceldevicedelete;
-			$scope.statusclass = appConstants.successstatusClass;
+            toaster.pop(appConstants.error,appConstants._canceldevicedelete);
+			//$scope.result = appConstants._canceldevicedelete;
+			//$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
@@ -450,11 +452,12 @@ app
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
             $scope.deleteThisDevice();
-			$scope.result = appConstants._successdeleteDevice;
-			$scope.statusclass = appConstants.dangerstatusClass;
+			//$scope.result = appConstants._successdeleteDevice;
+			//$scope.statusclass = appConstants.dangerstatusClass;
 		}, function() {
-			$scope.result = appConstants._canceldevicedelete;
-			$scope.statusclass = appConstants.successstatusClass;
+            toaster.pop(appConstants.error,appConstants._canceldevicedelete);
+			//$scope.result = appConstants._canceldevicedelete;
+			//$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
@@ -594,17 +597,20 @@ app
                             break;
                         }
                     }
-                    $scope.result = appConstants._successdeletedependentDevice;
-                    $scope.statusclass = appConstants.dangerstatusClass;
+                    toaster.pop(appConstants.success,appConstants._successdeletedependentDevice);
+                    //$scope.result = appConstants._successdeletedependentDevice;
+                    //$scope.statusclass = appConstants.dangerstatusClass;
                 }
                 else {
-                    $scope.result = succResponse.msg;
-                    $scope.statusclass = appConstants.dangerstatusClass;
+                    toaster.pop(appConstants.error,succResponse.msg);
+                    //$scope.result = succResponse.msg;
+                    //$scope.statusclass = appConstants.dangerstatusClass;
 				}
             });
 		}, function() {
-			$scope.result = appConstants._canceldependentdevicedelete;
-			$scope.statusclass = appConstants.successstatusClass;
+            toaster.pop(appConstants.error,appConstants._canceldependentdevicedelete);
+			//$scope.result = appConstants._canceldependentdevicedelete;
+			//$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
@@ -776,7 +782,7 @@ app
                 }
             });
 		}, function() {
-			toaster.pop(appConstants.info,appConstants._canceldevicedelete);
+			toaster.pop(appConstants.error,appConstants._canceldevicedelete);
 		});
     };
 	
@@ -848,6 +854,8 @@ app
         devicesSvc.formSubmit(appConstants.deviceedit,appConstants.putMethod,{},device,function (succResponse) {
             if(succResponse.status){
                 toaster.pop(appConstants.success,succResponse.msg);
+                $location.path('/app/admin/device/view-dependent-device/'+$scope.device_id);
+
             }
             else {
                 $rootScope.masters=[];

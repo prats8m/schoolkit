@@ -124,6 +124,8 @@ app.constant("appConstants", {
     somethingwrong:'Something went wrong',
     invaliddata:'InValid Data',
     apiNotFound:'API not found',
+    responsenotfound:'response not found',
+    timeout:'Timeout',
 
     //...........................................................................
 

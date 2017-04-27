@@ -64,7 +64,7 @@ app
 			
             var start = arr[0];
             var end = arr[0];
-            for(var i=0; i < arr.length-1; i=i+2){
+            for(var i=0; i <=arr.length-1; i=i+2){
 				if(arr[i] == (arr[i+2]-1)){
                     end = arr[i+2];
                 }else{

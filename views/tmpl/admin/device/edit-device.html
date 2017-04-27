@@ -102,6 +102,7 @@
 						<div class="mt-40">
 							<!--<a ui-sref="app.admin.device.device-settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-slategray">View Settings</a>-->
 							<!--<a ui-sref="app.admin.device.service-plan({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk mr-5 ml-5">View Plan</a>-->
+							<a ui-sref="app.admin.device.view-dependent-device({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Device</a>
 							<a ng-click="showConfirm($event,device_id,details.device_facility_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
 						</div>
 					</div> 
@@ -116,7 +117,7 @@
 				</section>
 			</div>
 			
-			<div class="col-sm-12 col-md-8" ng-controller="EditDeviceCtrl"> 
+			<div class="col-sm-12 col-md-8">
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0">
 						<div class="tile-header dvd dvd-btm">
