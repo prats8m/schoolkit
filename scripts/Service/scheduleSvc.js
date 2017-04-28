@@ -218,6 +218,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                     date:x[i].se_schedule_exception.date,
                     start_time:x[i].se_schedule_exception.start_time,
                     end_time:x[i].se_schedule_exception.end_time,
+                    key:x[i].se_schedule_exception.key,
                 };
                 exceptions.push(exception);
             }

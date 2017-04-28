@@ -632,9 +632,9 @@
 												</tbody>
 											</table>
 											<div class="copybtn">
-												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Copy Mon -> Mon-Fri</a>
-												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Copy Mon -> Mon-Sun</a>
-												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c">Clear All</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonFri()">Copy Mon -> Mon-Fri</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonSun()">Copy Mon -> Mon-Sun</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="clearAll()">Clear All</a>
 											</div>
 										</div>
 									</div>
@@ -674,10 +674,12 @@
 													<div class="col-sm-6 col-md-6 form-group">
 														<label for="">Start Time</label>
 														<input type="text" name="" ng-model="$parent.schedule.schedule_start_time" id="" class="form-control">
+														
 													</div>
 													<div class="col-sm-6 col-md-6 form-group">
 														<label for="">End Time</label>
 														<input type="text" name="" ng-model="$parent.schedule.schedule_end_time" id="" class="form-control">
+														
 													</div>
 													<input type="hidden" name="" ng-model="$parent.schedule.schedule_weekday" id="" class="form-control">
 													<div class="col-sm-12 col-md-12 form-group">
@@ -716,8 +718,8 @@
 															<ul class="hslist">
 																<li ng-repeat="e in exceptions">
 																	<span ng-if="e.type=='ONETIME'">{{e.status}} {{e.date| date:'dd-MMM-yyyy'}} from {{e.start_time}} to {{e.end_time}}</span> 
-																	<span ng-if="e.type=='REAPEATING'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
-																	<a href="" class="pull-right text-lightred">
+																	<span ng-if="e.type=='REPEATING'">(Repeating) {{e.status}} {{e.week}} {{e.day}} from {{e.start_time}} to {{e.end_time}}</span> 
+																	<a ng-click="removeHolidaySchdule(e.key)" class="pull-right text-lightred">
 																		<i class="fa fa-trash-o" aria-hidden="true"></i>
 																	</a>
 																</li>
@@ -736,7 +738,7 @@
 																</div>
 																<div class="col-sm-12 col-md-6">
 																	<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-																		<input name="customRadioAlt" ng-model="exception.type" value="REAPEATING" type="radio"><i></i> Repeating
+																		<input name="customRadioAlt" ng-model="exception.type" value="REPEATING" type="radio"><i></i> Repeating
 																	</label>
 																</div>
 															</div>
@@ -785,11 +787,13 @@
 													<div class="row">
 														<div class="col-sm-6 col-md-3 form-group">
 															<label for="">Starts at</label>
-															<input type="text" name="" id="" class="form-control" ng-model="exception.start_time">
+															<select type="text" name="" ng-options="x as x for x in timedropdown" class="form-control" ng-model="exception.start_time">
+															<option value="">Select Time</option></select>
 														</div>
 														<div class="col-sm-6 col-md-3 form-group">
 															<label for="">Ends at</label>
-															<input type="text" name="" id="" class="form-control" ng-model="exception.end_time">
+															<select type="text" name="" ng-options="x as x for x in timedropdown" class="form-control" ng-model="exception.end_time">
+															<option value="">Select Time</option></select>
 														</div>
 														<div class="col-sm-6 col-md-6 form-group">
 															<label for="">Enable or Disable</label><br/>

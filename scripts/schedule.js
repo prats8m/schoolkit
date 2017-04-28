@@ -68,9 +68,7 @@ app
 		var cell = $(this);
 
 		// table.find(".selected").removeClass("selected"); // deselect everything
-		
-		
-		
+				
 		if (e.shiftKey) {
 			selectTo(cell);                
 		} else {
@@ -96,7 +94,8 @@ app
 		weekDay = [];
 		isMouseDown = false;
 	});
-
+	
+	$scope.timedropdown = appConstants.timedropdown2;
 
 	$scope.submitSchedule = function(data){
 		data.block = "";
@@ -224,8 +223,15 @@ app
 		console.log($rootScope.holidaySchedules);
 	}
 	
-	$scope.removeHolidaySchdule = function(id){
-		
+	$scope.removeHolidaySchdule = function(key){
+		var tmpExceptions = [];
+		var exceptions = $scope.exceptions;
+		for(var i=0; i < exceptions.length; i++){
+			if(exceptions[i].key != key){
+				tmpExceptions.push(exceptions[i]);
+			}
+		}
+		$scope.exceptions = tmpExceptions;
 	}
 	
 });
@@ -561,6 +567,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	
 	$scope.blocks = [];
 	
+	$scope.timedropdown = appConstants.timedropdown2;
+	
 	$scope.updateBlock = function(){
 		var block = $scope.schedule.schedule_start_time + " - " + $scope.schedule.schedule_end_time + " " + $scope.schedule.schedule_weekday;
 		if($.inArray(block,$scope.blocks) == -1){
@@ -663,7 +671,6 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	}
 
 	$scope.submitEditSchedule = function(data){
-		// console.log($scope.schedule);
 		data.block = "";
 		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
@@ -706,6 +713,17 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		$scope.schedule.schedule_start_time = '';
 		$scope.schedule.schedule_end_time = '';
 		$scope.schedule.schedule_weekday = '';
+	}
+	
+	$scope.removeHolidaySchdule = function(key){
+		var tmpExceptions = [];
+		var exceptions = $rootScope.exceptions;
+		for(var i=0; i < exceptions.length; i++){
+			if(exceptions[i].key != key){
+				tmpExceptions.push(exceptions[i]);
+			}
+		}
+		$rootScope.exceptions = tmpExceptions;
 	}
 		
 });
