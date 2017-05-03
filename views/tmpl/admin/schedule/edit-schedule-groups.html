@@ -660,7 +660,7 @@
 											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 												<label for="">Start Date</label>
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.$parent.schedule.selected_schedule_start_date" min-date="$parent.minDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>

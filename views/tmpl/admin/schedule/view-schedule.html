@@ -102,8 +102,8 @@
 										<!--<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>-->
 										<p>&nbsp;</p>
 										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
-										<p><label>Start Time</label> {{ViewSchedule.schedule_start_date | date :  "dd/MM/y"}}</p>
-										<p><label>End Time</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>
+										<p><label>Start Time</label> {{ViewSchedule.schedule_start_date * 1000 | date :  "dd/MMM/y"}}</p>
+										<p><label>End Time</label> {{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y"}}</p>
 									</div>											
 								</div>							
 							</div>

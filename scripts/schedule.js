@@ -11,7 +11,11 @@ app
      $scope.page = {
       title: 'Add Schedule',
     };
+
+	$scope.minDate = new Date();
+
 	$scope.schedule = {};
+	$scope.schedule.schedule_start_date = new Date();
 	
 	var table = $("#table");
 	var isMouseDown = false;
@@ -47,6 +51,7 @@ app
 		for (var i = rowStart; i <= rowEnd; i++) {
 			var rowCells = table.find("tr").eq(i).find("td");
 			for (var j = cellStart; j <= cellEnd; j++) {
+				
 				rowCells.eq(j).addClass("selected");
 			}
 		}
@@ -67,7 +72,7 @@ app
 		isMouseDown = true;
 		var cell = $(this);
 
-		// table.find(".selected").removeClass("selected"); // deselect everything
+		//table.find(".selected").removeClass("selected"); // deselect everything
 				
 		if (e.shiftKey) {
 			selectTo(cell);                
@@ -169,8 +174,8 @@ app
 		var endTime = splitData[2];
 		var days = splitData[3].split("-");
 		
-		var startTimeIndex = $("tr[time='"+startTime+"']").index();
-		var endTimeIndex = $("tr[time='"+endTime+"']").index();
+		var startTimeIndex = $("tr[value='"+startTime+"']").index();
+		var endTimeIndex = $("tr[value='"+endTime+"']").index();
 		$("#table").find("tr").each(function(i){
 			if(i >= startTimeIndex && i <= endTimeIndex){
 				for(var i=0; i < days.length; i++){
