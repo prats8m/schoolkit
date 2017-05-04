@@ -805,7 +805,7 @@
 													</div>
 													<div class="row">
 														<div class="col-sm-12 col-md-6 form-group mt-20">
-															<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded" ng-click="addException(exception)" style="margin-top:1px;">Add Exception</button>
+															<button type="button" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded" ng-click="addException(exception)" ng-disabled="validateExpiration(exception)" style="margin-top:1px;">Add Exception</button>
 														</div>
 													</div>
 												</uib-accordion-group>
@@ -823,7 +823,7 @@
 											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" ng-init="schedule.no_expirations=true">
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
-													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations"><i></i> No Expirations
+													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
 												</label>											
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="schedule.no_expirations" ng-controller="DatepickerDemoCtrl">

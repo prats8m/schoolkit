@@ -240,6 +240,43 @@ app
 		$scope.exceptions = tmpExceptions;
 	}
 	
+	
+	$scope.validateExpiration = function(exception){
+		if(exception.type == 'ONETIME'){
+			if(!exception.date){
+				return true;
+			}
+			if(!exception.start_time){
+				return true;
+			}
+			if(!exception.end_time){
+				return true;
+			}
+			if(!exception.status){
+				return true;
+			}
+			return false;
+		}
+		if(exception.type == 'REPEATING'){
+			if(!exception.week){
+				return true;
+			}
+			if(!exception.day){
+				return true;
+			}
+			if(!exception.start_time){
+				return true;
+			}
+			if(!exception.end_time){
+				return true;
+			}
+			if(!exception.status){
+				return true;
+			}
+			return false;
+		}
+		return true;
+	}
 });
 
 
@@ -682,6 +719,43 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 			}
 		}
 		$rootScope.exceptions = tmpExceptions;
+	}
+	
+	$scope.validateExpiration = function(exception){
+		if(exception.type == 'ONETIME'){
+			if(!exception.date){
+				return true;
+			}
+			if(!exception.start_time){
+				return true;
+			}
+			if(!exception.end_time){
+				return true;
+			}
+			if(!exception.status){
+				return true;
+			}
+			return false;
+		}
+		if(exception.type == 'REPEATING'){
+			if(!exception.week){
+				return true;
+			}
+			if(!exception.day){
+				return true;
+			}
+			if(!exception.start_time){
+				return true;
+			}
+			if(!exception.end_time){
+				return true;
+			}
+			if(!exception.status){
+				return true;
+			}
+			return false;
+		}
+		return true;
 	}
 		
 });

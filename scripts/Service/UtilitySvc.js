@@ -134,7 +134,8 @@ app
             var hh = d.getHours();
             var m = d.getMinutes();
             var s = d.getSeconds();
-            var dd = "AM";
+			var h=hh;
+            /* var dd = "AM";
             var h = hh;
             if (h >= 12) {
                 h = hh - 12;
@@ -142,7 +143,7 @@ app
             }
             if (h == 0) {
                 h = 12;
-            }
+            } */
             m = m < 10 ? "0" + m : m;
 
             s = s < 10 ? "0" + s : s;
@@ -154,7 +155,7 @@ app
             var time = h + ":" + m;
             /* if you want to add seconds
              time += ":"+s;  */
-            time += " " + dd;
+            //time += " " + dd;
 
             dateTimeObj.date=mm+' '+dom+', '+yyyy;
             dateTimeObj.time=time;
