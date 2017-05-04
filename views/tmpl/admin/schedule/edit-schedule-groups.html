@@ -824,10 +824,10 @@
 											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" >
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
-													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="$parent.schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
+													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="$parent.schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations 
 												</label>											
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.no_expirations" ng-controller="DatepickerDemoCtrl">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.$parent.schedule.no_expirations==1" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
 													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 													<span class="input-group-btn">

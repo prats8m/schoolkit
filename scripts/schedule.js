@@ -615,7 +615,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				scheduleSvc.getSelectedBlocks(sun,'sun');
 				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
 				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
-				$scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);
+				
+				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" :$scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);;
 				$scope.blocks = scheduleSvc.autoPopulateBlocks();
             }
         });
