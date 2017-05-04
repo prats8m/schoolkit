@@ -636,6 +636,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod,{},$scope.schedule,function (succResponse) {
         	if(succResponse.status){
 				toaster.pop(appConstants.success,appConstants.submitSuccessfully);
+				$location.path('/app/admin/schedule/schedule-groups');
             }
         });
 	}
