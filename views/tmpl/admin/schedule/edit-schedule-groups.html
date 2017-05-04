@@ -748,7 +748,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date</label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>
@@ -760,7 +760,7 @@
 															<label for="">Repeats every</label>
 															<div class="row">
 																<div class="col-sm-6 col-md-6 form-group">
-																	<select class="form-control" ng-model="$parent.exception.week">
+																	<select class="form-control" ng-model="exception.week">
 																		<option value="">Select</option>
 																		<option>First</option>
 																		<option>Second</option>
@@ -770,7 +770,7 @@
 																	</select>
 																</div>
 																<div class="col-sm-6 col-md-6 form-group">
-																	<select class="form-control" ng-model="$parent.exception.day">
+																	<select class="form-control" ng-model="exception.day">
 																		<option value="">Select</option>
 																		<option>Sunday</option>
 																		<option>Monday</option>
@@ -797,7 +797,7 @@
 														</div>
 														<div class="col-sm-6 col-md-6 form-group">
 															<label for="">Enable or Disable</label><br/>
-															<select class="form-control" ng-model="$parent.exception.status">
+															<select class="form-control" ng-model="exception.status">
 																<option value="">Select</option>
 																<option value="Enabled">Enabling Exception</option>
 																<option value="Disabled">Disabling Exception</option>

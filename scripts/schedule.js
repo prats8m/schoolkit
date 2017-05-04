@@ -98,6 +98,7 @@ app
 	$(document).mouseup(function () {
 		weekDay = [];
 		isMouseDown = false;
+		//setTimeout($scope.updateBlock());
 	});
 	
 	$scope.timedropdown = appConstants.timedropdown2;
@@ -363,56 +364,6 @@ app
 				};
             }
         });
-		/*
-		$http(
-		{
-			method: 'GET', 
-			url: baseURL+'schedule/list?search_val='+$scope.searchText,
-			dataType : 'JSON', 
-			headers: {
-				"Content-type": "application/json",
-				"Authorization": $cookies.get("token")
-			}
-		})
-		.success(function(response){
-			if(response.status == true){
-				$scope.schedules =  response.data.data;
-				$scope.totalDisplayed = 8;
-			
-				if($scope.schedules.length > $scope.totalDisplayed) {
-					$scope.lmbtn = {
-						"display" : "block"
-					};			
-				} else {
-					$scope.lmbtn = {
-						"display" : "none"
-					};
-				}
-				
-				$scope.loadMore = function () {
-					$scope.totalDisplayed += 8;
-					if($scope.totalDisplayed > $scope.schedules.length) {				
-						$scope.lmbtn = {
-							"display" : "none"
-						};	
-					}			
-				};
-			}else{
-				if(response.msg == 'Invalid_Token'){
-                    $rootScope.logoutSessionExpiredMassageCount++;
-                    if($rootScope.logoutSessionExpiredMassageCount==1){
-                        toaster.pop('error','Session Expired');
-                        $cookies.remove("token");
-                        $location.path('/core/login');
-                    }
-				}else if(response.msg=='No_Record_Found'){
-					$scope.schedules =  [];
-				}
-			}
-		}).error(function(){
-
-		});	
-		*/
 	}
 	
 	$scope.orderByMe = function(x) {
@@ -568,6 +519,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	$(document).mouseup(function () {
 		weekDay = [];
 		isMouseDown = false;
+		// $scope.updateBlock();
 	});
 	
 	$scope.blocks = [];
