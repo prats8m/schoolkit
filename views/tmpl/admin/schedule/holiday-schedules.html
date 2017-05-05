@@ -101,7 +101,7 @@
 														<div class="form-group row">
 															<div class="col-md-12">
 																<label for="">Schedule Name</label>
-																<input type="text" name="" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" placeholder="">
+																<input type="text" name="" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" required>
 															</div>
 														</div>
 														<div class="row">
@@ -116,7 +116,7 @@
 															</div>
 															<div class="col-sm-6 col-md-6 form-group">
 																<label for="">Start Time</label><br/>
-																<select class="form-control" ng-model="addHolidayScheduleObj.hs_starttime" ng-options="time as time for time in starttimedropdown track by time">
+																<select class="form-control" ng-model="addHolidayScheduleObj.hs_starttime" ng-options="time as time for time in starttimedropdown track by time" required>
 																	<option value="">Select Time</option>
 																</select>
 															</div>
@@ -133,7 +133,7 @@
 															</div>
 															<div class="col-sm-6 col-md-6 form-group">
 																<label for="">End Time</label><br/>
-																<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time">
+																<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time" required>
 																	<option value="">Select Time</option>
 																</select>
 															</div>
@@ -251,7 +251,7 @@
 																		<div class="form-group row">
 																			<div class="col-md-12">
 																				<label for="">Schedule Name</label>
-																				<input type="text" name="" id="" ng-model="editHolidayScheduleObj.hs_name" class="form-control" placeholder="Office-Weekdays">
+																				<input type="text" name="" id="" ng-model="editHolidayScheduleObj.hs_name" class="form-control" placeholder="Office-Weekdays" required>
 																			</div>
 																		</div>
 																		<div class="row">
@@ -266,7 +266,7 @@
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">Start Time</label><br/>
-																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_starttime" ng-options="time as time for time in editstarttimedropdown track by time">
+																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_starttime" ng-options="time as time for time in editstarttimedropdown track by time" required>
 																					<option value="">Select Time</option>
 																				</select>
 																			</div>
@@ -283,7 +283,7 @@
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">End Time</label><br/>
-																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_endtime" ng-options="time as time for time in editendtimedropdown track by time">
+																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_endtime" ng-options="time as time for time in editendtimedropdown track by time" required>
 																					<option value="">Select Time</option>
 																				</select>
 																			</div>
