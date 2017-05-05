@@ -365,7 +365,9 @@ app
 						};	
 					}			
 				};
-            }
+            }else if(!succResponse.status){
+				$scope.schedules = [];
+			} 
         });
 	}
 	$scope.scheduleInit();
