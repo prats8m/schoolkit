@@ -673,12 +673,12 @@
 												<div class="row">
 													<div class="col-sm-6 col-md-6 form-group">
 														<label for="">Start Time</label>
-														<input type="text" name="" ng-model="$parent.schedule.schedule_start_time" id="" class="form-control">
+														<input type="text" name="" ng-model="$parent.schedule.schedule_start_time" disabled id="" class="form-control">
 														
 													</div>
 													<div class="col-sm-6 col-md-6 form-group">
 														<label for="">End Time</label>
-														<input type="text" name="" ng-model="$parent.schedule.schedule_end_time" id="" class="form-control">
+														<input type="text" name="" ng-model="$parent.schedule.schedule_end_time" disabled id="" class="form-control">
 														
 													</div>
 													<input type="hidden" name="" ng-model="$parent.schedule.schedule_weekday" id="" class="form-control">
@@ -748,7 +748,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date</label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" min-date="minDate" />
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>

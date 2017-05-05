@@ -210,6 +210,7 @@ app
 		var obj = angular.copy(exception);
 		obj.key = key;
 		$scope.exceptions.push(obj);
+		$scope.exception = {};
 	}
 	
 	$rootScope.holidaySchedules = [];
@@ -295,6 +296,7 @@ app
       subtitle: 'So much more to see at a glance.'
     };
     
+	
     $scope.deleteSchedule = function(id){
     	scheduleSvc.deleteSchedule(appConstants.scheduleDelete,appConstants.deleteMethod,{schedule_id:id},{},function (succResponse) {
             if(succResponse.status){
@@ -474,6 +476,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
       subtitle: 'So much more to see at a glance.'
     };
 	
+	
 	var table = $("#table");
 	var isMouseDown = false;
 	var startRowIndex = null;
@@ -613,9 +616,10 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				scheduleSvc.getSelectedBlocks(fri,'fri');
 				scheduleSvc.getSelectedBlocks(sat,'sat');
 				scheduleSvc.getSelectedBlocks(sun,'sun');
+				
 				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
 				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
-				
+				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
 				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" :$scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);;
 				$scope.blocks = scheduleSvc.autoPopulateBlocks();
             }
@@ -641,7 +645,6 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
             }
         });
 	}
-	
 	
 	$scope.setHolidays = function(){
 		var arr = [];
