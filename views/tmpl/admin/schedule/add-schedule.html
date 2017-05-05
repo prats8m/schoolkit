@@ -744,7 +744,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date </label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>
@@ -820,7 +820,7 @@
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="0">Inactive</label>
 												</div>
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" ng-init="schedule.no_expirations=true">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" ng-init="schedule.no_expirations=1">
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
 													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
