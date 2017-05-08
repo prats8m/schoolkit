@@ -44,29 +44,30 @@ app
 
 
 	$scope.eventFetch = function(){
-		// var requestData = {facility_id:$scope.facility_id,event_id:null,facility_id:null};
+		console.log($scope.facility_id);
+		console.log($scope.device_id);
+		console.log($scope.event_id);
 		var params = appConstants.questionMark;
 		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
 		if($scope.device_id){params += '&device_id='+$scope.device_id;}else{params += '&device_id='+appConstants.null;}
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
-        activitiesSvc.eventFetch(appConstants.listevent,appConstants.getMethod,{},{},function (succResponse) {
+        activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
             $scope.activities = [];
             if(succResponse.status){
                 $scope.activities = succResponse.data.data;
             }
         });
-};
+	};
 
-$scope.eventFetch();
-
-				$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
-				$scope.dtColumnDefs = [
-					DTColumnDefBuilder.newColumnDef(0),
-					DTColumnDefBuilder.newColumnDef(1),
-					DTColumnDefBuilder.newColumnDef(2),
-					DTColumnDefBuilder.newColumnDef(3),
-					DTColumnDefBuilder.newColumnDef(4),
-					DTColumnDefBuilder.newColumnDef(5),
-					DTColumnDefBuilder.newColumnDef(6).notSortable()
-				];
+	$scope.eventFetch();
+		$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
+		$scope.dtColumnDefs = [
+			DTColumnDefBuilder.newColumnDef(0),
+			DTColumnDefBuilder.newColumnDef(1),
+			DTColumnDefBuilder.newColumnDef(2),
+			DTColumnDefBuilder.newColumnDef(3),
+			DTColumnDefBuilder.newColumnDef(4),
+			DTColumnDefBuilder.newColumnDef(5),
+			DTColumnDefBuilder.newColumnDef(6).notSortable()
+		];
 });
