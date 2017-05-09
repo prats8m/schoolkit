@@ -114,7 +114,7 @@ app.constant("appConstants", {
     gridviewClass:'gridview',
     listviewClass:'listview',
     imagePath:'elika/images/',
-    content:'The standard chunk of Lorem Ipsum used.',
+    content:'',
     active:'Active',
     inactive:'Inactive',
     na:'NA',
