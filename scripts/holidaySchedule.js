@@ -7,7 +7,7 @@ app
 
         $scope.pageNo=1;
         $scope.schedularLimit=8;
-        $scope.searchText=appConstants.empty;
+        $scope.searchText = appConstants.empty;
         $scope.status = appConstants.empty;
 
         $scope.showConfirm = function(ev,holidayScheduleId) {
@@ -28,8 +28,6 @@ app
         $scope.deleteHolidaySchedule=function (holidayScheduleId) {
             HolidayScheduleSvc.deleteHolidaySchedule(appConstants.holidayscheduledelete+'?hs_id='+holidayScheduleId,appConstants.deleteMethod,{},{},function (succResponse) {
                 if(succResponse.status){
-                    //$scope.status = appConstants._successdeleteholidayschedule;
-                   // $scope.statusclass = appConstants.dangerstatusClass;
                     toaster.pop(appConstants.success,appConstants._successdeleteholidayschedule);
                     $scope.getHolidayScheduleList();
                 }
@@ -181,6 +179,7 @@ app
         };
 
     $scope.ok = function () {
+		// alert();
         $scope.addHolidayScheduleObj.hs_start_date=utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date,$scope.addHolidayScheduleObj.hs_starttime)/1000;
         $scope.addHolidayScheduleObj.hs_end_date=utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date,$scope.addHolidayScheduleObj.hs_endtime)/1000;
         $scope.addHolidayScheduleObj.hs_expiration=utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_expiration)/1000;
@@ -246,8 +245,10 @@ app
             hs_starttime:items.hs_start_date.time,
             hs_endtime:items.hs_end_date.time
         };
+		$scope.mindate = new Date(items.hs_start_date.date);
 
         $scope.ok = function () {
+			
             $scope.editHolidayScheduleObj.hs_start_date=utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_start_date,$scope.editHolidayScheduleObj.hs_starttime)/1000;
             $scope.editHolidayScheduleObj.hs_end_date=utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_end_date,$scope.editHolidayScheduleObj.hs_endtime)/1000;
             $scope.editHolidayScheduleObj.hs_expiration=utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_expiration)/1000;
