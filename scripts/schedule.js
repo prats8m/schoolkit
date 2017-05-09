@@ -149,6 +149,7 @@ app
 		$scope.schedule.schedule_start_time = '';
 		$scope.schedule.schedule_end_time = '';
 		$scope.schedule.schedule_weekday = '';
+		$scope.blocks = [];
 	}
 	
 	$scope.dashboardInit = function(){
@@ -163,6 +164,8 @@ app
 	$scope.blocks = [];
 	
 	$scope.updateBlock = function(){
+		if(!($scope.schedule.schedule_start_time && $scope.schedule.schedule_end_time && $scope.schedule.schedule_weekday))
+			return false;
 		var block = $scope.schedule.schedule_start_time + " - " + $scope.schedule.schedule_end_time + " " + $scope.schedule.schedule_weekday;
 		if($.inArray(block,$scope.blocks) == -1){
 			$scope.blocks.push(block);
@@ -569,6 +572,8 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	$scope.timedropdown = appConstants.timedropdown2;
 	
 	$scope.updateBlock = function(){
+		if(!($scope.schedule.schedule_start_time && $scope.schedule.schedule_end_time && $scope.schedule.schedule_weekday))
+			return false;
 		var block = $scope.schedule.schedule_start_time + " - " + $scope.schedule.schedule_end_time + " " + $scope.schedule.schedule_weekday;
 		if($.inArray(block,$scope.blocks) == -1){
 			$scope.blocks.push(block);
@@ -714,6 +719,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		$scope.schedule.schedule_start_time = '';
 		$scope.schedule.schedule_end_time = '';
 		$scope.schedule.schedule_weekday = '';
+		$scope.blocks = [];
 	}
 	
 	$scope.removeHolidaySchdule = function(key){

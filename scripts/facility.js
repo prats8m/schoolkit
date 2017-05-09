@@ -66,9 +66,11 @@ app
 			$mdDialog.show(confirm).then(function () {
                 facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
                     if(succResponse.status){
-                        $scope.result = appConstants._successDeleteFacility;
-                        $scope.statusclass = appConstants.dangerstatusClass;
-                        $scope.facilityInit();
+                        //$scope.result = appConstants._successDeleteFacility;
+                        //$scope.statusclass = appConstants.dangerstatusClass;
+                       
+                        toaster.pop(appConstants.success,appConstants._successDeleteFacility);
+                         $scope.facilityInit();
                     }
                     else {
                         $scope.result = succResponse.msg;
@@ -118,7 +120,9 @@ app
                             display: appConstants.none
                         };
                     }
-                }
+                }else if(succResponse.msg == "No_Record_Found"){
+                      $scope.facilities = [];
+                    } 
             });
 		};
 
@@ -237,6 +241,9 @@ app
                 if(succResponse.status){
                     $scope.facility = succResponse.data;
                     $scope.facility.timezone = appConstants.empty;
+                }else{
+                   $scope.facility = [];
+                  
                 }
                 $scope.getListMasterDevice();
             });

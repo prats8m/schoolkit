@@ -140,6 +140,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                     cb(succResponse);
                 }
                 else {
+                     if(succResponse.msg != 'No_Record_Found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -152,7 +153,8 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                     cb(succResponse);
                 }
                 else {
-                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    if(succResponse.msg != 'No_Record_Found')
+					toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -205,6 +207,10 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                     row.addClass('selected');
                 }
             }
+			if(endindex == 47){
+				var row = table.find("tr").eq(j).find("."+classname);
+				row.addClass('selected');
+			}
         };
         
         scheduleSvcResp.setExceptions = function(x) {

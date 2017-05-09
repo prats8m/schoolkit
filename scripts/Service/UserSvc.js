@@ -190,6 +190,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    if(succResponse.msg != "No Records Found")
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -524,8 +525,10 @@ app
                     cb(succResponse);
                 }
                 else {
-                    succResponse.msg = succResponse.msg.replace(/_/g,' ');
-                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+
+                   // succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                    if(succResponse.msg != No_Records_Found)
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

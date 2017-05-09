@@ -44,9 +44,6 @@ app
 
 
 	$scope.eventFetch = function(){
-		console.log($scope.facility_id);
-		console.log($scope.device_id);
-		console.log($scope.event_id);
 		var params = appConstants.questionMark;
 		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
 		if($scope.device_id){params += '&device_id='+$scope.device_id;}else{params += '&device_id='+appConstants.null;}

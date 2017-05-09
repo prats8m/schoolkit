@@ -150,7 +150,13 @@
 									{{status}}
 								</div>
 							</div>
-							<div ng-class="class">
+							<div ng-if="schedules.length == 0">
+								<div layout="row" class="error" ng-class="statusclass">
+									<!--{{status}}-->
+									No Record Found
+								</div>
+							</div>
+							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>			
 										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy">

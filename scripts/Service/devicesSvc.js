@@ -61,7 +61,9 @@ app
                     cb(succResponse);
                 }
                 else {
-                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    //alert(succResponse.msg);
+                    if(succResponse.msg != "No_Records_Found")
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });
@@ -221,8 +223,10 @@ app
                     cb(succResponse);
                 }
                 else {
-                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
-                    cb(succResponse);
+					console.log(succResponse);
+                        if(succResponse.msg != "No_Records_Found")
+                        toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                        cb(succResponse);
                 }
             });
         };

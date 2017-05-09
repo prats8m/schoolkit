@@ -1,5 +1,5 @@
 app
-    .controller('HolidayScheduleCtrl', function ($scope,$rootScope,$mdDialog,baseURL,appConstants,HolidayScheduleSvc) {
+    .controller('HolidayScheduleCtrl', function ($scope,toaster,$rootScope,$mdDialog,baseURL,appConstants,HolidayScheduleSvc) {
         $scope.page = {
             title: appConstants._titleHolidaySchedule,
             subtitle: appConstants.dashboardSubTitle
@@ -28,8 +28,9 @@ app
         $scope.deleteHolidaySchedule=function (holidayScheduleId) {
             HolidayScheduleSvc.deleteHolidaySchedule(appConstants.holidayscheduledelete+'?hs_id='+holidayScheduleId,appConstants.deleteMethod,{},{},function (succResponse) {
                 if(succResponse.status){
-                    $scope.status = appConstants._successdeleteholidayschedule;
-                    $scope.statusclass = appConstants.dangerstatusClass;
+                    //$scope.status = appConstants._successdeleteholidayschedule;
+                   // $scope.statusclass = appConstants.dangerstatusClass;
+                    toaster.pop(appConstants.success,appConstants._successdeleteholidayschedule);
                     $scope.getHolidayScheduleList();
                 }
             });
@@ -66,7 +67,10 @@ app
                     $scope.manageHolidayScheduleListLoadMoreButton(succResponse.data.length);
                 }else {
                     if(succResponse.msg=='No_Record_Found'){
+                        $scope.lstHolidaySchedular = [];
                         $scope.manageHolidayScheduleListLoadMoreButton(0);
+                        $scope.status=succResponse.msg.replace(/_/g, ' ');;
+                        $scope.statusclass = appConstants.error;
                     }
                 }
             });
@@ -167,10 +171,10 @@ app
         var today=new Date();
         $scope.addHolidayScheduleObj={
             hs_name:null,
-            hs_start_date:today ,
-            hs_end_date:today,
+         //   hs_start_date:today ,
+          //  hs_end_date:today,
             hs_status:'1',
-            hs_expiration:today,
+         //   hs_expiration:today,
 
             hs_starttime:null,
             hs_endtime:null

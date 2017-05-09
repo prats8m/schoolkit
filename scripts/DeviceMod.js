@@ -133,6 +133,7 @@ app
             }
             else {
             	if(succResponse.msg == 'No_Records_Found'){
+                     $scope.data =[];
                     $("#loadMoreBtn").text(appConstants.nomorerecords);
                     $("#loadMoreBtn").attr("disabled",appConstants.disabled);
                 }
@@ -637,6 +638,7 @@ app
                 if(succResponse.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
             }
             else {
+                 $scope.dependentDevice = [];
                 $scope.hideLoadMore = true;
             }
         });

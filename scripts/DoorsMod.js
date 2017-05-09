@@ -155,6 +155,11 @@ app
                     }
                     if(succResponse.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
                     $scope.pageNo = $scope.pageNo + 1 ;
+                }else if(succResponse.msg=='No_Record_Found'){
+                		
+                        $scope.adoors = [];
+                        $scope.status=succResponse.msg.replace(/_/g, ' ');;
+                        $scope.statusclass = appConstants.error;
                 }
                 else{
                     $rootScope.doormsg = succResponse.msg;

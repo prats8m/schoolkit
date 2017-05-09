@@ -125,7 +125,7 @@
 															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																<label for="">End Date</label>
 																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_end_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_end_date" is-open="opened" min-date="addHolidayScheduleObj.hs_start_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>
@@ -224,12 +224,13 @@
 									</div>
 								</div>
 							</div>
-							<div ng-if="status">
-								<div layout="row" ng-class="statusclass">
-									{{status}}
+							<div ng-if="lstHolidaySchedular.length == 0">
+								<div layout="row" class="error" ng-class="statusclass">
+									<!--{{status}}-->
+									No Record Found
 								</div>
 							</div>
-							<div ng-class="class">
+							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>
 										<md-card ng-repeat="schedule in lstHolidaySchedular | filter:text | filter:title | filter:days | orderBy:myOrderBy">
