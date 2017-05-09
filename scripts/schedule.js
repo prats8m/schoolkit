@@ -448,6 +448,12 @@ app
     .success(function(response){
     	if(response.status){
     		$scope.ViewSchedule = response.data;
+    	   	scheduleSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod,{},{},function (succResponse) {
+        		if(succResponse.status){
+                	$scope.ViewSchedule["facilityList"] = succResponse.data.data;
+                	
+            	}
+       		 });
     	}else{
 
     	}
