@@ -61,8 +61,8 @@ app
 			weekDay.push(day);
 		}
 		//console.log(rowStart + "-" + rowEnd);
-		$scope.schedule.schedule_start_time = table.find("tr").eq(rowStart).attr("value");
-		$scope.schedule.schedule_end_time = table.find("tr").eq(rowEnd).attr("value");
+		$scope.schedule.schedule_start_time = Number(table.find("tr").eq(rowStart).attr("class"))+':00';
+		$scope.schedule.schedule_end_time = Number(table.find("tr").eq(rowEnd).attr("class"))+1+':00';
 		$scope.schedule.schedule_weekday = weekDay.join("-");
 		//console.log(table.find("tr").eq(rowEnd).attr("value"));
 		$scope.$digest();

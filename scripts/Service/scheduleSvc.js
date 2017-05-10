@@ -30,7 +30,6 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             });
             
             data.schedule_mon = scheduleSvcResp.timeBlock(mon);
-			//console.log(data.schedule_mon);
             data.schedule_tue = scheduleSvcResp.timeBlock(tue);
             data.schedule_wed = scheduleSvcResp.timeBlock(wed);
             data.schedule_thu = scheduleSvcResp.timeBlock(thr);
@@ -54,7 +53,6 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
 
 
         scheduleSvcResp.timeBlock = function(arr){
-            //console.log(arr);
             var returnArr = [];
 			
 			var arr1 = arr.map(function (x) { 
@@ -315,7 +313,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             blocks['Friday'] = scheduleSvcResp.timeBlock(fri);
             blocks['Saturday'] = scheduleSvcResp.timeBlock(sat);
             blocks['Sunday'] = scheduleSvcResp.timeBlock(sun);
-			console.log(blocks);
+			
 			var blk = [];
 			for(var k in blocks){
 				for(var i=0; i < blocks[k].length; i++){
