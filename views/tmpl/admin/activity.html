@@ -172,25 +172,24 @@
 									<thead>
 										<tr>
 											<th><span>Date/Time</span></th>
-											<th><span>User</span></th>
-											<th><span>Event</span></th>
+											<th><span>User/Event</span></th>
+											
 											<th><span>Facility</span></th>
-											<th><span>Door</span></th>
-											<th><span>Device</span></th>
+											<th><span>Door/Device</span></th>
+											
 											<th width="100">Video Action</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr ng-repeat="active in activities">
-											<td>{{active.timestamp}}</td>
-											<td>{{active.user.user_first_name + " " + active.user.user_last_name}}</td>
-											<td>{{active.event_type}}</td>
-											<td>{{active.facility.facility_name}}</td>
-											<td>{{active.door.door_name}}</td>
-											<td>{{active.device.device_name}}</td>
+											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a'}}</td>
+											<td>{{active['user/event']}}</td>
+											
+											<td>{{active['facility']}}</td>
+											<td>{{active['door/device']}}</td>
+											
 											<td class="customicon ta-c">
-												<a href="" uib-tooltip="View Playback"><i class="fa fa-eye" aria-hidden="true" disabled></i></a>
-												<a href="" ng-click="showConfirm($event)" uib-tooltip="Delete" disabled><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+												<a href="" uib-tooltip="View Playback"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
 											</td>
 										</tr>
 									</tbody>

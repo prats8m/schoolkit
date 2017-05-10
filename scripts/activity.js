@@ -48,13 +48,23 @@ app
 		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
 		if($scope.device_id){params += '&device_id='+$scope.device_id;}else{params += '&device_id='+appConstants.null;}
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
-        activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
+        //activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
+        activitiesSvc.eventFetch('event/list-event?facility_id=null&door_id=null&event_id=null&limit=5&pageNo=1&searchVlaue=',appConstants.getMethod,{},{},function (succResponse) {
             $scope.activities = [];
             if(succResponse.status){
                 $scope.activities = succResponse.data.data;
             }
         });
 	};
+	
+	$scope.dashboardInit = function(){
+        activitiesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $rootScope.dashboardData = succResponse.data;
+            }
+        });
+	};
+	$scope.dashboardInit();
 
 	$scope.eventFetch();
 		$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
@@ -63,8 +73,6 @@ app
 			DTColumnDefBuilder.newColumnDef(1),
 			DTColumnDefBuilder.newColumnDef(2),
 			DTColumnDefBuilder.newColumnDef(3),
-			DTColumnDefBuilder.newColumnDef(4),
-			DTColumnDefBuilder.newColumnDef(5),
-			DTColumnDefBuilder.newColumnDef(6).notSortable()
+			DTColumnDefBuilder.newColumnDef(4).notSortable()
 		];
 });

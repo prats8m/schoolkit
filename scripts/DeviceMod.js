@@ -200,14 +200,13 @@ app
 	$scope.deviceModelInit();
 
 	$scope.dashboardInit = function(){
-
         devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-		$scope.dashboardInit();
+	$scope.dashboardInit();
 	
 	$scope.imagePath = baseURL+appConstants.imagePath;
 	
