@@ -3811,11 +3811,13 @@ uib-accordion .panel .panel-heading {
     .panel .panel-heading .panel-title .accordion-toggle {
       display: block;
       cursor: pointer;
-      font-size: 15px;
-      padding: 10px 15px;    font-weight: 600; }
+          font-size: 18px;
+    padding: 12px 15px;
+    font-weight: 500; }
 	  .panel .panel-heading .panel-title .accordion-toggle i {
 	  font-size: 14px;
     font-weight: 400;
+	margin-top: 3px;
 	}
       .panel .panel-heading .panel-title .accordion-toggle span {
         transition: all 0.2s; }
@@ -8530,7 +8532,8 @@ input[type="text"].ui-grid-filter-input {
 /************* CARDS *************/
 /*********************************/
 .card-container {
-  position: relative; }
+  position: relative;
+overflow: hidden;  }
   .card-container .card {
     margin-bottom: 20px;
     position: relative;

@@ -17,7 +17,7 @@ app
             });
         };
 
-        activitiesSvcResp.getDeviceList=function(url,method,params,data,cb) {
+        activitiesSvcResp.getDoorsList=function(url,method,params,data,cb) {
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
                     cb(succResponse);

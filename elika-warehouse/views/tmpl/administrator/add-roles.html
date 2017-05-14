@@ -42,10 +42,10 @@
 			</div>			
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
-					<a ui-sref="app.monitor-diagnostics-and-reported-issues">
+					<a ui-sref="app.diagnostic">
 						<div class="noback bg-lightred">
 							<div class="itxt">
-								<span class="text-lg">Monitor Diagnostics &amp; Reported Issues</span>
+								<span class="text-lg">Diagnostics</span>
 							</div>
 						</div>
 					</a>
@@ -62,62 +62,88 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<form name="form1" role="form">
+							<form name="form1" role="form" ng-submit="addrole(role)">
 								<div class="modal-body p-0">											
 									<div class="row">
 										<div class="form-group col-sm-12 col-md-3">
 											<label for="">Roles Name</label>
-											<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+											<input type="text" name="" id="" class="form-control mb-10" ng-model="role.role_name" placeholder="" required="required">
 										</div>
 										<div class="form-group col-sm-12 col-md-2" ng-controller="ActivebtnCtrl">
 											<label for="">Status</label><br/>
-											<div class="btn-group btnrounded">
-												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-												<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-											</div>
-										</div>
-										<div class="form-group col-sm-12 col-md-4">
-											<label for="">Access administrator</label><br/>
-											<div class="row">
-												<div class="col-sm-12 col-md-6">
-													<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-														<input name="customRadioAlt" type="radio" checked="checked"><i></i> Full Access
-													</label>
-												</div>
-												<div class="col-sm-12 col-md-6">
-													<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-														<input name="customRadioAlt" type="radio"><i></i> Restricted Access
-													</label>
-												</div>
+											<div class="btn-group btnrounded" >
+												<label class="btn btn-default" ng-model="role.status" uib-btn-radio="1">Active</label>
+												<label class="btn btn-default" ng-model="role.status" uib-btn-radio="0">Inactive</label>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="overflow mt-20 mb-40" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">
+								<div class="overflow mt-20 mb-40">
 									<div class="hometabs">
 										<div class="row">
-											<div class="col-sm-12 col-md-3">
+											<div class="col-sm-12 col-md-4">
 												<h4>Inventory</h4>
 												<div class="tile-body p-0 table-responsive mt-20">
 													<table class="table table-bordered">
 														<thead>
 															<tr>
 																<th width="150" class="ta-c">View</th>
+																<th width="150" class="ta-c">Add/Create</th>
 																<th width="150" class="ta-c">Edit/Update</th>
 																<th width="150" class="ta-c">Delete</th>
 															</tr>
 														</thead>
 														<tbody style="font-size:14px;">
 															<tr>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.inventory.view" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.inventory.add" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.inventory.edit" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.inventory.delete" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
 															</tr>
 														</tbody>
 													</table>
 												</div>
 											</div>
-											<div class="col-sm-12 col-md-3">
+											<div class="col-sm-12 col-md-4">
+												<h4>Firmware</h4>
+												<div class="tile-body p-0 table-responsive mt-20">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th width="150" class="ta-c">View</th>
+																<th width="150" class="ta-c">Add/Create</th>
+																<th width="150" class="ta-c">Edit/Update</th>
+																<th width="150" class="ta-c">Delete</th>
+															</tr>
+														</thead>
+														<tbody style="font-size:14px;">
+															<tr>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.firmware.view" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.firmware.add" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.firmware.edit" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.firmware.delete" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-4">
 												<h4>Diagnostic</h4>
 												<div class="tile-body p-0 table-responsive mt-20">
 													<table class="table table-bordered">
@@ -125,54 +151,25 @@
 															<tr>
 																
 																<th width="150" class="ta-c">View</th>
-																<th width="150" class="ta-c">Edit/Update</th>
-															</tr>
-														</thead>
-														<tbody style="font-size:14px;">
-															<tr>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-											<div class="col-sm-12 col-md-3">
-												<h4>Firmware</h4>
-												<div class="tile-body p-0 table-responsive mt-20">
-													<table class="table table-bordered">
-														<thead>
-															<tr>
-																<th width="150" class="ta-c">View</th>
-																<th width="150" class="ta-c">Delete</th>
-															</tr>
-														</thead>
-														<tbody style="font-size:14px;">
-															<tr>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-											<div class="col-sm-12 col-md-3">
-												<h4>Monitoring &amp; Reports</h4>
-												<div class="tile-body p-0 table-responsive mt-20">
-													<table class="table table-bordered">
-														<thead>
-															<tr>
-																
-																<th width="150" class="ta-c">View</th>
+																<th width="150" class="ta-c">Add/Create</th>
 																<th width="150" class="ta-c">Edit/Update</th>
 																<th width="150" class="ta-c">Delete</th>
 															</tr>
 														</thead>
 														<tbody style="font-size:14px;">
 															<tr>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
-																<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox"><i></i></label></td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.diagnostic.view" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.diagnostic.add" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.diagnostic.edit" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
+																<td class="ta-c">
+																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="role.diagnostic.delete" ng-true-value="1" m ng-false-value="0"><i></i></label>
+																</td>
 															</tr>
 														</tbody>
 													</table>
@@ -184,9 +181,10 @@
 								<div class="row">
 									<div class="form-group col-md-12 legend">
 										<a ui-sref="app.administrator.roles" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</a>
-										<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+										<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
 									</div>
 								</div>
+								<div class="row">{{errorMessage}}</div>
 							</form>
 						</div>
 					</div>

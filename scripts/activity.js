@@ -3,6 +3,7 @@ app
     $scope.page = {
 		title: appConstants.activitiesTitle
     };
+	$scope.date = new Date();
 
     $scope.getFacilityList = function(){
         activitiesSvc.getFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
@@ -13,16 +14,17 @@ app
 	};
 	$scope.getFacilityList();
 
-    $scope.getDeviceList = function(){
-        if(!$scope.facility_id){$scope.devices = [];return false;}
-        activitiesSvc.getDeviceList(appConstants.devicelistmaster+'?facilityId='+$scope.facility_id,appConstants.getMethod,{},{},function (succResponse) {
-            $scope.devices = [];
+    $scope.getDoorsList = function(){
+        if(!$scope.facility_id){$scope.doors = [];return false;}
+        activitiesSvc.getDoorsList(appConstants.doorlist+'?facilityId='+$scope.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+            $scope.doors = [];
         	if(succResponse.status){
-                $scope.devices = succResponse.data.data;
+                $scope.doors = succResponse.data.data;
                 $scope.eventFetch();
             }
         });
 	};
+	$scope.getDoorsList();
 
 	$scope.getEventTypeList = function(){
         activitiesSvc.getEventTypeList(appConstants.listeventtype,appConstants.getMethod,{},{},function (succResponse) {
@@ -36,7 +38,7 @@ app
                 $scope.event_types = tmp;
             }
             else {
-                $scope.devices = [];
+                $scope.doors = [];
             }
         });
 	};
@@ -46,15 +48,19 @@ app
 	$scope.eventFetch = function(){
 		var params = appConstants.questionMark;
 		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
-		if($scope.device_id){params += '&door_id='+$scope.device_id;}else{params += '&door_id='+appConstants.null;}
+		if($scope.door_id){params += '&door_id='+$scope.door_id;}else{params += '&door_id='+appConstants.null;}
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
+		$scope.date = $scope.date/1000;
+		if($scope.date){params += '&date='+$scope.date;}
 		params += "&limit=100&pageNo=1&searchVlaue=";
         activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
         //activitiesSvc.eventFetch('event/list-event?facility_id=null&door_id=null&event_id=null&limit=5&pageNo=1&searchVlaue=',appConstants.getMethod,{},{},function (succResponse) {
             $scope.activities = [];
             if(succResponse.status){
                 $scope.activities = succResponse.data.data;
+				
             }
+			$scope.date = $scope.date*1000;
         });
 	};
 	

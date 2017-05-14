@@ -402,6 +402,40 @@ var app = angular
 				  controller: 'AdminProfileCtrl',
 				  templateUrl: 'views/tmpl/subadmin/permissions/admin-profile.html'
 				})
+
+				//admin administrator
+		.state('app.admin.administrator', {
+		  url: '/administrator',
+		  template: '<div ui-view></div>'
+		})
+		
+			//admin administrator roles
+			.state('app.admin.administrator.roles', {
+			  url: '/roles',
+			  controller: 'RoleCtrl',
+			  templateUrl: 'views/tmpl/admin/administrator/roles.html'
+			})
+			
+				//admin administrator add-roles
+				.state('app.admin.administrator.add-roles', {
+				  url: '/add-roles',
+				  controller: 'AddRolesCtrl',
+				  templateUrl: 'views/tmpl/admin/administrator/add-roles.html'
+				})
+			
+				//admin administrator view-roles
+				.state('app.admin.administrator.view-roles', {
+				  url: '/view-roles',
+				  controller: 'ViewRoleCtrl',
+				  templateUrl: 'views/tmpl/admin/administrator/view-roles.html'
+				})
+				
+				//admin administrator edit-roles
+				.state('app.admin.administrator.edit-roles', {
+				  url: '/edit-roles',
+				  controller: 'EditRolesCtrl',
+				  templateUrl: 'views/tmpl/admin/administrator/edit-roles.html'
+				})
 				
 				
 		//subadmin schedule
@@ -459,12 +493,7 @@ var app = angular
 				  templateUrl: 'views/tmpl/subadmin/schedule/view-holiday-schedule.html'
 				})
 
-			//admin administrator roles
-			.state('app.admin.administrator.roles', {
-			  url: '/roles',
-			  controller: 'RoleCtrl',
-			  templateUrl: 'views/tmpl/admin/administrator/roles.html'
-			})
+			
 			
 		//subadmin support
 		.state('app.subadmin.support', {
@@ -962,88 +991,6 @@ app
     /* $scope.login = function() {
 		$state.go('core.login');
     }; */
-});
-
-
-
-
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:RoleCtrl
- * @description
- * # RoleCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('RoleCtrl', function ($scope, $http, $mdDialog) {
-     $scope.page = {
-      title: 'Roles',
-      subtitle: 'So much more to see at a glance.'
-    };	
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete admin?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your admin has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.result = 'You decided to keep admin.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
-	$http.get('http://localhost:8080/elika/json/admin/roles.json').success(function(response){
-		$scope.roles = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.roles.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {				
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed >= $scope.roles.length) {
-				$scope.lmbtn = {
-					"display" : "none"
-				};				
-			}
-		};				
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
 });
 
 'use strict';

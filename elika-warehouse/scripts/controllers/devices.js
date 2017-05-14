@@ -139,7 +139,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $state,$stateParams,dataService,toaster) {
+  .controller('ViewDeviceCtrl', function ($scope,$rootScope, $mdDialog, $state,$stateParams,dataService,toaster) {
     $scope.page = {
 		title: 'Device Details',
     };
@@ -179,6 +179,18 @@ app
 			dataService.responseError(response);
 		}
 	});
+
+	$rootScope.submitUpgradeFirmware = function(upgradeFirmware){
+		upgradeFirmware.device_id = $stateParams.device_id;
+		dataService.postData(upgradeFirmware,baseUrl+'firmware/upgrade')
+		.success(function(response){
+			if(response.status){
+				//$scope.device = response.data[0];
+			}else{
+				//dataService.responseError(response);
+			}
+		});
+	}
 	
 });
 

@@ -42,10 +42,10 @@
 			</div>			
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
-					<a ui-sref="app.monitor-diagnostics-and-reported-issues">
+					<a ui-sref="app.diagnostic">
 						<div class="noback bg-lightred">
 							<div class="itxt">
-								<span class="text-lg">Monitor Diagnostics &amp; Reported Issues</span>
+								<span class="text-lg">Diagnostics</span>
 							</div>
 						</div>
 					</a>
@@ -65,10 +65,10 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r mb-10 pb-20">
+							<div class="row pos-r mb-20">
 								<div class="col-sm-3 col-md-3 filterorder">
 									<label class="control-label" ng-init="filtershow=true">
-										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Search by</a>
+										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
@@ -78,27 +78,23 @@
 										</ul>
 									</label>
 								</div>
-								<div class="col-sm-3 col-md-4 pull-right ta-r">
-									<div class="profilephoto csvupload">
-										<div ng-controller="ModalDemo2Ctrl">
-											<script type="text/ng-template" id="myModalContent2.html">
-												<form name="form1" role="form">
-													<div class="modal-header"><h4 class="modal-title custom-font">Upload CSV File</h4></div>
-													<div class="modal-body mt-5 pb-30 mb-40">
-														<label for="">Upload CSV file</label>
-														<div class="profilephoto">
-															<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-															<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
-														</div>											
-													</div>
-													<div class="modal-footer">
-														<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
-														<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>	
-													</div>
-												</form>		
-											</script>
-											<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+								<div class="col-sm-6 col-md-6">
+									<div class="row">
+										<div class="col-sm-8 col-md-9 search">
+											<input type="text" class="form-control" placeholder="Search by text....">
+											<button class="btn btn-default br-2-r" type="button">Search</button>
 										</div>
+										<div class="col-sm-4 col-md-3 profilephoto csvupload">
+											<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+											<span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3 col-md-3">
+									<div class="gridlistbar ta-r pull-right">
+										<label class="control-label">View by</label>
+										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div>
 								</div>
 								<div class="filterfields" ng-hide="filtershow">
@@ -122,14 +118,13 @@
 								</div>
 							</div>
 							<div ng-class="class">
-								<div class="glview">
+								<div class="glview ta-c">
 									<md-content>			
 										<md-card ng-repeat="role in aroles | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy">
 											<md-card-content>
 												<h2 class="md-title">{{ role.title }}</h2>
-												<p class="ta-c">{{ role.status }}</p>
-												<p class="ta-c">{{ role.access }}</p>
-												<p class="ta-c" style="height:75px;">{{ role.description | limitTo: 100 }}{{role.description.length > 100 ? '...' : ''}}</p>
+												<p>{{ role.status }}</p>
+												<p>{{ role.access }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.view-roles">View</a>
@@ -138,7 +133,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button ng-if="aroles && aroles.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
