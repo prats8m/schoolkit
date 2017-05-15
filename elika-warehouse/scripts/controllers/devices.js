@@ -185,9 +185,9 @@ app
 		dataService.postData(upgradeFirmware,baseUrl+'firmware/upgrade')
 		.success(function(response){
 			if(response.status){
-				//$scope.device = response.data[0];
+				toaster.pop('success',response.msg.replace(/_/g,' '));
 			}else{
-				//dataService.responseError(response);
+				dataService.responseError(response);
 			}
 		});
 	}
