@@ -208,7 +208,16 @@ app
 		var versions = $scope.modelVersions[model]
 		$rootScope.hardwareVersions = versions.split(',');
 	}
-	
+	$rootScope.firmwareVersionViewInventry = function(hardware_version){
+		dataService.getData(null,baseUrl + 'firmware/listFirmwareVersion?hardware_version='+hardware_version)
+		.success(function(response) {
+		 	if(response.status == true){
+		 		$rootScope.listFirmware = response.data;
+		 	}else{
+		 		$rootScope.listFirmware = [];
+		 	}
+		});
+	}
 });
 
 'use strict';
