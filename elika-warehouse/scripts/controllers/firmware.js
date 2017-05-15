@@ -63,6 +63,7 @@ app
 
 	$rootScope.submitAddFirmware = function(addFirmware,file){
 		var fd = new FormData();
+		//addFirmware.
 			fd.append('file',file);
 			$.each(addFirmware,function(index,value) {
 				fd.append(index,value);

@@ -183,6 +183,7 @@ app
 
 	$rootScope.submitUpgradeFirmware = function(upgradeFirmware){
 		upgradeFirmware.device_id = $stateParams.device_id;
+		upgradeFirmware.firmware_version = Number(upgradeFirmware.firmware_version);
 		dataService.postData(upgradeFirmware,baseUrl+'firmware/upgrade')
 		.success(function(response){
 			if(response.status){
