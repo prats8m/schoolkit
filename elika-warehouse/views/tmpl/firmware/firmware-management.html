@@ -68,13 +68,13 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Device Model</label><br/>
-														<select class="form-control" ng-model="addFirmware.device_model" ng-options="model for model in deviceModel" ng-change="deviceHardware(addFirmware.device_model)">
+														<select class="form-control" ng-model="addFirmware.device_model" ng-options="model for model in deviceModel" ng-change="deviceHardware(addFirmware.device_model)" required="required">
 															<option value="">Select</option>
 														</select>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Component</label><br/>
-														<select class="form-control" ng-model="addFirmware.component">
+														<select class="form-control" ng-model="addFirmware.component" required="required">
 															<option value="">Select</option>
 															<option>Main Board</option>
 															<option>Front Board</option>
@@ -86,14 +86,13 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Hardware Version</label><br/>
-														<select class="form-control" ng-model="addFirmware.hardware_version" ng-options="version for version in hardwareVersions" >
+														<select class="form-control" ng-model="addFirmware.hardware_version" ng-options="version for version in hardwareVersions" required="required">
 															<option value="">Select</option>
 														</select>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Firmware Version</label><br/>
-														<input class="form-control" type="text" ng-model="addFirmware.firmware_version"				
-														>
+														<input class="form-control" type="text" ng-model="addFirmware.firmware_version" required="required">
 														
 													</div>
 												</div>
@@ -110,7 +109,7 @@
 												<div class="row">
 													<div class="form-group col-sm-12 col-md-12">
 														<label for="">Description of the Firmware Upgrade</label><br/>
-														<textarea name="" id="" ng-model="addFirmware.description" class="form-control" placeholder=""></textarea>
+														<textarea name="" id="" ng-model="addFirmware.description" class="form-control" placeholder="" required="required"></textarea>
 													</div>
 												</div>
 											</div>
@@ -196,11 +195,11 @@
 									<md-content>			
 										<md-card ng-repeat="firmware in firmwares | limitTo:totalDisplayed | filter:text | filter:component | filter:devicemodel | filter:hardware | filter:firmware | orderBy:myOrderBy">
 											<md-card-content>
-												<h2 class="md-title">{{ firmware.component }}</h2>
-												<p><span>Device</span> : {{ firmware.devicemodel }}</p>
-												<p><span>Hardware</span> : {{ firmware.hardware }}</p>
-												<p><span>Firmware</span> : {{ firmware.firmware }}</p>
-												<p><span>Status</span> : {{ firmware.status }}</p>
+												<h2 class="md-title">{{ firmware.firmware_component }}</h2>
+												<p><span>Device</span> : {{ firmware.firmware_model }}</p>
+												<p><span>Hardware</span> : {{ firmware.firmware_hardware_version }}</p>
+												<p><span>Firmware</span> : {{ firmware.firmware_version }}</p>
+												<!-- <p><span>Status</span> : {{ firmware.status }}</p> -->
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.firmware.view-firmware">View</a>
