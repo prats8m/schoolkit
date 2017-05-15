@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('FirmwareManagementCtrl', function ($scope,toaster, $state, $mdDialog, $http, $rootScope, dataService) {
+  .controller('FirmwareManagementCtrl', function ($scope,toaster,$timeout, $state, $mdDialog, $http, $rootScope, dataService) {
     $scope.page = {
 		title: 'Firmware Management',
     };
@@ -62,8 +62,6 @@ app
 	// add firmware submit
 
 	$rootScope.submitAddFirmware = function(addFirmware,file){
-		//console.log(addFirmware);
-		//console.log(file);
 		var fd = new FormData();
 			fd.append('file',file);
 			$.each(addFirmware,function(index,value) {
@@ -74,12 +72,38 @@ app
 		.success(function(response){
 			if(response.status){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){$("#close").click();});
 			}else{
 				dataService.responseError(response);
 			}
 		});
+	}
+
+	$scope.deviceModelInit = function(){
+		dataService.getData(null,baseUrl + 'device/models-list')
+		.success(function(response) {
+			if(response.status == true){
+				$rootScope.deviceModel = response.data;
+			}
+		});
 		
 	}
+	$scope.deviceModelInit();
+
+	$scope.deviceHardwareInit = function(){
+		dataService.getData(null,baseUrl + 'firmware/list-harware-version')
+		.success(function(response) {
+		 	if(response.status == true){
+		 		$scope.modelVersions = response.data;
+		 	}
+		});
+	}
+	$scope.deviceHardwareInit();
+	$rootScope.deviceHardware = function(model){
+		var versions = $scope.modelVersions[model]
+		$rootScope.hardwareVersions = versions.split(',');
+	}
+	//$scope.deviceModelInit();
 });
 
 
