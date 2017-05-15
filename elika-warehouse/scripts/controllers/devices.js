@@ -139,7 +139,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDeviceCtrl', function ($scope,$rootScope, $mdDialog, $state,$stateParams,dataService,toaster) {
+  .controller('ViewDeviceCtrl', function ($scope,$rootScope,$timeout, $mdDialog, $state,$stateParams,dataService,toaster) {
     $scope.page = {
 		title: 'Device Details',
     };
@@ -175,6 +175,7 @@ app
 	.success(function(response){
 		if(response.status){
 			$scope.device = response.data[0];
+			$rootScope.deviceHardware($scope.device.device_model);
 		}else{
 			dataService.responseError(response);
 		}
@@ -186,10 +187,25 @@ app
 		.success(function(response){
 			if(response.status){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){$("#close").click();});
 			}else{
 				dataService.responseError(response);
 			}
 		});
+	}
+
+	$scope.deviceHardwareInit = function(){
+		dataService.getData(null,baseUrl + 'firmware/list-harware-version')
+		.success(function(response) {
+		 	if(response.status == true){
+		 		$scope.modelVersions = response.data;
+		 	}
+		});
+	}
+	$scope.deviceHardwareInit();
+	$rootScope.deviceHardware = function(model){
+		var versions = $scope.modelVersions[model]
+		$rootScope.hardwareVersions = versions.split(',');
 	}
 	
 });
