@@ -30,7 +30,7 @@ app
     };
 	
 	//$http.get('http://localhost:8080/elika-warehouse/json/firmware.json')
-	dataService.getData(null,baseUrl + 'firmware/list?search_val=&limit=&pageNo=')
+	dataService.getData(null,baseUrl + 'firmware/list')
 	.success(function(response){
 		$scope.firmwares = response;
 		$scope.totalDisplayed = 8;
