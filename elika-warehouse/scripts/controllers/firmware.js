@@ -29,7 +29,8 @@ app
 		});
     };
 	
-	$http.get('http://localhost:8080/elika-warehouse/json/firmware.json')
+	//$http.get('http://localhost:8080/elika-warehouse/json/firmware.json')
+	dataService.getData(null,baseUrl + 'firmware/list?search_val=&limit=&pageNo=')
 	.success(function(response){
 		$scope.firmwares = response;
 		$scope.totalDisplayed = 8;
