@@ -225,7 +225,7 @@ var app = angular
 		
 		//firmware view-firmware
 		.state('app.firmware.view-firmware', {
-		  url: '/view-firmware',
+		  url: '/view-firmware/:firmware_id',
 		  controller: 'ViewFirmwareCtrl',
 		  templateUrl: 'views/tmpl/firmware/view-firmware.html'
 		})

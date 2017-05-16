@@ -13,7 +13,7 @@ app
     };
 	
 	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete firmware?')
 		.content('')
@@ -21,39 +21,60 @@ app
 		.cancel('No')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Firmware has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			//$state.go('app.firmware.firmware-management');
+			$scope.deleteFirmware(id);
 		}, function() {
 			$scope.result = 'You decided to keep firmware.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
+
+    $scope.deleteFirmware = function(id){
+		dataService.deleteData(null,baseUrl+'firmware/delete?firmware_id='+id)
+		.success(function(response){
+			if(response.status){
+				toaster.pop('success','Firmware has been deleted successfully.');
+				//$state.go('app.firmware.firmware-management');
+				$scope.firmwareInit();
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
 	
-	//$http.get('http://localhost:8080/elika-warehouse/json/firmware.json')
-	dataService.getData(null,baseUrl + 'firmware/list')
-	.success(function(response){
-		$scope.firmwares = response.data.data;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.firmwares.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
+	$scope.firmwareInit = function(e){
+		if(e)
+		if(e.keyCode!=13){return false;}
+		if(!$scope.searchText){
+			$scope.searchText = '';
 		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.firmwares.length) {				
+		//$http.get('http://localhost:8080/elika-warehouse/json/firmware.json')
+		dataService.getData({limit:1000,pageNo:1,searchVal:$scope.searchText},baseUrl + 'firmware/list')
+		.success(function(response){
+			$scope.firmwares = response.data.data;
+			$scope.totalDisplayed = 8;
+			
+			if($scope.firmwares.length > $scope.totalDisplayed) {
+				$scope.lmbtn = {
+					"display" : "block"
+				};			
+			} else {
 				$scope.lmbtn = {
 					"display" : "none"
-				};	
-			}			
-		};		
-	});
+				};
+			}
+			
+			$scope.loadMore = function () {
+				$scope.totalDisplayed += 8;
+				if($scope.totalDisplayed > $scope.firmwares.length) {				
+					$scope.lmbtn = {
+						"display" : "none"
+					};	
+				}			
+			};		
+		});
+	}
+	$scope.firmwareInit();
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
@@ -75,6 +96,7 @@ app
 			if(response.status){
 				toaster.pop('success',response.msg.replace(/_/g,' '));
 				$timeout(function(){$("#close").click();});
+				$scope.firmwareInit();
 			}else{
 				dataService.responseError(response);
 			}
@@ -118,13 +140,13 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewFirmwareCtrl', function ($scope, $state, $mdDialog) {
+  .controller('ViewFirmwareCtrl', function ($scope, $rootScope, $timeout, $mdDialog, $state, $stateParams, dataService, toaster) {
     $scope.page = {
 		title: 'Firmware Details',
     };
 	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
+    $scope.result = '';
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete firmware?')
 		.content('')
@@ -132,10 +154,33 @@ app
 		.cancel('No')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$state.go('app.firmware.firmware-management');
+			//$state.go('app.firmware.firmware-management');
+			$scope.deleteFirmware(id);
 		}, function() {
 			$scope.result = 'You decided to keep firmware.';
 			$scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
+
+    $scope.deleteFirmware = function(id){
+		dataService.deleteData(null,baseUrl+'firmware/delete?firmware_id='+id)
+		.success(function(response){
+			if(response.status){
+				toaster.pop('success','Firmware has been deleted successfully.');
+				$state.go('app.firmware.firmware-management');
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+
+    dataService.getData({firmware_id:$stateParams.firmware_id},baseUrl+'firmware/view')
+	.success(function(response){
+		if(response.status){
+			$scope.firmwareData = response.data;
+			// $rootScope.deviceHardware($scope.device.device_model);
+		}else{
+			dataService.responseError(response);
+		}
+	});
 });
