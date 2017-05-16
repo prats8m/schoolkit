@@ -104,6 +104,7 @@
 													<li><a href="#gstab7" native-tab>Speaker &amp; Microphone Setup</a></li>
 													<li><a href="#gstab8" native-tab>Call Button Setup</a></li>
 													<li><a href="#gstab9" native-tab>Lockout Setup</a></li>
+													<li><a ng-click="getWiegandDeviceList();"  href="#gstab10" native-tab>Wiegand Code Settings</a></li>
 												</ul>
 											</div>
 
@@ -461,6 +462,9 @@
 														<!--</form>-->
 													</div>
 
+
+
+
 													<div class="tab-pane fade" id="gstab8">
 														<h4><strong>Call Button Setup</strong></h4>
 														<div class="row mt-20">
@@ -553,7 +557,7 @@
 															<div class="form-group col-sm-12">
 																<label for="">Lockout Items</label><br/>
 																<div class="row">
-																	<div class="col-sm-2"> 
+																	<div class="col-sm-2">
 																		<label class="checkbox checkbox-custom-alt">
 																			<input name="BLE" ng-click="createLockoutModeArray(1);" ng-checked="lockoutMode.indexOf(1) > -1" value=1 type="checkbox"><i></i> BLE
 																		</label>
@@ -606,6 +610,47 @@
 														</div>
 														<!--</form>-->
 													</div>
+													<div class="tab-pane fade" id="gstab10">
+														<h4><strong>Wiegand Code Settings</strong></h4><br>
+														<!--<form ng-submit="submitData('speaker-microphone-setup',microphonesetup)">-->
+														<div ng-repeat="wiegand in wiegandSetting" class="row mt-20">
+															<div class="col-sm-2 pr-0">
+																<label for="">Wiegand Code</label><br/>
+																<input type="text" ng-model="wiegand['wiegand-code']" class="form-control" id="mask02" placeholder="Wiegand Code">
+															</div>
+															<div class="col-sm-2 pr-0">
+																<label for="">Device</label><br/>
+																<select chosen="{width: '100%'}" ng-model="wiegand['wiegand-device']" ng-options="x.wd_id as x.wd_name for x in wiegandDevice" >
+																</select>
+															</div>
+															<div class="col-sm-2" pr-0>
+																<label for="">Wiegand Bit</label><br/>
+																<input min="0" max="10" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="wiegand['wiegand-bit']">
+															</div>
+															<div class="col-sm-3" pr-0>
+																<label for="">Status</label><br/>
+																<div class="btn-group btnrounded">
+																	<label class="btn btn-default" ng-model="wiegand['wiegand-status']" uib-btn-radio="1">Active</label>
+																	<label class="btn btn-default" ng-model="wiegand['wiegand-status']" uib-btn-radio="0">Inactive</label>
+																</div>
+															</div>
+															<div class="col-sm-3 pr-0">
+																<label for="">Device Serial number</label><br/>
+																<input type="text" class="form-control" ng-model="wiegand['wiegand-device-serialno']" placeholder="Wiegand Device Serial no" >
+															</div>
+
+														</div>
+
+														<div class="row">
+															<div class="form-group col-md-12 legend">
+																<button type="button" ng-click="setWiegandSetting();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>
+															</div>
+														</div>
+														<!--</form>-->
+													</div>
+
+
 												</div>
 											</div>
 										</div>

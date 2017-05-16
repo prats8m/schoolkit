@@ -8,7 +8,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('UserCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, appConstants,userSvc) {
+  .controller('UserCtrl', function ($stateParams,$scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,$location,toaster, baseURL, $timeout, appConstants,userSvc) {
 
      $scope.page = {
       title: appConstants.titleUsersUI,
@@ -46,6 +46,9 @@ app
                         break;
                     case 'ble_code':
                         $scope.ble_code={};
+                        break;
+                    case 'wiegand_code':
+                        $scope.wiegand={};
                         break;
 					default:
 						break;
@@ -299,6 +302,60 @@ app
         });
 	};
 
+    $scope.saveWiegand = function(wiegand, wiegand_form){
+      	if(!wiegand_form.validate()){
+			return false;
+		}
+		if(wiegand == undefined){
+			$rootScope.wiegand_error = appConstants.incompleteform;
+			return false;
+		}
+		wiegand.user_id = parseInt($cookies.get("user_id"));
+        wiegand.credential_type = "wiegand_code";
+
+        $scope.wiegand = {};
+        wiegand.details = {};
+		wiegand.details.wiegand_facility_code = wiegand.wiegand_facility_code;
+		wiegand.details.wiegand_card_number = wiegand.wiegand_card_number;
+        wiegand.door_id = wiegand.door_id;
+        wiegand.status = wiegand.status;
+        
+		
+
+        if(wiegand.credential_id == null){
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
+        }
+        else{
+            wiegand.uc_id = wiegand.credential_id;
+            delete wiegand.credential_id;
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
+        }
+        userSvc.savewiegand(url,meth,{},wiegand,function (succResponse) {
+            $scope.wiegand_error = appConstants.empty;
+        	if(succResponse.status){
+                $timeout(function() {
+                    // $(".accordion-toggle")[3].click();
+                });
+                $timeout(function() {
+                	$scope.getWiegandList();
+                    $scope.wiegand = {};
+                });
+                if(!wiegand.uc_id){
+                    toaster.pop(appConstants.success,appConstants.wiegandaddedsuccessfully);
+                   }
+                else {
+                    toaster.pop(appConstants.success,appConstants.wiegandupdatedsuccessfully);
+                   }
+                $scope.wiegand.credential_id = null;
+            }
+            else {
+                $scope.wiegand_error=succResponse.msg;
+			}
+        });
+	};
+
 	$scope.phoneCode = {};
 	var x = Math.floor(Math.random()*9999999999) + 10000;
 	$scope.phoneCode.phone_code = (appConstants.empty+x).substring(8, length);
@@ -309,6 +366,14 @@ app
         userSvc.getPhoneList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=phone_code',appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.phone_code_list = succResponse.data;
+            }
+        });
+	};
+
+     $scope.getWiegandList = function(){
+        userSvc.getWiegandList(appConstants.credentiallist+'?user_id='+parseInt($cookies.get("user_id"))+'&type=wiegand_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.wiegand_code_list = succResponse.data;
             }
         });
 	};
@@ -642,6 +707,16 @@ app
                 angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
                 $scope.rfid.door_id= arr;
                 break;
+            case 'wiegand_code':
+                $scope.wiegand={};
+                $scope.wiegand.credential_id=cred_data.Credential_Id;
+                $scope.wiegand.wiegand_card_number=cred_data.Detail.wiegand_card_number;
+                $scope.wiegand.wiegand_facility_code=cred_data.Detail.wiegand_facility_code;
+                $scope.wiegand.status=cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+                $scope.wiegand.door_id= arr;
+                break;
             case 'nfc_code':
                 $scope.savenfc={};
                 $scope.savenfc.credential_id=cred_data.Credential_Id;
@@ -680,6 +755,9 @@ app
                     case 'rfid_code':
                         $scope.getRfidList();
                         break;
+                    case 'wiegand_code':
+                        $scope.getWiegandList();
+                        break;
                     case 'nfc_code':
                         $scope.getNfcCodeList();
                         break;
@@ -703,6 +781,15 @@ $scope.dashboardInit = function(){
 
 if(!$rootScope.hasOwnProperty('dashboardData')){  $scope.dashboardInit(); }
 });
+
+
+
+
+
+
+
+
+
 
 'use strict';
 /**
@@ -736,6 +823,9 @@ app
                           break;
                       case 'editNfc':
                           $scope.editNfc={};
+                          break;
+                           case 'Wiegand_code':
+                          $scope.wiegand={};
                           break;
                       case 'editBle':
                           $scope.editBle={};
@@ -778,6 +868,8 @@ app
                 $scope.phoneedit.status = 1;
                 $scope.editRfid = {};
                 $scope.editRfid.status  = 1;
+                $scope.wiegand = {};
+                $scope.wiegand.status  = 1;
                 $scope.editNfc = {};
                 $scope.editNfc.status  = 1;
                 $scope.editBle = {};
@@ -889,6 +981,16 @@ app
               angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
               $scope.editRfid.door_id= arr;
 		  		break;
+         case 'wiegand_code':
+              $scope.wiegand={};
+              $scope.wiegand.credential_id=cred_data.Credential_Id;
+              $scope.wiegand.wiegand_card_number=cred_data.Detail.wiegand_card_number;
+              $scope.wiegand.wiegand_facility_code=cred_data.Detail.wiegand_facility_code;
+              $scope.wiegand.status=cred_data.status;
+              var arr = [];
+              angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
+              $scope.wiegand.door_id= arr;
+            	break;
 		  case 'nfc_code':
               $scope.editNfc={};
               $scope.editNfc.credential_id=cred_data.Credential_Id;
@@ -1230,9 +1332,19 @@ app
             if(succResponse.status){
                 $scope.rfid_code_list = succResponse.data;
             }
-        });
+        }); 
 	};
 	$scope.getRfidList();
+
+    $scope.getWiegandList = function(){
+        userSvc.getWiegandList(appConstants.credentiallist+'?user_id='+parseInt($stateParams.user_id)+'&type=wiegand_code',appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.wiegand_code_list = succResponse.data;
+            }
+        });
+	};
+
+	$scope.getWiegandList();
 	$scope.submitEditRFIDCode = function(submitData, rfid_form){
 		if(!rfid_form.validate()){
 			return false;
@@ -1263,6 +1375,39 @@ app
             }
             else {
                 $scope.EditRFIDCodeMsg= succResponse.msg;
+            }
+        });
+	};
+
+
+    	$scope.submitEditWIEGANDCode = function(submitData, rfid_form){
+		// if(!wiegand_form.validate()){
+		// 	return false;
+		// }
+        $scope.wiegand={};
+		submitData.user_id = parseInt($stateParams.user_id);
+        submitData.credential_type = "wiegand_code";
+		submitData.details = {};
+		// submitData.details.wiegand_facility_id = JSON.stringify(parseInt(submitData.wiegand_facility_code));
+		submitData.details.wiegand_card_number = JSON.stringify(parseInt(submitData.wiegand_card_number));
+		submitData.details.wiegand_facility_code = JSON.stringify(parseInt(submitData.wiegand_facility_code));
+        submitData.door_id = submitData.door_id;
+        submitData.status = submitData.status;
+		
+        if(submitData.credential_id == null){
+            var meth = appConstants.postMethod;
+            var url = appConstants.useraddcredentials;
+        }
+        else{
+            submitData.uc_id = submitData.credential_id;
+            var meth = appConstants.putMethod;
+            var url = appConstants.usereditcredential;
+        }
+        userSvc.submitEditWiegandCode(url,meth,{},submitData,function (succResponse) {
+            $scope.wiegand.credential_id = null;
+            if(succResponse.status){
+                toaster.pop(appConstants.success,appConstants.submitSuccessfully);
+                $scope.getWiegandList();
             }
         });
 	};
@@ -1357,6 +1502,9 @@ app
                         break;
                     case 'rfid_code':
                         $scope.getRfidList();
+                        break;
+                        case 'wiegand_code':
+                        $scope.getWiegandList();
                         break;
                     case 'nfc_code':
                         $scope.getNfcCodeList();

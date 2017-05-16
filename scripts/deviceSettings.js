@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .controller('DeviceSettingController', function ($scope, $mdDialog, $http, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, dataService, $rootScope,appConstants,devicesSvc) {
+    .controller('DeviceSettingController', function ($scope, $mdDialog, $http, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, dataService, $rootScope, appConstants, devicesSvc) {
         $scope.page = {
             title: appConstants.settings,
             subtitle: appConstants.empty
@@ -29,8 +29,8 @@ app
         }
 
         var commonSetHTTPService = function (data, msg) {
-            devicesSvc.commonSetHTTPService(appConstants.deviceaddsettings,appConstants.postMethod,{},data,function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.commonSetHTTPService(appConstants.deviceaddsettings, appConstants.postMethod, {}, data, function (succResponse) {
+                if (succResponse.status) {
                     toaster.pop(appConstants.success, msg);
                 }
             });
@@ -38,13 +38,14 @@ app
 
         $scope.getGeneralSettings = function () {
             $scope.commonGetAPIData.type = appConstants.deviceSettings.commonGetAPIData.type;
-            devicesSvc.getGeneralSettings(appConstants.devicegetsettings+'?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.getGeneralSettings(appConstants.devicegetsettings + '?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.deviceGeneralSettingModals = succResponse.data;
+                    $scope.wiegandSetting = $scope.deviceGeneralSettingModals.dgs_wiegand_setting;
                     $scope.grantAccessKey.value = succResponse.data.dgs_access_granted_key[appConstants.deviceSettings.accessgrantkey];
                     $scope.lockoutMode = succResponse.data.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode];
                     $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess]);
-                    $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]=$scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
+                    $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
 
                 }
             });
@@ -55,33 +56,33 @@ app
             data.module = appConstants.deviceSettings.accessgrantkey;
             data.type = appConstants.deviceSettings.commonGetAPIData.type;
             data.value[appConstants.deviceSettings.accessgrantkey] = $scope.grantAccessKey.value;
-            commonSetHTTPService(data,appConstants._successaccessgrantkeychangesmessage);
+            commonSetHTTPService(data, appConstants._successaccessgrantkeychangesmessage);
         };
 
         $scope.setCameraSettings = function () {
             var data = new commonSetAPIDataObject();
             data.module = appConstants.deviceSettings.camerasetup;
             data.type = appConstants.deviceSettings.commonGetAPIData.type;
-            var vedioArr=[];
+            var vedioArr = [];
 
             data.value[appConstants.deviceSettings.picturesnapshotsaccess] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
             data.value[appConstants.deviceSettings.snapshotsstatus] = $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.snapshotsstatus];
             data.value[appConstants.deviceSettings.videorecordingaccess] = $scope.parseIntArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess]);
             data.value[appConstants.deviceSettings.recordingstatus] = $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.recordingstatus];
             commonSetHTTPService(data, appConstants._successCameraConfigured);
-        }; 
+        };
 
-        $scope.parseIntArr=function(data){
-            var response=[];
-            for(var i=0;i<data.length;i++){
-                response[i]=parseInt(data[i])
+        $scope.parseIntArr = function (data) {
+            var response = [];
+            for (var i = 0; i < data.length; i++) {
+                response[i] = parseInt(data[i])
             }
             return response;
         };
-        $scope.parseStringArr=function(data){
-            var response=[];
-            for(var i=0;i<data.length;i++){
-                response[i]=data[i].toString();
+        $scope.parseStringArr = function (data) {
+            var response = [];
+            for (var i = 0; i < data.length; i++) {
+                response[i] = data[i].toString();
             }
             return response;
         };
@@ -150,8 +151,8 @@ app
         };
         $scope.getAdvancedSettings = function () {
             $scope.commonGetAPIData.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
-            devicesSvc.getAdvancedSettings(appConstants.devicegetsettings+'?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.getAdvancedSettings(appConstants.devicegetsettings + '?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.deviceAdvanceSettingModals = succResponse.data;
                     if (succResponse.data.das_clock_setting[appConstants.deviceSettings.realtimeclock] != 0)
                         $scope.advanceClockSetting.time = new Date(succResponse.data.das_clock_setting[appConstants.deviceSettings.realtimeclock] * 1000);
@@ -199,8 +200,8 @@ app
         };
 
         $scope.getDoorListAdvanceSetting = function () {
-            devicesSvc.getDoorListAdvanceSetting(appConstants.doorlistfordeviceid+'?deviceId=' + $scope.device_id,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.getDoorListAdvanceSetting(appConstants.doorlistfordeviceid + '?deviceId=' + $scope.device_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.doorListAdvanceSetting = succResponse.data;
                 }
             });
@@ -214,6 +215,7 @@ app
             data.value[appConstants.deviceSettings.accessgates] = $scope.deviceAdvanceSettingModals.das_latch_code[appConstants.deviceSettings.accessgates];
             commonSetHTTPService(data, appConstants._successlatchcodeconfigured);
         };
+
         $scope.setDiagnostics = function () {
             var data = new commonSetAPIDataObject();
             var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
@@ -223,6 +225,27 @@ app
             data.value[appConstants.deviceSettings.starttime] = Math.floor(((new Date($scope.advanceDiagRealTime.startTime)).getTime()) / 1000);
             data.value[appConstants.deviceSettings.endtime] = Math.floor(((new Date($scope.advanceDiagRealTime.endTime)).getTime()) / 1000);
             data.value[appConstants.deviceSettings.description] = $scope.deviceAdvanceSettingModals.das_diagonastic[appConstants.deviceSettings.description];
+            commonSetHTTPService(data, appConstants._successdiagnosticsconfigured);
+        };
+
+        $scope.setWiegandSetting = function () {
+            var data = new commonSetAPIDataObject();
+            var time = createTimeStamp($scope.advanceDiagRealTime.date, $scope.advanceDiagRealTime.time);
+            data.module = appConstants.deviceSettings.wiegandSetting;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            var singleObject = {};
+            for (var i = 0; i < Object.keys($scope.wiegandSetting).length; i++) {
+                singleObject[i] = {
+                    'wiegand-code': $scope.wiegandSetting[i]['wiegand-code'],
+                    'wiegand-device': $scope.wiegandSetting[i]['wiegand-device'],
+                    'wiegand-bit': $scope.wiegandSetting[i]['wiegand-bit'],
+                    'wiegand-status': $scope.wiegandSetting[i]['wiegand-status'],
+                    'wiegand-device-serialno': $scope.wiegandSetting[i]['wiegand-device-serialno']
+                };
+            }
+            data.value = singleObject;
+
+            console.log(singleObject);
             commonSetHTTPService(data, appConstants._successdiagnosticsconfigured);
         };
 
@@ -236,12 +259,22 @@ app
         };
 
         $scope.getReplayDoorList = function () {
-            devicesSvc.getReplayDoorList(appConstants.getdevicerelay+'?deviceId=' + $scope.device_id,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.getReplayDoorList(appConstants.getdevicerelay + '?device_id=' + $scope.device_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.relayNDoorGenSetting = succResponse.data;
                 }
             });
         };
+
+        $scope.getWiegandDeviceList = function () {
+            devicesSvc.getWiegandDeviceList(appConstants.getWiegandDevice, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.wiegandDevice = succResponse.data;
+                }
+            });
+        };
+
+
 
         $scope.setRelayDoorSetup = function () {
             var data = {
@@ -256,20 +289,20 @@ app
                 singleObject.strike_time = $scope.relayNDoorGenSetting[i].strike_time;
                 data.relays.push(singleObject);
             }
-            devicesSvc.setRelayDoorSetup(appConstants.doorassigndevice,appConstants.putMethod,{},data,function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.setRelayDoorSetup(appConstants.doorassigndevice, appConstants.putMethod, {}, data, function (succResponse) {
+                if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successrelayanddoorsetupconfigured);
                 }
             });
         };
 
-        $scope.dashboardInit = function(){
+        $scope.dashboardInit = function () {
 
-            devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+            devicesSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data;
                 }
             });
-    };
+        };
         $scope.dashboardInit();
     });
