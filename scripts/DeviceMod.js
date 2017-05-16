@@ -70,11 +70,14 @@ app
                 $rootScope.doorList = succResponse.data;
             }
         });
-	};
+	}; 
 	//$scope.getDoorsList();
 
       $scope.resetDeviceModel=function () {
           $rootScope.device={};
+          $scope.getTechnicianList();
+          $scope.facilityInit();
+        //   $scope.deviceModelInit();
       };
 
 	$rootScope.formSubmit = function(device,device_form){
@@ -89,7 +92,8 @@ app
                 if(succResponse.status){
                     toaster.pop(appConstants.success,succResponse.msg);
                     $scope.pageNo = 1;
-                    $rootScope.dashboardData.primary_device++;
+                    // $rootScope.dashboardData.primary_device++;
+                    $scope.dashboardInit();
                     $scope.deviceInit();
                     $timeout(function(){$("#close").click();})
                 }
@@ -174,7 +178,7 @@ app
         });
 	};
 	//$scope.getDoorsList();
-	$scope.getTechnicianList();
+	
 
 	$scope.facilityInit = function(){
         devicesSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
@@ -183,7 +187,6 @@ app
             }
         });
 	};
-	$scope.facilityInit();
 	
 	$scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
@@ -197,7 +200,6 @@ app
             }
         });
 	};
-	$scope.deviceModelInit();
 
 	$scope.dashboardInit = function(){
         devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {

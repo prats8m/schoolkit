@@ -32,6 +32,7 @@ app.constant("appConstants", {
     devicegetsettings:'device/get-settings',
     doorlistfordeviceid:'door/list-door-for-deviceid',
     getdevicerelay:'device/get-device-relay',
+    getWiegandDevice:'device/get-wiegand-device',
     doorassigndevice:'door/assign-device',
     doorgroupadd:'doorgroup/add',
     doorgrouplist:'doorgroup/list',
@@ -236,7 +237,8 @@ app.constant("appConstants", {
         diagnostics:'diagnostics',
         description:'description',
         callbuttonsetup:'call-button-setup',
-        callbutton:'call-button'
+        callbutton:'call-button',
+        wiegandSetting: 'wiegand-device-setting'
     },
 
 
@@ -362,6 +364,10 @@ app.constant("appConstants", {
     nfccodeupdatedsuccessfully:'NFC Code Updated Successfully',
     accesscodeupdatedsuccessfully:'Access Code Updated Successfully',
     accesscodeaddedsuccessfully:'Access Code Added Successfully',
+    wiegandaddedsuccessfully:'Wiegand Code Added Successfully',
+    wiegandupdatedsuccessfully:'Wiegand Code Updated Successfully',
+
+
 
     //............................................................................
 

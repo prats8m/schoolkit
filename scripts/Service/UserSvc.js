@@ -422,6 +422,18 @@ app
             });
         };
 
+        userSvcSvcResp.getWiegandList=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                     toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
         userSvcSvcResp.submitEditRFIDCode=function(url,method,params,data,cb) {
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
@@ -446,6 +458,17 @@ app
             });
         };
 
+        userSvcSvcResp.submitEditWiegandCode=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+              toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
         userSvcSvcResp.getBleList=function(url,method,params,data,cb) {
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
@@ -548,6 +571,29 @@ app
         };
 
         userSvcSvcResp.saveRFID=function(url,method,params,data,cb) {
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }
+                else {
+                        if(succResponse.error != appConstants.empty && succResponse.error != null){
+                            var n=[];
+                            var arr = succResponse.error;
+                            $.each(arr, function(index, value){ n[index] = value.property.split("request.body.")[1].replace(/_/g,' ')[0].toUpperCase()  + value.property.split("request.body.")[1].replace(/_/g,' ').slice(1); $.each(value.messages, function(ind, value){ n[index] += " "+value })});
+                            succResponse.msg = n.join(", ");
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                        }
+                        else {
+                            succResponse.msg = succResponse.msg.replace(/_/g,' ');
+                             toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                        }
+                    cb(succResponse);
+                }
+            });
+        };
+
+
+        userSvcSvcResp.savewiegand=function(url,method,params,data,cb) {
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
                     cb(succResponse);
