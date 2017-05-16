@@ -22,7 +22,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
+					<div class="noback bg-blue cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -43,7 +43,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
+					<div class="noback bg-slategray lt cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -64,7 +64,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
+					<div class="noback bg-lightred cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -156,8 +156,6 @@
 												<h2 class="md-title">{{ role.title }}</h2>
 												<p>{{ role.status }}</p>
 												<p>{{ role.access }}</p>
-												<p style="height:75px;">{{ role.description | limitTo: 100 }}{{role.description.length > 100 ? '...' : ''}}</p>
-											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.administrator.view-roles">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.administrator.edit-roles">Edit</a>
@@ -165,7 +163,7 @@
 											</div>
 										</md-card>										
 									</md-content>
-									<button ng-if="aroles && aroles.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

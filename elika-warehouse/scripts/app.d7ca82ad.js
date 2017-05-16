@@ -294,6 +294,13 @@ var app = angular
 				  controller: 'AdminProfileCtrl',
 				  templateUrl: 'views/tmpl/administrator/admin-profile.html'
 				})
+				
+			//administrator master admin
+		   .state('app.administrator.master-admin', {
+			 url: '/master-admin',
+			 controller: 'MasterAdminCtrl',
+			 templateUrl: 'views/tmpl/administrator/master-admin.html'
+		   })
 		
 	
   }]);
@@ -410,98 +417,6 @@ app
     };
 });
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:FirmwareManagementCtrl
- * @description
- * # FirmwareManagementCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('FirmwareManagementCtrl', function ($scope, $state, $mdDialog, $http) {
-    $scope.page = {
-		title: 'Firmware Management',
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete firmware?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Firmware has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.result = 'You decided to keep firmware.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$http.get('http://localhost:8080/elika-warehouse/json/firmware.json').success(function(response){
-		$scope.firmwares = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.firmwares.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.firmwares.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-});
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:ViewFirmwareCtrl
- * @description
- * # ViewFirmwareCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('ViewFirmwareCtrl', function ($scope, $state, $mdDialog) {
-    $scope.page = {
-		title: 'Firmware Details',
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete firmware?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$state.go('app.firmware.firmware-management');
-		}, function() {
-			$scope.result = 'You decided to keep firmware.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-});
-
 
 'use strict';
 /**
@@ -595,23 +510,7 @@ app
 	
 });
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:AddRolesCtrl
- * @description
- * # AddRolesCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('AddRolesCtrl', function ($scope, $http) {
-     $scope.page = {
-      title: 'Add Roles',
-    };
-	
-	$scope.imagePath = 'http://localhost:8080/elika-warehouse/images';	
-	
-});
+
 
 'use strict';
 /**
@@ -8783,6 +8682,18 @@ app.service('dataService',["$http","toaster","$cookies","$location","$rootScope"
 			url: url,
 			data: data,
 			headers: { 'Content-Type' : 'application/json',"Authorization": $cookies.get("token")}                  
+		}).error(function(){
+			if($rootScope.lastMessage != msg)
+				toaster.pop('error', msg);
+			$rootScope.lastMessage = msg;
+		});
+	};
+	this.postDataWithFile = function(data,url) {
+		return $http({
+			method: "POST",
+			url: url,
+			data: data,
+			headers: { 'Content-Type' : undefined,"Authorization": $cookies.get("token")}                  
 		}).error(function(){
 			if($rootScope.lastMessage != msg)
 				toaster.pop('error', msg);

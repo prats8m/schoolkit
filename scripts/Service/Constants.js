@@ -84,6 +84,7 @@ app.constant("appConstants", {
     scheduleView:'schedule/view',
     shortcutslist:'shortcut/list',
     shortcutadd:'shortcut/add',
+	roleadd:'role/add',
 
 
 
@@ -386,6 +387,12 @@ app.constant("appConstants", {
     _cancelholidayscheduledeletion:'You decided to keep holiday schedule',
     _successholidayscheduleadded:'Holiday Schedule added successfully',
     _successholidayscheduleedited:'Holiday Schedule edited successfully',
+	
+	 //........................................................................................
+
+    //............................Roles.......................................
+
+    _successrolesadded:'Roles added successfully',
 
     //........................................................................................
 
@@ -482,8 +489,8 @@ app.constant("appConstants", {
     ],
 	
 	timedropdown2:[
-        '00:00',
-        '00:30',
+        '0:00',
+        '0:30',
         '1:00',
         '1:30',
         '2:00',

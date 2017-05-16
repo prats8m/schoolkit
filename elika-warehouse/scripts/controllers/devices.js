@@ -139,7 +139,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $state,$stateParams,dataService,toaster) {
+  .controller('ViewDeviceCtrl', function ($scope,$rootScope,$timeout, $mdDialog, $state,$stateParams,dataService,toaster) {
     $scope.page = {
 		title: 'Device Details',
     };
@@ -175,11 +175,49 @@ app
 	.success(function(response){
 		if(response.status){
 			$scope.device = response.data[0];
+			$rootScope.deviceHardware($scope.device.device_model);
 		}else{
 			dataService.responseError(response);
 		}
 	});
-	
+
+	$rootScope.submitUpgradeFirmware = function(upgradeFirmware){
+		upgradeFirmware.device_id = $stateParams.device_id;
+		// upgradeFirmware.firmware_version = Number(upgradeFirmware.firmware_version);
+		dataService.postData(upgradeFirmware,baseUrl+'firmware/upgrade')
+		.success(function(response){
+			if(response.status){
+				toaster.pop('success',response.msg.replace(/_/g,' '));
+				$timeout(function(){$("#close").click();});
+			}else{
+				dataService.responseError(response);
+			}
+		});
+	}
+
+	$scope.deviceHardwareInit = function(){
+		dataService.getData(null,baseUrl + 'firmware/list-harware-version')
+		.success(function(response) {
+		 	if(response.status == true){
+		 		$scope.modelVersions = response.data;
+		 	}
+		});
+	}
+	$scope.deviceHardwareInit();
+	$rootScope.deviceHardware = function(model){
+		var versions = $scope.modelVersions[model]
+		$rootScope.hardwareVersions = versions.split(',');
+	}
+	$rootScope.firmwareVersionViewInventry = function(hardware_version){
+		dataService.getData(null,baseUrl + 'firmware/listFirmwareVersion?hardware_version='+hardware_version)
+		.success(function(response) {
+		 	if(response.status == true){
+		 		$rootScope.listFirmware = response.data;
+		 	}else{
+		 		$rootScope.listFirmware = [];
+		 	}
+		});
+	}
 });
 
 'use strict';

@@ -129,9 +129,9 @@
 										<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
 											<label for="">Date/Time</label>
 											<div class="input-group">
-												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" disabled />
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;" disabled><i class="glyphicon glyphicon-calendar"></i></button>
+													<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 												</span>
 											</div>
 										</div>
@@ -143,13 +143,13 @@
 										</div>
 										<div class="col-sm-3 col-md-3">
 											<label for="">Facility</label><br/>
-											<select class="form-control" ng-model="facility_id" ng-options="x.facility_id as x.facility_name for x in facility" ng-change="getDeviceList()">
+											<select class="form-control" ng-model="facility_id" ng-options="x.facility_id as x.facility_name for x in facility" ng-change="getDoorsList()">
 												<option value="">Select</option>
 											</select>
 										</div>
 										<div class="col-sm-3 col-md-3">
-											<label for="">Device</label><br/>
-											<select class="form-control" ng-model="device_id" ng-change="eventFetch()" ng-options="x.device_id as x.device_name for x in devices">
+											<label for="">Door</label><br/>
+											<select class="form-control" ng-model="door_id" ng-change="eventFetch()" ng-options="x.door_id as x.door_name for x in doors">
 												<option value="">Select</option>
 											</select>
 										</div>

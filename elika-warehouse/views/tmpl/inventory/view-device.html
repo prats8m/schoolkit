@@ -82,6 +82,62 @@
 									<h2>Logs</h2>
 								</a>
 							</li>
+							<li class="tcol p-0">
+								<div ng-controller="ModalDemoCtrl">
+									<script type="text/ng-template" id="myModalContent.html">
+										<form name="form1" role="form" ng-submit="submitUpgradeFirmware(upgradeFirmware)">
+											<div class="modal-header"><h4 class="modal-title custom-font">Update Firmware</h4></div>
+											<div class="modal-body mt-5">
+												<div class="row">
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">Hardware Version</label><br/>
+														<select class="form-control" ng-model="upgradeFirmware.hardware_version" required="required" ng-options="version for version in hardwareVersions" ng-change="firmwareVersionViewInventry(upgradeFirmware.hardware_version)">
+														<option value="">Select</option>
+														</select>
+														<!-- <select class="form-control">
+															<option>A0</option>
+															<option>B0</option>
+															<option>A1</option>
+															<option>B1</option>
+														</select> -->
+													</div>
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">Firmware Version</label><br/>
+														<!-- <input type="text" class="form-control" ng-model="upgradeFirmware.firmware_version" required="required"> -->
+														<select class="form-control" type="text" ng-model="upgradeFirmware.firmware_version"
+														ng-options="x for x in listFirmware"
+														required="required">
+														<option value="">Select</option>
+														</select>
+													</div>
+												</div>
+												<!-- <div class="row">
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">Schedule Date</label>
+														<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
+															<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+															<span class="input-group-btn">
+																<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+															</span>
+														</div>
+													</div>
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">Schedule Time</label><br/>
+														<div ng-controller="TimepickerDemoCtrl">
+															<uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+														</div>
+													</div>													
+												</div> -->	
+											</div>
+											<div class="modal-footer">
+												<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left" id="close"></i> Close</div>
+												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Upgrade Now</button>	
+											</div>
+										</form>		
+									</script>
+									<a ng-click="open()" href="javascript:void(0)"><h2>Update Firmware</h2></a>
+								</div>
+							</li>
 						</ul>
 					</div>  
 				</section>
