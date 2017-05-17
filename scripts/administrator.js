@@ -55,7 +55,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('RoleCtrl', function ($scope, $http, $mdDialog) {
+  .controller('RoleCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, $location, baseURL, $uibModal, appConstants, administratorSvc, dashboardSvc) {
      $scope.page = {
       title: 'Roles',
       subtitle: 'So much more to see at a glance.'
@@ -91,31 +91,35 @@ app
         $scope.class = 'gridview';
         $scope.layout = 'grid';
     };
-    
-    $http.get('http://localhost:8080/newElika/elika_webapp2_dev_ui/newElika/json/admin/roles.json')
-    .success(function(response){
-        $scope.roles = response;
-        $scope.totalDisplayed = 8;
+    $scope.rolesInit = function(){
+      administratorSvc.rolesInit(appConstants.rolelist, appConstants.getMethod, {}, {}, function(succResponse){
+          if(succResponse.status){
+             $scope.aroles = succResponse.data.data;
+             $scope.totalDisplayed = 8;
+           
+             if($scope.aroles.length > $scope.totalDisplayed) {
+                 $scope.lmbtn = {
+                     "display" : "block"
+                 };          
+             } else {
+                 $scope.lmbtn = {
+                     "display" : "none"
+                 };
+             }
+          
+             $scope.loadMore = function () {             
+                 $scope.totalDisplayed += 8;
+                 if($scope.totalDisplayed >= $scope.aroles.length) {
+                     $scope.lmbtn = {
+                         "display" : "none"
+                     };              
+                 }
+             };
         
-        if($scope.roles.length > $scope.totalDisplayed) {
-            $scope.lmbtn = {
-                "display" : "block"
-            };          
-        } else {
-            $scope.lmbtn = {
-                "display" : "none"
-            };
-        }
-        
-        $scope.loadMore = function () {             
-            $scope.totalDisplayed += 8;
-            if($scope.totalDisplayed >= $scope.roles.length) {
-                $scope.lmbtn = {
-                    "display" : "none"
-                };              
-            }
-        };              
-    });
+          } 
+      });
+    }
+    $scope.rolesInit();
     
     $scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
@@ -123,4 +127,120 @@ app
     
     $scope.imagePath = 'http://localhost:8080/elika/images';    
     
+});
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:AdminCtrl
+ * @description
+ * # AdminCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('AdminCtrl', function ($scope, $http, $mdDialog, $rootScope, toaster, $timeout, $location, baseURL, $uibModal, appConstants, administratorSvc, dashboardSvc) {
+     $scope.page = {
+      title: 'Admin',
+    };
+
+    $rootScope.adminTypes = appConstants.adminTypes;
+  
+    $scope.status = '  ';
+    $scope.showConfirm = function(ev) {
+    var confirm = $mdDialog.confirm()   
+    .title(appConstants._messagedeleteadmin)
+    .content('')
+    .ok('Yes')
+    .cancel('Cancel')
+    .targetEvent(ev);
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'Your admin has been deleted successfully.';
+      $scope.statusclass = 'alert alert-danger alert-dismissable';
+    }, function() {
+      $scope.status = 'You decided to keep admin.';
+      $scope.statusclass = 'alert alert-success alert-dismissable';
+    });
+    };
+  
+  $scope.layout = 'grid';
+  $scope.class = 'gridview';
+  $scope.changeClass = function(){
+    if ($scope.class === 'gridview')
+    $scope.class = 'listview';
+    $scope.layout = 'list';
+  };
+  
+  $scope.changeaClass = function(){
+    if ($scope.class === 'listview')
+    $scope.class = 'gridview';
+    $scope.layout = 'grid';
+  };
+
+  /*
+  $http.get('http://elikastaging.ml/json/admin/admin.json')
+  .success(function(response){
+    $scope.admin = response;
+    $scope.totalDisplayed = 8;
+    
+    if($scope.admin.length > $scope.totalDisplayed) {
+      $scope.lmbtn = {
+        "display" : "block"
+      };      
+    } else {
+      $scope.lmbtn = {
+        "display" : "none"
+      };
+    }
+    
+    $scope.loadMore = function () {
+      $scope.totalDisplayed += 8;
+      if($scope.totalDisplayed > $scope.admin.length) {       
+        $scope.lmbtn = {
+          "display" : "none"
+        };  
+      }     
+    };    
+  });
+*/
+  
+  $scope.adminInit = function(){
+    administratorSvc.adminInit(appConstants.adminlist, appConstants.getMethod, {}, {}, function(succResponse){
+        if(succResponse.status){
+          // toaster.pop(appConstants.success,appConstants._successadminadded);
+        } else {
+          // $scope.result = succResponse.msg;
+          // $scope.statusclass = appConstants.dangerstatusClass;
+        }
+    });
+  }
+  $scope.adminInit();
+
+  $rootScope.submitAddAdmin = function(addAdmin){
+    administratorSvc.submitAddAdmin(appConstants.adminadd, appConstants.postMethod, {}, addAdmin, function(succResponse){
+        if(succResponse.status){
+          toaster.pop(appConstants.success,appConstants._successadminadded);
+        } else {
+          //$scope.result = succResponse.msg;
+          //$scope.statusclass = appConstants.dangerstatusClass;
+          toaster.pop(appConstants.error, succResponse.msg);
+        }
+    });
+  }
+
+  $scope.rolesInit = function(){
+      administratorSvc.rolesInit(appConstants.rolelist, appConstants.getMethod, {}, {}, function(succResponse){
+          if(succResponse.status){
+             $rootScope.userRoles = succResponse.data.data;
+          } 
+      });
+    }
+    $scope.rolesInit();
+  
+  $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }
+  
+  $scope.imagePath = 'http://elikastaging.ml/images'; 
+  
 });

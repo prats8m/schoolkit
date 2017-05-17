@@ -67,9 +67,9 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-20">
 								<div class="col-sm-3 col-md-3 filterorder">
-									<label class="control-label" ng-init="filtershow=true">
+									<!-- <label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
-									</label>
+									</label> -->
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
@@ -81,8 +81,8 @@
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
 										<div class="col-sm-8 col-md-9 search">
-											<input type="text" class="form-control" placeholder="Search by text....">
-											<button class="btn btn-default br-2-r" type="button">Search</button>
+											<input type="text" class="form-control" ng-model="searchText" placeholder="Search by text...." ng-keyup="rolesInit($event)">
+											<button class="btn btn-default br-2-r" type="button" ng-click="rolesInit()">Search</button>
 										</div>
 										<div class="col-sm-4 col-md-3 profilephoto csvupload">
 											<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
@@ -97,7 +97,7 @@
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div>
 								</div>
-								<div class="filterfields" ng-hide="filtershow">
+								<!-- <div class="filterfields" ng-hide="filtershow">
 									<div class="col-md-3">
 										<label for="fbtext" class="control-label">Search by text</label> 
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
@@ -110,7 +110,7 @@
 										<label for="fblocation" class="control-label">Search by status</label>
 										<input type="text" class="form-control" id="fblocation" ng-model="status">
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div ng-if="result">									
 								<div layout="row" ng-class="statusclass">									
@@ -122,14 +122,14 @@
 									<md-content>			
 										<md-card ng-repeat="role in aroles | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy">
 											<md-card-content>
-												<h2 class="md-title">{{ role.title }}</h2>
-												<p>{{ role.status }}</p>
-												<p>{{ role.access }}</p>
+												<h2 class="md-title">{{ role.wrd_name }}</h2>
+												<!-- <p>{{ role.status }}</p>
+												<p>{{ role.access }}</p> -->
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.view-roles">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.administrator.edit-roles">Edit</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.view-roles({role_id:role.wrd_id})">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.administrator.edit-roles({role_id:role.wrd_id})">Edit</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,role.wrd_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

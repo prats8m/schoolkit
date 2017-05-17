@@ -437,6 +437,20 @@ var app = angular
 				  templateUrl: 'views/tmpl/admin/administrator/edit-roles.html'
 				})
 				
+
+				//admin administrator admin
+				.state('app.admin.administrator.admin', {
+				  url: '/admin',
+				  controller: 'AdminCtrl',
+				  templateUrl: 'views/tmpl/admin/administrator/admin.html'
+				})
+				
+					//admin administrator admin-profile
+					.state('app.admin.administrator.admin-profile', {
+					  url: '/admin-profile',
+					  controller: 'AdminProfileCtrl',
+					  templateUrl: 'views/tmpl/admin/administrator/admin-profile.html'
+					})
 				
 		//subadmin schedule
 		.state('app.subadmin.schedule', {

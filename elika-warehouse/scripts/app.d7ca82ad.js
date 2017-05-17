@@ -269,14 +269,14 @@ var app = angular
 			
 				//administrator view-roles
 				.state('app.administrator.view-roles', {
-				  url: '/view-roles',
+				  url: '/view-roles/:role_id',
 				  controller: 'ViewRoleCtrl',
 				  templateUrl: 'views/tmpl/administrator/view-roles.html'
 				})
 				
 				//administrator edit-roles
 				.state('app.administrator.edit-roles', {
-				  url: '/edit-roles',
+				  url: '/edit-roles/:role_id',
 				  controller: 'EditRolesCtrl',
 				  templateUrl: 'views/tmpl/administrator/edit-roles.html'
 				})
@@ -432,84 +432,6 @@ app
 		title: 'Monitor Diagnostics & Reported Issues',
     };
 });
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:RoleCtrl
- * @description
- * # RoleCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('RoleCtrl', function ($scope, $http, $mdDialog) {
-     $scope.page = {
-      title: 'Roles',
-    };	
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete role?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your role has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.result = 'You decided to keep role.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-		
-	$http.get('http://localhost:8080/elika-warehouse/json/roles.json').success(function(response){
-		$scope.aroles = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.aroles.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {				
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed >= $scope.aroles.length) {
-				$scope.lmbtn = {
-					"display" : "none"
-				};				
-			}
-		};				
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
-    }
-	
-	$scope.imagePath = 'http://localhost:8080/elika-warehouse/images';	
-	
-});
-
 
 
 'use strict';

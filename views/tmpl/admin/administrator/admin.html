@@ -22,7 +22,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
+					<div class="noback bg-blue cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -43,7 +43,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
+					<div class="noback bg-slategray lt cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -64,7 +64,7 @@
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
+					<div class="noback bg-lightred cardheight">						
 						<div class="row">
 							<div class="col-xs-6 ta-r">
 								<div class="iconbx">
@@ -84,7 +84,7 @@
 			</div>			
 		</div>
 		
-		<div class="row" ng-controller="AdminCtrl">
+		<div class="row" >
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="tile-header dvd dvd-btm">
@@ -93,109 +93,95 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
+										<form ng-submit="submitAddAdmin(addAdmin)">
 										<div class="modal-header"><h4 class="modal-title custom-font">Add Admin</h4></div>
 										<div class="modal-body">											
 											<div class="row form-group">
 												<div class="col-sm-6 col-md-6">
 													<label for="">First Name</label>
-													<input type="text" name="" id="" class="form-control" placeholder="">
+													<input type="text" name="" ng-model="addAdmin.first_name" id="" class="form-control" placeholder="" required="required">
 												</div>
 												<div class="col-sm-6 col-md-6">
 													<label for="">Last Name</label>
-													<input type="text" name="" id="" class="form-control" placeholder="">
+													<input type="text" name="" ng-model="addAdmin.last_name" id="" class="form-control" placeholder="" required="required">
 												</div>
 											</div>
 											
 											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">				
 													<label for="">Email Address</label>
-													<input type="emial" name="" id="" class="form-control" placeholder="">
+													<input type="email" name=""  ng-model="addAdmin.email" id="" class="form-control" placeholder="" required="required">
 												</div>
-												<div class="col-sm-6 col-md-6">
-													<label for="">Profile Photo</label>
-													<div class="profilephoto">
-														<input ui-jq="filestyle" type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
-													</div>
+												<div class="col-sm-6 col-md-6">				
+													<label for="">Phone</label>
+													<input type="text" name="" ng-model="addAdmin.phone" id="" class="form-control" placeholder="" required="required" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="+12015550123">
 												</div>
 											</div>
 											
-											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">				
-													<label for="">Phone</label>
-													<input type="text" name="" id="" class="form-control" placeholder="">
+											<div class="form-group row">												
+												<div class="col-sm-6 col-md-6">
+													<label for="">Password</label>
+													<input type="password" name="" id="" class="form-control" ng-model="addAdmin.password" placeholder="" required="required">
+												</div>
+												<div class="col-sm-6 col-md-6">
+													<label for="">Confirm Password</label>
+													<input type="password" ng-model="addAdmin.confirm_password" name="" id="" class="form-control" placeholder="" required="required">
+												</div>
+											</div>
+											
+											<div class="form-group row">												
+												<div class="col-sm-6 col-md-6">
+													<label for="">Admin Password</label>
+													<input type="password" ng-model="addAdmin.admin_password" name="" id="" class="form-control" placeholder="" required="required">
 												</div>
 												<div class="col-sm-6 col-md-6">
 													<label for="">Zip Code</label>
-													<input type="text" name="" id="" class="form-control" placeholder="">
+													<input type="number" ng-model="addAdmin.zipcode" name="" id="" class="form-control" placeholder="" required="required">
 												</div>
 											</div>
 											
-											<div class="form-group row">
+											<div class="form-group row">												
 												<div class="col-sm-6 col-md-6">
-													<label for="">Username</label>
-													<input type="text" name="" id="" class="form-control" placeholder="">
+													<label for="" style="display: block;">Select Admin</label>
+													<select ng-model="addAdmin.type" class="form-control" ng-options="item.type as item.label for item in adminTypes | filter:{value:true}" required="required">
+														<option value="">Select</option>
+													</select>
 												</div>
-												<div class="col-sm-6 col-md-6">
-													<label for="">Password</label>
-													<input type="password" name="" id="" class="form-control" placeholder="">
-												</div>
-											</div>
-											
-											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">
-													<label for="">Confirm Password</label>
-													<input type="password" name="" id="" class="form-control" placeholder="">
-												</div>
-												<div class="col-sm-6 col-md-6">
-													<label for="">Admin Password</label>
-													<input type="password" name="" id="" class="form-control" placeholder="">
+												<div class="col-sm-6 col-md-6" ng-hide="addAdmin.type=='super'">
+													<label for="" style="display: block;">Roles <small class="pull-right" style="margin-top: 5px;"><a ng-click="cancel()" ui-sref="app.admin.administrator.add-roles">Add Roles</a></small></label>
+													<select ng-model="addAdmin.user_role" ng-options="item.role_name as item.role_name for item in userRoles" class="form-control" ng-required="addAdmin.type!='super'">
+														<option value="">Select</option>
+													</select>
 												</div>
 											</div>
 											
-											<div class="form-group">
-												<label for="">Select Secret Question</label>
-												<select chosen="{width: '100%'}">
-													<option value="1" label="What was your favorite place to visit as a child?">What was your favourite place to visit as a child?</option>
-													<option value="2" label="Who is your favorite actor, musician, or artist?">Who is your favorite actor, musician, or artist?</option>
-													<option value="3" label="What is the name of your favorite pet?">What is the name of your favorite pet?</option>
-													<option value="4" label="In what city were you born?">In what city were you born?</option>
-													<option value="5" label="What high school did you attend?">What high school did you attend?</option>
-													<option value="6" label="What is the name of your first school?">What is the name of your first school?</option>
-													<option value="7" label="What is your favorite movie?">What is your favorite movie?</option>
-													<option value="8" label="What is your mother's maiden name?">What is your mother's maiden name?</option>
-													<option value="9" label="What street did you grow up on?">What street did you grow up on?</option>
-													<option value="10" label="What was the make of your first car?">What was the make of your first car?</option>
-													<option value="11" label="When is your anniversary?">When is your anniversary?</option>
-													<option value="12" label="What is your favorite color?">What is your favorite color?</option>
-													<option value="13" label="What is your father's middle name?">What is your father's middle name?</option>
-													<option value="14" label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
-													<option value="15" label="What was your high school mascot?">What was your high school mascot?</option>
-												</select>
-											</div>
-											
-											<div class="form-group">
-												<label for="">Secret Answer</label>
-												<input type="text" name="" id="" class="form-control" placeholder="">
-											</div>
-											
-											<div class="form-group">
-												<label for="">Select Roles </label>
-												<select chosen="{width: '100%'}">
-													<option>Data Operator Administrator</option>
-													<option>Assistant Administrator</option>
-													<option>Master Administrator</option>
-													<option>Super Administrator</option>
-													<option>Senior Administrator</option>
-												</select>
+											<div class="form-group row" ng-controller="ActivebtnCtrl">
+												<div class="col-sm-6 col-md-6" ng-init="$parent.addAdmin.status=1">
+													<label for="">Status</label><br/>
+													<div class="btn-group btnrounded">
+														<label class="btn btn-default" ng-model="$parent.addAdmin.status" uib-btn-radio="1">Active</label>
+														<label class="btn btn-default" ng-model="$parent.addAdmin.status" uib-btn-radio="0">Inactive</label>
+													</div>
+												</div>
+												<div class="col-sm-6 col-md-6" ng-hide="addAdmin.status==0">
+													<div ng-controller="DatepickerDemoCtrl">
+														<label for="">Expiration Date </label>
+														<div class="input-group userexp">
+															<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.addAdmin.expiration_date" is-open="opened" datepicker-options="dateOptions" min-date="mindate" ng-required="true" close-text="Close" onkeypress="return false;" />
+															<span class="input-group-btn">
+																<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+															</span>
+														</div>
+													</div>
+												</div>
 											</div>
 																												
 										</div>
 										<div class="modal-footer">
-											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
+											<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
 											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 										</div>
-										
+										</form>
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Admin</span></a>
 								</div>
@@ -260,8 +246,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in admin | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy">											
-											<img ng-src="{{imagePath}}/users/{{user.imagename}}.jpg" class="md-card-image" alt="Washed Out">
+										<md-card ng-repeat="user in admin | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy">
 											<md-card-content>
 												<h2 class="md-title">{{ user.name }}</h2>
 												<p>{{ user.access }}</p>

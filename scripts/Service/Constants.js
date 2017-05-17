@@ -13,6 +13,7 @@ app.constant("appConstants", {
     listeventtype:'event/list-event-type',
     listevent:'event/list-event',
     adminadd:'admin/add',
+    adminlist:'admin/list',
     cameralist:'camera/list',
     cameragrouplist:'cameragroup/list',
     deletecameragroup:'cameragroup/delete',
@@ -84,7 +85,9 @@ app.constant("appConstants", {
     scheduleView:'schedule/view',
     shortcutslist:'shortcut/list',
     shortcutadd:'shortcut/add',
-	roleadd:'role/add',
+    roleadd:'role/add',
+    rolelist:'role/list',
+	adminadd:'admin/add',
 
 
 
@@ -267,6 +270,7 @@ app.constant("appConstants", {
     //.................Admin....................................................
 
     admintitle:'Admin',
+    _messagedeleteadmin:'Would you like to delete admin?',
 
     //............................................................................
 
@@ -390,9 +394,10 @@ app.constant("appConstants", {
 	
 	 //........................................................................................
 
-    //............................Roles.......................................
+    //............................Administrator.......................................
 
     _successrolesadded:'Roles added successfully',
+    _successadminadded:'Admin created successfully',
 
     //........................................................................................
 
@@ -703,6 +708,29 @@ app.constant("appConstants", {
             shortcutUrl:'app.admin.profile-settings',
             shortcutIcon:'fa fa-question',
             status:false
+        }
+    ],
+
+    adminTypes : [
+        {
+            type:'master',
+            label: 'Master Administrator',
+            value:false
+        },
+        {
+            type:'super',
+            label: 'Super Administrator',
+            value:true
+        },
+        {
+            type:'senior',
+            label: 'Senior Administrator',
+            value:true
+        },
+        {
+            type:'assistant',
+            label: 'Assistant Administrator',
+            value:true
         }
     ]
 

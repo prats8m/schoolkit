@@ -49,29 +49,33 @@ app
 			$scope.searchText = '';
 		}
 		//$http.get('http://localhost:8080/elika-warehouse/json/firmware.json')
-		dataService.getData({limit:1000,pageNo:1,searchVal:$scope.searchText},baseUrl + 'firmware/list')
+		dataService.getData({limit:1000,pageNo:1,search_val:$scope.searchText},baseUrl + 'firmware/list')
 		.success(function(response){
-			$scope.firmwares = response.data.data;
-			$scope.totalDisplayed = 8;
-			
-			if($scope.firmwares.length > $scope.totalDisplayed) {
-				$scope.lmbtn = {
-					"display" : "block"
-				};			
-			} else {
-				$scope.lmbtn = {
-					"display" : "none"
-				};
-			}
-			
-			$scope.loadMore = function () {
-				$scope.totalDisplayed += 8;
-				if($scope.totalDisplayed > $scope.firmwares.length) {				
+			if(response.status){
+				$scope.firmwares = response.data.data;
+				$scope.totalDisplayed = 8;
+				
+				if($scope.firmwares.length > $scope.totalDisplayed) {
+					$scope.lmbtn = {
+						"display" : "block"
+					};			
+				} else {
 					$scope.lmbtn = {
 						"display" : "none"
-					};	
-				}			
-			};		
+					};
+				}
+				
+				$scope.loadMore = function () {
+					$scope.totalDisplayed += 8;
+					if($scope.totalDisplayed > $scope.firmwares.length) {				
+						$scope.lmbtn = {
+							"display" : "none"
+						};	
+					}			
+				};
+			}else{
+				$scope.firmwares = [];
+			}		
 		});
 	}
 	$scope.firmwareInit();
