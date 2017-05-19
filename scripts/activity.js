@@ -50,8 +50,8 @@ app
 		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
 		if($scope.door_id){params += '&door_id='+$scope.door_id;}else{params += '&door_id='+appConstants.null;}
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
-		$scope.date = $scope.date/1000;
-		if($scope.date){params += '&date='+$scope.date;}
+		//$scope.date = $scope.date/1000;
+		//if($scope.date){params += '&date='+$scope.date;}
 		params += "&limit=100&pageNo=1&searchVlaue=";
         activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
         //activitiesSvc.eventFetch('event/list-event?facility_id=null&door_id=null&event_id=null&limit=5&pageNo=1&searchVlaue=',appConstants.getMethod,{},{},function (succResponse) {
