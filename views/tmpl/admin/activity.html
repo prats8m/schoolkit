@@ -29,7 +29,7 @@
 									<img src="images/device-icon.png" alt="">
 								</div>
 							</div>
-							<div class="col-xs-6">	
+							<div class="col-xs-6">	 
 								<div class="itxt">							
 									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
 									<span class="text-lg">Devices</span>
@@ -129,7 +129,7 @@
 										<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
 											<label for="">Date/Time</label>
 											<div class="input-group">
-												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" required="required" close-text="Close" onkeypress="return false;" />
 												<span class="input-group-btn">
 													<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 												</span>
