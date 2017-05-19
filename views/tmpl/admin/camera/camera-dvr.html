@@ -240,7 +240,6 @@
 
 														</div>
 													</div>
-
 												</div>
 											</div>
 										</div>
@@ -356,7 +355,7 @@
 	</div>
 </div>
 <script>
-    function callPlayer(cameraID, videoUrl) {
+    function callPlayer(cameraID, videoUrl='rtsp://52.34.213.96:8554/Elika12345') {
         var isChrome = !!window.chrome && !!window.chrome.webstore;
         setTimeout(function () {
             vxgplayer('vxg_media_player' + cameraID).onReadyStateChange(function (onreadyState) {
@@ -377,7 +376,7 @@
                 "player" + cameraID);
         } else {
             document.getElementById("vxg_media1" + cameraID).innerHTML =
-                '<div id= "vxg_media_player' + cameraID +'" class="vxgplayer" url= "'+videoUrl+'" aspect-ratio latency= "3000000" autostart controls avsync> </div>';
+                '<div id= "vxg_media_player' + cameraID +'" class="vxgplayer" url= "'+videoUrl+'" aspect-ratio latency= "3000000" autostart controls avsync style="width: 770px; min-height: 360px;"> </div>';
         }
     };
 </script>
