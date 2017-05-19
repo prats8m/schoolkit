@@ -332,6 +332,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -368,6 +369,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -380,6 +382,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -416,6 +419,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -428,6 +432,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -475,6 +480,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -510,6 +516,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_found')
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
@@ -535,6 +542,7 @@ app
                     cb(succResponse);
                 }
                 else {
+                    
                     succResponse.msg = succResponse.msg.replace(/_/g,' ');
                      toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
