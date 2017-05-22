@@ -92,7 +92,7 @@
 						<h4 class="mb-0"><strong>{{technician.technician_first_name}}</strong></h4>
 						<span class="text-muted">{{technician.technician_phone}}</span>
 						<div class="mt-40">
-							<button class="btn btn-rounded-20 btn-sm btn-lightred">Delete Technician</button>
+							<button ng-click="showConfirm($event,technician.technician_id)" class="btn btn-rounded-20 btn-sm btn-lightred">Delete Technician</button>
 						</div>
 					</div>  
 				</section>
