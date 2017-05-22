@@ -14,7 +14,7 @@ app
       subtitle: appConstants.dashboardSubTitle
     };
 	$scope.status = '  ';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title(appConstants.deleteuserconfirmationmessage)
 		.content(appConstants.content)
@@ -22,11 +22,13 @@ app
 		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.status = appConstants._successfullyuserdeletedmessage;
-			$scope.statusclass = appConstants.dangerstatusClass;
+			//$scope.status = appConstants._successfullyuserdeletedmessage;
+			//$scope.statusclass = appConstants.dangerstatusClass;
+			$scope.deleteTechnician(id);
 		}, function() {
-			$scope.status = appConstants._canceluserfromdelete;
-			$scope.statusclass = appConstants.successstatusClass;
+			toaster.pop(appConstants.success, appConstants._canceluserfromdelete);
+			//$scope.status = appConstants._canceluserfromdelete;
+			//$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
@@ -62,7 +64,16 @@ app
     	technicianSvc.addTechnicianSubmit(appConstants.addtechnician, appConstants.postMethod,{},data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-				setTimeout(function() {$("#close").click();}, 10);
+                $scope.getTechnicians();
+            }
+        });
+    }
+
+    $scope.deleteTechnician = function(technician_id){
+    	technicianSvc.deleteTechnician(appConstants.deletetechnician + "?technician_id=" + technician_id, appConstants.getMethod,{},{},function (succResponse) {
+        	if(succResponse.status){
+                toaster.pop(appConstants.success, appConstants._successfullyuserdeletedmessage);
+				$scope.getTechnicians();
             }
         });
     }

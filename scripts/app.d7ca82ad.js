@@ -9443,7 +9443,7 @@ app.directive('aDisabled', function() {
 
 app.directive('username', function username() {
       return {
-		template: '{{userFirstName}} {{userLastName}}',
+		template: '{{userFirstName}}',
 		controller:function($scope,$cookies){
 			$scope.userFirstName = $cookies.get('userFirstName');
 			$scope.userLastName = $cookies.get('userLastName');
