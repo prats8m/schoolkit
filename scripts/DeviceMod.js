@@ -86,8 +86,6 @@ app
 			return false;
 		}
             device.technician_id = parseInt(device.technician_id);
-            //device.serial_no = parseInt(device.serial_no);
-            //device.facility_id = parseInt($rootScope.facilityId);
             devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
                 if(succResponse.status){
                     toaster.pop(appConstants.success,succResponse.msg);

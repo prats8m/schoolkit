@@ -87,7 +87,9 @@ app.constant("appConstants", {
     shortcutadd:'shortcut/add',
     roleadd:'role/add',
     rolelist:'role/list',
-	adminadd:'admin/add',
+    adminadd:'admin/add',
+    addtechnician:'technician/add',
+	viewtechnician:'technician/view',
 
 
 

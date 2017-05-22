@@ -524,7 +524,7 @@ var app = angular
 			
 				//subadmin support technician-profile
 				.state('app.subadmin.support.technician-profile', {
-				  url: '/technician-profile',
+				  url: '/technician-profile/:technician_id',
 				  controller: 'TechnicianProfileCtrl',
 				  templateUrl: 'views/tmpl/subadmin/support/technician-profile.html'
 				})
@@ -895,7 +895,7 @@ var app = angular
 			
 				//admin support technician-profile
 				.state('app.admin.support.technician-profile', {
-				  url: '/technician-profile',
+				  url: '/technician-profile/:technician_id',
 				  controller: 'TechnicianProfileCtrl',
 				  templateUrl: 'views/tmpl/admin/support/technician-profile.html'
 				})
