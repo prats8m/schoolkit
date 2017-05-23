@@ -106,7 +106,7 @@
 												<option>30 min</option>
 											</select>
 										</div>
-										<div class="col-sm-8 col-md-7 ta-r">
+										<!-- <div class="col-sm-8 col-md-7 ta-r">
 											<label for="">&nbsp;</label><br/>
 											<select class="form-control w-240" style="display: inline-block;" disabled>
 												<option>Select Door</option>
@@ -120,7 +120,7 @@
 												<option>Gym Gate</option>
 											</select>
 											<button class="btn btn-default btn-rounded" disabled style="padding: 12px 10px;"><i class="fa fa-unlock-alt"></i> Unlock Door</button>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								
@@ -189,7 +189,7 @@
 											<td>{{active['door/device']}}</td>
 											
 											<td class="customicon ta-c">
-												<a href="" uib-tooltip="View Playback"><i class="fa fa-video-camera" aria-hidden="true"></i></a>
+												<a href="" ng-click="viewActivity(active.media_file)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -206,18 +206,16 @@
 					<div class="tile-widget">
 						<div class="row">
 							<div class="form-group col-sm-12">
-								<h3 class="mt-0">User Image</h3>					
+								<h3 class="mt-0">Screenshot</h3>					
 								<div class="tile-body p-0">
 									<img src="images/avatar.jpg" class="userimg" alt="">
 								</div>
 							</div>
 							<div class="form-group col-sm-12">
-								<h3 class="mt-40">Video Playback</h3>					
+								<h3 class="mt-40">Video</h3>					
 								<div class="tile-body p-0">
 									<video controls>
-										<source src="http://localhost/elika/videos/mov_bbb.mp4" type="video/mp4">
-										<source src="http://localhost/elika/videos/mov_bbb.ogg" type="video/ogg">
-										<source src="http://localhost/elika/videos/mov_bbb.webm" type="video/webm">
+										<source src="" type="video/mp4">
 										Your browser does not support HTML5 video.
 									</video>
 								</div>

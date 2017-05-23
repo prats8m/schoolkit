@@ -81,7 +81,6 @@ app
       };
 
 	$rootScope.formSubmit = function(device,device_form){
-		//console.log("asdasdads");
 		if(!device_form.validate()){
 			return false;
 		}
