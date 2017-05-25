@@ -1,3 +1,5 @@
+'use strict';
+
 app
   .controller('ActivityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,appConstants,activitiesSvc) {
     $scope.page = {
@@ -52,7 +54,7 @@ app
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
 		//$scope.date = $scope.date/1000;
 		//if($scope.date){params += '&date='+$scope.date;}
-		params += "&limit=100&pageNo=1&searchVlaue=";
+		params += "&limit=100&pageNo=1&searchValue=";
         activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
         //activitiesSvc.eventFetch('event/list-event?facility_id=null&door_id=null&event_id=null&limit=5&pageNo=1&searchVlaue=',appConstants.getMethod,{},{},function (succResponse) {
             $scope.activities = [];
@@ -63,23 +65,37 @@ app
 			$scope.date = $scope.date*1000;
         });
 	};
-	
-	$scope.dashboardInit = function(){
-        activitiesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
-            if(succResponse.status){
-                $rootScope.dashboardData = succResponse.data;
-            }
-        });
-	};
-	$scope.dashboardInit();
 
 	$scope.eventFetch();
-		$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
-		$scope.dtColumnDefs = [
-			DTColumnDefBuilder.newColumnDef(0),
-			DTColumnDefBuilder.newColumnDef(1),
-			DTColumnDefBuilder.newColumnDef(2),
-			DTColumnDefBuilder.newColumnDef(3),
-			DTColumnDefBuilder.newColumnDef(4).notSortable()
-		];
+
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
+	$scope.dtColumnDefs = [
+		DTColumnDefBuilder.newColumnDef(0),
+		DTColumnDefBuilder.newColumnDef(1),
+		DTColumnDefBuilder.newColumnDef(2),
+		DTColumnDefBuilder.newColumnDef(3),
+		DTColumnDefBuilder.newColumnDef(4).notSortable()
+	];
+
+    $scope.mediafile = 'images/avatar.jpg';
+    $scope.mediatype = 'jpeg';
+    $scope.viewActivity = function(device_id,mediafile){
+        // var tmp = mediafile.split(".");
+        // var ext = tmp[tmp.length - 1];
+        // if(ext == 'jpeg' || ext == 'mp4'){
+        //     $scope.mediatype = ext;
+        //     $scope.mediafile = mediafile;
+        // }else{
+        //     $scope.mediatype = 'jpeg';
+        //     $scope.mediafile = 'images/avatar.jpg';
+        //  }
+        
+        var url = appConstants.geteventmediaurl + '?device_id='+device_id+'&media_file='+mediafile;
+        activitiesSvc.viewActivity(url ,appConstants.getMethod,{},{},function (succResponse) {
+            if(succResponse.status){
+                $scope.mediafile = (succResponse.data != null || succResponse.data != "")?succResponse.data:'images/avatar.jpg';
+                $scope.mediatype = 'jpeg';
+            }
+        });
+    }
 });

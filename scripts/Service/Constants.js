@@ -90,7 +90,8 @@ app.constant("appConstants", {
     adminadd:'admin/add',
     addtechnician:'technician/add',
     viewtechnician:'technician/view',
-	deletetechnician:'technician/delete',
+    deletetechnician:'technician/delete',
+	geteventmediaurl:'event/get-event-media-url',
 
 
 

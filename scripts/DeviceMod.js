@@ -321,6 +321,7 @@ app
 	$scope.deviceModelInit();
 
 	$scope.pageNo = 1;
+    $scope.dependent_devices = [];  
 	$scope.dependentDevices = function(e){
 		if(e)
 		if(e.keyCode!=13){return false;}
@@ -342,7 +343,7 @@ app
             }
         });
 	};
-	$scope.deviceUsers();
+	//$scope.deviceUsers();
 
 	
 	$scope.orderByMe = function(x) {

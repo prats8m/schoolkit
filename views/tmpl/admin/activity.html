@@ -19,69 +19,7 @@
 					</div>
 				</div>
 			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	 
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
+			<flip-header></flip-header>			
 		</div>
 		
 		<div class="row">
@@ -173,23 +111,25 @@
 										<tr>
 											<th><span>Date/Time</span></th>
 											<th><span>User/Event</span></th>
+											<th><span>Event Mode</span></th>
 											
 											<th><span>Facility</span></th>
 											<th><span>Door/Device</span></th>
 											
-											<th width="100">Video Action</th>
+											<th width="100">Action</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr ng-repeat="active in activities">
 											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a'}}</td>
 											<td>{{active['user/event']}}</td>
+											<td>{{active['access_mode']}}</td>
 											
 											<td>{{active['facility']}}</td>
 											<td>{{active['door/device']}}</td>
 											
 											<td class="customicon ta-c">
-												<a href="" ng-click="viewActivity(active.media_file)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+												<a href="" ng-click="viewActivity(active['device_id'],active.media_file)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -205,13 +145,14 @@
 				<section class="tile tile-simple activity">
 					<div class="tile-widget">
 						<div class="row">
-							<div class="form-group col-sm-12">
+							<div ng-if="mediatype!='mp4'" class="form-group col-sm-12">
 								<h3 class="mt-0">Screenshot</h3>					
 								<div class="tile-body p-0">
-									<img src="images/avatar.jpg" class="userimg" alt="">
+									<img ng-src="{{mediafile}}" class="userimg" alt="">
+									<!-- <img ng-src="https://elika-v2-devices.s3.amazonaws.com/elika4004/camera/57/snapshots/event_access_grant_2147483647_1495234931.jpeg?AWSAccessKeyId=AKIAJZ4PUZXXG2DABBSQ&Expires=1496147170&Signature=BbGsd%2F5Nqo3tMmzy6dyA8AaxOCM%3D" class="userimg" alt=""> -->
 								</div>
 							</div>
-							<div class="form-group col-sm-12">
+							<div ng-if="mediatype=='mp4'" class="form-group col-sm-12">
 								<h3 class="mt-40">Video</h3>					
 								<div class="tile-body p-0">
 									<video controls>

@@ -19,69 +19,7 @@
 					</div>
 				</div>
 			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
+			<flip-header></flip-header>			
 		</div>
 		
 		<div class="row" ng-controller="EditRolesCtrl">
