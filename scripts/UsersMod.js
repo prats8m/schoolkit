@@ -181,6 +181,7 @@ app
 	$scope.userData = {};
 	$scope.userData.status = 1;
 	$scope.submitUserData = function(userData, user_form){
+        console.log(userData);
 		if(!user_form.validate({
 			rules: {
         user_phone_no: {
@@ -199,7 +200,7 @@ app
 			$rootScope.user_error = appConstants.incompleteform;
 			return false;
 		}
-		userData.user_phone_no = parseInt(userData.user_phone_no);
+		//userData.user_phone_no = parseInt(userData.user_phone_no);
 		userData.zip_code = parseInt(userData.zip_code);
 		userData.user_type = appConstants.usertype.admin;
 		if(!userData.expiration_date)
@@ -1794,13 +1795,13 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-      // $rootScope.listDoorSchedule(group_id, facility_id);
+      
       $rootScope.usergroupedit = {};
       $rootScope.listDoorGroup = {};
       $rootScope.usergroupedit.usergroup_name = group_name;
       $rootScope.usergroupedit.usergroup_id = group_id;
-			$rootScope.usergroupedit.facility_id = facility_id;
-			$rootScope.usergroupedit.facility_name = facility_name;
+	  $rootScope.usergroupedit.facility_id = facility_id;
+	  $rootScope.usergroupedit.facility_name = facility_name;
 
     };
    
