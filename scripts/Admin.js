@@ -6,6 +6,7 @@
  * # DoorCtrl
  * Controller of the minovateApp
  */
+ /*
 app
   .controller('AdminCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService,appConstants,adminSvc) {
      $scope.page = {
@@ -38,3 +39,4 @@ app
         });
 	}
 });
+*/

@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('AddRolesCtrl', function ($scope, $mdDialog, $http, $rootScope, dataService, toaster, $timeout) {
+  .controller('AddRolesCtrl', function ($scope, $mdDialog, $http, $rootScope, dataService, toaster, $timeout,$location) {
      $scope.page = {
       title: 'Add Roles',
     };
@@ -47,4 +47,96 @@ app
 	
 	$scope.imagePath = 'http://localhost:8080/elika-warehouse/images';	
 	
+});
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:RoleCtrl
+ * @description
+ * # RoleCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('RoleCtrl', function ($scope,toaster,$timeout, $state, $mdDialog, $http, $rootScope, dataService) {
+     $scope.page = {
+      title: 'Roles',
+    };  
+    
+    $scope.result = '';
+    $scope.showConfirm = function(ev) {
+        var confirm = $mdDialog.confirm()       
+        .title('Would you like to delete role?')
+        .content('')
+        .ok('Yes')
+        .cancel('No')
+        .targetEvent(ev);
+        $mdDialog.show(confirm).then(function() {
+            $scope.result = 'Your role has been deleted successfully.';
+            $scope.statusclass = 'alert alert-danger alert-dismissable';
+        }, function() {
+            $scope.result = 'You decided to keep role.';
+            $scope.statusclass = 'alert alert-success alert-dismissable';
+        });
+    };
+    
+    $scope.layout = 'grid';
+    $scope.class = 'gridview';
+    $scope.changeClass = function(){
+        if ($scope.class === 'gridview')
+        $scope.class = 'listview';
+        $scope.layout = 'list';
+    };
+    
+    $scope.changeaClass = function(){
+        if ($scope.class === 'listview')
+        $scope.class = 'gridview';
+        $scope.layout = 'grid';
+    };
+      
+    $scope.rolesInit = function(e){  
+        if(e)
+        if(e.keyCode!=13){return false;}
+        if(!$scope.searchText){
+            $scope.searchText = '';
+        }
+        // $http.get('http://localhost:8080/elika-warehouse/json/roles.json')
+        dataService.getData({limit:1000,pageNo:1,search_val:$scope.searchText},baseUrl + 'warehouse/list-role')
+        .success(function(response){
+            if(response.status){
+                $scope.aroles = response.data.data;
+                $scope.totalDisplayed = 8;
+                
+                if($scope.aroles.length > $scope.totalDisplayed) {
+                    $scope.lmbtn = {
+                        "display" : "block"
+                    };          
+                } else {
+                    $scope.lmbtn = {
+                        "display" : "none"
+                    };
+                }
+                
+                $scope.loadMore = function () {             
+                    $scope.totalDisplayed += 8;
+                    if($scope.totalDisplayed >= $scope.aroles.length) {
+                        $scope.lmbtn = {
+                            "display" : "none"
+                        };              
+                    }
+                }; 
+            } else {
+                $scope.aroles = [];
+            }            
+        });
+    }
+    $scope.rolesInit();
+    
+    $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }
+    
+    $scope.imagePath = 'http://localhost:8080/elika-warehouse/images';  
+    
 });

@@ -129,9 +129,9 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-10 pb-20">
 								<div class="col-sm-3 col-md-4 filterorder">
-									<label class="control-label" ng-init="filtershow=true">
+									<!--label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Search by</a>
-									</label>
+									</label-->
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
 										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
 										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
@@ -141,6 +141,16 @@
 											<li><a href="" ng-click="orderByMe('firmware')">Firmware Version</a></li>
 										</ul>
 									</label>
+								</div>
+
+								<div class="col-sm-3 col-md-4">
+									<div class="row">
+										<div class="col-sm-8 col-md-9 search">
+											<input type="text" class="form-control" ng-model="searchText" placeholder="Search by text...." ng-keyup="firmwareInit($event)">
+											<button class="btn btn-default br-2-r" type="button" ng-click="firmwareInit()">Search</button>
+										</div>
+										
+									</div>
 								</div>
 								
 								<div class="col-sm-3 col-md-4 pull-right ta-r">
@@ -166,7 +176,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="filterfields" ng-hide="filtershow">
+								<!--div class="filterfields" ng-hide="filtershow">
 									<div class="col-sm-4 col-md-3">
 										<label for="">Component</label>
 										<input type="text" class="form-control" id="" ng-model="component">
@@ -183,10 +193,10 @@
 										<label for="">File Structure Version</label>
 										<input type="text" class="form-control" id="" ng-model="filestructure">
 									</div>
-								</div>
+								</div-->
 							</div>
 							<div ng-if="result">									
-								<div layout="row" ng-class="statusclass">									
+								<div layout="row" ng-class="statusclass">							
 									{{result}}
 								</div>
 							</div>
@@ -202,8 +212,8 @@
 												<!-- <p><span>Status</span> : {{ firmware.status }}</p> -->
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.firmware.view-firmware">View</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.firmware.view-firmware({firmware_id:firmware.firmware_id})">View</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,firmware.firmware_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

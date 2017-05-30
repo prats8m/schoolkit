@@ -12,113 +12,28 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<!-- <p>{{page.subtitle}}</p> -->									
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">35</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
+			<flip-header></flip-header>			
 		</div>
 		
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
-						<div class="thumb thumb-xxll">
-							<img class="img-circle" src="images/users/2.jpg" alt="">
-						</div>
-						<h4 class="mb-0"><strong>Arnold</strong></h4>
-						<span class="text-muted">+1 212 1467 8920</span>
+						
+						<h4 class="mb-0"><strong>{{technician.technician_first_name}}</strong></h4>
+						<span class="text-muted">{{technician.technician_phone}}</span>
 						<div class="mt-40">
-							<button class="btn btn-rounded-20 btn-sm btn-greensea">Send Message</button>
-							<button class="btn btn-rounded-20 btn-sm btn-lightred">Delete User</button>
+							<button ng-click="showConfirm($event,technician.technician_id)" class="btn btn-rounded-20 btn-sm btn-lightred">Delete Technician</button>
 						</div>
-
-					</div> 
-					<div class="tile-body text-center bg-blue p-0"> 
-						<ul class="list-inline tbox m-0">
-							<li class="tcol p-10">
-								<h2 class="m-0">5</h2>
-								<span class="text-transparent-white">Credentials</span>
-							</li>
-							<li class="tcol bg-blue dker p-10">
-								<h2 class="m-0">3</h2>
-								<span class="text-transparent-white">User Groups</span>
-							</li>
-						</ul>
 					</div>  
-				</section> 
-				
-				<section class="tile tile-simple">
-					<div class="tile-body">
-						<h2 class="custom-font mt-0">Description</h2>
-						<p class="text-default lt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p> 
-					</div> 
-				</section> 
+				</section>
 			</div>
 			
 			<div class="col-sm-12 col-md-8"> 
@@ -129,165 +44,77 @@
 							<uib-tab heading="Profile Detail">
 								<div class="wrap-reset">
 									<div class="row">
-										<div class="col-sm-6 col-md-6">
+										<div class="col-sm-12 col-md-12">
 											<div class="form-group legend">
 												<h4><strong>Account</strong> Details</h4>
 											</div>
 											<div class="form-group profiledetail">
-												<p><label>Name</label> Arnold</p>
-												<p><label>E-mail</label> arnold@gmail.com</p>
-												<p><label>Phone</label> +1 212 1467 1212</p>
-												<p><label>Address</label> 558 Margaret Street, LA, CA-90001, USA</p>
+												<p><label>Name</label> {{technician.technician_first_name + " "+ technician.technician_last_name}}</p>
+												<p><label>E-mail</label> {{technician.technician_email}}</p>
+												<p><label>Phone</label> {{technician.technician_phone}}</p>
+												<p><label>Address</label> {{technician.technician_address}}</p>
 												<p><label>Status</label> Active</p>
-												<p><label>Expiration Date</label> 15/06/2017</p>
-											</div>
-										</div>
-										<div class="col-sm-6 col-md-6">
-											<div class="form-group legend">
-												<h4><strong>User</strong> Groups</h4>
-											</div>
-											<div class="form-group">													
-												<div class="tile-body p-0">
-													<table class="table table-bordered">
-														<thead>
-															<tr>
-																<th>Group Name</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>24x7</td>
-															</tr>
-															<tr>
-																<td>Office Hrs</td>
-															</tr>
-															<tr>
-																<td>Housekeeping Hrs</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row mt-20">
-										<div class="col-sm-12 col-md-12 profiledetail">
-											<div class="form-group legend">
-												<h4><strong>Credentials</strong> Details</h4>
-											</div>
-											<div class="row">
-												<div class="col-sm-6 col-md-6">
-													<p class="greenseatx"><label>Access Code</label></p>
-													<p><label>Code</label> 016201</p>
-													<p><label>Status</label> Active</p>	
-												</div>
-												<div class="col-sm-6 col-md-6">
-													<p class="greenseatx"><label>NFC Code</label></p>
-													<p><label>Code</label> xxxxx-xx-xx</p>
-													<p><label>Status</label> Active</p>	
-												</div>
-											</div>
-											<div class="row mt-20">
-												<div class="col-sm-6 col-md-6">
-													<p class="greenseatx"><label>RFID Code</label></p>
-													<p><label>Card Number</label> xxxxx-xx-xx</p>
-													<p><label>Facility Code</label> xxxxx-xx-xx</p>
-													<p><label>Status</label> Active</p>	
-												</div>
-												<div class="col-sm-6 col-md-6">
-													<p class="greenseatx"><label>BLE Code</label></p>
-													<p><label>Username</label> abcuser</p>
-													<p><label>Password</label> xxxxx-xx-xx</p>
-													<p><label>Status</label> Active</p>	
-												</div>
-											</div>
-											<div class="row mt-20">
-												<div class="col-sm-6 col-md-6">
-													<p class="greenseatx"><label>Phone Code</label></p>
-													<p><label>Code</label> 161553</p>
-													<p><label>Status</label> Active</p>
-													<p>
-														<label>Phone</label> 
-														<span style="display:inline-block;vertical-align:top;">
-															+1 212 1467 1212<br/>
-															+1 124 1254 1524<br/>
-															+1 845 6587 3251<br/>
-															+1 945 5845 4525
-														</span>
-													</p>
-												</div>
+												<!-- <p><label>Expiration Date</label> 15/06/2017</p> -->
 											</div>
 										</div>
 									</div>
 								</div>
 							</uib-tab>
 							<uib-tab heading="Edit Account">
-								<div class="wrap-reset"> 
-									<div class="form-group legend">
-										<h4><strong>Edit</strong> Account</h4>
-									</div>
+								<div class="wrap-reset">
 									<form name="form1" role="form">
 										<div class="modal-body">
 											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">First Name</label>
-													<input type="text" class="form-control" id="first-name" value="Arnold">
+													<input type="text" class="form-control" ng-model="addTechnician.technician_first_name" id="first-name" value="Arnold">
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="last-name">Last Name</label>
-													<input type="text" class="form-control" id="last-name" value="">
+													<input type="text" ng-model="addTechnician.technician_last_name" class="form-control" id="last-name" value="">
 												</div>
 											</div>
 											<div class="form-group row">										
 												<div class="col-sm-6 col-sm-6">
-													<label for="email">E-mail Address</label>
-													<input type="email" class="form-control" id="email" value="pcosm1245@gmail.com" readonly>
+													<label for="email">Email Address</label>
+													<input type="email" ng-model="addTechnician.technician_email" class="form-control" id="email" value="pcosm1245@gmail.com" readonly>
 												</div>
-												<div class="col-sm-6 col-sm-6 editprofile">
-													<label for="profile">Profile Photo</label>
-													<div class="profilephoto">
-														<input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-														<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
-													</div>
-												</div>
-											</div>										
-											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">Phone Number</label>
-													<input type="text" class="form-control" id="first-name" value="212 1467 1212">
-												</div>
-												<div class="col-sm-6 col-sm-6">
-													<label for="address1">Address</label>
-													<input type="text" class="form-control" id="address1" value="558 Margaret Street, LOS ANGELES, CA-90001, USA">
+													<input type="text" ng-model="addTechnician.technician_phone" class="form-control" id="first-name" value="212 1467 1212">
 												</div>
 											</div>										
-											<div class="form-group row">
-												<div class="col-sm-12 col-sm-12">
-													<label for="bio">Description</label>
-													<textarea class="form-control" id="bio" style="height:150px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
+											<div class="form-group row">												
+												<div class="col-sm-6 col-sm-6">
+													<label for="address1">Address</label>
+													<input type="text" class="form-control" id="address1" ng-model="addTechnician.technician_address" value="558 Margaret Street, LOS ANGELES, CA-90001, USA">
+												</div>
+												<div class="col-sm-6 col-sm-6">
+													<label for="address1">Zip Code</label>
+													<input type="text" class="form-control" id="address1" ng-model="addTechnician.technician_address" value="90001">
 												</div>
 											</div>
-											<div class="form-group row" ng-controller="ActivebtnCtrl">
+											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">
 													<div class="row">
 														<div class="col-sm-5 col-md-5 pr-0">
 															<label for="">Status</label><br/>
 															<div class="btn-group btnrounded">
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
+																<label class="btn btn-default" ng-model="addTechnician.technician_status" uib-btn-radio="1">Active</label>
+																<label class="btn btn-default" ng-model="addTechnician.technician_status" uib-btn-radio="0">Inactive</label>
 															</div>
 														</div>
-														<div class="col-sm-7 col-md-7" ng-hide="radioModel=='Inactive'">
+														<!-- <div class="col-sm-7 col-md-7" ng-hide="addTechnician.status==0">
 															<div ng-controller="DatepickerDemoCtrl">
 																<label for="">Expiration Date</label>
 																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.addTechnician.expiration_date" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>
 																</div>
 															</div>
-														</div>
+														</div> -->
 													</div>
 												</div>
 											</div>
@@ -302,334 +129,6 @@
 									</form>
 								</div>
 							</uib-tab>
-							
-							<uib-tab heading="Edit Credentials">
-								<div class="wrap-reset"> 
-									<div class="form-group legend">
-										<h4><strong>Edit</strong> Credentials</h4>
-									</div>
-									<form name="form1" role="form">
-										<div class="modal-body">
-											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">
-													<div class="form-group greenseatx"><strong>Access Code</strong></div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Code</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="text" class="form-control w-lg" id="" value="016201" disabled>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Status</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-															</div>
-														</div>
-													</div>
-													<div class="form-group row legend">
-														<div class="col-md-12">
-															<p></p>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-6">
-													<div class="form-group greenseatx"><strong>NFC Code</strong></div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Code</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="text" class="form-control w-lg" id="" value="xxxxxx-xx">
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Status</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-															</div>
-														</div>
-													</div>
-													<div class="form-group row legend">
-														<div class="col-md-12">
-															<p></p>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group row mt-40">
-												<div class="col-sm-6 col-md-6">
-													<div class="form-group greenseatx"><strong>RFID Code</strong></div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Card Number</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="text" class="form-control w-lg" id="" value="xxxxxx-xx">
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Facility Code</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="text" class="form-control w-lg" id="" value="xxxxxx-xx">
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Status</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-															</div>
-														</div>
-													</div>
-													<div class="form-group row legend">
-														<div class="col-md-12">
-															<p></p>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-6">
-													<div class="form-group greenseatx"><strong>BLE Code</strong></div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Username</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="text" class="form-control w-lg" id="" value="abcuser" disabled>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Password</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="password" class="form-control w-lg" id="" value="xxxxxx-xx">
-														</div>
-													</div>
-													<!--div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Confirm Password</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="password" class="form-control w-lg" id="" value="xxxxxx-xx">
-														</div>
-													</div-->
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Status</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-															</div>
-														</div>
-													</div>
-													<div class="form-group row legend">
-														<div class="col-md-12">
-															<p></p>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="form-group row mt-40">
-												<div class="col-sm-6 col-md-6">
-													<div class="form-group greenseatx"><strong>Phone Code</strong></div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Code</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<input type="text" class="form-control w-lg" id="" value="161553">
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Status</label>
-														</div>
-														<div class="col-sm-8 col-md-8">
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Active'">Active</label>
-																<label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Inactive'">Inactive</label>
-															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-4 col-md-4 pr-0 lh-38">
-															<label for="">Phone</label>
-														</div>
-														<div class="col-sm-8 col-md-8 editaddphone">
-															<div class="widget-todo" ng-controller="TodoWidgetCtrl">
-																<form class="form-horizontal" role="form" ng-submit="addTodo()">
-																	<input type="text" class="form-control" id="todo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}" ng-model="todo" placeholder="" required>
-																	<button type="submit" class="btn addphone"><i class="fa fa-plus"></i></button>
-																</form>
-
-																<ul class="todo-list list-unstyled">
-																  <li ng-repeat="todo in todos" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-																	<div class="view">					 
-																		<span ng-dblclick="editTodo(todo)">{{todo.text}}</span>
-																		<a href="javascriph:;" class="text-danger remove-todo pull-right" ng-click="removeTodo(todo)" aria-label="Remove"><i class="fa fa-times"></i></a>
-																	</div>
-																	<form ng-submit="doneEditing(todo)">
-																		<input class="form-control edit mb-0" ng-trim="false" ng-model="todo.text" ng-blur="doneEditing(todo)" todo-escape="revertEditing(todo)" todo-focus="todo == editedTodo" ui-jq="inputmask" ui-options="{'mask': '###-###-####'}">
-																	</form>
-																  </li>
-																</ul>
-															</div>
-														</div>
-													</div>
-													<div class="form-group row legend">
-														<div class="col-md-12">
-															<p></p>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-6 col-md-6">
-													
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</uib-tab>
-							
-							<uib-tab heading="Edit User Groups">
-								<div class="wrap-reset"> 
-									<div class="form-group legend">
-										<h4><strong>Edit</strong> User Groups</h4>
-									</div>
-									<div class="form-group row" ng-controller="ModalDemoCtrl">
-										<div class="col-md-12">
-											<button ng-click="open()" class="btn btn-default btn-rounded btn-ef btn-ef-5 btn-ef-5b pull-right"><i class="fa fa-plus"></i> <span>Add Groups</span></button>
-											<script type="text/ng-template" id="myModalContent.html">
-												<div class="modal-header"><h4 class="modal-title custom-font">User Groups</h4></div>
-												<div class="hometabs">
-													<div class="overflow groupslists">
-														<div class="col-md-12 mt-20">
-															<ul>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence <small>(8 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Hours <small>(72 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin <small>(5 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance <small>(5 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery <small>(2 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff <small>(45 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Hours <small>(58 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Residence <small>(8 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Hours <small>(15 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Office Admin <small>(5 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Maintenance <small>(5 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Delivery <small>(2 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> Housekeeping Staff <small>(45 Users)</small></label>
-																</li>
-																<li>
-																	<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox"><i></i> 24x7 Services <small>(58 Users)</small></label>
-																</li>
-															</ul>
-															<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>
-														</div>
-													</div>
-												</div>
-												<div class="modal-footer">
-													<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-													<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
-												</div>											
-											</script>
-										</div>
-									</div>
-									<div class="form-group row">
-										<div class="col-md-12">													
-											<div class="tile-body p-0">
-												<table class="table table-bordered">
-													<thead>
-														<tr>
-															<th>Group Name</th>
-															<th width="125">Action</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>24x7</td>
-															<td>
-																<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-															</td>
-														</tr>
-														<tr>
-															<td>Office Hrs</td>
-															<td>
-																<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-															</td>
-														</tr>
-														<tr>
-															<td>Housekeeping Hrs</td>
-															<td>
-																<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-									<div class="form-group row legend">
-										<div class="col-md-12">
-											<p></p>
-											<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</button>
-											<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
-										</div>
-									</div>
-								</div>
-							</uib-tab>
-							
 						</uib-tabset>
 					</div>
 				</section>

@@ -11,6 +11,7 @@ app
             dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.dashboardData = succResponse.data?succResponse.data:[];
+                    console.log($rootScope.dashboardData);
                     $scope.getShortCutList();
                 }
             });
@@ -47,7 +48,7 @@ app
                 });
         };
 
-        $scope.dashboardInit();
+       $scope.dashboardInit();
     })
 
 
@@ -74,3 +75,80 @@ app
 });
 
 //..............................................................................................
+app
+.directive('flipHeader', function() {
+  return {
+    template: `<div class="card-container col-sm-4 col-md-3">
+                <div class="card">
+                    <a ui-sref="app.admin.device.devices">
+                    <div class="noback bg-blue cardheight">                     
+                        <div class="row">
+                            <div class="col-xs-6 ta-r">
+                                <div class="iconbx">
+                                    <img src="images/device-icon.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">  
+                                <div class="itxt">                          
+                                    <p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+                                    <span class="text-lg">Devices</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>          
+            <div class="card-container col-sm-4 col-md-3">
+                <div class="card">
+                    <a ui-sref="app.admin.door.doors">
+                    <div class="noback bg-slategray lt cardheight">                     
+                        <div class="row">
+                            <div class="col-xs-6 ta-r">
+                                <div class="iconbx">
+                                    <img src="images/doors-icon.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">  
+                                <div class="itxt">                          
+                                    <p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+                                    <span class="text-lg">Doors</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>          
+            <div class="card-container col-sm-4 col-md-3">
+                <div class="card">
+                    <a ui-sref="app.admin.user.users">
+                    <div class="noback bg-lightred cardheight">                     
+                        <div class="row">
+                            <div class="col-xs-6 ta-r">
+                                <div class="iconbx">
+                                    <img src="images/users-icon.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="itxt">                              
+                                    <p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+                                    <span class="text-lg">Users</span>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>`,
+        restrict: 'E',
+        //scope: {},
+        controller: ['$scope','dashboardSvc',"appConstants",'$rootScope', function flipHeaderController($scope,dashboardSvc,appConstants,$rootScope) {
+            dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $rootScope.dashboardData = succResponse.data?succResponse.data:[];
+                }
+            });
+        }]
+    };
+});

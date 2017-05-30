@@ -19,69 +19,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-		 				</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
+			<flip-header></flip-header>		
 		</div>
 		
 		<div class="row" ng-controller="DeviceCtrl">
@@ -141,7 +79,7 @@
 														<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id" required>
 															<option value="">Select</option>
 														</select>
-														<small class="pull-right"><a ng-click="cancel()" ui-sref="app.subadmin.support.technician">Add Technician</a></small>
+														<small class="pull-right"><a ng-click="cancel()" ui-sref="app.admin.support.technician">Add Technician</a></small>
 													</div>
 												</div>
 												
@@ -268,7 +206,7 @@
 										<md-card ng-repeat="device in data | limitTo:totalDisplayed">
 											<span class="moreitemsondevice">
 												<a ui-sref="app.admin.device.service-plan"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-												<a ui-sref="app.admin.device.device-settings({device_id:device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
+												<a ui-sref="app.admin.device.device-settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
 											</span>
 											<a ui-sref="app.admin.device.view-device({device_id:device.device_id})"><img ng-src="images/device/elika-76-bronze.png" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>

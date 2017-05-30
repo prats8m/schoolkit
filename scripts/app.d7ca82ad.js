@@ -437,6 +437,20 @@ var app = angular
 				  templateUrl: 'views/tmpl/admin/administrator/edit-roles.html'
 				})
 				
+
+				//admin administrator admin
+				.state('app.admin.administrator.admin', {
+				  url: '/admin',
+				  controller: 'AdminCtrl',
+				  templateUrl: 'views/tmpl/admin/administrator/admin.html'
+				})
+				
+					//admin administrator admin-profile
+					.state('app.admin.administrator.admin-profile', {
+					  url: '/admin-profile',
+					  controller: 'AdminProfileCtrl',
+					  templateUrl: 'views/tmpl/admin/administrator/admin-profile.html'
+					})
 				
 		//subadmin schedule
 		.state('app.subadmin.schedule', {
@@ -510,7 +524,7 @@ var app = angular
 			
 				//subadmin support technician-profile
 				.state('app.subadmin.support.technician-profile', {
-				  url: '/technician-profile',
+				  url: '/technician-profile/:technician_id',
 				  controller: 'TechnicianProfileCtrl',
 				  templateUrl: 'views/tmpl/subadmin/support/technician-profile.html'
 				})
@@ -881,7 +895,7 @@ var app = angular
 			
 				//admin support technician-profile
 				.state('app.admin.support.technician-profile', {
-				  url: '/technician-profile',
+				  url: '/technician-profile/:technician_id',
 				  controller: 'TechnicianProfileCtrl',
 				  templateUrl: 'views/tmpl/admin/support/technician-profile.html'
 				})
@@ -9429,7 +9443,7 @@ app.directive('aDisabled', function() {
 
 app.directive('username', function username() {
       return {
-		template: '{{userFirstName}} {{userLastName}}',
+		template: '{{userFirstName}}',
 		controller:function($scope,$cookies){
 			$scope.userFirstName = $cookies.get('userFirstName');
 			$scope.userLastName = $cookies.get('userLastName');

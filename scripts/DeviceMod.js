@@ -81,13 +81,10 @@ app
       };
 
 	$rootScope.formSubmit = function(device,device_form){
-		//console.log("asdasdads");
 		if(!device_form.validate()){
 			return false;
 		}
             device.technician_id = parseInt(device.technician_id);
-            //device.serial_no = parseInt(device.serial_no);
-            //device.facility_id = parseInt($rootScope.facilityId);
             devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
                 if(succResponse.status){
                     toaster.pop(appConstants.success,succResponse.msg);
@@ -324,6 +321,7 @@ app
 	$scope.deviceModelInit();
 
 	$scope.pageNo = 1;
+    $scope.dependent_devices = [];  
 	$scope.dependentDevices = function(e){
 		if(e)
 		if(e.keyCode!=13){return false;}
@@ -345,7 +343,7 @@ app
             }
         });
 	};
-	$scope.deviceUsers();
+	//$scope.deviceUsers();
 
 	
 	$scope.orderByMe = function(x) {

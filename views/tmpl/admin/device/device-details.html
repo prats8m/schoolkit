@@ -19,73 +19,7 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-						<div class="noback bg-blue cardheight">						
-							<div class="row">
-								<div class="col-xs-6 ta-r">
-									<div class="iconbx">
-										<img src="images/device-icon.png" alt="">
-									</div>
-								</div>
-								<div class="col-xs-6">	
-									<div class="itxt">							
-										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-										<span class="text-lg">Devices</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">					
-					<a ui-sref="app.admin.door.doors">
-						<div class="noback bg-slategray lt cardheight">
-							<div class="row">
-								<div class="col-xs-6 ta-r">
-									<div class="iconbx">
-										<img src="images/doors-icon.png" alt="">
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<div class="itxt">
-										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-										<span class="text-lg">Doors</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-			
-			<div class="card-container col-lg-3 col-sm-6 col-sm-12">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-						<div class="noback bg-lightred cardheight">						
-							<div class="row">
-								<div class="col-xs-6 ta-r">
-									<div class="iconbx">
-										<img src="images/users-icon.png" alt="">
-									</div>
-								</div>
-								<div class="col-xs-6">
-									<div class="itxt">								
-										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-										<span class="text-lg">Users</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>	
-			
+			<flip-header></flip-header>	
 		</div>
 		
 		<div class="row">
@@ -270,20 +204,9 @@
 																			<div class="col-md-6 last">
 																				<div class="form-group">
 																					<label for="">Technician</label><br/>
-																					<!-- <select class="form-control" name="technician_id" ng-model="editDevice.technician_id" required>
-																						<option value=''>Select</option>
-																						<option value=1>Arnold</option>
-																						<option value=2>Peter</option>
-																						<option value=3>Paracosm</option>
-																						<option value=4>Jason</option>
-																						<option value=5>Paul</option>
-																						<option value=6>Vin</option>
-																						<option value=7>Dwayne</option>
-																					</select> -->
 																					<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="editDevice.technician_id" required>
 																						<option value="">Select</option>
 																					</select>
-																					<!-- <small class="pull-right" style="margin-bottom: -5px;"><a ng-click="cancel()" ui-sref="app.admin.support.technician">Add Technician</a></small> -->
 																				</div>
 																			</div>
 																		</div>
@@ -352,7 +275,7 @@
 											</div>
 										</div>
 										<div ng-if="result">									
-											<div layout="row" ng-class="statusclass">									
+											<div layout="row" ng-class="statusclass">			
 												{{result}}
 											</div>
 										</div>
@@ -364,7 +287,6 @@
 														<md-card-content>
 															<h2 class="md-title">{{ device.device_name }}</h2>
 															<p>{{ device.device_model }}</p>
-															<!--<p>{{ device.noofuser }} Users</p>-->
 														</md-card-content>
 														<div class="md-actions" layout="row" layout-align="center center">
 															<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.dependent-devices-details({device_id:device.device_id})">View</a>
@@ -374,7 +296,7 @@
 													</md-card>
 												</md-content>
 											</div>
-										</div>
+										</div>	
 									</div>
 								</div>
 							</uib-tab>
