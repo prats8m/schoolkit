@@ -335,12 +335,12 @@ app
         userSvc.savewiegand(url,meth,{},wiegand,function (succResponse) {
             $scope.wiegand_error = appConstants.empty;
         	if(succResponse.status){
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            $scope.wiegand = {};
                 $timeout(function() {
                     // $(".accordion-toggle")[3].click();
                 });
                 $timeout(function() {
                 	$scope.getWiegandList();
-                    $scope.wiegand = {};
                 });
                 if(!wiegand.uc_id){
                     toaster.pop(appConstants.success,appConstants.wiegandaddedsuccessfully);
