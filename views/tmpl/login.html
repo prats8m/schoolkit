@@ -29,9 +29,29 @@
 					<button type="submit" class="btn btn-grey b-0 br-2 mt-40 m-0-auto" ng-click="loginFunction()" ng-disabled='form.$invalid'>GO</button>
 				</div>
 			</form>
-			<!-- <div class="bg-slategray dker seagreen wrap-reset negmargin40 mt-20">
+			<div class="bg-slategray dker seagreen wrap-reset negmargin40 mt-20">
 				<p class="m-0"><a ui-sref="core.signup">Register a new membership</a></p>
-			</div> -->
+			</div>
 		</div>
 	</div>	
 </section>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var winw = $(window).width();
+	    var winh = $(window).height();
+		
+		$(window).on('resize',function(){location.reload();});
+		
+		if(winh>449 && winw > 1139) {
+			var popuph = document.getElementById('hpopup').offsetHeight;
+			var mtop = popuph - 45;
+			$('.w-450').css({
+				'position' : 'absolute',
+				'left' : '50%',
+				'top' : '50%',	        
+				'margin-top' : -mtop/2,
+				'margin-left' : -30,
+			});
+		}
+	});
+</script>
