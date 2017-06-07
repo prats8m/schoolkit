@@ -110,7 +110,10 @@ app
 		}
         devicesSvc.deviceInit(appConstants.devicelistmaster+'?searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.data =  succResponse.data.data;
+                    $scope.data = [];
+                    angular.forEach(succResponse["data"]["data"], function (device, index) {
+                            $scope.data.push(device);
+                    });
                 $rootScope.deviceList = succResponse.data.data;
                 $scope.pageNo = $scope.pageNo + 1 ;
                 $scope.totalDisplayed = 8;
@@ -633,7 +636,10 @@ app
 	$scope.getDependentDevice = function(){
         devicesSvc.getDependentDevice(appConstants.devicelistslave+'?limits=8&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.dependentDevice = arrayPushService.arrayPush(succResponse.data.data, $scope.dependentDevice);
+                    $scope.dependentDevice = [];
+                    angular.forEach(succResponse["data"]["data"], function (dependentDevice, index) {
+                        $scope.dependentDevice.push(dependentDevice);
+                    });
                 if(succResponse.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
             }
             else {

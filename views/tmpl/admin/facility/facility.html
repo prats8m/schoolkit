@@ -36,27 +36,27 @@
 											<div class="modal-body mt-5">
 												<span class="error">{{fac_error}}</span>
 												<div class="form-group">
-													<label for="">Facility Name</label>
+													<label for="">Facility Name <span class="text-danger">*</span></label>
 													<input type="text" name="facility_name" maxlength="30" ng-model="facility.facility_name" id="" class="form-control" placeholder="" required>
 												</div>
 												<div class="form-group">
-													<label for="">Facility Location</label>
+													<label for="">Facility Location <span class="text-danger">*</span></label>
 													<input type="text" name="facility_location" id="" maxlength="30" ng-model="facility.facility_location" class="form-control" placeholder="" required>
 												</div>
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
-														<label for="">Time Zone</label>
+														<label for="">Time Zone <span class="text-danger">*</span></label>
 														<select class="form-control" ng-model="facility.timezone" ng-options="tz.name as tz.name for tz in usTimeZonesForFacility track by tz.id" required>
 															<option value="">Select</option>
 														</select>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
-														<label for="">Zip Code</label>
+														<label for="">Zip Code <span class="text-danger">*</span></label>
 														<input ng-keypress="allowNumberOnly($event);" type="text" name="zip_code" id="" maxlength="6" ng-model="facility.zip_code" class="form-control" placeholder="" required>
 													</div>
 												</div>
 												<div class="form-group">
-													<label for="">Status</label><br/>
+													<label for="">Status <span class="text-danger">*</span></label><br/>
 													<div class="btn-group btnrounded" >
 														<label class="btn btn-default" ng-model="facility.status" uib-btn-radio="1">Active</label>
 														<label class="btn btn-default" ng-model="facility.status" uib-btn-radio="0">Inactive</label>
@@ -150,7 +150,7 @@
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="facility in facilities | limitTo:totalDisplayed | filter:text | filter:title | filter:location | orderBy:myOrderBy">
+										<md-card ng-repeat="facility in facilities | limitTo:totalDisplayed | filter:text | filter:title | filter:location | orderBy:myOrderBy track by $index">
 											<a ui-sref="app.admin.facility.facility-details"><img ng-src="images/facility/1.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ facility.facility_name }}</h2>

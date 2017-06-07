@@ -103,7 +103,10 @@ app
     $scope.rolesInit = function(){
       administratorSvc.rolesInit(appConstants.rolelist, appConstants.getMethod, {}, {}, function(succResponse){
           if(succResponse.status){
-             $scope.aroles = succResponse.data.data;
+                    $scope.aroles = [];
+                    angular.forEach(succResponse.data.data, function (role, index) {
+                        $scope.aroles.push(role);
+                    });
              $scope.totalDisplayed = 8;
            
              if($scope.aroles.length > $scope.totalDisplayed) {
@@ -234,7 +237,10 @@ app
   }
   $scope.adminInit();
 
-  $rootScope.submitAddAdmin = function(addAdmin){
+  $rootScope.submitAddAdmin = function(addAdmin,form){
+    if( ! form.validate()){
+      return false;
+    }
     administratorSvc.submitAddAdmin(appConstants.adminadd, appConstants.postMethod, {}, addAdmin, function(succResponse){
         if(succResponse.status){
           toaster.pop(appConstants.success,appConstants._successadminadded);

@@ -176,7 +176,7 @@ app
             commonSetHTTPService(data, appConstants._successmastercodeconfigured);
         };
         var decodeTimeStamp = function (stamp) {
-            var temp = new Date(stamp * 1000);
+           var temp = stamp ;
             return temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear();
         };
         var createTimeStamp = function (appliedDate, appliedTime) {

@@ -106,10 +106,13 @@ app
             });
 		};
 
-		$scope.facilityInit = function () {
-            facilitiesSvc.facility_Init(appConstants.facilitylist,appConstants.getMethod,{limit: 8,page_no: 1},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.facilities = succResponse["data"]["data"]?succResponse["data"]["data"]:[];
+        $scope.facilityInit = function () {
+            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 8, page_no: 1 }, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.facilities = [];
+                    angular.forEach(succResponse["data"]["data"], function (facility, index) {                       
+                        $scope.facilities.push(facility);
+                    });
                     $scope.totalDisplayed = 8;
                     if (succResponse.data.count > $scope.totalDisplayed) {
                         $scope.lmbtn = {

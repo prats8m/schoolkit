@@ -95,39 +95,39 @@
 						</div>
 						<div class="hometabs">
 							<div class="wrap-reset modal-body m-0">
-							<form ng-submit="submitEditDevice(device)">
-								<div class="row"><p style="color:red;">&nbsp;&nbsp; {{errorMessage}}</p></div>
+							<form name="add_device" role="form" ng-validate ng-submit="submitEditDevice(device,add_device)">
+								<!-- <div class="row"><p style="color:red;">&nbsp;&nbsp; {{errorMessage}}</p></div> -->
 								<div class="row">
 									<div class="form-group col-sm-6 col-md-6">
-										<label for="">Device Model</label><br/>
-										<select class="form-control" ng-model="device.device_model" ng-options="model for model in deviceModel" required>
+										<label for="">Device Model <span class="text-danger">*</span></label><br/>
+										<select class="form-control" name="device_model" ng-model="device.device_model" ng-options="model for model in deviceModel" required>
 											<option value="">Select</option>
 										</select>
 									</div>
 									<div class="form-group col-sm-6 col-md-6">
-										<label for="">Account Number/ICCID</label>
-										<input type="text" name="" id="" class="form-control" ng-model="device.device_account_no" number maxlength="16" placeholder="" required>
+										<label for="">Account Number/ICCID <span class="text-danger">*</span></label>
+										<input type="text" name="account_no" id="" class="form-control" ng-model="device.device_account_no" number maxlength="16" placeholder="" required>
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-sm-6 col-md-6">
-										<label for="">Serial Number</label>
-										<input type="text" name="" id="" class="form-control" ng-model="device.device_serial_no" disabled>
+										<label for="">Serial Number <span class="text-danger">*</span></label>
+										<input type="text" name="serial_number" id="" class="form-control" ng-model="device.device_serial_no" disabled>
 									</div>
 									<div class="form-group col-sm-6 col-md-6">
-										<label for="">Registration Code</label>
-										<input type="text" name="" id="" class="form-control" ng-model="device.device_registration_code" disabled>
+										<label for="">Registration Code <span class="text-danger">*</span></label>
+										<input type="text" name="registration_code" id="" class="form-control" ng-model="device.device_registration_code" disabled>
 									</div>
 								</div>
 								<div class="row">
 									
 									<div class="form-group col-sm-6 col-md-6">
-										<label for="">Phone Number</label>
-										<input type="text" name="" id="" class="form-control" ng-model="device.device_phone_no" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="" required>
+										<label for="">Phone Number <span class="text-danger">*</span></label>
+										<input type="text" name="phone_no" id="" class="form-control" ng-model="device.device_phone_no" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="" required>
 									</div>
 									<div class="form-group col-sm-6 col-md-6">
-										<label for="">Bluetooth Mac Id</label>
-										<input type="text" name="" id="" class="form-control" ng-model="device.device_mac_address" pattern="^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$" oninvalid="setCustomValidity('Please enter valid mac address')" onchange="try{setCustomValidity('')}catch(e){}" disabled required>
+										<label for="">Bluetooth Mac Id <span class="text-danger">*</span></label>
+										<input type="text" name="ble" id="" class="form-control" ng-model="device.device_mac_address" pattern="^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$" oninvalid="setCustomValidity('Please enter valid mac address')" onchange="try{setCustomValidity('')}catch(e){}" disabled required>
 									</div>
 								</div>
 								<div class="row">

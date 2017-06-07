@@ -110,7 +110,11 @@ app
 	$scope.usersInit = function(){
         userSvc.usersInit(appConstants.userlist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.users =  arrayPushService.arrayPush(succResponse.data.data, $scope.users);
+                    $scope.users = [];
+                    angular.forEach(succResponse["data"]["data"], function (user, index) {
+                        $scope.users.push(user);
+                    });
+                    // $scope.users =  arrayPushService.arrayPush(succResponse.data.data, $scope.users);
                 $scope.pageNo = $scope.pageNo + 1 ;
             }
             else {
@@ -1741,7 +1745,10 @@ app
 	$scope.getUserGroupList = function(){
         userSvc.getUserGroupList(appConstants.usergrouplist+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
+                    $scope.usergroups = [];
+                    angular.forEach(succResponse["data"]["data"], function (userGroup, index) {
+                        $scope.usergroups.push(userGroup);
+                    });
                 $scope.pageNo = $scope.pageNo + 1 ;
                 $scope.totalDisplayed = 8;
                 if(succResponse.data.count > 8) {

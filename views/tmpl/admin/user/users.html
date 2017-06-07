@@ -98,18 +98,7 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-40">
 								<div class="col-sm-3 col-md-3 filterorder">
-									<!--<label class="control-label" ng-init="filtershow=true">
-										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
-									</label>
-									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
-										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
-										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
-											<li><a href="" ng-click="orderByMe('name')">Name</a></li>
-											<li><a href="" ng-click="orderByMe('group')">Group</a></li>
-											<li><a href="" ng-click="orderByMe('facility')">Facility</a></li>
-											<li><a href="" ng-click="orderByMe('phone')">Phone</a></li>
-										</ul>
-									</label>-->
+									
 								</div>
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
@@ -147,24 +136,7 @@
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div>
 								</div>
-								<!--<div class="filterfields" ng-hide="filtershow">
-									<div class="col-sm-3 col-md-3">
-										<label for="fbtext" class="control-label">Search by text</label> 
-										<input type="text" class="form-control" id="fbtext" ng-model="text">
-									</div>
-									<div class="col-sm-3 col-md-3">
-										<label for="fbtitle" class="control-label">Search by name</label>
-										<input type="text" class="form-control" id="fbtitle" ng-model="name">
-									</div>
-									<div class="col-sm-3 col-md-3">
-										<label for="fblocation" class="control-label">Search by group</label>
-										<input type="text" class="form-control" id="fblocation" ng-model="group">
-									</div>
-									<div class="col-sm-3 col-md-3">
-										<label for="fblocation" class="control-label">Search by phone</label>
-										<input type="text" class="form-control" id="fblocation" ng-model="phone">
-									</div>
-								</div>-->
+								
 							</div>
 							<div ng-if="result">									
 								<div layout="row" ng-class="statusclass">									
@@ -180,7 +152,7 @@
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>		
-										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy">
+										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy track by $index">
 											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{user.user_photo}}" onerror="this.onError=null;this.src='images/image-not-available.jpg';" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>

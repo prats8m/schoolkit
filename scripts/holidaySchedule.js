@@ -57,7 +57,9 @@ app
                 if(succResponse.status){
                     if($scope.pageNo==1) {
                         $scope.lstHolidaySchedular = [];
-                        $scope.lstHolidaySchedular = succResponse.data;
+                        angular.forEach(succResponse.data, function (holidayschedule, index) {
+                            $scope.lstHolidaySchedular.push(holidayschedule);
+                        });
                     }
                     else{
                         $scope.lstHolidaySchedular=$scope.lstHolidaySchedular.concat(succResponse.data);
@@ -178,8 +180,10 @@ app
             hs_endtime:null
         };
 
-    $scope.ok = function () {
-		// alert();
+    $scope.ok = function (form) {
+        if(!form.validate()){
+            return false;
+        }
         $scope.addHolidayScheduleObj.hs_start_date=utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date,$scope.addHolidayScheduleObj.hs_starttime)/1000;
         $scope.addHolidayScheduleObj.hs_end_date=utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date,$scope.addHolidayScheduleObj.hs_endtime)/1000;
         $scope.addHolidayScheduleObj.hs_expiration=utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_expiration)/1000;

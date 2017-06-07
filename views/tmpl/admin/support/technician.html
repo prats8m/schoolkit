@@ -30,7 +30,7 @@
 						<ul class="controls">
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
-									<script type="text/ng-template" id="myModalContent.html">			<form ng-submit="addTechnicianSubmit(addTechnician)">						
+									<script type="text/ng-template" id="myModalContent.html">			<form ng-validate="validationOptions" name="add_technician" ng-submit="addTechnicianSubmit(addTechnician,add_technician)">						
 										<div class="modal-header"><h4 class="modal-title custom-font">Add Technician</h4></div>
 										<div class="hometabs">											
 											<!--md-content class="md-padding tabsdemoDynamicHeight">
@@ -41,39 +41,37 @@
 															<div class="modal-body mt-10">
 																<div class="form-group row">
 																	<div class="col-sm-6 col-md-6">
-																		<label for="">First Name</label>
-																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.first_name" required="required">
+																		<label for="">First Name <span class="text-danger">*</span></label>
+																		<input type="text" name="first_name" id="" class="form-control" placeholder="" ng-model="addTechnician.first_name" required="required">
 																	</div>
 																	<div class="col-sm-6 col-md-6">												
-																		<label for="">Last Name</label>
-																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.last_name" required="required">													
+																		<label for="">Last Name <span class="text-danger">*</span></label>
+																		<input type="text" name="last_name" id="" class="form-control" placeholder="" ng-model="addTechnician.last_name" required="required">													
 																	</div>
 																</div>
 																<div class="form-group row">
 																	<div class="col-sm-6 col-md-6">
-																		<label for="">Email Address</label>
-																		<input type="email" name="" id="" class="form-control" placeholder=""  ng-model="addTechnician.email" required="required">
+																		<label for="">Email Address <span class="text-danger">*</span></label>
+																		<input type="email" name="email" id="" class="form-control" placeholder=""  ng-model="addTechnician.email" required="required">
 																	</div>
 																	<div class="col-sm-6 col-md-6">																		
-																		<label for="">Phone Number</label>
-																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.phone_number" 
-																		pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}"
-																		required="required">
+																		<label for="">Phone Number <span class="text-danger">*</span><small>(+19876543210)</small> </label>
+																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.phone_number" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" required="required" aria-required="true" aria-invalid="true" style="">
 																	</div>
 																</div>
 																<div class="form-group row">																	
 																	<div class="col-sm-6 col-md-6">
-																		<label for="">Address</label>
-																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.address" required="required">
+																		<label for="">Address <span class="text-danger">*</span></label>
+																		<input type="text" name="address" id="" class="form-control" placeholder="" ng-model="addTechnician.address" required="required">
 																	</div>
 																	<div class="col-sm-6 col-md-6">
-																		<label for="">Zip Code</label>
-																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.zipcode" required="required">
+																		<label for="">Zip Code <span class="text-danger">*</span></label>
+																		<input type="text" name="zip_code" id="" class="form-control" placeholder="" ng-model="addTechnician.zipcode" required="required">
 																	</div>
 																</div>
 																<div class="form-group row" >
 																	<div class="col-sm-6 col-md-6">
-																		<label for="">Status</label><br/>
+																		<label for="">Status <span class="text-danger">*</span></label><br/>
 																		<div class="btn-group btnrounded" ng-init="addTechnician.status=1">
 																			<label class="btn btn-default" ng-model="addTechnician.status" uib-btn-radio="1">Active</label>
 																			<label class="btn btn-default" ng-model="addTechnician.status" uib-btn-radio="0">Inactive</label>
@@ -81,7 +79,7 @@
 																	</div>
 																	<div class="col-sm-6 col-md-6" ng-hide="addTechnician.status==0">
 																		<div ng-controller="DatepickerDemoCtrl">
-																			<label for="">Expiration Date</label>
+																			<label for="">Expiration Date <span class="text-danger">*</span></label>
 																			<div class="input-group userexp">
 																				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.addTechnician.expiration_date" min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 																				<span class="input-group-btn">
@@ -169,7 +167,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in technicianList | limitTo:totalDisplayed | filter:text | filter:name | filter:facility | filter:phone | orderBy:myOrderBy"">											
+										<md-card ng-repeat="user in technicianList | limitTo:totalDisplayed | filter:text | filter:name | filter:facility | filter:phone | orderBy:myOrderBy track by $index">											
 											
 											<md-card-content>
 												<h2 class="md-title">{{ user.technician_name }}</h2>
