@@ -8,7 +8,7 @@
  */
 app
   .controller('AddScheduleCtrl', function ($scope,appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,utilitySvc) {
-     $scope.page = {
+    $scope.page = {
       title: 'Add Schedule',
     };
 
@@ -103,7 +103,10 @@ app
 	
 	$scope.timedropdown = appConstants.timedropdown2;
 
-	$scope.submitSchedule = function(data){
+	$scope.submitSchedule = function(data,form){
+		if(!form.validate()){
+			return false;
+		}
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
@@ -347,7 +350,10 @@ app
 		var params = {limit:1000,pageNo:1,search_val:$scope.searchText};
 		scheduleSvc.scheduleInit(appConstants.scheduleList, appConstants.getMethod,params,{},function (succResponse) {
             if(succResponse.status){
-                $scope.schedules = succResponse.data.data;
+				$scope.schedules = [];
+				angular.forEach(succResponse.data.data, function (schedule, index) {
+					$scope.schedules.push(schedule);
+				});
 				$scope.totalDisplayed = 8;
 				
 				if($scope.schedules.length > $scope.totalDisplayed) {
@@ -681,7 +687,10 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		$scope.exceptions.push(obj);
 	}
 
-	$scope.submitEditSchedule = function(data){
+	$scope.submitEditSchedule = function(data,form){
+		if(!form.validate()){
+			return false;
+		}
 		data.block = "";
 		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);

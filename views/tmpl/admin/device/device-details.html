@@ -174,13 +174,13 @@
 																		<div class="row overflow">
 																			<div class="col-md-6 first">
 																				<div class="form-group">
-																					<label for="">Device Name</label>
+																					<label for="">Device Name <span class="text-danger">*</span></label>
 																					<input type="text" name="device_name" id="" ng-model="editDevice.device_name" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
 																			<div class="col-md-6 last">
 																				<div class="form-group">
-																					<label for="">Model Name</label>
+																					<label for="">Model Name <span class="text-danger">*</span></label>
 																					<input type="text" name="model_name" id="" ng-model="editDevice.model_name" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
@@ -188,7 +188,7 @@
 																		<div class="row overflow">
 																			<div class="col-md-6 first">
 																				<div class="form-group">
-																					<label for="">Registration Code</label>
+																					<label for="">Registration Code <span class="text-danger">*</span></label>
 																					<input type="text" name="registration_code" id="" ng-model="editDevice.registration_code" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
@@ -197,13 +197,13 @@
 																		<div class="row">
 																			<div class="col-md-6 first">
 																				<div class="form-group">
-																					<label for="">Serial Number</label>
+																					<label for="">Serial Number <span class="text-danger">*</span></label>
 																					<input type="text" name="serial_no" id="" ng-model="editDevice.device_serial_no" class="form-control" placeholder="" required>
 																				</div>
 																			</div>
 																			<div class="col-md-6 last">
 																				<div class="form-group">
-																					<label for="">Technician</label><br/>
+																					<label for="">Technician <span class="text-danger">*</span></label><br/>
 																					<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="editDevice.technician_id" required>
 																						<option value="">Select</option>
 																					</select>
@@ -211,7 +211,7 @@
 																			</div>
 																		</div>
 																		<div class="form-group">
-																			<label for="">Device Type</label><br/>
+																			<label for="">Device Type <span class="text-danger">*</span></label><br/>
 																			<div class="btn-group btnrounded" ng-init="editDevice.device_type='slave'">
 																				<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'master'">Primary</label>
 																				<label class="btn btn-default" ng-model="editDevice.device_type" uib-btn-radio="'slave'">Dependent</label>

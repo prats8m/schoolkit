@@ -31,7 +31,7 @@
 							<li class="addpopup">
 								<div ng-controller="addHolidaySchedularCTRL">
 									<script type="text/ng-template" id="myholidaySchedularModalContent.html">
-									<form ng-submit="ok()">
+									<form name="addHolidays" ng-validate="validationOptions" ng-submit="ok(addHolidays)">
 										<div class="modal-header"><h4 class="modal-title custom-font">Create Holiday Schedule</h4></div>
 										<div class="hometabs">
 											<div class="row">
@@ -39,30 +39,30 @@
 													<div class="account" style="padding: 15px;">
 														<div class="form-group row">
 															<div class="col-md-12">
-																<label for="">Schedule Name</label>
-																<input type="text" name="" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" required>
+																<label for="">Schedule Name <span class="text-danger">*</span></label>
+																<input type="text" name="schedule_name" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" required>
 															</div>
 														</div>
 														<div class="row">
 															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
-																<label for="">Start Date </label>
+																<label for="">Start Date <span class="text-danger">*</span></label>
 																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_start_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
+																	<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_start_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>
 																</div>
 															</div>
 															<div class="col-sm-6 col-md-6 form-group">
-																<label for="">Start Time</label><br/>
-																<select class="form-control" ng-model="addHolidayScheduleObj.hs_starttime" ng-options="time as time for time in starttimedropdown track by time" required>
+																<label for="">Start Time <span class="text-danger">*</span></label><br/>
+																<select  class="form-control" ng-model="addHolidayScheduleObj.hs_starttime" ng-options="time as time for time in starttimedropdown track by time" required>
 																	<option value="">Select Time</option>
 																</select>
 															</div>
 														</div>
 														<div class="row">
 															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
-																<label for="">End Date</label>
+																<label for="">End Date <span class="text-danger">*</span></label>
 																<div class="input-group">
 																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_end_date" is-open="opened" min-date="addHolidayScheduleObj.hs_start_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
 																	<span class="input-group-btn">
@@ -71,7 +71,7 @@
 																</div>
 															</div>
 															<div class="col-sm-6 col-md-6 form-group">
-																<label for="">End Time</label><br/>
+																<label for="">End Time <span class="text-danger">*</span></label><br/>
 																<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time" required>
 																	<option value="">Select Time</option>
 																</select>
@@ -79,7 +79,7 @@
 														</div>
 														<div class="form-group row calstatus" ng-controller="ActivebtnCtrl">
 															<div class="col-md-6 pr-0 mb-20">
-																<label for="">Status</label><br/>
+																<label for="">Status <span class="text-danger">*</span></label><br/>
 																<div class="btn-group btnrounded">
 																	<label class="btn btn-default" ng-model="addHolidayScheduleObj.hs_status" uib-btn-radio="'1'" style="padding:12px 20px">Active</label>
 																	<label class="btn btn-default" ng-model="addHolidayScheduleObj.hs_status" uib-btn-radio="'0'" style="padding:12px 20px">Inactive</label>
@@ -87,7 +87,7 @@
 															</div>
 															<div class="col-md-6" ng-hide="radioModel=='Inactive'">
 																<div ng-controller="DatepickerDemoCtrl">
-																	<label for="">Expiration Date</label>
+																	<label for="">Expiration Date <span class="text-danger">*</span></label>
 																	<div class="input-group">
 																		<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_expiration" is-open="opened" min-date="addHolidayScheduleObj.hs_end_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 																		<span class="input-group-btn">
@@ -191,13 +191,13 @@
 																	<div class="account" style="padding: 15px;">
 																		<div class="form-group row">
 																			<div class="col-md-12">
-																				<label for="">Schedule Name</label>
+																				<label for="">Schedule Name <span class="text-danger">*</span></label>
 																				<input type="text" name="" id="" ng-model="editHolidayScheduleObj.hs_name" class="form-control" placeholder="Office-Weekdays" required>
 																			</div>
 																		</div>
 																		<div class="row">
 																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
-																				<label for="">Start Date</label>
+																				<label for="">Start Date <span class="text-danger">*</span></label>
 																				<div class="input-group">
 																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editHolidayScheduleObj.hs_start_date" is-open="opened" datepicker-options="dateOptions" min-date="mindate" ng-required="true" close-text="Close" />
 																					<span class="input-group-btn">
@@ -206,7 +206,7 @@
 																				</div>
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time</label><br/>
+																				<label for="">Start Time <span class="text-danger">*</span></label><br/>
 																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_starttime" ng-options="time as time for time in editstarttimedropdown track by time" required>
 																					<option value="">Select Time</option>
 																				</select>
@@ -214,7 +214,7 @@
 																		</div>
 																		<div class="row">
 																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
-																				<label for="">End Date</label>
+																				<label for="">End Date <span class="text-danger">*</span></label>
 																				<div class="input-group">
 																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editHolidayScheduleObj.hs_end_date" is-open="opened" datepicker-options="dateOptions" min-date="editHolidayScheduleObj.hs_start_date" ng-required="true" close-text="Close" />
 																					<span class="input-group-btn">
@@ -223,7 +223,7 @@
 																				</div>
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time</label><br/>
+																				<label for="">End Time <span class="text-danger">*</span></label><br/>
 																				<select class="form-control" ng-model="editHolidayScheduleObj.hs_endtime" ng-options="time as time for time in editendtimedropdown track by time" required>
 																					<option value="">Select Time</option>
 																				</select>
@@ -231,7 +231,7 @@
 																		</div>
 																		<div class="form-group row calstatus" ng-controller="ActivebtnCtrl">
 																			<div class="col-md-6 pr-0 mb-20">
-																				<label for="">Status</label><br/>
+																				<label for="">Status <span class="text-danger">*</span></label><br/>
 																				<div class="btn-group btnrounded">
 																					<label class="btn btn-default" ng-model="editHolidayScheduleObj.hs_status" uib-btn-radio="'1'" style="padding:12px 20px">Active</label>
 																					<label class="btn btn-default" ng-model="editHolidayScheduleObj.hs_status" uib-btn-radio="'0'" style="padding:12px 20px">Inactive</label>
@@ -239,7 +239,7 @@
 																			</div>
 																			<div class="col-md-6" ng-hide="radioModel=='Inactive'">
 																				<div ng-controller="DatepickerDemoCtrl">
-																					<label for="">Expiration Date</label>
+																					<label for="">Expiration Date <span class="text-danger">*</span></label>
 																					<div class="input-group">
 																						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editHolidayScheduleObj.hs_expiration" is-open="opened" datepicker-options="dateOptions" ng-required="true" min-date="editHolidayScheduleObj.hs_end_date" close-text="Close" />
 																						<span class="input-group-btn">

@@ -63,10 +63,10 @@
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
-						<h4 class="mb-0"><strong>Arnold</strong></h4>
-						<span class="text-muted">+1 212 1467 1212</span>
+						<h4 class="mb-0"><strong>{{userData.user_first_name + " " + userData.user_last_name}}</strong></h4>
+						<span class="text-muted"> {{userData.user_phone_no}}</span>
 						<div class="mt-40">
-							<a class="btn btn-rounded-20 btn-sm btn-lightred" ng-click="showConfirm($event)">Delete Admin</a>
+							<a ng-disabled="true" class="btn btn-rounded-20 btn-sm btn-lightred" dng-click="showConfirm($event,user_id)">Delete Admin</a>
 						</div>
 					</div>
 				</section>  
@@ -81,10 +81,10 @@
 									<div class="profile-settings"> 
 										<div class="row">
 											<div class="form-group col-sm-12 profiledetail">
-												<p><label>Name</label> Arnold</p>
-												<p><label>Email</label> arnold1234@gmail.com</p>
-												<p><label>Phone</label> +1 212 1467 1212</p>												
-												<p><label>Password</label> *********</p>
+												<p><label>Name</label> {{userData.user_first_name + " " + userData.user_last_name}}</p>
+												<p><label>Email</label> {{userData.user_email}}</p>
+												<p><label>Phone</label> {{userData.user_phone_no}}</p>												
+												<!-- <p><label>Password</label> *********</p> -->
 											</div>											
 										</div>
 										
@@ -93,45 +93,45 @@
 							</uib-tab>
 							<uib-tab heading="Edit Profile">
 								<div class="wrap-reset"> 
+									<form ng-submit="submitEditProfile(userData)">
 									<div class="modal-body">											
 										<div class="row form-group">
 											<div class="col-sm-6 col-md-6">
-												<label for="">First Name</label>
-												<input type="text" name="" id="" class="form-control" value="Arnold">
+												<label for="">First Name <span class="text-danger">*</span></label>
+												<input type="text" name="" id="" class="form-control" ng-model="userData.user_first_name">
 											</div>
 											<div class="col-sm-6 col-md-6">
-												<label for="">Last Name</label>
-												<input type="text" name="" id="" class="form-control" value="">
+												<label for="">Last Name <span class="text-danger">*</span></label>
+												<input type="text" name="" id="" class="form-control" ng-model="userData.user_last_name">
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<div class="col-sm-6 col-md-6">				
-												<label for="">Email Address</label>
-												<input type="emial" name="" id="" class="form-control" value="">
+												<label for="">Email Address <span class="text-danger">*</span></label>
+												<input type="email" name="" id="" class="form-control" ng-model="userData.user_email" disabled="">
 											</div>
 											<div class="col-sm-6 col-md-6">				
-												<label for="">Phone</label>
-												<input type="text" name="" id="" class="form-control" value="212 1467 1212">
+												<label for="">Phone <span class="text-danger">*</span></label>
+												<input type="text" name="" id="" class="form-control" ng-model="userData.user_phone_no">
 											</div>
 										</div>
 										
 										<div class="form-group row">
-											<div class="col-sm-6 col-md-6">
-												<label for="">Password</label>
-												<input type="password" name="" id="" class="form-control" value="*********">
+											<div class="col-sm-6 col-md-6">				
+												<label for="">Zip Code <span class="text-danger">*</span></label>
+												<input type="number" name="" id="" class="form-control" ng-model="userData.user_zipcode">
 											</div>
-											<div class="col-sm-6 col-md-6">
-												<label for="">Confirm Password</label>
-												<input type="password" name="" id="" class="form-control" value="*********">
-											</div>
+											
 										</div>
+										
 										
 										<div class="form-group">
 											<a ui-sref="app.administrator.admin" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</a>
 											<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Submit</button>
 										</div>
 									</div>
+									</form>
 								</div>
 							</uib-tab>
 						</uib-tabset>

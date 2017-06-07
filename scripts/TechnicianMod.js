@@ -22,13 +22,9 @@ app
 		.cancel(appConstants.cancel)
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			//$scope.status = appConstants._successfullyuserdeletedmessage;
-			//$scope.statusclass = appConstants.dangerstatusClass;
 			$scope.deleteTechnician(id);
 		}, function() {
 			toaster.pop(appConstants.success, appConstants._canceluserfromdelete);
-			//$scope.status = appConstants._canceluserfromdelete;
-			//$scope.statusclass = appConstants.successstatusClass;
 		});
     };
 	
@@ -59,7 +55,11 @@ app
         $scope.myOrderBy = x;
     };
 
-    $rootScope.addTechnicianSubmit = function(data){
+    $rootScope.addTechnicianSubmit = function(data,form){
+    	console.log(data);
+    	if(!form.validate()){
+			return false;
+		}
     	technicianSvc.addTechnicianSubmit(appConstants.addtechnician, appConstants.postMethod,{},data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
@@ -131,6 +131,18 @@ app
     	technicianSvc.deleteTechnician(appConstants.deletetechnician + "?technician_id=" + technician_id, appConstants.deleteMethod,{},{},function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants._successfullyuserdeletedmessage);
+				$location.path("/app/admin/support/technician");
+            }
+        });
+    }
+
+    $scope.submitTechProfile = function(Data,form){
+    	if(!form.validate()){
+			return false;
+		}
+    	technicianSvc.submitTechProfile(appConstants.edittechnician, appConstants.putMethod,{},Data,function (succResponse) {
+        	if(succResponse.status){
+                toaster.pop(appConstants.success, appConstants._successfullyuserupdatemessage);
 				$location.path("/app/admin/support/technician");
             }
         });

@@ -62,7 +62,7 @@ app
                 $scope.activities = succResponse.data.data;
 				
             }
-			$scope.date = $scope.date*1000;
+			$scope.date = $scope.date;
         });
 	};
 
@@ -80,20 +80,10 @@ app
     $scope.mediafile = 'images/avatar.jpg';
     $scope.mediatype = 'jpeg';
     $scope.viewActivity = function(device_id,mediafile){
-        // var tmp = mediafile.split(".");
-        // var ext = tmp[tmp.length - 1];
-        // if(ext == 'jpeg' || ext == 'mp4'){
-        //     $scope.mediatype = ext;
-        //     $scope.mediafile = mediafile;
-        // }else{
-        //     $scope.mediatype = 'jpeg';
-        //     $scope.mediafile = 'images/avatar.jpg';
-        //  }
-        
         var url = appConstants.geteventmediaurl + '?device_id='+device_id+'&media_file='+mediafile;
         activitiesSvc.viewActivity(url ,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.mediafile = (succResponse.data != null || succResponse.data != "")?succResponse.data:'images/avatar.jpg';
+                $scope.mediafile = (succResponse.data != null || succResponse.data != "") ? succResponse.data:'images/avatar.jpg';
                 $scope.mediatype = 'jpeg';
             }
         });

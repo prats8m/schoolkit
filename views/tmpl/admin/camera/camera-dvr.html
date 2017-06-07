@@ -189,14 +189,14 @@
 											<div class="row ">
 												<div class="col-sm-12 col-md-9 col-centered ">
 													<div class="col-sm-3 col-md-3 ">
-														<label for=" ">Facility</label><br/>
+														<label for=" ">Facility <span class="text-danger">*</span></label><br/>
 														<select class="form-control " ng-model="recordedFeedsSearchObj.facility" ng-options="facility.facility_id as facility.facility_name for facility in facilityList track by facility.facility_id">
 															<option value="">Select Facility</option>
 
 														</select>
 													</div>
 													<div class="col-sm-3 col-md-3 " ng-controller="DatepickerDemoCtrl ">
-														<label for=" ">Date</label>
+														<label for=" ">Date <span class="text-danger">*</span></label>
 														<div class="input-group ">
 															<input type="text " class="form-control " uib-datepicker-popup="{{format}} " ng-model="recordedFeedsSearchObj.dt " is-open="opened
 												 " datepicker-options="dateOptions " ng-required="true " close-text="Close " />
@@ -207,7 +207,7 @@
 														</div>
 													</div>
 													<div class="col-sm-3 col-md-3 validtime ">
-														<label for=" ">Time <small>(Includes 10 min before & after)</small></label>
+														<label for=" ">Time <small>(Includes 10 min before & after)</small> <span class="text-danger">*</span></label>
 														<span ng-controller="TimepickerDemoCtrl ">
 															<uib-timepicker ng-model="mytime " ng-change="changed() " hour-step="hstep " minute-step="mstep
 												 " show-meridian="ismeridian "></uib-timepicker>

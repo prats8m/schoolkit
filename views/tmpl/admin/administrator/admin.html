@@ -31,63 +31,63 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form ng-submit="submitAddAdmin(addAdmin)">
+										<form name="add_admin" ng-validate ng-submit="submitAddAdmin(addAdmin,add_admin)">
 										<div class="modal-header"><h4 class="modal-title custom-font">Add Admin</h4></div>
 										<div class="modal-body">											
 											<div class="row form-group">
 												<div class="col-sm-6 col-md-6">
-													<label for="">First Name</label>
-													<input type="text" name="" ng-model="addAdmin.first_name" id="" class="form-control" placeholder="" required="required">
+													<label for="">First Name <span class="text-danger">*</span></label>
+													<input type="text" name="first_name" ng-model="addAdmin.first_name" id="" class="form-control" placeholder="" required="required">
 												</div>
 												<div class="col-sm-6 col-md-6">
-													<label for="">Last Name</label>
-													<input type="text" name="" ng-model="addAdmin.last_name" id="" class="form-control" placeholder="" required="required">
+													<label for="">Last Name <span class="text-danger">*</span></label>
+													<input type="text" name="last_name" ng-model="addAdmin.last_name" id="" class="form-control" placeholder="" required="required">
 												</div>
 											</div>
 											
 											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">				
-													<label for="">Email Address</label>
-													<input type="email" name=""  ng-model="addAdmin.email" id="" class="form-control" placeholder="" required="required">
+													<label for="">Email Address <span class="text-danger">*</span></label>
+													<input type="email" name="email"  ng-model="addAdmin.email" id="" class="form-control" placeholder="" required="required">
 												</div>
 												<div class="col-sm-6 col-md-6">				
-													<label for="">Phone</label>
-													<input type="text" name="" ng-model="addAdmin.phone" id="" class="form-control" placeholder="" required="required" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="+12015550123">
+													<label for="">Phone <span class="text-danger">*</span></label>
+													<input type="text" name="phone" ng-model="addAdmin.phone" id="" class="form-control" placeholder="" required="required" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="+12015550123">
 												</div>
 											</div>
 											
 											<div class="form-group row">												
 												<div class="col-sm-6 col-md-6">
-													<label for="">Password</label>
-													<input type="password" name="" id="" class="form-control" ng-model="addAdmin.password" placeholder="" required="required">
+													<label for="">Password <span class="text-danger">*</span></label>
+													<input type="password" name="password" id="" class="form-control" ng-model="addAdmin.password" placeholder="" required="required">
 												</div>
 												<div class="col-sm-6 col-md-6">
-													<label for="">Confirm Password</label>
-													<input type="password" ng-model="addAdmin.confirm_password" name="" id="" class="form-control" placeholder="" required="required">
-												</div>
-											</div>
-											
-											<div class="form-group row">												
-												<div class="col-sm-6 col-md-6">
-													<label for="">Admin Password</label>
-													<input type="password" ng-model="addAdmin.admin_password" name="" id="" class="form-control" placeholder="" required="required">
-												</div>
-												<div class="col-sm-6 col-md-6">
-													<label for="">Zip Code</label>
-													<input type="number" ng-model="addAdmin.zipcode" name="" id="" class="form-control" placeholder="" required="required">
+													<label for="">Confirm Password <span class="text-danger">*</span></label>
+													<input type="password" ng-model="addAdmin.confirm_password" name="cpassword" id="" class="form-control" placeholder="" required="required">
 												</div>
 											</div>
 											
 											<div class="form-group row">												
 												<div class="col-sm-6 col-md-6">
-													<label for="" style="display: block;">Select Admin</label>
-													<select ng-model="addAdmin.type" class="form-control" ng-options="item.type as item.label for item in adminTypes | filter:{value:true}" required="required">
+													<label for="">Admin Password <span class="text-danger">*</span></label>
+													<input type="password" ng-model="addAdmin.admin_password" name="admin_password" id="" class="form-control" placeholder="" required="required">
+												</div>
+												<div class="col-sm-6 col-md-6">
+													<label for="">Zip Code <span class="text-danger">*</span></label>
+													<input type="number" ng-model="addAdmin.zipcode" name="zipcode" id="" class="form-control" placeholder="" required="required">
+												</div>
+											</div>
+											
+											<div class="form-group row">												
+												<div class="col-sm-6 col-md-6">
+													<label for="" style="display: block;">Select Admin <span class="text-danger">*</span></label>
+													<select ng-model="addAdmin.type" name="admin_type" class="form-control" ng-options="item.type as item.label for item in adminTypes | filter:{value:true}" required="required">
 														<option value="">Select</option>
 													</select>
 												</div>
 												<div class="col-sm-6 col-md-6" ng-hide="addAdmin.type=='super'">
-													<label for="" style="display: block;">Roles <small class="pull-right" style="margin-top: 5px;"><a ng-click="cancel()" ui-sref="app.admin.administrator.add-roles">Add Roles</a></small></label>
-													<select ng-model="addAdmin.user_role" ng-options="item.role_name as item.role_name for item in userRoles" class="form-control" ng-required="addAdmin.type!='super'">
+													<label for="" style="display: block;">Roles <span class="text-danger">*</span><small class="pull-right" style="margin-top: 5px;"><a ng-click="cancel()" ui-sref="app.admin.administrator.add-roles">Add Roles</a></small></label>
+													<select ng-model="addAdmin.user_role" name="user_role" ng-options="item.role_name as item.role_name for item in userRoles" class="form-control" ng-required="addAdmin.type!='super'">
 														<option value="">Select</option>
 													</select>
 												</div>
@@ -95,7 +95,7 @@
 											
 											<div class="form-group row" ng-controller="ActivebtnCtrl">
 												<div class="col-sm-6 col-md-6" ng-init="$parent.addAdmin.status=1">
-													<label for="">Status</label><br/>
+													<label for="">Status <span class="text-danger">*</span></label><br/>
 													<div class="btn-group btnrounded">
 														<label class="btn btn-default" ng-model="$parent.addAdmin.status" uib-btn-radio="1">Active</label>
 														<label class="btn btn-default" ng-model="$parent.addAdmin.status" uib-btn-radio="0">Inactive</label>
@@ -103,9 +103,9 @@
 												</div>
 												<div class="col-sm-6 col-md-6" ng-hide="addAdmin.status==0">
 													<div ng-controller="DatepickerDemoCtrl">
-														<label for="">Expiration Date </label>
+														<label for="">Expiration Date <span class="text-danger">*</span></label>
 														<div class="input-group userexp">
-															<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.addAdmin.expiration_date" is-open="opened" datepicker-options="dateOptions" min-date="mindate" ng-required="true" close-text="Close" onkeypress="return false;" />
+															<input type="text" name="expirationdate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.addAdmin.expiration_date" is-open="opened" datepicker-options="dateOptions" min-date="mindate" ng-required="true" close-text="Close" onkeypress="return false;" />
 															<span class="input-group-btn">
 																<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 															</span>

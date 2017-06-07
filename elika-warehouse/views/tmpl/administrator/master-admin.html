@@ -62,63 +62,55 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="add_master_admin" role="form" ng-validate ng-submit="submitAddMasterAdmin(master,add_master_admin)">
+										<form name="add_master_admin" role="form" ng-validate="validationOptions" ng-submit="submitAddMasterAdmin(master,add_master_admin)">
 										<div class="modal-header"><h4 class="modal-title custom-font">Add Master Admin</h4></div>
 										<div class="modal-body">											
 											<div class="row form-group">
 												<div class="col-sm-6 col-md-6">
-													<label for="">First Name</label>
-													<input type="text" name="" id="" ng-model="master.first_name" class="form-control" placeholder="" required>
+													<label for="">First Name <span class="text-danger">*</span></label>
+													<input type="text" name="first_name" id="" ng-model="master.first_name" class="form-control" placeholder="" required>
 												</div>
 												<div class="col-sm-6 col-md-6">
-													<label for="">Last Name</label>
-													<input type="text" name="" id="" ng-model="master.last_name" class="form-control" placeholder="" required>
+													<label for="">Last Name <span class="text-danger">*</span></label>
+													<input type="text" name="last_name" id="" ng-model="master.last_name" class="form-control" placeholder="" required>
 												</div>
 											</div>
 											
 											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">				
-													<label for="">Email Address</label>
-												<input type="email" name="" id="" ng-model="master.email" class="form-control" placeholder="" required>
+													<label for="">Email Address <span class="text-danger">*</span></label>
+												<input type="email" name="email" id="" ng-model="master.email" class="form-control" placeholder="" required="">
 												</div>
 												<div class="col-sm-6 col-md-6">				
-													<label for="">Phone</label>
-												<input type="text" name="" id="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched" ng-model="master.phone" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="+1 2015550123" required="" aria-required="true" aria-invalid="true">
+													<label for="">Phone <span class="text-danger">*</span></label>
+												<input type="text" name="phone" id="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched" ng-model="master.phone" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="+12015550123" required="" aria-required="true" aria-invalid="true">
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">				
-													<label for="">Zip Code</label>
-												<input type="number" name="" id="" ng-model="master.zipcode" class="form-control" maxlength="6" placeholder="" required>
+													<label for="">Zip Code <span class="text-danger">*</span></label>
+												<input type="number" name="zipcode" id="" ng-model="master.zipcode" class="form-control" maxlength="6" placeholder="" required="">
 												</div>
-												<div class="col-sm-6 col-md-6">				
-													<label for="">Expiration Date</label>
-													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text"  onkeypress="return false;"id="expirationdate" name="expirationdate" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="master.expiration_date"/>
-														<span class="input-group-btn">
-															<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
-														</span>
-													</div>
-												</div>
+												
 											</div>
 											
 											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">
-													<label for="">Password</label>
-													<input type="password" name="" id="" ng-model="master.password" class="form-control" maxlength="16" placeholder="" required>
+													<label for="">Password <span class="text-danger">*</span></label>
+													<input type="password" name="password" id="" ng-model="master.password" class="form-control" maxlength="16" placeholder="" required="">
 												</div>
 												<div class="col-sm-6 col-md-6">
-													<label for="">Confirm Password</label>
-													<input type="password" name="" id="" ng-model="master.confirm_password" class="form-control" maxlength="16" placeholder="" required>
+													<label for="">Confirm Password <span class="text-danger">*</span></label>
+													<input type="password" name="confirm_password" id="" ng-model="master.confirm_password" class="form-control" maxlength="16" placeholder="" required="">
 												</div>
 											</div>		
 											<div class="form-group row">
 												<div class="col-sm-6 col-md-6">
-													<label for="">Admin Password</label>
-													<input type="password" name="" id="" ng-model="master.admin_password" class="form-control" maxlength="16" placeholder="" required>
+													<label for="">Admin Password <span class="text-danger">*</span></label>
+													<input type="password" name="admin_password" id="" ng-model="master.admin_password" class="form-control" maxlength="16" placeholder="" required="">
 												</div>
 												<div class="col-sm-6 col-md-6">
-													<label for="">Status</label><br/>
+													<label for="">Status <span class="text-danger">*</span></label><br/>
 													<div class="btn-group btnrounded" ng-init="master.status = 1">
 														<label class="btn btn-default" ng-model="master.status" uib-btn-radio="1">Active</label>
 														<label class="btn btn-default" ng-model="master.status" uib-btn-radio="0">Inactive</label>
@@ -130,7 +122,7 @@
 											<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
 											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 										</div>
-											</form>		
+										</form>		
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Master Admin</span></a>
 								</div>
@@ -199,16 +191,16 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in admin | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy">
+										<md-card ng-repeat="user in listData | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy">
 											<md-card-content>
-												<h2 class="md-title">{{ user.name }}</h2>
-												<p class="ta-c">{{ user.access }}</p>
-												<p class="ta-c">{{ user.phone }}</p>
+												<h2 class="md-title">{{ user.user_first_name + ' ' + user.user_last_name }}</h2>
+												<!-- <p class="ta-c">{{ user.access }}</p> -->
+												<p class="ta-c">{{ user.user_phone_no }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile">Edit</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile({user_id:user.user_id})">View</a>
+												<!-- <a class="btn btn-success btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile">Edit</a> -->
+												<a class="btn btn-danger btn-border btn-rounded" ng-disabled="true" dng-click="showConfirm($event,user.user_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

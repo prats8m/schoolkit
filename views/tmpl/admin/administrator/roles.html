@@ -89,14 +89,15 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="role in aroles | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy">											
+										<md-card ng-repeat="role in aroles | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy track by $index">											
 											<md-card-content>
 												<h2 class="md-title">{{ role.role_name }}</h2>
 												<!-- <p>{{ role.status }}</p>
 												<p>{{ role.access }}</p> -->
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.administrator.view-roles">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.administrator.edit-roles">Edit</a>
+												<!-- <a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.administrator.edit-roles">Edit</a> -->
+												<a class="btn btn-success btn-border btn-rounded">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
 											</div>
 										</md-card>										

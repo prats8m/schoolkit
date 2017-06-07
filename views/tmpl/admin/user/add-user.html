@@ -101,31 +101,22 @@
 												<div class="modal-body p-0 mt-10">
 													<div class="row">
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">First Name</label>
+															<label for="">First Name <span class="text-danger">*</span></label>
 															<input type="text" maxlength="30" name="first_name" id="first_name" ng-model="userData.first_name" class="form-control" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Last Name</label>
+															<label for="">Last Name <span class="text-danger">*</span></label>
 															<input type="text" maxlength="30" name="last_name" id="last_name" ng-model="userData.last_name" class="form-control" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Email</label>
+															<label for="">Email <span class="text-danger">*</span></label>
 															<input type="email" name="email" id="email" ng-model="userData.email" class="form-control" placeholder="" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Profile Photo</label>
+															<label for="">Profile Photo </label>
 															<div class="profilephoto">
 																<!--<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">-->
 																<div class="bootstrap-filestyle input-group">
-
-																	<!--<input type="text" class="form-control " disabled="">-->
-																	<!--<span class="group-span-filestyle input-group-btn" tabindex="0">-->
-																	<!--<label for="profilep-2" class="btn btn-default ">-->
-																	<!--<span class="glyphicon fa fa-inbox"></span>-->
-																	<!--Find file-->
-																	<!--</label>-->
-																	<!--</span>-->
-
 																	<input type="file" accept="image/*" file-model="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
 																	    onchange="HandleInputTypeFilechange();" tabindex="-1" />
 																	<input type="text" class="form-control " id="profilePicFileName" readonly="true" />
@@ -151,43 +142,43 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Name as appears on LCD</label>
+															<label for="">Name as appears on LCD <span class="text-danger">*</span></label>
 															<input type="text" maxlength="30" name="name_on_lcd" id="name_on_lcd" ng-model="userData.name_on_lcd" class="form-control"
 															    required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Phone</label>
-															<input type="text" maxlength="15" ng-keypress="allowNumberOnly($event);" name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no"
+															<label for="">Phone <span class="text-danger">*</span></label>
+															<input type="text" maxlength="15" ng- name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}"
 															    class="form-control" rangelength required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Address</label>
+															<label for="">Address <span class="text-danger">*</span></label>
 															<input type="text" name="address" id="address" ng-model="userData.address" class="form-control" placeholder="" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Zip Code</label>
+															<label for="">Zip Code <span class="text-danger">*</span></label>
 															<input type="text" maxlength="6" name="zip_code" ng-keypress="allowNumberOnly($event);" id="zip_code" ng-model="userData.zip_code"
 															    class="form-control" required>
 														</div>
 													</div>
 													<div class="row" ng-controller="ActivebtnCtrl">
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Password</label>
+															<label for="">Password <span class="text-danger">*</span></label>
 															<input type="password" name="password" id="password" ng-model="userData.password" class="form-control" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Confirm Password</label>
+															<label for="">Confirm Password <span class="text-danger">*</span></label>
 															<input type="password" name="cpassword" id="" ng-model="userData.cpassword" class="form-control" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Status</label><br/>
+															<label for="">Status <span class="text-danger">*</span></label><br/>
 															<div class="btn-group btnrounded">
 																<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="1">Active</label>
 																<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
 															</div>
 														</div>
 														<div id="expirationDateMainDiv" class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
-															<label for="">Expiration Date</label>
+															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div id="expirationDateInnerDiv" class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" id="expirationdate" name="expirationdate" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
 																    is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close"

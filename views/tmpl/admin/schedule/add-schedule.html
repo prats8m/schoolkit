@@ -589,25 +589,25 @@
 									</div>
 								</div>														
 								<div class="modal-body col-md-5" ng-controller="ModalDemoCtrl">
-									<form ng-submit="submitSchedule(schedule)">
+									<form name="addSchedule" ng-validate="validationOptions" ng-submit="submitSchedule(schedule,addSchedule)">
 									<div class="account">							
 										<div class="row mt-10">
 											<div class="col-sm-6 col-md-6 form-group">
-												<label for="">Schedule Name</label>
-												<input type="text" ng-model="schedule.schedule_name" name="" id="" class="form-control" required>
+												<label for="">Schedule Name <span class="text-danger">*</span></label>
+												<input type="text" ng-model="schedule.schedule_name" name="schedule_name" id="" class="form-control" required>
 											</div>
 											<div class="col-sm-6 col-md-6 form-group">
-												<label for="">Facility</label>
-												<select class="form-control" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" required>
+												<label for="">Facility <span class="text-danger">*</span></label>
+												<select class="form-control" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" name="facility_name" required>
 													<option value="">Select</option>
 												</select>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
-												<label for="">Start Date </label>
+												<label for="">Start Date <span class="text-danger">*</span></label>
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="schedule.schedule_start_date" is-open="opened" min-date="$parent.minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" required />
+													<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="schedule.schedule_start_date" is-open="opened" min-date="$parent.minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" name="start_date" required="required" />
 													<span class="input-group-btn" >
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
@@ -619,11 +619,11 @@
 											<div class="col-sm-12 col-md-6">
 												<div class="row">
 													<div class="col-sm-6 col-md-6 form-group">
-														<label for="">Start Time</label>
+														<label for="">Start Time </label>
 														<input type="text" name="" ng-model="schedule.schedule_start_time" id="" class="form-control" disabled>
 													</div>
 													<div class="col-sm-6 col-md-6 form-group">
-														<label for="">End Time</label>
+														<label for="">End Time </label>
 														<input type="text" name="" ng-model="schedule.schedule_end_time" id="" class="form-control" disabled>
 													</div>
 													<input type="hidden" name="" ng-model="schedule.schedule_weekday" id="" class="form-control">
@@ -693,7 +693,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date </label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="exception.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="date" onkeypress="return false;"/>
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>
@@ -763,7 +763,7 @@
 																									
 										<div class="row" ng-init="schedule.schedule_status=1">
 											<div class="form-group col-sm-12 col-md-6">
-												<label for="">Status</label><br/>
+												<label for="">Status <span class="text-danger">*</span></label><br/>
 												<div class="btn-group btnrounded">
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="1">Active</label>
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="0">Inactive</label>
