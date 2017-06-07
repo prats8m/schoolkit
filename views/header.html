@@ -19,7 +19,13 @@
 		</div>
 		<ul class="nav-right list-inline headmenu">
 			<li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li>
-			<li><a ui-sref="app.admin.facility.facility"><span>Facilities</span></a></li>
+			<li class="dropdown" uib-dropdown>
+				<span class="dropdown-toggle" uib-dropdown-toggle>Facilities &nbsp;<fa name="angle-down"></fa></span>
+				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+					<li><a ui-sref="app.admin.facility.facility">All Facilities</a></li>
+					<li ng-repeat="facility in facilities"><a ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})">{{ facility.facility_name }}</a></li>
+				</ul>
+			</li>
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Devices &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
