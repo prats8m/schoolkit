@@ -861,7 +861,7 @@ app
         devicesSvc.formSubmit(appConstants.deviceedit,appConstants.putMethod,{},device,function (succResponse) {
             if(succResponse.status){
                 toaster.pop(appConstants.success,succResponse.msg);
-                $location.path('/app/admin/device/view-dependent-device/'+$scope.device_id);
+                $location.path('/app/admin/device/devices');
 
             }
             else {

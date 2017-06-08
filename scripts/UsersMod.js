@@ -866,25 +866,25 @@ app
                 $rootScope.facilityList = {};
             }
         });
-	};
-	$scope.facilityInit();
-	//End Of Initialize Facility
+    };
+    $scope.facilityInit();
+    //End Of Initialize Facility
+    $scope.editAccess = {};
+    $scope.editAccess.status = 1;
+    $scope.phoneedit = {};
+    $scope.phoneedit.status = 1;
+    $scope.editRfid = {};
+    $scope.editRfid.status = 1;
+    $scope.wiegand = {};
+    $scope.wiegand.status = 1;
+    $scope.editNfc = {};
+    $scope.editNfc.status = 1;
+    $scope.editBle = {};
+    $scope.editBle.status = 1;
+    $scope.profileInit = function () {
+        userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
+            if (succResponse.status) {
 
-	$scope.profileInit = function(){
-        userSvc.profileInit(appConstants.userviewuserdetails+'?user_id='+$stateParams.user_id,appConstants.getMethod,{},{},function (succResponse) {
-            if(succResponse.status){
-                $scope.editAccess = {};
-                $scope.editAccess.status = 1;
-                $scope.phoneedit = {};
-                $scope.phoneedit.status = 1;
-                $scope.editRfid = {};
-                $scope.editRfid.status  = 1;
-                $scope.wiegand = {};
-                $scope.wiegand.status  = 1;
-                $scope.editNfc = {};
-                $scope.editNfc.status  = 1;
-                $scope.editBle = {};
-                $scope.editBle.status  = 1;
                 $scope.userData = succResponse.data;
                 $scope.editUser.user_id = $stateParams.user_id;
                 $scope.editUser.user_zipcode = angular.copy($scope.userData.user_zipcode);
@@ -1179,7 +1179,8 @@ app
                     $scope.uploadProfilePic(file,$stateParams.user_id);
                 }
                 //$scope.profileInit();
-                toaster.pop(appConstants.success,appConstants.submitSuccessfully);
+                toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+                $location.path('/app/admin/user/users');
             }
             else {
                 if(succResponse.error && succResponse.error.length>0){

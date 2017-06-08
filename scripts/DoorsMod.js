@@ -245,7 +245,8 @@ app
 		delete doorData.facility;
         doorsSvc.editDoordata(appConstants.dooredit,appConstants.putMethod,{},doorData,function (succResponse) {
             if(succResponse.status){
-                toaster.pop(appConstants.success,succResponse.msg);
+				toaster.pop(appConstants.success, succResponse.msg);
+				$location.path('/app/admin/door/doors');
             }
         });
 	};

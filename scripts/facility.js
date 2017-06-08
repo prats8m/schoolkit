@@ -427,7 +427,8 @@ app
 		facility.status = facility.facility_status == appConstants.active ? 1 : 0;
         facilitiesSvc.edit_facility(appConstants.facilityedit,appConstants.putMethod,{},facility,function (succResponse) {
             if(succResponse.status){
-                toaster.pop(appConstants.success,appConstants._editFacilitySuccess);
+                toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
+                $location.path('/app/admin/facility/facility');
             }
             else {
                 $scope.facility_edit_error = succResponse.msg;
