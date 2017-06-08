@@ -173,7 +173,7 @@
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>
-										<md-card ng-repeat="schedule in lstHolidaySchedular | filter:text | filter:title | filter:days | orderBy:myOrderBy">
+										<md-card ng-repeat="schedule in lstHolidaySchedular | filter:text | filter:title | filter:days | orderBy:myOrderBy track by schedule.hs_id">
 											<md-card-content>
 												<h2 class="md-title">{{ schedule.hs_name }}</h2>
 												<p>{{ schedule.hs_status==1?'Active':'InActive' }}</p>

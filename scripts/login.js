@@ -15,9 +15,10 @@ app
                 if(succResponse.status){
                     if(succResponse.msg == 'Login_Success'){
                         $rootScope.current_user = succResponse.data;
+                        $cookies.put('userId', succResponse.data.userId);
                         if($scope.rememberme){
                             $cookies.put('username', $scope.user.username);
-                            $cookies.put('password', $scope.user.password);
+                            $cookies.put('password', $scope.user.password);                          
                         }
                         console.log($rootScope.current_user);
                         $state.go('app.admin.dashboard');

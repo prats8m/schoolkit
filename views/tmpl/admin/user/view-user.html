@@ -1,10 +1,10 @@
 <div class="page page-profile">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
-	
+
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,84 +12,84 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<p>{{page.subtitle}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
+						<div class="noback bg-blue cardheight">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/device-icon.png" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Devices</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
+										<span class="text-lg">Devices</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
+						<div class="noback bg-slategray lt cardheight">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/doors-icon.png" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-									<span class="text-lg">Doors</span>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
+										<span class="text-lg">Doors</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 			<div class="card-container col-sm-4 col-md-3">
 				<div class="card">
 					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
+						<div class="noback bg-lightred cardheight">
+							<div class="row">
+								<div class="col-xs-6 ta-r">
+									<div class="iconbx">
+										<img src="images/users-icon.png" alt="">
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="itxt">
+										<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
+										<span class="text-lg">Users</span>
+									</div>
 								</div>
 							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
 						</div>
-					</div>
 					</a>
 				</div>
-			</div>			
+			</div>
 		</div>
-		
-		<div ng-if="result">									
-			<div layout="row" ng-class="statusclass">									
+
+		<div ng-if="result">
+			<div layout="row" ng-class="statusclass">
 				{{result}}
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
@@ -104,25 +104,25 @@
 							<a ng-click="deleteUser($event,editUser.user_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User</a>
 						</div>
 
-					</div> 
-					<div class="tile-body text-center bg-blue p-0"> 
+					</div>
+					<div class="tile-body text-center bg-blue p-0">
 						<ul class="list-inline tbox m-0">
 							<li class="tcol bg-blue dker p-10">
 								<h2 class="m-0">{{groupcount}}</h2>
 								<span class="text-transparent-white">User Groups</span>
 							</li>
 						</ul>
-					</div>  
-				</section> 
+					</div>
+				</section>
 			</div>
-			
-			<div class="col-sm-12 col-md-8"> 
-				<section class="tile tile-simple"> 
-					<div class="tile-body p-0"> 
+
+			<div class="col-sm-12 col-md-8">
+				<section class="tile tile-simple">
+					<div class="tile-body p-0">
 						<div class="tile-header dvd dvd-btm">
 							<h1 class="custom-font">{{userData.user_first_name}}</h1>
-						</div>						
-						<div class="hometabs">	
+						</div>
+						<div class="hometabs">
 							<div class="wrap-reset m-0 pt-20">
 								<div class="row">
 									<div class="col-sm-12 col-md-12">
@@ -148,13 +148,13 @@
 											<h4><strong>Assigned</strong> Credentials</h4>
 										</div>
 										<div class="credintials mt-20" ng-controller="AccordionDemoCtrl">
-										<uib-accordion close-others="oneAtATime">
-										<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
-											<uib-accordion-heading>Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i></uib-accordion-heading>
-											<div class="modal-body p-0">
-												<span class="error">{{AccessCodeMessage}}</span>
-												<div class="row">
-													<!-- <form role="form"  ng-submit="submitEditAccessCode(editAccess, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
+											<uib-accordion close-others="oneAtATime">
+												<uib-accordion-group is-open="status.isFirstOpen" class="panel-default">
+													<uib-accordion-heading>Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<span class="error">{{AccessCodeMessage}}</span>
+														<div class="row">
+															<!-- <form role="form"  ng-submit="submitEditAccessCode(editAccess, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
 														<div class="form-group col-sm-6 col-md-4">
 															<label for="">Access Code</label>
 															<div style="position: relative">
@@ -176,46 +176,46 @@
 															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
 														</div>
 													</form> -->
-												</div>
-												<div class="mt-40">			
-													<div class="tile-body p-0 table-responsive">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Access Code</th>
-																	<th width="475">Assigned Doors</th>
-																	<th>Status</th>
-																	<th width="75">Action</th>
-																</tr>
-															</thead>
-															<tbody style="font-size:14px;">
-																<tr ng-repeat="accesscode in access_code_list">
-																	<td>{{accesscode.Access_Code}}</td>
-																	<td>{{accesscode.Door_Name}} </td>
-																	<td>
-																		<!--<select style="border: 0; width: 100%;">-->
-																			<!--<option value="" ng-selected="accesscode.status == 1">Active</option>-->
-																			<!--<option value="" ng-selected="accesscode.status == 0">Inactive</option>-->
-																		<!--</select>-->
-																		{{accesscode.status==0?'Inactive':'Active'}}
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential(accesscode.Credential_Id, 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
+														</div>
+														<div class="mt-40">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Access Code</th>
+																			<th width="475">Assigned Doors</th>
+																			<th>Status</th>
+																			<th width="75">Action</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr ng-repeat="accesscode in access_code_list">
+																			<td>{{accesscode.Access_Code}}</td>
+																			<td>{{accesscode.Door_Name}} </td>
+																			<td>
+																				<!--<select style="border: 0; width: 100%;">-->
+																				<!--<option value="" ng-selected="accesscode.status == 1">Active</option>-->
+																				<!--<option value="" ng-selected="accesscode.status == 0">Inactive</option>-->
+																				<!--</select>-->
+																				{{accesscode.status==0?'Inactive':'Active'}}
+																			</td>
+																			<td class="credintialicon">
+																				<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" ng-click="removeCredential(accesscode.Credential_Id, 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
 													</div>
-												</div>
-											</div>
-										</uib-accordion-group>
-													
-										<uib-accordion-group is-open="status.open1" class="panel-default">
-											<uib-accordion-heading>Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
-											<div class="modal-body p-0">
-												<div class="row">
-													<!-- <form ng-submit="submitEditPhoneCode(phoneedit, phone_edit_form)" ng-validate="validationOptions" name="phone_edit_form">
+												</uib-accordion-group>
+
+												<uib-accordion-group is-open="status.open1" class="panel-default">
+													<uib-accordion-heading>Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<div class="row">
+															<!-- <form ng-submit="submitEditPhoneCode(phoneedit, phone_edit_form)" ng-validate="validationOptions" name="phone_edit_form">
 														<div class="form-group col-sm-3 col-md-4">
 															<label for="">Phone Code</label>
 															<div style="position: relative">
@@ -241,231 +241,195 @@
 															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
 														</div>
 													</form> -->
-												</div>
-												<div class="mt-40">				
-													<div class="tile-body p-0 table-responsive">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Phone Code</th>
-																	<th width="325">Assigned Doors</th>
-																	<th>Phone Number</th>
-																	<th>Status</th>
-																	<th width="75">Action</th>
-																</tr>
-															</thead>
-															<tbody style="font-size:14px;">
-																<tr ng-repeat="phone_code in phone_code_list">
-																	<td>{{phone_code.Detail.phone_code}}</td>
-																	<td>{{phone_code.Door_Name}}</td>
-																	<td><div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div></td>
-																	<td>
-																		<!--<select style="border: 0; width: 100%;">-->
-																			<!--<option value="" ng-selected="phone_code.status == 1">Active</option>-->
-																			<!--<option value="" ng-selected="phone_code.status == 0">Inactive</option>-->
-																		<!--</select>-->
-																		{{phone_code.status==0?'Inactive':'Active'}}
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential(phone_code.Credential_Id, 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-										</uib-accordion-group>
-													
-										<uib-accordion-group is-open="status.open2" class="panel-default">
-											<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
-											<div class="modal-body p-0">
-												<div class="row">
-													<!-- <form ng-submit="submitEditRFIDCode(editRfid, rfid_form)" name="rfid_form" ng-validate="validationOptions" >
-														<div class="form-group col-sm-3 col-md-4">
-															<label for="">Card Number</label>
-															<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no" required>
-														</div>											
-														<div class="form-group col-sm-3 col-md-8">
-															<label for="">Assign Doors</label><br/>
-															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editRfid.door_id" multiple required>
-															</select>
 														</div>
-														<div class="form-group col-sm-3 col-md-4">
-															<label for="">Facility Code</label>
-															<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editRfid.rfid_facility_code" name="rfid_facility_code" required>
-														</div>
-														<div class="form-group col-sm-12 col-md-8">
-															<label for="">Status</label><br/>
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="editRfid.status" uib-btn-radio=1>Active</label>
-																<label class="btn btn-default" ng-model="editRfid.status" uib-btn-radio=0>Inactive</label>
+														<div class="mt-40">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Phone Code</th>
+																			<th width="325">Assigned Doors</th>
+																			<th>Phone Number</th>
+																			<th>Status</th>
+																			<th width="75">Action</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr ng-repeat="phone_code in phone_code_list">
+																			<td>{{phone_code.Detail.phone_code}}</td>
+																			<td>{{phone_code.Door_Name}}</td>
+																			<td>
+																				<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div>
+																			</td>
+																			<td>
+																				<!--<select style="border: 0; width: 100%;">-->
+																				<!--<option value="" ng-selected="phone_code.status == 1">Active</option>-->
+																				<!--<option value="" ng-selected="phone_code.status == 0">Inactive</option>-->
+																				<!--</select>-->
+																				{{phone_code.status==0?'Inactive':'Active'}}
+																			</td>
+																			<td class="credintialicon">
+																				<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
 															</div>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
 														</div>
-													</form> -->
-												</div>
-												<div class="mt-40">							
-													<div class="tile-body p-0 table-responsive">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Card Number</th>
-																	<th>Facility Code</th>
-																	<th width="325">Assigned Doors</th>
-																	<th>Status</th>
-																	<th width="75">Action</th>
-																</tr>
-															</thead>
-															<tbody style="font-size:14px;">
-																<tr ng-repeat="rfid_code in rfid_code_list">
-																	<td>{{rfid_code.Detail.rfid_card_no}}</td>
-																	<td>{{rfid_code.Detail.rfid_facility_id}}</td>
-																	<td>{{rfid_code.Door_Name}} </td>
-																	<td>
-																		<!--<select style="border: 0; width: 100%;">-->
-																			<!--<option value="" ng-selected="rfid_code.status == 1">Active</option>-->
-																			<!--<option value="" ng-selected="rfid_code.status == 0">Inactive</option>-->
-																		<!--</select>-->
-																		{{rfid_code.status==0?'Inactive':'Active'}}
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential(rfid_code.Credential_Id, 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
 													</div>
-												</div>
-											</div>
-										</uib-accordion-group>
-													
-										<uib-accordion-group is-open="status.open3" class="panel-default">
-											<uib-accordion-heading>NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></uib-accordion-heading>
-											<div class="modal-body p-0">
-												<div class="row">
-													<span class="error">{{NfcCodeMessage}}</span>
-													<!-- <form ng-submit="submitEditNfcCode(editNfc, nfc_edit_form)" ng-validate="validationOptions" name="nfc_edit_form">
-														<div class="form-group col-sm-3 col-md-4">
-															<label for="">NFC Code</label>
-															<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editNfc.nfc_code" required>
+												</uib-accordion-group>
+
+												<uib-accordion-group is-open="status.open2" class="panel-default">
+													<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<div class="row">
 														</div>
-														<div class="form-group col-sm-3 col-md-8">
-															<label for="">Assign Doors</label><br/>
-															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editNfc.door_id" multiple required>
-															</select>
-														</div>
-														<div class="col-sm-12 col-md-12">
-															<label for="">Status</label><br/>
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="editNfc.status" uib-btn-radio=1>Active</label>
-																<label class="btn btn-default" ng-model="editNfc.status" uib-btn-radio=0>Inactive</label>
+														<div class="mt-40">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Card Number</th>
+																			<th>Facility Code</th>
+																			<th width="325">Assigned Doors</th>
+																			<th>Status</th>
+																			<th width="75">Action</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr ng-repeat="rfid_code in rfid_code_list">
+																			<td>{{rfid_code.Detail.rfid_card_no}}</td>
+																			<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																			<td>{{rfid_code.Door_Name}} </td>
+																			<td>
+																				{{rfid_code.status==0?'Inactive':'Active'}}
+																			</td>
+																			<td class="credintialicon">
+																				<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
 															</div>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
 														</div>
-													</form> -->
-												</div>
-												<div class="mt-40">							
-													<div class="tile-body p-0 table-responsive">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>NFC Code</th>
-																	<th width="425">Assigned Doors</th>
-																	<th>Status</th>
-																	<th width="75">Action</th>
-																</tr>
-															</thead>
-															<tbody style="font-size:14px;">
-																<tr ng-repeat="nfccode in nfc_code_list">
-																	<td>{{nfccode.Detail.nfc_code}}</td>
-																	<td>{{nfccode.Door_Name}}</td>
-																	<td>
-																		<!--<select style="border: 0; width: 100%;">-->
-																			<!--<option value="" ng-selected="nfccode.status == 1">Active</option>-->
-																			<!--<option value="" ng-selected="nfccode.status == 0">Inactive</option>-->
-																		<!--</select>-->
-																		{{nfccode.status==0?'Inactive':'Active'}}
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential(nfccode.Credential_Id, 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
 													</div>
-												</div>
-											</div>
-										</uib-accordion-group>
-													
-										<uib-accordion-group is-open="status.open4" class="panel-default">
-											<uib-accordion-heading>BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></uib-accordion-heading>
-											<div class="modal-body p-0">
-												<div class="row">
-													<span class="error">{{ bleerror }}</span>
-													<!-- <form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
-														<div class="form-group col-sm-3 col-md-4">
-															<label for="">Username</label>
-															<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required>
+												</uib-accordion-group>
+												<uib-accordion-group is-open="status.open3" class="panel-default">
+													<uib-accordion-heading>Wiegand Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<span class="error">{{ bleerror }}</span>
+													</div>
+													<div class="mt-40">
+														<div class="tile-body p-0 table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th>Card Number</th>
+																		<th>Facility Code</th>
+																		<th width="400">Assigned Doors</th>
+																		<th>Status</th>
+																		<th width="75">Action</th>
+																	</tr>
+																</thead>
+																<tbody style="font-size:14px;">
+																	<tr ng-repeat="wiegand_code in wiegand_code_list">
+																		<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
+																		<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
+																		<td>{{wiegand_code.Door_Name}} </td>
+																		<td>
+																			{{wiegand_code.status==0?'Inactive':'Active'}}
+																		</td>
+																		<td class="credintialicon">
+																			<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																			<a href="" ng-click="removeCredential('{{wiegand_code.Credential_Id}}', 'wiegand_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
 														</div>
-														<div class="form-group col-sm-3 col-md-8">
-															<label for="">Assign Doors</label><br/>
-															<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editBle.door_id" multiple required>
-															</select>
+													</div>
+												</uib-accordion-group>
+
+												<uib-accordion-group is-open="status.open4" class="panel-default">
+													<uib-accordion-heading>NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<div class="row">
+															<span class="error">{{NfcCodeMessage}}</span>
 														</div>
-														<div class="form-group col-sm-3 col-md-4">
-															<label for="">Password</label>
-															<input type="password" class="form-control" id="" ng-model="editBle.ble_pass" name="ble_pass" required>
-														</div>
-														<div class="form-group col-sm-3 col-md-8">
-															<label for="">Status</label><br/>
-															<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																<label class="btn btn-default" ng-model="editBle.status" uib-btn-radio=1>Active</label>
-																<label class="btn btn-default" ng-model="editBle.status" uib-btn-radio=0>Inactive</label>
+														<div class="mt-40">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>NFC Code</th>
+																			<th width="425">Assigned Doors</th>
+																			<th>Status</th>
+																			<th width="75">Action</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr ng-repeat="nfccode in nfc_code_list">
+																			<td>{{nfccode.Detail.nfc_code}}</td>
+																			<td>{{nfccode.Door_Name}}</td>
+																			<td>
+																				{{nfccode.status==0?'Inactive':'Active'}}
+																			</td>
+																			<td class="credintialicon">
+																				<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" ng-click="removeCredential('{{nfccode.Credential_Id}}', 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
 															</div>
-															<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
 														</div>
-													</form> -->
-												</div>
-												<div class="mt-40">							
-													<div class="tile-body p-0 table-responsive">
-														<table class="table table-bordered">
-															<thead>
-																<tr>
-																	<th>Username</th>
-																	<th>Password</th>
-																	<th width="325">Assigned Doors</th>
-																	<th>Status</th>
-																	<th width="75">Action</th>
-																</tr>
-															</thead>
-															<tbody style="font-size:14px;">
-																<tr ng-repeat="blecode in ble_code_list">
-																	<td>{{blecode.Detail.ble_username}}</td>
-																	<td>{{blecode.Detail.ble_password}}</td>
-																	<td>{{blecode.Door_Name}}</td>
-																	<td>
-																		<!--<select style="border: 0; width: 100%;">-->
-																			<!--<option value="" ng-selected="blecode.status == 1">Active</option>-->
-																			<!--<option value="" ng-selected="blecode.status == 0">Inactive</option>-->
-																		<!--</select>-->
-																		{{blecode.status==0?'Inactive':'Active'}}
-																	</td>
-																	<td class="credintialicon">
-																		<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																		<a href="" ng-click="removeCredential(blecode.Credential_Id, 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
 													</div>
-												</div>
-											</div>
-										</uib-accordion-group>
-									</uib-accordion>
+												</uib-accordion-group>
+
+												<uib-accordion-group is-open="status.open5" class="panel-default">
+													<uib-accordion-heading>BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open5, 'fa-plus': !status.open5}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<div class="row">
+															<span class="error">{{ bleerror }}</span>
+														</div>
+														<div class="mt-40">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Username</th>
+																			<th>Password</th>
+																			<th width="325">Assigned Doors</th>
+																			<th>Status</th>
+																			<th width="75">Action</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr ng-repeat="blecode in ble_code_list">
+																			<td>{{blecode.Detail.ble_username}}</td>
+																			<td>{{blecode.Detail.ble_password}}</td>
+																			<td>{{blecode.Door_Name}}</td>
+																			<td>
+																				<!--<select style="border: 0; width: 100%;">-->
+																				<!--<option value="" ng-selected="blecode.status == 1">Active</option>-->
+																				<!--<option value="" ng-selected="blecode.status == 0">Inactive</option>-->
+																				<!--</select>-->
+																				{{blecode.status==0?'Inactive':'Active'}}
+																			</td>
+																			<td class="credintialicon">
+																				<a href="" uib-tooltip="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" ng-click="removeCredential(blecode.Credential_Id, 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</uib-accordion-group>
+											</uib-accordion>
 										</div>
 									</div>
 								</div>
@@ -474,7 +438,7 @@
 										<div class="form-group legend">
 											<h4><strong>Assigned</strong> Groups</h4>
 										</div>
-										<div class="form-group">													
+										<div class="form-group">
 											<div class="tile-body p-0 table-responsive">
 												<table class="table table-bordered">
 													<thead>
