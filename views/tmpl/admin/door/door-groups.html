@@ -35,11 +35,11 @@
 											<div class="modal-header"><h4 class="modal-title custom-font">Create Door Groups</h4></div>
 											<div class="modal-body">					<span class="error">{{errormsg}}</span>
 												<div class="form-group overflow">
-													<label for="">Group Name</label>
+													<label for="">Group Name <span class="text-danger">*</span></label>
 													<input type="text" name="group_name" ng-model="doorGroup.name" id="" class="form-control" placeholder="" required>
 												</div>
 												<div class="form-group">
-													<label for="">Doors</label>
+													<label for="">Doors <span class="text-danger">*</span></label>
 													<select class="form-control" name="door" ng-model="doorGroup.doors_id" Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
 
 													</select>

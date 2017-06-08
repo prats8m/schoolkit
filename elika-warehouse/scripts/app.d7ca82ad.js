@@ -65,7 +65,7 @@ var app = angular
     'angular-intro',
     'toaster',
     'angular-loading-bar',
-	//'ngValidate',
+	'ngValidate',
     'dragularModule'
   ])
   .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
@@ -301,6 +301,13 @@ var app = angular
 			 controller: 'MasterAdminCtrl',
 			 templateUrl: 'views/tmpl/administrator/master-admin.html'
 		   })
+
+		   		//administrator master-admin-profile
+				.state('app.administrator.master-admin-profile', {
+				  url: '/master-admin-profile/:user_id',
+				  controller: 'MasterAdminProfileCtrl',
+				  templateUrl: 'views/tmpl/administrator/master-admin-profile.html'
+				})
 		
 	
   }]);

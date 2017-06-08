@@ -61,21 +61,17 @@
 							<div class="wrap-reset modal-body m-0 pt-20">
 								<div class="row">
 									<div class="form-group col-sm-6 col-md-4 first">
-										<label for="">Name</label>
+										<label for="">Name <span class="text-danger">*</span></label>
 										<input type="text" name="door_name" id="" ng-model="doorData.door_name" class="form-control mb-10" placeholder="" required>
 									</div>
 									<div class="form-group col-sm-6 col-md-4 last">
-										<label for="">Facility</label><br/>
-										<!-- <select class="form-control" disabled>
-											<option selected>USA Corporate Services</option>
-											<option>Aerzen USA Corporation</option>
-										</select> -->
-										<select class="form-control" name="facility_name" ng-model="doorData.facility_id" ng-options="field.facility_id as field.facility_name for field in facilityList track by field.facility_id" disabled required>
-											<option value="">Select</option>
+										<label for="">Facility <br/>
+										<select class="form-control" name="facilit_name" ng-model="field.facility" ng-options="field.facility_name for field in facilityList track by field.facility_id" disabled="disabled" required>
+											<option value="" disabled>Select</option>
 										</select>
 									</div>
 									<div class="form-group col-sm-6 col-md-4 first">
-										<label for="">Door Status</label><br/>
+										<label for="">Door Status <span class="text-danger">*</span></label><br/>
 										<div class="btn-group btnrounded" ng-controller="ActivebtnCtrl">
 											<label class="btn btn-default" ng-model="doorData.door_status" uib-btn-radio="1">Active</label>
 											<label class="btn btn-default" ng-model="doorData.door_status" uib-btn-radio="0">Inactive</label>

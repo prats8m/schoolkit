@@ -91,7 +91,8 @@ app.constant("appConstants", {
     addtechnician:'technician/add',
     viewtechnician:'technician/view',
     deletetechnician:'technician/delete',
-	geteventmediaurl:'event/get-event-media-url',
+    geteventmediaurl:'event/get-event-media-url',
+	edittechnician:'technician/edit',
 
 
 
@@ -299,6 +300,7 @@ app.constant("appConstants", {
     _successfullyuserdeletedmessage:'Your user has been deleted successfully',
     _canceluserfromdelete:'You decided to keep your users',
     technicianProfileUiTitle:'Technician',
+    _successfullyuserupdatemessage:'Technician updated successfully.',
 
     //............................................................................
 

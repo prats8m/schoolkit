@@ -145,26 +145,39 @@ app
 		$scope.pageNo = 1;
 		$scope.searchText = appConstants.empty;
 		$scope.adoors = [];
-		$scope.listDoors = function(){
-            doorsSvc.listDoors(appConstants.doorlist+'?limit=8&pageNo='+$scope.pageNo,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
-                    if($scope.pageNo != 1){
-                        $scope.adoors = arrayPushService.arrayPush(succResponse.data.data,  $scope.adoors);
-                    }else{
-                        $scope.adoors = succResponse.data.data;
-                    }
-                    if(succResponse.data.data.length < 8){$scope.hideLoadMore = true;}else{$scope.hideLoadMore = false;}
-                    $scope.pageNo = $scope.pageNo + 1 ;
-                }else if(succResponse.msg=='No_Record_Found'){
-                		
-                        $scope.adoors = [];
-                        $scope.status=succResponse.msg.replace(/_/g, ' ');;
-                        $scope.statusclass = appConstants.error;
-                }
-                else{
-                    $rootScope.doormsg = succResponse.msg;
-                }
-            });
+		$scope.listDoors = function () {
+			doorsSvc.listDoors(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo, appConstants.getMethod, {}, {}, function (succResponse) {
+				if (succResponse.status) {
+					if ($scope.pageNo != 1) {
+						for (var i in succResponse.data.data) {
+							var temp = false;
+							for (var j in $scope.adoors) {
+								if ($scope.adoors[j].door_id == succResponse.data.data[i].door_id) {
+									temp == true;
+								}
+							}
+							if (!temp) {
+								$scope.adoors.push(succResponse.data.data[i]);
+							}
+						}
+					} else {
+						$scope.adoors = [];
+						for (var i in succResponse.data.data) {
+							$scope.adoors.push(succResponse.data.data[i]);
+						}
+					}
+					if (succResponse.data.data.length < 8) { $scope.hideLoadMore = true; } else { $scope.hideLoadMore = false; }
+					$scope.pageNo = $scope.pageNo + 1;
+				} else if (succResponse.msg == 'No_Record_Found') {
+
+					$scope.adoors = [];
+					$scope.status = succResponse.msg.replace(/_/g, ' ');;
+					$scope.statusclass = appConstants.error;
+				}
+				else {
+					$rootScope.doormsg = succResponse.msg;
+				}
+			});
 		};
 		$scope.listDoors();
 		//End of list doors
@@ -285,10 +298,10 @@ app
 	$scope.imagePath = baseURL+appConstants.imagePath;
 	
 	$scope.facilityInit = function(){
-        doorsSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+        doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.facilityList = succResponse.data.data;
-                $rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));
+				$scope.doorInit();
             }
         });
 	};
@@ -316,15 +329,19 @@ app
     };
 	
 	$scope.doorInit = function(){
-        doorsSvc.doorInit(appConstants.doorview+'?doorId='+$stateParams.door_id,appConstants.getMethod,{},{},function (succResponse) {
+		$scope.field ={
+			facility :''
+		};
+        doorsSvc.doorInit(appConstants.doorview + '?doorId=' + $stateParams.door_id,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.doorData = succResponse.data;
-                $scope.facilityInit();
+					 $scope.field.facility = $scope.doorData;
+					 console.log($scope.field.facility);
             }
         });
 	};
 
-	$scope.doorInit();
+	$scope.facilityInit();
 	
 	$scope.editDoordata = function(doorData, door_data){
 		if(!door_data.validate()){

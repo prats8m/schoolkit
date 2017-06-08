@@ -1919,7 +1919,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .page-login.core-new .form-group {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .page-login.core-new .form-control {
@@ -2571,6 +2571,9 @@ span.edittxt {position: absolute;
 	.form-control, .credintials .widget-todo form .form-control, .chosen-container-single .chosen-single {
 		height: auto;
 		padding: 12px 10px;
+	}
+	#hpopup .form-control {
+		padding: 22px 0px 12px;
 	}
 	.btn-group.btnrounded>.btn {
 		padding: 12px 25px;

@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceCtrl', function ($scope, $mdDialog, $http,$rootScope,dataService,toaster,$timeout,$cookies,$location) {
+  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, dataService,toaster,$timeout,$cookies,$location) {
     $scope.page = {
 		title: 'Devices',
     };
@@ -88,6 +88,9 @@ app
     }
 	$rootScope.errorMessage = '';
 	$rootScope.submitAddDevice = function(device,add_device){
+		if( ! add_device.validate() ){
+			return false;
+		}
 		$rootScope.errorMessage = '';
 		device.account_no = parseInt(device.account_no);
 		device.device_cell = (! device.device_cell) ? 0 : device.device_cell;
@@ -284,7 +287,10 @@ app
 	}
 	$scope.deviceModelInit();
 	
-	$scope.submitEditDevice = function(device){
+	$scope.submitEditDevice = function(device,form){
+		if( ! form.validate() ){
+			return false;
+		}
 		$rootScope.errorMessage = '';
 		device.account_no = parseInt(device.device_account_no);
 		device.phone_no = device.device_phone_no;

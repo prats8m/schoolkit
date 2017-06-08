@@ -97,7 +97,7 @@
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy">
+										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy track by $index">
 											<md-card-content>
 												<h2 class="md-title">{{ schedule.schedule_name }}</h2>
 												<p>{{ schedule.schedule_status | scheduleFilter }}</p>

@@ -87,13 +87,15 @@ app
 
 	// add firmware submit
 
-	$rootScope.submitAddFirmware = function(addFirmware,file){
+	$rootScope.submitAddFirmware = function(addFirmware,file,form){
+		if(!form.validate()){
+			return false;
+		}
 		var fd = new FormData();
-		//addFirmware.
-			fd.append('file',file);
-			$.each(addFirmware,function(index,value) {
-				fd.append(index,value);
-			});
+		fd.append('file',file);
+		$.each(addFirmware,function(index,value) {
+			fd.append(index,value);
+		});
 		
 		dataService.postDataWithFile(fd, baseUrl + 'firmware/add')
 		.success(function(response){

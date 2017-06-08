@@ -132,17 +132,17 @@
 												<form role="form" ng-submit="submitEditUser(editUser, user_edit)" name="user_edit" ng-validate="validationOptions">
 													<div class="row">
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">First Name</label>
+															<label for="">First Name <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="first-name" ng-model="editUser.first_name" ng-value="editUser.user_first_name"
 															    name="first-name" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">Last Name</label>
+															<label for="">Last Name <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="last-name" ng-model="editUser.last_name" ng-value="editUser.user_last_name" name="last-name"
 															    required>
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">Email</label>
+															<label for="">Email <span class="text-danger">*</span></label>
 															<input type="email" class="form-control" id="email" ng-model="editUser.email" ng-value="editUser.user_email" readonly>
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
@@ -182,20 +182,20 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">Name as appears on LCD</label>
+															<label for="">Name as appears on LCD <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="user_name_on_lcd" ng-model="editUser.user_name_on_lcd" name="user_name_on_lcd"
 															    required ng-value="editUser.user_name_on_lcd">
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">Phone</label>
-															<input type="text" class="form-control" ng-keypress="onlyNumber($event)" id="user_phone_no" ng-model="editUser.user_phone_no">
+															<label for="">Phone <span class="text-danger">*</span></label>
+															<input type="text" maxlength="15" class="form-control" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" id="user_phone_no" ng-model="editUser.user_phone_no">
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">Address</label>
+															<label for="">Address <span class="text-danger">*</span></label>
 															<input type="emial" name="" id="" class="form-control" ng-model="editUser.address" ng-value="editUser.user_address">
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
-															<label for="">Zip Code</label>
+															<label for="">Zip Code <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="address1" name="address1" ng-model="editUser.zipcode" ng-value="editUser.user_zipcode"
 															    required>
 														</div>
@@ -210,14 +210,14 @@
 														<!--<input type="password" name="cnf_pass" id="cnf_pass" ng-model="editUser.cnf_pass" name="cnf_pass" class="form-control">-->
 														<!--</div>-->
 														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Status</label><br/>
+															<label for="">Status <span class="text-danger">*</span></label><br/>
 															<div class="btn-group btnrounded">
 																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="1">Active</label>
 																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="0">Inactive</label>
 															</div>
 														</div>
 														<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
-															<label for="">Expiration Date</label>
+															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expiration_date" min-date="mindate"
 																    is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
@@ -654,20 +654,20 @@
 															<div class="row">
 																<span class="error">{{ bleerror }}</span>
 																<form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
-																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editBle.credential_id">
+																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editBle.credential_id" autocomplete="off">
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Username</label>
-																		<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required>
+																		<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required autocomplete="off">
 																	</div>
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editBle.door_id"
-																		    multiple required>
+																		    multiple required >
 															</select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Password</label>
-																		<input type="password" class="form-control" id="" ng-model="editBle.ble_pass" name="ble_pass" required>
+																		<input type="password" class="form-control" id="" ng-model="editBle.ble_pass" name="ble_pass" required autocomplete="off">
 																	</div>
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Status</label><br/>
