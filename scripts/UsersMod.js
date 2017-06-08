@@ -149,6 +149,10 @@ app
                 $scope.facilityList = succResponse.data.data;
                 $scope.facility = appConstants.empty;
             }
+            else{
+                $scope.facilityList = {};
+                $scope.facility = {};
+            }
         });
 	};
 	
@@ -854,6 +858,9 @@ app
         userSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.facilityList = succResponse.data.data;
+            }
+            else{
+                $rootScope.facilityList = {};
             }
         });
 	};
@@ -1627,6 +1634,9 @@ app
         userSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.facilityList = succResponse.data.data;
+            }
+            else{
+                $rootScope.facilityList = {};
             }
         });
 	};
