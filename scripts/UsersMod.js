@@ -189,8 +189,7 @@ app
 	$scope.userData = {};
 	$scope.userData.status = 1;
 	$scope.submitUserData = function(userData, user_form){
-        console.log(userData);
-		if(!user_form.validate({
+    	if(!user_form.validate({
 			rules: {
         user_phone_no: {
             rangelength: [10,15]
@@ -745,7 +744,7 @@ app
                 var arr = [];
                 angular.forEach(cred_data.Door_Id.split(","), function(value, key){  arr[key] = parseInt(value);    });
                 $scope.ble_code.door_id= arr;
-                break;
+                   break;
             default:
 
         }
@@ -1401,12 +1400,11 @@ app
         submitData.credential_type = "wiegand_code";
 		submitData.details = {};
 		// submitData.details.wiegand_facility_id = JSON.stringify(parseInt(submitData.wiegand_facility_code));
-		submitData.details.wiegand_card_number = JSON.stringify(parseInt(submitData.wiegand_card_number));
-		submitData.details.wiegand_facility_code = JSON.stringify(parseInt(submitData.wiegand_facility_code));
+		submitData.details.wiegand_card_number = submitData.wiegand_card_number;
+		submitData.details.wiegand_facility_code = submitData.wiegand_facility_code;
         submitData.door_id = submitData.door_id;
         submitData.status = submitData.status;
-		
-        if(submitData.credential_id == null){
+	    if(submitData.credential_id == null){
             var meth = appConstants.postMethod;
             var url = appConstants.useraddcredentials;
         }

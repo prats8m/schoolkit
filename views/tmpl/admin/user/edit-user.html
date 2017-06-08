@@ -694,7 +694,6 @@
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="blecode in ble_code_list">
 																				<td>{{blecode.Detail.ble_username}}</td>
-																				<!--<td>{{blecode.Detail.ble_password}}</td>-->
 																				<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																				<td>{{blecode.Door_Name}}</td>
 																				<td>
@@ -708,7 +707,7 @@
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(blecode, 'ble_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
-																			</tr>
+																			</tr> 
 																		</tbody>
 																	</table>
 																</div>
