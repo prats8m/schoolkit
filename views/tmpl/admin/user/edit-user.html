@@ -134,12 +134,12 @@
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">First Name <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="first-name" ng-model="editUser.first_name" ng-value="editUser.user_first_name"
-															    name="first-name" required>
+															 name="first-name" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Last Name <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="last-name" ng-model="editUser.last_name" ng-value="editUser.user_last_name" name="last-name"
-															    required>
+															 required>
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Email <span class="text-danger">*</span></label>
@@ -160,7 +160,7 @@
 																	<!--</span>-->
 
 																	<input type="file" accept="image/*" file-model="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
-																	    onchange="HandleInputTypeFilechange();" />
+																	 onchange="HandleInputTypeFilechange();" />
 																	<input type="text" class="form-control " id="profilePicFileName" readonly="true" />
 																	<!--<input type="button" value="Click to select file" id="fakeBrowse" onclick="HandleBrowseClick();"/>-->
 																	<span class="group-span-filestyle input-group-btn" tabindex="0" id="fakeBrowse" ng-click="HandleProfilePicAddUpdateClick();">
@@ -184,11 +184,12 @@
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Name as appears on LCD <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="user_name_on_lcd" ng-model="editUser.user_name_on_lcd" name="user_name_on_lcd"
-															    required ng-value="editUser.user_name_on_lcd">
+															 required ng-value="editUser.user_name_on_lcd">
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Phone <span class="text-danger">*</span></label>
-															<input type="text" maxlength="15" class="form-control" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" id="user_phone_no" ng-model="editUser.user_phone_no">
+															<input type="text" maxlength="15" class="form-control" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')"
+															 onchange="try{setCustomValidity('')}catch(e){}" id="user_phone_no" ng-model="editUser.user_phone_no">
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Address <span class="text-danger">*</span></label>
@@ -197,7 +198,7 @@
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Zip Code <span class="text-danger">*</span></label>
 															<input type="text" class="form-control" id="address1" name="address1" ng-model="editUser.zipcode" ng-value="editUser.user_zipcode"
-															    required>
+															 required>
 														</div>
 													</div>
 													<div class="row" ng-controller="ActivebtnCtrl">
@@ -220,7 +221,7 @@
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expiration_date" min-date="mindate"
-																    is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -244,7 +245,7 @@
 														<div class="form-group col-sm-3 col-md-3">
 															<label for="">Firstly Select facility</label><br/>
 															<select class="form-control" ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id"
-															    ng-change="userNotAssignedGroup(facility)">
+															 ng-change="userNotAssignedGroup(facility)">
 															<option value="">Select Facility</option>
 														</select>
 														</div>
@@ -294,7 +295,7 @@
 																<tr ng-repeat="assign_usergroup in userGroup">
 																	<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
 																	<td><button type="button" ng-click="unassignUserGroupEdit(assign_usergroup.usergroup_id,usergroup.facility_id )"
-																		    class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																		 class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 																</tr>
 															</tbody>
 														</table>
@@ -326,7 +327,7 @@
 																	<div class="form-group col-sm-12 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editAccess.door_id"
-																		    multiple required>
+																		 multiple required>
 															</select>
 																	</div>
 																	<div class="form-group col-sm-12 col-md-12">
@@ -390,7 +391,7 @@
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneedit.door_id"
-																		    multiple required>
+																		 multiple required>
 															</select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
@@ -456,18 +457,18 @@
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Card Number</label>
 																		<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no"
-																		    required>
+																		 required>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editRfid.door_id"
-																		    multiple required>
+																		 multiple required>
 															</select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Facility Code</label>
 																		<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editRfid.rfid_facility_code"
-																		    name="rfid_facility_code" required>
+																		 name="rfid_facility_code" required>
 																	</div>
 																	<div class="form-group col-sm-12 col-md-8">
 																		<label for="">Status</label><br/>
@@ -529,7 +530,7 @@
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
-																		    multiple required></select>
+																		 multiple required></select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Facility Code</label>
@@ -542,6 +543,8 @@
 																			<label class="btn btn-default" ng-model="wiegand.status" uib-btn-radio=0>Inactive</label>
 																		</div>
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																	</div>
+																</div>
 															</form>
 															</div>
 															<div class="mt-40">
@@ -576,9 +579,9 @@
 															</div>
 													</uib-accordion-group>
 
-													<uib-accordion-group is-open="status.open3" class="panel-default">
+													<uib-accordion-group is-open="status.open4" class="panel-default">
 														<uib-accordion-heading>
-															<div ng-click="cleanAccordionFormObject('Edit User','editNfc')">NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></div>
+															<div ng-click="cleanAccordionFormObject('Edit User','editNfc')">NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></div>
 														</uib-accordion-heading>
 														<div class="modal-body p-0">
 															<div class="row">
@@ -592,12 +595,12 @@
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Facility Code</label>
 																		<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editNfc.nfc_facility_code"
-																		    name="editNfc" required>
+																		 name="editNfc" required>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editNfc.door_id"
-																		    multiple required>
+																		 multiple required>
 															</select>
 																	</div>
 																	<div class="col-sm-12 col-md-12">
@@ -644,15 +647,16 @@
 														</div>
 													</uib-accordion-group>
 
-													<uib-accordion-group is-open="status.open4" class="panel-default">
+													<uib-accordion-group is-open="status.open5" class="panel-default">
 														<uib-accordion-heading>
-															<div ng-click="cleanAccordionFormObject('Edit User','editBle')">BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></div>
+															<div ng-click="cleanAccordionFormObject('Edit User','editBle')">BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open5, 'fa-plus': !status.open5}"></i></div>
 														</uib-accordion-heading>
 														<div class="modal-body p-0">
 															<div class="row">
 																<span class="error">{{ bleerror }}</span>
 																<form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
-																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editBle.credential_id" autocomplete="off">
+																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editBle.credential_id"
+																	 autocomplete="off">
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Username</label>
 																		<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required autocomplete="off">
@@ -660,7 +664,7 @@
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editBle.door_id"
-																		    multiple required >
+																		 multiple required>
 															</select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
@@ -714,16 +718,16 @@
 														</div>
 													</uib-accordion-group>
 												</uib-accordion>
-											</div>
+												</div>
 										</md-content>
 									</md-tab>
 
 								</md-tabs>
 							</md-content>
+							</div>
 						</div>
-					</div>
 				</section>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
