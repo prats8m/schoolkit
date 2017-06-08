@@ -31,7 +31,7 @@
 							<li class="addpopup">
 								<div ng-controller="addHolidaySchedularCTRL">
 									<script type="text/ng-template" id="myholidaySchedularModalContent.html">
-									<form name="addHolidays" ng-validate="validationOptions" ng-submit="ok(addHolidays)">
+									<form name="addHolidays" ng-validate="validationOptions" ng-submit="ok(addHolidays);">
 										<div class="modal-header"><h4 class="modal-title custom-font">Create Holiday Schedule</h4></div>
 										<div class="hometabs">
 											<div class="row">
@@ -72,7 +72,7 @@
 															</div>
 															<div class="col-sm-6 col-md-6 form-group">
 																<label for="">End Time <span class="text-danger">*</span></label><br/>
-																<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time" required>
+																<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time">
 																	<option value="">Select Time</option>
 																</select>
 															</div>
@@ -89,7 +89,7 @@
 																<div ng-controller="DatepickerDemoCtrl">
 																	<label for="">Expiration Date <span class="text-danger">*</span></label>
 																	<div class="input-group">
-																		<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_expiration" is-open="opened" min-date="addHolidayScheduleObj.hs_end_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
+																		<input type="text" id="expirationDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_expiration" is-open="opened" min-date="addHolidayScheduleObj.hs_end_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 																		<span class="input-group-btn">
 																			<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																		</span>
