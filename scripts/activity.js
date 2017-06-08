@@ -1,11 +1,15 @@
 'use strict';
 
 app
-  .controller('ActivityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,appConstants,activitiesSvc) {
+  .controller('ActivityCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,appConstants,activitiesSvc,$sce) {
     $scope.page = {
 		title: appConstants.activitiesTitle
     };
 	$scope.date = new Date();
+
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+    }
 
     $scope.getFacilityList = function(){
         activitiesSvc.getFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
@@ -81,11 +85,18 @@ app
     $scope.mediatype = 'jpeg';
     $scope.viewActivity = function(device_id,mediafile){
         var url = appConstants.geteventmediaurl + '?device_id='+device_id+'&media_file='+mediafile;
+        //var mediaArr = mediafile.split(".");
+        //console.log(mediaArr);
         activitiesSvc.viewActivity(url ,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.mediafile = (succResponse.data != null || succResponse.data != "") ? succResponse.data:'images/avatar.jpg';
-                $scope.mediatype = 'jpeg';
+                if(succResponse.data != null){
+                    $scope.mediafile = (succResponse.data.url != null || succResponse.data.url != "") ? succResponse.data.url:'images/avatar.jpg';
+                    $scope.mediatype = succResponse.data.fileType;
+                    console.log();
+                }
             }
         });
     }
+
+   
 });
