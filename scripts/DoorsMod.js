@@ -186,6 +186,10 @@ app
 				if(succResponse.status){
 					$rootScope.facilityList = succResponse.data.data;
 				}
+				else{
+					$rootScope.facilityList = {};
+				}
+				console.log("facilitylist"+JSON.stringify($rootScope.facilityList));
 			});
 		};
 	$scope.facilityInit();
@@ -213,9 +217,9 @@ app
 	// $scope.doorData = {};
 	// $scope.doorData.door_status = 1;
 	$scope.doorInit = function(){
-       doorsSvc.doorInit(appConstants.doorview+'?doorId='+$stateParams.door_id,appConstants.getMethod,{},{},function (succResponse) {
+	   doorsSvc.doorInit(appConstants.doorview+'?doorId='+$stateParams.door_id,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                $scope.doorData = succResponse.data;
+	            $scope.doorData = succResponse.data;
                 $scope.facilityInit();
             }
         });
@@ -229,8 +233,12 @@ app
                 $scope.facilityList = succResponse.data.data;
                 $scope.doorData.facility_id = parseInt($cookies.get('facilityId'));
             }
+			else{
+				$scope.facilityList = {};
+			}
+			console.log("scope of facility list"+$scope.facilityList);
         });
-	};
+};
 
 	$scope.editDoordata = function(doorData, door_data){
 		doorData.facility_id = doorData.facility.facility_id;
