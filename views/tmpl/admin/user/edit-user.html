@@ -546,37 +546,37 @@
 																	</div>
 																</div>
 															</form>
-															</div>
-															<div class="mt-40">
-																<div class="tile-body p-0 table-responsive">
-																	<table class="table table-bordered">
-																		<thead>
-																			<tr>
-																				<th>Card Number</th>
-																				<th>Facility Code</th>
-																				<th width="400">Assigned Doors</th>
-																				<th>Status</th>
-																				<th width="75">Action</th>
-																			</tr>
-																		</thead>
-																		<tbody style="font-size:14px;">
-																			<tr ng-repeat="wiegand_code in wiegand_code_list">
-																				<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
-																				<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
-																				<td>{{wiegand_code.Door_Name}} </td>
-																				<td>
-																					{{wiegand_code.status==0?'Inactive':'Active'}}
+														</div>
+														<div class="mt-40">
+															<div class="tile-body p-0 table-responsive">
+																<table class="table table-bordered">
+																	<thead>
+																		<tr>
+																			<th>Card Number</th>
+																			<th>Facility Code</th>
+																			<th width="400">Assigned Doors</th>
+																			<th>Status</th>
+																			<th width="75">Action</th>
+																		</tr>
+																	</thead>
+																	<tbody style="font-size:14px;">
+																		<tr ng-repeat="wiegand_code in wiegand_code_list">
+																			<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
+																			<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
+																			<td>{{wiegand_code.Door_Name}} </td>
+																			<td>
+																				{{wiegand_code.status==0?'Inactive':'Active'}}
 
-																				</td>
-																				<td class="credintialicon">
-																					<a href="" uib-tooltip="Edit" ng-click="editCredential(wiegand_code, 'wiegand_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																					<a href="" ng-click="removeCredential('{{wiegand_code.Credential_Id}}', 'wiegand_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																				</td>
-																			</tr>
-																		</tbody>
-																	</table>
-																</div>
+																			</td>
+																			<td class="credintialicon">
+																				<a href="" uib-tooltip="Edit" ng-click="editCredential(wiegand_code, 'wiegand_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" ng-click="removeCredential('{{wiegand_code.Credential_Id}}', 'wiegand_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
 															</div>
+														</div>
 													</uib-accordion-group>
 
 													<uib-accordion-group is-open="status.open4" class="panel-default">
@@ -696,7 +696,6 @@
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="blecode in ble_code_list">
 																				<td>{{blecode.Detail.ble_username}}</td>
-																				<!--<td>{{blecode.Detail.ble_password}}</td>-->
 																				<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																				<td>{{blecode.Door_Name}}</td>
 																				<td>
@@ -710,7 +709,7 @@
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(blecode, 'ble_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
-																			</tr>
+																			</tr> 
 																		</tbody>
 																	</table>
 																</div>
@@ -718,16 +717,16 @@
 														</div>
 													</uib-accordion-group>
 												</uib-accordion>
-												</div>
+											</div>
 										</md-content>
 									</md-tab>
 
 								</md-tabs>
 							</md-content>
-							</div>
 						</div>
+					</div>
 				</section>
-				</div>
 			</div>
 		</div>
 	</div>
+</div>
