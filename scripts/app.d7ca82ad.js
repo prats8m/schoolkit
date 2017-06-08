@@ -8,7 +8,7 @@
  * Main module of the application.
  */
 
-  /*jshint -W079 */
+/*jshint -W079 */
 
 var app = angular
   .module('minovateApp', [
@@ -64,31 +64,31 @@ var app = angular
     'dragularModule',
     'angular-loading-bar',
     'ngValidate',
-	'toaster'
+    'toaster'
   ])
-  .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function($rootScope, $state, $stateParams, $location, $cookies) {
+  .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-      var loginToken = $cookies.get("token");
-      if(!loginToken){
-        $location.path('/core/login');
-      }
-      $rootScope.allowNumberOnly = function (evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode != 46 && charCode > 31
-                && (charCode < 48 || charCode > 57))
-                evt.preventDefault();
-        };
-      $rootScope.logoutSessionExpiredMassageCount=0;
+    var loginToken = $cookies.get("token");
+    if (!loginToken) {
+      $location.path('/core/login');
+    }
+    $rootScope.allowNumberOnly = function (evt) {
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode != 46 && charCode > 31
+        && (charCode < 48 || charCode > 57))
+        evt.preventDefault();
+    };
+    $rootScope.logoutSessionExpiredMassageCount = 0;
 
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
       event.targetScope.$watch('$viewContentLoaded', function () {
 
         angular.element('html, body, #content').animate({ scrollTop: 0 }, 200);
 
         setTimeout(function () {
-          angular.element('#wrap').css('visibility','visible');
+          angular.element('#wrap').css('visibility', 'visible');
 
           if (!angular.element('.dropdown').hasClass('open')) {
             angular.element('.dropdown').find('>ul').slideUp();
@@ -97,16 +97,16 @@ var app = angular
       });
       $rootScope.containerClass = toState.containerClass;
 
-        if (toState.name ==="app.admin.user.add-user") {
-            $cookies.remove("user_id");
-        }
+      if (toState.name === "app.admin.user.add-user") {
+        $cookies.remove("user_id");
+      }
     });
 
 
 
-      $rootScope.$on('$locationChangeStart', function(event, toUrl, fromUrl) {
-          console.log(toUrl);
-      });
+    $rootScope.$on('$locationChangeStart', function (event, toUrl, fromUrl) {
+      console.log(toUrl);
+    });
 
   }])
 
@@ -114,10 +114,10 @@ var app = angular
     uiSelectConfig.theme = 'bootstrap';
   }])
 
-  
+
 
   //angular-language
-  .config(['$translateProvider', function($translateProvider) {
+  .config(['$translateProvider', function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
       prefix: 'languages/',
       suffix: '.json'
@@ -130,823 +130,823 @@ var app = angular
 
   //.....Setting Up Interceotor.............................
 
-    .config(function($httpProvider) {
-        $httpProvider.interceptors.push('setCustomConfigsToHTTPCalls');
-    })
+  .config(function ($httpProvider) {
+    $httpProvider.interceptors.push('setCustomConfigsToHTTPCalls');
+  })
 
-	//......................................................
-  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    
-	$urlRouterProvider.otherwise('/core/login');
-    
-	$stateProvider
-    
-	/*-----------------------------------------------------------------
-				Start code for default pages
-	-----------------------------------------------------------------*/
-	
-	.state('app', {
-      abstract: true,
-      url: '/app',
-      templateUrl: 'views/tmpl/app.html'
-    })
-	
-	//app core pages (errors, login, signup)
-    .state('core', {
-      abstract: true,
-      url: '/core',
-      template: '<div ui-view></div>'
-    })
-    
-	//login
-    .state('core.login', {
-      url: '/login',
-      controller: 'LoginCtrl',
-      templateUrl: 'views/tmpl/login.html'
-    })
-    
-	//signup
-    .state('core.signup', {
-      url: '/signup',
-      controller: 'SignupCtrl',
-      templateUrl: 'views/tmpl/signup.html'
-    })
-    
-	//forgot password
-    .state('core.forgot-password', {
-      url: '/forgot-password',
-      controller: 'ForgotPasswordCtrl',
-      templateUrl: 'views/tmpl/forgot-password.html'
-    })
-	
-	//one time password - OTP
-    .state('core.otp', {
-      url: '/otp',
-      controller: 'OTPCtrl',
-      templateUrl: 'views/tmpl/otp.html'
-    })
-	
-	//create new password
-    .state('core.create-new-password', {
-      url: '/create-new-password',
-      controller: 'CreatePasswordCtrl',
-      templateUrl: 'views/tmpl/create-new-password.html'
-    })
-	
-	//admin device view-device
-	.state('app.admin.device.view-device', {
-	  url: '/view-primary-device/:device_id',
-	  controller: 'ViewDeviceCtrl',
-	  templateUrl: 'views/tmpl/admin/device/view-device.html'
-	})
-	
-	//admin device edit-device
-	.state('app.admin.device.edit-device', {
-	  url: '/edit-primary-device/:device_id',
-	  controller: 'EditDeviceCtrl',
-	  templateUrl: 'views/tmpl/admin/device/edit-device.html'
-	})
-	
-	//admin device view-dependent-device
-	.state('app.admin.device.view-dependent-device', {
-	  url: '/view-dependent-device/:device_id',
-	  controller: 'ViewDependentDeviceCtrl',
-	  templateUrl: 'views/tmpl/admin/device/view-dependent-device.html'
-	})
-	
-	//admin device edit-dependent-device
-	.state('app.admin.device.edit-dependent-device', {
-	  url: '/edit-dependent-device/:device_id',
-	  controller: 'EditDeviceCtrl',
-	  templateUrl: 'views/tmpl/admin/device/edit-dependent-device.html'
-	})
-		//admin activity
-		.state('app.admin.activity', {
-		  url: '/activity',
-		  controller: 'ActivityCtrl',
-		  templateUrl: 'views/tmpl/admin/activity.html'
-		})	
+  //......................................................
+  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-	/*-----------------------------------------------------------------
-				End code for default pages
-	-----------------------------------------------------------------*/
-	
-	/*-----------------------------------------------------------------
-				Start code for subadmin
-	-----------------------------------------------------------------*/
-		
-	//subadmin
-    .state('app.subadmin', {
-      url: '/subadmin',
-      template: '<div ui-view></div>'
-    })
-	
-	
-		//subadmin dashboard
-		.state('app.subadmin.dashboard', {
-		  url: '/dashboard',
-		  controller: 'DashboardCtrl',
-		  templateUrl: 'views/tmpl/subadmin/dashboard.html'
-		})
-		
-		//subadmin settings
-		.state('app.subadmin.settings', {
-		  url: '/settings',
-		  controller: 'SettingCtrl',
-		  templateUrl: 'views/tmpl/subadmin/settings.html'
-		})
-		
-		//subadmin facility
-		.state('app.subadmin.facility', {
-		  url: '/facility',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin facility facility
-			.state('app.subadmin.facility.facility', {
-			  url: '/facility',
-			  controller: 'FacilityCtrl',
-			  templateUrl: 'views/tmpl/subadmin/facility/facility.html',
-			  params: {facility_id: null}
-			})
-			
-				//subadmin facility facility details
-				.state('app.subadmin.facility.facility-details', {
-				  url: '/facility-details/:facility_id',
-				  controller: 'FacilityDetailsCtrl',
-				  params: {facility_id: null},
-				  templateUrl: 'views/tmpl/subadmin/facility/facility-details.html'
-				})
-				
+    $urlRouterProvider.otherwise('/core/login');
 
-		//subadmin user
-		.state('app.subadmin.user', {
-		  url: '/user',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin user users
-			.state('app.subadmin.user.users', {
-			  url: '/users',
-			  controller: 'UserCtrl',
-			  templateUrl: 'views/tmpl/subadmin/user/users.html'
-			})
+    $stateProvider
 
-			//admin user user-groups-members
-				.state('app.admin.user.user-groups-members', {
-				  url: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount',
-				  controller: 'UserGroupsDetailCtrl',  //'UserGroupsCtrl',
-				  templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
-				})	
-			
-			//subadmin user user-groups
-			.state('app.subadmin.user.user-groups', {
-			  url: '/user-groups',
-			  controller: 'UserGroupsCtrl',
-			  templateUrl: 'views/tmpl/subadmin/user/user-groups.html'
-			})
-			
-				//subadmin user user-profile
-				.state('app.subadmin.user.user-profile', {
-				  url: '/user-profile',
-				  controller: 'UserProfileCtrl',
-				  templateUrl: 'views/tmpl/subadmin/user/user-profile.html'
-				})
-				
-		
-		//subadmin device
-		.state('app.subadmin.device', {
-		  url: '/device',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin device devices
-			.state('app.subadmin.device.devices', {
-			  url: '/devices',
-			  controller: 'DeviceCtrl',
-			  templateUrl: 'views/tmpl/subadmin/device/devices.html'
-			})
-			
-				//subadmin device device details
-				.state('app.subadmin.device.device-details', {
-				  url: '/device-details',
-				  controller: 'DeviceDetailsCtrl',
-				  templateUrl: 'views/tmpl/subadmin/device/device-details.html'
-				})
-			
-			//subadmin device dependent-devices-details
-			.state('app.subadmin.device.dependent-devices-details', {
-			  url: '/dependent-devices-details',
-			  controller: 'DependentDevicesDetailsCtrl',
-			  templateUrl: 'views/tmpl/subadmin/device/dependent-devices-details.html'
-			})
-			
-		//subadmin door
-		.state('app.subadmin.door', {
-		  url: '/door',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin door doors
-			.state('app.subadmin.door.doors', {
-			  url: '/doors',
-			  controller: 'DoorCtrl',
-			  templateUrl: 'views/tmpl/subadmin/door/doors.html'
-			})
-			
-				//admin door view-doors
-				.state('app.subadmin.door.view-doors', {
-				  url: '/view-door',
-				  controller: 'ViewDoorCtrl',
-				  templateUrl: 'views/tmpl/subadmin/door/view-door.html'
-				})
-			
-			//subadmin door door-groups
-			.state('app.subadmin.door.door-groups', {
-			  url: '/door-groups',
-			  controller: 'DoorGroupsCtrl',
-			  templateUrl: 'views/tmpl/subadmin/door/door-groups.html'
-			})
-			
-			
-		//subadmin permissions
-		.state('app.subadmin.permissions', {
-		  url: '/permissions',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin permissions roles
-			.state('app.subadmin.permissions.roles', {
-			  url: '/roles',
-			  controller: 'RoleCtrl',
-			  templateUrl: 'views/tmpl/subadmin/permissions/roles.html'
-			})
-			
-				//subadmin permissions view-roles
-				.state('app.subadmin.permissions.view-roles', {
-				  url: '/view-roles',
-				  controller: 'ViewRoleCtrl',
-				  templateUrl: 'views/tmpl/subadmin/permissions/view-roles.html'
-				})
-			
-			//subadmin permissions admin
-			.state('app.subadmin.permissions.admin', {
-			  url: '/admin',
-			  controller: 'AdminCtrl',
-			  templateUrl: 'views/tmpl/subadmin/permissions/admin.html'
-			})
-			
-				//subadmin permissions admin-profile
-				.state('app.subadmin.permissions.admin-profile', {
-				  url: '/admin-profile',
-				  controller: 'AdminProfileCtrl',
-				  templateUrl: 'views/tmpl/subadmin/permissions/admin-profile.html'
-				})
+      /*-----------------------------------------------------------------
+            Start code for default pages
+      -----------------------------------------------------------------*/
 
-				//admin administrator
-		.state('app.admin.administrator', {
-		  url: '/administrator',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin administrator roles
-			.state('app.admin.administrator.roles', {
-			  url: '/roles',
-			  controller: 'RoleCtrl',
-			  templateUrl: 'views/tmpl/admin/administrator/roles.html'
-			})
-			
-				//admin administrator add-roles
-				.state('app.admin.administrator.add-roles', {
-				  url: '/add-roles',
-				  controller: 'AddRolesCtrl',
-				  templateUrl: 'views/tmpl/admin/administrator/add-roles.html'
-				})
-			
-				//admin administrator view-roles
-				.state('app.admin.administrator.view-roles', {
-				  url: '/view-roles',
-				  controller: 'ViewRoleCtrl',
-				  templateUrl: 'views/tmpl/admin/administrator/view-roles.html'
-				})
-				
-				//admin administrator edit-roles
-				.state('app.admin.administrator.edit-roles', {
-				  url: '/edit-roles',
-				  controller: 'EditRolesCtrl',
-				  templateUrl: 'views/tmpl/admin/administrator/edit-roles.html'
-				})
-				
+      .state('app', {
+        abstract: true,
+        url: '/app',
+        templateUrl: 'views/tmpl/app.html'
+      })
 
-				//admin administrator admin
-				.state('app.admin.administrator.admin', {
-				  url: '/admin',
-				  controller: 'AdminCtrl',
-				  templateUrl: 'views/tmpl/admin/administrator/admin.html'
-				})
-				
-					//admin administrator admin-profile
-					.state('app.admin.administrator.admin-profile', {
-					  url: '/admin-profile',
-					  controller: 'AdminProfileCtrl',
-					  templateUrl: 'views/tmpl/admin/administrator/admin-profile.html'
-					})
-				
-		//subadmin schedule
-		.state('app.subadmin.schedule', {
-		  url: '/schedule',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin schedule schedules
-			.state('app.subadmin.schedule.schedules', {
-			  url: '/schedules',
-			  controller: 'ScheduleCtrl',
-			  templateUrl: 'views/tmpl/subadmin/schedule/schedules.html'
-			})
-			
-				//subadmin schedule view-schedule
-				.state('app.subadmin.schedule.view-schedule', {
-				  url: '/view-schedule',
-				  controller: 'ViewScheduleCtrl',
-				  templateUrl: 'views/tmpl/subadmin/schedule/view-schedule.html'
-				})
-			
-			//subadmin schedule schedule-groups
-			.state('app.subadmin.schedule.schedule-groups', {
-			  url: '/schedule-groups',
-			  controller: 'ScheduleGroupsCtrl',
-			  templateUrl: 'views/tmpl/subadmin/schedule/schedule-groups.html'
-			})
+      //app core pages (errors, login, signup)
+      .state('core', {
+        abstract: true,
+        url: '/core',
+        template: '<div ui-view></div>'
+      })
 
-			//admin schedule add-schedule
-			.state('app.admin.schedule.add-schedule', {
-				url: '/add-schedule',
-				controller: 'AddScheduleCtrl',
-				templateUrl: 'views/tmpl/admin/schedule/add-schedule.html'
-			})
+      //login
+      .state('core.login', {
+        url: '/login',
+        controller: 'LoginCtrl',
+        templateUrl: 'views/tmpl/login.html'
+      })
 
-			//admin schedule holiday-schedule
-			.state('app.admin.schedule.holiday-schedules', {
-			  url: '/holiday-schedules',
-			  controller: 'HolidayScheduleCtrl',
-			  templateUrl: 'views/tmpl/admin/schedule/holiday-schedules.html'
-			})
-			
-			//subadmin schedule holiday-schedule
-			.state('app.subadmin.schedule.holiday-schedule', {
-			  url: '/holiday-schedule',
-			  controller: 'HolidayScheduleCtrl',
-			  templateUrl: 'views/tmpl/subadmin/schedule/holiday-schedule.html'
-			})
-			
-				//subadmin schedule view-holiday-schedule
-				.state('app.subadmin.schedule.view-holiday-schedule', {
-				  url: '/view-holiday-schedule',
-				  controller: 'ViewHolidayScheduleCtrl',
-				  templateUrl: 'views/tmpl/subadmin/schedule/view-holiday-schedule.html'
-				})
+      //signup
+      .state('core.signup', {
+        url: '/signup',
+        controller: 'SignupCtrl',
+        templateUrl: 'views/tmpl/signup.html'
+      })
 
-			
-			
-		//subadmin support
-		.state('app.subadmin.support', {
-		  url: '/support',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin support technician
-			.state('app.subadmin.support.technician', {
-			  url: '/technician',
-			  controller: 'TechnicianCtrl',
-			  templateUrl: 'views/tmpl/subadmin/support/technician.html'
-			})
-			
-				//subadmin support technician-profile
-				.state('app.subadmin.support.technician-profile', {
-				  url: '/technician-profile/:technician_id',
-				  controller: 'TechnicianProfileCtrl',
-				  templateUrl: 'views/tmpl/subadmin/support/technician-profile.html'
-				})
-				
-		//subadmin help
-		.state('app.subadmin.help', {
-		  url: '/help',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin help message-notification
-			.state('app.subadmin.help.message-notification', {
-			  url: '/message-notification',
-			  controller: 'MessageNotificationCtrl',
-			  templateUrl: 'views/tmpl/subadmin/help/message-notification.html'
-			})
-			
-			//subadmin help diagnostics-help
-			.state('app.subadmin.help.diagnostics-help', {
-			  url: '/diagnostics-help',
-			  controller: 'DiagnosticsHelpCtrl',
-			  templateUrl: 'views/tmpl/subadmin/help/diagnostics-help.html'
-			})
-			
-			//subadmin help history-events
-			.state('app.subadmin.help.history-events', {
-			  url: '/history-events',
-			  controller: 'HistoryEventsCtrl',
-			  templateUrl: 'views/tmpl/subadmin/help/history-events.html'
-			})
-			
-		//subadmin camera
-		.state('app.subadmin.camera', {
-		  url: '/camera',
-		  template: '<div ui-view></div>'
-		})
-		
-			//subadmin camera camera-dvr
-			.state('app.subadmin.camera.camera-dvr', {
-			  url: '/camera-dvr',
-			  controller: 'CameraDVRCtrl',
-			  templateUrl: 'views/tmpl/subadmin/camera/camera-dvr.html'
-			})
-	
-	/*-----------------------------------------------------------------
-				End code for subadmin
-	-----------------------------------------------------------------*/
-	
-	
-	/*-----------------------------------------------------------------
-				Start code for admin
-	-----------------------------------------------------------------*/
-		
-	//admin
-    .state('app.admin', {
-      url: '/admin',
-      template: '<div ui-view></div>'
-    })
+      //forgot password
+      .state('core.forgot-password', {
+        url: '/forgot-password',
+        controller: 'ForgotPasswordCtrl',
+        templateUrl: 'views/tmpl/forgot-password.html'
+      })
 
-		
-	//admin device service-plan
-		.state('app.admin.device.service-plan', {
-		  url: '/service-plan',
-		  controller: 'ServicePlanCtrl',
-		  templateUrl: 'views/tmpl/admin/device/service-plan.html'
-		})
-		
-		//admin change-service-plan
-		.state('app.admin.change-service-plan', {
-		  url: '/change-service-plan',
-		  controller: 'ChangeServicePlanCtrl',
-		  templateUrl: 'views/tmpl/admin/change-service-plan.html'
-		})
-		
-		//admin upgrade-service-plan
-		.state('app.admin.upgrade-service-plan', {
-		  url: '/upgrade-service-plan',
-		  controller: 'UpgradeServicePlanCtrl',
-		  templateUrl: 'views/tmpl/admin/upgrade-service-plan.html'
-		})
-		
-		//admin billing-information
-		.state('app.admin.billing-information', {
-		  url: '/billing-information',
-		  controller: 'BillingInfomationCtrl',
-		  templateUrl: 'views/tmpl/admin/billing-information.html'
-		})
-		
-		//admin payment
-		.state('app.admin.payment', {
-		  url: '/payment',
-		  controller: 'PaymentCtrl',
-		  templateUrl: 'views/tmpl/admin/payment.html'
-		})
-		
-		//admin payment-confirmation
-		.state('app.admin.payment-confirmation', {
-		  url: '/payment-confirmation',
-		  controller: 'PaymentConfirmationCtrl',
-		  templateUrl: 'views/tmpl/admin/payment-confirmation.html'
-		})
-	
-	
-		//admin dashboard
-		.state('app.admin.dashboard', {
-		  url: '/dashboard',
-		  controller: 'DashboardCtrl',
-		  templateUrl: 'views/tmpl/admin/dashboard.html'
-		})
+      //one time password - OTP
+      .state('core.otp', {
+        url: '/otp',
+        controller: 'OTPCtrl',
+        templateUrl: 'views/tmpl/otp.html'
+      })
 
-        //admin profile settings
-        .state('app.admin.profile-settings', {
-            url: '/profile-settings',
-            controller: 'profileSettingCtrl',
-            templateUrl: 'views/tmpl/admin/profile-settings.html'
-        })
+      //create new password
+      .state('core.create-new-password', {
+        url: '/create-new-password',
+        controller: 'CreatePasswordCtrl',
+        templateUrl: 'views/tmpl/create-new-password.html'
+      })
 
-		//admin settings
-		.state('app.admin.settings', {
-		  url: '/settings/:device_id',
-		  controller: 'SettingCtrl',
-		  templateUrl: 'views/tmpl/admin/settings.html'
-		})
-		
-		.state('app.admin.device.device-settings', {
-		  url: '/device-settings/:device_id',
-		  controller: 'DeviceSettingController',
-		  templateUrl: 'views/tmpl/admin/device/device-settings.html'
-		})
-		
-		//admin facility
-		.state('app.admin.facility', {
-		  url: '/facility',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin facility facility
-			.state('app.admin.facility.facility', {
-			  url: '/facility',
-			  controller: 'FacilityCtrl',
-			  templateUrl: 'views/tmpl/admin/facility/facility.html'
-			})
-			
-				//admin facility view-facility
-				.state('app.admin.facility.view-facility', {
-				  url: '/view-facility/:facility_id',
-				  controller: 'ViewFacilityCtrl',
-				  templateUrl: 'views/tmpl/admin/facility/view-facility.html'
-				})
-				
-				//admin facility edit-facility
-				.state('app.admin.facility.edit-facility', {
-				  url: '/edit-facility/:facility_id',
-				  controller: 'EditFacilityCtrl',
-				  templateUrl: 'views/tmpl/admin/facility/edit-facility.html'
-				})
-				
+      //admin device view-device
+      .state('app.admin.device.view-device', {
+        url: '/view-primary-device/:device_id',
+        controller: 'ViewDeviceCtrl',
+        templateUrl: 'views/tmpl/admin/device/view-device.html'
+      })
 
-		//admin user
-		.state('app.admin.user', {
-		  url: '/user',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin user users
-			.state('app.admin.user.users', {
-			  url: '/users',
-			  controller: 'UserCtrl',
-			  templateUrl: 'views/tmpl/admin/user/users.html'
-			})
+      //admin device edit-device
+      .state('app.admin.device.edit-device', {
+        url: '/edit-primary-device/:device_id',
+        controller: 'EditDeviceCtrl',
+        templateUrl: 'views/tmpl/admin/device/edit-device.html'
+      })
 
-			//admin user add
-			.state('app.admin.user.add-user', {
-				  url: '/add-user',
-				  controller: 'UserCtrl',
-				  templateUrl: 'views/tmpl/admin/user/add-user.html'
-				})
+      //admin device view-dependent-device
+      .state('app.admin.device.view-dependent-device', {
+        url: '/view-dependent-device/:device_id',
+        controller: 'ViewDependentDeviceCtrl',
+        templateUrl: 'views/tmpl/admin/device/view-dependent-device.html'
+      })
 
-			//admin user view-user
-				.state('app.admin.user.view-user', {
-				  url: '/view-user/:user_id',
-				  controller: 'UserProfileCtrl',
-				  templateUrl: 'views/tmpl/admin/user/view-user.html'
-				})
-				
-				//admin user edit-user
-				.state('app.admin.user.edit-user', {
-				  url: '/edit-user/:user_id',
-				  controller: 'UserProfileCtrl',
-				  templateUrl: 'views/tmpl/admin/user/edit-user.html'
-				})
-			
-			//admin user user-groups
-			.state('app.admin.user.user-groups', {
-			  url: '/user-groups',
-			  controller: 'UserGroupsCtrl',
-			  templateUrl: 'views/tmpl/admin/user/user-groups.html'
-			})
-			
-				//admin user user-profile
-				.state('app.admin.user.user-profile', {
-				  url: '/user-profile/:user_id',
-				  controller: 'UserProfileCtrl',
-				  templateUrl: 'views/tmpl/admin/user/user-profile.html',
-				  params: {type: "type"}
-				})
-				
-			
-		
-		//admin device
-		.state('app.admin.device', {
-		  url: '/device',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin device devices
-			.state('app.admin.device.devices', {
-			  url: '/devices',
-			  controller: 'DeviceCtrl',
-			  templateUrl: 'views/tmpl/admin/device/devices.html'
-			})
-			
-				//admin device device details
-				.state('app.admin.device.device-details', {
-				  url: '/device-details/:device_id',
-				  controller: 'DeviceDetailsCtrl',
-				  templateUrl: 'views/tmpl/admin/device/device-details.html'
-				})
-			
-			//admin device dependent-devices-details
-			.state('app.admin.device.dependent-devices', {
-			  url: '/dependent-devices',
-			  controller: 'DependentDeviceCtrl',
-			  templateUrl: 'views/tmpl/admin/device/dependent-devices.html'
-			})
-			
-			//admin device dependent-devices-details
-			.state('app.admin.device.dependent-devices-details', {
-			  url: '/dependent-devices-details/:device_id',
-			  controller: 'DependentDevicesDetailsCtrl',
-			  templateUrl: 'views/tmpl/admin/device/dependent-devices-details.html'
-			})
-			
-		//admin door
-		.state('app.admin.door', {
-		  url: '/door',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin door doors
-			.state('app.admin.door.doors', {
-			  url: '/doors',
-			  controller: 'DoorCtrl',
-			  templateUrl: 'views/tmpl/admin/door/doors.html'
-			})
-			
-			//admin door edit-door
-			.state('app.admin.door.edit-door', {
-			  url: '/edit-door/:door_id',
-			  controller: 'EditDoorCtrl',
-			  templateUrl: 'views/tmpl/admin/door/edit-door.html'
-			})
-			
-				//admin door view-doors
-				.state('app.admin.door.view-doors', {
-				  url: '/view-door/:door_id',
-				  controller: 'ViewDoorCtrl',
-				  templateUrl: 'views/tmpl/admin/door/view-door.html',
-				  params: {type: "type"}
-				})
-			
-			//admin door door-groups
-			.state('app.admin.door.door-groups', {
-			  url: '/door-groups',
-			  controller: 'DoorGroupsCtrl',
-			  templateUrl: 'views/tmpl/admin/door/door-groups.html'
-			})
-			
-			
-		//admin permissions
-		.state('app.admin.permissions', {
-		  url: '/permissions',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin permissions roles
-			.state('app.admin.permissions.roles', {
-			  url: '/roles',
-			  controller: 'RoleCtrl',
-			  templateUrl: 'views/tmpl/admin/permissions/roles.html'
-			})
-			
-				//admin permissions view-roles
-				.state('app.admin.permissions.view-roles', {
-				  url: '/view-roles',
-				  controller: 'ViewRoleCtrl',
-				  templateUrl: 'views/tmpl/admin/permissions/view-roles.html'
-				})
-			
-			//admin permissions admin
-			.state('app.admin.permissions.admin', {
-			  url: '/admin',
-			  controller: 'AdminCtrl',
-			  templateUrl: 'views/tmpl/admin/permissions/admin.html'
-			})
-			
-				//admin permissions admin-profile
-				.state('app.admin.permissions.admin-profile', {
-				  url: '/admin-profile',
-				  controller: 'AdminProfileCtrl',
-				  templateUrl: 'views/tmpl/admin/permissions/admin-profile.html'
-				})
-				
-				
-		//admin schedule
-		.state('app.admin.schedule', {
-		  url: '/schedule',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin schedule schedules
-			.state('app.admin.schedule.schedules', {
-			  url: '/schedules',
-			  controller: 'ScheduleCtrl',
-			  templateUrl: 'views/tmpl/admin/schedule/schedules.html'
-			})
-			
-				//admin schedule view-schedule
-				.state('app.admin.schedule.view-schedule', {
-				  url: '/view-schedule/:schedule_id',
-				  controller: 'ViewScheduleCtrl',
-				  templateUrl: 'views/tmpl/admin/schedule/view-schedule.html'
-				})
-				
-				//admin schedule view-schedule
-				.state('app.admin.schedule.edit-schedule-groups', {
-				  url: '/edit-schedule-groups/:schedule_id',
-				  controller: 'EditScheduleCtrl',
-				  templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
-				})
-			
-			//admin schedule schedule-groups
-			.state('app.admin.schedule.schedule-groups', {
-			  url: '/schedule-groups',
-			  controller: 'ScheduleGroupsCtrl',
-			  templateUrl: 'views/tmpl/admin/schedule/schedule-groups.html'
-			})
+      //admin device edit-dependent-device
+      .state('app.admin.device.edit-dependent-device', {
+        url: '/edit-dependent-device/:device_id',
+        controller: 'EditDeviceCtrl',
+        templateUrl: 'views/tmpl/admin/device/edit-dependent-device.html'
+      })
+      //admin activity
+      .state('app.admin.activity', {
+        url: '/activity',
+        controller: 'ActivityCtrl',
+        templateUrl: 'views/tmpl/admin/activity.html'
+      })
 
-				//admin schedule view-holiday-schedule
-				.state('app.admin.schedule.view-holiday-schedule', {
-				  url: '/view-holiday-schedule/:hs_id',
-				  controller: 'ViewHolidayScheduleCtrl',
-				  templateUrl: 'views/tmpl/admin/schedule/view-holiday-schedule.html'
-				})
-			
-		//admin support
-		.state('app.admin.support', {
-		  url: '/support',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin support technician
-			.state('app.admin.support.technician', {
-			  url: '/technician',
-			  controller: 'TechnicianCtrl',
-			  templateUrl: 'views/tmpl/admin/support/technician.html'
-			})
-			
-				//admin support technician-profile
-				.state('app.admin.support.technician-profile', {
-				  url: '/technician-profile/:technician_id',
-				  controller: 'TechnicianProfileCtrl',
-				  templateUrl: 'views/tmpl/admin/support/technician-profile.html'
-				})
-				
-		//admin help
-		.state('app.admin.help', {
-		  url: '/help',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin help message-notification
-			.state('app.admin.help.message-notification', {
-			  url: '/message-notification',
-			  controller: 'MessageNotificationCtrl',
-			  templateUrl: 'views/tmpl/admin/help/message-notification.html'
-			})
-			
-			//admin help diagnostics-help
-			.state('app.admin.help.diagnostics-help', {
-			  url: '/diagnostics-help',
-			  controller: 'DiagnosticsHelpCtrl',
-			  templateUrl: 'views/tmpl/admin/help/diagnostics-help.html'
-			})
-			
-			//admin help history-events
-			.state('app.admin.help.history-events', {
-			  url: '/history-events',
-			  controller: 'HistoryEventsCtrl',
-			  templateUrl: 'views/tmpl/admin/help/history-events.html'
-			})
-			
-		//admin camera
-		.state('app.admin.camera', {
-		  url: '/camera',
-		  template: '<div ui-view></div>'
-		})
-		
-			//admin camera camera-dvr
-			.state('app.admin.camera.camera-dvr', {
-			  url: '/camera-dvr',
-			  controller: 'CameraDVRCtrl',
-			  templateUrl: 'views/tmpl/admin/camera/camera-dvr.html'
-			})
-	
-	/*-----------------------------------------------------------------
-				End code for admin
-	-----------------------------------------------------------------*/
-	
+      /*-----------------------------------------------------------------
+            End code for default pages
+      -----------------------------------------------------------------*/
+
+      /*-----------------------------------------------------------------
+            Start code for subadmin
+      -----------------------------------------------------------------*/
+
+      //subadmin
+      .state('app.subadmin', {
+        url: '/subadmin',
+        template: '<div ui-view></div>'
+      })
+
+
+      //subadmin dashboard
+      .state('app.subadmin.dashboard', {
+        url: '/dashboard',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/tmpl/subadmin/dashboard.html'
+      })
+
+      //subadmin settings
+      .state('app.subadmin.settings', {
+        url: '/settings',
+        controller: 'SettingCtrl',
+        templateUrl: 'views/tmpl/subadmin/settings.html'
+      })
+
+      //subadmin facility
+      .state('app.subadmin.facility', {
+        url: '/facility',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin facility facility
+      .state('app.subadmin.facility.facility', {
+        url: '/facility',
+        controller: 'FacilityCtrl',
+        templateUrl: 'views/tmpl/subadmin/facility/facility.html',
+        params: { facility_id: null }
+      })
+
+      //subadmin facility facility details
+      .state('app.subadmin.facility.facility-details', {
+        url: '/facility-details/:facility_id',
+        controller: 'FacilityDetailsCtrl',
+        params: { facility_id: null },
+        templateUrl: 'views/tmpl/subadmin/facility/facility-details.html'
+      })
+
+
+      //subadmin user
+      .state('app.subadmin.user', {
+        url: '/user',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin user users
+      .state('app.subadmin.user.users', {
+        url: '/users',
+        controller: 'UserCtrl',
+        templateUrl: 'views/tmpl/subadmin/user/users.html'
+      })
+
+      //admin user user-groups-members
+      .state('app.admin.user.user-groups-members', {
+        url: '/user-groups-members/:usergroup_id/:userGroupName/:userGroupUserCount',
+        controller: 'UserGroupsDetailCtrl',  //'UserGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/user/user-groups-members.html'
+      })
+
+      //subadmin user user-groups
+      .state('app.subadmin.user.user-groups', {
+        url: '/user-groups',
+        controller: 'UserGroupsCtrl',
+        templateUrl: 'views/tmpl/subadmin/user/user-groups.html'
+      })
+
+      //subadmin user user-profile
+      .state('app.subadmin.user.user-profile', {
+        url: '/user-profile',
+        controller: 'UserProfileCtrl',
+        templateUrl: 'views/tmpl/subadmin/user/user-profile.html'
+      })
+
+
+      //subadmin device
+      .state('app.subadmin.device', {
+        url: '/device',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin device devices
+      .state('app.subadmin.device.devices', {
+        url: '/devices',
+        controller: 'DeviceCtrl',
+        templateUrl: 'views/tmpl/subadmin/device/devices.html'
+      })
+
+      //subadmin device device details
+      .state('app.subadmin.device.device-details', {
+        url: '/device-details',
+        controller: 'DeviceDetailsCtrl',
+        templateUrl: 'views/tmpl/subadmin/device/device-details.html'
+      })
+
+      //subadmin device dependent-devices-details
+      .state('app.subadmin.device.dependent-devices-details', {
+        url: '/dependent-devices-details',
+        controller: 'DependentDevicesDetailsCtrl',
+        templateUrl: 'views/tmpl/subadmin/device/dependent-devices-details.html'
+      })
+
+      //subadmin door
+      .state('app.subadmin.door', {
+        url: '/door',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin door doors
+      .state('app.subadmin.door.doors', {
+        url: '/doors',
+        controller: 'DoorCtrl',
+        templateUrl: 'views/tmpl/subadmin/door/doors.html'
+      })
+
+      //admin door view-doors
+      .state('app.subadmin.door.view-doors', {
+        url: '/view-door',
+        controller: 'ViewDoorCtrl',
+        templateUrl: 'views/tmpl/subadmin/door/view-door.html'
+      })
+
+      //subadmin door door-groups
+      .state('app.subadmin.door.door-groups', {
+        url: '/door-groups',
+        controller: 'DoorGroupsCtrl',
+        templateUrl: 'views/tmpl/subadmin/door/door-groups.html'
+      })
+
+
+      //subadmin permissions
+      .state('app.subadmin.permissions', {
+        url: '/permissions',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin permissions roles
+      .state('app.subadmin.permissions.roles', {
+        url: '/roles',
+        controller: 'RoleCtrl',
+        templateUrl: 'views/tmpl/subadmin/permissions/roles.html'
+      })
+
+      //subadmin permissions view-roles
+      .state('app.subadmin.permissions.view-roles', {
+        url: '/view-roles',
+        controller: 'ViewRoleCtrl',
+        templateUrl: 'views/tmpl/subadmin/permissions/view-roles.html'
+      })
+
+      //subadmin permissions admin
+      .state('app.subadmin.permissions.admin', {
+        url: '/admin',
+        controller: 'AdminCtrl',
+        templateUrl: 'views/tmpl/subadmin/permissions/admin.html'
+      })
+
+      //subadmin permissions admin-profile
+      .state('app.subadmin.permissions.admin-profile', {
+        url: '/admin-profile',
+        controller: 'AdminProfileCtrl',
+        templateUrl: 'views/tmpl/subadmin/permissions/admin-profile.html'
+      })
+
+      //admin administrator
+      .state('app.admin.administrator', {
+        url: '/administrator',
+        template: '<div ui-view></div>'
+      })
+
+      //admin administrator roles
+      .state('app.admin.administrator.roles', {
+        url: '/roles',
+        controller: 'RoleCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/roles.html'
+      })
+
+      //admin administrator add-roles
+      .state('app.admin.administrator.add-roles', {
+        url: '/add-roles',
+        controller: 'AddRolesCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/add-roles.html'
+      })
+
+      //admin administrator view-roles
+      .state('app.admin.administrator.view-roles', {
+        url: '/view-roles',
+        controller: 'ViewRoleCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/view-roles.html'
+      })
+
+      //admin administrator edit-roles
+      .state('app.admin.administrator.edit-roles', {
+        url: '/edit-roles',
+        controller: 'EditRolesCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/edit-roles.html'
+      })
+
+
+      //admin administrator admin
+      .state('app.admin.administrator.admin', {
+        url: '/admin',
+        controller: 'AdminCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/admin.html'
+      })
+
+      //admin administrator admin-profile
+      .state('app.admin.administrator.admin-profile', {
+        url: '/admin-profile',
+        controller: 'AdminProfileCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/admin-profile.html'
+      })
+
+      //subadmin schedule
+      .state('app.subadmin.schedule', {
+        url: '/schedule',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin schedule schedules
+      .state('app.subadmin.schedule.schedules', {
+        url: '/schedules',
+        controller: 'ScheduleCtrl',
+        templateUrl: 'views/tmpl/subadmin/schedule/schedules.html'
+      })
+
+      //subadmin schedule view-schedule
+      .state('app.subadmin.schedule.view-schedule', {
+        url: '/view-schedule',
+        controller: 'ViewScheduleCtrl',
+        templateUrl: 'views/tmpl/subadmin/schedule/view-schedule.html'
+      })
+
+      //subadmin schedule schedule-groups
+      .state('app.subadmin.schedule.schedule-groups', {
+        url: '/schedule-groups',
+        controller: 'ScheduleGroupsCtrl',
+        templateUrl: 'views/tmpl/subadmin/schedule/schedule-groups.html'
+      })
+
+      //admin schedule add-schedule
+      .state('app.admin.schedule.add-schedule', {
+        url: '/add-schedule',
+        controller: 'AddScheduleCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/add-schedule.html'
+      })
+
+      //admin schedule holiday-schedule
+      .state('app.admin.schedule.holiday-schedules', {
+        url: '/holiday-schedules',
+        controller: 'HolidayScheduleCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/holiday-schedules.html'
+      })
+
+      //subadmin schedule holiday-schedule
+      .state('app.subadmin.schedule.holiday-schedule', {
+        url: '/holiday-schedule',
+        controller: 'HolidayScheduleCtrl',
+        templateUrl: 'views/tmpl/subadmin/schedule/holiday-schedule.html'
+      })
+
+      //subadmin schedule view-holiday-schedule
+      .state('app.subadmin.schedule.view-holiday-schedule', {
+        url: '/view-holiday-schedule',
+        controller: 'ViewHolidayScheduleCtrl',
+        templateUrl: 'views/tmpl/subadmin/schedule/view-holiday-schedule.html'
+      })
+
+
+
+      //subadmin support
+      .state('app.subadmin.support', {
+        url: '/support',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin support technician
+      .state('app.subadmin.support.technician', {
+        url: '/technician',
+        controller: 'TechnicianCtrl',
+        templateUrl: 'views/tmpl/subadmin/support/technician.html'
+      })
+
+      //subadmin support technician-profile
+      .state('app.subadmin.support.technician-profile', {
+        url: '/technician-profile/:technician_id',
+        controller: 'TechnicianProfileCtrl',
+        templateUrl: 'views/tmpl/subadmin/support/technician-profile.html'
+      })
+
+      //subadmin help
+      .state('app.subadmin.help', {
+        url: '/help',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin help message-notification
+      .state('app.subadmin.help.message-notification', {
+        url: '/message-notification',
+        controller: 'MessageNotificationCtrl',
+        templateUrl: 'views/tmpl/subadmin/help/message-notification.html'
+      })
+
+      //subadmin help diagnostics-help
+      .state('app.subadmin.help.diagnostics-help', {
+        url: '/diagnostics-help',
+        controller: 'DiagnosticsHelpCtrl',
+        templateUrl: 'views/tmpl/subadmin/help/diagnostics-help.html'
+      })
+
+      //subadmin help history-events
+      .state('app.subadmin.help.history-events', {
+        url: '/history-events',
+        controller: 'HistoryEventsCtrl',
+        templateUrl: 'views/tmpl/subadmin/help/history-events.html'
+      })
+
+      //subadmin camera
+      .state('app.subadmin.camera', {
+        url: '/camera',
+        template: '<div ui-view></div>'
+      })
+
+      //subadmin camera camera-dvr
+      .state('app.subadmin.camera.camera-dvr', {
+        url: '/camera-dvr',
+        controller: 'CameraDVRCtrl',
+        templateUrl: 'views/tmpl/subadmin/camera/camera-dvr.html'
+      })
+
+      /*-----------------------------------------------------------------
+            End code for subadmin
+      -----------------------------------------------------------------*/
+
+
+      /*-----------------------------------------------------------------
+            Start code for admin
+      -----------------------------------------------------------------*/
+
+      //admin
+      .state('app.admin', {
+        url: '/admin',
+        template: '<div ui-view></div>'
+      })
+
+
+      //admin device service-plan
+      .state('app.admin.device.service-plan', {
+        url: '/service-plan',
+        controller: 'ServicePlanCtrl',
+        templateUrl: 'views/tmpl/admin/device/service-plan.html'
+      })
+
+      //admin change-service-plan
+      .state('app.admin.change-service-plan', {
+        url: '/change-service-plan',
+        controller: 'ChangeServicePlanCtrl',
+        templateUrl: 'views/tmpl/admin/change-service-plan.html'
+      })
+
+      //admin upgrade-service-plan
+      .state('app.admin.upgrade-service-plan', {
+        url: '/upgrade-service-plan',
+        controller: 'UpgradeServicePlanCtrl',
+        templateUrl: 'views/tmpl/admin/upgrade-service-plan.html'
+      })
+
+      //admin billing-information
+      .state('app.admin.billing-information', {
+        url: '/billing-information',
+        controller: 'BillingInfomationCtrl',
+        templateUrl: 'views/tmpl/admin/billing-information.html'
+      })
+
+      //admin payment
+      .state('app.admin.payment', {
+        url: '/payment',
+        controller: 'PaymentCtrl',
+        templateUrl: 'views/tmpl/admin/payment.html'
+      })
+
+      //admin payment-confirmation
+      .state('app.admin.payment-confirmation', {
+        url: '/payment-confirmation',
+        controller: 'PaymentConfirmationCtrl',
+        templateUrl: 'views/tmpl/admin/payment-confirmation.html'
+      })
+
+
+      //admin dashboard
+      .state('app.admin.dashboard', {
+        url: '/dashboard',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/tmpl/admin/dashboard.html'
+      })
+
+      //admin profile settings
+      .state('app.admin.profile-settings', {
+        url: '/profile-settings',
+        controller: 'profileSettingCtrl',
+        templateUrl: 'views/tmpl/admin/profile-settings.html'
+      })
+
+      //admin settings
+      .state('app.admin.settings', {
+        url: '/settings/:device_id',
+        controller: 'SettingCtrl',
+        templateUrl: 'views/tmpl/admin/settings.html'
+      })
+
+      .state('app.admin.device.device-settings', {
+        url: '/device-settings/:device_id',
+        controller: 'DeviceSettingController',
+        templateUrl: 'views/tmpl/admin/device/device-settings.html'
+      })
+
+      //admin facility
+      .state('app.admin.facility', {
+        url: '/facility',
+        template: '<div ui-view></div>'
+      })
+
+      //admin facility facility
+      .state('app.admin.facility.facility', {
+        url: '/facility',
+        controller: 'FacilityCtrl',
+        templateUrl: 'views/tmpl/admin/facility/facility.html'
+      })
+
+      //admin facility view-facility
+      .state('app.admin.facility.view-facility', {
+        url: '/view-facility/:facility_id',
+        controller: 'ViewFacilityCtrl',
+        templateUrl: 'views/tmpl/admin/facility/view-facility.html'
+      })
+
+      //admin facility edit-facility
+      .state('app.admin.facility.edit-facility', {
+        url: '/edit-facility/:facility_id',
+        controller: 'EditFacilityCtrl',
+        templateUrl: 'views/tmpl/admin/facility/edit-facility.html'
+      })
+
+
+      //admin user
+      .state('app.admin.user', {
+        url: '/user',
+        template: '<div ui-view></div>'
+      })
+
+      //admin user users
+      .state('app.admin.user.users', {
+        url: '/users',
+        controller: 'UserCtrl',
+        templateUrl: 'views/tmpl/admin/user/users.html'
+      })
+
+      //admin user add
+      .state('app.admin.user.add-user', {
+        url: '/add-user',
+        controller: 'UserCtrl',
+        templateUrl: 'views/tmpl/admin/user/add-user.html'
+      })
+
+      //admin user view-user
+      .state('app.admin.user.view-user', {
+        url: '/view-user/:user_id',
+        controller: 'UserProfileCtrl',
+        templateUrl: 'views/tmpl/admin/user/view-user.html'
+      })
+
+      //admin user edit-user
+      .state('app.admin.user.edit-user', {
+        url: '/edit-user/:user_id',
+        controller: 'UserProfileCtrl',
+        templateUrl: 'views/tmpl/admin/user/edit-user.html'
+      })
+
+      //admin user user-groups
+      .state('app.admin.user.user-groups', {
+        url: '/user-groups',
+        controller: 'UserGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/user/user-groups.html'
+      })
+
+      //admin user user-profile
+      .state('app.admin.user.user-profile', {
+        url: '/user-profile/:user_id',
+        controller: 'UserProfileCtrl',
+        templateUrl: 'views/tmpl/admin/user/user-profile.html',
+        params: { type: "type" }
+      })
+
+
+
+      //admin device
+      .state('app.admin.device', {
+        url: '/device',
+        template: '<div ui-view></div>'
+      })
+
+      //admin device devices
+      .state('app.admin.device.devices', {
+        url: '/devices',
+        controller: 'DeviceCtrl',
+        templateUrl: 'views/tmpl/admin/device/devices.html'
+      })
+
+      //admin device device details
+      .state('app.admin.device.device-details', {
+        url: '/device-details/:device_id',
+        controller: 'DeviceDetailsCtrl',
+        templateUrl: 'views/tmpl/admin/device/device-details.html'
+      })
+
+      //admin device dependent-devices-details
+      .state('app.admin.device.dependent-devices', {
+        url: '/dependent-devices',
+        controller: 'DependentDeviceCtrl',
+        templateUrl: 'views/tmpl/admin/device/dependent-devices.html'
+      })
+
+      //admin device dependent-devices-details
+      .state('app.admin.device.dependent-devices-details', {
+        url: '/dependent-devices-details/:device_id',
+        controller: 'DependentDevicesDetailsCtrl',
+        templateUrl: 'views/tmpl/admin/device/dependent-devices-details.html'
+      })
+
+      //admin door
+      .state('app.admin.door', {
+        url: '/door',
+        template: '<div ui-view></div>'
+      })
+
+      //admin door doors
+      .state('app.admin.door.doors', {
+        url: '/doors',
+        controller: 'DoorCtrl',
+        templateUrl: 'views/tmpl/admin/door/doors.html'
+      })
+
+      //admin door edit-door
+      .state('app.admin.door.edit-door', {
+        url: '/edit-door/:door_id',
+        controller: 'EditDoorCtrl',
+        templateUrl: 'views/tmpl/admin/door/edit-door.html'
+      })
+
+      //admin door view-doors
+      .state('app.admin.door.view-doors', {
+        url: '/view-door/:door_id',
+        controller: 'ViewDoorCtrl',
+        templateUrl: 'views/tmpl/admin/door/view-door.html',
+        params: { type: "type" }
+      })
+
+      //admin door door-groups
+      .state('app.admin.door.door-groups', {
+        url: '/door-groups',
+        controller: 'DoorGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/door/door-groups.html'
+      })
+
+
+      //admin permissions
+      .state('app.admin.permissions', {
+        url: '/permissions',
+        template: '<div ui-view></div>'
+      })
+
+      //admin permissions roles
+      .state('app.admin.permissions.roles', {
+        url: '/roles',
+        controller: 'RoleCtrl',
+        templateUrl: 'views/tmpl/admin/permissions/roles.html'
+      })
+
+      //admin permissions view-roles
+      .state('app.admin.permissions.view-roles', {
+        url: '/view-roles',
+        controller: 'ViewRoleCtrl',
+        templateUrl: 'views/tmpl/admin/permissions/view-roles.html'
+      })
+
+      //admin permissions admin
+      .state('app.admin.permissions.admin', {
+        url: '/admin',
+        controller: 'AdminCtrl',
+        templateUrl: 'views/tmpl/admin/permissions/admin.html'
+      })
+
+      //admin permissions admin-profile
+      .state('app.admin.permissions.admin-profile', {
+        url: '/admin-profile',
+        controller: 'AdminProfileCtrl',
+        templateUrl: 'views/tmpl/admin/permissions/admin-profile.html'
+      })
+
+
+      //admin schedule
+      .state('app.admin.schedule', {
+        url: '/schedule',
+        template: '<div ui-view></div>'
+      })
+
+      //admin schedule schedules
+      .state('app.admin.schedule.schedules', {
+        url: '/schedules',
+        controller: 'ScheduleCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
+      })
+
+      //admin schedule view-schedule
+      .state('app.admin.schedule.view-schedule', {
+        url: '/view-schedule/:schedule_id',
+        controller: 'ViewScheduleCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/view-schedule.html'
+      })
+
+      //admin schedule view-schedule
+      .state('app.admin.schedule.edit-schedule-groups', {
+        url: '/edit-schedule-groups/:schedule_id',
+        controller: 'EditScheduleCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
+      })
+
+      //admin schedule schedule-groups
+      .state('app.admin.schedule.schedule-groups', {
+        url: '/schedule-groups',
+        controller: 'ScheduleGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/schedule-groups.html'
+      })
+
+      //admin schedule view-holiday-schedule
+      .state('app.admin.schedule.view-holiday-schedule', {
+        url: '/view-holiday-schedule/:hs_id',
+        controller: 'ViewHolidayScheduleCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/view-holiday-schedule.html'
+      })
+
+      //admin support
+      .state('app.admin.support', {
+        url: '/support',
+        template: '<div ui-view></div>'
+      })
+
+      //admin support technician
+      .state('app.admin.support.technician', {
+        url: '/technician',
+        controller: 'TechnicianCtrl',
+        templateUrl: 'views/tmpl/admin/support/technician.html'
+      })
+
+      //admin support technician-profile
+      .state('app.admin.support.technician-profile', {
+        url: '/technician-profile/:technician_id',
+        controller: 'TechnicianProfileCtrl',
+        templateUrl: 'views/tmpl/admin/support/technician-profile.html'
+      })
+
+      //admin help
+      .state('app.admin.help', {
+        url: '/help',
+        template: '<div ui-view></div>'
+      })
+
+      //admin help message-notification
+      .state('app.admin.help.message-notification', {
+        url: '/message-notification',
+        controller: 'MessageNotificationCtrl',
+        templateUrl: 'views/tmpl/admin/help/message-notification.html'
+      })
+
+      //admin help diagnostics-help
+      .state('app.admin.help.diagnostics-help', {
+        url: '/diagnostics-help',
+        controller: 'DiagnosticsHelpCtrl',
+        templateUrl: 'views/tmpl/admin/help/diagnostics-help.html'
+      })
+
+      //admin help history-events
+      .state('app.admin.help.history-events', {
+        url: '/history-events',
+        controller: 'HistoryEventsCtrl',
+        templateUrl: 'views/tmpl/admin/help/history-events.html'
+      })
+
+      //admin camera
+      .state('app.admin.camera', {
+        url: '/camera',
+        template: '<div ui-view></div>'
+      })
+
+      //admin camera camera-dvr
+      .state('app.admin.camera.camera-dvr', {
+        url: '/camera-dvr',
+        controller: 'CameraDVRCtrl',
+        templateUrl: 'views/tmpl/admin/camera/camera-dvr.html'
+      })
+
+    /*-----------------------------------------------------------------
+          End code for admin
+    -----------------------------------------------------------------*/
+
   }]);
 
-  
+
 /*-----------------------------------------------------------------
 				Start code for controller
 -----------------------------------------------------------------*/
@@ -962,34 +962,34 @@ app
   .controller('MainCtrl', function ($scope, $http, $translate) {
 
     $scope.main = {
-		title: 'Dashboard',
-		settings: {
-			navbarHeaderColor: 'scheme-default',
-			sidebarColor: 'scheme-default',
-			brandingColor: 'scheme-default',
-			activeColor: 'default-scheme-color',
-			headerFixed: true,
-			asideFixed: true,
-			rightbarShow: false
-		}
+      title: 'Dashboard',
+      settings: {
+        navbarHeaderColor: 'scheme-default',
+        sidebarColor: 'scheme-default',
+        brandingColor: 'scheme-default',
+        activeColor: 'default-scheme-color',
+        headerFixed: true,
+        asideFixed: true,
+        rightbarShow: false
+      }
     };
 
-    $scope.ajaxFaker = function(){
-		$scope.data=[];
-		var url = 'http://www.filltext.com/?rows=10&fname={firstName}&lname={lastName}&delay=5&callback=JSON_CALLBACK';
+    $scope.ajaxFaker = function () {
+      $scope.data = [];
+      var url = 'http://www.filltext.com/?rows=10&fname={firstName}&lname={lastName}&delay=5&callback=JSON_CALLBACK';
 
-		$http.jsonp(url).success(function(data){
-			$scope.data=data;
-			angular.element('.tile.refreshing').removeClass('refreshing');
-		});
+      $http.jsonp(url).success(function (data) {
+        $scope.data = data;
+        angular.element('.tile.refreshing').removeClass('refreshing');
+      });
     };
 
     $scope.changeLanguage = function (langKey) {
-		$translate.use(langKey);
-		$scope.currentLanguage = langKey;
+      $translate.use(langKey);
+      $scope.currentLanguage = langKey;
     };
     $scope.currentLanguage = $translate.proposedLanguage() || $translate.use();
-});
+  });
 
 
 'use strict';
@@ -1005,7 +1005,7 @@ app
     /* $scope.login = function() {
 		$state.go('core.login');
     }; */
-});
+  });
 
 'use strict';
 /**
@@ -1017,14 +1017,14 @@ app
  */
 app
   .controller('ViewRoleCtrl', function ($scope, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Role Details',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
 
 'use strict';
 /**
@@ -1036,73 +1036,73 @@ app
  */
 app
   .controller('AdminCtrl', function ($scope, $mdDialog, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Admin',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.status = '  ';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete admin?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.status = 'Your admin has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.status = 'You decided to keep admin.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
+
+    $scope.status = '  ';
+    $scope.showConfirm = function (ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Would you like to delete admin?')
+        .content('The standard chunk of Lorem Ipsum used.')
+        .ok('Delete')
+        .cancel('Cancel')
+        .targetEvent(ev);
+      $mdDialog.show(confirm).then(function () {
+        $scope.status = 'Your admin has been deleted successfully.';
+        $scope.statusclass = 'alert alert-danger alert-dismissable';
+      }, function () {
+        $scope.status = 'You decided to keep admin.';
+        $scope.statusclass = 'alert alert-success alert-dismissable';
+      });
     };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
-	$http.get('http://localhost:8080/elika/json/admin/users.json').success(function(response){
-		$scope.users = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.users.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.users.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
+
+    $scope.layout = 'grid';
+    $scope.class = 'gridview';
+    $scope.changeClass = function () {
+      if ($scope.class === 'gridview')
+        $scope.class = 'listview';
+      $scope.layout = 'list';
+    };
+
+    $scope.changeaClass = function () {
+      if ($scope.class === 'listview')
+        $scope.class = 'gridview';
+      $scope.layout = 'grid';
+    };
+
+    $http.get('http://localhost:8080/elika/json/admin/users.json').success(function (response) {
+      $scope.users = response;
+      $scope.totalDisplayed = 8;
+
+      if ($scope.users.length > $scope.totalDisplayed) {
+        $scope.lmbtn = {
+          "display": "block"
+        };
+      } else {
+        $scope.lmbtn = {
+          "display": "none"
+        };
+      }
+
+      $scope.loadMore = function () {
+        $scope.totalDisplayed += 8;
+        if ($scope.totalDisplayed > $scope.users.length) {
+          $scope.lmbtn = {
+            "display": "none"
+          };
+        }
+      };
+    });
+
+    $scope.orderByMe = function (x) {
+      $scope.myOrderBy = x;
     }
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
 
 'use strict';
 /**
@@ -1114,14 +1114,14 @@ app
  */
 app
   .controller('AdminProfileCtrl', function ($scope, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Admin Profile',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
 
 'use strict';
 /**
@@ -1133,73 +1133,73 @@ app
  */
 app
   .controller('ScheduleCtrl', function ($scope, $mdDialog, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Schedules',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.status = '  ';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete schedule?')
-		.content('The standard chunk of Lorem Ipsum used.')
-		.ok('Delete')
-		.cancel('Cancel')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$scope.status = 'Your schedule has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
-		}, function() {
-			$scope.status = 'You decided to keep schedule.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
+
+    $scope.status = '  ';
+    $scope.showConfirm = function (ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Would you like to delete schedule?')
+        .content('The standard chunk of Lorem Ipsum used.')
+        .ok('Delete')
+        .cancel('Cancel')
+        .targetEvent(ev);
+      $mdDialog.show(confirm).then(function () {
+        $scope.status = 'Your schedule has been deleted successfully.';
+        $scope.statusclass = 'alert alert-danger alert-dismissable';
+      }, function () {
+        $scope.status = 'You decided to keep schedule.';
+        $scope.statusclass = 'alert alert-success alert-dismissable';
+      });
     };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
-	$http.get('http://localhost:8080/elika/json/admin/schedules.json').success(function(response){
-		$scope.schedules = response;
-		$scope.totalDisplayed = 8;
-		
-		if($scope.schedules.length > $scope.totalDisplayed) {
-			$scope.lmbtn = {
-				"display" : "block"
-			};			
-		} else {
-			$scope.lmbtn = {
-				"display" : "none"
-			};
-		}
-		
-		$scope.loadMore = function () {
-			$scope.totalDisplayed += 8;
-			if($scope.totalDisplayed > $scope.schedules.length) {				
-				$scope.lmbtn = {
-					"display" : "none"
-				};	
-			}			
-		};		
-	});
-	
-	$scope.orderByMe = function(x) {
-        $scope.myOrderBy = x;
+
+    $scope.layout = 'grid';
+    $scope.class = 'gridview';
+    $scope.changeClass = function () {
+      if ($scope.class === 'gridview')
+        $scope.class = 'listview';
+      $scope.layout = 'list';
+    };
+
+    $scope.changeaClass = function () {
+      if ($scope.class === 'listview')
+        $scope.class = 'gridview';
+      $scope.layout = 'grid';
+    };
+
+    $http.get('http://localhost:8080/elika/json/admin/schedules.json').success(function (response) {
+      $scope.schedules = response;
+      $scope.totalDisplayed = 8;
+
+      if ($scope.schedules.length > $scope.totalDisplayed) {
+        $scope.lmbtn = {
+          "display": "block"
+        };
+      } else {
+        $scope.lmbtn = {
+          "display": "none"
+        };
+      }
+
+      $scope.loadMore = function () {
+        $scope.totalDisplayed += 8;
+        if ($scope.totalDisplayed > $scope.schedules.length) {
+          $scope.lmbtn = {
+            "display": "none"
+          };
+        }
+      };
+    });
+
+    $scope.orderByMe = function (x) {
+      $scope.myOrderBy = x;
     }
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
 
 'use strict';
 /**
@@ -1211,14 +1211,14 @@ app
  */
 app
   .controller('ViewScheduleCtrl', function ($scope, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Schedule',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
 
 
 
@@ -1242,17 +1242,17 @@ app
  */
 app
   .controller('ViewHolidayScheduleCtrl', function ($scope, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Holiday Schedule',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
-  
 
-  
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
+
+
+
 'use strict';
 /**
  * @ngdoc function
@@ -1263,12 +1263,12 @@ app
  */
 app
   .controller('MessageNotificationCtrl', function ($scope, $resource, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Messages & Notifications',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	
+
+
     $scope.mails = $resource('scripts/jsons/mails.json').query();
 
     $scope.selectedAll = false;
@@ -1281,15 +1281,15 @@ app
         $scope.selectedAll = true;
       }
 
-      angular.forEach($scope.mails, function(mail) {
+      angular.forEach($scope.mails, function (mail) {
         mail.selected = $scope.selectedAll;
       });
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-});
-  
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
+
 'use strict';
 /**
  * @ngdoc function
@@ -1300,15 +1300,15 @@ app
  */
 app
   .controller('DiagnosticsHelpCtrl', function ($scope, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Diagnostics & Help',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-}); 
-  
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
+
 'use strict';
 /**
  * @ngdoc function
@@ -1319,14 +1319,14 @@ app
  */
 app
   .controller('HistoryEventsCtrl', function ($scope, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'History & Events',
       subtitle: 'So much more to see at a glance.'
     };
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images';	
-	
-}); 
+
+    $scope.imagePath = 'http://localhost:8080/elika/images';
+
+  });
 
 
 'use strict';
@@ -1336,19 +1336,19 @@ app
  * @description
  * # backButton
  */
-app.directive('backButton', function(){
-    return {
-      restrict: 'A',
+app.directive('backButton', function () {
+  return {
+    restrict: 'A',
 
-      link: function(scope, element, attrs) {
-        element.bind('click', goBack);
+    link: function (scope, element, attrs) {
+      element.bind('click', goBack);
 
-        function goBack() {
-          history.back();
-          scope.$apply();
-        }
+      function goBack() {
+        history.back();
+        scope.$apply();
       }
     }
+  }
 });
 
 /**
@@ -1362,9 +1362,9 @@ app
   .directive('navCollapse', function ($timeout) {
     return {
       restrict: 'A',
-      link: function($scope, $el) {
+      link: function ($scope, $el) {
 
-        $timeout(function(){
+        $timeout(function () {
 
           var $dropdowns = $el.find('ul').parent('li'),
             $a = $dropdowns.children('a'),
@@ -1381,7 +1381,7 @@ app
 
           $a.append('<i class="fa fa-plus"></i>');
 
-          $a.on('click', function(event) {
+          $a.on('click', function (event) {
             if (app.hasClass('sidebar-sm') || app.hasClass('sidebar-xs') || app.hasClass('hz-menu')) {
               return false;
             }
@@ -1399,17 +1399,17 @@ app
             event.preventDefault();
           });
 
-          $dropdowns.on('mouseenter', function() {
+          $dropdowns.on('mouseenter', function () {
             sidebar.addClass('dropdown-open');
             controls.addClass('dropdown-open');
           });
 
-          $dropdowns.on('mouseleave', function() {
+          $dropdowns.on('mouseleave', function () {
             sidebar.removeClass('dropdown-open');
             controls.removeClass('dropdown-open');
           });
 
-          $notDropdownsLinks.on('click', function() {
+          $notDropdownsLinks.on('click', function () {
             $dropdowns.removeClass('open').find('ul').slideUp();
           });
 
@@ -1487,37 +1487,37 @@ app
  * @description
  * # collapseSidebarSm
  */
-app 
-	.controller('RealtimeLoadCtrl', function($scope, $interval){
+app
+  .controller('RealtimeLoadCtrl', function ($scope, $interval) {
 
-		$scope.options1 = {
-		  renderer: 'area',
-		  height: 175
-		};
+    $scope.options1 = {
+      renderer: 'area',
+      height: 175
+    };
 
-		$scope.seriesData = [ [], []];
-		var random = new Rickshaw.Fixtures.RandomData(50);
+    $scope.seriesData = [[], []];
+    var random = new Rickshaw.Fixtures.RandomData(50);
 
-		for (var i = 0; i < 50; i++) {
-		  random.addData($scope.seriesData);
-		}
+    for (var i = 0; i < 50; i++) {
+      random.addData($scope.seriesData);
+    }
 
-		var updateInterval = 800;
+    var updateInterval = 800;
 
-		$interval(function() {
-		  random.removeData($scope.seriesData);
-		  random.addData($scope.seriesData);
-		}, updateInterval);
+    $interval(function () {
+      random.removeData($scope.seriesData);
+      random.addData($scope.seriesData);
+    }, updateInterval);
 
-		$scope.series1 = [{
-		  name: 'Series 1',
-		  color: 'steelblue',
-		  data: $scope.seriesData[0]
-		}, {
-		  name: 'Series 2',
-		  color: 'lightblue',
-		  data: $scope.seriesData[1]
-		}];
+    $scope.series1 = [{
+      name: 'Series 1',
+      color: 'steelblue',
+      data: $scope.seriesData[0]
+    }, {
+      name: 'Series 2',
+      color: 'lightblue',
+      data: $scope.seriesData[1]
+    }];
 
 		/*$scope.features1 = {
 		  hover: {
@@ -1529,8 +1529,8 @@ app
 			}
 		  }
 		};*/
-	  });
- 
+  });
+
 'use strict';
 
 /**
@@ -1546,14 +1546,14 @@ app
       link: function postLink(scope, element) {
 
         var app = angular.element('.appWrapper'),
-            $window = angular.element(window),
-            width = $window.width();
+          $window = angular.element(window),
+          width = $window.width();
 
-        var removeRipple = function() {
+        var removeRipple = function () {
           angular.element('#sidebar').find('.ink').remove();
         };
 
-        var collapse = function() {
+        var collapse = function () {
 
           width = $window.width();
 
@@ -1565,7 +1565,7 @@ app
 
           if (width < 768) {
             app.removeClass('sidebar-sm').addClass('sidebar-xs');
-          } else if (width > 992){
+          } else if (width > 992) {
             app.removeClass('sidebar-sm sidebar-xs');
           } else {
             app.removeClass('sidebar-xs').addClass('sidebar-sm');
@@ -1583,8 +1583,8 @@ app
 
         collapse();
 
-        $window.resize(function() {
-          if(width !== $window.width()) {
+        $window.resize(function () {
+          if (width !== $window.width()) {
             var t;
             clearTimeout(t);
             t = setTimeout(collapse, 300);
@@ -1592,7 +1592,7 @@ app
           }
         });
 
-        element.on('click', function(e) {
+        element.on('click', function (e) {
           if (app.hasClass('sidebar-sm')) {
             app.removeClass('sidebar-sm').addClass('sidebar-xs');
           }
@@ -1625,13 +1625,13 @@ app
   .directive('ripple', function () {
     return {
       restrict: 'A',
-      link: function(scope, element) {
+      link: function (scope, element) {
         var parent, ink, d, x, y;
 
-        angular.element(element).find('>li>a').click(function(e){
+        angular.element(element).find('>li>a').click(function (e) {
           parent = angular.element(this).parent();
 
-          if(parent.find('.ink').length === 0) {
+          if (parent.find('.ink').length === 0) {
             parent.prepend('<span class="ink"></span>');
           }
 
@@ -1640,22 +1640,21 @@ app
           ink.removeClass('animate');
 
           //set size of .ink
-          if(!ink.height() && !ink.width())
-          {
+          if (!ink.height() && !ink.width()) {
             //use parent's width or height whichever is larger for the diameter to make a circle which can cover the entire element.
             d = Math.max(parent.outerWidth(), parent.outerHeight());
-            ink.css({height: d, width: d});
+            ink.css({ height: d, width: d });
           }
 
           //get click coordinates
           //logic = click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center;
-          x = e.pageX - parent.offset().left - ink.width()/2;
-          y = e.pageY - parent.offset().top - ink.height()/2;
+          x = e.pageX - parent.offset().left - ink.width() / 2;
+          y = e.pageY - parent.offset().top - ink.height() / 2;
 
           //set the position and add class .animate
-          ink.css({top: y+'px', left: x+'px'}).addClass('animate');
+          ink.css({ top: y + 'px', left: x + 'px' }).addClass('animate');
 
-          setTimeout(function(){
+          setTimeout(function () {
             angular.element('.ink').remove();
           }, 600);
         });
@@ -1680,7 +1679,7 @@ app
         template: '<div class="dot1"></div><div class="dot2"></div>',
         link: function (scope, element) {
           element.addClass('hide');
-          scope.$on('$stateChangeStart', function() {
+          scope.$on('$stateChangeStart', function () {
             element.toggleClass('hide animate');
           });
           scope.$on('$stateChangeSuccess', function (event) {
@@ -1733,7 +1732,7 @@ app
  * # daterangepicker
  */
 app
-  .directive('daterangepicker', function() {
+  .directive('daterangepicker', function () {
     return {
       restrict: 'A',
       scope: {
@@ -1741,8 +1740,8 @@ app
         start: '=dateBegin',
         end: '=dateEnd'
       },
-      link: function(scope, element) {
-        element.daterangepicker(scope.options, function(start, end) {
+      link: function (scope, element) {
+        element.daterangepicker(scope.options, function (start, end) {
           scope.start = start.format('MMMM D, YYYY');
           scope.end = end.format('MMMM D, YYYY');
           scope.$apply();
@@ -1767,7 +1766,7 @@ app
       link: function postLink(scope, element) {
         var tile = element.parents('.tile');
 
-        element.on('click', function() {
+        element.on('click', function () {
           tile.addClass('closed').fadeOut();
         });
       }
@@ -1789,7 +1788,7 @@ app
       link: function postLink(scope, element) {
         var tile = element.parents('.tile');
 
-        element.on('click', function(){
+        element.on('click', function () {
           tile.toggleClass('collapsed');
           tile.children().not('.tile-header').slideToggle(150);
         });
@@ -1813,7 +1812,7 @@ app
         var tile = element.parents('.tile');
         var dropdown = element.parents('.dropdown');
 
-        element.on('click', function(){
+        element.on('click', function () {
           tile.addClass('refreshing');
           dropdown.trigger('click');
         });
@@ -1836,7 +1835,7 @@ app
       link: function postLink(scope, element) {
         var dropdown = element.parents('.dropdown');
 
-        element.on('click', function(){
+        element.on('click', function () {
           dropdown.trigger('click');
         });
 
@@ -1858,7 +1857,7 @@ app
     return {
       restrict: 'C',
       link: function postLink(scope, element) {
-        element.html(prettyPrintOne(element.html(),'',true));
+        element.html(prettyPrintOne(element.html(), '', true));
       }
     };
   });
@@ -1875,138 +1874,138 @@ app
 
 angular.module('lazyModel', [])
 
-// lazy-model
-.directive('lazyModel', ['$compile', '$timeout',
-  function($compile, $timeout) {
-    'use strict';
-    return {
-      restrict: 'A',
-      priority: 500,
-      terminal: true,
-      require: ['lazyModel', '^form', '?^lazySubmit'],
-      scope: true,
-      controller: ['$scope', '$element', '$attrs', '$parse',
-        function($scope, $element, $attrs, $parse) {
-          if ($attrs.lazyModel === '') {
-            throw '`lazy-model` should have a value.';
-          }
+  // lazy-model
+  .directive('lazyModel', ['$compile', '$timeout',
+    function ($compile, $timeout) {
+      'use strict';
+      return {
+        restrict: 'A',
+        priority: 500,
+        terminal: true,
+        require: ['lazyModel', '^form', '?^lazySubmit'],
+        scope: true,
+        controller: ['$scope', '$element', '$attrs', '$parse',
+          function ($scope, $element, $attrs, $parse) {
+            if ($attrs.lazyModel === '') {
+              throw '`lazy-model` should have a value.';
+            }
 
-          // getter and setter for original model
-          var ngModelGet = $parse($attrs.lazyModel);
-          var ngModelSet = ngModelGet.assign;
+            // getter and setter for original model
+            var ngModelGet = $parse($attrs.lazyModel);
+            var ngModelSet = ngModelGet.assign;
 
-          // accept changes
-          this.accept = function() {
-            ngModelSet($scope.$parent, $scope.buffer);
-          };
+            // accept changes
+            this.accept = function () {
+              ngModelSet($scope.$parent, $scope.buffer);
+            };
 
-          // reset changes
-          this.reset = function() {
-            $scope.buffer = ngModelGet($scope.$parent);
-          };
+            // reset changes
+            this.reset = function () {
+              $scope.buffer = ngModelGet($scope.$parent);
+            };
 
-          // watch for original model change (and initialization also)
-          $scope.$watch($attrs.lazyModel, angular.bind(this, function () {
-            this.reset();
-          }));
-        }],
-      compile: function compile(elem) {
-        // set ng-model to buffer in directive scope (nested)
-        elem.attr('ng-model', 'buffer');
-        // remove lazy-model attribute to exclude recursion
-        elem.removeAttr('lazy-model');
-        // store compiled fn
-        var compiled = $compile(elem);
-        return {
-          pre: function(scope) {
-            // compile element with ng-model directive poining to `scope.buffer`   
-            compiled(scope);
-          },
-          post: function postLink(scope, elem, attr, ctrls) {
-            var lazyModelCtrl = ctrls[0];
-            var formCtrl = ctrls[1];
-            var lazySubmitCtrl = ctrls[2];
-            // parentCtrl may be formCtrl or lazySubmitCtrl
-            var parentCtrl = lazySubmitCtrl || formCtrl;
+            // watch for original model change (and initialization also)
+            $scope.$watch($attrs.lazyModel, angular.bind(this, function () {
+              this.reset();
+            }));
+          }],
+        compile: function compile(elem) {
+          // set ng-model to buffer in directive scope (nested)
+          elem.attr('ng-model', 'buffer');
+          // remove lazy-model attribute to exclude recursion
+          elem.removeAttr('lazy-model');
+          // store compiled fn
+          var compiled = $compile(elem);
+          return {
+            pre: function (scope) {
+              // compile element with ng-model directive poining to `scope.buffer`   
+              compiled(scope);
+            },
+            post: function postLink(scope, elem, attr, ctrls) {
+              var lazyModelCtrl = ctrls[0];
+              var formCtrl = ctrls[1];
+              var lazySubmitCtrl = ctrls[2];
+              // parentCtrl may be formCtrl or lazySubmitCtrl
+              var parentCtrl = lazySubmitCtrl || formCtrl;
 
-            // for the first time attach hooks
-            if (parentCtrl.$lazyControls === undefined) {
-              parentCtrl.$lazyControls = [];
+              // for the first time attach hooks
+              if (parentCtrl.$lazyControls === undefined) {
+                parentCtrl.$lazyControls = [];
 
-              // find form element
-              var form = elem.parent();
-              while (form[0].tagName !== 'FORM') {
-                form = form.parent();
+                // find form element
+                var form = elem.parent();
+                while (form[0].tagName !== 'FORM') {
+                  form = form.parent();
+                }
+
+                // bind submit
+                form.bind('submit', function () {
+                  // this submit handler must be called LAST after all other `submit` handlers
+                  // to get final value of formCtrl.$valid. The only way - is to call it in
+                  // the next tick via $timeout
+                  $timeout(function () {
+                    if (formCtrl.$valid) {
+                      // form valid - accept new values
+                      for (var i = 0; i < parentCtrl.$lazyControls.length; i++) {
+                        parentCtrl.$lazyControls[i].accept();
+                      }
+
+                      // call final hook `lazy-submit`
+                      if (lazySubmitCtrl) {
+                        lazySubmitCtrl.finalSubmit();
+                      }
+                    }
+                  });
+                });
+
+                // bind reset
+                form.bind('reset', function (e) {
+                  e.preventDefault();
+                  $timeout(function () {
+                    // reset changes
+                    for (var i = 0; i < parentCtrl.$lazyControls.length; i++) {
+                      parentCtrl.$lazyControls[i].reset();
+                    }
+                  });
+                });
+
               }
 
-              // bind submit
-              form.bind('submit', function() {
-                // this submit handler must be called LAST after all other `submit` handlers
-                // to get final value of formCtrl.$valid. The only way - is to call it in
-                // the next tick via $timeout
-                $timeout(function() {
-                  if (formCtrl.$valid) {
-                    // form valid - accept new values
-                    for (var i = 0; i < parentCtrl.$lazyControls.length; i++) {
-                      parentCtrl.$lazyControls[i].accept();
-                    }
+              // add to collection
+              parentCtrl.$lazyControls.push(lazyModelCtrl);
 
-                    // call final hook `lazy-submit`
-                    if (lazySubmitCtrl) {
-                      lazySubmitCtrl.finalSubmit();
-                    }
+              // remove from collection on destroy
+              scope.$on('$destroy', function () {
+                for (var i = parentCtrl.$lazyControls.length; i--;) {
+                  if (parentCtrl.$lazyControls[i] === lazyModelCtrl) {
+                    parentCtrl.$lazyControls.splice(i, 1);
                   }
-                });
-              });
-
-              // bind reset
-              form.bind('reset', function(e) {
-                e.preventDefault();
-                $timeout(function() {
-                  // reset changes
-                  for (var i = 0; i < parentCtrl.$lazyControls.length; i++) {
-                    parentCtrl.$lazyControls[i].reset();
-                  }
-                });
+                }
               });
 
             }
+          };
+        }
+      };
+    }
+  ])
 
-            // add to collection
-            parentCtrl.$lazyControls.push(lazyModelCtrl);
-
-            // remove from collection on destroy
-            scope.$on('$destroy', function() {
-              for (var i = parentCtrl.$lazyControls.length; i--;) {
-                if (parentCtrl.$lazyControls[i] === lazyModelCtrl) {
-                  parentCtrl.$lazyControls.splice(i, 1);
-                }
-              }
-            });
-
-          }
-        };
-      }
-    };
-  }
-])
-
-// lazy-submit
-.directive('lazySubmit', function() {
+  // lazy-submit
+  .directive('lazySubmit', function () {
     'use strict';
     return {
       restrict: 'A',
       require: ['lazySubmit', 'form'],
       controller: ['$element', '$attrs', '$scope', '$parse',
-        function($element, $attrs, $scope, $parse) {
+        function ($element, $attrs, $scope, $parse) {
           var finalHook = $attrs.lazySubmit ? $parse($attrs.lazySubmit) : angular.noop;
-          this.finalSubmit = function() {
+          this.finalSubmit = function () {
             finalHook($scope);
           };
         }
       ]
     };
-});
+  });
 'use strict';
 
 /**
@@ -2018,7 +2017,7 @@ angular.module('lazyModel', [])
  */
 app
   .controller('ButtonsIconsCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Buttons & Icons',
       subtitle: 'Place subtitle here...'
     };
@@ -2039,24 +2038,24 @@ app
       link: function postLink(scope, element, attrs) {
         var activatedClass = 'btn-activated';
         var status = attrs.activateButton;
-        var activate = function() {
+        var activate = function () {
           element.addClass(activatedClass);
-          setTimeout(function() {
+          setTimeout(function () {
             element.removeClass(activatedClass);
-          }, 1000 );
+          }, 1000);
         };
 
-        element.on('click', function() {
+        element.on('click', function () {
           if (!element.hasClass(activatedClass) && status === 'success') {
             element.addClass('btn-activated-success');
-            setTimeout(function() {
+            setTimeout(function () {
               element.removeClass('btn-activated-success');
-            }, 1000 );
+            }, 1000);
           } else if (!element.hasClass(activatedClass) && status === 'error') {
             element.addClass('btn-activated-error');
-            setTimeout(function() {
+            setTimeout(function () {
               element.removeClass('btn-activated-error');
-            }, 1000 );
+            }, 1000);
           } else if (!element.hasClass(activatedClass)) {
             activate();
           }
@@ -2097,7 +2096,7 @@ app
 
     $scope.items = ['Item 1', 'Item 2', 'Item 3'];
 
-    $scope.addItem = function() {
+    $scope.addItem = function () {
       var newItemNo = $scope.items.length + 1;
       $scope.items.push('Item ' + newItemNo);
     };
@@ -2110,25 +2109,25 @@ app
 
   .controller('TabsDemoCtrl', function ($scope) {
     $scope.tabs = [
-      { title:'Dynamic Title 1', content:'Dynamic content 1' },
-      { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+      { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
+      { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true }
     ];
 
-    $scope.alertMe = function() {
-      setTimeout(function() {
-         //alert('You\'ve selected the alert tab!');
+    $scope.alertMe = function () {
+      setTimeout(function () {
+        //alert('You\'ve selected the alert tab!');
       });
     };
   })
 
   .controller('PillsDemoCtrl', function ($scope) {
     $scope.pills = [
-      { title:'Dynamic Title 1', content:'Dynamic content 1' },
-      { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+      { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
+      { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true }
     ];
 
-    $scope.alertMe = function() {
-      setTimeout(function() {
+    $scope.alertMe = function () {
+      setTimeout(function () {
         //alert('You\'ve selected the alert pill!');
       });
     };
@@ -2154,26 +2153,26 @@ app
 
   .controller('ModalDemoCtrl', function ($scope, $uibModal, $log, $rootScope) {
 
-  	$rootScope.timezones = {
-  	model: null,
-    availableOptions: [
-      {id: 'AKST', name: 'USA (Alaska)'},
-      {id: 'UTC-11', name: 'USA (Samoa)'},
-      {id: 'PST', name: 'USA (Pacific)'},
-      {id: 'EST', name: 'USA (Eastern)'},
-      {id: 'HST', name: 'USA (Hawaii-Aleutian)'},
-      {id: 'MST', name: 'USA (Mountain)'},
-      {id: 'AST', name: 'USA (Atlantic)'},
-      {id: 'CST', name: 'USA (Central)'},
-      {id: 'UTC+10', name: 'USA (Chamorro)'}
-    ]
-   };
+    $rootScope.timezones = {
+      model: null,
+      availableOptions: [
+        { id: 'AKST', name: 'USA (Alaska)' },
+        { id: 'UTC-11', name: 'USA (Samoa)' },
+        { id: 'PST', name: 'USA (Pacific)' },
+        { id: 'EST', name: 'USA (Eastern)' },
+        { id: 'HST', name: 'USA (Hawaii-Aleutian)' },
+        { id: 'MST', name: 'USA (Mountain)' },
+        { id: 'AST', name: 'USA (Atlantic)' },
+        { id: 'CST', name: 'USA (Central)' },
+        { id: 'UTC+10', name: 'USA (Chamorro)' }
+      ]
+    };
 
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function(size) {
-	
+    $scope.open = function (size) {
+
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
@@ -2191,17 +2190,17 @@ app
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-	
-	
+
+
   })
-  
-  
+
+
   .controller('ModalAddUser', function ($scope, $uibModal, $log, $http) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function(size) {
-	
+    $scope.open = function (size) {
+
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceAddUserCtrl',
@@ -2219,14 +2218,14 @@ app
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-	
+
   })
 
   .controller('ModalDemo1Ctrl', function ($scope, $uibModal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function(size) {
+    $scope.open = function (size) {
 
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent1.html',
@@ -2246,12 +2245,12 @@ app
       });
     };
   })
-  
+
   .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function(size) {
+    $scope.open = function (size) {
 
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
@@ -2271,12 +2270,12 @@ app
       });
     };
   })
-  
+
   .controller('ModalDemo3Ctrl', function ($scope, $uibModal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function(size) {
+    $scope.open = function (size) {
 
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent3.html',
@@ -2296,59 +2295,30 @@ app
       });
     };
   })
-  
-  .controller('ModalDoorGroupCtrl', function ($scope, $uibModal, $log ,$rootScope, $cookies) {
+
+  .controller('ModalDoorGroupCtrl', function ($scope, $uibModal, $log, $rootScope, $cookies) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function(doorgroup) {
-       
-		var modalInstance = $uibModal.open({
-			templateUrl: 'myModalContent1.html',
-			controller: 'ModalInstanceCtrl',
-			resolve: {
-			  items: function () {
-				return $scope.items;
-			  }
-			}
-		});
-		var door_ids = [];
-		for(var i=0; i < doorgroup.door.length; i++){
-			door_ids.push(doorgroup.door[i].door_id);
-		}
-		$rootScope.doorgroup = {};
-		$rootScope.doorgroup.doorgroup_id = doorgroup.doorgroup_id;
-		$rootScope.doorgroup.doorgroup_name = doorgroup.doorgroup_name;
-		$rootScope.doorgroup.door_id = door_ids;
-				
-		modalInstance.result.then(function (selectedItem) {
-			$scope.selected = selectedItem;
-		}, function () {
-			$log.info('Modal dismissed at: ' + new Date());
-		});
-    };
-  })
-  
-  .controller('ModalUserGroupCtrl', function ($scope, $uibModal, $log ,$rootScope, $cookies) {
-
-    $scope.items = ['item1', 'item2', 'item3'];
-
-    $scope.open = function(usergroup) {
+    $scope.open = function (doorgroup) {
 
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent1.html',
         controller: 'ModalInstanceCtrl',
-       // size: size,
         resolve: {
           items: function () {
             return $scope.items;
           }
         }
       });
-	  $rootScope.usergroup = {};
-	  $rootScope.usergroup.usergroup_id = usergroup.usergroup_id;
-	  $rootScope.usergroup.usergroup_name = usergroup.usergroup_name;
-	  $rootScope.usergroup.facility_id = $cookies.get("facilityId");
+      var door_ids = [];
+      for (var i = 0; i < doorgroup.door.length; i++) {
+        door_ids.push(doorgroup.door[i].door_id);
+      }
+      $rootScope.doorgroup = {};
+      $rootScope.doorgroup.doorgroup_id = doorgroup.doorgroup_id;
+      $rootScope.doorgroup.doorgroup_name = doorgroup.doorgroup_name;
+      $rootScope.doorgroup.door_id = door_ids;
 
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
@@ -2357,7 +2327,36 @@ app
       });
     };
   })
-  
+
+  .controller('ModalUserGroupCtrl', function ($scope, $uibModal, $log, $rootScope, $cookies) {
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function (usergroup) {
+
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent1.html',
+        controller: 'ModalInstanceCtrl',
+        // size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      $rootScope.usergroup = {};
+      $rootScope.usergroup.usergroup_id = usergroup.usergroup_id;
+      $rootScope.usergroup.usergroup_name = usergroup.usergroup_name;
+      $rootScope.usergroup.facility_id = $cookies.get("facilityId");
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+  })
+
 
   // Please note that $modalInstance represents a modal window (instance) dependency.
   // It is not the same as the $modal service used above.
@@ -2376,11 +2375,11 @@ app
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
-	
-	
+
+
   })
-  
-  
+
+
   .controller('ModalInstanceAddUserCtrl', function ($scope, $uibModalInstance, items) {
 
     $scope.items = items;
@@ -2395,18 +2394,18 @@ app
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
-	
-	$scope.next = function(){
-		
-	}
-	
+
+    $scope.next = function () {
+
+    }
+
   })
-  
+
 
   .controller('SplashDemoCtrl', function ($scope, $uibModal, $log) {
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.openSplash = function(event, size) {
+    $scope.openSplash = function (event, size) {
 
       var options = angular.element(event.target).data('options');
 
@@ -2494,7 +2493,7 @@ app
  */
 app
   .controller('AlertsCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Alerts & Notifications',
       subtitle: 'Place subtitle here...'
     };
@@ -2506,37 +2505,37 @@ app
 
     $scope.alertOptions = {
       colors: [
-        {name:'primary'},
-        {name:'success'},
-        {name:'warning'},
-        {name:'danger'},
-        {name:'info'},
-        {name:'default'},
-        {name:'cyan'},
-        {name:'amethyst'},
-        {name:'green'},
-        {name:'orange'},
-        {name:'red'},
-        {name:'greensea'},
-        {name:'dutch'},
-        {name:'hotpink'},
-        {name:'drank'},
-        {name:'blue'},
-        {name:'lightred'},
-        {name:'slategray'},
-        {name:'darkgray'}
+        { name: 'primary' },
+        { name: 'success' },
+        { name: 'warning' },
+        { name: 'danger' },
+        { name: 'info' },
+        { name: 'default' },
+        { name: 'cyan' },
+        { name: 'amethyst' },
+        { name: 'green' },
+        { name: 'orange' },
+        { name: 'red' },
+        { name: 'greensea' },
+        { name: 'dutch' },
+        { name: 'hotpink' },
+        { name: 'drank' },
+        { name: 'blue' },
+        { name: 'lightred' },
+        { name: 'slategray' },
+        { name: 'darkgray' }
       ],
       durations: [
-        {name:'never close', value: 9999*9999},
-        {name:'1 second', value: 1000},
-        {name:'5 seconds', value: 5000},
-        {name:'10 seconds', value: 10000}
+        { name: 'never close', value: 9999 * 9999 },
+        { name: '1 second', value: 1000 },
+        { name: '5 seconds', value: 5000 },
+        { name: '10 seconds', value: 10000 }
       ],
       icons: [
-        {name: 'none', value: ''},
-        {name: 'warning', value: 'fa-warning'},
-        {name: 'check', value: 'fa-check'},
-        {name: 'user', value: 'fa-user'}
+        { name: 'none', value: '' },
+        { name: 'warning', value: 'fa-warning' },
+        { name: 'check', value: 'fa-check' },
+        { name: 'user', value: 'fa-user' }
       ],
       msg: 'Place alert text here...'
     };
@@ -2553,7 +2552,7 @@ app
 
     $scope.alertFocus = true;
 
-    $scope.showAlert = function() {
+    $scope.showAlert = function () {
 
       var alert = {
         msg: $scope.alertOptions.msg,
@@ -2578,7 +2577,7 @@ app
         $anchorScroll();
       }
 
-      $timeout(function() {
+      $timeout(function () {
 
         $scope.alerts.splice($scope.alerts.indexOf(alert), 1);
 
@@ -2586,37 +2585,37 @@ app
 
     };
 
-    $scope.closeAlert = function(index) {
+    $scope.closeAlert = function (index) {
       $scope.alerts.splice(index, 1);
     };
 
   }])
 
-  .controller('ToasterDemoCtrl',['$scope', 'toastr', 'toastrConfig', function ($scope, toastr, toastrConfig) {
+  .controller('ToasterDemoCtrl', ['$scope', 'toastr', 'toastrConfig', function ($scope, toastr, toastrConfig) {
 
     var openedToasts = [];
 
     $scope.toast = {
       colors: [
-        {name:'primary'},
-        {name:'success'},
-        {name:'warning'},
-        {name:'error'},
-        {name:'info'},
-        {name:'default'},
-        {name:'cyan'},
-        {name:'amethyst'},
-        {name:'green'},
-        {name:'orange'},
-        {name:'red'},
-        {name:'greensea'},
-        {name:'dutch'},
-        {name:'hotpink'},
-        {name:'drank'},
-        {name:'blue'},
-        {name:'lightred'},
-        {name:'slategray'},
-        {name:'darkgray'}
+        { name: 'primary' },
+        { name: 'success' },
+        { name: 'warning' },
+        { name: 'error' },
+        { name: 'info' },
+        { name: 'default' },
+        { name: 'cyan' },
+        { name: 'amethyst' },
+        { name: 'green' },
+        { name: 'orange' },
+        { name: 'red' },
+        { name: 'greensea' },
+        { name: 'dutch' },
+        { name: 'hotpink' },
+        { name: 'drank' },
+        { name: 'blue' },
+        { name: 'lightred' },
+        { name: 'slategray' },
+        { name: 'darkgray' }
       ],
       msg: 'Gnome & Growl type non-blocking notifications',
       title: 'This is toaster notification'
@@ -2634,7 +2633,7 @@ app
       closeHtml: '<i class="fa fa-times"></i>'
     };
 
-    $scope.$watchCollection('options', function(newValue) {
+    $scope.$watchCollection('options', function (newValue) {
       toastrConfig.allowHtml = newValue.html;
       toastrConfig.extendedTimeOut = parseInt(newValue.extendedTimeout, 10);
       toastrConfig.positionClass = newValue.position;
@@ -2644,20 +2643,20 @@ app
       toastrConfig.closeHtml = newValue.closeHtml;
     });
 
-    $scope.clearLastToast = function() {
+    $scope.clearLastToast = function () {
       var toast = openedToasts.pop();
       toastr.clear(toast);
     };
 
-    $scope.clearToasts = function() {
+    $scope.clearToasts = function () {
       toastr.clear();
     };
 
-    $scope.openToast = function() {
+    $scope.openToast = function () {
 
       var toast = toastr[$scope.options.type]($scope.toast.msg, $scope.toast.title, {
-                    iconClass: 'toast-'+$scope.options.iconClass.name + ' ' + 'bg-'+$scope.options.iconClass.name
-                  });
+        iconClass: 'toast-' + $scope.options.iconClass.name + ' ' + 'bg-' + $scope.options.iconClass.name
+      });
 
       openedToasts.push(toast);
 
@@ -2686,7 +2685,7 @@ app
   .controller('ProgressDemoCtrl', function ($scope) {
     $scope.max = 200;
 
-    $scope.random = function() {
+    $scope.random = function () {
       var value = Math.floor((Math.random() * 100) + 1);
       var type;
 
@@ -2708,16 +2707,16 @@ app
 
     $scope.random();
 
-    $scope.randomStacked = function() {
+    $scope.randomStacked = function () {
       $scope.stacked = [];
       var types = ['success', 'info', 'warning', 'danger'];
 
       for (var i = 0, n = Math.floor((Math.random() * 4) + 1); i < n; i++) {
-          var index = Math.floor((Math.random() * 4));
-          $scope.stacked.push({
-            value: Math.floor((Math.random() * 30) + 1),
-            type: types[index]
-          });
+        var index = Math.floor((Math.random() * 4));
+        $scope.stacked.push({
+          value: Math.floor((Math.random() * 30) + 1),
+          type: types[index]
+        });
       }
     };
 
@@ -2729,21 +2728,21 @@ app
     $scope.max = 10;
     $scope.isReadonly = false;
 
-    $scope.hoveringOver = function(value) {
+    $scope.hoveringOver = function (value) {
       $scope.overStar = value;
       $scope.percent = 100 * (value / $scope.max);
     };
   })
-  
+
   .controller('DaysCtrl', function ($scope) {
     $scope.checkModel = {
       Mo: true,
       Tu: false,
       We: false,
-	  Th: false,
-	  Fr: false,
-	  Sa: false,
-	  Su: false	  
+      Th: false,
+      Fr: false,
+      Sa: false,
+      Su: false
     };
   })
 
@@ -2757,7 +2756,7 @@ app
       Inactive: false
     };
   })
-  
+
   .controller('AccessbtnCtrl', function ($scope) {
     $scope.singleModel = 1;
 
@@ -2768,7 +2767,7 @@ app
       Restricted: true
     };
   })
-  
+
   .controller('MasterbtnCtrl', function ($scope) {
     $scope.singleModel = 1;
 
@@ -2778,23 +2777,23 @@ app
       Slave: true,
       Master: false
     };
-	
+
   })
-  
+
 
   .controller('CarouselDemoCtrl', function ($scope) {
     $scope.myInterval = 5000;
     $scope.noWrapSlides = false;
     var slides = $scope.slides = [];
-    $scope.addSlide = function() {
+    $scope.addSlide = function () {
       var newWidth = 801 + slides.length + 1;
       slides.push({
         image: '//placekitten.com/' + newWidth + '/300',
-        text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+        text: ['More', 'Extra', 'Lots of', 'Surplus'][slides.length % 4] + ' ' +
         ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
       });
     };
-    for (var i=0; i<4; i++) {
+    for (var i = 0; i < 4; i++) {
       $scope.addSlide();
     }
   })
@@ -2806,33 +2805,33 @@ app
   })
 
   /* jshint ignore:start */
-  .controller('TypeaheadCtrl', function($scope, $http) {
+  .controller('TypeaheadCtrl', function ($scope, $http) {
 
     $scope.selected = undefined;
     $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
     // Any function returning a promise object can be used to load values asynchronously
-    $scope.getLocation = function(val) {
+    $scope.getLocation = function (val) {
       return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
         params: {
           address: val,
           sensor: false
         }
-      }).then(function(response){
-        return response.data.results.map(function(item){
+      }).then(function (response) {
+        return response.data.results.map(function (item) {
           return item.formatted_address;
         });
       });
 
     };
 
-    $scope.statesWithFlags = [{'name':'Alabama','flag':'5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png'},{'name':'Alaska','flag':'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png'},{'name':'Arizona','flag':'9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png'},{'name':'Arkansas','flag':'9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png'},{'name':'California','flag':'0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png'},{'name':'Colorado','flag':'4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png'},{'name':'Connecticut','flag':'9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png'},{'name':'Delaware','flag':'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png'},{'name':'Florida','flag':'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png'},{'name':'Georgia','flag':'5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png'},{'name':'Hawaii','flag':'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png'},{'name':'Idaho','flag':'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png'},{'name':'Illinois','flag':'0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png'},{'name':'Indiana','flag':'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png'},{'name':'Iowa','flag':'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png'},{'name':'Kansas','flag':'d/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png'},{'name':'Kentucky','flag':'8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png'},{'name':'Louisiana','flag':'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png'},{'name':'Maine','flag':'3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png'},{'name':'Maryland','flag':'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png'},{'name':'Massachusetts','flag':'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png'},{'name':'Michigan','flag':'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png'},{'name':'Minnesota','flag':'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png'},{'name':'Mississippi','flag':'4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png'},{'name':'Missouri','flag':'5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png'},{'name':'Montana','flag':'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png'},{'name':'Nebraska','flag':'4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png'},{'name':'Nevada','flag':'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png'},{'name':'New Hampshire','flag':'2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png'},{'name':'New Jersey','flag':'9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png'},{'name':'New Mexico','flag':'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png'},{'name':'New York','flag':'1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png'},{'name':'North Carolina','flag':'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png'},{'name':'North Dakota','flag':'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png'},{'name':'Ohio','flag':'4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png'},{'name':'Oklahoma','flag':'6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png'},{'name':'Oregon','flag':'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png'},{'name':'Pennsylvania','flag':'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png'},{'name':'Rhode Island','flag':'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png'},{'name':'South Carolina','flag':'6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png'},{'name':'South Dakota','flag':'1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png'},{'name':'Tennessee','flag':'9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png'},{'name':'Texas','flag':'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png'},{'name':'Utah','flag':'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png'},{'name':'Vermont','flag':'4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png'},{'name':'Virginia','flag':'4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png'},{'name':'Washington','flag':'5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png'},{'name':'West Virginia','flag':'2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png'},{'name':'Wisconsin','flag':'2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png'},{'name':'Wyoming','flag':'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png'}];
+    $scope.statesWithFlags = [{ 'name': 'Alabama', 'flag': '5/5c/Flag_of_Alabama.svg/45px-Flag_of_Alabama.svg.png' }, { 'name': 'Alaska', 'flag': 'e/e6/Flag_of_Alaska.svg/43px-Flag_of_Alaska.svg.png' }, { 'name': 'Arizona', 'flag': '9/9d/Flag_of_Arizona.svg/45px-Flag_of_Arizona.svg.png' }, { 'name': 'Arkansas', 'flag': '9/9d/Flag_of_Arkansas.svg/45px-Flag_of_Arkansas.svg.png' }, { 'name': 'California', 'flag': '0/01/Flag_of_California.svg/45px-Flag_of_California.svg.png' }, { 'name': 'Colorado', 'flag': '4/46/Flag_of_Colorado.svg/45px-Flag_of_Colorado.svg.png' }, { 'name': 'Connecticut', 'flag': '9/96/Flag_of_Connecticut.svg/39px-Flag_of_Connecticut.svg.png' }, { 'name': 'Delaware', 'flag': 'c/c6/Flag_of_Delaware.svg/45px-Flag_of_Delaware.svg.png' }, { 'name': 'Florida', 'flag': 'f/f7/Flag_of_Florida.svg/45px-Flag_of_Florida.svg.png' }, { 'name': 'Georgia', 'flag': '5/54/Flag_of_Georgia_%28U.S._state%29.svg/46px-Flag_of_Georgia_%28U.S._state%29.svg.png' }, { 'name': 'Hawaii', 'flag': 'e/ef/Flag_of_Hawaii.svg/46px-Flag_of_Hawaii.svg.png' }, { 'name': 'Idaho', 'flag': 'a/a4/Flag_of_Idaho.svg/38px-Flag_of_Idaho.svg.png' }, { 'name': 'Illinois', 'flag': '0/01/Flag_of_Illinois.svg/46px-Flag_of_Illinois.svg.png' }, { 'name': 'Indiana', 'flag': 'a/ac/Flag_of_Indiana.svg/45px-Flag_of_Indiana.svg.png' }, { 'name': 'Iowa', 'flag': 'a/aa/Flag_of_Iowa.svg/44px-Flag_of_Iowa.svg.png' }, { 'name': 'Kansas', 'flag': 'd/da/Flag_of_Kansas.svg/46px-Flag_of_Kansas.svg.png' }, { 'name': 'Kentucky', 'flag': '8/8d/Flag_of_Kentucky.svg/46px-Flag_of_Kentucky.svg.png' }, { 'name': 'Louisiana', 'flag': 'e/e0/Flag_of_Louisiana.svg/46px-Flag_of_Louisiana.svg.png' }, { 'name': 'Maine', 'flag': '3/35/Flag_of_Maine.svg/45px-Flag_of_Maine.svg.png' }, { 'name': 'Maryland', 'flag': 'a/a0/Flag_of_Maryland.svg/45px-Flag_of_Maryland.svg.png' }, { 'name': 'Massachusetts', 'flag': 'f/f2/Flag_of_Massachusetts.svg/46px-Flag_of_Massachusetts.svg.png' }, { 'name': 'Michigan', 'flag': 'b/b5/Flag_of_Michigan.svg/45px-Flag_of_Michigan.svg.png' }, { 'name': 'Minnesota', 'flag': 'b/b9/Flag_of_Minnesota.svg/46px-Flag_of_Minnesota.svg.png' }, { 'name': 'Mississippi', 'flag': '4/42/Flag_of_Mississippi.svg/45px-Flag_of_Mississippi.svg.png' }, { 'name': 'Missouri', 'flag': '5/5a/Flag_of_Missouri.svg/46px-Flag_of_Missouri.svg.png' }, { 'name': 'Montana', 'flag': 'c/cb/Flag_of_Montana.svg/45px-Flag_of_Montana.svg.png' }, { 'name': 'Nebraska', 'flag': '4/4d/Flag_of_Nebraska.svg/46px-Flag_of_Nebraska.svg.png' }, { 'name': 'Nevada', 'flag': 'f/f1/Flag_of_Nevada.svg/45px-Flag_of_Nevada.svg.png' }, { 'name': 'New Hampshire', 'flag': '2/28/Flag_of_New_Hampshire.svg/45px-Flag_of_New_Hampshire.svg.png' }, { 'name': 'New Jersey', 'flag': '9/92/Flag_of_New_Jersey.svg/45px-Flag_of_New_Jersey.svg.png' }, { 'name': 'New Mexico', 'flag': 'c/c3/Flag_of_New_Mexico.svg/45px-Flag_of_New_Mexico.svg.png' }, { 'name': 'New York', 'flag': '1/1a/Flag_of_New_York.svg/46px-Flag_of_New_York.svg.png' }, { 'name': 'North Carolina', 'flag': 'b/bb/Flag_of_North_Carolina.svg/45px-Flag_of_North_Carolina.svg.png' }, { 'name': 'North Dakota', 'flag': 'e/ee/Flag_of_North_Dakota.svg/38px-Flag_of_North_Dakota.svg.png' }, { 'name': 'Ohio', 'flag': '4/4c/Flag_of_Ohio.svg/46px-Flag_of_Ohio.svg.png' }, { 'name': 'Oklahoma', 'flag': '6/6e/Flag_of_Oklahoma.svg/45px-Flag_of_Oklahoma.svg.png' }, { 'name': 'Oregon', 'flag': 'b/b9/Flag_of_Oregon.svg/46px-Flag_of_Oregon.svg.png' }, { 'name': 'Pennsylvania', 'flag': 'f/f7/Flag_of_Pennsylvania.svg/45px-Flag_of_Pennsylvania.svg.png' }, { 'name': 'Rhode Island', 'flag': 'f/f3/Flag_of_Rhode_Island.svg/32px-Flag_of_Rhode_Island.svg.png' }, { 'name': 'South Carolina', 'flag': '6/69/Flag_of_South_Carolina.svg/45px-Flag_of_South_Carolina.svg.png' }, { 'name': 'South Dakota', 'flag': '1/1a/Flag_of_South_Dakota.svg/46px-Flag_of_South_Dakota.svg.png' }, { 'name': 'Tennessee', 'flag': '9/9e/Flag_of_Tennessee.svg/46px-Flag_of_Tennessee.svg.png' }, { 'name': 'Texas', 'flag': 'f/f7/Flag_of_Texas.svg/45px-Flag_of_Texas.svg.png' }, { 'name': 'Utah', 'flag': 'f/f6/Flag_of_Utah.svg/45px-Flag_of_Utah.svg.png' }, { 'name': 'Vermont', 'flag': '4/49/Flag_of_Vermont.svg/46px-Flag_of_Vermont.svg.png' }, { 'name': 'Virginia', 'flag': '4/47/Flag_of_Virginia.svg/44px-Flag_of_Virginia.svg.png' }, { 'name': 'Washington', 'flag': '5/54/Flag_of_Washington.svg/46px-Flag_of_Washington.svg.png' }, { 'name': 'West Virginia', 'flag': '2/22/Flag_of_West_Virginia.svg/46px-Flag_of_West_Virginia.svg.png' }, { 'name': 'Wisconsin', 'flag': '2/22/Flag_of_Wisconsin.svg/45px-Flag_of_Wisconsin.svg.png' }, { 'name': 'Wyoming', 'flag': 'b/bc/Flag_of_Wyoming.svg/43px-Flag_of_Wyoming.svg.png' }];
   })
   /* jshint ignore:end */
 
   .controller('DropdownCtrl', function ($scope) {
 
-     $scope.items = [
+    $scope.items = [
       'The first choice!',
       'And another choice for you.',
       'but wait! A third!'
@@ -2842,11 +2841,11 @@ app
       isopen: false
     };
 
-    $scope.toggled = function(open) {
+    $scope.toggled = function (open) {
       console.log('Dropdown is now: ', open);
     };
 
-    $scope.toggleDropdown = function($event) {
+    $scope.toggleDropdown = function ($event) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.status.isopen = !$scope.status.isopen;
@@ -2855,11 +2854,11 @@ app
 
   .controller('DatepickerDemoCtrl', function ($scope) {
 
-    $scope.today = function() {
+    $scope.today = function () {
       $scope.dt = new Date();
     };
 
-      $scope.mindate = new Date();
+    $scope.mindate = new Date();
     $scope.today();
 
     $scope.clear = function () {
@@ -2867,16 +2866,16 @@ app
     };
 
     // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    $scope.disabled = function (date, mode) {
+      return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
     };
 
-    $scope.toggleMin = function() {
+    $scope.toggleMin = function () {
       $scope.minDate = $scope.minDate ? null : new Date();
     };
     $scope.toggleMin();
 
-    $scope.open = function($event) {
+    $scope.open = function ($event) {
       $event.preventDefault();
       $event.stopPropagation();
 
@@ -2886,7 +2885,7 @@ app
     $scope.dateOptions = {
       formatYear: 'yy',
       startingDay: 1,
-		'class': 'datepicker'
+      'class': 'datepicker'
     };
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -2905,14 +2904,14 @@ app
     };
 
     $scope.ismeridian = true;
-    $scope.toggleMode = function() {
-      $scope.ismeridian = ! $scope.ismeridian;
+    $scope.toggleMode = function () {
+      $scope.ismeridian = !$scope.ismeridian;
     };
 
-    $scope.update = function() {
+    $scope.update = function () {
       var d = new Date();
-      d.setHours( 14 );
-      d.setMinutes( 0 );
+      d.setHours(14);
+      d.setMinutes(0);
       $scope.mytime = d;
     };
 
@@ -2920,7 +2919,7 @@ app
       console.log('Time changed to: ' + $scope.mytime);
     };
 
-    $scope.clear = function() {
+    $scope.clear = function () {
       $scope.mytime = null;
     };
   })
@@ -2933,7 +2932,7 @@ app
       $scope.currentPage = pageNo;
     };
 
-    $scope.pageChanged = function() {
+    $scope.pageChanged = function () {
       console.log('Page changed to: ' + $scope.currentPage);
     };
 
@@ -2959,9 +2958,9 @@ app
   .directive('setNgAnimate', ['$animate', function ($animate) {
     return {
       link: function ($scope, $element, $attrs) {
-        $scope.$watch( function() {
+        $scope.$watch(function () {
           return $scope.$eval($attrs.setNgAnimate, $scope);
-        }, function(valnew){
+        }, function (valnew) {
           console.log('Directive animation Enabled: ' + valnew);
           $animate.enabled(!!valnew, $element);
         });
@@ -2980,16 +2979,16 @@ app
  */
 app
   /* jshint ignore:start */
-  .controller('AbnTestController', function($scope, $timeout) {
+  .controller('AbnTestController', function ($scope, $timeout) {
     var apple_selected, tree, treedata_avm, treedata_geography;
-    $scope.my_tree_handler = function(branch) {
+    $scope.my_tree_handler = function (branch) {
       var _ref;
       $scope.output = "You selected: " + branch.label;
       if ((_ref = branch.data) != null ? _ref.description : void 0) {
         return $scope.output += '(' + branch.data.description + ')';
       }
     };
-    apple_selected = function(branch) {
+    apple_selected = function (branch) {
       return $scope.output = "APPLE! : " + branch.label;
     };
     treedata_avm = [
@@ -3022,7 +3021,7 @@ app
           definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
           data_can_contain_anything: true
         },
-        onSelect: function(branch) {
+        onSelect: function (branch) {
           return $scope.output = "Vegetable: " + branch.data.definition;
         },
         children: [
@@ -3100,7 +3099,7 @@ app
       }
     ];
     $scope.my_data = treedata_avm;
-    $scope.try_changing_the_tree_data = function() {
+    $scope.try_changing_the_tree_data = function () {
       if ($scope.my_data === treedata_avm) {
         return $scope.my_data = treedata_geography;
       } else {
@@ -3108,10 +3107,10 @@ app
       }
     };
     $scope.my_tree = tree = {};
-    $scope.try_async_load = function() {
+    $scope.try_async_load = function () {
       $scope.my_data = [];
       $scope.doing_async = true;
-      return $timeout(function() {
+      return $timeout(function () {
         if (Math.random() < 0.5) {
           $scope.my_data = treedata_avm;
         } else {
@@ -3121,7 +3120,7 @@ app
         return tree.expand_all();
       }, 1000);
     };
-    return $scope.try_adding_a_branch = function() {
+    return $scope.try_adding_a_branch = function () {
       var b;
       b = tree.get_selected_branch();
       return tree.add_branch(b, {
@@ -3159,281 +3158,281 @@ app
 
     $scope.val = 36;
 
-    var updateModel = function(val){
-      $scope.$apply(function(){
+    var updateModel = function (val) {
+      $scope.$apply(function () {
         $scope.val = val;
       });
     };
 
-    angular.element('#slider').on('slideStop', function(data){
+    angular.element('#slider').on('slideStop', function (data) {
       updateModel(data.value);
     });
 
-    $scope.clear = function($event) {
+    $scope.clear = function ($event) {
       $scope.number.selected = undefined;
       $event.preventDefault();
       $event.stopPropagation();
     };
 
-    $scope.number= {};
+    $scope.number = {};
     $scope.numbers = ['One', 'Two', 'Three', 'Four'];
 
     $scope.country = {};
     $scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
-      {name: 'Afghanistan', code: 'AF'},
-      {name: 'Åland Islands', code: 'AX'},
-      {name: 'Albania', code: 'AL'},
-      {name: 'Algeria', code: 'DZ'},
-      {name: 'American Samoa', code: 'AS'},
-      {name: 'Andorra', code: 'AD'},
-      {name: 'Angola', code: 'AO'},
-      {name: 'Anguilla', code: 'AI'},
-      {name: 'Antarctica', code: 'AQ'},
-      {name: 'Antigua and Barbuda', code: 'AG'},
-      {name: 'Argentina', code: 'AR'},
-      {name: 'Armenia', code: 'AM'},
-      {name: 'Aruba', code: 'AW'},
-      {name: 'Australia', code: 'AU'},
-      {name: 'Austria', code: 'AT'},
-      {name: 'Azerbaijan', code: 'AZ'},
-      {name: 'Bahamas', code: 'BS'},
-      {name: 'Bahrain', code: 'BH'},
-      {name: 'Bangladesh', code: 'BD'},
-      {name: 'Barbados', code: 'BB'},
-      {name: 'Belarus', code: 'BY'},
-      {name: 'Belgium', code: 'BE'},
-      {name: 'Belize', code: 'BZ'},
-      {name: 'Benin', code: 'BJ'},
-      {name: 'Bermuda', code: 'BM'},
-      {name: 'Bhutan', code: 'BT'},
-      {name: 'Bolivia', code: 'BO'},
-      {name: 'Bosnia and Herzegovina', code: 'BA'},
-      {name: 'Botswana', code: 'BW'},
-      {name: 'Bouvet Island', code: 'BV'},
-      {name: 'Brazil', code: 'BR'},
-      {name: 'British Indian Ocean Territory', code: 'IO'},
-      {name: 'Brunei Darussalam', code: 'BN'},
-      {name: 'Bulgaria', code: 'BG'},
-      {name: 'Burkina Faso', code: 'BF'},
-      {name: 'Burundi', code: 'BI'},
-      {name: 'Cambodia', code: 'KH'},
-      {name: 'Cameroon', code: 'CM'},
-      {name: 'Canada', code: 'CA'},
-      {name: 'Cape Verde', code: 'CV'},
-      {name: 'Cayman Islands', code: 'KY'},
-      {name: 'Central African Republic', code: 'CF'},
-      {name: 'Chad', code: 'TD'},
-      {name: 'Chile', code: 'CL'},
-      {name: 'China', code: 'CN'},
-      {name: 'Christmas Island', code: 'CX'},
-      {name: 'Cocos (Keeling) Islands', code: 'CC'},
-      {name: 'Colombia', code: 'CO'},
-      {name: 'Comoros', code: 'KM'},
-      {name: 'Congo', code: 'CG'},
-      {name: 'Congo, The Democratic Republic of the', code: 'CD'},
-      {name: 'Cook Islands', code: 'CK'},
-      {name: 'Costa Rica', code: 'CR'},
-      {name: 'Cote D\'Ivoire', code: 'CI'},
-      {name: 'Croatia', code: 'HR'},
-      {name: 'Cuba', code: 'CU'},
-      {name: 'Cyprus', code: 'CY'},
-      {name: 'Czech Republic', code: 'CZ'},
-      {name: 'Denmark', code: 'DK'},
-      {name: 'Djibouti', code: 'DJ'},
-      {name: 'Dominica', code: 'DM'},
-      {name: 'Dominican Republic', code: 'DO'},
-      {name: 'Ecuador', code: 'EC'},
-      {name: 'Egypt', code: 'EG'},
-      {name: 'El Salvador', code: 'SV'},
-      {name: 'Equatorial Guinea', code: 'GQ'},
-      {name: 'Eritrea', code: 'ER'},
-      {name: 'Estonia', code: 'EE'},
-      {name: 'Ethiopia', code: 'ET'},
-      {name: 'Falkland Islands (Malvinas)', code: 'FK'},
-      {name: 'Faroe Islands', code: 'FO'},
-      {name: 'Fiji', code: 'FJ'},
-      {name: 'Finland', code: 'FI'},
-      {name: 'France', code: 'FR'},
-      {name: 'French Guiana', code: 'GF'},
-      {name: 'French Polynesia', code: 'PF'},
-      {name: 'French Southern Territories', code: 'TF'},
-      {name: 'Gabon', code: 'GA'},
-      {name: 'Gambia', code: 'GM'},
-      {name: 'Georgia', code: 'GE'},
-      {name: 'Germany', code: 'DE'},
-      {name: 'Ghana', code: 'GH'},
-      {name: 'Gibraltar', code: 'GI'},
-      {name: 'Greece', code: 'GR'},
-      {name: 'Greenland', code: 'GL'},
-      {name: 'Grenada', code: 'GD'},
-      {name: 'Guadeloupe', code: 'GP'},
-      {name: 'Guam', code: 'GU'},
-      {name: 'Guatemala', code: 'GT'},
-      {name: 'Guernsey', code: 'GG'},
-      {name: 'Guinea', code: 'GN'},
-      {name: 'Guinea-Bissau', code: 'GW'},
-      {name: 'Guyana', code: 'GY'},
-      {name: 'Haiti', code: 'HT'},
-      {name: 'Heard Island and Mcdonald Islands', code: 'HM'},
-      {name: 'Holy See (Vatican City State)', code: 'VA'},
-      {name: 'Honduras', code: 'HN'},
-      {name: 'Hong Kong', code: 'HK'},
-      {name: 'Hungary', code: 'HU'},
-      {name: 'Iceland', code: 'IS'},
-      {name: 'India', code: 'IN'},
-      {name: 'Indonesia', code: 'ID'},
-      {name: 'Iran, Islamic Republic Of', code: 'IR'},
-      {name: 'Iraq', code: 'IQ'},
-      {name: 'Ireland', code: 'IE'},
-      {name: 'Isle of Man', code: 'IM'},
-      {name: 'Israel', code: 'IL'},
-      {name: 'Italy', code: 'IT'},
-      {name: 'Jamaica', code: 'JM'},
-      {name: 'Japan', code: 'JP'},
-      {name: 'Jersey', code: 'JE'},
-      {name: 'Jordan', code: 'JO'},
-      {name: 'Kazakhstan', code: 'KZ'},
-      {name: 'Kenya', code: 'KE'},
-      {name: 'Kiribati', code: 'KI'},
-      {name: 'Korea, Democratic People\'s Republic of', code: 'KP'},
-      {name: 'Korea, Republic of', code: 'KR'},
-      {name: 'Kuwait', code: 'KW'},
-      {name: 'Kyrgyzstan', code: 'KG'},
-      {name: 'Lao People\'s Democratic Republic', code: 'LA'},
-      {name: 'Latvia', code: 'LV'},
-      {name: 'Lebanon', code: 'LB'},
-      {name: 'Lesotho', code: 'LS'},
-      {name: 'Liberia', code: 'LR'},
-      {name: 'Libyan Arab Jamahiriya', code: 'LY'},
-      {name: 'Liechtenstein', code: 'LI'},
-      {name: 'Lithuania', code: 'LT'},
-      {name: 'Luxembourg', code: 'LU'},
-      {name: 'Macao', code: 'MO'},
-      {name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK'},
-      {name: 'Madagascar', code: 'MG'},
-      {name: 'Malawi', code: 'MW'},
-      {name: 'Malaysia', code: 'MY'},
-      {name: 'Maldives', code: 'MV'},
-      {name: 'Mali', code: 'ML'},
-      {name: 'Malta', code: 'MT'},
-      {name: 'Marshall Islands', code: 'MH'},
-      {name: 'Martinique', code: 'MQ'},
-      {name: 'Mauritania', code: 'MR'},
-      {name: 'Mauritius', code: 'MU'},
-      {name: 'Mayotte', code: 'YT'},
-      {name: 'Mexico', code: 'MX'},
-      {name: 'Micronesia, Federated States of', code: 'FM'},
-      {name: 'Moldova, Republic of', code: 'MD'},
-      {name: 'Monaco', code: 'MC'},
-      {name: 'Mongolia', code: 'MN'},
-      {name: 'Montserrat', code: 'MS'},
-      {name: 'Morocco', code: 'MA'},
-      {name: 'Mozambique', code: 'MZ'},
-      {name: 'Myanmar', code: 'MM'},
-      {name: 'Namibia', code: 'NA'},
-      {name: 'Nauru', code: 'NR'},
-      {name: 'Nepal', code: 'NP'},
-      {name: 'Netherlands', code: 'NL'},
-      {name: 'Netherlands Antilles', code: 'AN'},
-      {name: 'New Caledonia', code: 'NC'},
-      {name: 'New Zealand', code: 'NZ'},
-      {name: 'Nicaragua', code: 'NI'},
-      {name: 'Niger', code: 'NE'},
-      {name: 'Nigeria', code: 'NG'},
-      {name: 'Niue', code: 'NU'},
-      {name: 'Norfolk Island', code: 'NF'},
-      {name: 'Northern Mariana Islands', code: 'MP'},
-      {name: 'Norway', code: 'NO'},
-      {name: 'Oman', code: 'OM'},
-      {name: 'Pakistan', code: 'PK'},
-      {name: 'Palau', code: 'PW'},
-      {name: 'Palestinian Territory, Occupied', code: 'PS'},
-      {name: 'Panama', code: 'PA'},
-      {name: 'Papua New Guinea', code: 'PG'},
-      {name: 'Paraguay', code: 'PY'},
-      {name: 'Peru', code: 'PE'},
-      {name: 'Philippines', code: 'PH'},
-      {name: 'Pitcairn', code: 'PN'},
-      {name: 'Poland', code: 'PL'},
-      {name: 'Portugal', code: 'PT'},
-      {name: 'Puerto Rico', code: 'PR'},
-      {name: 'Qatar', code: 'QA'},
-      {name: 'Reunion', code: 'RE'},
-      {name: 'Romania', code: 'RO'},
-      {name: 'Russian Federation', code: 'RU'},
-      {name: 'Rwanda', code: 'RW'},
-      {name: 'Saint Helena', code: 'SH'},
-      {name: 'Saint Kitts and Nevis', code: 'KN'},
-      {name: 'Saint Lucia', code: 'LC'},
-      {name: 'Saint Pierre and Miquelon', code: 'PM'},
-      {name: 'Saint Vincent and the Grenadines', code: 'VC'},
-      {name: 'Samoa', code: 'WS'},
-      {name: 'San Marino', code: 'SM'},
-      {name: 'Sao Tome and Principe', code: 'ST'},
-      {name: 'Saudi Arabia', code: 'SA'},
-      {name: 'Senegal', code: 'SN'},
-      {name: 'Serbia and Montenegro', code: 'CS'},
-      {name: 'Seychelles', code: 'SC'},
-      {name: 'Sierra Leone', code: 'SL'},
-      {name: 'Singapore', code: 'SG'},
-      {name: 'Slovakia', code: 'SK'},
-      {name: 'Slovenia', code: 'SI'},
-      {name: 'Solomon Islands', code: 'SB'},
-      {name: 'Somalia', code: 'SO'},
-      {name: 'South Africa', code: 'ZA'},
-      {name: 'South Georgia and the South Sandwich Islands', code: 'GS'},
-      {name: 'Spain', code: 'ES'},
-      {name: 'Sri Lanka', code: 'LK'},
-      {name: 'Sudan', code: 'SD'},
-      {name: 'Suriname', code: 'SR'},
-      {name: 'Svalbard and Jan Mayen', code: 'SJ'},
-      {name: 'Swaziland', code: 'SZ'},
-      {name: 'Sweden', code: 'SE'},
-      {name: 'Switzerland', code: 'CH'},
-      {name: 'Syrian Arab Republic', code: 'SY'},
-      {name: 'Taiwan, Province of China', code: 'TW'},
-      {name: 'Tajikistan', code: 'TJ'},
-      {name: 'Tanzania, United Republic of', code: 'TZ'},
-      {name: 'Thailand', code: 'TH'},
-      {name: 'Timor-Leste', code: 'TL'},
-      {name: 'Togo', code: 'TG'},
-      {name: 'Tokelau', code: 'TK'},
-      {name: 'Tonga', code: 'TO'},
-      {name: 'Trinidad and Tobago', code: 'TT'},
-      {name: 'Tunisia', code: 'TN'},
-      {name: 'Turkey', code: 'TR'},
-      {name: 'Turkmenistan', code: 'TM'},
-      {name: 'Turks and Caicos Islands', code: 'TC'},
-      {name: 'Tuvalu', code: 'TV'},
-      {name: 'Uganda', code: 'UG'},
-      {name: 'Ukraine', code: 'UA'},
-      {name: 'United Arab Emirates', code: 'AE'},
-      {name: 'United Kingdom', code: 'GB'},
-      {name: 'United States', code: 'US'},
-      {name: 'United States Minor Outlying Islands', code: 'UM'},
-      {name: 'Uruguay', code: 'UY'},
-      {name: 'Uzbekistan', code: 'UZ'},
-      {name: 'Vanuatu', code: 'VU'},
-      {name: 'Venezuela', code: 'VE'},
-      {name: 'Vietnam', code: 'VN'},
-      {name: 'Virgin Islands, British', code: 'VG'},
-      {name: 'Virgin Islands, U.S.', code: 'VI'},
-      {name: 'Wallis and Futuna', code: 'WF'},
-      {name: 'Western Sahara', code: 'EH'},
-      {name: 'Yemen', code: 'YE'},
-      {name: 'Zambia', code: 'ZM'},
-      {name: 'Zimbabwe', code: 'ZW'}
+      { name: 'Afghanistan', code: 'AF' },
+      { name: 'Åland Islands', code: 'AX' },
+      { name: 'Albania', code: 'AL' },
+      { name: 'Algeria', code: 'DZ' },
+      { name: 'American Samoa', code: 'AS' },
+      { name: 'Andorra', code: 'AD' },
+      { name: 'Angola', code: 'AO' },
+      { name: 'Anguilla', code: 'AI' },
+      { name: 'Antarctica', code: 'AQ' },
+      { name: 'Antigua and Barbuda', code: 'AG' },
+      { name: 'Argentina', code: 'AR' },
+      { name: 'Armenia', code: 'AM' },
+      { name: 'Aruba', code: 'AW' },
+      { name: 'Australia', code: 'AU' },
+      { name: 'Austria', code: 'AT' },
+      { name: 'Azerbaijan', code: 'AZ' },
+      { name: 'Bahamas', code: 'BS' },
+      { name: 'Bahrain', code: 'BH' },
+      { name: 'Bangladesh', code: 'BD' },
+      { name: 'Barbados', code: 'BB' },
+      { name: 'Belarus', code: 'BY' },
+      { name: 'Belgium', code: 'BE' },
+      { name: 'Belize', code: 'BZ' },
+      { name: 'Benin', code: 'BJ' },
+      { name: 'Bermuda', code: 'BM' },
+      { name: 'Bhutan', code: 'BT' },
+      { name: 'Bolivia', code: 'BO' },
+      { name: 'Bosnia and Herzegovina', code: 'BA' },
+      { name: 'Botswana', code: 'BW' },
+      { name: 'Bouvet Island', code: 'BV' },
+      { name: 'Brazil', code: 'BR' },
+      { name: 'British Indian Ocean Territory', code: 'IO' },
+      { name: 'Brunei Darussalam', code: 'BN' },
+      { name: 'Bulgaria', code: 'BG' },
+      { name: 'Burkina Faso', code: 'BF' },
+      { name: 'Burundi', code: 'BI' },
+      { name: 'Cambodia', code: 'KH' },
+      { name: 'Cameroon', code: 'CM' },
+      { name: 'Canada', code: 'CA' },
+      { name: 'Cape Verde', code: 'CV' },
+      { name: 'Cayman Islands', code: 'KY' },
+      { name: 'Central African Republic', code: 'CF' },
+      { name: 'Chad', code: 'TD' },
+      { name: 'Chile', code: 'CL' },
+      { name: 'China', code: 'CN' },
+      { name: 'Christmas Island', code: 'CX' },
+      { name: 'Cocos (Keeling) Islands', code: 'CC' },
+      { name: 'Colombia', code: 'CO' },
+      { name: 'Comoros', code: 'KM' },
+      { name: 'Congo', code: 'CG' },
+      { name: 'Congo, The Democratic Republic of the', code: 'CD' },
+      { name: 'Cook Islands', code: 'CK' },
+      { name: 'Costa Rica', code: 'CR' },
+      { name: 'Cote D\'Ivoire', code: 'CI' },
+      { name: 'Croatia', code: 'HR' },
+      { name: 'Cuba', code: 'CU' },
+      { name: 'Cyprus', code: 'CY' },
+      { name: 'Czech Republic', code: 'CZ' },
+      { name: 'Denmark', code: 'DK' },
+      { name: 'Djibouti', code: 'DJ' },
+      { name: 'Dominica', code: 'DM' },
+      { name: 'Dominican Republic', code: 'DO' },
+      { name: 'Ecuador', code: 'EC' },
+      { name: 'Egypt', code: 'EG' },
+      { name: 'El Salvador', code: 'SV' },
+      { name: 'Equatorial Guinea', code: 'GQ' },
+      { name: 'Eritrea', code: 'ER' },
+      { name: 'Estonia', code: 'EE' },
+      { name: 'Ethiopia', code: 'ET' },
+      { name: 'Falkland Islands (Malvinas)', code: 'FK' },
+      { name: 'Faroe Islands', code: 'FO' },
+      { name: 'Fiji', code: 'FJ' },
+      { name: 'Finland', code: 'FI' },
+      { name: 'France', code: 'FR' },
+      { name: 'French Guiana', code: 'GF' },
+      { name: 'French Polynesia', code: 'PF' },
+      { name: 'French Southern Territories', code: 'TF' },
+      { name: 'Gabon', code: 'GA' },
+      { name: 'Gambia', code: 'GM' },
+      { name: 'Georgia', code: 'GE' },
+      { name: 'Germany', code: 'DE' },
+      { name: 'Ghana', code: 'GH' },
+      { name: 'Gibraltar', code: 'GI' },
+      { name: 'Greece', code: 'GR' },
+      { name: 'Greenland', code: 'GL' },
+      { name: 'Grenada', code: 'GD' },
+      { name: 'Guadeloupe', code: 'GP' },
+      { name: 'Guam', code: 'GU' },
+      { name: 'Guatemala', code: 'GT' },
+      { name: 'Guernsey', code: 'GG' },
+      { name: 'Guinea', code: 'GN' },
+      { name: 'Guinea-Bissau', code: 'GW' },
+      { name: 'Guyana', code: 'GY' },
+      { name: 'Haiti', code: 'HT' },
+      { name: 'Heard Island and Mcdonald Islands', code: 'HM' },
+      { name: 'Holy See (Vatican City State)', code: 'VA' },
+      { name: 'Honduras', code: 'HN' },
+      { name: 'Hong Kong', code: 'HK' },
+      { name: 'Hungary', code: 'HU' },
+      { name: 'Iceland', code: 'IS' },
+      { name: 'India', code: 'IN' },
+      { name: 'Indonesia', code: 'ID' },
+      { name: 'Iran, Islamic Republic Of', code: 'IR' },
+      { name: 'Iraq', code: 'IQ' },
+      { name: 'Ireland', code: 'IE' },
+      { name: 'Isle of Man', code: 'IM' },
+      { name: 'Israel', code: 'IL' },
+      { name: 'Italy', code: 'IT' },
+      { name: 'Jamaica', code: 'JM' },
+      { name: 'Japan', code: 'JP' },
+      { name: 'Jersey', code: 'JE' },
+      { name: 'Jordan', code: 'JO' },
+      { name: 'Kazakhstan', code: 'KZ' },
+      { name: 'Kenya', code: 'KE' },
+      { name: 'Kiribati', code: 'KI' },
+      { name: 'Korea, Democratic People\'s Republic of', code: 'KP' },
+      { name: 'Korea, Republic of', code: 'KR' },
+      { name: 'Kuwait', code: 'KW' },
+      { name: 'Kyrgyzstan', code: 'KG' },
+      { name: 'Lao People\'s Democratic Republic', code: 'LA' },
+      { name: 'Latvia', code: 'LV' },
+      { name: 'Lebanon', code: 'LB' },
+      { name: 'Lesotho', code: 'LS' },
+      { name: 'Liberia', code: 'LR' },
+      { name: 'Libyan Arab Jamahiriya', code: 'LY' },
+      { name: 'Liechtenstein', code: 'LI' },
+      { name: 'Lithuania', code: 'LT' },
+      { name: 'Luxembourg', code: 'LU' },
+      { name: 'Macao', code: 'MO' },
+      { name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' },
+      { name: 'Madagascar', code: 'MG' },
+      { name: 'Malawi', code: 'MW' },
+      { name: 'Malaysia', code: 'MY' },
+      { name: 'Maldives', code: 'MV' },
+      { name: 'Mali', code: 'ML' },
+      { name: 'Malta', code: 'MT' },
+      { name: 'Marshall Islands', code: 'MH' },
+      { name: 'Martinique', code: 'MQ' },
+      { name: 'Mauritania', code: 'MR' },
+      { name: 'Mauritius', code: 'MU' },
+      { name: 'Mayotte', code: 'YT' },
+      { name: 'Mexico', code: 'MX' },
+      { name: 'Micronesia, Federated States of', code: 'FM' },
+      { name: 'Moldova, Republic of', code: 'MD' },
+      { name: 'Monaco', code: 'MC' },
+      { name: 'Mongolia', code: 'MN' },
+      { name: 'Montserrat', code: 'MS' },
+      { name: 'Morocco', code: 'MA' },
+      { name: 'Mozambique', code: 'MZ' },
+      { name: 'Myanmar', code: 'MM' },
+      { name: 'Namibia', code: 'NA' },
+      { name: 'Nauru', code: 'NR' },
+      { name: 'Nepal', code: 'NP' },
+      { name: 'Netherlands', code: 'NL' },
+      { name: 'Netherlands Antilles', code: 'AN' },
+      { name: 'New Caledonia', code: 'NC' },
+      { name: 'New Zealand', code: 'NZ' },
+      { name: 'Nicaragua', code: 'NI' },
+      { name: 'Niger', code: 'NE' },
+      { name: 'Nigeria', code: 'NG' },
+      { name: 'Niue', code: 'NU' },
+      { name: 'Norfolk Island', code: 'NF' },
+      { name: 'Northern Mariana Islands', code: 'MP' },
+      { name: 'Norway', code: 'NO' },
+      { name: 'Oman', code: 'OM' },
+      { name: 'Pakistan', code: 'PK' },
+      { name: 'Palau', code: 'PW' },
+      { name: 'Palestinian Territory, Occupied', code: 'PS' },
+      { name: 'Panama', code: 'PA' },
+      { name: 'Papua New Guinea', code: 'PG' },
+      { name: 'Paraguay', code: 'PY' },
+      { name: 'Peru', code: 'PE' },
+      { name: 'Philippines', code: 'PH' },
+      { name: 'Pitcairn', code: 'PN' },
+      { name: 'Poland', code: 'PL' },
+      { name: 'Portugal', code: 'PT' },
+      { name: 'Puerto Rico', code: 'PR' },
+      { name: 'Qatar', code: 'QA' },
+      { name: 'Reunion', code: 'RE' },
+      { name: 'Romania', code: 'RO' },
+      { name: 'Russian Federation', code: 'RU' },
+      { name: 'Rwanda', code: 'RW' },
+      { name: 'Saint Helena', code: 'SH' },
+      { name: 'Saint Kitts and Nevis', code: 'KN' },
+      { name: 'Saint Lucia', code: 'LC' },
+      { name: 'Saint Pierre and Miquelon', code: 'PM' },
+      { name: 'Saint Vincent and the Grenadines', code: 'VC' },
+      { name: 'Samoa', code: 'WS' },
+      { name: 'San Marino', code: 'SM' },
+      { name: 'Sao Tome and Principe', code: 'ST' },
+      { name: 'Saudi Arabia', code: 'SA' },
+      { name: 'Senegal', code: 'SN' },
+      { name: 'Serbia and Montenegro', code: 'CS' },
+      { name: 'Seychelles', code: 'SC' },
+      { name: 'Sierra Leone', code: 'SL' },
+      { name: 'Singapore', code: 'SG' },
+      { name: 'Slovakia', code: 'SK' },
+      { name: 'Slovenia', code: 'SI' },
+      { name: 'Solomon Islands', code: 'SB' },
+      { name: 'Somalia', code: 'SO' },
+      { name: 'South Africa', code: 'ZA' },
+      { name: 'South Georgia and the South Sandwich Islands', code: 'GS' },
+      { name: 'Spain', code: 'ES' },
+      { name: 'Sri Lanka', code: 'LK' },
+      { name: 'Sudan', code: 'SD' },
+      { name: 'Suriname', code: 'SR' },
+      { name: 'Svalbard and Jan Mayen', code: 'SJ' },
+      { name: 'Swaziland', code: 'SZ' },
+      { name: 'Sweden', code: 'SE' },
+      { name: 'Switzerland', code: 'CH' },
+      { name: 'Syrian Arab Republic', code: 'SY' },
+      { name: 'Taiwan, Province of China', code: 'TW' },
+      { name: 'Tajikistan', code: 'TJ' },
+      { name: 'Tanzania, United Republic of', code: 'TZ' },
+      { name: 'Thailand', code: 'TH' },
+      { name: 'Timor-Leste', code: 'TL' },
+      { name: 'Togo', code: 'TG' },
+      { name: 'Tokelau', code: 'TK' },
+      { name: 'Tonga', code: 'TO' },
+      { name: 'Trinidad and Tobago', code: 'TT' },
+      { name: 'Tunisia', code: 'TN' },
+      { name: 'Turkey', code: 'TR' },
+      { name: 'Turkmenistan', code: 'TM' },
+      { name: 'Turks and Caicos Islands', code: 'TC' },
+      { name: 'Tuvalu', code: 'TV' },
+      { name: 'Uganda', code: 'UG' },
+      { name: 'Ukraine', code: 'UA' },
+      { name: 'United Arab Emirates', code: 'AE' },
+      { name: 'United Kingdom', code: 'GB' },
+      { name: 'United States', code: 'US' },
+      { name: 'United States Minor Outlying Islands', code: 'UM' },
+      { name: 'Uruguay', code: 'UY' },
+      { name: 'Uzbekistan', code: 'UZ' },
+      { name: 'Vanuatu', code: 'VU' },
+      { name: 'Venezuela', code: 'VE' },
+      { name: 'Vietnam', code: 'VN' },
+      { name: 'Virgin Islands, British', code: 'VG' },
+      { name: 'Virgin Islands, U.S.', code: 'VI' },
+      { name: 'Wallis and Futuna', code: 'WF' },
+      { name: 'Western Sahara', code: 'EH' },
+      { name: 'Yemen', code: 'YE' },
+      { name: 'Zambia', code: 'ZM' },
+      { name: 'Zimbabwe', code: 'ZW' }
     ];
 
-    $scope.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
+    $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
     $scope.multipleDemo = {};
-    $scope.multipleDemo.colors = ['Blue','Red'];
+    $scope.multipleDemo.colors = ['Blue', 'Red'];
 
     $scope.htmlVariable = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li class="text-red">Super Easy <b>Theming</b> Options</li><li>Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li>Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE8+</li></ol><p><b>Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
 
   })
 
-  .controller('tagsInputCtrl', function($scope, $http) {
+  .controller('tagsInputCtrl', function ($scope, $http) {
     $scope.movies = [
       'The Dark Knight',
       'Heat',
@@ -3446,7 +3445,7 @@ app
       'The Bourne Ultimatum'
     ];
 
-    $scope.loadMovies = function(query) {
+    $scope.loadMovies = function (query) {
       return $http.get('scripts/jsons/movies.json');
     };
   });
@@ -3468,20 +3467,20 @@ app
     };
 
     // function to submit the form after all validation has occurred
-		$scope.submitForm = function(isValid) {
+    $scope.submitForm = function (isValid) {
       console.log('validate form');
 
-			// check to make sure the form is completely valid
-			if (isValid) {
-				console.log('our form is amazing');
-			} else {
+      // check to make sure the form is completely valid
+      if (isValid) {
+        console.log('our form is amazing');
+      } else {
         console.log('form is invalid');
       }
 
-		};
+    };
 
-    $scope.notBlackListed = function(value) {
-      var blacklist = ['bad@domain.com','verybad@domain.com'];
+    $scope.notBlackListed = function (value) {
+      var blacklist = ['bad@domain.com', 'verybad@domain.com'];
       return blacklist.indexOf(value) === -1;
     };
   });
@@ -3544,14 +3543,14 @@ app
  * # formSubmit
  */
 app
-  .directive('submit', function() {
+  .directive('submit', function () {
     return {
       restrict: 'A',
-      link: function(scope, formElement, attrs) {
+      link: function (scope, formElement, attrs) {
         var form;
         form = scope[attrs.name];
-        return formElement.bind('submit', function() {
-          angular.forEach(form, function(field, name) {
+        return formElement.bind('submit', function () {
+          angular.forEach(form, function (field, name) {
             if (typeof name === 'string' && !name.match('^[$]')) {
               if (field.$pristine) {
                 return field.$setViewValue(field.$value);
@@ -3593,7 +3592,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('FormUploadCtrl', ['$scope', 'FileUploader', function($scope, FileUploader) {
+  .controller('FormUploadCtrl', ['$scope', 'FileUploader', function ($scope, FileUploader) {
     var uploader = $scope.uploader = new FileUploader({
       //url: 'scripts/modules/fileupload/upload.php' //enable this option to get f
     });
@@ -3602,52 +3601,52 @@ app
 
     uploader.filters.push({
       name: 'customFilter',
-      fn: function() {
+      fn: function () {
         return this.queue.length < 10;
       }
     });
 
     uploader.filters.push({
       name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+      fn: function (item /*{File|FileLikeObject}*/, options) {
+        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
 
     // CALLBACKS
 
-    uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+    uploader.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/, filter, options) {
       console.info('onWhenAddingFileFailed', item, filter, options);
     };
-    uploader.onAfterAddingFile = function(fileItem) {
+    uploader.onAfterAddingFile = function (fileItem) {
       console.info('onAfterAddingFile', fileItem);
     };
-    uploader.onAfterAddingAll = function(addedFileItems) {
+    uploader.onAfterAddingAll = function (addedFileItems) {
       console.info('onAfterAddingAll', addedFileItems);
     };
-    uploader.onBeforeUploadItem = function(item) {
+    uploader.onBeforeUploadItem = function (item) {
       console.info('onBeforeUploadItem', item);
     };
-    uploader.onProgressItem = function(fileItem, progress) {
+    uploader.onProgressItem = function (fileItem, progress) {
       console.info('onProgressItem', fileItem, progress);
     };
-    uploader.onProgressAll = function(progress) {
+    uploader.onProgressAll = function (progress) {
       console.info('onProgressAll', progress);
     };
-    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+    uploader.onSuccessItem = function (fileItem, response, status, headers) {
       console.info('onSuccessItem', fileItem, response, status, headers);
     };
-    uploader.onErrorItem = function(fileItem, response, status, headers) {
+    uploader.onErrorItem = function (fileItem, response, status, headers) {
       console.info('onErrorItem', fileItem, response, status, headers);
     };
-    uploader.onCancelItem = function(fileItem, response, status, headers) {
+    uploader.onCancelItem = function (fileItem, response, status, headers) {
       console.info('onCancelItem', fileItem, response, status, headers);
     };
-    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+    uploader.onCompleteItem = function (fileItem, response, status, headers) {
       console.info('onCompleteItem', fileItem, response, status, headers);
     };
-    uploader.onCompleteAll = function() {
+    uploader.onCompleteAll = function () {
       console.info('onCompleteAll');
     };
 
@@ -3665,21 +3664,21 @@ app
  */
 app
   .controller('FormImgCropCtrl', function ($scope) {
-    $scope.myImage='';
-    $scope.myCroppedImage='';
-    $scope.cropType='circle';
+    $scope.myImage = '';
+    $scope.myCroppedImage = '';
+    $scope.cropType = 'circle';
 
-    var handleFileSelect=function(evt) {
-      var file=evt.currentTarget.files[0];
+    var handleFileSelect = function (evt) {
+      var file = evt.currentTarget.files[0];
       var reader = new FileReader();
       reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage=evt.target.result;
+        $scope.$apply(function ($scope) {
+          $scope.myImage = evt.target.result;
         });
       };
       reader.readAsDataURL(file);
     };
-    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+    angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
   });
 
 'use strict';
@@ -3693,7 +3692,7 @@ app
  */
 app
   .controller('TablesBootstrapCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Bootstrap Tables',
       subtitle: 'Place subtitle here...'
     };
@@ -3713,7 +3712,7 @@ app
     $scope.selectedAll = false;
 
     $scope.selectAll = function () {
-      angular.forEach($scope.users, function(user) {
+      angular.forEach($scope.users, function (user) {
         user.selected = $scope.selectedAll;
       });
     };
@@ -3733,7 +3732,7 @@ app
     return {
       restrict: 'E',
       link: function postLink(scope, element) {
-        element.on('click', function(){
+        element.on('click', function () {
 
           if (element.hasClass('checked')) {
             element.removeClass('checked');
@@ -3774,8 +3773,8 @@ app
     function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
       // Unbind first in order to avoid any duplicate handler (see https://github.com/l-lin/angular-datatables/issues/87)
       angular.element('td', nRow).unbind('click');
-      angular.element('td', nRow).bind('click', function() {
-        $scope.$apply(function() {
+      angular.element('td', nRow).bind('click', function () {
+        $scope.$apply(function () {
           vm.someClickHandler(aData);
         });
         angular.element('.row_selected').removeClass('row_selected');
@@ -3784,15 +3783,15 @@ app
       return nRow;
     }
 
-    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        return $resource('http://www.filltext.com/?rows=300&id={index}&firstName={firstName}&lastName={lastName}&pretty=true').query().$promise;
+    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
+      return $resource('http://www.filltext.com/?rows=300&id={index}&firstName={firstName}&lastName={lastName}&pretty=true').query().$promise;
     })
 
       .withPaginationType('full_numbers')
       .withBootstrap()
       // Activate col reorder plugin
       .withColReorder()
-      .withColReorderCallback(function() {
+      .withColReorderCallback(function () {
         console.log('Columns order has been changed with: ' + this.fnOrder());
       })
       .withOption('rowCallback', rowCallback);
@@ -3917,7 +3916,7 @@ app
  */
 app
   .controller('TablesUiGridCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'UI Grid',
       subtitle: 'Place subtitle here...'
     };
@@ -3946,7 +3945,7 @@ app
         // pre-populated search field
         { field: 'gender', filter: { term: 'male' } },
         // no filter input
-        { field: 'company', enableFiltering: false  },
+        { field: 'company', enableFiltering: false },
         // specifies one of the built-in conditions
         // and a placeholder for the input
         {
@@ -3960,23 +3959,25 @@ app
         {
           field: 'post',
           filter: {
-            condition: function(searchTerm, cellValue) {
+            condition: function (searchTerm, cellValue) {
               var strippedValue = (cellValue + '').replace(/[^\d]/g, '');
               return strippedValue.indexOf(searchTerm) >= 0;
             }
           }
         },
         // multiple filters
-        { field: 'age', filters: [
-          {
-            condition: uiGridConstants.filter.GREATER_THAN,
-            placeholder: 'greater than'
-          },
-          {
-            condition: uiGridConstants.filter.LESS_THAN,
-            placeholder: 'less than'
-          }
-        ]}
+        {
+          field: 'age', filters: [
+            {
+              condition: uiGridConstants.filter.GREATER_THAN,
+              placeholder: 'greater than'
+            },
+            {
+              condition: uiGridConstants.filter.LESS_THAN,
+              placeholder: 'less than'
+            }
+          ]
+        }
       ]
     };
 
@@ -3992,24 +3993,24 @@ app
       enableFiltering: true,
       columnDefs: [
         { field: 'name', width: 150, aggregationType: uiGridConstants.aggregationTypes.count },
-        { field: 'street',aggregationType: uiGridConstants.aggregationTypes.sum, width: 150 },
+        { field: 'street', aggregationType: uiGridConstants.aggregationTypes.sum, width: 150 },
         { field: 'age', aggregationType: uiGridConstants.aggregationTypes.avg, aggregationHideLabel: true, width: 100 },
         { name: 'ageMin', field: 'age', aggregationType: uiGridConstants.aggregationTypes.min, width: 130, displayName: 'Age for min' },
         { name: 'ageMax', field: 'age', aggregationType: uiGridConstants.aggregationTypes.max, width: 130, displayName: 'Age for max' },
         { name: 'customCellTemplate', field: 'age', width: 150, footerCellTemplate: '<div class="ui-grid-cell-contents" style="background-color: Red;color: White">custom template</div>' }
       ],
       data: 'myData',
-      onRegisterApi: function(gridApi) {
+      onRegisterApi: function (gridApi) {
         $scope.gridApi = gridApi;
       }
     };
 
-    $scope.toggleFooter = function() {
+    $scope.toggleFooter = function () {
       $scope.gridOptions.showGridFooter = !$scope.gridOptions.showGridFooter;
       $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.OPTIONS);
     };
 
-    $scope.toggleColumnFooter = function() {
+    $scope.toggleColumnFooter = function () {
       $scope.gridOptions.showColumnFooter = !$scope.gridOptions.showColumnFooter;
       $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.OPTIONS);
     };
@@ -4039,12 +4040,14 @@ app
       columnDefs: [
         { name: 'id', enableCellEdit: false, width: '10%' },
         { name: 'name', displayName: 'Name (editable)', width: '20%' },
-        { name: 'age', displayName: 'Age' , type: 'number', width: '10%' },
-        { name: 'gender', displayName: 'Gender', cellFilter: 'mapGender', width: '20%',editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownValueLabel: 'gender', editDropdownOptionsArray: [
-          { id: 1, gender: 'male' },
-          { id: 2, gender: 'female' }
-        ] },
-        { name: 'registered', displayName: 'Registered' , type: 'date', cellFilter: 'date:"yyyy-MM-dd"', width: '20%' },
+        { name: 'age', displayName: 'Age', type: 'number', width: '10%' },
+        {
+          name: 'gender', displayName: 'Gender', cellFilter: 'mapGender', width: '20%', editableCellTemplate: 'ui-grid/dropdownEditor', editDropdownValueLabel: 'gender', editDropdownOptionsArray: [
+            { id: 1, gender: 'male' },
+            { id: 2, gender: 'female' }
+          ]
+        },
+        { name: 'registered', displayName: 'Registered', type: 'date', cellFilter: 'date:"yyyy-MM-dd"', width: '20%' },
         { name: 'isActive', displayName: 'Active', type: 'boolean', width: '10%' }
       ],
       data: 'myData'
@@ -4052,25 +4055,25 @@ app
 
     $scope.msg = {};
 
-    $scope.gridOptions.onRegisterApi = function(gridApi){
+    $scope.gridOptions.onRegisterApi = function (gridApi) {
       //set gridApi on scope
       $scope.gridApi = gridApi;
-      gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
-        $scope.msg.lastCellEdited = 'edited row id:' + rowEntity.id + ' Column:' + colDef.name + ' newValue:' + newValue + ' oldValue:' + oldValue ;
+      gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+        $scope.msg.lastCellEdited = 'edited row id:' + rowEntity.id + ' Column:' + colDef.name + ' newValue:' + newValue + ' oldValue:' + oldValue;
         $scope.$apply();
       });
     };
 
   })
 
-  .filter('mapGender', function() {
+  .filter('mapGender', function () {
     var genderHash = {
       1: 'male',
       2: 'female'
     };
 
-    return function(input) {
-      if (!input){
+    return function (input) {
+      if (!input) {
         return '';
       } else {
         return genderHash[input];
@@ -4107,24 +4110,24 @@ app
     };
   })
 
-  .controller('TableSortCtrl', function($scope, $filter, ngTableParams) {
-    var data = [{name: 'Moroni', age: 50},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34}];
+  .controller('TableSortCtrl', function ($scope, $filter, ngTableParams) {
+    var data = [{ name: 'Moroni', age: 50 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 }];
 
     $scope.tableParams = new ngTableParams({
       page: 1,            // show first page
@@ -4133,36 +4136,36 @@ app
         name: 'asc'     // initial sorting
       }
     }, {
-      total: data.length, // length of data
-      getData: function($defer, params) {
-        // use build-in angular filter
-        var orderedData = params.sorting() ?
+        total: data.length, // length of data
+        getData: function ($defer, params) {
+          // use build-in angular filter
+          var orderedData = params.sorting() ?
             $filter('orderBy')(data, params.orderBy()) :
             data;
 
-        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-      }
-    });
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
   })
 
-  .controller('TableFilterCtrl', function($scope, $filter, ngTableParams) {
-    var data = [{name: 'Moroni', age: 50},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34}];
+  .controller('TableFilterCtrl', function ($scope, $filter, ngTableParams) {
+    var data = [{ name: 'Moroni', age: 50 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 }];
 
     $scope.tableParams = new ngTableParams({
       page: 1,            // show first page
@@ -4174,40 +4177,40 @@ app
         name: 'asc'     // initial sorting
       }
     }, {
-      total: data.length, // length of data
-      getData: function($defer, params) {
-        // use build-in angular filter
-        var filteredData = params.filter() ?
+        total: data.length, // length of data
+        getData: function ($defer, params) {
+          // use build-in angular filter
+          var filteredData = params.filter() ?
             $filter('filter')(data, params.filter()) :
             data;
-        var orderedData = params.sorting() ?
+          var orderedData = params.sorting() ?
             $filter('orderBy')(filteredData, params.orderBy()) :
             data;
 
-        params.total(orderedData.length); // set total for recalc pagination
-        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-      }
-    });
+          params.total(orderedData.length); // set total for recalc pagination
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
   })
 
-  .controller('TableEditCtrl', function($scope, $filter, $q, ngTableParams) {
-    var data = [{id: 1, name: 'Moroni', age: 50, money: -10},
-      {id: 2, name: 'Tiancum', age: 43,money: 120},
-      {id: 3, name: 'Jacob', age: 27, money: 5.5},
-      {id: 4, name: 'Nephi', age: 29,money: -54},
-      {id: 5, name: 'Enos', age: 34,money: 110},
-      {id: 6, name: 'Tiancum', age: 43, money: 1000},
-      {id: 7, name: 'Jacob', age: 27,money: -201},
-      {id: 8, name: 'Nephi', age: 29, money: 100},
-      {id: 9, name: 'Enos', age: 34, money: -52.5},
-      {id: 10, name: 'Tiancum', age: 43, money: 52.1},
-      {id: 11, name: 'Jacob', age: 27, money: 110},
-      {id: 12, name: 'Nephi', age: 29, money: -55},
-      {id: 13, name: 'Enos', age: 34, money: 551},
-      {id: 14, name: 'Tiancum', age: 43, money: -1410},
-      {id: 15, name: 'Jacob', age: 27, money: 410},
-      {id: 16, name: 'Nephi', age: 29, money: 100},
-      {id: 17, name: 'Enos', age: 34, money: -100}
+  .controller('TableEditCtrl', function ($scope, $filter, $q, ngTableParams) {
+    var data = [{ id: 1, name: 'Moroni', age: 50, money: -10 },
+    { id: 2, name: 'Tiancum', age: 43, money: 120 },
+    { id: 3, name: 'Jacob', age: 27, money: 5.5 },
+    { id: 4, name: 'Nephi', age: 29, money: -54 },
+    { id: 5, name: 'Enos', age: 34, money: 110 },
+    { id: 6, name: 'Tiancum', age: 43, money: 1000 },
+    { id: 7, name: 'Jacob', age: 27, money: -201 },
+    { id: 8, name: 'Nephi', age: 29, money: 100 },
+    { id: 9, name: 'Enos', age: 34, money: -52.5 },
+    { id: 10, name: 'Tiancum', age: 43, money: 52.1 },
+    { id: 11, name: 'Jacob', age: 27, money: 110 },
+    { id: 12, name: 'Nephi', age: 29, money: -55 },
+    { id: 13, name: 'Enos', age: 34, money: 551 },
+    { id: 14, name: 'Tiancum', age: 43, money: -1410 },
+    { id: 15, name: 'Jacob', age: 27, money: 410 },
+    { id: 16, name: 'Nephi', age: 29, money: 100 },
+    { id: 17, name: 'Enos', age: 34, money: -100 }
     ];
 
     $scope.tableParams = new ngTableParams({
@@ -4217,16 +4220,16 @@ app
         name: 'asc'     // initial sorting
       }
     }, {
-      total: data.length, // length of data
-      getData: function($defer, params) {
-        // use build-in angular filter
-        var orderedData = params.sorting() ?
+        total: data.length, // length of data
+        getData: function ($defer, params) {
+          // use build-in angular filter
+          var orderedData = params.sorting() ?
             $filter('orderBy')(data, params.orderBy()) :
             data;
 
-        $defer.resolve($scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-      }
-    });
+          $defer.resolve($scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
 
     var inArray = Array.prototype.indexOf ?
       function (val, arr) {
@@ -4235,16 +4238,16 @@ app
       function (val, arr) {
         var i = arr.length;
         while (i--) {
-          if (arr[i] === val) {return i;}
+          if (arr[i] === val) { return i; }
         }
         return -1;
       };
 
-    $scope.names = function() {
+    $scope.names = function () {
       var def = $q.defer(),
-          arr = [],
-          names = [];
-      angular.forEach(data, function(item){
+        arr = [],
+        names = [];
+      angular.forEach(data, function (item) {
         if (inArray(item.name, arr) === -1) {
           arr.push(item.name);
           names.push({
@@ -4260,8 +4263,8 @@ app
     $scope.checkboxes = { 'checked': false, items: {} };
 
     // watch for check all checkbox
-    $scope.$watch('checkboxes.checked', function(value) {
-      angular.forEach($scope.users, function(item) {
+    $scope.$watch('checkboxes.checked', function (value) {
+      angular.forEach($scope.users, function (item) {
         if (angular.isDefined(item.id)) {
           $scope.checkboxes.items[item.id] = value;
         }
@@ -4269,14 +4272,14 @@ app
     });
 
     // watch for data checkboxes
-    $scope.$watch('checkboxes.items', function() {
+    $scope.$watch('checkboxes.items', function () {
       if (!$scope.users) {
         return;
       }
       var checked = 0, unchecked = 0,
-          total = $scope.users.length;
-      angular.forEach($scope.users, function(item) {
-        checked   +=  ($scope.checkboxes.items[item.id]) || 0;
+        total = $scope.users.length;
+      angular.forEach($scope.users, function (item) {
+        checked += ($scope.checkboxes.items[item.id]) || 0;
         unchecked += (!$scope.checkboxes.items[item.id]) || 0;
       });
       if ((unchecked === 0) || (checked === 0)) {
@@ -4287,24 +4290,24 @@ app
     }, true);
   })
 
-  .controller('TableColumnsCtrl', function($scope, $filter, ngTableParams) {
-    var data = [{name: 'Moroni', age: 50},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34}];
+  .controller('TableColumnsCtrl', function ($scope, $filter, ngTableParams) {
+    var data = [{ name: 'Moroni', age: 50 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 },
+    { name: 'Tiancum', age: 43 },
+    { name: 'Jacob', age: 27 },
+    { name: 'Nephi', age: 29 },
+    { name: 'Enos', age: 34 }];
     $scope.columns = [
       { title: 'Name', field: 'name', visible: true, filter: { 'name': 'text' } },
       { title: 'Age', field: 'age', visible: true }
@@ -4316,42 +4319,42 @@ app
         name: 'M'       // initial filter
       }
     }, {
-      total: data.length, // length of data
-      getData: function($defer, params) {
-        // use build-in angular filter
-        var orderedData = params.sorting() ?
+        total: data.length, // length of data
+        getData: function ($defer, params) {
+          // use build-in angular filter
+          var orderedData = params.sorting() ?
             $filter('orderBy')(data, params.orderBy()) :
             data;
 
-        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-      }
-    });
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
   })
 
-  .controller('TableGroupCtrl', function($scope, $filter, ngTableParams, $timeout) {
-    $scope.rows = [{name: 'Moroni', age: 50, role: 'Administrator', date: '00/00/01'},
-      {name: 'Tiancum', age: 43, role: 'Administrator', date: '00/00/01'},
-      {name: 'Jacob', age: 27, role: 'Administrator', date: '00/00/01'},
-      {name: 'Nephi', age: 29, role: 'Moderator', date: '00/00/01'},
-      {name: 'Enos', age: 34, role: 'User', date: '00/00/01'},
-      {name: 'Tiancum', age: 43, role: 'User', date: '00/00/01'},
-      {name: 'Jacob', age: 27, role: 'User', date: '00/00/01'},
-      {name: 'Nephi', age: 29, role: 'Moderator', date: '00/00/01'},
-      {name: 'Enos', age: 34, role: 'User', date: '00/00/01'},
-      {name: 'Tiancum', age: 43, role: 'Moderator', date: '00/00/01'},
-      {name: 'Jacob', age: 27, role: 'User', date: '00/00/01'},
-      {name: 'Nephi', age: 29, role: 'User', date: '00/00/01'},
-      {name: 'Enos', age: 34, role: 'Moderator', date: '00/00/01'},
-      {name: 'Tiancum', age: 43, role: 'User', date: '00/00/01'},
-      {name: 'Jacob', age: 27, role: 'User', date: '00/00/01'},
-      {name: 'Nephi', age: 29, role: 'User', date: '00/00/01'},
-      {name: 'Enos', age: 34, role: 'User', date: '00/00/01'},
-      {name: 'Micah', age: 29, role: 'Moderator', date: '00/00/01'},
-      {name: 'Viviane', age: 34, role: 'Moderator', date: '00/00/01'},
-      {name: 'Marconi', age: 43, role: 'User', date: '00/00/01'},
-      {name: 'Leonan', age: 27, role: 'Administrator', date: '00/00/02'},
-      {name: 'Arnaldo', age: 29, role: 'User', date: '00/00/02'},
-      {name: 'Zuleide', age: 34, role: 'Moderator', date: '00/00/02'}];
+  .controller('TableGroupCtrl', function ($scope, $filter, ngTableParams, $timeout) {
+    $scope.rows = [{ name: 'Moroni', age: 50, role: 'Administrator', date: '00/00/01' },
+    { name: 'Tiancum', age: 43, role: 'Administrator', date: '00/00/01' },
+    { name: 'Jacob', age: 27, role: 'Administrator', date: '00/00/01' },
+    { name: 'Nephi', age: 29, role: 'Moderator', date: '00/00/01' },
+    { name: 'Enos', age: 34, role: 'User', date: '00/00/01' },
+    { name: 'Tiancum', age: 43, role: 'User', date: '00/00/01' },
+    { name: 'Jacob', age: 27, role: 'User', date: '00/00/01' },
+    { name: 'Nephi', age: 29, role: 'Moderator', date: '00/00/01' },
+    { name: 'Enos', age: 34, role: 'User', date: '00/00/01' },
+    { name: 'Tiancum', age: 43, role: 'Moderator', date: '00/00/01' },
+    { name: 'Jacob', age: 27, role: 'User', date: '00/00/01' },
+    { name: 'Nephi', age: 29, role: 'User', date: '00/00/01' },
+    { name: 'Enos', age: 34, role: 'Moderator', date: '00/00/01' },
+    { name: 'Tiancum', age: 43, role: 'User', date: '00/00/01' },
+    { name: 'Jacob', age: 27, role: 'User', date: '00/00/01' },
+    { name: 'Nephi', age: 29, role: 'User', date: '00/00/01' },
+    { name: 'Enos', age: 34, role: 'User', date: '00/00/01' },
+    { name: 'Micah', age: 29, role: 'Moderator', date: '00/00/01' },
+    { name: 'Viviane', age: 34, role: 'Moderator', date: '00/00/01' },
+    { name: 'Marconi', age: 43, role: 'User', date: '00/00/01' },
+    { name: 'Leonan', age: 27, role: 'Administrator', date: '00/00/02' },
+    { name: 'Arnaldo', age: 29, role: 'User', date: '00/00/02' },
+    { name: 'Zuleide', age: 34, role: 'Moderator', date: '00/00/02' }];
 
     $scope.groupby = 'role'; //Default order IF null get table without groups(not possible ?)
 
@@ -4360,22 +4363,22 @@ app
       page: 1,            // show first page
       count: 100          // count per page
     }, {
-      groupBy: $scope.groupby,
-      total: function () { return $scope.rows.length; }, // length of data
-      getData: function($defer, params) {
-        var orderedData = params.sorting() ?
-            $filter('orderBy')($scope.rows, $scope.tableParams.orderBy()) :   $scope.rows;
+        groupBy: $scope.groupby,
+        total: function () { return $scope.rows.length; }, // length of data
+        getData: function ($defer, params) {
+          var orderedData = params.sorting() ?
+            $filter('orderBy')($scope.rows, $scope.tableParams.orderBy()) : $scope.rows;
 
-        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-      }
-    });
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
 
-    $timeout(function(){
-      $scope.$watch('groupby', function(value){
+    $timeout(function () {
+      $scope.$watch('groupby', function (value) {
         $scope.tableParams.settings().groupBy = value;
         console.log('Scope Value', $scope.groupby);
         console.log('Watch value', this.last);
-        console.log('new table',$scope.tableParams);
+        console.log('new table', $scope.tableParams);
         $scope.tableParams.reload();
       });
     }, 0);
@@ -4385,23 +4388,23 @@ app
 
   .controller('TableRowCtrl', function ($scope, $filter, ngTableParams) {
     var data = [
-      {name: 'Moroni', age: 50},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34},
-      {name: 'Tiancum', age: 43},
-      {name: 'Jacob', age: 27},
-      {name: 'Nephi', age: 29},
-      {name: 'Enos', age: 34}
+      { name: 'Moroni', age: 50 },
+      { name: 'Tiancum', age: 43 },
+      { name: 'Jacob', age: 27 },
+      { name: 'Nephi', age: 29 },
+      { name: 'Enos', age: 34 },
+      { name: 'Tiancum', age: 43 },
+      { name: 'Jacob', age: 27 },
+      { name: 'Nephi', age: 29 },
+      { name: 'Enos', age: 34 },
+      { name: 'Tiancum', age: 43 },
+      { name: 'Jacob', age: 27 },
+      { name: 'Nephi', age: 29 },
+      { name: 'Enos', age: 34 },
+      { name: 'Tiancum', age: 43 },
+      { name: 'Jacob', age: 27 },
+      { name: 'Nephi', age: 29 },
+      { name: 'Enos', age: 34 }
     ];
     $scope.data = data;
 
@@ -4415,22 +4418,22 @@ app
         //name: 'asc'     // initial sorting
       }
     }, {
-      total: data.length, // length of data
-      getData: function ($defer, params) {
-        // use build-in angular filter
-        var filteredData = params.filter() ?
+        total: data.length, // length of data
+        getData: function ($defer, params) {
+          // use build-in angular filter
+          var filteredData = params.filter() ?
             $filter('filter')(data, params.filter()) :
             data;
-        var orderedData = params.sorting() ?
+          var orderedData = params.sorting() ?
             $filter('orderBy')(filteredData, params.orderBy()) :
             data;
 
-        params.total(orderedData.length); // set total for recalc pagination
-        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-      }
-    });
+          params.total(orderedData.length); // set total for recalc pagination
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
 
-    $scope.changeSelection = function() {
+    $scope.changeSelection = function () {
       // console.info(user);
     };
   });
@@ -4503,18 +4506,18 @@ app
 
   .controller('RowTableCtrl', ['$scope', '$filter', function (scope) {
     var
-        nameList = ['Pierre', 'Pol', 'Jacques', 'Robert', 'Elisa'],
-        familyName = ['Dupont', 'Germain', 'Delcourt', 'bjip', 'Menez'];
+      nameList = ['Pierre', 'Pol', 'Jacques', 'Robert', 'Elisa'],
+      familyName = ['Dupont', 'Germain', 'Delcourt', 'bjip', 'Menez'];
 
     function createRandomItem() {
       var
-          firstName = nameList[Math.floor(Math.random() * 4)],
-          lastName = familyName[Math.floor(Math.random() * 4)],
-          age = Math.floor(Math.random() * 100),
-          email = firstName + lastName + '@whatever.com',
-          balance = Math.random() * 3000;
+        firstName = nameList[Math.floor(Math.random() * 4)],
+        lastName = familyName[Math.floor(Math.random() * 4)],
+        age = Math.floor(Math.random() * 100),
+        email = firstName + lastName + '@whatever.com',
+        balance = Math.random() * 3000;
 
-      return{
+      return {
         firstName: firstName,
         lastName: lastName,
         age: age,
@@ -4523,7 +4526,7 @@ app
       };
     }
 
-    scope.itemsByPage=10;
+    scope.itemsByPage = 10;
 
     scope.rowCollection = [];
     for (var j = 0; j < 200; j++) {
@@ -4543,13 +4546,13 @@ app
 
     function createRandomItem() {
       var
-          firstName = nameList[Math.floor(Math.random() * 4)],
-          lastName = familyName[Math.floor(Math.random() * 4)],
-          age = Math.floor(Math.random() * 100),
-          email = firstName + lastName + '@whatever.com',
-          balance = Math.random() * 3000;
+        firstName = nameList[Math.floor(Math.random() * 4)],
+        lastName = familyName[Math.floor(Math.random() * 4)],
+        age = Math.floor(Math.random() * 100),
+        email = firstName + lastName + '@whatever.com',
+        balance = Math.random() * 3000;
 
-      return{
+      return {
         firstName: firstName,
         lastName: lastName,
         age: age,
@@ -4559,7 +4562,7 @@ app
     }
 
     function getAPage() {
-      $scope.rowCollection=[];
+      $scope.rowCollection = [];
       for (var j = 0; j < 20; j++) {
         $scope.rowCollection.push(createRandomItem());
       }
@@ -4631,22 +4634,22 @@ app
     };
 
     $scope.basicData = [
-      { year: '2009', a: 15,  b: 5 },
-      { year: '2010', a: 20,  b: 10 },
-      { year: '2011', a: 35,  b: 25 },
+      { year: '2009', a: 15, b: 5 },
+      { year: '2010', a: 20, b: 10 },
+      { year: '2011', a: 35, b: 25 },
       { year: '2012', a: 40, b: 30 }
     ];
 
     $scope.donutData = [
-      {label: 'Download Sales', value: 12},
-      {label: 'In-Store Sales', value: 30},
-      {label: 'Mail-Order Sales', value: 20}
+      { label: 'Download Sales', value: 12 },
+      { label: 'In-Store Sales', value: 30 },
+      { label: 'Mail-Order Sales', value: 20 }
     ];
 
     $scope.areaData = [
-      { year: '2009', a: 10,  b: 3 },
-      { year: '2010', a: 14,  b: 5 },
-      { year: '2011', a: 8,  b: 2 },
+      { year: '2009', a: 10, b: 3 },
+      { year: '2010', a: 14, b: 5 },
+      { year: '2011', a: 8, b: 2 },
       { year: '2012', a: 20, b: 15 }
     ];
 
@@ -4655,7 +4658,7 @@ app
   .controller('LineChartCtrl', function ($scope) {
 
     $scope.dataset = [{
-      data: [[1,5.3],[2,5.9],[3,7.2],[4,8],[5,7],[6,6.5],[7,6.2],[8,6.7],[9,7.2],[10,7],[11,6.8],[12,7]],
+      data: [[1, 5.3], [2, 5.9], [3, 7.2], [4, 8], [5, 7], [6, 6.5], [7, 6.2], [8, 6.7], [9, 7.2], [10, 7], [11, 6.8], [12, 7]],
       label: 'Sales',
       points: {
         show: true,
@@ -4668,7 +4671,7 @@ app
         fill: 0
       }
     }, {
-      data: [[1,6.6],[2,7.4],[3,8.6],[4,9.4],[5,8.3],[6,7.9],[7,7.2],[8,7.7],[9,8.9],[10,8.4],[11,8],[12,8.3]],
+      data: [[1, 6.6], [2, 7.4], [3, 8.6], [4, 9.4], [5, 8.3], [6, 7.9], [7, 7.2], [8, 7.7], [9, 8.9], [10, 8.4], [11, 8], [12, 8.3]],
       label: 'Orders',
       points: {
         show: true,
@@ -4687,13 +4690,13 @@ app
       series: {
         shadowSize: 0
       },
-      xaxis:{
+      xaxis: {
         font: {
           color: '#ccc'
         },
         position: 'bottom',
         ticks: [
-          [ 1, 'Jan' ], [ 2, 'Feb' ], [ 3, 'Mar' ], [ 4, 'Apr' ], [ 5, 'May' ], [ 6, 'Jun' ], [ 7, 'Jul' ], [ 8, 'Aug' ], [ 9, 'Sep' ], [ 10, 'Oct' ], [ 11, 'Nov' ], [ 12, 'Dec' ]
+          [1, 'Jan'], [2, 'Feb'], [3, 'Mar'], [4, 'Apr'], [5, 'May'], [6, 'Jun'], [7, 'Jul'], [8, 'Aug'], [9, 'Sep'], [10, 'Oct'], [11, 'Nov'], [12, 'Dec']
         ]
       },
       yaxis: {
@@ -4724,7 +4727,7 @@ app
     $scope.data2 = [];
 
     for (var i = 0; i < 20; ++i) {
-      $scope.data2.push([i, Math.sin(i+0.1)]);
+      $scope.data2.push([i, Math.sin(i + 0.1)]);
     }
 
     $scope.dataset = [{
@@ -4742,7 +4745,7 @@ app
         barWidth: 0.6,
         lineWidth: 0,
         fillColor: {
-          colors: [{ opacity:0.8 }, { opacity:0.8}]
+          colors: [{ opacity: 0.8 }, { opacity: 0.8 }]
         }
       },
       xaxis: {
@@ -4789,10 +4792,10 @@ app
         fill: true,
         lineWidth: 0,
         fillColor: {
-          colors: [{ opacity:0.6 }, { opacity:0.8}]
+          colors: [{ opacity: 0.6 }, { opacity: 0.8 }]
         },
         order: 1, // order bars
-        colors: ['#428bca','#d9534f','#A40778']
+        colors: ['#428bca', '#d9534f', '#A40778']
       },
       xaxis: {
         font: {
@@ -4837,9 +4840,9 @@ app
         fill: true,
         lineWidth: 0,
         fillColor: {
-          colors: [{ opacity:0.6 }, { opacity:0.8}]
+          colors: [{ opacity: 0.6 }, { opacity: 0.8 }]
         },
-        colors: ['#428bca','#d9534f','#A40778']
+        colors: ['#428bca', '#d9534f', '#A40778']
       },
       xaxis: {
         font: {
@@ -4864,7 +4867,7 @@ app
   .controller('CombinedChartCtrl', function ($scope) {
 
     $scope.dataset = [{
-      data: [[0, 8], [1, 15], [2, 16], [3, 14], [4,16], [5,18], [6,17], [7,15], [8,12], [9,13]],
+      data: [[0, 8], [1, 15], [2, 16], [3, 14], [4, 16], [5, 18], [6, 17], [7, 15], [8, 12], [9, 13]],
       label: 'Unique Visits',
       points: {
         show: true,
@@ -4877,18 +4880,18 @@ app
         fill: 0
       }
     }, {
-      data: [[0, 5], [1, 9], [2, 10], [3, 8], [4,9], [5, 12], [6, 14], [7, 13], [8, 10], [9, 12]],
+      data: [[0, 5], [1, 9], [2, 10], [3, 8], [4, 9], [5, 12], [6, 14], [7, 13], [8, 10], [9, 12]],
       label: 'Page Views',
       bars: {
         show: true,
         barWidth: 0.4,
         lineWidth: 0,
-        fillColor: { colors: [{ opacity: 0.6 }, { opacity: 0.8}] }
+        fillColor: { colors: [{ opacity: 0.6 }, { opacity: 0.8 }] }
       }
     }];
 
     $scope.options = {
-      colors: ['#16a085','#FF0066'],
+      colors: ['#16a085', '#FF0066'],
       series: {
         shadowSize: 0
       },
@@ -4909,7 +4912,7 @@ app
         color: '#ccc'
       },
       tooltip: true,
-      tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+      tooltipOpts: { content: '%s of %x.1 is %y.4', defaultTheme: false, shifts: { x: 0, y: 20 } }
     };
   })
 
@@ -4921,7 +4924,7 @@ app
       { label: 'Safari', data: 15 },
       { label: 'IE', data: 10 },
       { label: 'Opera', data: 5 },
-      { label: 'Other', data: 10}
+      { label: 'Other', data: 10 }
     ];
 
     $scope.options = {
@@ -4938,7 +4941,7 @@ app
           }
         }
       },
-      colors: ['#428bca','#5cb85c','#f0ad4e','#d9534f','#5bc0de','#616f77'],
+      colors: ['#428bca', '#5cb85c', '#f0ad4e', '#d9534f', '#5bc0de', '#616f77'],
       grid: {
         hoverable: true,
         clickable: true,
@@ -4958,7 +4961,7 @@ app
       { label: 'Safari', data: 15 },
       { label: 'IE', data: 10 },
       { label: 'Opera', data: 5 },
-      { label: 'Other', data: 10}
+      { label: 'Other', data: 10 }
     ];
 
     $scope.options = {
@@ -4975,7 +4978,7 @@ app
           }
         }
       },
-      colors: ['#428bca','#5cb85c','#f0ad4e','#d9534f','#5bc0de','#616f77'],
+      colors: ['#428bca', '#5cb85c', '#f0ad4e', '#d9534f', '#5bc0de', '#616f77'],
       grid: {
         hoverable: true,
         clickable: true,
@@ -4990,7 +4993,7 @@ app
   .controller('RealtimeChartCtrl', function ($scope, $interval) {
 
     var data = [],
-        totalPoints = 300;
+      totalPoints = 300;
 
     function getRandomData() {
 
@@ -5003,7 +5006,7 @@ app
       while (data.length < totalPoints) {
 
         var prev = data.length > 0 ? data[data.length - 1] : 50,
-            y = prev + Math.random() * 10 - 5;
+          y = prev + Math.random() * 10 - 5;
 
         if (y < 0) {
           y = 0;
@@ -5026,7 +5029,7 @@ app
 
     var updateInterval = 300;
 
-    $interval(function() {
+    $interval(function () {
       $scope.dataset = [{
         data: getRandomData()
       }];
@@ -5046,11 +5049,11 @@ app
           fill: 0.1
         }
       },
-      xaxis:{
+      xaxis: {
         font: {
           color: '#ccc'
         },
-        tickFormatter: function() {
+        tickFormatter: function () {
           return '';
         }
       },
@@ -5080,7 +5083,7 @@ app
 
   })
 
-  .controller('RickshawChartCtrl', function($scope){
+  .controller('RickshawChartCtrl', function ($scope) {
 
     $scope.renderers = [{
       id: 'area',
@@ -5106,19 +5109,19 @@ app
       'munin'
     ];
 
-    $scope.rendererChanged = function(id) {
+    $scope.rendererChanged = function (id) {
       $scope['options' + id] = {
         renderer: $scope['renderer' + id].id
       };
     };
 
-    $scope.paletteChanged = function(id) {
+    $scope.paletteChanged = function (id) {
       $scope['features' + id] = {
         palette: $scope['palette' + id]
       };
     };
 
-    $scope.changeSeriesData = function(id) {
+    $scope.changeSeriesData = function (id) {
       var seriesList = [];
       for (var i = 0; i < 3; i++) {
         var series = {
@@ -5126,7 +5129,7 @@ app
           data: []
         };
         for (var j = 0; j < 10; j++) {
-          series.data.push({x: j, y: Math.random() * 20});
+          series.data.push({ x: j, y: Math.random() * 20 });
         }
         seriesList.push(series);
         $scope['series' + id][i] = series;
@@ -5140,11 +5143,11 @@ app
     $scope.series1 = [{
       name: 'Series 1',
       color: 'steelblue',
-      data: [{x: 0, y: 23}, {x: 1, y: 15}, {x: 2, y: 79}, {x: 3, y: 31}, {x: 4, y: 60}]
+      data: [{ x: 0, y: 23 }, { x: 1, y: 15 }, { x: 2, y: 79 }, { x: 3, y: 31 }, { x: 4, y: 60 }]
     }, {
       name: 'Series 2',
       color: 'lightblue',
-      data: [{x: 0, y: 30}, {x: 1, y: 20}, {x: 2, y: 64}, {x: 3, y: 50}, {x: 4, y: 15}]
+      data: [{ x: 0, y: 30 }, { x: 1, y: 20 }, { x: 2, y: 64 }, { x: 3, y: 50 }, { x: 4, y: 15 }]
     }];
 
     $scope.options2 = {
@@ -5152,10 +5155,10 @@ app
     };
     $scope.features2 = {
       hover: {
-        xFormatter: function(x) {
+        xFormatter: function (x) {
           return 't=' + x;
         },
-        yFormatter: function(y) {
+        yFormatter: function (y) {
           return '$' + y;
         }
       }
@@ -5163,11 +5166,11 @@ app
     $scope.series2 = [{
       name: 'Series 1',
       color: 'steelblue',
-      data: [{x: 0, y: 23}, {x: 1, y: 15}, {x: 2, y: 79}, {x: 3, y: 31}, {x: 4, y: 60}]
+      data: [{ x: 0, y: 23 }, { x: 1, y: 15 }, { x: 2, y: 79 }, { x: 3, y: 31 }, { x: 4, y: 60 }]
     }, {
       name: 'Series 2',
       color: 'lightblue',
-      data: [{x: 0, y: 30}, {x: 1, y: 20}, {x: 2, y: 64}, {x: 3, y: 50}, {x: 4, y: 15}]
+      data: [{ x: 0, y: 30 }, { x: 1, y: 20 }, { x: 2, y: 64 }, { x: 3, y: 50 }, { x: 4, y: 15 }]
     }];
 
     $scope.options3 = {
@@ -5178,10 +5181,10 @@ app
     };
     $scope.series3 = [{
       name: 'Series 1',
-      data: [{x: 0, y: 23}, {x: 1, y: 15}, {x: 2, y: 79}, {x: 3, y: 31}, {x: 4, y: 60}]
+      data: [{ x: 0, y: 23 }, { x: 1, y: 15 }, { x: 2, y: 79 }, { x: 3, y: 31 }, { x: 4, y: 60 }]
     }, {
       name: 'Series 2',
-      data: [{x: 0, y: 30}, {x: 1, y: 20}, {x: 2, y: 64}, {x: 3, y: 50}, {x: 4, y: 15}]
+      data: [{ x: 0, y: 30 }, { x: 1, y: 20 }, { x: 2, y: 64 }, { x: 3, y: 50 }, { x: 4, y: 15 }]
     }];
 
     $scope.options4 = {
@@ -5194,10 +5197,10 @@ app
     };
     $scope.series4 = [{
       name: 'Series 1',
-      data: [{x: 0, y: 230}, {x: 1, y: 1500}, {x: 2, y: 790}, {x: 3, y: 310}, {x: 4, y: 600}]
+      data: [{ x: 0, y: 230 }, { x: 1, y: 1500 }, { x: 2, y: 790 }, { x: 3, y: 310 }, { x: 4, y: 600 }]
     }, {
       name: 'Series 2',
-      data: [{x: 0, y: 300}, {x: 1, y: 2000}, {x: 2, y: 640}, {x: 3, y: 500}, {x: 4, y: 150}]
+      data: [{ x: 0, y: 300 }, { x: 1, y: 2000 }, { x: 2, y: 640 }, { x: 3, y: 500 }, { x: 4, y: 150 }]
     }];
 
     $scope.options5 = {
@@ -5211,10 +5214,10 @@ app
     };
     $scope.series5 = [{
       name: 'Series 1',
-      data: [{x: 0, y: 230}, {x: 1, y: 1500}, {x: 2, y: 790}, {x: 3, y: 310}, {x: 4, y: 600}]
+      data: [{ x: 0, y: 230 }, { x: 1, y: 1500 }, { x: 2, y: 790 }, { x: 3, y: 310 }, { x: 4, y: 600 }]
     }, {
       name: 'Series 2',
-      data: [{x: 0, y: 300}, {x: 1, y: 2000}, {x: 2, y: 640}, {x: 3, y: 500}, {x: 4, y: 150}]
+      data: [{ x: 0, y: 300 }, { x: 1, y: 2000 }, { x: 2, y: 640 }, { x: 3, y: 500 }, { x: 4, y: 150 }]
     }];
 
     $scope.options6 = {
@@ -5229,10 +5232,10 @@ app
     };
     $scope.series6 = [{
       name: 'Series 1',
-      data: [{x: 0, y: 230}, {x: 1, y: 1500}, {x: 2, y: 790}, {x: 3, y: 310}, {x: 4, y: 600}]
+      data: [{ x: 0, y: 230 }, { x: 1, y: 1500 }, { x: 2, y: 790 }, { x: 3, y: 310 }, { x: 4, y: 600 }]
     }, {
       name: 'Series 2',
-      data: [{x: 0, y: 300}, {x: 1, y: 2000}, {x: 2, y: 640}, {x: 3, y: 500}, {x: 4, y: 150}]
+      data: [{ x: 0, y: 300 }, { x: 1, y: 2000 }, { x: 2, y: 640 }, { x: 3, y: 500 }, { x: 4, y: 150 }]
     }];
 
     $scope.series0 = [];
@@ -5245,13 +5248,13 @@ app
     $scope.changeSeriesData(0);
   })
 
-  .controller('RickshawRealtimeChartCtrl', function($scope, $interval){
+  .controller('RickshawRealtimeChartCtrl', function ($scope, $interval) {
 
     $scope.options1 = {
       renderer: 'area'
     };
 
-    var seriesData = [ [], []];
+    var seriesData = [[], []];
     var random = new Rickshaw.Fixtures.RandomData(50);
 
     for (var i = 0; i < 50; i++) {
@@ -5260,7 +5263,7 @@ app
 
     var updateInterval = 800;
 
-    $interval(function() {
+    $interval(function () {
       random.removeData(seriesData);
       random.addData(seriesData);
     }, updateInterval);
@@ -5277,28 +5280,28 @@ app
 
     $scope.features1 = {
       hover: {
-        xFormatter: function(x) {
+        xFormatter: function (x) {
           return new Date(x * 1000).toUTCString();
         },
-        yFormatter: function(y) {
+        yFormatter: function (y) {
           return Math.floor(y) + '%';
         }
       }
     };
   })
 
-  .controller('SparklineChartCtrl', function($scope){
+  .controller('SparklineChartCtrl', function ($scope) {
     $scope.lineChart = {
-      data: [15,16,18,17,16,18,25,26,23],
+      data: [15, 16, 18, 17, 16, 18, 25, 26, 23],
       options: {
         type: 'line',
         width: '100%',
-        height:'250px',
+        height: '250px',
         fillColor: 'rgba(34, 190, 239, .3)',
         lineColor: 'rgba(34, 190, 239, .5)',
         lineWidth: 2,
         spotRadius: 5,
-        valueSpots:[5,6,8,7,6,8,5,4,7],
+        valueSpots: [5, 6, 8, 7, 6, 8, 5, 4, 7],
         minSpotColor: '#eaf9fe',
         maxSpotColor: '#00a3d8',
         highlightSpotColor: '#00a3d8',
@@ -5307,9 +5310,9 @@ app
       }
     };
     $scope.barChart = {
-      data: [5,6,7,2,1,-4,-2,4,6,8],
+      data: [5, 6, 7, 2, 1, -4, -2, 4, 6, 8],
       options: {
-        width:'100%',
+        width: '100%',
         type: 'bar',
         height: '250px',
         barWidth: '30px',
@@ -5319,17 +5322,17 @@ app
       }
     };
     $scope.pieChart = {
-      data: [5,10,20,15],
+      data: [5, 10, 20, 15],
       options: {
         type: 'pie',
         width: 'auto',
         height: '250px',
-        sliceColors: ['#22beef','#a2d200','#ffc100','#ff4a43']
+        sliceColors: ['#22beef', '#a2d200', '#ffc100', '#ff4a43']
       }
     };
   })
 
-  .controller('EasypiechartCtrl',function($scope){
+  .controller('EasypiechartCtrl', function ($scope) {
     $scope.easypiechart = {
       percent: 85,
       options: {
@@ -5338,8 +5341,8 @@ app
           enabled: true
         },
         barColor: '#d75033',
-		trackColor:	'#eeeeee',
-		scaleColor: false,
+        trackColor: '#eeeeee',
+        scaleColor: false,
         lineCap: 'butt',
         size: 184,
         lineWidth: 16
@@ -5353,8 +5356,8 @@ app
           enabled: true
         },
         barColor: '#3d861a',
-		trackColor:	'#eeeeee',
-		scaleColor: false,
+        trackColor: '#eeeeee',
+        scaleColor: false,
         lineCap: 'butt',
         size: 184,
         lineWidth: 16
@@ -5368,8 +5371,8 @@ app
           enabled: true
         },
         barColor: '#d75033',
-		trackColor:	'#eeeeee',
-		scaleColor: false,
+        trackColor: '#eeeeee',
+        scaleColor: false,
         lineCap: 'butt',
         size: 184,
         lineWidth: 16
@@ -5383,8 +5386,8 @@ app
           enabled: true
         },
         barColor: '#d75033',
-		trackColor:	'#eeeeee',
-		scaleColor: false,
+        trackColor: '#eeeeee',
+        scaleColor: false,
         lineCap: 'butt',
         size: 184,
         lineWidth: 16
@@ -5392,7 +5395,7 @@ app
     };
   })
 
-  .controller('GaugeChartCtrl', function($scope){
+  .controller('GaugeChartCtrl', function ($scope) {
 
     $scope.gaugeChart1 = {
       data: {
@@ -5550,7 +5553,7 @@ app
  * https://github.com/jasonshark/ng-morris/blob/master/src/ngMorris.js
  */
 app
-  .directive('morrisLineChart', function(){
+  .directive('morrisLineChart', function () {
 
     return {
       restrict: 'A',
@@ -5561,17 +5564,17 @@ app
         lineLabels: '@',
         lineColors: '@'
       },
-      link: function (scope, elem, attrs){
+      link: function (scope, elem, attrs) {
         var colors,
-            morris;
+          morris;
         if (scope.lineColors === void 0 || scope.lineColors === '') {
           colors = null;
         } else {
           colors = JSON.parse(scope.lineColors);
         }
-        scope.$watch('lineData', function(){
-          if(scope.lineData){
-            if(!morris) {
+        scope.$watch('lineData', function () {
+          if (scope.lineData) {
+            if (!morris) {
               morris = new Morris.Line({
                 element: elem,
                 data: scope.lineData,
@@ -5590,7 +5593,7 @@ app
     };
   })
 
-  .directive('morrisAreaChart', function(){
+  .directive('morrisAreaChart', function () {
 
     return {
       restrict: 'A',
@@ -5604,17 +5607,17 @@ app
         fillOpacity: '@',
         showGrid: '@'
       },
-      link: function (scope, elem, attrs){
+      link: function (scope, elem, attrs) {
         var colors,
-            morris;
+          morris;
         if (scope.lineColors === void 0 || scope.lineColors === '') {
           colors = null;
         } else {
           colors = JSON.parse(scope.lineColors);
         }
-        scope.$watch('lineData', function(){
-          if(scope.lineData){
-            if(!morris) {
+        scope.$watch('lineData', function () {
+          if (scope.lineData) {
+            if (!morris) {
               morris = new Morris.Area({
                 element: elem,
                 data: scope.lineData,
@@ -5636,7 +5639,7 @@ app
     };
   })
 
-  .directive('morrisBarChart', function(){
+  .directive('morrisBarChart', function () {
     return {
       restrict: 'A',
       scope: {
@@ -5646,19 +5649,19 @@ app
         barLabels: '@',
         barColors: '@'
       },
-      link: function(scope, elem, attrs){
+      link: function (scope, elem, attrs) {
 
         var colors,
-            morris;
+          morris;
         if (scope.barColors === void 0 || scope.barColors === '') {
           colors = null;
         } else {
           colors = JSON.parse(scope.barColors);
         }
 
-        scope.$watch('barData', function(){
-          if(scope.barData){
-            if(!morris) {
+        scope.$watch('barData', function () {
+          if (scope.barData) {
+            if (!morris) {
               morris = new Morris.Bar({
                 element: elem,
                 data: scope.barData,
@@ -5678,25 +5681,25 @@ app
     };
   })
 
-  .directive('morrisDonutChart', function(){
+  .directive('morrisDonutChart', function () {
     return {
       restrict: 'A',
       scope: {
         donutData: '=',
         donutColors: '@'
       },
-      link: function(scope, elem, attrs){
+      link: function (scope, elem, attrs) {
         var colors,
-            morris;
+          morris;
         if (scope.donutColors === void 0 || scope.donutColors === '') {
           colors = null;
         } else {
           colors = JSON.parse(scope.donutColors);
         }
 
-        scope.$watch('donutData', function(){
-          if(scope.donutData){
-            if(!morris) {
+        scope.$watch('donutData', function () {
+          if (scope.donutData) {
+            if (!morris) {
               morris = new Morris.Donut({
                 element: elem,
                 data: scope.donutData,
@@ -5723,25 +5726,25 @@ app
 
 app
   .directive('gaugeChart', [
-  function() {
-    return {
-      restrict: 'A',
-      scope: {
-        data: '=',
-        options: '='
-      },
-      link: function($scope, $el) {
-        var data = $scope.data,
+    function () {
+      return {
+        restrict: 'A',
+        scope: {
+          data: '=',
+          options: '='
+        },
+        link: function ($scope, $el) {
+          var data = $scope.data,
             options = $scope.options,
             gauge = new Gauge($el[0]).setOptions(options);
 
-        gauge.maxValue = data.maxValue;
-        gauge.animationSpeed = data.animationSpeed;
-        gauge.set(data.val);
-      }
-    };
-  }
-]);
+          gauge.maxValue = data.maxValue;
+          gauge.animationSpeed = data.animationSpeed;
+          gauge.set(data.val);
+        }
+      };
+    }
+  ]);
 
 'use strict';
 
@@ -5796,7 +5799,7 @@ app
  * # todoEscape
  */
 app
-  .directive('todoEscape', function() {
+  .directive('todoEscape', function () {
     var ESCAPE_KEY = 27;
 
     return {
@@ -5831,10 +5834,10 @@ app
         darkFill: '@?'
       },
       template: '<div class=\'bloc-clock\' ng-style=\'divStyle()\'>\n  <svg xmlns="http://www.w3.org/2000/svg"\n   style="padding: 10px 0"\n    width="100%"\n       height="100%"\n       viewBox="0 0 200 200">\n    <g class=\'face\' style=\'stroke: black; stroke-width: 0px;\'>\n      <g>\n        <circle style="stroke: rgba(255,255,255,.5); fill: rgba(255,255,255,0); stroke-width: 6px;"\n                cx="100"\n                cy="100"\n                r="100"/>\n        <line x1="100"\n              x2="100"\n              y1="10"\n              y2="0"\n              />\n        <line x1="150"\n              x2="145"\n              y1="13"\n              y2="22"\n              />\n        <line x1="150"\n              x2="145"\n              y1="13"\n              y2="22"\n              />\n        <line x1="187"\n              x2="178"\n              y1="50"\n              y2="55"\n              />\n        <line x1="190"\n              x2="200"\n              y1="100"\n              y2="100"\n              />\n        <line x1="187"\n              x2="178"\n              y1="150"\n              y2="145"\n              />\n        <line x1="150"\n              x2="145"\n              y1="187"\n              y2="178"\n              />\n        <line x1="100"\n              x2="100"\n              y1="190"\n              y2="200"\n              />\n        <line x1="50"\n              x2="55"\n              y1="187"\n              y2="178"\n              />\n        <line x1="13"\n              x2="22"\n              y1="150"\n              y2="145"\n              />\n        <line x1="0"\n              x2="10"\n              y1="100"\n              y2="100"\n              />\n        <line x1="13"\n              x2="22"\n              y1="50"\n              y2="55"\n              />\n        <line x1="50"\n              x2="55"\n              y1="13"\n              y2="22"\n              />\n      </g>\n      <g>\n          <line x1="100"\n                y1="100"\n                x2="100"\n                y2="45"\n                style="stroke-width: 6px"\n                class="hourhand"/>\n          <line x1="100"\n                y1="100"\n                x2="100"\n                y2="15"\n                style="stroke-width: 6px"\n                class="minutehand" />\n          <line x1="100"\n                y1="100"\n                x2="100"\n                y2="5"\n                style="stroke-width: 3px; stroke: rgba(255,255,255,.5)"\n                class="secondhand"/>\n      <circle cx="100"\n cy="100"\n r="8"\n fill="white"\n />\n   </g>\n    </g>\n  </svg>\n</div>',
-      link: function(scope, el, attrs) {
+      link: function (scope, el, attrs) {
         var drawClock, drawHands, getRad, getX, getY;
 
-        scope.divStyle = function() {
+        scope.divStyle = function () {
           return {
             width: scope.w(),
             height: scope.w(),
@@ -5842,31 +5845,31 @@ app
           };
         };
 
-        scope.w = function() {
+        scope.w = function () {
           return scope.radius * 2;
         };
 
-        getX = function(degrees, r, adjust, x) {
+        getX = function (degrees, r, adjust, x) {
           var adj;
           x = x || r;
           adj = adjust || 1;
           return x + r * adj * Math.cos(getRad(degrees));
         };
 
-        getY = function(degrees, r, adjust, y) {
+        getY = function (degrees, r, adjust, y) {
           var adj;
           y = y || r;
           adj = adjust || 1;
           return y + r * adj * Math.sin(getRad(degrees));
         };
 
-        getRad = function(degrees) {
+        getRad = function (degrees) {
           var adjust;
           adjust = Math.PI / 2;
           return (degrees * Math.PI / 180) - adjust;
         };
 
-        drawHands = function() {
+        drawHands = function () {
           var $circle, H_HAND_SIZE, M_HAND_SIZE, S_HAND_SIZE, dark, drawHand, fillColor, hour, hour24, r, strokeColor, t;
           S_HAND_SIZE = 0.95;
           M_HAND_SIZE = 0.85;
@@ -5878,7 +5881,7 @@ app
           dark = hour24 >= 18 || hour24 < 6;
           strokeColor = 'rgba(255,255,255,1)';
           el.find('line').not('.secondhand').css('stroke', strokeColor);
-          drawHand = function(hand, value, size, degrees) {
+          drawHand = function (hand, value, size, degrees) {
             var deg, x2, y2;
             deg = degrees * value;
             x2 = getX(deg, r, size, r);
@@ -5916,16 +5919,16 @@ app
     };
   })
 
-  .controller('TodoWidgetCtrl', function($scope, $rootScope) {
+  .controller('TodoWidgetCtrl', function ($scope, $rootScope) {
     $scope.todos = [];
 
     var todos = $scope.todos;
-    $scope.addTodo = function() {
-	    if($scope.todos.length > 1){
-	    	$rootScope.phone_length = "Can't add more than three phone numbers.";
-	    	return false;
-	    }
-	  $rootScope.phone_length = "";
+    $scope.addTodo = function () {
+      if ($scope.todos.length > 1) {
+        $rootScope.phone_length = "Can't add more than three phone numbers.";
+        return false;
+      }
+      $rootScope.phone_length = "";
       $scope.todos.push({
         text: $scope.todo,
         completed: false
@@ -5933,17 +5936,17 @@ app
       $scope.todo = '';
     };
 
-    $scope.removeTodo = function(todo) {
+    $scope.removeTodo = function (todo) {
       todos.splice(todos.indexOf(todo), 1);
     };
 
-    $scope.editTodo = function(todo) {
+    $scope.editTodo = function (todo) {
       $scope.editedTodo = todo;
       // Clone the original todo to restore it on demand.
       $scope.originalTodo = angular.extend({}, todo);
     };
 
-    $scope.doneEditing = function(todo) {
+    $scope.doneEditing = function (todo) {
       $scope.editedTodo = null;
 
       todo.text = todo.text.trim();
@@ -5953,7 +5956,7 @@ app
       }
     };
 
-    $scope.revertEditing = function(todo) {
+    $scope.revertEditing = function (todo) {
       todos[todos.indexOf(todo)] = $scope.originalTodo;
       $scope.doneEditing($scope.originalTodo);
     };
@@ -5962,7 +5965,7 @@ app
 
   .controller('CalendarWidgetCtrl', function ($scope) {
 
-    $scope.today = function() {
+    $scope.today = function () {
       $scope.dt = new Date();
     };
 
@@ -5973,16 +5976,16 @@ app
     };
 
     // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    $scope.disabled = function (date, mode) {
+      return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
     };
 
-    $scope.toggleMin = function() {
+    $scope.toggleMin = function () {
       $scope.minDate = $scope.minDate ? null : new Date();
     };
     $scope.toggleMin();
 
-    $scope.open = function($event) {
+    $scope.open = function ($event) {
       $event.preventDefault();
       $event.stopPropagation();
 
@@ -5999,15 +6002,15 @@ app
     $scope.format = $scope.formats[0];
   })
 
-  .controller('MessageWidgetCtrl', function($scope){
-    $scope.availableRecipients = ['RLake@nec.gov','RBastian@lacus.io','VMonroe@orci.ly','YMckenzie@mattis.gov','VMcmyne@molestie.org','BKliban@aliquam.gov','HHellems@tincidunt.org','KAngell@sollicitudin.ly'];
+  .controller('MessageWidgetCtrl', function ($scope) {
+    $scope.availableRecipients = ['RLake@nec.gov', 'RBastian@lacus.io', 'VMonroe@orci.ly', 'YMckenzie@mattis.gov', 'VMcmyne@molestie.org', 'BKliban@aliquam.gov', 'HHellems@tincidunt.org', 'KAngell@sollicitudin.ly'];
     $scope.recipients = {};
-    $scope.recipients.emails = ['RLake@nec.gov','VMonroe@orci.ly'];
+    $scope.recipients.emails = ['RLake@nec.gov', 'VMonroe@orci.ly'];
 
     $scope.messageContent = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
   })
 
-  .controller('AppointmentsWidgetCtrl', function($scope){
+  .controller('AppointmentsWidgetCtrl', function ($scope) {
     $scope.date = new Date();
   });
 
@@ -6025,7 +6028,7 @@ app
       restrict: 'A',
       link: function postLink(scope, element, attr) {
 
-        element.on('click', function(){
+        element.on('click', function () {
 
           var target = angular.element(attr.target) || Array(element);
 
@@ -6082,7 +6085,7 @@ app
       subtitle: 'Place subtitle here...'
     };
 
-    var sampleData = {'af':'16.63','al':'11.58','dz':'158.97','ao':'85.81','ag':'1.1','ar':'351.02','am':'8.83','au':'1219.72','at':'366.26','az':'52.17','bs':'7.54','bh':'21.73','bd':'105.4','bb':'3.96','by':'52.89','be':'461.33','bz':'1.43','bj':'6.49','bt':'1.4','bo':'19.18','ba':'16.2','bw':'12.5','br':'2023.53','bn':'11.96','bg':'44.84','bf':'8.67','bi':'1.47','kh':'11.36','cm':'21.88','ca':'1563.66','cv':'1.57','cf':'2.11','td':'7.59','cl':'199.18','cn':'5745.13','co':'283.11','km':'0.56','cd':'12.6','cg':'11.88','cr':'35.02','ci':'22.38','hr':'59.92','cy':'22.75','cz':'195.23','dk':'304.56','dj':'1.14','dm':'0.38','do':'50.87','ec':'61.49','eg':'216.83','sv':'21.8','gq':'14.55','er':'2.25','ee':'19.22','et':'30.94','fj':'3.15','fi':'231.98','fr':'2555.44','ga':'12.56','gm':'1.04','ge':'11.23','de':'3305.9','gh':'18.06','gr':'305.01','gd':'0.65','gt':'40.77','gn':'4.34','gw':'0.83','gy':'2.2','ht':'6.5','hn':'15.34','hk':'226.49','hu':'132.28','is':'12.77','in':'1430.02','id':'695.06','ir':'337.9','iq':'84.14','ie':'204.14','il':'201.25','it':'2036.69','jm':'13.74','jp':'5390.9','jo':'27.13','kz':'129.76','ke':'32.42','ki':'0.15','kr':'986.26','undefined':'5.73','kw':'117.32','kg':'4.44','la':'6.34','lv':'23.39','lb':'39.15','ls':'1.8','lr':'0.98','ly':'77.91','lt':'35.73','lu':'52.43','mk':'9.58','mg':'8.33','mw':'5.04','my':'218.95','mv':'1.43','ml':'9.08','mt':'7.8','mr':'3.49','mu':'9.43','mx':'1004.04','md':'5.36','mn':'5.81','me':'3.88','ma':'91.7','mz':'10.21','mm':'35.65','na':'11.45','np':'15.11','nl':'770.31','nz':'138','ni':'6.38','ne':'5.6','ng':'206.66','no':'413.51','om':'53.78','pk':'174.79','pa':'27.2','pg':'8.81','py':'17.17','pe':'153.55','ph':'189.06','pl':'438.88','pt':'223.7','qa':'126.52','ro':'158.39','ru':'1476.91','rw':'5.69','ws':'0.55','st':'0.19','sa':'434.44','sn':'12.66','rs':'38.92','sc':'0.92','sl':'1.9','sg':'217.38','sk':'86.26','si':'46.44','sb':'0.67','za':'354.41','es':'1374.78','lk':'48.24','kn':'0.56','lc':'1','vc':'0.58','sd':'65.93','sr':'3.3','sz':'3.17','se':'444.59','ch':'522.44','sy':'59.63','tw':'426.98','tj':'5.58','tz':'22.43','th':'312.61','tl':'0.62','tg':'3.07','to':'0.3','tt':'21.2','tn':'43.86','tr':'729.05','tm':0,'ug':'17.12','ua':'136.56','ae':'239.65','gb':'2258.57','us':'14624.18','uy':'40.71','uz':'37.72','vu':'0.72','ve':'285.21','vn':'101.99','ye':'30.02','zm':'15.69','zw':'5.57'};
+    var sampleData = { 'af': '16.63', 'al': '11.58', 'dz': '158.97', 'ao': '85.81', 'ag': '1.1', 'ar': '351.02', 'am': '8.83', 'au': '1219.72', 'at': '366.26', 'az': '52.17', 'bs': '7.54', 'bh': '21.73', 'bd': '105.4', 'bb': '3.96', 'by': '52.89', 'be': '461.33', 'bz': '1.43', 'bj': '6.49', 'bt': '1.4', 'bo': '19.18', 'ba': '16.2', 'bw': '12.5', 'br': '2023.53', 'bn': '11.96', 'bg': '44.84', 'bf': '8.67', 'bi': '1.47', 'kh': '11.36', 'cm': '21.88', 'ca': '1563.66', 'cv': '1.57', 'cf': '2.11', 'td': '7.59', 'cl': '199.18', 'cn': '5745.13', 'co': '283.11', 'km': '0.56', 'cd': '12.6', 'cg': '11.88', 'cr': '35.02', 'ci': '22.38', 'hr': '59.92', 'cy': '22.75', 'cz': '195.23', 'dk': '304.56', 'dj': '1.14', 'dm': '0.38', 'do': '50.87', 'ec': '61.49', 'eg': '216.83', 'sv': '21.8', 'gq': '14.55', 'er': '2.25', 'ee': '19.22', 'et': '30.94', 'fj': '3.15', 'fi': '231.98', 'fr': '2555.44', 'ga': '12.56', 'gm': '1.04', 'ge': '11.23', 'de': '3305.9', 'gh': '18.06', 'gr': '305.01', 'gd': '0.65', 'gt': '40.77', 'gn': '4.34', 'gw': '0.83', 'gy': '2.2', 'ht': '6.5', 'hn': '15.34', 'hk': '226.49', 'hu': '132.28', 'is': '12.77', 'in': '1430.02', 'id': '695.06', 'ir': '337.9', 'iq': '84.14', 'ie': '204.14', 'il': '201.25', 'it': '2036.69', 'jm': '13.74', 'jp': '5390.9', 'jo': '27.13', 'kz': '129.76', 'ke': '32.42', 'ki': '0.15', 'kr': '986.26', 'undefined': '5.73', 'kw': '117.32', 'kg': '4.44', 'la': '6.34', 'lv': '23.39', 'lb': '39.15', 'ls': '1.8', 'lr': '0.98', 'ly': '77.91', 'lt': '35.73', 'lu': '52.43', 'mk': '9.58', 'mg': '8.33', 'mw': '5.04', 'my': '218.95', 'mv': '1.43', 'ml': '9.08', 'mt': '7.8', 'mr': '3.49', 'mu': '9.43', 'mx': '1004.04', 'md': '5.36', 'mn': '5.81', 'me': '3.88', 'ma': '91.7', 'mz': '10.21', 'mm': '35.65', 'na': '11.45', 'np': '15.11', 'nl': '770.31', 'nz': '138', 'ni': '6.38', 'ne': '5.6', 'ng': '206.66', 'no': '413.51', 'om': '53.78', 'pk': '174.79', 'pa': '27.2', 'pg': '8.81', 'py': '17.17', 'pe': '153.55', 'ph': '189.06', 'pl': '438.88', 'pt': '223.7', 'qa': '126.52', 'ro': '158.39', 'ru': '1476.91', 'rw': '5.69', 'ws': '0.55', 'st': '0.19', 'sa': '434.44', 'sn': '12.66', 'rs': '38.92', 'sc': '0.92', 'sl': '1.9', 'sg': '217.38', 'sk': '86.26', 'si': '46.44', 'sb': '0.67', 'za': '354.41', 'es': '1374.78', 'lk': '48.24', 'kn': '0.56', 'lc': '1', 'vc': '0.58', 'sd': '65.93', 'sr': '3.3', 'sz': '3.17', 'se': '444.59', 'ch': '522.44', 'sy': '59.63', 'tw': '426.98', 'tj': '5.58', 'tz': '22.43', 'th': '312.61', 'tl': '0.62', 'tg': '3.07', 'to': '0.3', 'tt': '21.2', 'tn': '43.86', 'tr': '729.05', 'tm': 0, 'ug': '17.12', 'ua': '136.56', 'ae': '239.65', 'gb': '2258.57', 'us': '14624.18', 'uy': '40.71', 'uz': '37.72', 'vu': '0.72', 've': '285.21', 'vn': '101.99', 'ye': '30.02', 'zm': '15.69', 'zw': '5.57' };
 
     $scope.worldMap = {
       map: 'world_en',
@@ -6159,13 +6162,13 @@ app
   })
 
   .controller('Map1Ctrl', function ($scope) {
-    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
-    $scope.options = {scrollwheel: false};
+    $scope.map = { center: { latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+    $scope.options = { scrollwheel: false };
   })
 
-  .controller('Map2Ctrl', function($scope) {
-    $scope.map = {center: {latitude: 40.1451, longitude: -99.6680 }, zoom: 4, bounds: {}};
-    $scope.options = {scrollwheel: false};
+  .controller('Map2Ctrl', function ($scope) {
+    $scope.map = { center: { latitude: 40.1451, longitude: -99.6680 }, zoom: 4, bounds: {} };
+    $scope.options = { scrollwheel: false };
     $scope.drawingManagerOptions = {
       drawingMode: google.maps.drawing.OverlayType.MARKER,
       drawingControl: true,
@@ -6190,7 +6193,7 @@ app
     };
     $scope.markersAndCircleFlag = true;
     $scope.drawingManagerControl = {};
-    $scope.$watch('markersAndCircleFlag', function() {
+    $scope.$watch('markersAndCircleFlag', function () {
       if (!$scope.drawingManagerControl.getDrawingManager) {
         return;
       }
@@ -6203,15 +6206,15 @@ app
     });
   })
 
-  .controller('Map3Ctrl', function($scope) {
-    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 4 };
-    $scope.options = {scrollwheel: false};
+  .controller('Map3Ctrl', function ($scope) {
+    $scope.map = { center: { latitude: 51.219053, longitude: 4.404418 }, zoom: 4 };
+    $scope.options = { scrollwheel: false };
     $scope.showWeather = true;
   })
 
-  .controller('Map4Ctrl', function($scope, $log) {
-    $scope.map = {center: {latitude: 40.1451, longitude: -99.6680}, zoom: 4};
-    $scope.options = {scrollwheel: false};
+  .controller('Map4Ctrl', function ($scope, $log) {
+    $scope.map = { center: { latitude: 40.1451, longitude: -99.6680 }, zoom: 4 };
+    $scope.options = { scrollwheel: false };
     $scope.marker = {
       coords: {
         latitude: 40.1451,
@@ -6246,7 +6249,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('CalendarCtrl', function ($scope,$compile,uiCalendarConfig) {
+  .controller('CalendarCtrl', function ($scope, $compile, uiCalendarConfig) {
 
     var date = new Date();
     var d = date.getDate();
@@ -6262,22 +6265,22 @@ app
 
     /* event source that contains custom events on the scope */
     $scope.events = [
-      {title: 'All Day Event',start: new Date(y, m, 1), className: ['b-l b-2x b-greensea']},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2), className: ['bg-dutch']},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false, className: ['b-l b-2x b-primary']},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false, className: ['b-l b-2x b-primary']},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false, className: ['b-l b-2x b-default']},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/', className: ['b-l b-2x b-hotpink']},
-      {title: 'Make cupcakes', start: new Date(y, m, 2), className: ['b-l b-2x b-info'], location:'Bratislava', info:'The best in whole world.'},
-      {title: 'Call wife', start: new Date(y, m, 6),end: new Date(y, m, 7), className: ['b-l b-2x b-red'], location:'Piestany', info:'And say her hello.'}
+      { title: 'All Day Event', start: new Date(y, m, 1), className: ['b-l b-2x b-greensea'] },
+      { title: 'Long Event', start: new Date(y, m, d - 5), end: new Date(y, m, d - 2), className: ['bg-dutch'] },
+      { id: 999, title: 'Repeating Event', start: new Date(y, m, d - 3, 16, 0), allDay: false, className: ['b-l b-2x b-primary'] },
+      { id: 999, title: 'Repeating Event', start: new Date(y, m, d + 4, 16, 0), allDay: false, className: ['b-l b-2x b-primary'] },
+      { title: 'Birthday Party', start: new Date(y, m, d + 1, 19, 0), end: new Date(y, m, d + 1, 22, 30), allDay: false, className: ['b-l b-2x b-default'] },
+      { title: 'Click for Google', start: new Date(y, m, 28), end: new Date(y, m, 29), url: 'http://google.com/', className: ['b-l b-2x b-hotpink'] },
+      { title: 'Make cupcakes', start: new Date(y, m, 2), className: ['b-l b-2x b-info'], location: 'Bratislava', info: 'The best in whole world.' },
+      { title: 'Call wife', start: new Date(y, m, 6), end: new Date(y, m, 7), className: ['b-l b-2x b-red'], location: 'Piestany', info: 'And say her hello.' }
     ];
 
     /* alert on dayClick */
     $scope.precision = 400;
     $scope.lastClickTime = 0;
-    $scope.doubleClick = function( date, jsEvent, view ){
+    $scope.doubleClick = function (date, jsEvent, view) {
       var time = new Date().getTime();
-      if(time - $scope.lastClickTime <= $scope.precision){
+      if (time - $scope.lastClickTime <= $scope.precision) {
         $scope.events.push({
           title: 'New Event',
           start: date,
@@ -6288,40 +6291,40 @@ app
     };
 
     /* alert on Drop */
-    $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+    $scope.alertOnDrop = function (event, delta, revertFunc, jsEvent, ui, view) {
       $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
     };
 
     /* alert on Resize */
-    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view){
+    $scope.alertOnResize = function (event, delta, revertFunc, jsEvent, ui, view) {
       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
     };
 
     $scope.overlay = angular.element('.fc-overlay');
 
-    $scope.alertOnMouseOver = function( event, jsEvent, view ){
+    $scope.alertOnMouseOver = function (event, jsEvent, view) {
       $scope.event = event;
       $scope.overlay.removeClass('left right');
       var wrap = angular.element(jsEvent.target).closest('.fc-event');
       var cal = wrap.closest('.calendar');
       var left = wrap.offset().left - cal.offset().left;
       var right = cal.width() - (wrap.offset().left - cal.offset().left + wrap.width());
-      if( right > $scope.overlay.width() ) {
+      if (right > $scope.overlay.width()) {
         $scope.overlay.addClass('left');
-      } else if ( left > $scope.overlay.width() ) {
+      } else if (left > $scope.overlay.width()) {
         $scope.overlay.addClass('right');
       }
       if (wrap.find('.fc-overlay').length === 0) {
-        wrap.append( $scope.overlay );
+        wrap.append($scope.overlay);
       }
     };
 
     /* config object */
     $scope.uiConfig = {
-      calendar:{
+      calendar: {
         height: 450,
         editable: true,
-        header:{
+        header: {
           left: 'prev',
           center: 'title',
           right: 'next'
@@ -6334,7 +6337,7 @@ app
     };
 
     /* add custom event*/
-    $scope.addEvent = function() {
+    $scope.addEvent = function () {
       $scope.events.push({
         title: 'New Event',
         start: new Date(y, m, d),
@@ -6343,16 +6346,16 @@ app
     };
 
     /* remove event */
-    $scope.remove = function(index) {
-      $scope.events.splice(index,1);
+    $scope.remove = function (index) {
+      $scope.events.splice(index, 1);
     };
 
     /* Change View */
-    $scope.changeView = function(view, calendar) {
+    $scope.changeView = function (view, calendar) {
       angular.element('.calendar').fullCalendar('changeView', view);
     };
 
-    $scope.today = function(calendar) {
+    $scope.today = function (calendar) {
       angular.element('.calendar').fullCalendar('today');
     };
 
@@ -6385,7 +6388,7 @@ app
         $scope.selectedAll = true;
       }
 
-      angular.forEach($scope.mails, function(mail) {
+      angular.forEach($scope.mails, function (mail) {
         mail.selected = $scope.selectedAll;
       });
     };
@@ -6402,7 +6405,7 @@ app
  */
 app
   .controller('MailComposeCtrl', function ($scope) {
-    $scope.availableRecipients = ['RLake@nec.gov','RBastian@lacus.io','VMonroe@orci.ly','YMckenzie@mattis.gov','VMcmyne@molestie.org','BKliban@aliquam.gov','HHellems@tincidunt.org','KAngell@sollicitudin.ly'];
+    $scope.availableRecipients = ['RLake@nec.gov', 'RBastian@lacus.io', 'VMonroe@orci.ly', 'YMckenzie@mattis.gov', 'VMcmyne@molestie.org', 'BKliban@aliquam.gov', 'HHellems@tincidunt.org', 'KAngell@sollicitudin.ly'];
   });
 
 'use strict';
@@ -6446,82 +6449,82 @@ app
         title: 'Sed ut perspiciatis unde',
         category: 'cats',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/cats/2',
         title: 'Quis autem vel eum iure',
         category: 'cats',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/cats/3',
         title: 'Temporibus autem quibusdam',
         category: 'cats',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/cats/4',
         title: 'Neque porro quisquam est',
         category: 'cats',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/cats/5',
         title: 'Et harum quidem rerum',
         category: 'cats',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/animals/6',
         title: 'Nemo enim ipsam voluptatem',
         category: 'animals',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/animals/7',
         title: 'At vero eos et accusamus',
         category: 'animals',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/animals/8',
         title: 'Itaque earum rerum hic tenetur',
         category: 'animals',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/animals/9',
         title: 'Ut enim ad minima veniam',
         category: 'animals',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/animals/10',
         title: 'Temporibus autem quibusdam',
         category: 'animals',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/city/1',
         title: 'Neque porro quisquam est',
         category: 'cities',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/city/2',
         title: 'Nam libero tempore',
         category: 'cities',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/city/3',
         title: 'Neque porro quisquam est',
         category: 'cities',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/city/4',
         title: 'Nam libero tempore',
         category: 'cities',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/city/5',
         title: 'Neque porro quisquam est',
         category: 'cities',
         selected: false
-      },{
+      }, {
         src: 'http://lorempixel.com/800/600/city/6',
         title: 'Nam libero tempore',
         category: 'cities',
         selected: false
-     }
+      }
     ];
 
     $scope.selectedAll = false;
@@ -6537,12 +6540,12 @@ app
         $scope.isSelected = true;
       }
 
-      angular.forEach($scope.images, function(image) {
+      angular.forEach($scope.images, function (image) {
         image.selected = $scope.selectedAll;
       });
     };
 
-    $scope.selectImage = function(index) {
+    $scope.selectImage = function (index) {
 
       var i = 0;
 
@@ -6553,7 +6556,7 @@ app
         $scope.isSelected = true;
       }
 
-      angular.forEach($scope.images, function(image) {
+      angular.forEach($scope.images, function (image) {
         if (image.selected) {
           i++;
         }
@@ -6596,7 +6599,7 @@ app
   .controller('ChatCtrl', function ($scope, $resource) {
     $scope.inbox = $resource('scripts/jsons/chats.json').query();
 
-    $scope.archive = function(index) {
+    $scope.archive = function (index) {
       $scope.inbox.splice(index, 1);
     };
   });
@@ -6620,8 +6623,8 @@ app
 
 
 
-  
- 
+
+
 'use strict';
 
 /**
@@ -6633,43 +6636,43 @@ app
  */
 app
   .controller('FacilityDeviceCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'USA Corporate Services',
       subtitle: 'Place subtitle here...'
     };
-	
-	$scope.layout = 'grid';
-	$scope.class = 'gridview';
-	$scope.changeClass = function(){
-		if ($scope.class === 'gridview')
-		$scope.class = 'listview';
-		$scope.layout = 'list';
-	};
-	
-	$scope.changeaClass = function(){
-		if ($scope.class === 'listview')
-		$scope.class = 'gridview';
-		$scope.layout = 'grid';
-	};
-	
+
+    $scope.layout = 'grid';
+    $scope.class = 'gridview';
+    $scope.changeClass = function () {
+      if ($scope.class === 'gridview')
+        $scope.class = 'listview';
+      $scope.layout = 'list';
+    };
+
+    $scope.changeaClass = function () {
+      if ($scope.class === 'listview')
+        $scope.class = 'gridview';
+      $scope.layout = 'grid';
+    };
+
     $scope.devicess = [{
       title: 'Reception Device',
-	  modal: 'Modal: Elika-76',
-	  serialnumber:'eliak7610192016s',
-	  noofslaves: 2,
-	  noofuser: 3,
-	  imagename: 1,
-    },{
+      modal: 'Modal: Elika-76',
+      serialnumber: 'eliak7610192016s',
+      noofslaves: 2,
+      noofuser: 3,
+      imagename: 1,
+    }, {
       title: 'Conference Device',
-	  modal: 'Modal: Elika-2101',
-	  serialnumber:'eliak210110192016s',
-	  noofslaves: 0,
-	  noofuser: 2,
-	  imagename: 1,
+      modal: 'Modal: Elika-2101',
+      serialnumber: 'eliak210110192016s',
+      noofslaves: 0,
+      noofuser: 2,
+      imagename: 1,
     }];
-	
-	$scope.imagePath = 'http://localhost:8080/elika/images/';
-	
+
+    $scope.imagePath = 'http://localhost:8080/elika/images/';
+
   });
 
 
@@ -6689,11 +6692,11 @@ app
  */
 app
   .controller('BillingInfoCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Billing Infomation',
       subtitle: 'Place subtitle here...'
     };
-	
+
   });
 
 
@@ -6710,14 +6713,14 @@ app
  */
 app
   .controller('TechProfileCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Aadolf Smith',
       subtitle: 'Place subtitle here...'
     };
-	
-	$scope.imagePath = 'http://localhost:8080:8080/elika/images/';
-	
-	
+
+    $scope.imagePath = 'http://localhost:8080:8080/elika/images/';
+
+
   });
 
 'use strict';
@@ -6730,11 +6733,11 @@ app
  * # anchorScroll
  */
 app
-  .directive('anchorScroll', ['$location', '$anchorScroll', function($location, $anchorScroll) {
+  .directive('anchorScroll', ['$location', '$anchorScroll', function ($location, $anchorScroll) {
     return {
       restrict: 'AC',
-      link: function(scope, el, attr) {
-        el.on('click', function(e) {
+      link: function (scope, el, attr) {
+        el.on('click', function (e) {
           $location.hash(attr.anchorScroll);
           $anchorScroll();
         });
@@ -6769,10 +6772,10 @@ app
       .withDOM('<"row"<"col-md-8 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"pull-right"f>>>t<"row"<"col-md-4 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"inline-controls text-center"i>><"col-md-4 col-sm-12"p>>')
       .withLanguage({
         "sLengthMenu": 'View _MENU_ records',
-        "sInfo":  'Found _TOTAL_ records',
+        "sInfo": 'Found _TOTAL_ records',
         "oPaginate": {
-          "sPage":    "Page",
-          "sPageOf":  "of"
+          "sPage": "Page",
+          "sPageOf": "of"
         }
       })
       .withPaginationType('input')
@@ -6797,12 +6800,12 @@ app
         $scope.selectedAll = true;
       }
 
-      angular.forEach(vm.orders, function(order) {
+      angular.forEach(vm.orders, function (order) {
         order.selected = $scope.selectedAll;
       });
     };
 
-    $resource('http://www.filltext.com/?rows=300&id={index}&date={date|01-01-2012,01-01-2015}&placedby={firstName}~{lastName}&status=["pending","closed","sent","cancelled"]&quantity={number|20}&total={numberLength|3}}&shipto={streetAddress}~{city}&selected=false&pretty=true').query().$promise.then(function(orders) {
+    $resource('http://www.filltext.com/?rows=300&id={index}&date={date|01-01-2012,01-01-2015}&placedby={firstName}~{lastName}&status=["pending","closed","sent","cancelled"]&quantity={number|20}&total={numberLength|3}}&shipto={streetAddress}~{city}&selected=false&pretty=true').query().$promise.then(function (orders) {
       vm.orders = orders;
     });
 
@@ -6835,10 +6838,10 @@ app
       .withDOM('<"row"<"col-md-8 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"pull-right"f>>>t<"row"<"col-md-4 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"inline-controls text-center"i>><"col-md-4 col-sm-12"p>>')
       .withLanguage({
         "sLengthMenu": 'View _MENU_ records',
-        "sInfo":  'Found _TOTAL_ records',
+        "sInfo": 'Found _TOTAL_ records',
         "oPaginate": {
-          "sPage":    "Page",
-          "sPageOf":  "of"
+          "sPage": "Page",
+          "sPageOf": "of"
         }
       })
       .withPaginationType('input')
@@ -6863,12 +6866,12 @@ app
         $scope.selectedAll = true;
       }
 
-      angular.forEach(vm.products, function(product) {
+      angular.forEach(vm.products, function (product) {
         product.selected = $scope.selectedAll;
       });
     };
 
-    $resource('http://www.filltext.com/?rows=300&id={index}&name={lorem|2}&category=["Food","Drinks","Accesories","Electro","Kitchen","Bathroom"]&price={numberLength|3}}&date={date|01-01-2012,01-01-2015}&status=["published","not published","deleted"]&pretty=true').query().$promise.then(function(products) {
+    $resource('http://www.filltext.com/?rows=300&id={index}&name={lorem|2}&category=["Food","Drinks","Accesories","Electro","Kitchen","Bathroom"]&price={numberLength|3}}&date={date|01-01-2012,01-01-2015}&status=["published","not published","deleted"]&pretty=true').query().$promise.then(function (products) {
       vm.products = products;
     });
 
@@ -6901,10 +6904,10 @@ app
       .withDOM('<"row"<"col-md-8 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"pull-right"f>>>t<"row"<"col-md-4 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"inline-controls text-center"i>><"col-md-4 col-sm-12"p>>')
       .withLanguage({
         "sLengthMenu": 'View _MENU_ records',
-        "sInfo":  'Found _TOTAL_ records',
+        "sInfo": 'Found _TOTAL_ records',
         "oPaginate": {
-          "sPage":    "Page",
-          "sPageOf":  "of"
+          "sPage": "Page",
+          "sPageOf": "of"
         }
       })
       .withPaginationType('input')
@@ -6929,12 +6932,12 @@ app
         $scope.selectedAll = true;
       }
 
-      angular.forEach(vm.invoices, function(invoice) {
+      angular.forEach(vm.invoices, function (invoice) {
         invoice.selected = $scope.selectedAll;
       });
     };
 
-    $resource('http://www.filltext.com/?rows=300&id={index}&date={date|01-01-2012,01-01-2015}&invoicefor={firstName}~{lastName}&status=["paid","unpaid","sent","cancelled"]&total={numberLength|3}}&selected=false&pretty=true').query().$promise.then(function(invoices) {
+    $resource('http://www.filltext.com/?rows=300&id={index}&date={date|01-01-2012,01-01-2015}&invoicefor={firstName}~{lastName}&status=["paid","unpaid","sent","cancelled"]&total={numberLength|3}}&selected=false&pretty=true').query().$promise.then(function (invoices) {
       vm.invoices = invoices;
     });
 
@@ -7023,10 +7026,10 @@ app
       link: function postLink(scope, element) {
 
         var app = angular.element('.appWrapper'),
-            $window = angular.element(window),
-            width = $window.width();
+          $window = angular.element(window),
+          width = $window.width();
 
-        element.on('click', function(e) {
+        element.on('click', function (e) {
           if (app.hasClass('offcanvas-opened')) {
             app.removeClass('offcanvas-opened');
           } else {
@@ -7052,16 +7055,16 @@ app
     return {
       require: 'form',
       restrict: 'A',
-      link: function( scope , element , attributes ){
+      link: function (scope, element, attributes) {
         var $element = angular.element(element);
-        $element.on('submit', function(e) {
+        $element.on('submit', function (e) {
           $element.find('.ng-pristine').removeClass('ng-pristine').addClass('ng-dirty');
-          var form = scope[ attributes.name ];
-          angular.forEach( form , function ( formElement , fieldName ) {
-            if ( fieldName[0] === '$' ) {return;}
+          var form = scope[attributes.name];
+          angular.forEach(form, function (formElement, fieldName) {
+            if (fieldName[0] === '$') { return; }
             formElement.$pristine = false;
             formElement.$dirty = true;
-          },this);
+          }, this);
           form.$setDirty();
           scope.$apply();
         });
@@ -7081,9 +7084,9 @@ app
   .directive('nativeTab', function () {
     return {
       restrict: 'A',
-      link: function( scope , element , attributes ){
+      link: function (scope, element, attributes) {
         var $element = angular.element(element);
-        $element.on('click', function(e) {
+        $element.on('click', function (e) {
           e.preventDefault();
           $element.tab('show');
         });
@@ -7103,11 +7106,11 @@ app
 
   })
 
-  .controller("leafletMap1", [ "$scope", function($scope) {
+  .controller("leafletMap1", ["$scope", function ($scope) {
 
   }])
 
-  .controller("leafletMap2", [ "$scope", function($scope) {
+  .controller("leafletMap2", ["$scope", function ($scope) {
     angular.extend($scope, {
       autodiscover: {
         autoDiscover: true
@@ -7115,7 +7118,7 @@ app
     });
   }])
 
-  .controller("leafletMap3", [ "$scope", "leafletData", function($scope, leafletData) {
+  .controller("leafletMap3", ["$scope", "leafletData", function ($scope, leafletData) {
 
     L.Icon.Default.imagePath = 'styles/images';
 
@@ -7157,8 +7160,8 @@ app
     });
 
 
-    leafletData.getMap("map3").then(function(map) {
-      leafletData.getLayers("map3").then(function(baselayers) {
+    leafletData.getMap("map3").then(function (map) {
+      leafletData.getLayers("map3").then(function (baselayers) {
         var drawnItems = baselayers.overlays.draw;
         map.on('draw:created', function (e) {
           var layer = e.layer;
@@ -7169,7 +7172,7 @@ app
     });
   }])
 
-  .controller("leafletMap4", [ "$scope", function($scope) {
+  .controller("leafletMap4", ["$scope", function ($scope) {
 
     angular.extend($scope, {
       berlin: {
@@ -7206,7 +7209,7 @@ app
 
   }])
 
-  .controller("leafletMap5", ["$scope", "$http", function($scope, $http) {
+  .controller("leafletMap5", ["$scope", "$http", function ($scope, $http) {
 
     var points = [];
     var heatmap = {
@@ -7216,7 +7219,7 @@ app
       visible: true
     };
 
-    $http.get("scripts/jsons/heat-points.json").success(function(data) {
+    $http.get("scripts/jsons/heat-points.json").success(function (data) {
       $scope.layers.overlays = {
         heat: {
           name: 'Heat Map',
@@ -7277,7 +7280,7 @@ app
       var id = ~~(Math.random() * 10000);
       return {
         src: 'http://lorempixel.com/g/720/' + height + '/?' + id,
-        title: ipsumService.randomMi()+ipsumService.words(1)+' '+ipsumService.randomMi()+ipsumService.words(1),
+        title: ipsumService.randomMi() + ipsumService.words(1) + ' ' + ipsumService.randomMi() + ipsumService.words(1),
         content: ipsumService.sentences(2)
       };
     }
@@ -7493,12 +7496,12 @@ app
   .controller('mtBasicAutocompleteCtrl', function ($timeout, $q, $log) {
     var self = this;
     self.simulateQuery = false;
-    self.isDisabled    = false;
+    self.isDisabled = false;
     // list of `state` value/display objects
-    self.states        = loadAll();
-    self.querySearch   = querySearch;
+    self.states = loadAll();
+    self.querySearch = querySearch;
     self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
+    self.searchTextChange = searchTextChange;
     // ******************************
     // Internal methods
     // ******************************
@@ -7506,12 +7509,12 @@ app
      * Search for states... use $timeout to simulate
      * remote dataservice call.
      */
-    function querySearch (query) {
-      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+    function querySearch(query) {
+      var results = query ? self.states.filter(createFilterFor(query)) : self.states,
         deferred;
       if (self.simulateQuery) {
         deferred = $q.defer();
-        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
         return deferred.promise;
       } else {
         return results;
@@ -7534,7 +7537,7 @@ app
                 North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
                 South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
                 Wisconsin, Wyoming';
-      return allStates.split(/, +/g).map( function (state) {
+      return allStates.split(/, +/g).map(function (state) {
         return {
           value: state.toLowerCase(),
           display: state
@@ -7555,11 +7558,11 @@ app
   .controller('mtCustomAutocompleteCtrl', function ($timeout, $q, $log) {
     var self = this;
     self.simulateQuery = false;
-    self.isDisabled    = false;
-    self.repos         = loadAll();
-    self.querySearch   = querySearch;
+    self.isDisabled = false;
+    self.repos = loadAll();
+    self.querySearch = querySearch;
     self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
+    self.searchTextChange = searchTextChange;
     // ******************************
     // Internal methods
     // ******************************
@@ -7567,12 +7570,12 @@ app
      * Search for repos... use $timeout to simulate
      * remote dataservice call.
      */
-    function querySearch (query) {
-      var results = query ? self.repos.filter( createFilterFor(query) ) : self.repos,
-          deferred;
+    function querySearch(query) {
+      var results = query ? self.repos.filter(createFilterFor(query)) : self.repos,
+        deferred;
       if (self.simulateQuery) {
         deferred = $q.defer();
-        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
         return deferred.promise;
       } else {
         return results;
@@ -7590,37 +7593,37 @@ app
     function loadAll() {
       var repos = [
         {
-          'name'      : 'Angular 1',
-          'url'       : 'https://github.com/angular/angular.js',
-          'watchers'  : '3,623',
-          'forks'     : '16,175'
+          'name': 'Angular 1',
+          'url': 'https://github.com/angular/angular.js',
+          'watchers': '3,623',
+          'forks': '16,175'
         },
         {
-          'name'      : 'Angular 2',
-          'url'       : 'https://github.com/angular/angular',
-          'watchers'  : '469',
-          'forks'     : '760'
+          'name': 'Angular 2',
+          'url': 'https://github.com/angular/angular',
+          'watchers': '469',
+          'forks': '760'
         },
         {
-          'name'      : 'Angular Material',
-          'url'       : 'https://github.com/angular/material',
-          'watchers'  : '727',
-          'forks'     : '1,241'
+          'name': 'Angular Material',
+          'url': 'https://github.com/angular/material',
+          'watchers': '727',
+          'forks': '1,241'
         },
         {
-          'name'      : 'Bower Material',
-          'url'       : 'https://github.com/angular/bower-material',
-          'watchers'  : '42',
-          'forks'     : '84'
+          'name': 'Bower Material',
+          'url': 'https://github.com/angular/bower-material',
+          'watchers': '42',
+          'forks': '84'
         },
         {
-          'name'      : 'Material Start',
-          'url'       : 'https://github.com/angular/material-start',
-          'watchers'  : '81',
-          'forks'     : '303'
+          'name': 'Material Start',
+          'url': 'https://github.com/angular/material-start',
+          'watchers': '81',
+          'forks': '303'
         }
       ];
-      return repos.map( function (repo) {
+      return repos.map(function (repo) {
         repo.value = repo.name.toLowerCase();
         return repo;
       });
@@ -7639,10 +7642,10 @@ app
   .controller('mtFloatingAutocompleteCtrl', function ($timeout, $q) {
     var self = this;
     // list of `state` value/display objects
-    self.states        = loadAll();
-    self.selectedItem  = null;
-    self.searchText    = null;
-    self.querySearch   = querySearch;
+    self.states = loadAll();
+    self.selectedItem = null;
+    self.searchText = null;
+    self.querySearch = querySearch;
     // ******************************
     // Internal methods
     // ******************************
@@ -7650,8 +7653,8 @@ app
      * Search for states... use $timeout to simulate
      * remote dataservice call.
      */
-    function querySearch (query) {
-      var results = query ? self.states.filter( createFilterFor(query) ) : [];
+    function querySearch(query) {
+      var results = query ? self.states.filter(createFilterFor(query)) : [];
       return results;
     }
     /**
@@ -7665,7 +7668,7 @@ app
                 North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
                 South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
                 Wisconsin, Wyoming';
-      return allStates.split(/, +/g).map( function (state) {
+      return allStates.split(/, +/g).map(function (state) {
         return {
           value: state.toLowerCase(),
           display: state
@@ -7691,7 +7694,7 @@ app
 
 app
 
-  .controller('mtBottomSheetCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtBottomSheetCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Bottom Sheet',
@@ -7699,44 +7702,44 @@ app
     };
 
     $scope.alert = '';
-    $scope.showListBottomSheet = function($event) {
+    $scope.showListBottomSheet = function ($event) {
       $scope.alert = '';
       $mdBottomSheet.show({
         parent: angular.element(document.getElementById('bottomSheetContainer')),
         templateUrl: 'bottom-sheet-list-template.html',
         controller: 'mtListBottomSheetCtrl',
         targetEvent: $event
-      }).then(function(clickedItem) {
+      }).then(function (clickedItem) {
         $scope.alert = clickedItem.name + ' clicked!';
       });
     };
-    $scope.showGridBottomSheet = function($event) {
+    $scope.showGridBottomSheet = function ($event) {
       $scope.alert = '';
       $mdBottomSheet.show({
         parent: angular.element(document.getElementById('bottomSheetContainer')),
         templateUrl: 'bottom-sheet-grid-template.html',
         controller: 'mtGridBottomSheetCtrl',
         targetEvent: $event
-      }).then(function(clickedItem) {
+      }).then(function (clickedItem) {
         $scope.alert = clickedItem.name + ' clicked!';
       });
     };
   })
 
-  .controller('mtListBottomSheetCtrl', function($scope, $mdBottomSheet) {
+  .controller('mtListBottomSheetCtrl', function ($scope, $mdBottomSheet) {
     $scope.items = [
       { name: 'Share', icon: 'zmdi zmdi-share' },
       { name: 'Upload', icon: 'zmdi zmdi-upload' },
       { name: 'Copy', icon: 'zmdi zmdi-copy' },
       { name: 'Print this page', icon: 'zmdi zmdi-print' }
     ];
-    $scope.listItemClick = function($index) {
+    $scope.listItemClick = function ($index) {
       var clickedItem = $scope.items[$index];
       $mdBottomSheet.hide(clickedItem);
     };
   })
 
-  .controller('mtGridBottomSheetCtrl', function($scope, $mdBottomSheet) {
+  .controller('mtGridBottomSheetCtrl', function ($scope, $mdBottomSheet) {
     $scope.items = [
       { name: 'Google+', icon: 'zmdi zmdi-google-plus' },
       { name: 'Mail', icon: 'zmdi zmdi-email' },
@@ -7745,7 +7748,7 @@ app
       { name: 'Facebook', icon: 'zmdi zmdi-facebook-box' },
       { name: 'Twitter', icon: 'zmdi zmdi-twitter-box' }
     ];
-    $scope.listItemClick = function($index) {
+    $scope.listItemClick = function ($index) {
       var clickedItem = $scope.items[$index];
       $mdBottomSheet.hide(clickedItem);
     };
@@ -7759,7 +7762,7 @@ app
 
 app
 
-  .controller('mtButtonsCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtButtonsCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Buttons',
@@ -7781,7 +7784,7 @@ app
 
 app
 
-  .controller('mtCardsCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtCardsCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Cards',
@@ -7800,7 +7803,7 @@ app
 
 app
 
-  .controller('mtCheckboxCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtCheckboxCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Checkbox',
@@ -7814,7 +7817,7 @@ app
     $scope.data.cb4 = false;
     $scope.data.cb5 = false;
 
-    $scope.items = [1,2,3,4,5];
+    $scope.items = [1, 2, 3, 4, 5];
     $scope.selected = [];
     $scope.toggle = function (item, list) {
       var idx = list.indexOf(item);
@@ -7835,7 +7838,7 @@ app
 
 app
 
-  .controller('mtChipsCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtChipsCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Chips',
@@ -7849,7 +7852,7 @@ app
   .controller('mtChipsCustomInputDemoCtrl', mtChipsCustomInputDemoCtrl)
   .controller('mtChipsStaticDemoCtrl', mtChipsStaticDemoCtrl);
 
-function mtChipsBasicDemoCtrl ($timeout, $q) {
+function mtChipsBasicDemoCtrl($timeout, $q) {
   var self = this;
   self.readonly = false;
   // Lists of fruit names and Vegetable objects
@@ -7858,19 +7861,19 @@ function mtChipsBasicDemoCtrl ($timeout, $q) {
   self.tags = [];
   self.vegObjs = [
     {
-      'name' : 'Broccoli',
-      'type' : 'Brassica'
+      'name': 'Broccoli',
+      'type': 'Brassica'
     },
     {
-      'name' : 'Cabbage',
-      'type' : 'Brassica'
+      'name': 'Cabbage',
+      'type': 'Brassica'
     },
     {
-      'name' : 'Carrot',
-      'type' : 'Umbelliferous'
+      'name': 'Carrot',
+      'type': 'Umbelliferous'
     }
   ];
-  self.newVeg = function(chip) {
+  self.newVeg = function (chip) {
     return {
       name: chip,
       type: 'unknown'
@@ -7878,7 +7881,7 @@ function mtChipsBasicDemoCtrl ($timeout, $q) {
   };
 }
 
-function mtChipsContactChipDemoCtrl ($timeout, $q) {
+function mtChipsContactChipDemoCtrl($timeout, $q) {
   var self = this;
   self.querySearch = querySearch;
   self.allContacts = loadContacts();
@@ -7887,7 +7890,7 @@ function mtChipsContactChipDemoCtrl ($timeout, $q) {
   /**
    * Search for contacts.
    */
-  function querySearch (query) {
+  function querySearch(query) {
     var results = query ?
       self.allContacts.filter(createFilterFor(query)) : [];
     return results;
@@ -7926,7 +7929,7 @@ function mtChipsContactChipDemoCtrl ($timeout, $q) {
   }
 }
 
-function mtChipsCustomInputDemoCtrl ($timeout, $q) {
+function mtChipsCustomInputDemoCtrl($timeout, $q) {
   var self = this;
   self.readonly = false;
   self.selectedItem = null;
@@ -7940,7 +7943,7 @@ function mtChipsCustomInputDemoCtrl ($timeout, $q) {
   /**
    * Search for vegetables.
    */
-  function querySearch (query) {
+  function querySearch(query) {
     var results = query ? self.vegetables.filter(createFilterFor(query)) : [];
     return results;
   }
@@ -7985,7 +7988,7 @@ function mtChipsCustomInputDemoCtrl ($timeout, $q) {
   }
 }
 
-function mtChipsStaticDemoCtrl ($timeout, $q) {
+function mtChipsStaticDemoCtrl($timeout, $q) {
   this.chipText = 'Football';
 }
 
@@ -7997,7 +8000,7 @@ function mtChipsStaticDemoCtrl ($timeout, $q) {
 
 app
 
-  .controller('mtContentCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtContentCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Content',
@@ -8014,7 +8017,7 @@ app
 
 app
 
-  .controller('mtDialogCtrl', function($scope, $timeout, $mdDialog) {
+  .controller('mtDialogCtrl', function ($scope, $timeout, $mdDialog) {
 
     $scope.page = {
       title: 'Dialog',
@@ -8022,7 +8025,7 @@ app
     };
 
     $scope.status = '  ';
-    $scope.showAlert = function(ev) {
+    $scope.showAlert = function (ev) {
       // Appending dialog to document.body to cover sidenav in docs app
       // Modal dialogs should fully cover application
       // to prevent interaction outside of dialog
@@ -8037,7 +8040,7 @@ app
           .targetEvent(ev)
       );
     };
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function (ev) {
       // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
         .parent(angular.element(document.querySelector('#popupContainer')))
@@ -8047,23 +8050,23 @@ app
         .ok('Please do it!')
         .cancel('Sounds like a scam')
         .targetEvent(ev);
-      $mdDialog.show(confirm).then(function() {
+      $mdDialog.show(confirm).then(function () {
         $scope.status = 'You decided to get rid of your debt.';
-      }, function() {
+      }, function () {
         $scope.status = 'You decided to keep your debt.';
       });
     };
-    $scope.showAdvanced = function(ev) {
+    $scope.showAdvanced = function (ev) {
       $mdDialog.show({
         controller: DialogController,
         templateUrl: 'dialog1.tmpl.html',
         parent: angular.element(document.body),
         targetEvent: ev,
-        clickOutsideToClose:true
+        clickOutsideToClose: true
       })
-        .then(function(answer) {
+        .then(function (answer) {
           $scope.status = 'You said the information was "' + answer + '".';
-        }, function() {
+        }, function () {
           $scope.status = 'You cancelled the dialog.';
         });
     };
@@ -8071,13 +8074,13 @@ app
   });
 
 function DialogController($scope, $mdDialog) {
-  $scope.hide = function() {
+  $scope.hide = function () {
     $mdDialog.hide();
   };
-  $scope.cancel = function() {
+  $scope.cancel = function () {
     $mdDialog.cancel();
   };
-  $scope.answer = function(answer) {
+  $scope.answer = function (answer) {
     $mdDialog.hide(answer);
   };
 }
@@ -8090,7 +8093,7 @@ function DialogController($scope, $mdDialog) {
 
 app
 
-  .controller('mtDividerCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtDividerCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Divider',
@@ -8099,31 +8102,31 @@ app
 
     var imagePath = 'http://placekitten.com/g/80/80';
     $scope.messages = [{
-      face : imagePath,
+      face: imagePath,
       what: 'Brunch this weekend?',
       who: 'Min Li Chan',
       when: '3:08PM',
       notes: " I'll be in your neighborhood doing errands"
     }, {
-      face : imagePath,
+      face: imagePath,
       what: 'Brunch this weekend?',
       who: 'Min Li Chan',
       when: '3:08PM',
       notes: " I'll be in your neighborhood doing errands"
     }, {
-      face : imagePath,
+      face: imagePath,
       what: 'Brunch this weekend?',
       who: 'Min Li Chan',
       when: '3:08PM',
       notes: " I'll be in your neighborhood doing errands"
     }, {
-      face : imagePath,
+      face: imagePath,
       what: 'Brunch this weekend?',
       who: 'Min Li Chan',
       when: '3:08PM',
       notes: " I'll be in your neighborhood doing errands"
     }, {
-      face : imagePath,
+      face: imagePath,
       what: 'Brunch this weekend?',
       who: 'Min Li Chan',
       when: '3:08PM',
@@ -8140,7 +8143,7 @@ app
 
 app
 
-  .controller('mtFabSpeedDialCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtFabSpeedDialCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Fab Speed Dial',
@@ -8149,7 +8152,7 @@ app
 
   })
 
-  .controller('mtFabSpeedDialBasicCtrl', function() {
+  .controller('mtFabSpeedDialBasicCtrl', function () {
     this.topDirections = ['left', 'up'];
     this.bottomDirections = ['down', 'right'];
     this.isOpen = false;
@@ -8159,26 +8162,26 @@ app
     this.selectedDirection = 'up';
   })
 
-  .controller('mtFabSpeedDialMoreCtrl', function($mdDialog) {
+  .controller('mtFabSpeedDialMoreCtrl', function ($mdDialog) {
     var self = this;
     self.hidden = false;
     self.items = [
-      {name: "Twitter", icon: "zmdi zmdi-twitter-box", direction: "left" },
-      {name: "Facebook", icon: "zmdi zmdi-facebook-box", direction: "right" },
-      {name: "Google Hangout", icon: "zmdi zmdi-google-plus-box", direction: "left" }
+      { name: "Twitter", icon: "zmdi zmdi-twitter-box", direction: "left" },
+      { name: "Facebook", icon: "zmdi zmdi-facebook-box", direction: "right" },
+      { name: "Google Hangout", icon: "zmdi zmdi-google-plus-box", direction: "left" }
     ];
-    self.openDialog = function($event, item) {
+    self.openDialog = function ($event, item) {
       // Show the dialog
       $mdDialog.show({
         clickOutsideToClose: true,
-        controller: function($mdDialog) {
+        controller: function ($mdDialog) {
           // Save the clicked item
           this.item = item;
           // Setup some handlers
-          this.close = function() {
+          this.close = function () {
             $mdDialog.cancel();
           };
-          this.submit = function() {
+          this.submit = function () {
             $mdDialog.hide();
           };
         },
@@ -8197,7 +8200,7 @@ app
 
 app
 
-  .controller('mtFabToolbarCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtFabToolbarCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Fab Toolbar',
@@ -8221,7 +8224,7 @@ app
 
 app
 
-  .controller('mtGridListCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtGridListCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Grid List',
@@ -8230,26 +8233,26 @@ app
 
   })
 
-  .controller('gridListDemoCtrl', function($scope) {
+  .controller('gridListDemoCtrl', function ($scope) {
     this.tiles = buildGridModel({
-      icon : "avatar:svg-",
+      icon: "avatar:svg-",
       title: "Svg-",
       background: ""
     });
-    function buildGridModel(tileTmpl){
-      var it, results = [ ];
-      for (var j=0; j<11; j++) {
-        it = angular.extend({},tileTmpl);
-        it.icon  = it.icon + (j+1);
-        it.title = it.title + (j+1);
-        it.span  = { row : 1, col : 1 };
-        switch(j+1) {
+    function buildGridModel(tileTmpl) {
+      var it, results = [];
+      for (var j = 0; j < 11; j++) {
+        it = angular.extend({}, tileTmpl);
+        it.icon = it.icon + (j + 1);
+        it.title = it.title + (j + 1);
+        it.span = { row: 1, col: 1 };
+        switch (j + 1) {
           case 1:
             it.background = "red";
             it.span.row = it.span.col = 2;
             break;
-          case 2: it.background = "green";         break;
-          case 3: it.background = "darkBlue";      break;
+          case 2: it.background = "green"; break;
+          case 3: it.background = "darkBlue"; break;
           case 4:
             it.background = "blue";
             it.span.col = 2;
@@ -8258,12 +8261,12 @@ app
             it.background = "yellow";
             it.span.row = it.span.col = 2;
             break;
-          case 6: it.background = "pink";          break;
-          case 7: it.background = "darkBlue";      break;
-          case 8: it.background = "purple";        break;
-          case 9: it.background = "deepBlue";      break;
-          case 10: it.background = "lightPurple";  break;
-          case 11: it.background = "yellow";       break;
+          case 6: it.background = "pink"; break;
+          case 7: it.background = "darkBlue"; break;
+          case 8: it.background = "purple"; break;
+          case 9: it.background = "deepBlue"; break;
+          case 10: it.background = "lightPurple"; break;
+          case 11: it.background = "yellow"; break;
         }
         results.push(it);
       }
@@ -8271,9 +8274,9 @@ app
     }
   })
 
-  .controller('gridListResponsiveDemoCtrl', function($scope) {
+  .controller('gridListResponsiveDemoCtrl', function ($scope) {
     var COLORS = ['#ffebee', '#ffcdd2', '#ef9a9a', '#e57373', '#ef5350', '#f44336', '#e53935', '#d32f2f', '#c62828', '#b71c1c', '#ff8a80', '#ff5252', '#ff1744', '#d50000', '#f8bbd0', '#f48fb1', '#f06292', '#ec407a', '#e91e63', '#d81b60', '#c2185b', '#ad1457', '#880e4f', '#ff80ab', '#ff4081', '#f50057', '#c51162', '#e1bee7', '#ce93d8', '#ba68c8', '#ab47bc', '#9c27b0', '#8e24aa', '#7b1fa2', '#4a148c', '#ea80fc', '#e040fb', '#d500f9', '#aa00ff', '#ede7f6', '#d1c4e9', '#b39ddb', '#9575cd', '#7e57c2', '#673ab7', '#5e35b1', '#4527a0', '#311b92', '#b388ff', '#7c4dff', '#651fff', '#6200ea', '#c5cae9', '#9fa8da', '#7986cb', '#5c6bc0', '#3f51b5', '#3949ab', '#303f9f', '#283593', '#1a237e', '#8c9eff', '#536dfe', '#3d5afe', '#304ffe', '#e3f2fd', '#bbdefb', '#90caf9', '#64b5f6', '#42a5f5', '#2196f3', '#1e88e5', '#1976d2', '#1565c0', '#0d47a1', '#82b1ff', '#448aff', '#2979ff', '#2962ff', '#b3e5fc', '#81d4fa', '#4fc3f7', '#29b6f6', '#03a9f4', '#039be5', '#0288d1', '#0277bd', '#01579b', '#80d8ff', '#40c4ff', '#00b0ff', '#0091ea', '#e0f7fa', '#b2ebf2', '#80deea', '#4dd0e1', '#26c6da', '#00bcd4', '#00acc1', '#0097a7', '#00838f', '#006064', '#84ffff', '#18ffff', '#00e5ff', '#00b8d4', '#e0f2f1', '#b2dfdb', '#80cbc4', '#4db6ac', '#26a69a', '#009688', '#00897b', '#00796b', '#00695c', '#a7ffeb', '#64ffda', '#1de9b6', '#00bfa5', '#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#388e3c', '#2e7d32', '#1b5e20', '#b9f6ca', '#69f0ae', '#00e676', '#00c853', '#f1f8e9', '#dcedc8', '#c5e1a5', '#aed581', '#9ccc65', '#8bc34a', '#7cb342', '#689f38', '#558b2f', '#33691e', '#ccff90', '#b2ff59', '#76ff03', '#64dd17', '#f9fbe7', '#f0f4c3', '#e6ee9c', '#dce775', '#d4e157', '#cddc39', '#c0ca33', '#afb42b', '#9e9d24', '#827717', '#f4ff81', '#eeff41', '#c6ff00', '#aeea00', '#fffde7', '#fff9c4', '#fff59d', '#fff176', '#ffee58', '#ffeb3b', '#fdd835', '#fbc02d', '#f9a825', '#f57f17', '#ffff8d', '#ffff00', '#ffea00', '#ffd600', '#fff8e1', '#ffecb3', '#ffe082', '#ffd54f', '#ffca28', '#ffc107', '#ffb300', '#ffa000', '#ff8f00', '#ff6f00', '#ffe57f', '#ffd740', '#ffc400', '#ffab00', '#fff3e0', '#ffe0b2', '#ffcc80', '#ffb74d', '#ffa726', '#ff9800', '#fb8c00', '#f57c00', '#ef6c00', '#e65100', '#ffd180', '#ffab40', '#ff9100', '#ff6d00', '#fbe9e7', '#ffccbc', '#ffab91', '#ff8a65', '#ff7043', '#ff5722', '#f4511e', '#e64a19', '#d84315', '#bf360c', '#ff9e80', '#ff6e40', '#ff3d00', '#dd2c00', '#d7ccc8', '#bcaaa4', '#795548', '#d7ccc8', '#bcaaa4', '#8d6e63', '#eceff1', '#cfd8dc', '#b0bec5', '#90a4ae', '#78909c', '#607d8b', '#546e7a', '#cfd8dc', '#b0bec5', '#78909c'];
-    this.colorTiles = (function() {
+    this.colorTiles = (function () {
       var tiles = [];
       for (var i = 0; i < 46; i++) {
         tiles.push({
@@ -8299,7 +8302,7 @@ app
     }
   })
 
-  .config( function( $mdIconProvider ){
+  .config(function ($mdIconProvider) {
     $mdIconProvider.iconSet("avatar", 'images/avatar-icons.svg', 128);
   });
 
@@ -8311,7 +8314,7 @@ app
 
 app
 
-  .controller('mtInputsCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtInputsCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Inputs',
@@ -8322,13 +8325,13 @@ app
       title: 'Developer',
       email: 'ipsum@lorem.com',
       firstName: '',
-      lastName: '' ,
-      company: 'Google' ,
-      address: '1600 Amphitheatre Pkwy' ,
-      city: 'Mountain View' ,
-      state: 'CA' ,
+      lastName: '',
+      company: 'Google',
+      address: '1600 Amphitheatre Pkwy',
+      city: 'Mountain View',
+      state: 'CA',
       biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-      postalCode : '94043'
+      postalCode: '94043'
     };
 
     $scope.project = {
@@ -8345,7 +8348,7 @@ app
 
   })
 
-  .config( function($mdThemingProvider){
+  .config(function ($mdThemingProvider) {
     // Configure a dark theme with primary foreground yellow
     $mdThemingProvider.theme('docs-dark', 'default')
       .primaryPalette('yellow')
@@ -8360,7 +8363,7 @@ app
 
 app
 
-  .controller('mtListCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtListCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'List',
@@ -8369,7 +8372,7 @@ app
 
   })
 
-  .controller('mtListBasicCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtListBasicCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     var imagePath = 'http://placekitten.com/g/600/600';
     $scope.posts = [
@@ -8378,35 +8381,35 @@ app
     ];
     $scope.todos = [
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
@@ -8416,7 +8419,7 @@ app
 
   })
 
-  .controller('mtListControlsCtrl', function($scope, $timeout, $mdDialog) {
+  .controller('mtListControlsCtrl', function ($scope, $timeout, $mdDialog) {
 
     $scope.toppings = [
       { name: 'Pepperoni', wanted: true },
@@ -8429,16 +8432,16 @@ app
       { name: 'Bluetooth', extraScreen: 'Bluetooth menu', icon: 'zmdi zmdi-bluetooth', enabled: false }
     ];
     $scope.messages = [
-      {id: 1, title: "Message A", selected: false},
-      {id: 2, title: "Message B", selected: true},
-      {id: 3, title: "Message C", selected: true}
+      { id: 1, title: "Message A", selected: false },
+      { id: 2, title: "Message B", selected: true },
+      { id: 3, title: "Message C", selected: true }
     ];
     $scope.people = [
       { name: 'Janet Perkins', img: 'http://placekitten.com/g/600/600', newMessage: true },
       { name: 'Mary Johnson', img: 'http://placekitten.com/g/600/601', newMessage: false },
       { name: 'Peter Carlsson', img: 'http://placekitten.com/g/600/602', newMessage: false }
     ];
-    $scope.goToPerson = function(person, event) {
+    $scope.goToPerson = function (person, event) {
       $mdDialog.show(
         $mdDialog.alert()
           .title('Navigating')
@@ -8448,7 +8451,7 @@ app
           .targetEvent(event)
       );
     };
-    $scope.navigateTo = function(to, event) {
+    $scope.navigateTo = function (to, event) {
       $mdDialog.show(
         $mdDialog.alert()
           .title('Navigating')
@@ -8458,7 +8461,7 @@ app
           .targetEvent(event)
       );
     };
-    $scope.doSecondaryAction = function(event) {
+    $scope.doSecondaryAction = function (event) {
       $mdDialog.show(
         $mdDialog.alert()
           .title('Secondary Action')
@@ -8479,7 +8482,7 @@ app
 
 app
 
-  .controller('mtMenuCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtMenuCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Menu',
@@ -8490,15 +8493,15 @@ app
 
   .controller('mtMenuBasicCtrl', function mtMenuBasicCtrl($mdDialog) {
     var originatorEv;
-    this.openMenu = function($mdOpenMenu, ev) {
+    this.openMenu = function ($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
     };
     this.notificationsEnabled = true;
-    this.toggleNotifications = function() {
+    this.toggleNotifications = function () {
       this.notificationsEnabled = !this.notificationsEnabled;
     };
-    this.redial = function() {
+    this.redial = function () {
       $mdDialog.show(
         $mdDialog.alert()
           .targetEvent(originatorEv)
@@ -8510,18 +8513,18 @@ app
       );
       originatorEv = null;
     };
-    this.checkVoicemail = function() {
+    this.checkVoicemail = function () {
       // This never happens.
     };
   })
 
   .controller('mtMenuPositionsCtrl', function mtMenuBasicCtrl($mdDialog) {
     var originatorEv;
-    this.openMenu = function($mdOpenMenu, ev) {
+    this.openMenu = function ($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
     };
-    this.announceClick = function(index) {
+    this.announceClick = function (index) {
       $mdDialog.show(
         $mdDialog.alert()
           .title('You clicked!')
@@ -8535,7 +8538,7 @@ app
 
   .controller('mtMenuWidthCtrl', function mtMenuBasicCtrl($mdDialog) {
     var vm = this;
-    this.announceClick = function(index) {
+    this.announceClick = function (index) {
       $mdDialog.show(
         $mdDialog.alert()
           .title('You clicked!')
@@ -8553,7 +8556,7 @@ app
 
 app
 
-  .controller('mtProgressCircularCtrl', function($scope, $interval) {
+  .controller('mtProgressCircularCtrl', function ($scope, $interval) {
 
     $scope.page = {
       title: 'Progress Circular',
@@ -8562,7 +8565,7 @@ app
 
     $scope.mode = 'query';
     $scope.determinateValue = 30;
-    $interval(function() {
+    $interval(function () {
       $scope.determinateValue += 1;
       if ($scope.determinateValue > 100) {
         $scope.determinateValue = 30;
@@ -8579,7 +8582,7 @@ app
 
 app
 
-  .controller('mtProgressLinearCtrl', function($scope, $interval) {
+  .controller('mtProgressLinearCtrl', function ($scope, $interval) {
 
     $scope.page = {
       title: 'Progress Linear',
@@ -8589,7 +8592,7 @@ app
     $scope.mode = 'query';
     $scope.determinateValue = 30;
     $scope.determinateValue2 = 30;
-    $interval(function() {
+    $interval(function () {
       $scope.determinateValue += 1;
       $scope.determinateValue2 += 1.5;
       if ($scope.determinateValue > 100) {
@@ -8597,7 +8600,7 @@ app
         $scope.determinateValue2 = 30;
       }
     }, 100, 0, true);
-    $interval(function() {
+    $interval(function () {
       $scope.mode = ($scope.mode == 'query' ? 'determinate' : 'query');
     }, 7200, 0, true);
 
@@ -8611,7 +8614,7 @@ app
 
 app
 
-  .controller('mtRadioButtonCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtRadioButtonCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Radio Button',
@@ -8619,22 +8622,22 @@ app
     };
 
     $scope.data = {
-      group1 : 'Banana',
-      group2 : '2',
-      group3 : 'avatar-1'
+      group1: 'Banana',
+      group2: '2',
+      group3: 'avatar-1'
     };
     $scope.avatarData = [{
-        id: "avatars:svg-1",
-        title: 'avatar 1',
-        value: 'avatar-1'
-      },{
-        id: "avatars:svg-2",
-        title: 'avatar 2',
-        value: 'avatar-2'
-      },{
-        id: "avatars:svg-3",
-        title: 'avatar 3',
-        value: 'avatar-3'
+      id: "avatars:svg-1",
+      title: 'avatar 1',
+      value: 'avatar-1'
+    }, {
+      id: "avatars:svg-2",
+      title: 'avatar 2',
+      value: 'avatar-2'
+    }, {
+      id: "avatars:svg-3",
+      title: 'avatar 3',
+      value: 'avatar-3'
     }];
     $scope.radioData = [
       { label: '1', value: 1 },
@@ -8642,21 +8645,21 @@ app
       { label: '3', value: '3', isDisabled: true },
       { label: '4', value: '4' }
     ];
-    $scope.submit = function() {
+    $scope.submit = function () {
       alert('submit');
     };
-    $scope.addItem = function() {
+    $scope.addItem = function () {
       var r = Math.ceil(Math.random() * 1000);
       $scope.radioData.push({ label: r, value: r });
     };
-    $scope.removeItem = function() {
+    $scope.removeItem = function () {
       $scope.radioData.pop();
     };
 
   })
 
-  .config(function($mdIconProvider) {
-    $mdIconProvider.iconSet("avatars", 'images/avatar-icons.svg',128);
+  .config(function ($mdIconProvider) {
+    $mdIconProvider.iconSet("avatars", 'images/avatar-icons.svg', 128);
   });
 
 
@@ -8667,7 +8670,7 @@ app
 
 app
 
-  .controller('mtSelectCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtSelectCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Select',
@@ -8676,8 +8679,8 @@ app
 
     $scope.userState = '';
     $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function (state) { return { abbrev: state }; });
+      'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+      'WY').split(' ').map(function (state) { return { abbrev: state }; });
 
     $scope.sizes = [
       "small (12-inch)",
@@ -8696,10 +8699,10 @@ app
       { category: 'veg', name: 'Green Olives' }
     ];
 
-    $scope.loadUsers = function() {
+    $scope.loadUsers = function () {
       // Use timeout to simulate a 650ms request.
       $scope.users = [];
-      return $timeout(function() {
+      return $timeout(function () {
         $scope.users = [
           { id: 1, name: 'Scooby Doo' },
           { id: 2, name: 'Shaggy Rodgers' },
@@ -8710,10 +8713,10 @@ app
       }, 650);
     };
 
-    $scope.clearValue = function() {
+    $scope.clearValue = function () {
       $scope.myModel = undefined;
     };
-    $scope.save = function() {
+    $scope.save = function () {
       alert('Form was valid!');
     };
 
@@ -8727,7 +8730,7 @@ app
 
 app
 
-  .controller('mtSidenavCtrl', function($scope, $timeout, $mdSidenav, $mdUtil, $log) {
+  .controller('mtSidenavCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
 
     $scope.page = {
       title: 'Sidenav',
@@ -8741,13 +8744,13 @@ app
      * report completion in console
      */
     function buildToggler(navID) {
-      var debounceFn =  $mdUtil.debounce(function(){
+      var debounceFn = $mdUtil.debounce(function () {
         $mdSidenav(navID)
           .toggle()
           .then(function () {
             $log.debug("toggle " + navID + " is done");
           });
-      },200);
+      }, 200);
       return debounceFn;
     }
 
@@ -8778,7 +8781,7 @@ app
 
 app
 
-  .controller('mtSliderCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtSliderCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Slider',
@@ -8793,10 +8796,10 @@ app
     $scope.rating1 = 30;
     $scope.rating2 = 70;
     $scope.rating3 = 70;
-	$scope.rating4 = 2;
-	$scope.rating5 = 2;
-	$scope.rating6 = 3;
-	$scope.rating7 = 60;
+    $scope.rating4 = 2;
+    $scope.rating5 = 2;
+    $scope.rating6 = 3;
+    $scope.rating7 = 60;
     $scope.disabled1 = 0;
     $scope.disabled2 = 70;
 
@@ -8810,7 +8813,7 @@ app
 
 app
 
-  .controller('mtSubheaderCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtSubheaderCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Subheader',
@@ -8820,77 +8823,77 @@ app
     var imagePath = 'http://placekitten.com/g/600/600';
     $scope.messages = [
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
         notes: " I'll be in your neighborhood doing errands"
       },
       {
-        face : imagePath,
+        face: imagePath,
         what: 'Brunch this weekend?',
         who: 'Min Li Chan',
         when: '3:08PM',
@@ -8900,7 +8903,7 @@ app
 
   })
 
-  .config(function($mdThemingProvider) {
+  .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('altTheme')
       .primaryPalette('purple');
   });
@@ -8913,17 +8916,17 @@ app
 
 app
 
-  .controller('mtSwipeCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtSwipeCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Swipe',
       subtitle: 'Place subtitle here...'
     };
 
-    $scope.onSwipeLeft = function(ev) {
+    $scope.onSwipeLeft = function (ev) {
       alert('You swiped left!!');
     };
-    $scope.onSwipeRight = function(ev) {
+    $scope.onSwipeRight = function (ev) {
       alert('You swiped right!!');
     };
 
@@ -8937,7 +8940,7 @@ app
 
 app
 
-  .controller('mtSwitchCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtSwitchCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Switch',
@@ -8949,7 +8952,7 @@ app
       cb4: true,
       cb5: false
     };
-    $scope.onChange = function(cbState) {
+    $scope.onChange = function (cbState) {
       $scope.message = "The switch is now: " + cbState;
     };
 
@@ -8963,7 +8966,7 @@ app
 
 app
 
-  .controller('mtTabsCtrl', function($scope, $timeout, $log) {
+  .controller('mtTabsCtrl', function ($scope, $timeout, $log) {
 
     $scope.page = {
       title: 'Tabs',
@@ -8971,31 +8974,31 @@ app
     };
 
     var tabs = [
-        { title: 'One', content: "Tabs will become paginated if there isn't enough room for them."},
-        { title: 'Two', content: "You can swipe left and right on a mobile device to change tabs."},
-        { title: 'Three', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
-        { title: 'Four', content: "If you set the selected tab binding to -1, it will leave no tab selected."},
-        { title: 'Five', content: "If you remove a tab, it will try to select a new one."},
-        { title: 'Six', content: "There's an ink bar that follows the selected tab, you can turn it off if you want."},
-        { title: 'Seven', content: "If you set ng-disabled on a tab, it becomes unselectable. If the currently selected tab becomes disabled, it will try to select the next tab."},
-        { title: 'Eight', content: "If you look at the source, you're using tabs to look at a demo for tabs. Recursion!"},
-        { title: 'Nine', content: "If you set md-theme=\"green\" on the md-tabs element, you'll get green tabs."},
-        { title: 'Ten', content: "If you're still reading this, you should just go check out the API docs for tabs!"}
-      ],
+      { title: 'One', content: "Tabs will become paginated if there isn't enough room for them." },
+      { title: 'Two', content: "You can swipe left and right on a mobile device to change tabs." },
+      { title: 'Three', content: "You can bind the selected tab via the selected attribute on the md-tabs element." },
+      { title: 'Four', content: "If you set the selected tab binding to -1, it will leave no tab selected." },
+      { title: 'Five', content: "If you remove a tab, it will try to select a new one." },
+      { title: 'Six', content: "There's an ink bar that follows the selected tab, you can turn it off if you want." },
+      { title: 'Seven', content: "If you set ng-disabled on a tab, it becomes unselectable. If the currently selected tab becomes disabled, it will try to select the next tab." },
+      { title: 'Eight', content: "If you look at the source, you're using tabs to look at a demo for tabs. Recursion!" },
+      { title: 'Nine', content: "If you set md-theme=\"green\" on the md-tabs element, you'll get green tabs." },
+      { title: 'Ten', content: "If you're still reading this, you should just go check out the API docs for tabs!" }
+    ],
       selected = null,
       previous = null;
 
     $scope.tabs = tabs;
     $scope.selectedIndex = 2;
-    $scope.$watch('selectedIndex', function(current, old){
+    $scope.$watch('selectedIndex', function (current, old) {
       previous = selected;
       selected = tabs[current];
-      if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previous.title + '!');
-      if ( current + 1 )                $log.debug('Hello ' + selected.title + '!');
+      if (old + 1 && (old != current)) $log.debug('Goodbye ' + previous.title + '!');
+      if (current + 1) $log.debug('Hello ' + selected.title + '!');
     });
     $scope.addTab = function (title, view) {
       view = view || title + " Content View";
-      tabs.push({ title: title, content: view, disabled: false});
+      tabs.push({ title: title, content: view, disabled: false });
     };
     $scope.removeTab = function (tab) {
       var index = tabs.indexOf(tab);
@@ -9004,14 +9007,14 @@ app
 
     $scope.data = {
       selectedIndex: 0,
-      secondLocked:  true,
-      secondLabel:   "Item Two",
-      bottom:        false
+      secondLocked: true,
+      secondLabel: "Item Two",
+      bottom: false
     };
-    $scope.next = function() {
-      $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;
+    $scope.next = function () {
+      $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2);
     };
-    $scope.previous = function() {
+    $scope.previous = function () {
       $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
     };
 
@@ -9025,7 +9028,7 @@ app
 
 app
 
-  .controller('mtToastCtrl', function($scope, $mdToast, $animate) {
+  .controller('mtToastCtrl', function ($scope, $mdToast, $animate) {
 
     $scope.page = {
       title: 'Toast',
@@ -9038,12 +9041,12 @@ app
       left: false,
       right: true
     };
-    $scope.getToastPosition = function() {
+    $scope.getToastPosition = function () {
       return Object.keys($scope.toastPosition)
-        .filter(function(pos) { return $scope.toastPosition[pos]; })
+        .filter(function (pos) { return $scope.toastPosition[pos]; })
         .join(' ');
     };
-    $scope.showCustomToast = function() {
+    $scope.showCustomToast = function () {
       $mdToast.show({
         parent: angular.element(document.querySelector('#toastContainer')),
         controller: 'ToastShowCtrl',
@@ -9052,7 +9055,7 @@ app
         position: $scope.getToastPosition()
       });
     };
-    $scope.showSimpleToast = function() {
+    $scope.showSimpleToast = function () {
       $mdToast.show(
         $mdToast.simple()
           .parent(angular.element(document.querySelector('#toastContainer')))
@@ -9061,15 +9064,15 @@ app
           .hideDelay(3000)
       );
     };
-    $scope.showActionToast = function() {
+    $scope.showActionToast = function () {
       var toast = $mdToast.simple()
         .parent(angular.element(document.querySelector('#toastContainer')))
         .content('Action Toast!')
         .action('OK')
         .highlightAction(false)
         .position($scope.getToastPosition());
-      $mdToast.show(toast).then(function(response) {
-        if ( response == 'ok' ) {
+      $mdToast.show(toast).then(function (response) {
+        if (response == 'ok') {
           alert('You clicked \'OK\'.');
         }
       });
@@ -9077,8 +9080,8 @@ app
 
   })
 
-  .controller('ToastShowCtrl', function($scope, $mdToast) {
-    $scope.closeToast = function() {
+  .controller('ToastShowCtrl', function ($scope, $mdToast) {
+    $scope.closeToast = function () {
       $mdToast.hide();
     };
   });
@@ -9091,7 +9094,7 @@ app
 
 app
 
-  .controller('mtToolbarCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtToolbarCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Toolbar',
@@ -9119,7 +9122,7 @@ app
 
 app
 
-  .controller('mtTooltipCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtTooltipCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Tooltip',
@@ -9138,7 +9141,7 @@ app
 
 app
 
-  .controller('mtWhiteframeCtrl', function($scope, $timeout, $mdBottomSheet) {
+  .controller('mtWhiteframeCtrl', function ($scope, $timeout, $mdBottomSheet) {
 
     $scope.page = {
       title: 'Whiteframe',
@@ -9147,45 +9150,45 @@ app
 
   });
 
-  
- app.directive('addUser', function() {
+
+app.directive('addUser', function () {
   return {
     restrict: 'E',
-	replace : true,
-	controller : "AddUserCtrl",
+    replace: true,
+    controller: "AddUserCtrl",
     templateUrl: '/elika/views/tmpl/admin/user/add-user.html',
-	
+
   };
 });
 
-app.controller('AddUserCtrl',function($scope){
-		
-	$scope.AddUserFunction = function(){
-		$http({
-			url: 'http://35.160.142.158:8080/user/add',
-			method: 'POST',
-			data: $scope.user,
-			dataType : 'JSON',
-			headers: {
-				"Content-type": "application/json",
-			}
-		})
-		.success(function(response) {
-			if(response.status == true){
-				if(response.msg == 'Login_Success'){
-					$state.go('app.admin.dashboard');
-				}
-			}else{
-				if(response.msg == 'Invalid_Credentials'){
-					$scope.message = 'Please enter correct email id and password.';
-				}
-			}
-		})
-		.error(function(){
-			
-		})
+app.controller('AddUserCtrl', function ($scope) {
 
-	}
+  $scope.AddUserFunction = function () {
+    $http({
+      url: 'http://35.160.142.158:8080/user/add',
+      method: 'POST',
+      data: $scope.user,
+      dataType: 'JSON',
+      headers: {
+        "Content-type": "application/json",
+      }
+    })
+      .success(function (response) {
+        if (response.status == true) {
+          if (response.msg == 'Login_Success') {
+            $state.go('app.admin.dashboard');
+          }
+        } else {
+          if (response.msg == 'Invalid_Credentials') {
+            $scope.message = 'Please enter correct email id and password.';
+          }
+        }
+      })
+      .error(function () {
+
+      })
+
+  }
 });
 
 
@@ -9201,34 +9204,34 @@ app.controller('AddUserCtrl',function($scope){
 app
   .controller('ServicePlanCtrl', function ($scope, $filter, $http) {
     $scope.page = {
-		title: 'Elika Service Plan',
+      title: 'Elika Service Plan',
     };
-	
-	$scope.plans = [{
+
+    $scope.plans = [{
       title: 'Cloud Storage',
-	  value: 'Unlimited',
-	  price:'12.95',
-    },{
+      value: 'Unlimited',
+      price: '12.95',
+    }, {
       title: 'Cellular Data',
-	  value: '150 MB',
-	  price:'5.00',
-    },{
+      value: '150 MB',
+      price: '5.00',
+    }, {
       title: 'Cellular Module',
-	  value: '150 Minutes',
-	  price:'7.00',
-    },{
+      value: '150 Minutes',
+      price: '7.00',
+    }, {
       title: 'Cellular Transferred',
-	  value: '150',
-	  price:'7.00',
-    },{
+      value: '150',
+      price: '7.00',
+    }, {
       title: 'VoIP',
-	  value: '150 Minutes',
-	  price:'8.00',
+      value: '150 Minutes',
+      price: '8.00',
     }];
-	
-	$scope.imagePath = 'http://localhost/elika/images/';
-	
-});
+
+    $scope.imagePath = 'http://localhost/elika/images/';
+
+  });
 'use strict';
 /**
  * @ngdoc function
@@ -9240,12 +9243,12 @@ app
 app
   .controller('ChangeServicePlanCtrl', function ($scope, $filter, $http) {
     $scope.page = {
-		title: 'Change Service Plan',
+      title: 'Change Service Plan',
     };
-	
-	$scope.imagePath = 'http://localhost/elika/images/';
-	
-});
+
+    $scope.imagePath = 'http://localhost/elika/images/';
+
+  });
 
 'use strict';
 /**
@@ -9258,12 +9261,12 @@ app
 app
   .controller('UpgradeServicePlanCtrl', function ($scope, $filter, $http) {
     $scope.page = {
-		title: 'Upgrade Service Plan',
+      title: 'Upgrade Service Plan',
     };
-	
-	$scope.imagePath = 'http://localhost/elika/images/';
-	
-});
+
+    $scope.imagePath = 'http://localhost/elika/images/';
+
+  });
 
 'use strict';
 /**
@@ -9275,12 +9278,12 @@ app
  */
 app
   .controller('BillingInfomationCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Billing Infomation',
       subtitle: 'Place subtitle here...'
     };
-	
-});
+
+  });
 
 'use strict';
 /**
@@ -9292,16 +9295,16 @@ app
  */
 app
   .controller('PaymentCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Payment',
       subtitle: 'Place subtitle here...'
     };
-	
-	$scope.setCVV = function(cvv){
-		$(".entercvv").hide();
-		$("#"+cvv).show();
-	}
-});
+
+    $scope.setCVV = function (cvv) {
+      $(".entercvv").hide();
+      $("#" + cvv).show();
+    }
+  });
 
 'use strict';
 /**
@@ -9313,168 +9316,163 @@ app
  */
 app
   .controller('PaymentConfirmationCtrl', function ($scope) {
-     $scope.page = {
+    $scope.page = {
       title: 'Payment Confirmation',
       subtitle: 'Place subtitle here...'
     };
-	
-});
+
+  });
 
 app.service('arrayPushService', function arrayPushService() {
-	this.arrayPush = function(response_data , parent_array) {
-        try
-		{
-			if(response_data.length > 0 )
-			{	
-				for(var cnt_i=0; cnt_i < response_data.length; cnt_i++ )
-				{
-					parent_array.push(response_data[cnt_i]);
-					
-				}
-				return parent_array ;
-			}
-			else
-			{
-				return parent_array ;
-			}	
-		}
-		catch(e)
-		{
-			console.log(e);
-		}
+  this.arrayPush = function (response_data, parent_array) {
+    try {
+      if (response_data.length > 0) {
+        for (var cnt_i = 0; cnt_i < response_data.length; cnt_i++) {
+          parent_array.push(response_data[cnt_i]);
+
+        }
+        return parent_array;
+      }
+      else {
+        return parent_array;
+      }
     }
-   
+    catch (e) {
+      console.log(e);
+    }
+  }
+
 });
-app.filter('capitalize', function() {
-    return function(input) {
-      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
-    }
+app.filter('capitalize', function () {
+  return function (input) {
+    return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+  }
 });
 
 app.directive('fileModel', ['$parse', function ($parse) {
-            return {
-               restrict: 'A',
-               link: function(scope, element, attrs) {
-                  var model = $parse(attrs.fileModel);
-                  var modelSetter = model.assign;
-                  
-                  element.bind('change', function(){
-                     scope.$apply(function(){
-                        modelSetter(scope, element[0].files[0]);
-                     });
-                  });
-               }
-            };
-         }]);
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var model = $parse(attrs.fileModel);
+      var modelSetter = model.assign;
+
+      element.bind('change', function () {
+        scope.$apply(function () {
+          modelSetter(scope, element[0].files[0]);
+        });
+      });
+    }
+  };
+}]);
 
 app.service('fileUpload', ['$http', function ($http) {
-            this.uploadFileToUrl = function(file, uploadUrl){
-               var fd = new FormData();
-               fd.append('file', file);
-            
-               $http.post(uploadUrl, fd, {
-                  transformRequest: angular.identity,
-                  headers: {'Content-Type': undefined}
-               })
-            
-               .success(function(){
-               })
-            
-               .error(function(){
-               });
-            }
-         }]);
-app.service('errorHandler',  function ($http,$location,toaster,$cookies) {
-	this.sessionExpired = function(){
-		toaster.pop('error','Session Expired');
-		$cookies.remove("token");
-		$location.path('/core/login');
-		return true;
-	}
- });
+  this.uploadFileToUrl = function (file, uploadUrl) {
+    var fd = new FormData();
+    fd.append('file', file);
 
-app.service('schedul', function($http, baseURL, $cookies,appConstants) {
-    this.getScheduleByFacility = function (facility_id) {
-        return $http({
-				method: appConstants.getMethod,
-				url: baseURL+appConstants.schedulelistschedule+'?facility_id='+facility_id,
-				dataType : appConstants.dataType,
-				headers: {
-					"Content-type": appConstants.contentType,
-					"Authorization": $cookies.get(appConstants.sessionTokenCookieID)
-				}
-				})
-				.success(function(response){
-					response.data;
-				})
-    }
+    $http.post(uploadUrl, fd, {
+      transformRequest: angular.identity,
+      headers: { 'Content-Type': undefined }
+    })
+
+      .success(function () {
+      })
+
+      .error(function () {
+      });
+  }
+}]);
+app.service('errorHandler', function ($http, $location, toaster, $cookies) {
+  this.sessionExpired = function () {
+    toaster.pop('error', 'Session Expired');
+    $cookies.remove("token");
+    $location.path('/core/login');
+    return true;
+  }
+});
+
+app.service('schedul', function ($http, baseURL, $cookies, appConstants) {
+  this.getScheduleByFacility = function (facility_id) {
+    return $http({
+      method: appConstants.getMethod,
+      url: baseURL + appConstants.schedulelistschedule + '?facility_id=' + facility_id,
+      dataType: appConstants.dataType,
+      headers: {
+        "Content-type": appConstants.contentType,
+        "Authorization": $cookies.get(appConstants.sessionTokenCookieID)
+      }
+    })
+      .success(function (response) {
+        response.data;
+      })
+  }
 
 });
 
 
 //...Anchor tag disable Directive..............................................................
-app.directive('aDisabled', function() {
-    return {
-        compile: function(tElement, tAttrs, transclude) {
-            //Disable ngClick
-            tAttrs["ngClick"] = "!("+tAttrs["aDisabled"]+") && ("+tAttrs["ngClick"]+")";
+app.directive('aDisabled', function () {
+  return {
+    compile: function (tElement, tAttrs, transclude) {
+      //Disable ngClick
+      tAttrs["ngClick"] = "!(" + tAttrs["aDisabled"] + ") && (" + tAttrs["ngClick"] + ")";
 
-            //return a link function
-            return function (scope, iElement, iAttrs) {
+      //return a link function
+      return function (scope, iElement, iAttrs) {
 
-                //Toggle "disabled" to class when aDisabled becomes true
-                scope.$watch(iAttrs["aDisabled"], function(newValue) {
-                    if (newValue !== undefined) {
-                        iElement.toggleClass("disabled", newValue);
-                    }
-                });
+        //Toggle "disabled" to class when aDisabled becomes true
+        scope.$watch(iAttrs["aDisabled"], function (newValue) {
+          if (newValue !== undefined) {
+            iElement.toggleClass("disabled", newValue);
+          }
+        });
 
-                //Disable href on click
-                iElement.on("click", function(e) {
-                    if (scope.$eval(iAttrs["aDisabled"])) {
-                        e.preventDefault();
-                    }
-                });
-            };
-        }
-    };
+        //Disable href on click
+        iElement.on("click", function (e) {
+          if (scope.$eval(iAttrs["aDisabled"])) {
+            e.preventDefault();
+          }
+        });
+      };
+    }
+  };
 });
 
 
 app.directive('username', function username() {
-      return {
-		template: '{{userFirstName}}',
-		controller:function($scope,$cookies){
-			$scope.userFirstName = $cookies.get('userFirstName');
-			$scope.userLastName = $cookies.get('userLastName');
-		}
-	  };
-});
-    
-app.filter('emptyVal', function() {
-    return function(input) {
-      return (input == null || input == 'null' || input == 0)? 0 : input;
+  return {
+    template: '{{userFirstName}}',
+    controller: function ($scope, $cookies) {
+      $scope.userFirstName = $cookies.get('userFirstName');
+      $scope.userLastName = $cookies.get('userLastName');
     }
-});
-app.directive("number",function(){
-	return {
-		restrict: 'A',
-		link:function(scope,element,attrs){
-			element.on('keypress',function(e){
-				console.log(e);
-				if(!((e.charCode >= 48 && e.charCode <= 57)||e.charCode == 0)){
-					e.preventDefault();
-				}
-			});
-		}
-	}
+  };
 });
 
-app.directive('logoutBtn', ['$location','$cookies', function($location,$cookies) {
+app.filter('emptyVal', function () {
+  return function (input) {
+    return (input == null || input == 'null' || input == 0) ? 0 : input;
+  }
+});
+app.directive("number", function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      element.on('keypress', function (e) {
+        console.log(e);
+        if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
+          e.preventDefault();
+        }
+      });
+    }
+  }
+});
+
+app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
   function link(scope, element, attrs) {
-    element.bind('click',function(){
-        $cookies.remove("token");
-        $location.path('/core/login');
+    element.bind('click', function () {
+      $cookies.remove("token");
+      $location.path('/core/login');
     });
   }
 
@@ -9484,18 +9482,74 @@ app.directive('logoutBtn', ['$location','$cookies', function($location,$cookies)
 }]);
 
 app
-    .filter('facilityStatus', function() {
-        return function(x) {
-            if(x == 0){return "In-Active";}else{ return "Active";}
-        }
-    });
-
-app.filter('deviceFeatureFilter', function() {
-    return function(input) {
-        if(input == 1){
-            return "online";
-        }else{
-            return "offline";
-        }
+  .filter('facilityStatus', function () {
+    return function (x) {
+      if (x == 0) { return "In-Active"; } else { return "Active"; }
     }
+  });
+
+app.filter('deviceFeatureFilter', function () {
+  return function (input) {
+    if (input == 1) {
+      return "online";
+    } else {
+      return "offline";
+    }
+  } 
+});
+app.filter("timeago", function () {
+  //time: the time
+  //local: compared to what time? default: now
+  //raw: wheter you want in a format of "5 minutes ago", or "5 minutes"
+  return function (time, local, raw) {
+    if (!time) return "never";
+
+    if (!local) {
+      (local = Date.now())
+    }
+
+    if (angular.isDate(time)) {
+      time = time.getTime();
+    } else if (typeof time === "string") {
+      time = new Date(time).getTime();
+    }
+
+    if (angular.isDate(local)) {
+      local = local.getTime();
+    } else if (typeof local === "string") {
+      local = new Date(local).getTime();
+    }
+
+    if (typeof time !== 'number' || typeof local !== 'number') {
+      return;
+    }
+
+    var
+      offset = Math.abs((local - time) / 1000),
+      span = [],
+      MINUTE = 60,
+      HOUR = 3600,
+      DAY = 86400,
+      WEEK = 604800,
+      MONTH = 2629744,
+      YEAR = 31556926,
+      DECADE = 315569260;
+
+    if (offset <= MINUTE) span = ['', raw ? 'now' : 'less than a minute'];
+    else if (offset < (MINUTE * 60)) span = [Math.round(Math.abs(offset / MINUTE)), 'min'];
+    else if (offset < (HOUR * 24)) span = [Math.round(Math.abs(offset / HOUR)), 'hr'];
+    else if (offset < (DAY * 7)) span = [Math.round(Math.abs(offset / DAY)), 'day'];
+    else if (offset < (WEEK * 52)) span = [Math.round(Math.abs(offset / WEEK)), 'week'];
+    else if (offset < (YEAR * 10)) span = [Math.round(Math.abs(offset / YEAR)), 'year'];
+    else if (offset < (DECADE * 100)) span = [Math.round(Math.abs(offset / DECADE)), 'decade'];
+    else span = ['', 'a long time'];
+
+    span[1] += (span[0] === 0 || span[0] > 1) ? 's' : '';
+    span = span.join(' ');
+
+    if (raw === true) {
+      return span;
+    }
+    return (time <= local) ? span + ' before' : 'before' + span;
+  }
 });

@@ -1,10 +1,9 @@
 <div class="page page-profile">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
-	
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,16 +11,15 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<p>{{page.subtitle}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<flip-header></flip-header>			
+			</div>
+			<flip-header></flip-header>
 		</div>
-		
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
@@ -31,25 +29,25 @@
 							<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 							<span class="edittxt">Change</span>
 						</div>
-						<h3 class="mb-10"><strong>Jhon Rockwell</strong></h3>
-						<span class="text-muted">You're logged in as admin@vvdntech.com</span>
-						<span class="text-muted">+1 212 1467 1212</span>
+						<h3 class="mb-10"><strong>{{currentUser.user_first_name+' '+currentUser.user_last_name}}</strong></h3>
+						<span class="text-muted">You're logged in as {{currentUser.user_email}}</span>
+						<span class="text-muted">{{currentUser.user_phone_no}}</span>
 						<div class="form-group profiledetail mt-40">
-							<p><label>Last access time</label> : before 45min</p>
-							<p><label>Member Since</label> : 12 April, 2015</p>
+							<p><label>Last access time</label>: {{(currentUser.user_last_access_time*1000) | timeago}}</p>
+							<p><label>Member Since</label>: {{getDateTimeFormat(currentUser.user_created_on*1000)}}</p>
 						</div>
 						<div class="mt-40">
 							<a href="" class="btn btn-rounded-20 btn-sm btn-blue"><i class="fa fa-circle"></i> Active</a>
 						</div>
-					</div>   
+					</div>
 				</section>
 			</div>
-			
+
 			<div class="col-sm-12 col-md-8">
-				<section class="tile tile-simple"> 
-					<div class="tile-body p-0"> 
-						<uib-tabset class="tabs-dark"> 
-						
+				<section class="tile tile-simple">
+					<div class="tile-body p-0">
+						<uib-tabset class="tabs-dark">
+
 							<uib-tab heading="Change Password">
 								<div class="wrap-reset">
 									<div class="form-group legend">
@@ -61,15 +59,18 @@
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">Current Password</label>
-														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.current_password" class="form-control" value="">
+														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.current_password" class="form-control"
+														 value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">New Password</label>
-														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control" value="">
+														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control"
+														 value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Password</label>
-														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.confirm_password" class="form-control" value="">
+														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.confirm_password" class="form-control"
+														 value="">
 													</div>
 												</div>
 											</div>
@@ -84,7 +85,7 @@
 									</form>
 								</div>
 							</uib-tab>
-							
+
 							<uib-tab heading="Manage Account">
 								<div class="wrap-reset">
 									<div class="form-group legend">
@@ -96,7 +97,8 @@
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">New Email</label>
-														<input type="email" name="" id="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-model="profileSettings.manageAccount.new_email" class="form-control" value="">
+														<input type="email" name="" id="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-model="profileSettings.manageAccount.new_email"
+														 class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Email</label>
@@ -104,7 +106,8 @@
 													</div>
 													<div class="form-group overflow">
 														<label for="">Current password</label>
-														<input type="password" name="" id="" required class="form-control" ng-model="profileSettings.manageAccount.current_password" value="">
+														<input type="password" name="" id="" required class="form-control" ng-model="profileSettings.manageAccount.current_password"
+														 value="">
 													</div>
 												</div>
 											</div>
@@ -119,29 +122,32 @@
 									</form>
 								</div>
 							</uib-tab>
-							
+
 							<uib-tab heading="Change Security Questions">
 								<div class="wrap-reset">
 									<div class="form-group legend">
 										<h4><strong>Security</strong> Questions</h4>
 									</div>
-									<form name="form1" role="form" ng-submit="changeSecurityQuestion()">
+									<form name="form1" role="form" ng-submit="changeSecurityQuestion()" autocomplete="false">
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">Select Secret Question</label>
-														<select id="selectedQuestion1" name="selectedQuestion1" required class="form-control" ng-model="profileSettings.changeSecurityQuestions.sq_id" ng-options="sques.sq_id as sques.sq_question for sques in lstSecurityQuestions track by sques.sq_id">
+														<select id="selectedQuestion1" name="selectedQuestion1" required class="form-control" ng-model="profileSettings.changeSecurityQuestions.sq_id"
+														 ng-options="sques.sq_id as sques.sq_question for sques in lstSecurityQuestions track by sques.sq_id">
 															<option value="">Select Secret Question</option>
 														</select>
 													</div>
 													<div class="form-group overflow">
-														<label for="">Answer</label>
-														<input type="text" name="" autocomplete="false" required ng-model="profileSettings.changeSecurityQuestions.answer" class="form-control" value="">
+														<label for="answer">Answer</label>
+														<input  name="answer" autocomplete="off" required ng-model="profileSettings.changeSecurityQuestions.answer" class="form-control"
+														 >
 													</div>
 													<div class="form-group overflow">
-														<label for="">Current password</label>
-														<input type="password" name="" autocomplete="false" required ng-model="profileSettings.changeSecurityQuestions.current_password" class="form-control" value="">
+														<label for="password">Current password</label>
+														<input type="password" name="current_password" autocomplete="off" required ng-model="profileSettings.changeSecurityQuestions.current_password"
+														 class="form-control">
 													</div>
 												</div>
 											</div>
@@ -156,7 +162,6 @@
 									</form>
 								</div>
 							</uib-tab>
-							
 						</uib-tabset>
 					</div>
 				</section>
