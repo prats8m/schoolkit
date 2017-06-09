@@ -213,11 +213,11 @@ app
             var ex_date = userData.expirationdate;
             var date = new Date(userData.expirationdate)  
             userData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
-            delete userData["expirationdate"];
 
             if (!userData.expirationdate)
                 userData.expiration_date = appConstants.empty;
 
+            delete userData["expirationdate"];
 
             // userData.facility_id = parseInt($cookies.get("facilityId"));;
             if (userData.password != userData.cpassword) {
@@ -901,7 +901,7 @@ app
                     $scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
                     $scope.editUser.address = angular.copy($scope.userData.user_address);
                     $scope.editUser.email = angular.copy($scope.userData.user_email);
-                    $scope.editUser.expiration_date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
+                    $scope.editUser.expirationdate = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
                     $scope.editUser.status = angular.copy($scope.userData.user_status);
                     $scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
                     // $scope.editAccess.access_code = angular.copy($scope.userData.access_code);
@@ -1177,9 +1177,16 @@ app
             submitData.name_on_lcd = submitData.user_name_on_lcd;
             submitData.zipcode = parseInt(submitData.user_zipcode);
             submitData.facility_id = parseInt($cookies.get("facilityId"));
-            submitData.expiration_date = submitData.expiration_date;
+            // submitData.expiration_date = submitData.expiration_date;
+
+            var ex_date = submitData.expirationdate;
+            var date = new Date(submitData.expirationdate)  
+            submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+            delete submitData["expirationdate"];
+
             $rootScope.masters = [];
             userSvc.submitEditUser(appConstants.useredit, appConstants.putMethod, {}, submitData, function (succResponse) {
+              submitData.expirationdate = ex_date;
                 $scope.editUserMessage = appConstants.empty;
                 if (succResponse.status) {
                     if ($scope.myFile) {
