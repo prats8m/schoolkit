@@ -210,13 +210,14 @@ app
             //userData.user_phone_no = parseInt(userData.user_phone_no);
             userData.zip_code = parseInt(userData.zip_code);
             userData.user_type = appConstants.usertype.admin;
-            if (!userData.expirationdate)
-                userData.expirationdate = appConstants.empty;
-
             var ex_date = userData.expirationdate;
             var date = new Date(userData.expirationdate)  
             userData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
             delete userData["expirationdate"];
+
+            if (!userData.expirationdate)
+                userData.expiration_date = appConstants.empty;
+
 
             // userData.facility_id = parseInt($cookies.get("facilityId"));;
             if (userData.password != userData.cpassword) {
