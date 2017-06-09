@@ -210,8 +210,14 @@ app
             //userData.user_phone_no = parseInt(userData.user_phone_no);
             userData.zip_code = parseInt(userData.zip_code);
             userData.user_type = appConstants.usertype.admin;
-            if (!userData.expiration_date)
-                userData.expiration_date = appConstants.empty;
+            if (!userData.expirationdate)
+                userData.expirationdate = appConstants.empty;
+
+            var ex_date = userData.expirationdate;
+            var date = new Date(userData.expirationdate)  
+            userData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+            delete userData["expirationdate"];
+
             // userData.facility_id = parseInt($cookies.get("facilityId"));;
             if (userData.password != userData.cpassword) {
                 alert(appConstants.messageOncheckifpwdAndcnfrmpwdSame);
@@ -219,6 +225,7 @@ app
             }
             delete userData.photo;
             userSvc.submitUserData(appConstants.useradd, appConstants.postMethod, {}, userData, function (succResponse) {
+                userData.expirationdate = ex_date;
                 $scope.user_error = appConstants.empty;
                 $scope.accesscode = {};
                 var x = Math.floor(Math.random() * 9999999999) + 10000;
