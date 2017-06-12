@@ -24,8 +24,7 @@ app
 			//$state.go('app.firmware.firmware-management');
 			$scope.deleteFirmware(id);
 		}, function() {
-			$scope.result = 'You decided to keep firmware.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			toaster.pop('info', 'You decided to keep Firmware.');
 		});
     };
 

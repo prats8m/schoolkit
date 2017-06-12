@@ -64,7 +64,7 @@
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
 						<h3 class="mb-10"><strong>{{device.device_name}}</strong></h3>
-						<span class="text-muted">{{device.device_model}}</span>
+						<span class="text-muted">{{selectedDeviceModel}}</span>
 						<div class="mt-40">
 							<a ui-sref="app.inventory.view-device({device_id:device.device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk mr-5">View Device</a>
 							<a ng-click="showConfirm($event,device.device_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
@@ -87,7 +87,7 @@
 				</section>
 			</div>
 			
-			<div class="col-sm-12 col-md-8" ng-controller="EditDeviceCtrl"> 
+			<div class="col-sm-12 col-md-8"> 
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0">
 						<div class="tile-header dvd dvd-btm">

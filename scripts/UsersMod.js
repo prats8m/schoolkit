@@ -1472,15 +1472,28 @@ app
             });
         };
 
-        $scope.unassignUserGroupEdit = function (user_group_id, facility_id) {
-            userSvc.unassignUserGroupEdit(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: parseInt($stateParams.user_id), user_group_id: user_group_id }, function (succResponse) {
-                if (succResponse.status) {
-                    toaster.pop(appConstants.success, appConstants._successUserGroupRemoved);
-                }
-                $timeout(function () {
-                    $scope.editassignedGroup();
+        $scope.unassignUserGroupEdit = function (ev, user_group_id, facility_id) {
+            $scope.showConfirm(ev, user_group_id, facility_id)
+        };
+        $scope.showConfirm = function (ev, user_group_id, facility_id) {
+            var confirm = $mdDialog.confirm()
+                .title('Would you like to remove User from User Group ?')
+                .content('')
+                .ok('Yes')
+                .cancel('No')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+                userSvc.unassignUserGroupEdit(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: parseInt($stateParams.user_id), user_group_id: user_group_id }, function (succResponse) {
+                    if (succResponse.status) {
+                        toaster.pop(appConstants.success, appConstants._successUserGroupRemoved);
+                    }
+                    $timeout(function () {
+                        $scope.editassignedGroup();
+                    });
+                    $timeout(function () { $rootScope.userNotAssignedGroup(facility_id); })
                 });
-                $timeout(function () { $rootScope.userNotAssignedGroup(facility_id); })
+            }, function () {
+                toaster.pop('info', 'You decided to keep user in User Group.');
             });
         };
 
@@ -1923,18 +1936,31 @@ app
         };
         //End Of User Group Delete
 
-        $scope.unassignUserGroupDetail = function (user_id) {
-            userSvc.unassignUserGroupDetail(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: user_id, user_group_id: parseInt($stateParams.usergroup_id) }, function (succResponse) {
-                if (succResponse.status) {
-                    toaster.pop(appConstants.success, appConstants._successUserRemoved);
-                    $timeout(function () {
-                        $scope.editassignedGroup();
-                    });
-                    $timeout(function () {
-                        $rootScope.userNotAssignedGroup(facility_id);
-                    })
-                }
-            });
+        $scope.unassignUserGroupDetail = function (ev, user_id) {
+            $scope.showConfirm(ev, user_id)
         }
-
+        $scope.showConfirm = function (ev, user_id) {
+            var confirm = $mdDialog.confirm()
+                .title('Would you like to remove User from User Group ?')
+                .content('')
+                .ok('Yes')
+                .cancel('No')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+                userSvc.unassignUserGroupDetail(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: user_id, user_group_id: parseInt($stateParams.usergroup_id) }, function (succResponse) {
+                    if (succResponse.status) {
+                        toaster.pop(appConstants.success, appConstants._successUserRemoved);
+                        $timeout(function () {
+                            $scope.editassignedGroup();
+                        });
+                        $timeout(function () {
+                            $rootScope.userNotAssignedGroup(facility_id);
+                        })
+                        $location.path('/app/admin/user/user-groups');
+                    }
+                });
+            }, function () {
+                toaster.pop('info', 'You decided to keep user in User Group.');
+            });
+        };
     });

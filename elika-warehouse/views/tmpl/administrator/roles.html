@@ -120,7 +120,7 @@
 							<div ng-class="class">
 								<div class="glview ta-c">
 									<md-content>			
-										<md-card ng-repeat="role in aroles | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy">
+										<md-card ng-repeat="role in aroles | limitTo:totalDisplayed | filter:text | filter:title | filter:status | orderBy:myOrderBy track by role.wrd_id">
 											<md-card-content>
 												<h2 class="md-title">{{ role.wrd_name }}</h2>
 												<!-- <p>{{ role.status }}</p>

@@ -163,7 +163,7 @@
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.view-user({user_id: userdetail.user.user_id})">View</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="unassignUserGroupDetail(userdetail.user.user_id)"  ui-sref="app.admin.user.user-groups">Remove</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="unassignUserGroupDetail($event,userdetail.user.user_id)">Remove</a>
 											</div>
 										</md-card>
 									</md-content>
