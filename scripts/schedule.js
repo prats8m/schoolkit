@@ -705,10 +705,21 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		data.block = "";
 		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
-		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
+		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
+		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
+		var start_date = data.selected_schedule_start_date;
+		var date = new Date(data.selected_schedule_start_date)  
+		data.schedule_start_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+
+		var expiration_date = data.selected_schedule_expiration_date;
+		var exp_date = new Date(data.selected_schedule_expiration_date)  
+		data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
+
+
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod,{},$scope.schedule,function (succResponse) {
         	if(succResponse.status){
+				data.schedulestart_date = start_date;
+				data.expiration = expiration_date;
 				toaster.pop(appConstants.success,appConstants.submitSuccessfully);
 				$location.path('/app/admin/schedule/schedule-groups');
             }
