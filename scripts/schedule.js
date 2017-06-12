@@ -110,10 +110,21 @@ app
 		data.block = "";
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date))/1000;
-		data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
+		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date))/1000;
+
+		var start_date = data.schedulestart_date;
+		var date = new Date(data.schedulestart_date)  
+		data.schedule_start_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+
+		var expiration_date = data.expiration;
+		var exp_date = new Date(data.expiration)  
+		data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
+
+		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
 		
 		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
+			data.schedulestart_date = start_date;
+			data.expiration = expiration_date;
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
 				$location.path('/app/admin/schedule/schedule-groups');
