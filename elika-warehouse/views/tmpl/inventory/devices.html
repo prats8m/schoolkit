@@ -193,9 +193,10 @@
 							
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="device in devices | limitTo:totalDisplayed | filter:text | filter:title | filter:client | filter:serialno | filter:registrationcode | orderBy:myOrderBy">
+										<md-card ng-repeat="device in devices | limitTo:totalDisplayed | filter:text | filter:title | filter:client | filter:serialno | filter:registrationcode | orderBy:myOrderBy track by device.device_id">
 											<md-card-content>
 												<h2 class="md-title">{{ device.device_serial_no }}</h2>
+												<p><span>Model No</span> : {{ device.device_model}}</p>
 												<p><span>Client</span> : {{ device.facility_name | warehouseClientNameInList}}</p>
 												<!-- <p><span>Serial No.</span> : {{ device.device_serial_no }}</p> -->
 												<p><span>Reg Code</span> : {{ device.device_registration_code }}</p>
@@ -204,7 +205,7 @@
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.inventory.view-device({device_id:device.device_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.inventory.edit-device({device_id:device.device_id})" ng-disabled="device.facility_name!='null'">Update</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,device.device_id)" ng-disabled="device.facility_name!='null'">Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,device.device_id,device.device_serial_no)" ng-disabled="device.facility_name!='null'">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
