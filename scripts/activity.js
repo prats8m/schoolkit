@@ -92,11 +92,9 @@ app
                 if(succResponse.data != null){
                     $scope.mediafile = (succResponse.data.url != null || succResponse.data.url != "") ? succResponse.data.url:'images/avatar.jpg';
                     $scope.mediatype = succResponse.data.fileType;
-                    console.log();
                 }
             }
         });
     }
-
    
 });

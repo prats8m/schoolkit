@@ -64,7 +64,8 @@ var app = angular
     'dragularModule',
     'angular-loading-bar',
     'ngValidate',
-    'toaster'
+    'toaster',
+    "com.2fdevs.videogular"
   ])
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;

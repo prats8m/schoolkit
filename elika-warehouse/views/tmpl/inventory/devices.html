@@ -71,7 +71,7 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Account Number/ICCID <span class="text-danger">*</span></label>
-														<input type="text" name="account_no" id="" ng-model="device.account_no" class="form-control" number maxlength="16" placeholder="" required>
+														<input type="text" name="account_no" id="" ng-model="device.account_no" class="form-control" number ui-mask="{{'99999 99999 99999 99999'}}" placeholder="" required>
 													</div>
 												</div>
 												<div class="row">
@@ -86,8 +86,8 @@
 												</div>
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
-														<label for="">Phone Number  <span class="text-danger">*</span><small>( +12015550123 )</small></label>
-														<input type="text" name="phone" id="" class="form-control" ng-model="device.phone_no" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}"  required>
+														<label for="">Phone Number  <span class="text-danger">*</span></label>
+														<input type="text" name="phone" id="" class="form-control" ng-model="device.phone_no" ui-mask="{{'(999) 999-9999'}}"  required>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Bluetooth Mac Id <span class="text-danger">*</span></label>
