@@ -98,7 +98,7 @@ var app = angular
       $rootScope.containerClass = toState.containerClass;
 
       if (toState.name === "app.admin.user.add-user") {
-        $cookies.remove("userId");
+       // $cookies.remove("userId");
       }
     });
 

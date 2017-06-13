@@ -77,9 +77,8 @@ app
                         $scope.statusclass = appConstants.dangerstatusClass;
                     }
                 });
-			}, function () {
-				$scope.result = appConstants._cancelFacilityDelete;
-				$scope.statusclass = appConstants.successstatusClass;
+            }, function () {
+                toaster.pop(appConstants.info, appConstants._cancelFacilityDelete);
 			});
 		};
 

@@ -41,9 +41,8 @@ app
                 }
             });
 			//Code end to delete door
-		}, function() {
-			$scope.result = appConstants._messageoncanceltodeletedoors;
-			$scope.statusclass = appConstants.successstatusClass;
+		}, function () {
+			toaster.pop(appConstants.info, appConstants._messageoncanceltodeletedoors);
 		});
     };
 	

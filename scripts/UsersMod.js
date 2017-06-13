@@ -83,8 +83,7 @@ app
                     }
                 });
             }, function () {
-                $scope.result = appConstants._canceluserdeletionmessage;
-                $scope.statusclass = appConstants.successstatusClass;
+                toaster.pop(appConstants.info, appConstants._canceluserdeletionmessage);
             });
         };
 
@@ -211,8 +210,8 @@ app
             userData.zip_code = parseInt(userData.zip_code);
             userData.user_type = appConstants.usertype.admin;
             var ex_date = userData.expirationdate;
-            var date = new Date(userData.expirationdate)  
-            userData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+            var date = new Date(userData.expirationdate)
+            userData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 
             if (!userData.expirationdate)
                 userData.expiration_date = appConstants.empty;
@@ -1180,13 +1179,13 @@ app
             // submitData.expiration_date = submitData.expiration_date;
 
             var ex_date = submitData.expirationdate;
-            var date = new Date(submitData.expirationdate)  
-            submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+            var date = new Date(submitData.expirationdate)
+            submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
             delete submitData["expirationdate"];
 
             $rootScope.masters = [];
             userSvc.submitEditUser(appConstants.useredit, appConstants.putMethod, {}, submitData, function (succResponse) {
-              submitData.expirationdate = ex_date;
+                submitData.expirationdate = ex_date;
                 $scope.editUserMessage = appConstants.empty;
                 if (succResponse.status) {
                     if ($scope.myFile) {
