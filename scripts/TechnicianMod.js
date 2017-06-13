@@ -110,8 +110,8 @@ app
                 $scope.addTechnician = angular.copy($scope.technician);
                 //console.log($scope.addTechnician.expiration_date);
                 var date = (new Date($scope.addTechnician.technician_expiration_date*1000)); 
-                $scope.addTechnician.expirationdate = 
-                (date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear());
+                $scope.addTechnician.expiration_date = 
+                (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
                 //$scope.addTechnician.expiration_date * 1000;
             }
         });
@@ -149,10 +149,10 @@ app
     	if(!form.validate()){
 			return false;
 		}
-        
+        var ex_date = Data.expiration_date;
         Data.expiration_date =  utilitySvc.dateToString(Data.expiration_date);
-        debugger
     	technicianSvc.submitTechProfile(appConstants.edittechnician, appConstants.putMethod,{},Data,function (succResponse) {
+            Data.expiration_date = ex_date;
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants._successfullyuserupdatemessage);
 				$location.path("/app/admin/support/technician");
