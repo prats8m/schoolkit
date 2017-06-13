@@ -60,7 +60,13 @@ app
     	if(!form.validate()){
 			return false;
 		}
+		var ex_date = data.expirationdate;
+        var date = new Date(data.expirationdate);  
+        data.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+        delete data["expirationdate"];
+
     	technicianSvc.addTechnicianSubmit(appConstants.addtechnician, appConstants.postMethod,{},data,function (succResponse) {
+    		data.expirationdate = ex_date;
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                 setTimeout(function(){ $("#close").click(); }, 10);
@@ -91,7 +97,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('TechnicianProfileCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,appConstants,technicianSvc,$stateParams) {
+  .controller('TechnicianProfileCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,appConstants,technicianSvc,$stateParams,utilitySvc) {
      $scope.page = {
       title: appConstants.technicianProfileUiTitle,
       subtitle: appConstants.dashboardSubTitle
@@ -103,7 +109,10 @@ app
                 $scope.technician = succResponse.data;
                 $scope.addTechnician = angular.copy($scope.technician);
                 //console.log($scope.addTechnician.expiration_date);
-                //$scope.addTechnician.expiration_date = $scope.addTechnician.expiration_date * 1000;
+                var date = (new Date($scope.addTechnician.technician_expiration_date*1000)); 
+                $scope.addTechnician.expirationdate = 
+                (date.getDate() + '/' + (date.getMonth() + 1) + '/' +  date.getFullYear());
+                //$scope.addTechnician.expiration_date * 1000;
             }
         });
 	};
@@ -140,6 +149,9 @@ app
     	if(!form.validate()){
 			return false;
 		}
+        
+        Data.expiration_date =  utilitySvc.dateToString(Data.expiration_date);
+        debugger
     	technicianSvc.submitTechProfile(appConstants.edittechnician, appConstants.putMethod,{},Data,function (succResponse) {
         	if(succResponse.status){
                 toaster.pop(appConstants.success, appConstants._successfullyuserupdatemessage);

@@ -162,6 +162,11 @@ app
             return dateTimeObj;
         };
 
+        factoryResp.dateToString = function(expiration_date){
+            var date = new Date(expiration_date)  
+            return date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+        };
+
         return factoryResp;
     }]);
 
