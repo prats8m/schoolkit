@@ -18,7 +18,7 @@ app
         };
 
         technicianSvcResp.addTechnicianSubmit=function(url,method,params,data,cb) {
-            data.expiration_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration_date))/1000;
+            // data.expiration_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration_date))/1000;
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
                     cb(succResponse);
@@ -66,7 +66,7 @@ app
                 phone_number:data.technician_phone,
                 status:data.technician_status,
                 technician_id:data.technician_id,
-                expiration_date:0
+                expiration_date:data.expiration_date
             }
             utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
                 if(succResponse.status){
