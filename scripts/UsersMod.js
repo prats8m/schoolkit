@@ -18,7 +18,7 @@ app
         $rootScope.facilityId = $cookies.get("facilityId");
 
         $timeout(function () {
-            if ($cookies.get("user_id") == undefined) {
+            if ($cookies.get("userId") == undefined) {
                 $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
                 $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
             }
@@ -160,7 +160,7 @@ app
         };
 
         $scope.doorList = function () {
-            userSvc.doorList(appConstants.userlistdoorcredential + parseInt($cookies.get("user_id")), appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.doorList(appConstants.userlistdoorcredential + parseInt($cookies.get("userId")), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.door_lists = succResponse.data;
                 }
@@ -237,7 +237,7 @@ app
                         var file = $scope.myFile;
                         $scope.uploadProfilePic(file, succResponse.data.user_id);
                     }
-                    $cookies.put("user_id", succResponse.data.user_id);
+                    $cookies.put("userId", succResponse.data.user_id);
                     $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
                     $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
                     $("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
@@ -261,7 +261,7 @@ app
         $scope.rfid.status = 1;
 
         $scope.getRfidList = function () {
-            userSvc.getRfidList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("user_id")) + '&type=rfid_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getRfidList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=rfid_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.rfid_code_list = succResponse.data;
                 }
@@ -276,7 +276,7 @@ app
                 $rootScope.rfid_error = appConstants.incompleteform;
                 return false;
             }
-            rfid.user_id = parseInt($cookies.get("user_id"));
+            rfid.user_id = parseInt($cookies.get("userId"));
             rfid.credential_type = "rfid_code";
 
             rfid.details = {};
@@ -326,7 +326,7 @@ app
                 $rootScope.wiegand_error = appConstants.incompleteform;
                 return false;
             }
-            wiegand.user_id = parseInt($cookies.get("user_id"));
+            wiegand.user_id = parseInt($cookies.get("userId"));
             wiegand.credential_type = "wiegand_code";
 
             $scope.wiegand = {};
@@ -379,7 +379,7 @@ app
 
 
         $scope.getPhoneList = function () {
-            userSvc.getPhoneList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("user_id")) + '&type=phone_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getPhoneList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=phone_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.phone_code_list = succResponse.data;
                 }
@@ -387,7 +387,7 @@ app
         };
 
         $scope.getWiegandList = function () {
-            userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("user_id")) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.wiegand_code_list = succResponse.data;
                 }
@@ -399,7 +399,7 @@ app
             if (!phone_form.validate()) {
                 return false;
             }
-            phoneCode.user_id = parseInt($cookies.get("user_id"));
+            phoneCode.user_id = parseInt($cookies.get("userId"));
             phoneCode.credential_type = "phone_code";
             phoneCode.details = {};
             phoneCode.details.phone_code = phoneCode.phone_code;
@@ -441,7 +441,7 @@ app
         };
 
         $scope.getBleList = function () {
-            userSvc.getBleList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("user_id")) + '&type=ble_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getBleList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=ble_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.ble_code_list = succResponse.data;
                 }
@@ -458,7 +458,7 @@ app
                 $scope.blecode_error = appConstants.incompleteform;
                 return false;
             }
-            ble_code.user_id = parseInt($cookies.get("user_id"));
+            ble_code.user_id = parseInt($cookies.get("userId"));
             ble_code.credential_type = "ble_code";
             ble_code.details = {};
             ble_code.details.ble_username = ble_code.ble_name;
@@ -515,7 +515,7 @@ app
 
         //NFC code edit
         $scope.getNfcCodeList = function () {
-            userSvc.getNfcCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("user_id")) + '&type=nfc_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getNfcCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=nfc_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.nfc_code_list = succResponse.data;
                 }
@@ -528,7 +528,7 @@ app
             if (!nfc_form.validate()) {
                 return false;
             }
-            savenfc.user_id = parseInt($cookies.get("user_id"));
+            savenfc.user_id = parseInt($cookies.get("userId"));
             savenfc.credential_type = "nfc_code";
             savenfc.details = {};
             savenfc.details.nfc_code = savenfc.nfc_code;
@@ -570,7 +570,7 @@ app
 
         //End Of NFC Code Edit
         $scope.getAccessCodeList = function () {
-            userSvc.getAccessCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("user_id")) + '&type=access_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getAccessCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=access_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.access_code_list = succResponse.data;
                 }
@@ -584,7 +584,7 @@ app
             if (!access_code.validate()) {
                 return false;
             }
-            accesscode.user_id = parseInt($cookies.get("user_id"));
+            accesscode.user_id = parseInt($cookies.get("userId"));
             accesscode.credential_type = "access_code";
             accesscode.details = {};
             accesscode.details.access_code = accesscode.access_code;
@@ -628,7 +628,7 @@ app
                     arr.push(index);
                 }
             });
-            userSvc.assignUserGroup(appConstants.userassignusergrouop, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("user_id")), user_group_id: arr, facility_id: user_group.facility_id }, function (succResponse) {
+            userSvc.assignUserGroup(appConstants.userassignusergrouop, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), user_group_id: arr, facility_id: user_group.facility_id }, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroupmsg = succResponse.msg;
                     $timeout(function () {
@@ -656,7 +656,7 @@ app
 
 
         $rootScope.unassignUserToUsergroup = function (user_group_id, facility_id) {
-            userSvc.unassignUserToUsergroup(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("user_id")), user_group_id: user_group_id }, function (succResponse) {
+            userSvc.unassignUserToUsergroup(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), user_group_id: user_group_id }, function (succResponse) {
                 if (succResponse.status) {
                     $scope.unassignedUserGroup = appConstants._successUserGroupRemoved;
                 }
@@ -671,7 +671,7 @@ app
         };
 
         $scope.assignedGroup = function () {
-            userSvc.assignedGroup(appConstants.usergroupassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("user_id")) }, function (succResponse) {
+            userSvc.assignedGroup(appConstants.usergroupassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")) }, function (succResponse) {
                 if (succResponse.status) {
                     if (succResponse.data) {
                         $rootScope.assingned_usergroups = succResponse.data;
@@ -682,7 +682,7 @@ app
         };
 
         $scope.unassignedGroup = function (facility_id) {
-            userSvc.unassignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("user_id")), facility_id: facility_id }, function (succResponse) {
+            userSvc.unassignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), facility_id: facility_id }, function (succResponse) {
                 $rootScope.usergroups = {};
                 if (succResponse.status) {
                     $rootScope.usergroup = {};
