@@ -204,6 +204,9 @@
 								<div class="glview" ng-init="deviceInit()">
 									<md-content>			
 										<md-card ng-repeat="device in data | limitTo:totalDisplayed track by $index">
+											<span class="onoroffdevice">
+												<span ng-class="device.device_health == 1 ? 'online' : 'offline'"><i class="fa fa-circle"></i>{{ device.device_health == 1 ? 'online' : 'offline'}}</span>
+											</span>
 											<span class="moreitemsondevice">
 												<a ui-sref="app.admin.device.service-plan"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
 												<a ui-sref="app.admin.device.device-settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>

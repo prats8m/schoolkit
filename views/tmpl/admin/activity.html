@@ -133,7 +133,7 @@
 							<div ng-if="mediatype!='mp4'" class="form-group col-sm-12">
 								<h3 class="mt-0">Screenshot</h3>					
 								<div class="tile-body p-0">
-									<img ng-src="{{mediafile}}" class="userimg" alt="">
+									<img src="{{trustSrc(mediafile)}}" class="userimg" alt="">
 									<!-- <img ng-src="https://elika-v2-devices.s3.amazonaws.com/elika4004/camera/57/snapshots/event_access_grant_2147483647_1495234931.jpeg?AWSAccessKeyId=AKIAJZ4PUZXXG2DABBSQ&Expires=1496147170&Signature=BbGsd%2F5Nqo3tMmzy6dyA8AaxOCM%3D" class="userimg" alt=""> -->
 								</div>
 							</div>
@@ -141,7 +141,8 @@
 								<h3 class="mt-40">Video</h3>					
 								<div class="tile-body p-0">
 									<video controls>
-										<source src="" type="video/mp4">
+										<source src="{{trustSrc(mediafile)}}" type="video/mp4">
+
 										Your browser does not support HTML5 video.
 									</video>
 								</div>
