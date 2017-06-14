@@ -149,9 +149,9 @@
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Phone <span class="text-danger">*</span></label>
-															<input type="text" maxlength="15" ng-name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" pattern="^\+[1-9]{1}[0-9]{3,14}$"
-															 oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}"
-															 class="form-control" rangelength required>
+															<input type="text" maxlength="15" ng-name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" ui-mask="{{'(999) 999-9999'}}"
+															    class="form-control" rangelength required>
+
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Address <span class="text-danger">*</span></label>
