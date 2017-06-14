@@ -20,17 +20,17 @@
 		<ul class="nav-right list-inline headmenu">
 			<li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li>
 			<li class="dropdown" uib-dropdown>
-				<span class="dropdown-toggle" uib-dropdown-toggle>Facilities &nbsp;<fa name="angle-down"></fa></span>
-				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
+				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities &nbsp;<!-- <fa name="angle-down"></fa> --></span>
+				<!-- <ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.facility.facility">All Facilities</a></li>
 					<li ng-repeat="facility in facilities"><a ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})">{{ facility.facility_name }}</a></li>
-				</ul>
+				</ul> -->
 			</li>
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Devices &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.device.devices">Primary Devices</a></li>
-					<li><a ui-sref="app.admin.device.dependent-devices">Dependent Devices</a></li>
+					<!-- <li><a ui-sref="app.admin.device.dependent-devices">Dependent Devices</a></li> -->
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
@@ -46,7 +46,7 @@
 				<span class="dropdown-toggle" uib-dropdown-toggle>Doors &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.door.doors">Doors</a></li>
-					<li><a ui-sref="app.admin.door.door-groups">Door Groups</a></li>
+					<!-- <li><a ui-sref="app.admin.door.door-groups">Door Groups</a></li> -->
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
@@ -58,7 +58,7 @@
 				</ul>
 			</li>
 			<li class="dropdown" uib-dropdown>
-				<span class="dropdown-toggle" uib-dropdown-toggle>Administrator &nbsp;<fa name="angle-down"></fa></span>
+				<!-- <span class="dropdown-toggle" uib-dropdown-toggle>Administrator &nbsp;<fa name="angle-down"></fa></span> -->
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.administrator.roles">Roles</a></li>
 					<li><a ui-sref="app.admin.administrator.add-roles">Add Roles</a></li>
@@ -69,14 +69,14 @@
 				<span class="dropdown-toggle" uib-dropdown-toggle>Camera DVR &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.camera.camera-dvr">Live and Recorded Feeds</a></li>
-					<li><a ui-sref="app.admin.setup.camera-directory">Camera Directory</a></li>
+					<!-- <li><a ui-sref="app.admin.setup.camera-directory">Camera Directory</a></li>
 					<li><a ui-sref="app.admin.setup.dvr-directory">DVR Directory</a></li>
-					<li><a ui-sref="app.admin.setup.dvrcamera-directory">DVR Camera Directory</a></li>
+					<li><a ui-sref="app.admin.setup.dvrcamera-directory">DVR Camera Directory</a></li> -->
 					<!--li><a ui-sref="app.admin.setup.eagle-eye-directory">Eagle Eye Directory</a></li-->
 				</ul>
 			</li>
 			<li><a ui-sref="app.admin.activity"><span>Activity</span></a></li>
-			<li><a href=""><span>Reports</span></a></li>			
+			<!-- <li><a href=""><span>Reports</span></a></li> -->			
 		</ul>
 	</div> 
 	

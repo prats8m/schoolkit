@@ -34,19 +34,18 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-12 col-centered">
 										<div class="col-sm-6 col-md-6">
-											<label for="">Auto Refresh</label><br/>
-											<select class="form-control w-240" disabled>
+											<!-- <label for="">Auto Refresh</label><br/> -->
+											<!-- <select class="form-control w-240" disabled>
 												<option selected>None</option>
 												<option>15 Sec</option>
 												<option>30 Sec</option>
 												<option>1 min</option>
 												<option>15 min</option>
 												<option>30 min</option>
-											</select>
+											</select> -->
+											<button class="form-control w-240" ng-click="eventFetch()">Auto Refresh</button>
 										</div>
-										<div class="col-sm-6 col-md-6">
-											<button ng-click="eventFetch()">Auto Refresh</button>
-										</div>
+										
 									</div>
 								</div>
 								
@@ -55,9 +54,9 @@
 										<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
 											<label for="">Date/Time</label>
 											<div class="input-group">
-												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" disabled="" close-text="Close" onkeypress="return false;" />
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.time" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-default" ng-click="open($event)" disabled="" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar" ></i></button>
+													<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar" ></i></button>
 												</span>
 											</div>
 										</div>
@@ -112,8 +111,7 @@
 											
 											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a'}}</td>
 											<td>{{active['user/event']}}</td>
-											<!-- <td>{{active['access_mode']}}</td> -->
-											<td>{{active.media_file}}</td>
+											<td>{{active['access_mode']}}</td>
 											<td>{{active['facility']}}</td>
 											<td>{{active['door/device']}}</td>
 											
