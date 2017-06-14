@@ -109,7 +109,7 @@
 												<div class="col-sm-6 col-md-6">				
 												<label for="">Expiration Date <span class="text-danger">*</span></label>
 													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text"  onkeypress="return false;"id="expirationdate" name="expirationdate"  class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="addTechnician.expiration_date"/>
+														<input type="text"  onkeypress="return false;"id="expirationdate" name="expirationdate"  class="form-control" uib-datepicker-popup="dd/MM/yyyy" datepicker-localdate is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="addTechnician.expiration_date"/>
 														<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>

@@ -110,7 +110,8 @@
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Email <span class="text-danger">*</span></label>
-															<input type="email" name="email" id="email" ng-model="userData.email" class="form-control" placeholder="" required>
+															<input type="email" name="email" id="email" ng-model="userData.email" class="form-control" placeholder="" ng-pattern="'[^@]+@[^@]+.[a-zA-Z]{2,6}'"
+															 required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Profile Photo </label>
@@ -118,7 +119,7 @@
 																<!--<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">-->
 																<div class="bootstrap-filestyle input-group">
 																	<input type="file" accept="image/*" file-model="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
-																	    onchange="HandleInputTypeFilechange();" tabindex="-1" />
+																	 onchange="HandleInputTypeFilechange();" tabindex="-1" />
 																	<input type="text" class="form-control " id="profilePicFileName" readonly="true" />
 																	<!--<input type="button" value="Click to select file" id="fakeBrowse" onclick="HandleBrowseClick();"/>-->
 																	<span class="group-span-filestyle input-group-btn" tabindex="0" id="fakeBrowse" ng-click="HandleProfilePicAddUpdateClick();">
@@ -144,12 +145,13 @@
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Name as appears on LCD <span class="text-danger">*</span></label>
 															<input type="text" maxlength="30" name="name_on_lcd" id="name_on_lcd" ng-model="userData.name_on_lcd" class="form-control"
-															    required>
+															 required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Phone <span class="text-danger">*</span></label>
 															<input type="text" maxlength="15" ng-name="user_phone_no" id="user_phone_no" ng-model="userData.user_phone_no" ui-mask="{{'(999) 999-9999'}}"
 															    class="form-control" rangelength required>
+
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Address <span class="text-danger">*</span></label>
@@ -158,7 +160,7 @@
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Zip Code <span class="text-danger">*</span></label>
 															<input type="text" maxlength="6" name="zip_code" ng-keypress="allowNumberOnly($event);" id="zip_code" ng-model="userData.zip_code"
-															    class="form-control" required>
+															 class="form-control" required>
 														</div>
 													</div>
 													<div class="row" ng-controller="ActivebtnCtrl">
@@ -181,8 +183,8 @@
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div id="expirationDateInnerDiv" class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" id="expirationdate" name="expirationdate" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
-																    is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close"
-																    ng-model="userData.expirationdate" />
+																 datepicker-localdate is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true"
+																 close-text="Close" ng-model="userData.expirationdate" />
 																<span class="input-group-btn">
 															<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -207,7 +209,7 @@
 															<div class="form-group col-sm-3 col-md-3">
 																<label for="">Firstly Select facility</label><br/>
 																<select class="form-control" ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id"
-																    ng-change="unassignedGroup(facility)">
+																 ng-change="unassignedGroup(facility)">
 															<option value="">Select</option>
 														</select>
 															</div>
@@ -294,7 +296,7 @@
 																	<div class="form-group col-sm-3 col-md-6">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id"
-																		    multiple required>
+																		 multiple required>
 														</select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
@@ -359,7 +361,7 @@
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id"
-																		    multiple required></select>
+																		 multiple required></select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Phone Number</label>
@@ -428,12 +430,12 @@
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Facility Code</label>
 																		<input type="text" name="rfid_facility_code" id="" class="form-control mb-10" placeholder="" ng-model="rfid.rfid_facility_code"
-																		    required>
+																		 required>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="rfid.door_id"
-																		    multiple required></select>
+																		 multiple required></select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Status</label><br/>
@@ -443,40 +445,40 @@
 																		</div>
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
 															</form>
-																	</div>
-																</div>
-																<div class="mt-40">
-																	<div class="tile-body p-0 table-responsive">
-																		<table class="table table-bordered">
-																			<thead>
-																				<tr>
-																					<th>Card Number</th>
-																					<th>Facility Code</th>
-																					<th width="700">Assigned Doors</th>
-																					<th>Status</th>
-																					<th width="75">Action</th>
-																				</tr>
-																			</thead>
-																			<tbody style="font-size:14px;">
-																				<tr ng-repeat="rfid_code in rfid_code_list">
-																					<td>{{rfid_code.Detail.rfid_card_no}}</td>
-																					<td>{{rfid_code.Detail.rfid_facility_id}}</td>
-																					<td>{{rfid_code.Door_Name}} </td>
-																					<td>
-																						<select style="border: 0; width: 100%;">
+															</div>
+															</div>
+															<div class="mt-40">
+																<div class="tile-body p-0 table-responsive">
+																	<table class="table table-bordered">
+																		<thead>
+																			<tr>
+																				<th>Card Number</th>
+																				<th>Facility Code</th>
+																				<th width="700">Assigned Doors</th>
+																				<th>Status</th>
+																				<th width="75">Action</th>
+																			</tr>
+																		</thead>
+																		<tbody style="font-size:14px;">
+																			<tr ng-repeat="rfid_code in rfid_code_list">
+																				<td>{{rfid_code.Detail.rfid_card_no}}</td>
+																				<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																				<td>{{rfid_code.Door_Name}} </td>
+																				<td>
+																					<select style="border: 0; width: 100%;">
 																			<option value="" ng-selected="rfid_code.status == 1">Active</option>
 																			<option value="" ng-selected="rfid_code.status == 0">Inactive</option>
 																		</select>
-																					</td>
-																					<td class="credintialicon">
-																						<a href="" uib-tooltip="Edit" ng-click="editCredential(rfid_code, 'rfid_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-																						<a href="" ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-																					</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</div>
+																				</td>
+																				<td class="credintialicon">
+																					<a href="" uib-tooltip="Edit" ng-click="editCredential(rfid_code, 'rfid_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
 																</div>
+															</div>
 														</div>
 													</uib-accordion-group>
 
@@ -494,7 +496,7 @@
 																	<div class="form-group col-sm-3 col-md-8">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
-																		    multiple required></select>
+																		 multiple required></select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Facility Code</label>
@@ -565,12 +567,12 @@
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Facility Code</label>
 																		<input type="text" name="nfc_facility_code" id="" class="form-control mb-10" placeholder="" ng-model="savenfc.nfc_facility_code"
-																		    required>
+																		 required>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="savenfc.door_id"
-																		    multiple required></select>
+																		 multiple required></select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Status</label><br/>
@@ -635,7 +637,7 @@
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="ble_code.door_id"
-																		    multiple required></select>
+																		 multiple required></select>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-3">
 																		<label for="">Status</label><br/>

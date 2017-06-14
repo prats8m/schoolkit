@@ -40,8 +40,8 @@
 										<!--<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>-->
 										<!-- <p>&nbsp;</p> -->
 										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
-										<p><label>Start Date</label> {{ViewSchedule.schedule_start_date * 1000 | date :  "dd/MMM/y"}}</p>
-										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label> {{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y"}}</p>
+										<p><label>Start Date</label> {{ViewSchedule.schedule_start_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
+										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label> {{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label> No Limits</p>
 									 <p ng-repeat="facility in ViewSchedule.facilityList ">
 									 	<label>Facility Name</label>{{facility.facility_name}}
@@ -88,7 +88,7 @@
 									 <ul class="" style="list-style: none;">
 										<li ng-repeat="e in ViewSchedule.schedule_exceptions">
 										
-											<span ng-if="e.se_schedule_exception.type=='ONETIME'">{{e.se_schedule_exception.status}} {{e.se_schedule_exception.date| date:'dd-MMM-yyyy'}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}</span> 
+											<span ng-if="e.se_schedule_exception.type=='ONETIME'">{{e.se_schedule_exception.status}} {{e.se_schedule_exception.date| date:'dd-MMM-yyyy': 'UTC'}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}</span> 
 											<span ng-if="e.se_schedule_exception.type=='REPEATING'">(Repeating) {{e.se_schedule_exception.status}} {{e.se_schedule_exception.week}} {{e.se_schedule_exception.day}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}</span> 
 											
 										</li>
