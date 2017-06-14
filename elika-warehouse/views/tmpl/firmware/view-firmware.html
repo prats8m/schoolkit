@@ -113,7 +113,7 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-12">
 										<div class="form-group profiledetail">
-											<p><label>Create Date</label> {{firmwareData.firmware_created_on*1000 | date}}</p>
+											<p><label>Create Date</label> {{firmwareData.firmware_created_on*1000 | date: 'UTC'}}</p>
 											<p><label>Component</label> {{firmwareData.firmware_component }}</p>
 											<p><label>Device Model</label> {{firmwareData.firmware_model }}</p>
 											<p><label>Hardware Version</label> {{firmwareData.firmware_hardware_version }}</p>

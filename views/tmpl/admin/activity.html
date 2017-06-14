@@ -52,7 +52,7 @@
 										<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
 											<label for="">Date/Time</label>
 											<div class="input-group">
-												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" disabled="" close-text="Close" onkeypress="return false;" />
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" disabled="" close-text="Close" onkeypress="return false;" />
 												<span class="input-group-btn">
 													<button type="button" class="btn btn-default" ng-click="open($event)" disabled="" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar" ></i></button>
 												</span>
@@ -106,7 +106,7 @@
 									</thead>
 									<tbody>
 										<tr ng-repeat="active in activities">
-											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a'}}</td>
+											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a': 'UTC'}}</td>
 											<td>{{active['user/event']}}</td>
 											<td>{{active['access_mode']}}</td>
 											

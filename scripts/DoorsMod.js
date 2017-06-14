@@ -77,8 +77,11 @@ app
 			doorsSvc.submitAddDoor(appConstants.dooradd, appConstants.postMethod, {}, submitData, function (succResponse) {
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants._successfulldoorsadded);
-					$scope.pageNo = 1;
-					$scope.listDoors();
+					$scope.pageNo = 1;					
+					setTimeout(function () {
+						$scope.listDoors();
+						$scope.$apply();
+					}, 300)
 					$rootScope.dashboardData.door++;
 				}
 			});
