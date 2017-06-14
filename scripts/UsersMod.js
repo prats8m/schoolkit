@@ -69,8 +69,7 @@ app
             $mdDialog.show(confirm).then(function () {
                 userSvc.deleteUser(appConstants.userdelete + '?user_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
-                        $scope.result = appConstants._successfullyuserdeletedmessage;
-                        $scope.statusclass = appConstants.dangerstatusClass;
+                        toaster.pop('info', appConstants._successfullyuserdeletedmessage);
                         toaster.pop(appConstants.success, $scope.result);
                         var users = $scope.users;
                         var tempUser = [];
@@ -1526,8 +1525,7 @@ app
                     }
                 });
             }, function () {
-                $scope.result = appConstants._canceluserdeletionmessage;
-                $scope.statusclass = appConstants.successstatusClass;
+                toaster.pop('info', appConstants._canceluserdeletionmessage);
             });
         };
         //Delete user on detail page
@@ -1661,8 +1659,7 @@ app
             $mdDialog.show(confirm).then(function () {
                 $scope.userGroupDelete(id);
             }, function () {
-                $scope.result = appConstants._cancelusergroupdeleteioonmessage;
-                $scope.statusclass = appConstants.successstatusClass;
+                toaster.pop('info', appConstants._cancelusergroupdeleteioonmessage);
             });
         };
 
@@ -1814,8 +1811,7 @@ app
         $scope.userGroupDelete = function (id) {
             userSvc.userGroupDelete(appConstants.usergroupdelete + '?usergroup_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.result = appConstants._successDeleteUserGroup;
-                    $scope.statusclass = appConstants.dangerstatusClass;
+                    toaster.pop('info', appConstants._successDeleteUserGroup);
                     var ug = $scope.usergroups;
                     var temp = [];
                     for (var i = 0; i < ug.length; i++) {
@@ -1934,16 +1930,14 @@ app
             $mdDialog.show(confirm).then(function () {
                 $scope.userGroupDetailDelete(id);
             }, function () {
-                $scope.result = appConstants._cancelusergroupdeleteioonmessage;
-                $scope.statusclass = appConstants.successstatusClass;
+                toaster.pop('info', appConstants._cancelusergroupdeleteioonmessage);
             });
         };
 
         $scope.userGroupDetailDelete = function (id) {
             userSvc.userGroupDetailDelete(appConstants.usergroupdelete + '?usergroup_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.result = appConstants._successDeleteUserGroup;
-                    $scope.statusclass = appConstants.dangerstatusClass;
+                    toaster.pop('info', appConstants._successDeleteUserGroup);
                     $location.path('/app/admin/user/user-groups');
                 }
             });

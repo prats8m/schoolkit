@@ -7,109 +7,107 @@
  * Controller of the minovateApp
  */
 app
-	.controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout,baseURL, $uibModal,appConstants,facilitiesSvc,dashboardSvc) {
+    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc) {
 
-		$scope.page = {
-			title: appConstants.facilityTitle,
-			subtitle: appConstants.facilitySubTitle
-		};
-		$scope.lmbtn = {
-			display : appConstants.none
-		};
+        $scope.page = {
+            title: appConstants.facilityTitle,
+            subtitle: appConstants.facilitySubTitle
+        };
+        $scope.lmbtn = {
+            display: appConstants.none
+        };
 
-		$rootScope.facility = {};
-		$scope.facilities = [];
-		$rootScope.facility.status = 1;
-		$scope.usTimeZonesForFacility=appConstants.availableTimeZoneOptions;
-		$scope.addFacility = function () {
-            $rootScope.fac_error=appConstants.empty;
-			$scope.facility={};
-			$scope.addFacilityModal = $uibModal.open({
-				templateUrl: 'myModalContent.html',
-				size: 'md',
-				scope: $scope,
-				resolve: {
-					items: function () {
-						return $scope.items;
-					}
-				}
-			});
-		};
+        $rootScope.facility = {};
+        $scope.facilities = [];
+        $rootScope.facility.status = 1;
+        $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
+        $scope.addFacility = function () {
+            $rootScope.fac_error = appConstants.empty;
+            $scope.facility = {};
+            $scope.addFacilityModal = $uibModal.open({
+                templateUrl: 'myModalContent.html',
+                size: 'md',
+                scope: $scope,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+        };
 
-		$rootScope.save = function (facility, addFacility) {
-			if (!addFacility.validate()) {
-				return false;
-			}
-			//(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
-			// $scope.fileupload = fileUpload.uploadFileToUrl(facility.profile_pic, "")
-            facilitiesSvc.addfacility(appConstants.facilityAdd,appConstants.postMethod,{},facility,function (succResponse) {
-                if(succResponse.status){
-                    toaster.pop(appConstants.success,appConstants._successfacilityAdd);
+        $rootScope.save = function (facility, addFacility) {
+            if (!addFacility.validate()) {
+                return false;
+            }
+            //(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
+            // $scope.fileupload = fileUpload.uploadFileToUrl(facility.profile_pic, "")
+            facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
+                if (succResponse.status) {
+                    toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
                     $scope.facilityInit();
                     $rootScope.fac_error = succResponse.msg.replace(/_/g, " ");
                 }
                 else {
                     $rootScope.fac_error = succResponse.msg;
-				}
+                }
             });
-		};
+        };
 
-		$scope.result = appConstants.empty;
-		$scope.showConfirm = function (ev,facilityId) {
-			var confirm = $mdDialog.confirm()
-				.title(appConstants._deleteFacilityConfirm)
-				.content(appConstants.empty)
-				.ok(appConstants.delete)
-				.cancel(appConstants.cancel)
-				.targetEvent(ev);
-			$mdDialog.show(confirm).then(function () {
-                facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
-                    if(succResponse.status){
-                        //$scope.result = appConstants._successDeleteFacility;
-                        //$scope.statusclass = appConstants.dangerstatusClass;
-                       
-                        toaster.pop(appConstants.success,appConstants._successDeleteFacility);
-                         $scope.facilityInit();
+        $scope.result = appConstants.empty;
+        $scope.showConfirm = function (ev, facilityId) {
+            var confirm = $mdDialog.confirm()
+                .title(appConstants._deleteFacilityConfirm)
+                .content(appConstants.empty)
+                .ok(appConstants.delete)
+                .cancel(appConstants.cancel)
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+                facilitiesSvc.deleteFacility(appConstants.facilitydelete + '?facility_id=' + facilityId, appConstants.deleteMethod, {}, {}, function (succResponse) {
+                    if (succResponse.status) {
+                        toaster.pop(appConstants.success, appConstants._successDeleteFacility);
+                        $scope.facilityInit();
                     }
                     else {
+                        toaster.pop('info', appConstants._messageoncanceltodeletedoors);
                         $scope.result = succResponse.msg;
                         $scope.statusclass = appConstants.dangerstatusClass;
                     }
                 });
             }, function () {
                 toaster.pop(appConstants.info, appConstants._cancelFacilityDelete);
-			});
-		};
+            });
+        };
 
-		$scope.layout = appConstants.gridLayout;
-		$scope.class = appConstants.gridviewClass;
-		$scope.changeClass = function () {
-			if ($scope.class === appConstants.gridviewClass)
-				$scope.class = appConstants.listviewClass;
-			$scope.layout = appConstants.listLayout;
-		};
-		$scope.facilityZipCode = "asdad";
-		$scope.changeaClass = function () {
-			if ($scope.class === appConstants.listviewClass)
-				$scope.class = appConstants.gridviewClass;
-			$scope.layout = appConstants.gridLayout;
-		};
+        $scope.layout = appConstants.gridLayout;
+        $scope.class = appConstants.gridviewClass;
+        $scope.changeClass = function () {
+            if ($scope.class === appConstants.gridviewClass)
+                $scope.class = appConstants.listviewClass;
+            $scope.layout = appConstants.listLayout;
+        };
+        $scope.facilityZipCode = "asdad";
+        $scope.changeaClass = function () {
+            if ($scope.class === appConstants.listviewClass)
+                $scope.class = appConstants.gridviewClass;
+            $scope.layout = appConstants.gridLayout;
+        };
 
-		$rootScope.search_facility = function () {
-			//$scope.search;
-            facilitiesSvc.searchfacility(appConstants.facilitylist,appConstants.getMethod,{limit: 20,page_no: 1,search_val: $scope.search},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.facilities = succResponse["data"]["data"]?succResponse["data"]["data"]:[];
+        $rootScope.search_facility = function () {
+            //$scope.search;
+            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search }, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
                 }
             });
-		};
+        };
 
         $scope.facilityInit = function () {
             facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 8, page_no: 1 }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = [];
-                    angular.forEach(succResponse["data"]["data"], function (facility, index) {                       
+                    angular.forEach(succResponse["data"]["data"], function (facility, index) {
                         $scope.facilities.push(facility);
                     });
                     $scope.totalDisplayed = 8;
@@ -122,21 +120,21 @@ app
                             display: appConstants.none
                         };
                     }
-                }else if(succResponse.msg == "No_Record_Found"){
-                      $scope.facilities = [];
-                    } 
+                } else if (succResponse.msg == "No_Record_Found") {
+                    $scope.facilities = [];
+                }
             });
-		};
+        };
 
-		$scope.facilityInit();
-		$scope.LoadMoreLimit = 8;
-		$scope.LoadMorePage = 2;
-		$scope.totalDisplayed = 8;
+        $scope.facilityInit();
+        $scope.LoadMoreLimit = 8;
+        $scope.LoadMorePage = 2;
+        $scope.totalDisplayed = 8;
 
-		$scope.loadMore = function () {
-            facilitiesSvc.searchfacility(appConstants.facilitylist,appConstants.getMethod,{limit: 8,pageNo: $scope.LoadMorePage},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.facilities = $scope.facilities.concat(succResponse["data"]["data"]?succResponse["data"]["data"]:[]);
+        $scope.loadMore = function () {
+            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 8, pageNo: $scope.LoadMorePage }, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.facilities = $scope.facilities.concat(succResponse["data"]["data"] ? succResponse["data"]["data"] : []);
                     $scope.totalDisplayed += 8;
                     $scope.LoadMorePage++;
                     if (succResponse.data.count > $scope.totalDisplayed) {
@@ -150,26 +148,26 @@ app
                     }
                 }
             });
-		};
+        };
 
-		$scope.orderByMe = function (x) {
-			$scope.myOrderBy = x;
-		};
+        $scope.orderByMe = function (x) {
+            $scope.myOrderBy = x;
+        };
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
-		$scope.dashboardInit = function () {
-            dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.dashboardData = succResponse.data?succResponse.data:[];
+        $scope.dashboardInit = function () {
+            dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.dashboardData = succResponse.data ? succResponse.data : [];
                 }
             });
-		};
-		if (!$rootScope.hasOwnProperty('dashboardData')) {
-			$scope.dashboardInit();
-		}
+        };
+        if (!$rootScope.hasOwnProperty('dashboardData')) {
+            $scope.dashboardInit();
+        }
 
-	});
+    });
 
 
 'use strict';
@@ -181,80 +179,78 @@ app
  * Controller of the minovateApp
  */
 app
-	.controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc) {
+    .controller('FacilityDetailsCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc) {
 
-		$scope.page = {
-			title: appConstants.facilityDetailsTitle,
-			subtitle: appConstants.facilityDetailsSubTitle
-		};
-		$scope.timezones = {
-			model: null,
-			availableOptions: appConstants.availableTimeZoneOptions
-		};
-		//Code to default select device type
-		$rootScope.facility_device = {};
-		$rootScope.facility_device.device_type = appConstants.primaryDevice;
-		//Code ends to default select device type
+        $scope.page = {
+            title: appConstants.facilityDetailsTitle,
+            subtitle: appConstants.facilityDetailsSubTitle
+        };
+        $scope.timezones = {
+            model: null,
+            availableOptions: appConstants.availableTimeZoneOptions
+        };
+        //Code to default select device type
+        $rootScope.facility_device = {};
+        $rootScope.facility_device.device_type = appConstants.primaryDevice;
+        //Code ends to default select device type
 
-		$scope.result = '';
-		$scope.showConfirm = function (ev) {
-			var confirm = $mdDialog.confirm()
-				.title(appConstants._deletePrimaryDevice)
-				.content(appConstants.content)
-				.ok(appConstants.delete)
-				.cancel(appConstants.ok)
-				.targetEvent(ev);
-			$mdDialog.show(confirm).then(function () {
-				$scope.result = appConstants._successdeleteDevice;
-				$scope.statusclass = appConstants.dangerstatusClass;
-			}, function () {
-				$scope.result = appConstants._canceldevicedelete;
-				$scope.statusclass = appConstants.successstatusClass;
-			});
-		};
+        $scope.result = '';
+        $scope.showConfirm = function (ev) {
+            var confirm = $mdDialog.confirm()
+                .title(appConstants._deletePrimaryDevice)
+                .content(appConstants.content)
+                .ok(appConstants.delete)
+                .cancel(appConstants.ok)
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+                toaster.pop('info', appConstants._successdeleteDevice);
+            }, function () {
+                toaster.pop('info', appConstants._canceldevicedelete);
+            });
+        };
 
-		$scope.layout = appConstants.gridLayout;
-		$scope.class = appConstants.gridviewClass;
-		$scope.changeClass = function () {
-			if ($scope.class === appConstants.gridviewClass)
-				$scope.class = appConstants.listviewClass;
-			$scope.layout = appConstants.listLayout;
-		};
+        $scope.layout = appConstants.gridLayout;
+        $scope.class = appConstants.gridviewClass;
+        $scope.changeClass = function () {
+            if ($scope.class === appConstants.gridviewClass)
+                $scope.class = appConstants.listviewClass;
+            $scope.layout = appConstants.listLayout;
+        };
 
-		$scope.changeaClass = function () {
-			if ($scope.class === appConstants.listviewClass)
-				$scope.class = appConstants.gridviewClass;
-			$scope.layout = appConstants.gridLayout;
-		};
+        $scope.changeaClass = function () {
+            if ($scope.class === appConstants.listviewClass)
+                $scope.class = appConstants.gridviewClass;
+            $scope.layout = appConstants.gridLayout;
+        };
 
 
-		$scope.orderByMe = function (x) {
-			$scope.myOrderBy = x;
-		};
+        $scope.orderByMe = function (x) {
+            $scope.myOrderBy = x;
+        };
 
-		// if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
-		// {
-		// 	$stateParams = {};
-		// 	$stateParams.facility_id = $stateParams.id;
-		// }
+        // if(typeof $stateParams == "undefined" || $stateParams.facility_id == undefined)
+        // {
+        // 	$stateParams = {};
+        // 	$stateParams.facility_id = $stateParams.id;
+        // }
 
-		$scope.getFacilityDetailsUIData=function () {
-			facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+        $scope.getFacilityDetailsUIData = function () {
+            facilitiesSvc.getFacilityViewDetails(appConstants.facilityview + $stateParams.facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.facility = succResponse.data;
                     $scope.facility.timezone = appConstants.empty;
-                }else{
-                   $scope.facility = [];
-                  
+                } else {
+                    $scope.facility = [];
+
                 }
                 $scope.getListMasterDevice();
             });
         };
         $scope.getFacilityDetailsUIData();
 
-        $scope.getListMasterDevice=function () {
-            facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster,appConstants.getMethod,{limit: 20,pageNo: 1,facilityId: $stateParams.facility_id},{},function (succResponse) {
-                if(succResponse.status){
+        $scope.getListMasterDevice = function () {
+            facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster, appConstants.getMethod, { limit: 20, pageNo: 1, facilityId: $stateParams.facility_id }, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.devices = succResponse.data.data;
                     $scope.totalDisplayed = 6;
                     if ($scope.devices.length > $scope.totalDisplayed) {
@@ -273,10 +269,10 @@ app
             });
         }
 
-		//Code starts to search facility device by text
-		$scope.search_facility_device = function (facility) {
-            facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster,appConstants.getMethod,{limit: 20,pageNo: 1,facilityId: $stateParams.facility_id,searchVal: facility.search_val},{},function (succResponse) {
-                if(succResponse.status){
+        //Code starts to search facility device by text
+        $scope.search_facility_device = function (facility) {
+            facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster, appConstants.getMethod, { limit: 20, pageNo: 1, facilityId: $stateParams.facility_id, searchVal: facility.search_val }, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.devices = succResponse.data.data;
                     $scope.totalDisplayed = 6;
                     $scope.result = appConstants.empty;
@@ -290,33 +286,33 @@ app
                             display: appConstants.none
                         };
                     }
-				}
+                }
                 else {
                     $scope.result = succResponse.msg;
                 }
             });
-		};
+        };
 
-		//Code ends to search facility device by text
+        //Code ends to search facility device by text
 
-		//Code starts to save facility device
-		$rootScope.saveFacilityDevice = function (facility_device) {
-			facility_device.facility_id = jQuery.parseJSON($cookies.get(appConstants.facilitycookieID)).facility_id;
-			facility_device.serial_no = parseInt(facility_device.serial_no);
-			facility_device.technician_id = parseInt(facility_device.technician_id);
-			facility_device.registration_code = "1234";
+        //Code starts to save facility device
+        $rootScope.saveFacilityDevice = function (facility_device) {
+            facility_device.facility_id = jQuery.parseJSON($cookies.get(appConstants.facilitycookieID)).facility_id;
+            facility_device.serial_no = parseInt(facility_device.serial_no);
+            facility_device.technician_id = parseInt(facility_device.technician_id);
+            facility_device.registration_code = "1234";
 
-            facilitiesSvc.saveFacilityDevice(appConstants.deviceadd,appConstants.postMethod,{},facility_device,function (succResponse) {
-                if(succResponse.status){
+            facilitiesSvc.saveFacilityDevice(appConstants.deviceadd, appConstants.postMethod, {}, facility_device, function (succResponse) {
+                if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                 }
             });
-		};
-		//Code ends to save facility device
+        };
+        //Code ends to save facility device
 
-		$scope.imagePath = baseURL + appConstants.imagePath;
+        $scope.imagePath = baseURL + appConstants.imagePath;
 
-	});
+    });
 
 
 'use strict';
@@ -328,56 +324,54 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc,dashboardSvc) {
-    $scope.page = {
-		title: appConstants.facilityDetailsTitle,
-		subtitle: appConstants.facilityDetailsSubTitle
-    };
-	$scope.imagePath = baseURL+appConstants.imagePath;
+    .controller('ViewFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc) {
+        $scope.page = {
+            title: appConstants.facilityDetailsTitle,
+            subtitle: appConstants.facilityDetailsSubTitle
+        };
+        $scope.imagePath = baseURL + appConstants.imagePath;
 
-      $scope.showConfirm = function (ev,facilityId) {
-          var confirm = $mdDialog.confirm()
-              .title(appConstants._deleteFacilityConfirm)
-              .content(appConstants.empty)
-              .ok(appConstants.delete)
-              .cancel(appConstants.cancel)
-              .targetEvent(ev);
-          $mdDialog.show(confirm).then(function () {
-              facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
-                  if(succResponse.status){
-                      $scope.result = appConstants._successDeleteFacility;
-                      $scope.statusclass = appConstants.dangerstatusClass;
-                      $location.path('/app/admin/facility/facility');
-                  }
-                  else {
-                      $scope.result = succResponse.msg;
-                      $scope.statusclass = appConstants.dangerstatusClass;
-                  }
-              });
-          }, function () {
-              $scope.result = appConstants._cancelFacilityDelete;
-              $scope.statusclass = appConstants.successstatusClass;
-          });
-      };
+        $scope.showConfirm = function (ev, facilityId) {
+            var confirm = $mdDialog.confirm()
+                .title(appConstants._deleteFacilityConfirm)
+                .content(appConstants.empty)
+                .ok(appConstants.delete)
+                .cancel(appConstants.cancel)
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+                facilitiesSvc.deleteFacility(appConstants.facilitydelete + '?facility_id=' + facilityId, appConstants.deleteMethod, {}, {}, function (succResponse) {
+                    if (succResponse.status) {
+                        toaster.pop('info', appConstants._successDeleteFacility);
+                        $location.path('/app/admin/facility/facility');
+                    }
+                    else {
+                        $scope.result = succResponse.msg;
+                        $scope.statusclass = appConstants.dangerstatusClass;
+                    }
+                });
+            }, function () {
+                toaster.pop('info', appConstants._cancelFacilityDelete);
+            });
+        };
 
-      $scope.getFacilityDetailsUIData=function () {
-          facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
-              if(succResponse.status){
-                  $scope.facility = succResponse.data;
-                  $scope.dashboardInit();
-              }
-          });
-      };
+        $scope.getFacilityDetailsUIData = function () {
+            facilitiesSvc.getFacilityViewDetails(appConstants.facilityview + $stateParams.facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.facility = succResponse.data;
+                    $scope.dashboardInit();
+                }
+            });
+        };
 
-      $scope.getFacilityDetailsUIData();
-	$scope.dashboardInit = function(){
-        dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
-            if(succResponse.status){
-                $rootScope.dashboardData = succResponse.data;
-            }
-        });
-	};
-  });
+        $scope.getFacilityDetailsUIData();
+        $scope.dashboardInit = function () {
+            dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $rootScope.dashboardData = succResponse.data;
+                }
+            });
+        };
+    });
 
 
 
@@ -390,75 +384,73 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope,$location,appConstants,facilitiesSvc,dashboardSvc) {
+    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc) {
 
-    $scope.page = {
-		title:$location.path().indexOf('view-facility')>=0?appConstants.facilityDetailsTitle:appConstants.facilityedittitle,
-		subtitle: appConstants.facilityDetailsSubTitle
-    };
-	
-	$scope.imagePath = baseURL+appConstants.imagePath;
+        $scope.page = {
+            title: $location.path().indexOf('view-facility') >= 0 ? appConstants.facilityDetailsTitle : appConstants.facilityedittitle,
+            subtitle: appConstants.facilityDetailsSubTitle
+        };
+
+        $scope.imagePath = baseURL + appConstants.imagePath;
 
 
-	$scope.getFacilityViewData=function () {
-            facilitiesSvc.getFacilityViewDetails(appConstants.facilityview+$stateParams.facility_id,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
+        $scope.getFacilityViewData = function () {
+            facilitiesSvc.getFacilityViewDetails(appConstants.facilityview + $stateParams.facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
                     $scope.facility = succResponse.data;
                 }
             });
-    };
+        };
 
-      $scope.getFacilityViewData();
-	$scope.editFaciltyDashboardInit = function(){
-        dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
-            if(succResponse.status){
-                $rootScope.dashboardData = succResponse.data;
+        $scope.getFacilityViewData();
+        $scope.editFaciltyDashboardInit = function () {
+            dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $rootScope.dashboardData = succResponse.data;
+                }
+            });
+        };
+
+        $scope.edit_facility = function (facility, editfacility) {
+            if (!editfacility.validate()) {
+                return false;
             }
-        });
-	};
+            facility.timeZone = facility.facility_timezone;
+            facility.zip_code = appConstants.empty + facility.facility_zipcode;
+            facility.status = facility.facility_status == appConstants.active ? 1 : 0;
+            facilitiesSvc.edit_facility(appConstants.facilityedit, appConstants.putMethod, {}, facility, function (succResponse) {
+                if (succResponse.status) {
+                    toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
+                    $location.path('/app/admin/facility/facility');
+                }
+                else {
+                    $scope.facility_edit_error = succResponse.msg;
+                }
+            });
+        };
 
-	$scope.edit_facility = function(facility, editfacility){
-		if(!editfacility.validate()){
-			return false;
-		}
-		facility.timeZone = facility.facility_timezone;
-		facility.zip_code = appConstants.empty+facility.facility_zipcode;
-		facility.status = facility.facility_status == appConstants.active ? 1 : 0;
-        facilitiesSvc.edit_facility(appConstants.facilityedit,appConstants.putMethod,{},facility,function (succResponse) {
-            if(succResponse.status){
-                toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
-                $location.path('/app/admin/facility/facility');
-            }
-            else {
-                $scope.facility_edit_error = succResponse.msg;
-			}
-        });
-	};
+        $scope.showConfirm = function (ev, facilityId) {
+            var confirm = $mdDialog.confirm()
+                .title(appConstants._deleteFacilityConfirm)
+                .content(appConstants.empty)
+                .ok(appConstants.delete)
+                .cancel(appConstants.cancel)
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+                facilitiesSvc.deleteFacility(appConstants.facilitydelete + '?facility_id=' + facilityId, appConstants.deleteMethod, {}, {}, function (succResponse) {
+                    if (succResponse.status) {
+                        toaster.pop('info', appConstants._successDeleteFacility);
+                        $location.path('/app/admin/facility/facility');
+                    }
+                    else {
+                        $scope.result = succResponse.msg;
+                        $scope.statusclass = appConstants.dangerstatusClass;
+                    }
+                });
+            }, function () {
+                toaster.pop('info', appConstants._cancelFacilityDelete);
+            });
+        };
 
-      $scope.showConfirm = function (ev,facilityId) {
-          var confirm = $mdDialog.confirm()
-              .title(appConstants._deleteFacilityConfirm)
-              .content(appConstants.empty)
-              .ok(appConstants.delete)
-              .cancel(appConstants.cancel)
-              .targetEvent(ev);
-          $mdDialog.show(confirm).then(function () {
-              facilitiesSvc.deleteFacility(appConstants.facilitydelete+'?facility_id='+facilityId,appConstants.deleteMethod,{},{},function (succResponse) {
-                  if(succResponse.status){
-                      $scope.result = appConstants._successDeleteFacility;
-                      $scope.statusclass = appConstants.dangerstatusClass;
-                      $location.path('/app/admin/facility/facility');
-                  }
-                  else {
-                      $scope.result = succResponse.msg;
-                      $scope.statusclass = appConstants.dangerstatusClass;
-                  }
-              });
-          }, function () {
-              $scope.result = appConstants._cancelFacilityDelete;
-              $scope.statusclass = appConstants.successstatusClass;
-          });
-      };
-
-  });
+    });
 
