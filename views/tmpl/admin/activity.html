@@ -110,12 +110,9 @@
 									</thead>
 									<tbody>
 										<tr ng-repeat="active in activities">
-<<<<<<< HEAD
-											
-											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a'}}</td>
-=======
+
 											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a': 'UTC'}}</td>
->>>>>>> b991dbbd9bdfc073a4f700be683f8147a0e7c60e
+
 											<td>{{active['user/event']}}</td>
 											<td>{{active['access_mode']}}</td>
 											<td>{{active['facility']}}</td>
