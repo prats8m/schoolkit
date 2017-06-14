@@ -30,7 +30,7 @@
 							<span class="edittxt">Change</span>
 						</div>
 						<h3 class="mb-10"><strong>{{currentUser.user_first_name+' '+currentUser.user_last_name}}</strong></h3>
-						<span class="text-muted">You're logged in as {{currentUser.user_email}}</span>
+						<span class="text-muted">You're logged in as {{currentUser.user_email}}</span><br/>
 						<span class="text-muted">{{currentUser.user_phone_no}}</span>
 						<div class="form-group profiledetail mt-40">
 							<p><label>Last access time</label>: {{(currentUser.user_last_access_time*1000) | timeago}}</p>

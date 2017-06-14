@@ -8725,7 +8725,7 @@ app.directive('logoutBtn', ['$location','$cookies', function($location,$cookies)
 
   function link(scope, element, attrs) {
     element.bind('click',function(){
-    	$cookies.remove("token");
+      $cookies.remove("token", { path: '/' });
 		$location.path('/core/login');
     });
   }
