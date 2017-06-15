@@ -47,7 +47,7 @@
 															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																<label for="">Start Date <span class="text-danger">*</span></label>
 																<div class="input-group">
-																	<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="addHolidayScheduleObj.hs_start_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
+																	<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="addHolidayScheduleObj.hs_start_date" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>
@@ -64,7 +64,7 @@
 															<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																<label for="">End Date <span class="text-danger">*</span></label>
 																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="addHolidayScheduleObj.hs_end_date" is-open="opened" min-date="addHolidayScheduleObj.hs_start_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="addHolidayScheduleObj.hs_end_date" is-open="opened" min-date="addHolidayScheduleObj.hs_start_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"/>
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>
@@ -92,7 +92,7 @@
 																	<label for="">Expiration Date <span class="text-danger">*</span></label>
 																	<div class="input-group">
 
-																		<input type="text" id="expirationDate" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="addHolidayScheduleObj.hs_expiration" is-open="opened" min-date="addHolidayScheduleObj.hs_end_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
+																		<input type="text" id="expirationDate" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="addHolidayScheduleObj.hs_expiration" is-open="opened" min-date="addHolidayScheduleObj.hs_end_date" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 
 																		<span class="input-group-btn">
 																			<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -203,7 +203,7 @@
 																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																				<label for="">Start Date </label>
 																				<div class="input-group">
-																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="editHolidayScheduleObj.hs_start_date" is-open="opened" datepicker-options="dateOptions" min-date="mindate" ng-required="true" close-text="Close" />
+																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="editHolidayScheduleObj.hs_start_date" is-open="opened" datepicker-options="dateOptions" min-date="mindate" ng-required="true" close-text="Close" />
 																					<span class="input-group-btn">
 																						<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																					</span>
@@ -220,7 +220,7 @@
 																			<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 																				<label for="">End Date <span class="text-danger">*</span></label>
 																				<div class="input-group">
-																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="editHolidayScheduleObj.hs_end_date" is-open="opened" datepicker-options="dateOptions" min-date="editHolidayScheduleObj.hs_start_date" ng-required="true" close-text="Close" />
+																					<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="editHolidayScheduleObj.hs_end_date" is-open="opened" datepicker-options="dateOptions" min-date="editHolidayScheduleObj.hs_start_date" ng-required="true" close-text="Close" />
 																					<span class="input-group-btn">
 																						<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																					</span>
@@ -245,7 +245,7 @@
 																				<div ng-controller="DatepickerDemoCtrl">
 																					<label for="">Expiration Date <span class="text-danger">*</span></label>
 																					<div class="input-group">
-																						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="editHolidayScheduleObj.hs_expiration" is-open="opened" datepicker-options="dateOptions" ng-required="true" min-date="editHolidayScheduleObj.hs_end_date" close-text="Close"/>
+																						<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="editHolidayScheduleObj.hs_expiration" is-open="opened" datepicker-options="dateOptions" ng-required="true" min-date="editHolidayScheduleObj.hs_end_date" close-text="Close"/>
 																						<span class="input-group-btn">
 																							<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																						</span>

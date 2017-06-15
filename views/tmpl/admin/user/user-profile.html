@@ -276,7 +276,7 @@
 															<div ng-controller="DatepickerDemoCtrl">
 																<label for="">Expiration Date <span class="text-danger">*</span></label>
 																<div class="input-group">
-																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="editUser.expiration_date" min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-value="editUser.expiration_date"/>
+																	<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="editUser.expiration_date" min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-value="editUser.expiration_date"/>
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																	</span>

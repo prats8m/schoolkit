@@ -2886,8 +2886,7 @@ app
     $scope.dateOptions = {
       formatYear: 'yy',
       startingDay: 1,
-      'class': 'datepicker',
-      timezone: 'UTC'
+      'class': 'datepicker'
     };
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -9466,7 +9465,7 @@ app.directive('datepickerLocaldate', ['$parse', function ($parse) {
       // undo the timezone adjustment we did during the formatting
       viewValue.setMinutes(viewValue.getMinutes() - viewValue.getTimezoneOffset());
       // we just want a local date in ISO format
-      return viewValue.toISOString().substring(0, 10);
+      return (viewValue)
     });
 
     // called with a 'yyyy-mm-dd' string to format
