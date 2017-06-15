@@ -183,7 +183,7 @@
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div id="expirationDateInnerDiv" class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" id="expirationdate" name="expirationdate" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
-																 datepicker-localdate is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true"
+																  is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true"
 																 close-text="Close" ng-model="userData.expirationdate" />
 																<span class="input-group-btn">
 															<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>

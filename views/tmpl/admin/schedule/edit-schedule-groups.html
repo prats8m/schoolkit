@@ -609,7 +609,7 @@
 											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
 												<label for="">Start Date <span class="text-danger">*</span></label>
 												<div class="input-group">
-													<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="$parent.$parent.schedule.selected_schedule_start_date" min-date="$parent.minDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
+													<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="$parent.$parent.schedule.selected_schedule_start_date" min-date="$parent.minDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
@@ -697,7 +697,7 @@
 														<div class="col-sm-12 col-md-6 form-group">
 															<label for="">Date</label>
 															<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-localdate ng-model="exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" min-date="minDate" onkeypress="return false;"/>
+																<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="exception.date" is-open="opened" datepicker-options="dateOptions" close-text="Close" min-date="minDate" onkeypress="return false;"/>
 																<span class="input-group-btn">
 																	<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																</span>
@@ -778,7 +778,7 @@
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.$parent.schedule.no_expirations==1" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" datepicker-localdate ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
+													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>

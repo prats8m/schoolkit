@@ -51,7 +51,7 @@ app
 					if (response.status == true) {
 						if (response.msg == 'Login_Success') {
 
-							$cookies.put('token', response.data[0].token);
+							$cookies.put('token', response.data[0].token, { path: '/elika-warehouse' });
 							$rootScope.current_user = response.data[0];
 							if (response.data[0].userType == 'warehouseAdmin') {
 								$cookies.put('facilityId', response.data[0].facilityId);
