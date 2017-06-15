@@ -56,11 +56,13 @@ app
 		if($scope.facility_id){params += 'facility_id='+$scope.facility_id;}else{params += 'facility_id='+appConstants.null;}
 		if($scope.door_id){params += '&door_id='+$scope.door_id;}else{params += '&door_id='+appConstants.null;}
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
-		
-        
+		        
 		if($scope.time){
-            var d = new Date($scope.time);
-            var time = Date.UTC(d.getUTCFullYear(),(d.getUTCMonth()+1),d.getUTCDate());
+            var d = new Date($scope.time); console.log(d);
+            //var t = d.setHours(00,00,00,0000); console.log(t); return false;
+            var time = Date.UTC(d.getUTCFullYear(),(d.getUTCMonth()),(d.getUTCDate()+1)); console.log(time);
+            //time.setHours(00,00,00);
+            time = time/1000;
             params += '&time=' + time;
         }else{
             params += '&time=' + appConstants.null;
