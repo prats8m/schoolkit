@@ -41,7 +41,7 @@ app
  */
 app
 	.controller('LoginCtrl', function ($scope, $state, toaster, dataService, $cookies, $rootScope) {
-		if ($cookies.get('token') != null && $cookies.get('token') != '') {
+		if ($cookies.get('token', { path: '/elika-warehouse' }) != null && $cookies.get('token', { path: '/elika-warehouse' }) != '') {
 			$state.go('app.inventory.devices');
 			return null;
 		}
