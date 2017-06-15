@@ -2471,6 +2471,10 @@ span.edittxt {position: absolute;
 	.glview md-card .md-actions a, .dropdown-menu, .btn, .form-control::-webkit-input-placeholder {
 		font-size: 15px;
 	}
+	.modal-body .form-control::-webkit-input-placeholder {
+		opacity: 0;
+		-webkit-appearance: none !important;
+	}
 	.glview md-card md-card-content p, #header .nav-right > li.nav-profile > a, #header .nav-left > li.nav-profile > a, .form-control, .btn-group.btnrounded>.btn, .profilephoto #profilep-2, .md-tab, .chosen-container-single .chosen-single, .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
 		font-size: 16px;
 	}	
