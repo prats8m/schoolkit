@@ -67,7 +67,7 @@ app
         }else{
             params += '&time=' + appConstants.null;
         }
-		params += "&limit=100&pageNo=1&searchValue=";
+		params += "&limit=1000&pageNo=1&searchValue=";
         activitiesSvc.eventFetch(appConstants.listevent + params,appConstants.getMethod,{},{},function (succResponse) {
         //activitiesSvc.eventFetch('event/list-event?facility_id=null&door_id=null&event_id=null&limit=5&pageNo=1&searchVlaue=',appConstants.getMethod,{},{},function (succResponse) {
             $scope.activities = [];
@@ -89,7 +89,7 @@ app
     }, 30000);
     
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap().withOption('order', [3, 'desc']);
 	$scope.dtColumnDefs = [
 		DTColumnDefBuilder.newColumnDef(0),
 		DTColumnDefBuilder.newColumnDef(1),
