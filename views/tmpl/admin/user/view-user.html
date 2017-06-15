@@ -360,7 +360,7 @@
 													</thead>
 													<tbody style="font-size:14px;">
 														<tr ng-repeat="x in userGroup">
-															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{x.usergroup_name}} <small>({{x.usergroup_user_count}} Users)</small></a></td>
+															<td><a ui-sref="app.admin.user.user-groups-members({usergroup_id:x.usergroup_id,userGroupName:x.usergroup_name,userGroupUserCount:x.usergroup_user_count})" ng-click="cancel()">{{x.usergroup_name}} <small>({{x.usergroup_user_count}} Users)</small></a></td>
 														</tr>
 													</tbody>
 												</table>

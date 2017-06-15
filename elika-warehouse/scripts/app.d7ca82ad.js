@@ -8631,7 +8631,7 @@ app.service('dataService', ["$http", "toaster", "$cookies", "$location", "$rootS
       method: 'GET',
       url: url,
       params: param,
-      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("token",{path: '/elika-warehouse'}) }
+      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("Token",{path: '/elika-warehouse'}) }
     }).error(function () {
       if ($rootScope.lastMessage != msg)
         toaster.pop('error', msg);
@@ -8643,7 +8643,7 @@ app.service('dataService', ["$http", "toaster", "$cookies", "$location", "$rootS
       method: "POST",
       url: url,
       data: data,
-      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("token", { path: '/elika-warehouse' }) }
+      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("Token", { path: '/elika-warehouse' }) }
     }).error(function () {
       if ($rootScope.lastMessage != msg)
         toaster.pop('error', msg);
@@ -8655,7 +8655,7 @@ app.service('dataService', ["$http", "toaster", "$cookies", "$location", "$rootS
       method: "POST",
       url: url,
       data: data,
-      headers: { 'Content-Type': undefined, "Authorization": $cookies.get("token", { path: '/elika-warehouse' }) }
+      headers: { 'Content-Type': undefined, "Authorization": $cookies.get("Token", { path: '/elika-warehouse' }) }
     }).error(function () {
       if ($rootScope.lastMessage != msg)
         toaster.pop('error', msg);
@@ -8667,7 +8667,7 @@ app.service('dataService', ["$http", "toaster", "$cookies", "$location", "$rootS
       method: "PUT",
       url: url,
       data: data,
-      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("token", { path: '/elika-warehouse' }) }
+      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("Token", { path: '/elika-warehouse' }) }
     }).error(function () {
       if ($rootScope.lastMessage != msg)
         toaster.pop('error', msg); $rootScope.lastMessage = msg;
@@ -8678,7 +8678,7 @@ app.service('dataService', ["$http", "toaster", "$cookies", "$location", "$rootS
       method: "DELETE",
       url: url,
       //data: data,
-      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("token", { path: '/elika-warehouse' }) }
+      headers: { 'Content-Type': 'application/json', "Authorization": $cookies.get("Token", { path: '/elika-warehouse' }) }
     }).error(function () {
       if ($rootScope.lastMessage != msg)
         toaster.pop('error', msg); $rootScope.lastMessage = msg;
@@ -8700,7 +8700,7 @@ app.service('dataService', ["$http", "toaster", "$cookies", "$location", "$rootS
   }
   this.responseError = function (response) {
     if (response.msg == 'Invalid_Token') {
-      $cookies.remove("token");
+      $cookies.remove("Token");
       if ($rootScope.lastMessage != response.msg)
         toaster.pop('error', 'Session Expired');
       $location.path('/core/login');
@@ -8760,7 +8760,7 @@ app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cooki
   function link(scope, element, attrs) {
     element.bind('click', function () {
       $cookies.remove("token", { path: '/' });
-      $cookies.remove("token", { path: '/elika-warehouse' });
+      $cookies.remove("Token", { path: '/elika-warehouse' });
       $location.path('/core/login');
     });
   }
