@@ -41,7 +41,7 @@ app
  */
 app
 	.controller('LoginCtrl', function ($scope, $state, toaster, dataService, $cookies, $rootScope) {
-		if ($cookies.get('token', { path: '/elika-warehouse' }) != null && $cookies.get('token', { path: '/elika-warehouse' }) != '') {
+		if ($cookies.get('Token', { path: '/elika-warehouse' }) != null && $cookies.get('Token', { path: '/elika-warehouse' }) != '') {
 			$state.go('app.inventory.devices');
 			return null;
 		}
@@ -51,7 +51,7 @@ app
 					if (response.status == true) {
 						if (response.msg == 'Login_Success') {
 
-							$cookies.put('token', response.data[0].token, { path: '/elika-warehouse' });
+							$cookies.put('Token', response.data[0].token, { path: '/elika-warehouse' });
 							$rootScope.current_user = response.data[0];
 							if (response.data[0].userType == 'warehouseAdmin') {
 								$cookies.put('facilityId', response.data[0].facilityId);

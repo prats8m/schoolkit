@@ -1897,8 +1897,10 @@ app
         };
 
         $scope.usergroup_id = $stateParams.usergroup_id;
+
         $scope.currentSelectedGroupName = $stateParams.userGroupName;
         $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
+
 
         $scope.dashboardInit = function () {
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
