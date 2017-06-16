@@ -1621,9 +1621,10 @@ app
                 $("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").css("pointer-events", "none").css("opacity", "0.5");
             });
         };
-
+        
         $scope.currentSelectedGroupName = $stateParams.userGroupName;
         $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
+
         $scope.dashboardInit = function () {
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -1896,6 +1897,8 @@ app
         };
 
         $scope.usergroup_id = $stateParams.usergroup_id;
+        $scope.currentSelectedGroupName = $stateParams.userGroupName;
+        $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
 
         $scope.dashboardInit = function () {
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {

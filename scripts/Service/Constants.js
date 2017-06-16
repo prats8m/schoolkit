@@ -350,7 +350,7 @@ app.constant("appConstants", {
     messageOncheckifpwdAndcnfrmpwdSame:'Password and Confirm password should be same',
 
     _titleUserGroups:'User Groups',
-    _membersUserGroups:'User Groups Members',
+    _membersUserGroups:'User Group Members',
     _deleteusergroupconfirmationmessage:'Would you like to delete User Group ?',
     _cancelusergroupdeleteioonmessage:'You decided to keep User Group',
     _successDeleteUserGroup:'Your User Group has been deleted successfully',

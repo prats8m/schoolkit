@@ -71,17 +71,18 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Account Number/ICCID <span class="text-danger">*</span></label>
-														<input type="text" name="account_no" id="" ng-model="device.account_no" class="form-control" number ui-mask="{{'99999 99999 99999 99999'}}" placeholder="" required>
+														<!-- <input type="text" name="account_no" id="" ng-model="device.account_no" class="form-control" number ui-mask="{{'99999 99999 99999 99999'}}" placeholder="" required> -->
+														<input type="text" name="account_no" id="" ng-model="device.account_no" class="form-control" number minlength="19" maxlength="20" placeholder="" required>
 													</div>
 												</div>
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Serial Number <span class="text-danger">*</span></label>
-														<input ng-model="device.serial_no" type="text" name="serial_no" id="" class="form-control" placeholder="" required>
+														<input ng-model="device.serial_no" type="text" name="serial_no" id="" maxlength="20" class="form-control" placeholder="" required>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Registration Code <span class="text-danger">*</span></label>
-														<input ng-model="device.reg_code" type="text" name="registration" id="" class="form-control" placeholder="" required>
+														<input ng-model="device.reg_code" type="text" name="registration" maxlength="20" id="" class="form-control" placeholder="" required>
 													</div>
 												</div>
 												<div class="row">
@@ -91,7 +92,8 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Bluetooth Mac Id <span class="text-danger">*</span></label>
-														<input type="text" name="ble" id="" class="form-control" ng-model="device.mac_address" pattern="^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$" oninvalid="setCustomValidity('Please enter valid mac address')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="" required>
+														<input type="text" name="ble" id="" class="form-control" ng-model="device.mac_address" pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" oninvalid="setCustomValidity('Please enter valid mac address')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="" required>
+														<span ng-show="add_device.ble.$touched && add_device.ble.$invalid" class="error">Please enter valid mac address</span>
 													</div>
 												</div>
 												<div class="row">
