@@ -33,17 +33,19 @@
 							<div class="profile-settings"> 
 								<div class="row">
 									<div class="col-sm-12 col-md-12 col-centered">
-										<div class="col-sm-4 col-md-5">
-											<label for="">Auto Refresh</label><br/>
-											<select class="form-control w-240" disabled>
+										<div class="col-sm-6 col-md-6">
+											<!-- <label for="">Auto Refresh</label><br/> -->
+											<!-- <select class="form-control w-240" disabled>
 												<option selected>None</option>
 												<option>15 Sec</option>
 												<option>30 Sec</option>
 												<option>1 min</option>
 												<option>15 min</option>
 												<option>30 min</option>
-											</select>
+											</select> -->
+											<button class="form-control w-240" ng-click="eventFetch()">Auto Refresh</button>
 										</div>
+										
 									</div>
 								</div>
 								
@@ -52,9 +54,11 @@
 										<div class="col-sm-3 col-md-3" ng-controller="DatepickerDemoCtrl">
 											<label for="">Date/Time</label>
 											<div class="input-group">
-												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.date" is-open="opened" datepicker-options="dateOptions" ng-required="true" disabled="" close-text="Close" onkeypress="return false;" />
+
+												<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.time" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" ng-change="eventFetch()" />
+
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-default" ng-click="open($event)" disabled="" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar" ></i></button>
+													<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar" ></i></button>
 												</span>
 											</div>
 										</div>
@@ -106,10 +110,11 @@
 									</thead>
 									<tbody>
 										<tr ng-repeat="active in activities">
-											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a'}}</td>
+
+											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a': 'UTC'}}</td>
+
 											<td>{{active['user/event']}}</td>
 											<td>{{active['access_mode']}}</td>
-											
 											<td>{{active['facility']}}</td>
 											<td>{{active['door/device']}}</td>
 											
@@ -134,17 +139,22 @@
 								<h3 class="mt-0">Screenshot</h3>					
 								<div class="tile-body p-0">
 									<img src="{{trustSrc(mediafile)}}" class="userimg" alt="">
-									<!-- <img ng-src="https://elika-v2-devices.s3.amazonaws.com/elika4004/camera/57/snapshots/event_access_grant_2147483647_1495234931.jpeg?AWSAccessKeyId=AKIAJZ4PUZXXG2DABBSQ&Expires=1496147170&Signature=BbGsd%2F5Nqo3tMmzy6dyA8AaxOCM%3D" class="userimg" alt=""> -->
+									
 								</div>
 							</div>
 							<div ng-if="mediatype=='mp4'" class="form-group col-sm-12">
 								<h3 class="mt-40">Video</h3>					
 								<div class="tile-body p-0">
-									<video controls>
-										<source src="{{trustSrc(mediafile)}}" type="video/mp4">
+									<!-- <video controls>
+										<source ng-src="{{trustSrc(mediafile)}}" type="video/mp4">
 
 										Your browser does not support HTML5 video.
-									</video>
+									</video> -->
+									<videogular >
+										<vg-media vg-src="mediafile"
+										          vg-native-controls="true">
+										</vg-media>
+									</videogular>
 								</div>
 							</div>
 						</div>

@@ -45,8 +45,8 @@ app
                     cb(succResponse);
                 }
                 else {
-                    if(succResponse.msg != 'No_Record_Found')
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    // if(succResponse.msg != 'No_Record_Found')
+                    // toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     cb(succResponse);
                 }
             });

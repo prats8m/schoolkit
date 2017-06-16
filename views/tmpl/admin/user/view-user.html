@@ -138,7 +138,7 @@
 											<p><label>Zip Code</label> {{userData.user_zipcode}}</p>
 											<p><label>Password</label> *********</p>
 											<p><label>Status</label>{{userData.user_status}}</p>
-											<p><label>Expiration Date</label>{{userData.user_expiration_date*1000 | date:'dd/MM/yyyy'}}</p>
+											<p><label>Expiration Date</label>{{userData.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
 										</div>
 									</div>
 								</div>
@@ -172,7 +172,7 @@
 																			<td>
 																				{{accesscode.status==0?'Inactive':'Active'}}
 																			</td>
-																			
+
 																		</tr>
 																	</tbody>
 																</table>
@@ -185,7 +185,7 @@
 													<uib-accordion-heading>Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
 														<div class="row">
-															
+
 														</div>
 														<div class="mt-40">
 															<div class="tile-body p-0 table-responsive">
@@ -196,7 +196,7 @@
 																			<th width="325">Assigned Doors</th>
 																			<th>Phone Number</th>
 																			<th>Status</th>
-																			</tr>
+																		</tr>
 																	</thead>
 																	<tbody style="font-size:14px;">
 																		<tr ng-repeat="phone_code in phone_code_list">
@@ -261,7 +261,7 @@
 																		<th>Facility Code</th>
 																		<th width="400">Assigned Doors</th>
 																		<th>Status</th>
-																		</tr>
+																	</tr>
 																</thead>
 																<tbody style="font-size:14px;">
 																	<tr ng-repeat="wiegand_code in wiegand_code_list">
@@ -271,7 +271,7 @@
 																		<td>
 																			{{wiegand_code.status==0?'Inactive':'Active'}}
 																		</td>
-																		</tr>
+																	</tr>
 																</tbody>
 															</table>
 														</div>
@@ -360,7 +360,7 @@
 													</thead>
 													<tbody style="font-size:14px;">
 														<tr ng-repeat="x in userGroup">
-															<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{x.usergroup_name}} <small>({{x.usergroup_user_count}} Users)</small></a></td>
+															<td><a ui-sref="app.admin.user.user-groups-members({usergroup_id:x.usergroup_id,userGroupName:x.usergroup_name,userGroupUserCount:x.usergroup_user_count})" ng-click="cancel()">{{x.usergroup_name}} <small>({{x.usergroup_user_count}} Users)</small></a></td>
 														</tr>
 													</tbody>
 												</table>

@@ -64,7 +64,8 @@ var app = angular
     'dragularModule',
     'angular-loading-bar',
     'ngValidate',
-    'toaster'
+    'toaster',
+    "com.2fdevs.videogular"
   ])
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
@@ -98,7 +99,7 @@ var app = angular
       $rootScope.containerClass = toState.containerClass;
 
       if (toState.name === "app.admin.user.add-user") {
-        $cookies.remove("userId");
+        // $cookies.remove("userId");
       }
     });
 
@@ -9448,7 +9449,38 @@ app.directive('username', function username() {
     }
   };
 });
+app.directive('datepickerLocaldate', ['$parse', function ($parse) {
+  var directive = {
+    restrict: 'A',
+    require: ['ngModel'],
+    link: link
+  };
+  return directive;
 
+  function link(scope, element, attr, ctrls) {
+    var ngModelController = ctrls[0];
+
+    // called with a JavaScript Date object when picked from the datepicker
+    ngModelController.$parsers.push(function (viewValue) {
+      // undo the timezone adjustment we did during the formatting
+      viewValue.setMinutes(viewValue.getMinutes() - viewValue.getTimezoneOffset());
+      // we just want a local date in ISO format
+      return (viewValue)
+    });
+
+    // called with a 'yyyy-mm-dd' string to format
+    ngModelController.$formatters.push(function (modelValue) {
+      if (!modelValue) {
+        return undefined;
+      }
+      // date constructor will apply timezone deviations from UTC (i.e. if locale is behind UTC 'dt' will be one day behind)
+      var dt = new Date(modelValue);
+      // 'undo' the timezone offset again (so we end up on the original date again)
+      dt.setMinutes(dt.getMinutes() + dt.getTimezoneOffset());
+      return dt;
+    });
+  }
+}]);
 app.filter('emptyVal', function () {
   return function (input) {
     return (input == null || input == 'null' || input == 0) ? 0 : input;
@@ -9471,7 +9503,8 @@ app.directive("number", function () {
 app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
   function link(scope, element, attrs) {
     element.bind('click', function () {
-      $cookies.remove("token");
+      $cookies.remove("token", { path: '/' });
+      $cookies.remove("token", { path: '/elika-warehouse' });
       $location.path('/core/login');
     });
   }
@@ -9495,7 +9528,7 @@ app.filter('deviceFeatureFilter', function () {
     } else {
       return "offline";
     }
-  } 
+  }
 });
 app.filter("timeago", function () {
   //time: the time

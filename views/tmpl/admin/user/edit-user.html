@@ -188,8 +188,7 @@
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Phone <span class="text-danger">*</span></label>
-															<input type="text" maxlength="15" class="form-control" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')"
-															 onchange="try{setCustomValidity('')}catch(e){}" id="user_phone_no" ng-model="editUser.user_phone_no">
+															<input type="text" maxlength="15" class="form-control" ui-mask="{{'(999) 999-9999'}}" id="user_phone_no" ng-model="editUser.user_phone_no">
 														</div>
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Address <span class="text-danger">*</span></label>
@@ -220,7 +219,7 @@
 														<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expirationdate" min-date="mindate"
+																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expirationdate"  min-date="mindate"
 																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -293,7 +292,7 @@
 															</thead>
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="assign_usergroup in userGroup">
-																	<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
+																	<td><a ui-sref="app.admin.user.user-groups-members({usergroup_id:assign_usergroup.usergroup_id,userGroupName:assign_usergroup.usergroup_name,userGroupUserCount:assign_usergroup.usergroup_user_count})" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
 																	<td><button type="button" ng-click="unassignUserGroupEdit($event,assign_usergroup.usergroup_id,usergroup.facility_id )"
 																		 class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 																</tr>

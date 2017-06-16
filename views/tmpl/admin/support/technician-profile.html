@@ -1,10 +1,10 @@
 <div class="page page-profile">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 	</div>
-	
+
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,35 +12,35 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<!-- <p>{{page.subtitle}}</p> -->									
+									<!-- <p>{{page.subtitle}}</p> -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<flip-header></flip-header>			
+			</div>
+			<flip-header></flip-header>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
-						
+
 						<h4 class="mb-0"><strong>{{technician.technician_first_name}}</strong></h4>
 						<span class="text-muted">{{technician.technician_phone}}</span>
 						<div class="mt-40">
 							<button ng-click="showConfirm($event,technician.technician_id)" class="btn btn-rounded-20 btn-sm btn-lightred">Delete Technician</button>
 						</div>
-					</div>  
+					</div>
 				</section>
 			</div>
-			
-			<div class="col-sm-12 col-md-8"> 
-				<section class="tile tile-simple"> 
-					<div class="tile-body p-0"> 
-						<uib-tabset class="tabs-dark"> 
-						
+
+			<div class="col-sm-12 col-md-8">
+				<section class="tile tile-simple">
+					<div class="tile-body p-0">
+						<uib-tabset class="tabs-dark">
+
 							<uib-tab heading="Profile Detail">
 								<div class="wrap-reset">
 									<div class="row">
@@ -62,32 +62,37 @@
 							</uib-tab>
 							<uib-tab heading="Edit Account">
 								<div class="wrap-reset">
-									<form ng-validate="validationOptions" ng-submit="submitTechProfile(addTechnician,techProfile)" name="techProfile" role="form">
+									<form ng-validate="validationOptions" name="techProfile" role="form">
 										<div class="modal-body">
 											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">First Name <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" ng-model="addTechnician.technician_first_name" id="first-name" name="first_name" required="required">
+													<input type="text" class="form-control" ng-model="addTechnician.technician_first_name" id="first-name" name="first_name"
+													 required="required">
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="last-name">Last Name <span class="text-danger">*</span></label>
 													<input type="text" ng-model="addTechnician.technician_last_name" class="form-control" id="last-name" name="last_name" required="required">
 												</div>
 											</div>
-											<div class="form-group row">										
+											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="email">Email Address <span class="text-danger">*</span></label>
-													<input type="email" ng-model="addTechnician.technician_email" class="form-control" id="email" value="pcosm1245@gmail.com" name="email" required="required" readonly>
+													<input type="email" ng-model="addTechnician.technician_email" class="form-control" id="email" value="pcosm1245@gmail.com"
+													 name="email" required="required" readonly>
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">Phone Number <span class="text-danger">*</span></label>
-													<input type="text" ng-model="addTechnician.technician_phone" class="form-control" id="first-name" pattern="^\+[1-9]{1}[0-9]{3,14}$" oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}" required="required" name="phone_number">
+													<input type="text" ng-model="addTechnician.technician_phone" class="form-control" id="first-name" pattern="^\+[1-9]{1}[0-9]{3,14}$"
+													 oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}"
+													 required="required" name="phone_number">
 												</div>
-											</div>										
-											<div class="form-group row">												
+											</div>
+											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="address1">Address <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" id="address1" ng-model="addTechnician.technician_address" value="558 Margaret Street, LOS ANGELES, CA-90001, USA" name="address" required="required">
+													<input type="text" class="form-control" id="address1" ng-model="addTechnician.technician_address" value="558 Margaret Street, LOS ANGELES, CA-90001, USA"
+													 name="address" required="required">
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="address1">Zip Code <span class="text-danger">*</span></label>
@@ -106,21 +111,26 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-sm-6 col-md-6">				
-												<label for="">Expiration Date <span class="text-danger">*</span></label>
-													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl" >
-														<input type="text"  onkeypress="return false;"id="expirationdate" name="expirationdate"  class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-model="addTechnician.expiration_date"/>
+												<div class="col-sm-6 col-md-6">
+													<label for="">Expiration Date <span class="text-danger">*</span></label>
+													<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
+														<input type="text" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="addTechnician.expiration_date"
+														 min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+														 ng-value="addTechnician.expiration_date" />
+														<!--<input type="text" onkeypress="return false;" id="expirationdate" name="expirationdate" class="form-control" uib-datepicker-popup="{{format}}"
+														 ng-model="addTechnician.expirationdate" ng-value="addTechnician.expiration_date"  is-open="opened"
+														 min-date="mindate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />-->
 														<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
 													</div>
-											</div>
+												</div>
 											</div>
 											<div class="form-group row legend">
 												<div class="col-md-12">
 													<p></p>
 													<div onclick="window.history.back()" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</div>
-													<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
+													<button type="submit" ng-click="submitTechProfile(addTechnician,techProfile)" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Save</button>
 												</div>
 											</div>
 										</div>

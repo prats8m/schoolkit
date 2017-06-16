@@ -12,7 +12,8 @@
 			<h2 class="login-h2 text-greensea">Login</h2>
 			<form name="form" class="form-validation mt-20" novalidate>
 				<div class="form-group">
-					<input type="email" class="form-control underline-input" placeholder="Email Address" ng-model="user.username" ng-change="user.username = user.username.split(' ').join('')"  ng-trim="false" autocomplete="off" required>
+					<input type="text" class="form-control underline-input" placeholder="Email Address" ng-model="user.username" ng-change="user.username = user.username.split(' ').join('')"
+					 ng-trim="false" autocomplete="off" required>
 				</div>
 
 				<div class="form-group">
@@ -20,8 +21,8 @@
 				</div>
 
 				<div style="font-size: 16px; text-align: left; margin: -15px 0 0; color: #ff0000;">{{message}}</div>
-				
-				<div class="form-group text-left mt-20 mb-0">        
+
+				<div class="form-group text-left mt-20 mb-0">
 					<label class="checkbox checkbox-custom-alt inline-block" style="font-weight: 400;">
 						<input type="checkbox"><i></i> Remember me
 					</label>
@@ -33,25 +34,26 @@
 				<p class="m-0"><a ui-sref="core.signup">Register a new membership</a></p>
 			</div>
 		</div>
-	</div>	
+	</div>
 </section>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(function () {
 		var winw = $(window).width();
-	    var winh = $(window).height();
-		
-		$(window).on('resize',function(){location.reload();});
-		
-		if(winh>449 && winw > 1139) {
+		var winh = $(window).height();
+
+		$(window).on('resize', function () { location.reload(); });
+
+		if (winh > 449 && winw > 1139) {
 			var popuph = document.getElementById('hpopup').offsetHeight;
 			var mtop = popuph - 45;
 			$('.w-450').css({
-				'position' : 'absolute',
-				'left' : '50%',
-				'top' : '50%',	        
-				'margin-top' : -mtop/2,
-				'margin-left' : -30,
+				'position': 'absolute',
+				'left': '50%',
+				'top': '50%',
+				'margin-top': -mtop / 2,
+				'margin-left': -30,
 			});
 		}
 	});
+
 </script>

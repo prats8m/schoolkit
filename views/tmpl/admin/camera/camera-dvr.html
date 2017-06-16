@@ -109,7 +109,7 @@
 															<a ng-click="!isaddCameraGroup?open():false" uib-tooltip="Updates the current camera group" ng-class="{disabledAnchor: $scope.isaddCameraGroup}"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
 														</div>
 														<a href="" ng-class="{disabledAnchor: !$scope.isaddCameraGroup && $scope.selectedCameraGroup}" ng-click="checkIfDeleteCameraGroupValidAnchor($event)"
-														   uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+														 uib-tooltip="Deletes the current camera group"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 														<a href="" uib-tooltip="Makes the current camera group the default camera group"><i class="fa fa-home" aria-hidden="true"></i></a>
 													</div>
 												</div>
@@ -138,7 +138,7 @@
 
 														<div class="ta-r">
 															<select id="cameraGroupDD" class="form-control" ng-model="selectedCameraGroup" ng-change="resetAllMediaPlayers();UpdateCamerasBasedOnCameraGroup(selectedCameraGroup)"
-																	ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
+															 ng-options="cameraGroup.cg_id as cameraGroup.cg_name for cameraGroup in cameraGroupList track by cameraGroup.cg_id">
 																<option value="">Select the camera group</option>
 
 															</select>
@@ -198,7 +198,8 @@
 													<div class="col-sm-3 col-md-3 " ng-controller="DatepickerDemoCtrl ">
 														<label for=" ">Date <span class="text-danger">*</span></label>
 														<div class="input-group ">
-															<input type="text " class="form-control " uib-datepicker-popup="{{format}} " ng-model="recordedFeedsSearchObj.dt " is-open="opened
+															<input type="text " class="form-control " uib-datepicker-popup="{{format}} "  ng-model="recordedFeedsSearchObj.dt "
+															 is-open="opened
 												 " datepicker-options="dateOptions " ng-required="true " close-text="Close " />
 															<span class="input-group-btn ">
 																<button type="button " class="btn btn-default " ng-click="open($event) " style="padding: 8px 14px;
@@ -250,20 +251,20 @@
 																	</div>
 
 																	<script>
-                                                                        $('#recordedFeedVideoPlayer').on('loadstart', function (event) {
-                                                                            //$(this).attr("poster", "./././././images/loadingvideo.gif");
-                                                                           // alert('loading');
-                                                                        });
-                                                                        $('#recordedFeedVideoPlayer').on('canplay', function (event) {
-                                                                            // alert('canPLay');
-                                                                            $(this).removeAttr("poster");
-                                                                        });
-                                                                        $('#recordedFeedVideoPlayer').on('abort', function (event) {
-                                                                            // alert('aborted');
-                                                                        });
-                                                                        $('#recordedFeedVideoPlayer').on('suspend', function (event) {
-                                                                            // alert('suspend');
-                                                                        });
+																		$('#recordedFeedVideoPlayer').on('loadstart', function (event) {
+																			//$(this).attr("poster", "./././././images/loadingvideo.gif");
+																			// alert('loading');
+																		});
+																		$('#recordedFeedVideoPlayer').on('canplay', function (event) {
+																			// alert('canPLay');
+																			$(this).removeAttr("poster");
+																		});
+																		$('#recordedFeedVideoPlayer').on('abort', function (event) {
+																			// alert('aborted');
+																		});
+																		$('#recordedFeedVideoPlayer').on('suspend', function (event) {
+																			// alert('suspend');
+																		});
 																	</script>
 
 
@@ -293,28 +294,29 @@
 	</div>
 </div>
 <script>
-    function callPlayer(cameraID, videoUrl='rtsp://52.34.213.96:8554/Elika12345') {
-        var isChrome = !!window.chrome && !!window.chrome.webstore;
-        setTimeout(function () {
-            vxgplayer('vxg_media_player' + cameraID).onReadyStateChange(function (onreadyState) {
-                vxgplayer('vxg_media_player' + cameraID).play();
-                vxgplayer('vxg_media_player'+ cameraID).mute();
-            });
-            vxgplayer('vxg_media_player' + cameraID).onError(function (onErr) {
-                console.log(" player ERROR: " + vxgplayer('vxg_media_player' + cameraID).error());
-            });
-        }, 2000);
-        // Blink engine detection
-        var isBlink = (isChrome || isOpera) && !!window.CSS;
+																		function callPlayer(cameraID, videoUrl = 'rtsp://52.34.213.96:8554/Elika12345') {
+																			var isChrome = !!window.chrome && !!window.chrome.webstore;
+																			setTimeout(function () {
+																				vxgplayer('vxg_media_player' + cameraID).onReadyStateChange(function (onreadyState) {
+																					vxgplayer('vxg_media_player' + cameraID).play();
+																					vxgplayer('vxg_media_player' + cameraID).mute();
+																				});
+																				vxgplayer('vxg_media_player' + cameraID).onError(function (onErr) {
+																					console.log(" player ERROR: " + vxgplayer('vxg_media_player' + cameraID).error());
+																				});
+																			}, 2000);
+																			// Blink engine detection
+																			var isBlink = (isChrome || isOpera) && !!window.CSS;
 
-        if (!isChrome) {
-            document.getElementById("vxg_media1 " + cameraID).innerHTML =
-                "<embed id='player' type='application/x-vlc-plugin' class='lv_player' name='player' target='"+videoUrl+"' autoplay = 'yes' loop= 'yes' toolbar= false width= '100%' height= '480' />";
-            document.getElementById("player").setAttribute("id",
-                "player" + cameraID);
-        } else {
-            document.getElementById("vxg_media1" + cameraID).innerHTML =
-                '<div id= "vxg_media_player' + cameraID +'" class="vxgplayer" url= "'+videoUrl+'" aspect-ratio latency= "3000000" autostart controls avsync style="width: 770px; min-height: 360px;"> </div>';
-        }
-    };
+																			if (!isChrome) {
+																				document.getElementById("vxg_media1 " + cameraID).innerHTML =
+																					"<embed id='player' type='application/x-vlc-plugin' class='lv_player' name='player' target='" + videoUrl + "' autoplay = 'yes' loop= 'yes' toolbar= false width= '100%' height= '480' />";
+																				document.getElementById("player").setAttribute("id",
+																					"player" + cameraID);
+																			} else {
+																				document.getElementById("vxg_media1" + cameraID).innerHTML =
+																					'<div id= "vxg_media_player' + cameraID + '" class="vxgplayer" url= "' + videoUrl + '" aspect-ratio latency= "3000000" autostart controls avsync style="width: 770px; min-height: 360px;"> </div>';
+																			}
+																		};
+
 </script>

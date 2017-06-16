@@ -134,7 +134,7 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-10 pb-20">
 								<div class="col-sm-3 col-md-3 filterorder">
-									<label class="control-label" ng-init="filtershow=true">
+									<!-- <label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Search by</a>
 									</label>
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
@@ -143,7 +143,7 @@
 											<li><a href="" ng-click="orderByMe('title')">Title</a></li>
 											<li><a href="" ng-click="orderByMe('status')">Status</a></li>
 										</ul>
-									</label>
+									</label> -->
 								</div>
 								<div class="col-sm-3 col-md-4 pull-right ta-r">
 									<div class="profilephoto csvupload">
@@ -164,11 +164,11 @@
 													</div>
 												</form>		
 											</script>
-											<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											<span class="group-span-filestyle input-group-btn"><label ng-click="open()" class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
 										</div>
 									</div>
 								</div>
-								<div class="filterfields" ng-hide="filtershow">
+								<!-- <div class="filterfields" ng-hide="filtershow">
 									<div class="col-md-3">
 										<label for="fbtext" class="control-label">Search by text</label> 
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
@@ -181,7 +181,7 @@
 										<label for="fblocation" class="control-label">Search by status</label>
 										<input type="text" class="form-control" id="fblocation" ng-model="status">
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div ng-if="result">									
 								<div layout="row" ng-class="statusclass">									
@@ -200,7 +200,7 @@
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile({user_id:user.user_id})">View</a>
 												<!-- <a class="btn btn-success btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile">Edit</a> -->
-												<a class="btn btn-danger btn-border btn-rounded" ng-disabled="true" dng-click="showConfirm($event,user.user_id)">Delete</a>
+												<!-- <a class="btn btn-danger btn-border btn-rounded" ng-disabled="true" dng-click="showConfirm($event,user.user_id)">Delete</a> -->
 											</div>
 										</md-card>										
 									</md-content>
