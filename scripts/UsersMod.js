@@ -69,7 +69,8 @@ app
             $mdDialog.show(confirm).then(function () {
                 userSvc.deleteUser(appConstants.userdelete + '?user_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
-                        toaster.pop('info', appConstants._successfullyuserdeletedmessage);
+                        $scope.result = appConstants._successfullyuserdeletedmessage;
+                        $scope.statusclass = appConstants.dangerstatusClass;
                         toaster.pop(appConstants.success, $scope.result);
                         var users = $scope.users;
                         var tempUser = [];
@@ -82,7 +83,8 @@ app
                     }
                 });
             }, function () {
-                toaster.pop(appConstants.info, appConstants._canceluserdeletionmessage);
+                $scope.result = appConstants._canceluserdeletionmessage;
+                $scope.statusclass = appConstants.successstatusClass;
             });
         };
 
@@ -209,8 +211,8 @@ app
             userData.zip_code = parseInt(userData.zip_code);
             userData.user_type = appConstants.usertype.admin;
             var ex_date = userData.expirationdate;
-            var date = new Date(userData.expirationdate)
-            userData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            var date = new Date(userData.expirationdate)  
+            userData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
 
             if (!userData.expirationdate)
                 userData.expiration_date = appConstants.empty;
@@ -967,7 +969,6 @@ app
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
-                console.log($scope.editAccess);
                     $scope.editAccess = {};
                     $scope.editAccess.access_code = cred_data.Access_Code;
                     $scope.editAccess.credential_id = cred_data.Credential_Id;
@@ -1180,13 +1181,19 @@ app
             // submitData.expiration_date = submitData.expiration_date;
 
             var ex_date = submitData.expirationdate;
-            var date = new Date(submitData.expirationdate)
-            submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            if(isNaN(submitData.expirationdate)){
+            var d = submitData.expirationdate.split("/");
+            var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+            }
+            else{
+                var date = submitData.expirationdate;
+            }
+            submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
             delete submitData["expirationdate"];
 
             $rootScope.masters = [];
             userSvc.submitEditUser(appConstants.useredit, appConstants.putMethod, {}, submitData, function (succResponse) {
-                submitData.expirationdate = ex_date;
+              submitData.expirationdate = ex_date;
                 $scope.editUserMessage = appConstants.empty;
                 if (succResponse.status) {
                     if ($scope.myFile) {
@@ -1421,8 +1428,8 @@ app
             submitData.credential_type = "wiegand_code";
             submitData.details = {};
             // submitData.details.wiegand_facility_id = JSON.stringify(parseInt(submitData.wiegand_facility_code));
-            submitData.details.wiegand_card_number = submitData.wiegand_card_number;
-            submitData.details.wiegand_facility_code = submitData.wiegand_facility_code;
+            submitData.details.wiegand_card_number = JSON.stringify(parseInt(submitData.wiegand_card_number));
+            submitData.details.wiegand_facility_code = JSON.stringify(parseInt(submitData.wiegand_facility_code));
             submitData.door_id = submitData.door_id;
             submitData.status = submitData.status;
 
@@ -1527,7 +1534,8 @@ app
                     }
                 });
             }, function () {
-                toaster.pop('info', appConstants._canceluserdeletionmessage);
+                $scope.result = appConstants._canceluserdeletionmessage;
+                $scope.statusclass = appConstants.successstatusClass;
             });
         };
         //Delete user on detail page
@@ -1626,7 +1634,6 @@ app
 
         $scope.currentSelectedGroupName = $stateParams.userGroupName;
         $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
-
         $scope.dashboardInit = function () {
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -1662,7 +1669,8 @@ app
             $mdDialog.show(confirm).then(function () {
                 $scope.userGroupDelete(id);
             }, function () {
-                toaster.pop('info', appConstants._cancelusergroupdeleteioonmessage);
+                $scope.result = appConstants._cancelusergroupdeleteioonmessage;
+                $scope.statusclass = appConstants.successstatusClass;
             });
         };
 
@@ -1814,7 +1822,8 @@ app
         $scope.userGroupDelete = function (id) {
             userSvc.userGroupDelete(appConstants.usergroupdelete + '?usergroup_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    toaster.pop('info', appConstants._successDeleteUserGroup);
+                    $scope.result = appConstants._successDeleteUserGroup;
+                    $scope.statusclass = appConstants.dangerstatusClass;
                     var ug = $scope.usergroups;
                     var temp = [];
                     for (var i = 0; i < ug.length; i++) {
@@ -1900,10 +1909,6 @@ app
 
         $scope.usergroup_id = $stateParams.usergroup_id;
 
-        $scope.currentSelectedGroupName = $stateParams.userGroupName;
-        $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
-
-
         $scope.dashboardInit = function () {
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -1937,14 +1942,16 @@ app
             $mdDialog.show(confirm).then(function () {
                 $scope.userGroupDetailDelete(id);
             }, function () {
-                toaster.pop('info', appConstants._cancelusergroupdeleteioonmessage);
+                $scope.result = appConstants._cancelusergroupdeleteioonmessage;
+                $scope.statusclass = appConstants.successstatusClass;
             });
         };
 
         $scope.userGroupDetailDelete = function (id) {
             userSvc.userGroupDetailDelete(appConstants.usergroupdelete + '?usergroup_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    toaster.pop('info', appConstants._successDeleteUserGroup);
+                    $scope.result = appConstants._successDeleteUserGroup;
+                    $scope.statusclass = appConstants.dangerstatusClass;
                     $location.path('/app/admin/user/user-groups');
                 }
             });
