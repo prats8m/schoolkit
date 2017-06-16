@@ -1419,8 +1419,8 @@ app
             submitData.credential_type = "wiegand_code";
             submitData.details = {};
             // submitData.details.wiegand_facility_id = JSON.stringify(parseInt(submitData.wiegand_facility_code));
-            submitData.details.wiegand_card_number = JSON.stringify(parseInt(submitData.wiegand_card_number));
-            submitData.details.wiegand_facility_code = JSON.stringify(parseInt(submitData.wiegand_facility_code));
+            submitData.details.wiegand_card_number = submitData.wiegand_card_number;
+            submitData.details.wiegand_facility_code = submitData.wiegand_facility_code;
             submitData.door_id = submitData.door_id;
             submitData.status = submitData.status;
 
@@ -1621,7 +1621,7 @@ app
                 $("md-tab-item[aria-controls^=tab-content]:contains('Door Schedule')").css("pointer-events", "none").css("opacity", "0.5");
             });
         };
-        
+
         $scope.currentSelectedGroupName = $stateParams.userGroupName;
         $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
 
