@@ -966,6 +966,7 @@ app
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
+                console.log($scope.editAccess);
                     $scope.editAccess = {};
                     $scope.editAccess.access_code = cred_data.Access_Code;
                     $scope.editAccess.credential_id = cred_data.Credential_Id;

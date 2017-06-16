@@ -315,6 +315,9 @@
 															<div class="col-md-8">
 																<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="access_code" ng-model="editUser.access_code" name="access_code" required>
 																<span class="refreshbtn" ng-click="generateAccessCode()"><i class="fa fa-refresh"></i></span>
+																<span class="error" ng-show="errormessage.accessrequired">
+																	Access-Code is a required field.
+																</span>
 															</div>
 														</div>
 														<div class="row">

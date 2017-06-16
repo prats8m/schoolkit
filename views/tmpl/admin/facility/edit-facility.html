@@ -86,13 +86,15 @@
 												<input type="text" name="zip" maxlength="6" ng-keypress="allowNumberOnly($event);" id="zip" class="form-control" ng-model="facility.facility_zipcode" placeholder="10001" required>
 											</div>
 										</div>
-										<div class="form-group">
+										
+										<div class="form-group" style="display:none;">
 											<label for="">Status <span class="text-danger">*</span></label><br/>
 											<div class="btn-group btnrounded">
 												<label class="btn btn-default" ng-model="facility.facility_status" uib-btn-radio="1">Active</label>
 												<label class="btn btn-default" ng-model="facility.facility_status" uib-btn-radio="0">Inactive</label>
 											</div>
 										</div>	
+										<input type="hidden" ng-model="facility.facility_status" ng-value="1"/>
 										<div class="form-group row legend">
 											<div class="col-md-12">
 												<p></p>

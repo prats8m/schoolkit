@@ -56,7 +56,7 @@ app
 		};
 
 		$rootScope.addTechnicianSubmit = function (data, form) {
-			console.log(data);
+			
 			if (!form.validate()) {
 				return false;
 			}
