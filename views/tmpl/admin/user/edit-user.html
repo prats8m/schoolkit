@@ -533,7 +533,7 @@
 																	</div>
 																	<div class="form-group col-sm-3 col-md-4">
 																		<label for="">Facility Code</label>
-																		<input type="text" name="" ng-model="wiegand.wiegand_facility_code" id="" class="form-control">
+																		<input type="text" name="" ng-model="wiegand.wiegand_facility_code" ng-keypress="onlyNumber($event)" id="" class="form-control">
 																	</div>
 																	<div class="form-group col-sm-12 col-md-8">
 																		<label for="">Status</label><br/>

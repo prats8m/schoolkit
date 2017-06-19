@@ -1565,7 +1565,7 @@ app
         //End remove user credentials
         $scope.onlyNumber = function (e) {
             console.log(e);
-            if (e.keyCode >= 48 && e.keyCode <= 57) {
+            if (e.charCode >= 48 && e.charCode <= 57) {
                 //return true;
             } else {
                 e.preventDefault();
