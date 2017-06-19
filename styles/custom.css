@@ -3596,3 +3596,8 @@ span.edittxt {position: absolute;
 		width: 65%!important;
 	}
 }
+
+.access-code-disable {
+    pointer-events: none;
+    opacity: 0.8;
+}
