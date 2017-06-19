@@ -967,7 +967,6 @@ app
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
-                console.log($scope.editAccess);
                     $scope.editAccess = {};
                     $scope.editAccess.access_code = cred_data.Access_Code;
                     $scope.editAccess.credential_id = cred_data.Credential_Id;
@@ -1142,11 +1141,11 @@ app
 
             // $http.post(baseURL+'user/pic-upload',fd,
             // {
-            // 	transformRequest: angular.identity,
-            // 	headers: {
-            // 		"Authorization": $cookies.get("token"),
-            // 		"Content-type": undefined
-            // 	}}
+            //  transformRequest: angular.identity,
+            //  headers: {
+            //      "Authorization": $cookies.get("token"),
+            //      "Content-type": undefined
+            //  }}
             //     ).success(function (resp) {
             //         if(resp.msg == 'Invalid_Token'){
             //             toaster.pop('error','Session Expired');
@@ -1168,8 +1167,8 @@ app
                 return false;
             }
             // if(submitData.password!=submitData.cnf_pass){
-            // 	toaster.pop('Warning!! ','Password and Confirm Password should be same');
-            // 	return;
+            //  toaster.pop('Warning!! ','Password and Confirm Password should be same');
+            //  return;
             // }
             submitData.status = submitData.user_status;
             submitData.user_id = parseInt($stateParams.user_id);
@@ -1180,8 +1179,14 @@ app
             // submitData.expiration_date = submitData.expiration_date;
 
             var ex_date = submitData.expirationdate;
-            var date = new Date(submitData.expirationdate)
-            submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            if(isNaN(submitData.expirationdate)){
+            var d = submitData.expirationdate.split("/");
+            var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+            }
+            else{
+                var date = submitData.expirationdate;
+            }
+            submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
             delete submitData["expirationdate"];
 
             $rootScope.masters = [];
@@ -1414,7 +1419,7 @@ app
 
         $scope.submitEditWIEGANDCode = function (submitData, rfid_form) {
             // if(!wiegand_form.validate()){
-            // 	return false;
+            //  return false;
             // }
             $scope.wiegand = {};
             submitData.user_id = parseInt($stateParams.user_id);
