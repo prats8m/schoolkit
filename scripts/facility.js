@@ -106,6 +106,9 @@ app
                 }else if (succResponse.msg == "No_Record_Found") {
                     $scope.facilities = [];
                 }
+                else{
+                    $scope.facilities =  [];
+                }
             });
         };
 
