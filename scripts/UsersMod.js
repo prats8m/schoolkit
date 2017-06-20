@@ -186,7 +186,6 @@ app
         $scope.userData = {};
         $scope.userData.status = 1;
         $scope.submitUserData = function (userData, user_form) {
-            console.log(userData);
             if (!user_form.validate({
                 rules: {
                     user_phone_no: {
@@ -241,7 +240,7 @@ app
                     $("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
                     $timeout(function () {
                         $(".ng-scope:contains(User Groups)").trigger("click");
-                        // $(".ng-scope:contains(Credentials)").trigger( "click" );
+                        $rootScope.dashboardData.user++;
                     });
                     $timeout(function () {
                         $scope.facilityInit();
