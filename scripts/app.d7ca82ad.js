@@ -9502,6 +9502,19 @@ app.directive("number", function () {
   }
 });
 
+app.directive("noSpace", function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      element.on('keypress', function (e) {
+        if (e.keyCode == 32 || e.charCode == 32) {
+          e.preventDefault();
+        }
+      });
+    }
+  }
+});
+
 app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
   function link(scope, element, attrs) {
     element.bind('click', function () {

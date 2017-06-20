@@ -34,6 +34,7 @@ app
 				.success(function (response) {
 					if (response.status) {
 						toaster.pop('success', 'Device has been deleted successfully.');
+						//$rootScope.dashboardData.primary_device--;
 					} else {
 						dataService.responseError(response);
 					}
@@ -102,6 +103,7 @@ app
 				.success(function (response) {
 					if (response.status == true) {
 						toaster.pop('success', 'Device successfully added.');
+						//$rootScope.dashboardData.primary_device++;
 						$timeout(function () { $("#close").click(); });
 						$scope.deviceInit();
 					} else {

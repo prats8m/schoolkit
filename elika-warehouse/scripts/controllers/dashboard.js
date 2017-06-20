@@ -45,6 +45,12 @@ app
 			$state.go('app.inventory.devices');
 			return null;
 		}
+		$scope.user = {};
+		$scope.setCookies = function(){
+            $scope.user.username = $cookies.get('elikausername');
+            $scope.user.password = $cookies.get('elikapassword');
+        };
+        $scope.setCookies();
 		$scope.login = function () {
 			dataService.login($scope.user, baseUrl + 'login-warehouse')
 				.success(function (response) {
@@ -59,6 +65,10 @@ app
 								$cookies.put('userLastName', response.data[0].adminLastName);
 								$state.go('app.inventory.devices');
 							}
+							if($scope.rememberme){
+	                            $cookies.put('elikausername', $scope.user.username);
+	                            $cookies.put('elikapassword', $scope.user.password);                          
+	                        }
 						}
 					} else {
 						if (response.msg == 'Invalid_Credentials') {

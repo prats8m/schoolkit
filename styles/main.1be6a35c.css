@@ -1917,14 +1917,13 @@ html.boxed-layout {
       background-color: #51445f; }
       #header .nav-right > li > a,
       #header .nav-left > li > a {
-        color: rgba(255, 255, 255, 0.7);
         line-height: 42px;
         padding: 0 5px;
         display: inline-block;
         position: relative; }
         #header .nav-right > li > a:hover,
         #header .nav-left > li > a:hover {
-          color: white; }
+          }
         #header .nav-right > li > a > .badge,
         #header .nav-left > li > a > .badge {
           position: absolute;
@@ -4098,7 +4097,7 @@ check-toggler,
 #header .dropdown > .dropdown-menu {
   margin-top: -2px; }
 #header .dropdown.open > a {
-  color: white; }
+   }
 
 .dropdown-menu {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

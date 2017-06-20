@@ -81,11 +81,11 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Serial Number <span class="text-danger">*</span></label>
-														<input ng-model="device.serial_no" type="text" name="serial_no" id="" maxlength="20" class="form-control" placeholder="" required>
+														<input no-space ng-model="device.serial_no" type="text" name="serial_no" id="" maxlength="32" class="form-control" placeholder="" required>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Registration Code <span class="text-danger">*</span></label>
-														<input ng-model="device.reg_code" type="text" name="registration" maxlength="20" id="" class="form-control" placeholder="" required>
+														<input no-space ng-model="device.reg_code" type="text" name="registration" maxlength="32" id="" class="form-control" placeholder="" required>
 													</div>
 												</div>
 												<div class="row">
@@ -142,8 +142,13 @@
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-10 pb-20">
+<<<<<<< HEAD
 								<div class="col-sm-3 col-md-4 filterorder">
-									<label class="control-label" ng-init="filtershow=true">
+									<!-- <label class="control-label" ng-init="filtershow=true">
+=======
+								<div class="col-sm-2 col-md-3 filterorder">
+									<!--label class="control-label" ng-init="filtershow=true">
+>>>>>>> 53f940583b7e06dbe689dfc68666460c44ba9b9d
 										<a href="javascript:void()"><input type="checkbox"  class="hideshowfilter"/>Search by</a>
 									</label>
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
@@ -154,19 +159,45 @@
 											<li><a href="" ng-click="orderByMe('serialno')">Serial Number</a></li>
 											<li><a href="" ng-click="orderByMe('registrationcode')">Registration Code</a></li>
 										</ul>
-									</label>
+<<<<<<< HEAD
+									</label> -->
+=======
+									</label-->
+>>>>>>> 53f940583b7e06dbe689dfc68666460c44ba9b9d
 								</div>
 								
-								<div class="col-sm-3 col-md-4">
+								<div class="col-sm-8 col-md-6">
 									<div class="row">
-										<div class="col-sm-8 col-md-9 search">
+										<div class="col-sm-7 col-md-9 search">
 											<input type="text" class="form-control" ng-model="searchText" placeholder="Search by text...." ng-keyup="deviceInit($event)">
 											<button class="btn btn-default br-2-r" type="button" ng-click="deviceInit()">Search</button>
 										</div>
-										
+										<div class="col-sm-5 col-md-3 profilephoto csvupload">
+											<div ng-controller="ModalDemo2Ctrl">
+												<script type="text/ng-template" id="myModalContent2.html">
+													<form name="form1" role="form">
+														<div class="modal-header"><h4 class="modal-title custom-font">Upload CSV File</h4></div>
+														<div class="modal-body mt-5 pb-30 mb-40">
+															<label for="">Upload CSV file</label>
+															<div class="profilephoto">
+																<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+															</div>											
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>	
+														</div>
+													</form>		
+												</script>
+												<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											</div>
+										</div>
 									</div>
 								</div>
-								<div class="filterfields" ng-hide="filtershow">
+
+								<!-- <div class="filterfields" ng-hide="filtershow">
+
 									<div class="col-sm-4 col-md-3">
 										<label for="">Device Status</label><br/> 
 										<select class="form-control">
@@ -187,7 +218,9 @@
 										<label for="">Search by text</label>
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
 									</div>
-								</div>
+
+								</div> -->
+
 							</div>
 							<div ng-if="result">									
 								<div layout="row" ng-class="statusclass">									
