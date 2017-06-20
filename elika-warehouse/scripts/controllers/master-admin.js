@@ -185,6 +185,7 @@ app
 		 .success(function(response){
 		 	if(response.status == true){
 		 		$scope.userData = response.data;
+		 		$scope.userData.status = response.data.user_status;
 		 	}else{
 		 		dataService.responseError(response);
 		 	}
@@ -207,6 +208,7 @@ app
 		 .success(function(response){
 		 	if(response.status == true){
 		 		$scope.userData = response.data;
+		 		
 		 		$state.go('app.administrator.master-admin');
 		 	}else{
 		 		dataService.responseError(response);

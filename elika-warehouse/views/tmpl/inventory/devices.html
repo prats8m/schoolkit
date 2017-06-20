@@ -81,11 +81,11 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Serial Number <span class="text-danger">*</span></label>
-														<input ng-model="device.serial_no" type="text" name="serial_no" id="" maxlength="20" class="form-control" placeholder="" required>
+														<input no-space ng-model="device.serial_no" type="text" name="serial_no" id="" maxlength="32" class="form-control" placeholder="" required>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Registration Code <span class="text-danger">*</span></label>
-														<input ng-model="device.reg_code" type="text" name="registration" maxlength="20" id="" class="form-control" placeholder="" required>
+														<input no-space ng-model="device.reg_code" type="text" name="registration" maxlength="32" id="" class="form-control" placeholder="" required>
 													</div>
 												</div>
 												<div class="row">
@@ -143,7 +143,7 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-10 pb-20">
 								<div class="col-sm-3 col-md-4 filterorder">
-									<label class="control-label" ng-init="filtershow=true">
+									<!-- <label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox"  class="hideshowfilter"/>Search by</a>
 									</label>
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
@@ -154,7 +154,7 @@
 											<li><a href="" ng-click="orderByMe('serialno')">Serial Number</a></li>
 											<li><a href="" ng-click="orderByMe('registrationcode')">Registration Code</a></li>
 										</ul>
-									</label>
+									</label> -->
 								</div>
 								
 								<div class="col-sm-3 col-md-4">
@@ -166,7 +166,7 @@
 										
 									</div>
 								</div>
-								<div class="filterfields" ng-hide="filtershow">
+								<!-- <div class="filterfields" ng-hide="filtershow">
 									<div class="col-sm-4 col-md-3">
 										<label for="">Device Status</label><br/> 
 										<select class="form-control">
@@ -187,7 +187,7 @@
 										<label for="">Search by text</label>
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div ng-if="result">									
 								<div layout="row" ng-class="statusclass">									

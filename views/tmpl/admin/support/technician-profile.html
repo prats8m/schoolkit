@@ -67,24 +67,23 @@
 											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">First Name <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" ng-model="addTechnician.technician_first_name" id="first-name" name="first_name"
+													<input type="text" class="form-control" maxlength="15" ng-model="addTechnician.technician_first_name" id="first-name" name="first_name"
 													 required="required">
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="last-name">Last Name <span class="text-danger">*</span></label>
-													<input type="text" ng-model="addTechnician.technician_last_name" class="form-control" id="last-name" name="last_name" required="required">
+													<input type="text" ng-model="addTechnician.technician_last_name" class="form-control" maxlength="15" id="last-name" name="last_name" required="required">
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="email">Email Address <span class="text-danger">*</span></label>
-													<input type="email" ng-model="addTechnician.technician_email" class="form-control" id="email" value="pcosm1245@gmail.com"
+													<input type="email" ng-model="addTechnician.technician_email" class="form-control" id="email" maxlength="64" 
 													 name="email" required="required" readonly>
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">Phone Number <span class="text-danger">*</span></label>
-													<input type="text" ng-model="addTechnician.technician_phone" class="form-control" id="first-name" pattern="^\+[1-9]{1}[0-9]{3,14}$"
-													 oninvalid="setCustomValidity('Please enter valid mobile number')" onchange="try{setCustomValidity('')}catch(e){}"
+													<input type="text" ui-mask="(999) 999-9999" ng-model="addTechnician.technician_phone" class="form-control" id="first-name" 
 													 required="required" name="phone_number">
 												</div>
 											</div>
@@ -96,7 +95,7 @@
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="address1">Zip Code <span class="text-danger">*</span></label>
-													<input type="number" class="form-control" id="address1" ng-model="addTechnician.technician_zipcode" value="90001" required="required">
+													<input type="number" class="form-control" id="address1" ng-model="addTechnician.technician_zipcode" maxlength="6" required="required">
 												</div>
 											</div>
 											<div class="form-group row">

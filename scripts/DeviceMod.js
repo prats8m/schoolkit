@@ -34,6 +34,7 @@ app
                         }
                     }
                     $scope.data = tempDevice;
+                    $rootScope.dashboardData.primary_device--;
                 }
                 else {
                     $scope.result = succResponse.msg;

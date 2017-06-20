@@ -220,7 +220,7 @@
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model-options="{ timezone: 'UTC' }" ng-model="editUser.expirationdate"  min-date="mindate"
-																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
 																<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
