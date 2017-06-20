@@ -48,9 +48,51 @@ app
         $scope.myOrderBy = x;
     }
 
+	$.validator.addMethod("regx", function(value, element, regexpr) {          
+    return regexpr.test(value);
+	}, "Please enter a valid phone number.");
+
 	$rootScope.submitAddMasterAdmin = function(master,add_master_admin){
 		console.log();
-		if(!add_master_admin.validate()){
+		if(!add_master_admin.validate({
+			  rules: {
+			    first_name: {
+			      maxlength: 15
+			    },
+			    last_name: {
+			      maxlength: 15
+			    },
+			    email: {
+			      minlength: 6,
+			      maxlength: 35
+			    },
+			    password: {
+			      minlength: 8
+			    },
+			    phone: {
+			      regx: /^[0-9+-]+$/,	
+			      maxlength: 15			    }
+			  },
+			  messages: {
+		        first_name: {
+		            maxlength: "First Name can't be more than 15 characters"
+		        },
+		        last_name: {
+		            maxlength: "Last Name can't be more than 15 characters"
+		        },
+		        email: {
+		        	minlength: "Email can't be more than 6 characters",
+		            maxlength: "Email can't be more than 35 characters"
+		        },
+		        password: {
+		        	minlength: "Password can't be less than 8 characters"
+		        },
+		        phone: {
+		        	regx: "Please enter a valid phone number",
+		        	maxlength: "Phone number can't be more than 15 characters"
+		        }
+	    		}
+			})){
 	      return false;
 	    }
 		$rootScope.errorMessage = '';
