@@ -100,6 +100,9 @@ app
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
                 }
+                else{
+                    $scope.facilities =  [];
+                }
             });
         };
 
