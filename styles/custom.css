@@ -658,7 +658,7 @@ table.dstatus tr td.online i {
 	position: absolute;
     left: 10px;
     top: 9px;
-	display: none;
+	/*display: none;*/
 	font-size: 13px;
     line-height: 12px;
 }
@@ -2408,6 +2408,11 @@ span.edittxt {position: absolute;
 	margin-bottom: 20px;
 }
 
+.access-code-disable {
+    pointer-events: none;
+    background-color: #f1f1f1;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-2 {
         left: -85px
@@ -2788,11 +2793,12 @@ span.edittxt {position: absolute;
 	.wrap-reset .glview md-card:nth-child(3n+3) {
 		margin-right: 0;
 	}
-	.slimscrolls {
-		max-height: 355px;
-	}
 	.card-container .card .front, .card-container .card .noback {
 		height: 201px;
+	}
+	.slimscrolls {
+		max-height: 355px;
+		min-height: 355px;
 	}
 }
 
@@ -3596,3 +3602,5 @@ span.edittxt {position: absolute;
 		width: 65%!important;
 	}
 }
+
+
