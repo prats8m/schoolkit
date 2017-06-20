@@ -108,10 +108,7 @@ app
 				if (succResponse.status) {
 					$scope.technician = succResponse.data;
 					$scope.addTechnician = angular.copy($scope.technician);
-					//console.log($scope.addTechnician.expiration_date);
-					//var date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
-					$scope.addTechnician.expirationdate = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000))
-					//$scope.addTechnician.expiration_date * 1000;
+					$scope.addTechnician.expiration_date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
 				}
 			});
 		};
@@ -148,12 +145,12 @@ app
 			if (!form.validate()) {
 				return false;
 			}
-			var ex_date = Data.expirationdate;
-			var date = Data.expirationdate;
+			var ex_date = Data.expiration_date;
+			var date = Data.expiration_date;
 			Data.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-			delete Data["expirationdate"];
+			//delete Data["expiration_date"];
 			technicianSvc.submitTechProfile(appConstants.edittechnician, appConstants.putMethod, {}, Data, function (succResponse) {
-				Data.expirationdate = ex_date;
+				Data.expiration_date = ex_date;
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants._successfullyuserupdatemessage);
 					$location.path("/app/admin/support/technician");
