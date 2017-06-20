@@ -209,8 +209,8 @@
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.inventory.view-device({device_id:device.device_id})">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.inventory.edit-device({device_id:device.device_id})" ng-if="device.facility_name=='null'">Update</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,device.device_id,device.device_serial_no)" ng-disabled="device.facility_name!='null'">Delete</a>
+												<a class="btn btn-success btn-border btn-rounded {{device.facility_name!='null' ? 'disable-button' : ''}}" ui-sref="app.inventory.edit-device({device_id:device.device_id})" >Update</a>
+												<a class="btn btn-danger btn-border btn-rounded {{device.facility_name!='null' ? 'disable-button' : ''}}" ng-click="showConfirm($event,device.device_id,device.device_serial_no)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

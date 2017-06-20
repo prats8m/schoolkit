@@ -2028,3 +2028,8 @@ video {
 		width: 100%;
 	}	
 }
+
+.disable-button{
+    pointer-events: none;
+    opacity: 0.5;
+}
