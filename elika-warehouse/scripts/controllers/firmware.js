@@ -203,6 +203,8 @@ app
 	.success(function(response){
 		if(response.status){
 			$scope.firmwareData = response.data;
+			var date = new Date($scope.firmwareData.firmware_created_on*1000);
+			$scope.firmwareData.firmware_created_on = (date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear());
 			// $rootScope.deviceHardware($scope.device.device_model);
 		}else{
 			dataService.responseError(response);
