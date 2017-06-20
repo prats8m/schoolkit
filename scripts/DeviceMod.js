@@ -825,10 +825,23 @@ app
                     tmpArray.push(Number(prop));
                 }
                 $scope.editDevice.door_id = tmpArray;
+                $scope.getDeviceDoorsList(succResponse.data.device_facility_id, $scope.editDevice.doors);
             }
         });
 	};
 	$scope.dependentDeviceInit();
+
+    $scope.getDeviceDoorsList = function(facility_id, doors){
+        devicesSvc.getDoorsList(appConstants.doorlistnotassigntodevice+'?facility_id='+facility_id,appConstants.getMethod,{},{},function (succResponse) {
+            $scope.doorList = [];
+            if(succResponse.status){
+                $scope.doorList = succResponse.data;
+                for ( var prop in doors ) {
+                    $scope.doorList.push({door_id: parseInt(prop), door_name: doors[prop]});
+                }
+            }
+        });
+    };
 	
 	$scope.getTechnicianList = function(device){
         devicesSvc.getTechnicianList(appConstants.technicianlist,appConstants.getMethod,{},device,function (succResponse) {
@@ -847,7 +860,7 @@ app
             }
         });
 	};
-	$scope.getDoorsList();
+	// $scope.getDoorsList();
 	
 	$rootScope.formSubmit = function(device,device_form){
 		if(!device_form.validate()){
