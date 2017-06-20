@@ -131,7 +131,7 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-20">
 								<div class="col-sm-3 col-md-3 filterorder">
-									<label class="control-label" ng-init="filtershow=true">
+									<!--label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
 									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
@@ -140,7 +140,7 @@
 											<li><a href="" ng-click="orderByMe('title')">Title</a></li>
 											<li><a href="" ng-click="orderByMe('group')">Group</a></li>
 										</ul>
-									</label>
+									</label-->
 								</div>
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
@@ -149,19 +149,36 @@
 											<button class="btn btn-default br-2-r" type="button">Search</button>
 										</div>
 										<div class="col-sm-4 col-md-3 profilephoto csvupload">
-											<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-3" tabindex="-1">
-											<span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-3" class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											<div ng-controller="ModalDemo2Ctrl">
+												<script type="text/ng-template" id="myModalContent2.html">
+													<form name="form1" role="form">
+														<div class="modal-header"><h4 class="modal-title custom-font">Upload CSV File</h4></div>
+														<div class="modal-body mt-5 pb-30 mb-40">
+															<label for="">Upload CSV file</label>
+															<div class="profilephoto">
+																<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+															</div>											
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>	
+														</div>
+													</form>		
+												</script>
+												<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-sm-3 col-md-3">
-									<div class="gridlistbar ta-r pull-right">
+									<!--div class="gridlistbar ta-r pull-right">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
-									</div>
+									</div-->
 								</div>
-								<div class="filterfields" ng-hide="filtershow">
+								<!--div class="filterfields" ng-hide="filtershow">
 									<div class="col-sm-4 col-md-4">
 										<label for="fbtext" class="control-label">Search by text</label> 
 										<input type="text" class="form-control" id="fbtext" ng-model="text">
@@ -174,7 +191,7 @@
 										<label for="fblocation" class="control-label">Search by Group</label>
 										<input type="text" class="form-control" id="fblocation" ng-model="group">
 									</div>
-								</div>
+								</div-->
 							</div>
 							<div ng-if="status">									
 								<div layout="row" ng-class="statusclass">									

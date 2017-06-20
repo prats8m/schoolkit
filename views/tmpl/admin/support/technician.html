@@ -128,8 +128,25 @@
 											<button class="btn btn-default br-2-r" type="button">Search</button>
 										</div>
 										<div class="col-sm-4 col-md-3 profilephoto csvupload">
-											<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
-											<span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											<div ng-controller="ModalDemo2Ctrl">
+												<script type="text/ng-template" id="myModalContent2.html">
+													<form name="form1" role="form">
+														<div class="modal-header"><h4 class="modal-title custom-font">Upload CSV File</h4></div>
+														<div class="modal-body mt-5 pb-30 mb-40">
+															<label for="">Upload CSV file</label>
+															<div class="profilephoto">
+																<input type="file" class="filestyle user-profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1">
+																<div class="bootstrap-filestyle input-group"><input type="text" class="form-control " disabled=""> <span class="group-span-filestyle input-group-btn" tabindex="0"><label for="profilep-2" class="btn btn-default "><span class="glyphicon fa fa-inbox"></span> Find file</label></span></div>
+															</div>											
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>	
+														</div>
+													</form>		
+												</script>
+												<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											</div>
 										</div>
 									</div>
 								</div>

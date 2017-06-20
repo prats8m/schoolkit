@@ -120,12 +120,17 @@ textarea.form-control {
     font-size: 13px;
     position: absolute;
     left: -75px;
+	left: 0px\9;
     top: 0;
     padding: 8px 0;
     width: 101%;
-    background-color: #eee
+    background-color: #eee;	
 }
 
+_:-ms-input-placeholder, :root .profilephoto .user-profilep { 
+	left: 0px;
+} 
+	
 .profilephoto.csvupload .user-profilep {
     left: 14px;
     opacity: 0;
@@ -1269,17 +1274,16 @@ md-card:hover .moreitemsondevice {
     color: #16a086!important
 }
 
-#header .nav-left>li>a,
-#header .nav-right>li>a {
-    color: #5f6060!important
-}
-
-#header .topmenu .nav-right > li span {
+#header .topmenu .nav-right > li a span, #header .topmenu .nav-right > li span {
     padding: 0 5px;
     line-height: 42px;
     display: block;
     cursor: pointer;
 	color: #5f6060!important;
+}
+
+#header .topmenu .nav-right > li a:hover span, #header .topmenu .nav-right > li span:hover, .dropdown-menu > li > a:hover {
+	color: #16a086!important;
 }
 
 .bg-blue {
@@ -1610,7 +1614,7 @@ video {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .profilephoto #profilep-1 {
+    .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
     }
 	.tcol .text-muted {
@@ -1703,6 +1707,9 @@ video {
 	}	
 	.glview md-card:nth-child(5n+5) {
 		margin-right: 0;
+	}
+	.profilephoto .user-profilep {
+		padding: 12px 0;
 	}
 }
 
@@ -1874,6 +1881,9 @@ video {
 	.topmenu .dropdown-menu.open, #header .nav-right>li.open {
 		background: #f1f1f1!important;
 	}
+	#header .nav-right>li.nav-profile.open {
+		background: transparent!important;
+	}
 	.topmenu .dropdown-menu.panel {
 		min-width: 100%;
 		width: 235px;
@@ -1921,6 +1931,14 @@ video {
 	.tile .tile-header .controls {
 		display: block;
 	}
+	.hometabs .col-sm-7 {
+		width: 58.33333333%;
+		float: left;
+	}
+	.hometabs .col-sm-5 {
+		width: 41.66666667%;
+		float: left;
+	}
 }	
 
 @media only screen and (max-width: 599px) {
@@ -1960,7 +1978,7 @@ video {
 	.card-container .card {
 		display: none;
 	}
-	.branding, .csvupload {
+	.branding {
 		display: none;
 	}
 	.openmmenu .branding {
@@ -1978,6 +1996,17 @@ video {
 	}
 	.glview md-card .md-actions a {
 		border-width: 0;
+	}
+	.search .btn {
+		right: 15px;
+	}
+	.hometabs .col-sm-7 {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.hometabs .col-sm-5 {
+		width: 100%;
+		text-align: center;
 	}
 }
 
@@ -2027,4 +2056,9 @@ video {
 	.w-xl, .w-320 {
 		width: 100%;
 	}	
+}
+
+.disable-button{
+    pointer-events: none;
+    opacity: 0.5;
 }

@@ -147,11 +147,16 @@ textarea.form-control {
 .profilephoto .user-profilep {
     font-size: 13px;
     position: absolute;
-    left: 0;
+    left: -75px;
+	left: 0px\9;
     top: 0;
     padding: 8px 0;
-    width: 100%;
-    background-color: #eee
+    width: 101%;
+    background-color: #eee;	
+}
+
+_:-ms-input-placeholder, :root .profilephoto .user-profilep { 
+	left: 0px;
 }
 
 .profilephoto.csvupload .user-profilep {
@@ -237,7 +242,7 @@ tr[ng-show="::showSpinners"] {
 }
 
 .gridlistbar {
-    display: block;
+    display: none;
     margin: 3px 0 0
 }
 
@@ -385,8 +390,6 @@ md-tabs .md-tab.md-focused {
     color: #fff;
     background: #3c8719;
     max-width: none!important;
-	/*opacity: 1;
-    pointer-events: auto;*/
 }
 
 .hometabs md-tabs[md-border-bottom] md-tabs-wrapper {
@@ -407,8 +410,6 @@ md-tabs .md-tab.md-focused {
     border-radius: 3px;
     margin-right: 5px;
     max-width: none!important;
-	/*pointer-events: none;
-	opacity: 0.5;*/
 	cursor: pointer;
 }
 
@@ -1687,22 +1688,16 @@ md-card:hover .moreitemsondevice {
     color: #16a086!important
 }
 
-#header .nav-left>li>a,
-#header .nav-right>li>a {
-    color: #5f6060!important
-}
-
-#header .topmenu .nav-right > li > a {
-	line-height: normal;
-	padding: 0;
-}
-
-#header .topmenu .nav-right > li span {
-	padding: 0 5px;
+#header .topmenu .nav-right > li a span, #header .topmenu .nav-right > li span {
+    padding: 0 5px;
     line-height: 42px;
-	display: block;
-	cursor: pointer;
+    display: block;
+    cursor: pointer;
 	color: #5f6060!important;
+}
+
+#header .topmenu .nav-right > li a:hover span, #header .topmenu .nav-right > li span:hover, .dropdown-menu > li > a:hover {
+	color: #16a086!important;
 }
 
 .bg-blue {
@@ -2405,6 +2400,7 @@ span.edittxt {position: absolute;
 
 .slimscrolls {
 	max-height: 293px;
+	min-height: 293px;
 	margin-bottom: 20px;
 }
 
@@ -2414,7 +2410,7 @@ span.edittxt {position: absolute;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .profilephoto #profilep-2 {
+    .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
     }
 	.tcol .text-muted {
@@ -2841,6 +2837,7 @@ span.edittxt {position: absolute;
 	}
 	.slimscrolls {
 		max-height: 297px;
+		min-height: 297px;
 	}
 }
 
@@ -2921,6 +2918,9 @@ span.edittxt {position: absolute;
 	
 	.topmenu .dropdown-menu.open, #header .nav-right>li.open {
 		background: #f1f1f1!important;
+	}
+	#header .nav-right>li.nav-profile.open {
+		background: transparent!important;
 	}
 	
 	#header .nav-right.pull-right>li.open {
@@ -3065,6 +3065,7 @@ span.edittxt {position: absolute;
 	}
 	.slimscrolls {
 		max-height: 287px;
+		min-height: 287px;
 	}
 }
 
@@ -3149,7 +3150,8 @@ span.edittxt {position: absolute;
 		margin-right: 0;
 	}
 	.slimscrolls {
-		max-height: 303px;
+		max-height: 297px;
+		min-height: 297px;
 	}
 }
 
@@ -3319,6 +3321,7 @@ span.edittxt {position: absolute;
 	}
 	.slimscrolls {
 		max-height: 218px;
+		min-height: 218px;
 	}
 	.card-container .card .front, .card-container .card .noback {
 		height: 140px;
@@ -3432,7 +3435,7 @@ span.edittxt {position: absolute;
 }
 
 @media only screen and (max-width: 599px) {
-	#header .nav-right > li.nav-profile > a span .uname, .branding, .dropdown-menu.pull-right.with-arrow:after {
+	.branding, .dropdown-menu.pull-right.with-arrow:after {
 		display: none;
 	}
 	.appWrapper.sidebar-sm #header .branding {
