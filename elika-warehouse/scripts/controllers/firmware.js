@@ -84,12 +84,32 @@ app
     }
 	
 
-	// add firmware submit
+    //Regex validation for Firmware version
+	$.validator.addMethod("regx", function(value, element, regexpr) {          
+    return regexpr.test(value);
+	}, "Please enter a valid firmware version.");
 
+	// add firmware submit
 	$rootScope.submitAddFirmware = function(addFirmware,file,form){
-		if(!form.validate()){
+		if(!form.validate({
+			  rules: {
+			    firmware: {
+			      maxlength: 15,
+			      regx: /^[0-9.]+$/
+			    }
+			  },
+			  messages: {
+			  	firmware: {
+			      maxlength: "Firmware version can't be more than 15 characters",
+			      regx: "Please enter correct format version"
+			    }
+
+			  }
+		}
+		)){
 			return false;
 		}
+
 		var fd = new FormData();
 		fd.append('file',file);
 		$.each(addFirmware,function(index,value) {
@@ -183,6 +203,8 @@ app
 	.success(function(response){
 		if(response.status){
 			$scope.firmwareData = response.data;
+			var date = new Date($scope.firmwareData.firmware_created_on*1000);
+			$scope.firmwareData.firmware_created_on = (date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear());
 			// $rootScope.deviceHardware($scope.device.device_model);
 		}else{
 			dataService.responseError(response);

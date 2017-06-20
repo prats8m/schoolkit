@@ -68,7 +68,7 @@
 						<!-- <span class="text-muted">Active</span> -->
 						<div class="mt-40">
 							<!--a ui-sref="app.inventory.edit-device" class="btn btn-rounded-20 btn-sm btn-greensea mr-5">Update Device</a-->
-							<a ng-click="showConfirm($event,firmwareData.firmware_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
+							<a ng-click="showConfirm($event,firmwareData.firmware_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Firmware</a>
 						</div>
 					</div>
 				</section>
@@ -113,7 +113,7 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-12">
 										<div class="form-group profiledetail">
-											<p><label>Create Date</label> {{firmwareData.firmware_created_on*1000 | date: 'UTC'}}</p>
+											<p><label>Create Date</label> {{firmwareData.firmware_created_on}}</p>
 											<p><label>Component</label> {{firmwareData.firmware_component }}</p>
 											<p><label>Device Model</label> {{firmwareData.firmware_model }}</p>
 											<p><label>Hardware Version</label> {{firmwareData.firmware_hardware_version }}</p>

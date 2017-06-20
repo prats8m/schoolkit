@@ -69,8 +69,8 @@ app
             $mdDialog.show(confirm).then(function () {
                 userSvc.deleteUser(appConstants.userdelete + '?user_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
-                        toaster.pop('info', appConstants._successfullyuserdeletedmessage);
-                        toaster.pop(appConstants.success, $scope.result);
+                        //toaster.pop('info', appConstants._successfullyuserdeletedmessage);
+                        toaster.pop(appConstants.success, succResponse.msg);
                         var users = $scope.users;
                         var tempUser = [];
                         for (var i = 0; i < users.length; i++) {
@@ -79,6 +79,7 @@ app
                             }
                         }
                         $scope.users = tempUser;
+                        $rootScope.dashboardData.user--;
                     }
                 });
             }, function () {
@@ -558,6 +559,7 @@ app
                         toaster.pop(appConstants.success, appConstants.nfccodeupdatedsuccessfully);
                     }
                     $scope.savenfc.credential_id = null;
+                    $rootScope.NFCCodeMessage = appConstants.empty;
                 }
                 else {
                     $rootScope.NFCCodeMessage = succResponse.msg;
@@ -1484,6 +1486,7 @@ app
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                     $scope.getBleList();
+                    $scope.bleerror = appConstants.empty;
                 }
                 else {
                     $scope.bleerror = succResponse.msg;
@@ -1527,6 +1530,7 @@ app
             $mdDialog.show(confirm).then(function () {
                 userSvc.deleteUser(appConstants.userdelete + '?user_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
+                        $rootScope.dashboardData.user--;
                         $location.path('/app/admin/user/users');
                     }
                 });
