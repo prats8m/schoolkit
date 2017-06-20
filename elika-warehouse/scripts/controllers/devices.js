@@ -92,7 +92,7 @@ app
 				return false;
 			}
 			$rootScope.errorMessage = '';
-			device.account_no = parseInt(device.account_no);
+			device.account_no = device.account_no;
 			device.device_cell = (!device.device_cell) ? 0 : device.device_cell;
 			device.device_voip = (!device.device_voip) ? 0 : device.device_voip;
 			device.device_camera = (!device.device_camera) ? 0 : device.device_camera;
@@ -293,7 +293,7 @@ app
 				return false;
 			}
 			$rootScope.errorMessage = '';
-			device.account_no = parseInt(device.device_account_no);
+			device.account_no = device.device_account_no;
 			device.phone_no = device.device_phone_no;
 			device.serial_no = device.device_serial_no;
 			device.reg_code = device.device_registration_code;
@@ -311,7 +311,7 @@ app
 
 						var n = [];
 						var arr = response.error;
-						if (Array.isArray(fruits) && arr != null) {
+						if (Array.isArray(arr) && arr != null) {
 							$.each(arr, function (index, value) { n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1); $.each(value.messages, function (ind, value) { n[index] += " " + value }) });
 							$rootScope.errorMessage = n.join(", ");
 						}
