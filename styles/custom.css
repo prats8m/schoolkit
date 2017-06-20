@@ -658,7 +658,7 @@ table.dstatus tr td.online i {
 	position: absolute;
     left: 10px;
     top: 9px;
-	display: none;
+	/*display: none;*/
 	font-size: 13px;
     line-height: 12px;
 }
@@ -3595,4 +3595,9 @@ span.edittxt {position: absolute;
 	.listview .glview md-card md-card-content {
 		width: 65%!important;
 	}
+}
+
+.access-code-disable {
+    pointer-events: none;
+    background-color: #f1f1f1;
 }
