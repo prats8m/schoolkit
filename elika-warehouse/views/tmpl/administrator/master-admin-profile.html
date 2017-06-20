@@ -83,7 +83,9 @@
 											<div class="form-group col-sm-12 profiledetail">
 												<p><label>Name</label> {{userData.user_first_name + " " + userData.user_last_name}}</p>
 												<p><label>Email</label> {{userData.user_email}}</p>
-												<p><label>Phone</label> {{userData.user_phone_no}}</p>												
+												<p><label>Phone</label> {{userData.user_phone_no}}</p>
+												<p><label>Zipcode</label>{{userData.user_zipcode}}</p>
+												<p><label>Status</label> {{userData.user_status == 1 ? 'Active' : 'Inactive'}}</p>
 												<!-- <p><label>Password</label> *********</p> -->
 											</div>											
 										</div>
