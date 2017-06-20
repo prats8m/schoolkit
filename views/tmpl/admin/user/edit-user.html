@@ -219,7 +219,7 @@
 														<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
-																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="editUser.expirationdate"  min-date="mindate"
+																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model-options="{ timezone: 'UTC' }" ng-model="editUser.expirationdate"  min-date="mindate"
 																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 																<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -445,7 +445,7 @@
 														</div>
 													</uib-accordion-group>
 
-													<uib-accordion-group is-open="status.open2" class="panel-default">
+													<!--<uib-accordion-group is-open="status.open2" class="panel-default">
 														<uib-accordion-heading>
 															<div ng-click="cleanAccordionFormObject('Edit User','editRfid')">RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></div>
 														</uib-accordion-heading>
@@ -497,10 +497,7 @@
 																				<td>{{rfid_code.Detail.rfid_facility_id}}</td>
 																				<td>{{rfid_code.Door_Name}} </td>
 																				<td>
-																					<!--<select style="border: 0; width: 100%;">-->
-																					<!--<option value="" ng-selected="rfid_code.status == 1">Active</option>-->
-																					<!--<option value="" ng-selected="rfid_code.status == 0">Inactive</option>-->
-																					<!--</select>-->
+																					
 																					{{rfid_code.status==0?'Inactive':'Active'}}
 																				</td>
 																				<td class="credintialicon">
@@ -513,7 +510,7 @@
 																</div>
 															</div>
 														</div>
-													</uib-accordion-group>
+													</uib-accordion-group>-->
 
 													<uib-accordion-group is-open="status.open3" class="panel-default">
 														<uib-accordion-heading>
@@ -578,7 +575,7 @@
 														</div>
 													</uib-accordion-group>
 
-													<uib-accordion-group is-open="status.open4" class="panel-default">
+													<!--<uib-accordion-group is-open="status.open4" class="panel-default">
 														<uib-accordion-heading>
 															<div ng-click="cleanAccordionFormObject('Edit User','editNfc')">NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></div>
 														</uib-accordion-heading>
@@ -628,10 +625,7 @@
 																				<td>{{nfccode.Detail.nfc_code}}</td>
 																				<td>{{nfccode.Door_Name}}</td>
 																				<td>
-																					<!--<select style="border: 0; width: 100%;">-->
-																					<!--<option value="" ng-selected="nfccode.status == 1">Active</option>-->
-																					<!--<option value="" ng-selected="nfccode.status == 0">Inactive</option>-->
-																					<!--</select>-->
+																					
 																					{{nfccode.status==0?'Inactive':'Active'}}
 																				</td>
 																				<td class="credintialicon">
@@ -644,7 +638,7 @@
 																</div>
 															</div>
 														</div>
-													</uib-accordion-group>
+													</uib-accordion-group>-->
 
 													<uib-accordion-group is-open="status.open5" class="panel-default">
 														<uib-accordion-heading>

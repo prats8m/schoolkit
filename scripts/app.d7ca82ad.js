@@ -9473,6 +9473,8 @@ app.directive('datepickerLocaldate', ['$parse', function ($parse) {
       if (!modelValue) {
         return undefined;
       }
+      var res= modelValue.split('/');
+      modelValue=res[1]+'/'+res[0]+'/'+res[2];
       // date constructor will apply timezone deviations from UTC (i.e. if locale is behind UTC 'dt' will be one day behind)
       var dt = new Date(modelValue);
       // 'undo' the timezone offset again (so we end up on the original date again)
