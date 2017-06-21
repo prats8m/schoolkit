@@ -173,6 +173,14 @@ var app = angular
         templateUrl: 'views/tmpl/signup.html'
       })
 
+      //Thank you
+      .state('core.thankyou', {
+        url: '/thank-you',
+        controller: 'OTPCtrl',
+        templateUrl: 'views/tmpl/thank-you.html'
+      })
+
+
       //forgot password
       .state('core.forgot-password', {
         url: '/forgot-password',
