@@ -10,7 +10,8 @@
 
 /*jshint -W079 */
 
-var baseUrl = 'http://35.160.142.158:8080/';
+//var baseUrl = 'http://35.160.142.158:8080/';
+var baseUrl = 'http://35.162.244.123:8080/'; 
 //var baseUrl = 'http://127.0.0.1:8080/';
 var app = angular
   .module('minovateApp', [
