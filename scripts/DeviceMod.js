@@ -841,6 +841,12 @@ app
                     $scope.doorList.push({door_id: parseInt(prop), door_name: doors[prop]});
                 }
             }
+            else{
+                for ( var prop in doors ) {
+                    $scope.doorList.push({door_id: parseInt(prop), door_name: doors[prop]});
+                }
+                
+            }
         });
     };
 	
