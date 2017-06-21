@@ -94,11 +94,20 @@ app
             $scope.layout = appConstants.gridLayout;
         };
 
-        $rootScope.search_facility = function () {
-            //$scope.search;
+        $rootScope.search_facility = function (e) {
+            if(e)
+            if(e.keyCode!=13){return false;}
+            if(!$scope.search){
+                $scope.search = appConstants.empty;
+            }
             facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
+                }else if (succResponse.msg == "No_Record_Found") {
+                    $scope.facilities = [];
+                }
+                else{
+                    $scope.facilities =  [];
                 }
             });
         };

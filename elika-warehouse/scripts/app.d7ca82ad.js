@@ -11,6 +11,7 @@
 /*jshint -W079 */
 
 var baseUrl = 'http://35.160.142.158:8080/';
+//var baseUrl = 'http://35.162.244.123:8080/'; 
 //var baseUrl = 'http://127.0.0.1:8080/';
 var app = angular
   .module('minovateApp', [
@@ -8755,6 +8756,20 @@ app.directive("number", function () {
     }
   }
 });
+
+app.directive("noSpace", function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      element.on('keypress', function (e) {
+        if (e.keyCode == 32 || e.charCode == 32) {
+          e.preventDefault();
+        }
+      });
+    }
+  }
+});
+
 app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
 
   function link(scope, element, attrs) {

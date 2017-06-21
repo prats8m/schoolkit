@@ -173,6 +173,14 @@ var app = angular
         templateUrl: 'views/tmpl/signup.html'
       })
 
+      //Thank you
+      .state('core.thankyou', {
+        url: '/thank-you',
+        controller: 'OTPCtrl',
+        templateUrl: 'views/tmpl/thank-you.html'
+      })
+
+
       //forgot password
       .state('core.forgot-password', {
         url: '/forgot-password',
@@ -9495,6 +9503,19 @@ app.directive("number", function () {
       element.on('keypress', function (e) {
         console.log(e);
         if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
+          e.preventDefault();
+        }
+      });
+    }
+  }
+});
+
+app.directive("noSpace", function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      element.on('keypress', function (e) {
+        if (e.keyCode == 32 || e.charCode == 32) {
           e.preventDefault();
         }
       });

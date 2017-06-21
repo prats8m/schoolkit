@@ -136,7 +136,7 @@
 											<p><label>LCD Name</label>{{userData.user_name_on_lcd}} </p>
 											<p><label>Address</label>{{userData.user_address}}</p>
 											<p><label>Zip Code</label> {{userData.user_zipcode}}</p>
-											<p><label>Password</label> *********</p>
+											<!-- <p><label>Password</label> *********</p> -->
 											<p><label>Status</label>{{userData.user_status}}</p>
 											<p><label>Expiration Date</label>{{userData.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
 										</div>
@@ -215,7 +215,7 @@
 														</div>
 													</div>
 												</uib-accordion-group>
-
+												<!--
 												<uib-accordion-group is-open="status.open2" class="panel-default">
 													<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
@@ -247,6 +247,7 @@
 														</div>
 													</div>
 												</uib-accordion-group>
+												-->
 												<uib-accordion-group is-open="status.open3" class="panel-default">
 													<uib-accordion-heading>Wiegand Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
@@ -277,7 +278,7 @@
 														</div>
 													</div>
 												</uib-accordion-group>
-
+												<!---
 												<uib-accordion-group is-open="status.open4" class="panel-default">
 													<uib-accordion-heading>NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
@@ -308,7 +309,7 @@
 														</div>
 													</div>
 												</uib-accordion-group>
-
+												-->
 												<uib-accordion-group is-open="status.open5" class="panel-default">
 													<uib-accordion-heading>BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open5, 'fa-plus': !status.open5}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">

@@ -44,14 +44,14 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Serial Number <span class="text-danger">*</span></label>
-														<input type="text" maxlength="20" name="serial_no" id="" ng-model="device.serial_no" class="form-control" placeholder="" required>
+														<input type="text" maxlength="32" name="serial_no" id="" ng-model="device.serial_no" class="form-control" placeholder="" required>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Registration Code <span class="text-danger">*</span></label>
-														<input type="text" name="" id="" ng-model="device.registration_code" class="form-control" placeholder="" required>
+														<input type="text" name="" maxlength="32" id="" ng-model="device.registration_code" class="form-control" placeholder="" required>
 													</div>
 												</div>
-												<div class="row" >
+												<div class="row" style="display:none;">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Device Type <span class="text-danger">*</span></label><br/>
 														<div class="btn-group btnrounded" ng-init="device.device_type='master'">
@@ -144,7 +144,7 @@
 											<input type="text" class="form-control" ng-model="searchText" placeholder="Search by text...." ng-keyup="searchFunction($event)">
 											<button class="btn btn-default br-2-r" type="button" ng-click="searchFunction()">Search</button>
 										</div>
-										<div class="col-sm-4 col-md-3 profilephoto csvupload">
+										<!-- <div class="col-sm-4 col-md-3 profilephoto csvupload">
 											<div ng-controller="ModalDemo2Ctrl">
 												<script type="text/ng-template" id="myModalContent2.html">
 													<form name="form1" role="form">
@@ -164,7 +164,7 @@
 												</script>
 												<span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<div class="col-sm-3 col-md-3">

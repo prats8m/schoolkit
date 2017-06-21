@@ -66,8 +66,8 @@
 						<h3 class="mb-10"><strong>{{device.device_name}}</strong></h3>
 						<span class="text-muted">{{device.device_model}}</span>
 						<div class="mt-40">
-							<a ui-sref="app.inventory.edit-device({device_id:device.device_id})" class="btn btn-rounded-20 btn-sm btn-greensea mr-5">Update Device</a>
-							<a ng-click="showConfirm($event,device.device_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
+							<a ui-sref="app.inventory.edit-device({device_id:device.device_id})" class="btn btn-rounded-20 btn-sm btn-greensea mr-5 {{device.facility != null ? 'disable-button' : ''}}"> Update Device</a>
+							<a ng-click="showConfirm($event,device.device_id)" class="btn btn-rounded-20 btn-sm bg-danger {{device.facility != null ? 'disable-button' : ''}}">Delete Device</a>
 						</div>
 					</div> 
 					<div class="tile-body text-center bg-blue p-0"> 
