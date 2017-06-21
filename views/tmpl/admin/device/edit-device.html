@@ -40,17 +40,17 @@
 						<div class="mt-40">
 							<!--<a ui-sref="app.admin.device.device-settings({device_id:device_id})" class="btn btn-rounded-20 btn-sm btn-slategray">View Settings</a>-->
 							<!--<a ui-sref="app.admin.device.service-plan({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk mr-5 ml-5">View Plan</a>-->
-							<a ui-sref="app.admin.device.view-dependent-device({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Device</a>
+							<a ui-sref="app.admin.device.view-device({device_id:device_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Device</a>
 							<a ng-click="showConfirm($event,device_id,details.device_facility_id)" class="btn btn-rounded-20 btn-sm bg-danger">Delete Device</a>
 						</div>
 					</div> 
 					<div class="tile-body text-center bg-blue p-0"> 
-						<ul class="list-inline tbox m-0">
+						<!-- <ul class="list-inline tbox m-0">
 							<li class="tcol p-10">
 								<h2 class="m-0">{{details.device_slave_count}}</h2>
 								<span class="text-transparent-white">Dependent Devices</span>
 							</li>
-						</ul>
+						</ul> -->
 					</div>  
 				</section>
 			</div>
