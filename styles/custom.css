@@ -2409,6 +2409,14 @@ span.edittxt {position: absolute;
     background-color: #f1f1f1;
 }
 
+.dropdown-menu > li.version  {
+	text-align: center;
+    padding: 5px 15px;
+    background: #e5e5e5;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
