@@ -229,10 +229,10 @@
 										<md-card ng-repeat="device in devices | limitTo:totalDisplayed | filter:text | filter:title | filter:client | filter:serialno | filter:registrationcode | orderBy:myOrderBy track by device.device_id">
 											<md-card-content>
 												<h2 class="md-title">{{ device.device_serial_no }}</h2>
-												<p><span>Model No</span> : {{ device.device_model}}</p>
-												<p><span>Client</span> : {{ device.facility_name | warehouseClientNameInList}}</p>
+												<p><span>Model No</span><span class="devicelengths">: {{ device.device_model}}</span></p>
+												<p><span>Client</span><span class="devicelengths">: {{ device.facility_name | warehouseClientNameInList}}</span></p>
 												<!-- <p><span>Serial No.</span> : {{ device.device_serial_no }}</p> -->
-												<p><span>Reg Code</span> : {{ device.device_registration_code }}</p>
+												<p><span>Reg Code</span><span class="devicelengths">: {{ device.device_registration_code }}</span></p>
 												<!-- <p><span>Create Date</span> : {{ device.device_created_on | date :  "dd.MM.y"  }}</p> -->
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
