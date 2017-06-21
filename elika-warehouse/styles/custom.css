@@ -591,7 +591,14 @@ md-tabs .md-tab.md-focused {
 }
 
 .profiledetail p label {
-    width: 200px
+    width: 150px;
+    vertical-align: top;
+}
+
+.profiledetail p span.firmdes {
+    display: inline-block;
+    width: 75%;
+    word-break: break-all;
 }
 
 .deviceactiondrop {
@@ -897,7 +904,16 @@ a.serplan:hover {
 
 .glview md-card md-card-content p span {
 	display: inline-block;
-	width: 80px;
+	width: 65px;
+    vertical-align: top;
+}
+
+.glview md-card md-card-content p span.devicelengths {
+    width: 195px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .glview md-card .md-actions a {
