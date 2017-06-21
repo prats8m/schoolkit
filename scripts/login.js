@@ -5,6 +5,9 @@ app
         $scope.setCookies = function(){
             $scope.user.username = $cookies.get('username');
             $scope.user.password = $cookies.get('password');
+            if($scope.user.username != undefined){
+                $scope.rememberme = true;
+            }
         };
         $scope.setCookies();
 
@@ -19,6 +22,10 @@ app
                         if($scope.rememberme){
                             $cookies.put('username', $scope.user.username);
                             $cookies.put('password', $scope.user.password);                          
+                        }
+                        else{
+                            $cookies.remove('username');
+                            $cookies.remove('password');
                         }
                         console.log($rootScope.current_user);
                         $state.go('app.admin.dashboard');
