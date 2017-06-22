@@ -49,6 +49,9 @@ app
 		$scope.setCookies = function(){
             $scope.user.username = $cookies.get('elikausername');
             $scope.user.password = $cookies.get('elikapassword');
+         	if($scope.user.username != undefined){
+                $scope.rememberme = true;
+            }
         };
         $scope.setCookies();
 		$scope.login = function () {
@@ -69,6 +72,10 @@ app
 	                            $cookies.put('elikausername', $scope.user.username);
 	                            $cookies.put('elikapassword', $scope.user.password);                          
 	                        }
+	                        else{
+                            	$cookies.remove('elikausername');
+                            	$cookies.remove('elikapassword');
+                        	}
 						}
 					} else {
 						if (response.msg == 'Invalid_Credentials') {
