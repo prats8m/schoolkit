@@ -3615,3 +3615,7 @@ span.edittxt {position: absolute;
 }
 
 
+.disable-button{
+    pointer-events: none;
+    opacity: 0.5;
+}

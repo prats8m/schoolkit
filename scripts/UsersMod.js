@@ -1094,6 +1094,12 @@ app
 
         $scope.editassignedGroup();
         $rootScope.userNotAssignedGroup = function (facility_id) {
+            if(facility_id == undefined){
+                $("#add_group_facility").addClass("disable-button");
+            }      
+            else{
+                $("#add_group_facility").removeClass("disable-button");
+            } 
             userSvc.userNotAssignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($stateParams.user_id), facility_id: facility_id }, function (succResponse) {
                 $rootScope.usergroups = [];
                 if (succResponse.status) {
