@@ -898,8 +898,10 @@ app
                     $scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
                     $scope.editUser.address = angular.copy($scope.userData.user_address);
                     $scope.editUser.email = angular.copy($scope.userData.user_email);
-                    var date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
-                    $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
+                    if($scope.userData.user_expiration_date != 0){
+                        var date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
+                        $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
+                    }
                     $scope.editUser.status = angular.copy($scope.userData.user_status);
                     $scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
                     // $scope.editAccess.access_code = angular.copy($scope.userData.access_code);
@@ -1178,18 +1180,22 @@ app
             submitData.zipcode = parseInt(submitData.user_zipcode);
             submitData.facility_id = parseInt($cookies.get("facilityId"));
             // submitData.expiration_date = submitData.expiration_date;
-
-            var ex_date = submitData.expirationdate;
-            if(isNaN(submitData.expirationdate)){
-            var d = submitData.expirationdate.split("/");
-            var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+            var ex_date = '';
+            if(submitData.no_expirations == 1 || submitData.status == 0){
+                submitData.expirationdate  = '';
             }
             else{
-                var date = submitData.expirationdate;
+                ex_date = submitData.expirationdate;
+                if(isNaN(submitData.expirationdate)){
+                var d = submitData.expirationdate.split("/");
+                var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+                }
+                else{
+                    var date = submitData.expirationdate;
+                }
+                submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+                delete submitData["expirationdate"];
             }
-            submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
-            delete submitData["expirationdate"];
-
             $rootScope.masters = [];
             userSvc.submitEditUser(appConstants.useredit, appConstants.putMethod, {}, submitData, function (succResponse) {
                 submitData.expirationdate = ex_date;
