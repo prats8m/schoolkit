@@ -16,13 +16,10 @@ app
         };
         $scope.facility = appConstants.empty;
         $rootScope.facilityId = $cookies.get("facilityId");
-
         $timeout(function () {
-            if ($cookies.get("userId") == undefined) {
-                $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
-                $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
-            }
-        }, 500);
+            $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
+            $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
+        });
 
         //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 
@@ -237,7 +234,7 @@ app
                     }
                     $cookies.put("userId", succResponse.data.user_id);
                     $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
-                    $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
+                    $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.7");
                     $("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
                     $timeout(function () {
                         $(".ng-scope:contains(User Groups)").trigger("click");
@@ -630,6 +627,7 @@ app
             userSvc.assignUserGroup(appConstants.userassignusergrouop, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), user_group_id: arr, facility_id: user_group.facility_id }, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroupmsg = succResponse.msg;
+                    $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
                     $timeout(function () {
                         $scope.doorList();
                     });
@@ -1079,10 +1077,12 @@ app
                 $scope.nogroup = false;
                 if (succResponse.status) {
                     if (succResponse.data == null) {
+                        $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
                         $scope.nogroup = appConstants.nousergroupassigned;
                         $scope.userGroup = appConstants.empty;
                     }
                     else {
+                        $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
                         $scope.userGroup = succResponse.data;
                         $scope.groupcount = succResponse.data.length;
                     }
