@@ -172,24 +172,39 @@
 															<label for="">Confirm Password <span class="text-danger">*</span></label>
 															<input type="password" name="cpassword" id="" ng-model="userData.cpassword" class="form-control" required>
 														</div>
-														<div class="form-group col-sm-6 col-md-3">
-															<label for="">Status <span class="text-danger">*</span></label><br/>
-															<div class="btn-group btnrounded">
-																<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="1">Active</label>
-																<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
+														
+														<!---------------- Start ------------------>
+														
+														<div class="col-sm-6 col-md-6">
+															<div class="row">
+																<div class="form-group col-sm-4 col-md-4">
+																	<label for="">Status <span class="text-danger">*</span></label><br/>
+																	<div class="btn-group btnrounded">
+																		<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="1">Active</label>
+																		<label class="btn btn-default" ng-model="userData.status" uib-btn-radio="0">Inactive</label>
+																	</div>
+																</div>
+																<div class="form-group col-sm-4 col-md-4">
+																	<label for="">&nbsp;</label><br/>
+																	<label for="">Status</label>
+																</div>
+																<div id="expirationDateMainDiv" class="form-group col-sm-4 col-md-4" ng-hide="radioModel=='Inactive'">
+																	<label for="">Expiration Date <span class="text-danger">*</span></label>
+																	<div id="expirationDateInnerDiv" class="input-group userexp" ng-controller="DatepickerDemoCtrl">
+																		<input type="text" id="expirationdate" name="expirationdate" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+																		  is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true"
+																		 close-text="Close" ng-model="userData.expirationdate" />
+																		<span class="input-group-btn">
+																			<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																		</span>
+																	</div>
+																</div>
 															</div>
 														</div>
-														<div id="expirationDateMainDiv" class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
-															<label for="">Expiration Date <span class="text-danger">*</span></label>
-															<div id="expirationDateInnerDiv" class="input-group userexp" ng-controller="DatepickerDemoCtrl">
-																<input type="text" id="expirationdate" name="expirationdate" ng-disabled="userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
-																  is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true"
-																 close-text="Close" ng-model="userData.expirationdate" />
-																<span class="input-group-btn">
-															<button  ng-disabled="userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
-														</span>
-															</div>
-														</div>
+														
+														
+														<!---------------- End ------------------>
+														
 													</div>
 													<div class="mt-40 pb-10 ta-c">
 														<a ui-sref="app.admin.user.users" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Cancel</a>
