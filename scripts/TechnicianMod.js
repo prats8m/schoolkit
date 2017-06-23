@@ -108,7 +108,10 @@ app
 				if (succResponse.status) {
 					$scope.technician = succResponse.data;
 					$scope.addTechnician = angular.copy($scope.technician);
-					$scope.addTechnician.expiration_date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
+					var date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
+                    $scope.addTechnician.expiration_date = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
+
+					// $scope.addTechnician.expiration_date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
 				}
 			});
 		};
@@ -146,7 +149,17 @@ app
 				return false;
 			}
 			var ex_date = Data.expiration_date;
-			var date = Data.expiration_date;
+
+
+			if(isNaN(Data.expiration_date)){
+            var d = Data.expiration_date.split("/");
+            var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+            }
+            else{
+                var date = Data.expiration_date;
+            }
+
+
 			Data.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 			//delete Data["expiration_date"];
 			technicianSvc.submitTechProfile(appConstants.edittechnician, appConstants.putMethod, {}, Data, function (succResponse) {
