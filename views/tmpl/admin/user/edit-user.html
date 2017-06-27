@@ -147,20 +147,26 @@
 														<!--<label for="">Confirm Password</label>-->
 														<!--<input type="password" name="cnf_pass" id="cnf_pass" ng-model="editUser.cnf_pass" name="cnf_pass" class="form-control">-->
 														<!--</div>-->
-														<div class="form-group col-sm-6 col-md-3">
+														<div class="form-group col-sm-6 col-md-4">
 															<label for="">Status <span class="text-danger">*</span></label><br/>
 															<div class="btn-group btnrounded">
 																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="1">Active</label>
 																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="0">Inactive</label>
 															</div>
 														</div>
-														<div class="form-group col-sm-6 col-md-3" ng-hide="radioModel=='Inactive'">
+														<div class="form-group col-sm-6 col-md-2">
+															<label for=""> No Expirations</label><br/>
+															<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
+															<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="editUser.no_expirations" ng-true-value="1" ng-false-value="0" ng-disabled="editUser.user_status == 0" ng-checked="editUser.user_status == 0"><i></i>
+															</label>
+														</div>
+														<div class="form-group col-sm-6 col-md-6" ng-hide="radioModel=='Inactive'">
 															<label for="">Expiration Date <span class="text-danger">*</span></label>
 															<div class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model-options="{ timezone: 'UTC' }" ng-model="editUser.expirationdate"  min-date="mindate"
-																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
+																 is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;"  ng-disabled="editUser.no_expirations || editUser.user_status == 0"/>
 																<span class="input-group-btn">
-															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;" ng-disabled="editUser.user_status == 0 || editUser.no_expirations"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
 															</div>
 														</div>
@@ -191,7 +197,7 @@
 														<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
 														<ul class="controls">
 															<li class="addpopup">
-																<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+																<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add disable-button" id="add_group_facility"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
 															</li>
 														</ul>
 														<script type="text/ng-template" id="myModalContent.html">
