@@ -909,7 +909,7 @@ a.serplan:hover {
 }
 
 .glview md-card md-card-content p span.devicelengths {
-    width: 195px;
+    width: 70%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -1499,7 +1499,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .page-login.core-new .form-group {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .page-login.core-new .form-control {

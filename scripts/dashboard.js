@@ -152,3 +152,30 @@ app
         }]
     };
 });
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:SignupCtrl
+ * @description
+ * # SignupCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('SignupCtrl', function ($scope, $state,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster) {
+
+    $scope.submitSignUpForm = function(user){
+        if(!user.tnc) { toaster.pop('error',appConstants._chktnc);
+         return false; }
+        user.secret_question = parseInt(user.secret_question);
+        dashboardSvc.submitSignUpForm(appConstants.addmasteradmin,appConstants.postMethod,{},user,function (succResponse) {
+            if(succResponse.status){
+                if(succResponse.msg == 'Success')
+                toaster.pop('success',appConstants._successsignup);
+                $state.go('core.login');
+            }
+        });
+    }
+
+  });
