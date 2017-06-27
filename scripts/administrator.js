@@ -198,32 +198,7 @@ app
     $scope.layout = 'grid';
   };
 
-  /*
-  $http.get('http://elikastaging.ml/json/admin/admin.json')
-  .success(function(response){
-    $scope.admin = response;
-    $scope.totalDisplayed = 8;
-    
-    if($scope.admin.length > $scope.totalDisplayed) {
-      $scope.lmbtn = {
-        "display" : "block"
-      };      
-    } else {
-      $scope.lmbtn = {
-        "display" : "none"
-      };
-    }
-    
-    $scope.loadMore = function () {
-      $scope.totalDisplayed += 8;
-      if($scope.totalDisplayed > $scope.admin.length) {       
-        $scope.lmbtn = {
-          "display" : "none"
-        };  
-      }     
-    };    
-  });
-*/
+  
   
   $scope.adminInit = function(){
     administratorSvc.adminInit(appConstants.adminlist, appConstants.getMethod, {}, {}, function(succResponse){
