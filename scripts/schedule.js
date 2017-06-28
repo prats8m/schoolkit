@@ -47,13 +47,6 @@ app
 		scheduler.config.show_loading = true;
 		scheduler.init('scheduler_here',new Date(),"week");
 		scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
-		scheduler.parse([
-			{start_date:"06/29/2017 14:00", end_date:"06/29/2017 17:00"},
-			{start_date:"06/26/2017 12:00", end_date:"06/26/2017 19:00"},
-			{start_date:"06/29/2017 09:00", end_date:"06/29/2017 10:00"}
-		],"json");
-
-	
 	}
 
 
@@ -84,6 +77,50 @@ app
 	// 	scheduler.init('scheduler_here',$scope.schedule.schedulestart_date,"week");
 		
 	// }
+
+	$scope.clearAllSchedule = function(){
+		var eventId = new Array();
+		angular.forEach($(".dhx_cal_event"), function(value, key) {
+		  eventId.push(value.getAttribute("event_id"));
+		});
+		angular.forEach(eventId, function(value, key) {
+			scheduler.deleteEvent(value);
+		});
+	}
+
+	$scope.copyMonFri = function(){
+		JSON.parse(scheduler.toJSON()).forEach(function(v){
+			var date = new Date(v.start_date);
+			if(date.getDay() == 1){
+				var start = new Date(v.start_date);
+				var end = new Date(v.end_date);
+				scheduler.parse([
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))}		
+				],"json");
+			}
+		});
+	}
+
+	$scope.copyMonSun = function(){
+		JSON.parse(scheduler.toJSON()).forEach(function(v){
+			var date = new Date(v.start_date);
+			if(date.getDay() == 1){
+				var start = new Date(v.start_date);
+				var end = new Date(v.end_date);
+				scheduler.parse([
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))}				
+				],"json");
+			}
+		});
+	}
 
 	$scope.show_minical = function(){
 		if (scheduler.isCalendarVisible())
@@ -262,29 +299,29 @@ app
 	}
 	$scope.facilityInit();
 	
-	$scope.copyMonFri = function(){
-		$("#table").find("tr").each(function(){
-			if($(this).find("td:first-child").hasClass("selected")){
-				$(this).find("td:lt(5)").addClass("selected");
-			}
-		});
-	}
+	// $scope.copyMonFri = function(){
+	// 	$("#table").find("tr").each(function(){
+	// 		if($(this).find("td:first-child").hasClass("selected")){
+	// 			$(this).find("td:lt(5)").addClass("selected");
+	// 		}
+	// 	});
+	// }
 	
-	$scope.copyMonSun = function(){
-		$("#table").find("tr").each(function(){
-			if($(this).find("td:first-child").hasClass("selected")){
-				$(this).find("td:lt(7)").addClass("selected");
-			}
-		});
-	}
+	// $scope.copyMonSun = function(){
+	// 	$("#table").find("tr").each(function(){
+	// 		if($(this).find("td:first-child").hasClass("selected")){
+	// 			$(this).find("td:lt(7)").addClass("selected");
+	// 		}
+	// 	});
+	// }
 	
-	$scope.clearAll = function(){
-		$("#table tr td").removeClass("selected");
-		$scope.schedule.schedule_start_time = '';
-		$scope.schedule.schedule_end_time = '';
-		$scope.schedule.schedule_weekday = '';
-		$scope.blocks = [];
-	}
+	// $scope.clearAll = function(){
+	// 	$("#table tr td").removeClass("selected");
+	// 	$scope.schedule.schedule_start_time = '';
+	// 	$scope.schedule.schedule_end_time = '';
+	// 	$scope.schedule.schedule_weekday = '';
+	// 	$scope.blocks = [];
+	// }
 	
 	$scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {

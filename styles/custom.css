@@ -9,16 +9,16 @@
 
 .refreshbtn {
 	position: absolute;
-    top: 0;
-    right: 0;
+    top: 1px;
+    right: 1px;
     width: 38px;
     text-align: center;
     background: #dbe0e2;
-    height: 38px;
+    height: 36px;
     border-radius: 0 3px 3px 0;
     line-height: 38px;
     color: #616f77;
-	border: 0 none;
+    border: 0 none;
 }
 
 .refreshbtn:hover {
@@ -1073,7 +1073,10 @@ a.serplan:hover {
 }
 
 .glview md-card md-card-content .md-title {
-    font-size: 16px
+    font-size: 16px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .glview md-card md-card-content p {
@@ -2438,6 +2441,177 @@ span.edittxt {position: absolute;
 	float: left;
 	width: 45%;
 	margin-left: 30px;
+}
+
+/*----------------------------- Footer ------------------------------*/
+#footer{background-color: #212121; padding: 50px; position: relative;}
+.footerformwrap {width: 70%; margin: 0 auto; position: relative; z-index: 99;}
+.formwrap {width: 100%; border: 5px solid #999; max-width: 500px; padding:30px;}
+.footerformwrap h2 { color: #fff; font-size: 40px; font-weight: 300; margin-bottom: 40px;}
+.formwrap .btn {width: 150px; background-color: #f1f1f1; box-shadow: none; margin: 20px auto; display: block; padding: 10px; font-size: 18px;}
+.formwrap h3 {color: #fff;font-weight: 300;}
+.contactdetail {background: url(../images/footerbg.jpg) no-repeat; padding: 80px;}
+.contactdetail {background: url(../images/footerbg.jpg) no-repeat; padding: 155px; position: absolute; width: 70%; right: -200px; top: -60px; z-index: 9;}
+span.contact-icon {width: 60px; height: 90px; color: #fff; font-size: 40px; display: inline-block; vertical-align: middle;}
+.contacttxt { margin-bottom: 50px;}
+span.conttxt {display: inline-block; font-size: 18px; color: #fff;}
+.conttxt p {margin-bottom: 10px;}
+#footer .input {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin: 1em;
+    width: calc(100% - 2em);
+    vertical-align: top;
+}
+
+#footer .input__field {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 0.8em;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #aaa;
+    font-weight: bold;
+}
+
+#footer .input__field:focus {
+    outline: none;
+}
+
+#footer .input__label {
+    display: inline-block;
+    float: right;
+    padding: 0 1em;
+    width: 100%;
+    color: #ccc;
+    font-weight: bold;
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#footer .input__label-content {
+    position: relative;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+/* Hoshi */
+#footer .input--hoshi {
+    overflow: hidden;
+}
+
+#footer .input__field--hoshi {
+    margin-top: 1em;
+    padding: 20px 0.15em;
+    width: 100%;
+    background: transparent;
+    color: #ccc;
+}
+
+#footer .input__label--hoshi {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 0.25em;
+    width: 100%;
+    height: calc(100% - 1em);
+    text-align: left;
+    pointer-events: none;
+}
+
+#footer .input__label-content--hoshi {
+    position: absolute;
+}
+
+#footer .input__label--hoshi::before,
+#footer .input__label--hoshi::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 10px);
+    border-bottom: 1px solid #B9C1CA;
+}
+
+#footer .input__label--hoshi::after {
+    margin-top: 2px;
+    border-bottom: 4px solid #0eb98b;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+#footer .input__label--hoshi-color-1::after {
+    border-color: #0eb98b;
+}
+
+#footer .input__label--hoshi-color-2::after {
+    border-color: #0eb98b;
+}
+
+#footer .input__label--hoshi-color-3::after {
+    border-color: #0eb98b;
+}
+
+#footer .input__field--hoshi:focus + .input__label--hoshi::after,
+#footer .input--filled .input__label--hoshi::after {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+#footer .input__field--hoshi:focus + .input__label--hoshi .input__label-content--hoshi,
+#footer .input--filled .input__label-content--hoshi {
+    -webkit-animation: anim-1 0.3s forwards;
+    animation: anim-1 0.3s forwards;
+}
+
+@-webkit-keyframes anim-1 {
+    50% {
+        opacity: 0;
+        -webkit-transform: translate3d(1em, 0, 0);
+        transform: translate3d(1em, 0, 0);
+    }
+    51% {
+        opacity: 0;
+        -webkit-transform: translate3d(-1em, -40%, 0);
+        transform: translate3d(-1em, -40%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, -40%, 0);
+        transform: translate3d(0, -40%, 0);
+    }
+}
+
+@keyframes anim-1 {
+    50% {
+        opacity: 0;
+        -webkit-transform: translate3d(1em, 0, 0);
+        transform: translate3d(1em, 0, 0);
+    }
+    51% {
+        opacity: 0;
+        -webkit-transform: translate3d(-1em, -40%, 0);
+        transform: translate3d(-1em, -40%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, -40%, 0);
+        transform: translate3d(0, -40%, 0);
+    }
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
