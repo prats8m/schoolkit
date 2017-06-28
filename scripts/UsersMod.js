@@ -888,7 +888,7 @@ app
         $scope.editBle.status = 1;
         $scope.profileInit = function () {
             //userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
-            userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $cookies.userId, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
 
                     $scope.userData = succResponse.data;
@@ -1500,10 +1500,10 @@ app
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                     $scope.getBleList();
-                    $scope.bleerror = appConstants.empty;
+                   // $scope.bleerror = appConstants.empty;
                 }
                 else {
-                    $scope.bleerror = succResponse.msg;
+                   // $scope.bleerror = succResponse.msg;
                 }
             });
         };
