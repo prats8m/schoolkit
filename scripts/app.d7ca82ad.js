@@ -235,6 +235,12 @@ var app = angular
         controller: 'ActivityCtrl',
         templateUrl: 'views/tmpl/admin/activity.html'
       })
+	  //admin contact
+      .state('app.admin.contact', {
+        url: '/contact-us',
+        controller: 'ContactCtrl',
+        templateUrl: 'views/tmpl/admin/contact.html'
+      })
 
       /*-----------------------------------------------------------------
             End code for default pages
@@ -376,6 +382,20 @@ var app = angular
         controller: 'DoorGroupsCtrl',
         templateUrl: 'views/tmpl/subadmin/door/door-groups.html'
       })
+	  
+	  //admin door view-door-groups
+		.state('app.admin.door.view-door-groups', {
+		  url: '/view-door-groups',
+		  controller: 'ViewDoorGroupsCtrl',
+		  templateUrl: 'views/tmpl/admin/door/view-door-groups.html'
+		})
+		
+		//admin door edit-door-groups
+		.state('app.admin.door.edit-door-groups', {
+		  url: '/edit-door-groups',
+		  controller: 'EditDoorGroupsCtrl',
+		  templateUrl: 'views/tmpl/admin/door/edit-door-groups.html'
+		})
 
 
       //subadmin permissions
@@ -1245,7 +1265,73 @@ app
 
   });
 
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ViewDoorGroupsCtrl
+ * @description
+ * # ViewDoorGroupsCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('ViewDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
+     $scope.page = {
+      title: 'Door Group Details',
+    };
+	
+	$scope.result = '';
+    $scope.showConfirm = function(ev) {
+		var confirm = $mdDialog.confirm()		
+		.title('Would you like to delete Door?')
+		.content('')
+		.ok('Yes')
+		.cancel('No')
+		.targetEvent(ev);
+		$mdDialog.show(confirm).then(function() {
+			$state.go('app.admin.door.door-groups');
+		}, function() {
+			$scope.result = 'You decided to keep Door.';
+			$scope.statusclass = 'alert alert-success alert-dismissable';
+		});
+    };
+	
+	$scope.imagePath = 'http://localhost/elikastaging/images';	
+	
+});
 
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:EditDoorGroupsCtrl
+ * @description
+ * # EditDoorGroupsCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('EditDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
+     $scope.page = {
+      title: 'Edit Door Group',
+    };
+	
+	$scope.result = '';
+    $scope.showConfirm = function(ev) {
+		var confirm = $mdDialog.confirm()		
+		.title('Would you like to delete Door?')
+		.content('')
+		.ok('Yes')
+		.cancel('No')
+		.targetEvent(ev);
+		$mdDialog.show(confirm).then(function() {
+			$state.go('app.admin.door.door-groups');
+		}, function() {
+			$scope.result = 'You decided to keep Door.';
+			$scope.statusclass = 'alert alert-success alert-dismissable';
+		});
+    };
+	
+	$scope.imagePath = 'http://localhost/elikastaging/images';	
+	
+});
 
 'use strict';
 /**
@@ -2001,6 +2087,23 @@ angular.module('lazyModel', [])
     };
   });
 'use strict';
+
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:ContactCtrl
+ * @description
+ * # ContactCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('ContactCtrl', function ($scope) {
+    $scope.page = {
+		title: 'Contact Us',
+    };
+	
+});
 
 /**
  * @ngdoc function
