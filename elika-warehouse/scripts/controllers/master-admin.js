@@ -13,7 +13,7 @@ app
     };
 	
 	$scope.result = '  ';
-    $scope.showConfirm = function(ev) {
+    $scope.showConfirm = function(ev,id) {
 		var confirm = $mdDialog.confirm()		
 		.title('Would you like to delete master admin?')
 		.content('')
@@ -21,13 +21,25 @@ app
 		.cancel('No')
 		.targetEvent(ev);
 		$mdDialog.show(confirm).then(function() {
-			$scope.result = 'Your master admin has been deleted successfully.';
-			$scope.statusclass = 'alert alert-danger alert-dismissable';
+			$scope.deleteMasterAdmin(id)
+			// $scope.result = 'Your master admin has been deleted successfully.';
+			// $scope.statusclass = 'alert alert-danger alert-dismissable';
 		}, function() {
-			$scope.result = 'You decided to keep master admin.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
+			// $scope.result = 'You decided to keep master admin.';
+			// $scope.statusclass = 'alert alert-success alert-dismissable';
 		});
     };
+
+    $scope.deleteMasterAdmin = function(id){
+    	dataService.deleteData({},baseUrl+'warehouse/delete-master-admin?master_id='+id)
+		.success(function(response){
+		 	if(response.status == true){
+				toaster.pop('success','Your master admin has been deleted successfully.');
+		 	}else{
+		 		toaster.pop('success',response.msg.replace('/_/g'," "));
+		 	}
+		});
+    }
 	
 	$scope.layout = 'grid';
 	$scope.class = 'gridview';
@@ -185,7 +197,7 @@ app
 		 .success(function(response){
 		 	if(response.status == true){
 		 		$scope.userData = response.data;
-		 		$scope.userData.status = response.data.user_status;
+		 		$scope.userData.user_status = response.data.user_status;
 		 	}else{
 		 		dataService.responseError(response);
 		 	}
@@ -194,6 +206,7 @@ app
 	$scope.viewUserDetails();
 
 	$scope.submitEditProfile = function(data){
+		console.log(data);
 		 var submitData = {
 		 	user_id:parseInt($stateParams.user_id),
 		 	first_name:data.user_first_name,
@@ -202,8 +215,10 @@ app
 	//	 	password:data.user_first_name,
 	//	 	confirm_password:data.user_first_name,
 		 	zipcode:data.user_zipcode,
+		 	user_status:data.user_status,
 		 	status:data.user_status
 		}
+		console.log(submitData);
 		dataService.putData(submitData,baseUrl + 'warehouse/edit-master-admin')
 		 .success(function(response){
 		 	if(response.status == true){

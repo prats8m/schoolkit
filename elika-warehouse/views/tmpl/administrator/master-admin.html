@@ -112,9 +112,9 @@
 												</div>
 												<div class="col-sm-6 col-md-6">
 													<label for="">Status <span class="text-danger">*</span></label><br/>
-													<div class="btn-group btnrounded" ng-init="master.status = 1">
-														<label class="btn btn-default" ng-model="master.status" uib-btn-radio="1">Active</label>
-														<label class="btn btn-default" ng-model="master.status" uib-btn-radio="0">Inactive</label>
+													<div class="btn-group btnrounded" >
+														<label class="btn btn-default" ng-model="master.user_status" uib-btn-radio="1">Active</label>
+														<label class="btn btn-default" ng-model="master.user_status" uib-btn-radio="0">Inactive</label>
 													</div>
 												</div>		
 											</div>															
@@ -201,7 +201,7 @@
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile({user_id:user.user_id})">View</a>
 												<!-- <a class="btn btn-success btn-border btn-rounded" ui-sref="app.administrator.master-admin-profile">Edit</a> -->
-												<!-- <a class="btn btn-danger btn-border btn-rounded" ng-disabled="true" dng-click="showConfirm($event,user.user_id)">Delete</a> -->
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,user.user_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>

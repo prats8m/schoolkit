@@ -1004,21 +1004,6 @@ app
 'use strict';
 /**
  * @ngdoc function
- * @name minovateApp.controller:SignupCtrl
- * @description
- * # SignupCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('SignupCtrl', function ($scope, $state) {
-    /* $scope.login = function() {
-		$state.go('core.login');
-    }; */
-  });
-
-'use strict';
-/**
- * @ngdoc function
  * @name minovateApp.controller:ViewRoleCtrl
  * @description
  * # ViewRoleCtrl

@@ -92,7 +92,8 @@ app.constant("appConstants", {
     viewtechnician:'technician/view',
     deletetechnician:'technician/delete',
     geteventmediaurl:'event/get-event-media-url',
-	edittechnician:'technician/edit',
+    edittechnician:'technician/edit',
+	addmasteradmin:'warehouse/add-master-admin',
 
 
 
@@ -405,6 +406,15 @@ app.constant("appConstants", {
 
     _successrolesadded:'Roles added successfully',
     _successadminadded:'Admin created successfully',
+
+    //........................................................................................
+
+
+    //............................SignUp.......................................
+
+    _successsignup:'You are successfully signed in.',
+    _chktnc:'Please agree Term and Conditions',
+
 
     //........................................................................................
 
