@@ -33,14 +33,10 @@ app
 		}
 
 	$scope.init = function() {
-		scheduler.config.multi_day = true;
-		scheduler.config.lightbox.sections = [
-			
-			{name:"time", height:72, type:"time", map_to:"auto"}
-		];
-	
+		
+		scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
 		window.resizeTo(950,700);
-		scheduler.config.day_date = "%D, %F%d";
+		scheduler.config.day_date = "%D, %F %d";
 		scheduler.config.first_hour = 0;
 		scheduler.config.multi_day = true;
 		scheduler.config.date_step = "5";
@@ -57,6 +53,7 @@ app
 		$(".dhx_cal_prev_button").hide();
 		$(".dhx_cal_next_button").hide();
 		$(".dhx_cal_today_button").hide();
+		
 		
 	}
 	 
@@ -668,6 +665,89 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	
 	var weekDay = [];
 
+	$scope.initSchedule = function() {
+		scheduler.config.collision_limit = 1;
+		scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+		window.resizeTo(950,700);
+		scheduler.config.day_date = "%D, %F %d";
+		scheduler.config.first_hour = 0;
+		scheduler.config.multi_day = true;
+		scheduler.config.date_step = "5";
+		scheduler.config.show_loading = true;
+		scheduler.init('scheduler_here',new Date(),"week");
+		scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+	}
+
+	$scope.repetive_schedular = function(){
+		angular.forEach($(".dhx_scale_bar"), function(value, key) {
+  			value.innerHTML = value.innerHTML.split(",")[0];
+		});
+		$(".dhx_cal_prev_button").hide();
+		$(".dhx_cal_next_button").hide();
+		$(".dhx_cal_today_button").hide();
+		
+		
+	}
+	 
+	$scope.custom_schedular = function(){
+		$(".dhx_scale_bar")[0].innerHTML =  $(".dhx_scale_bar:eq(0)").attr("aria-label");
+		$(".dhx_scale_bar")[1].innerHTML =  $(".dhx_scale_bar:eq(1)").attr("aria-label");
+		$(".dhx_scale_bar")[2].innerHTML =  $(".dhx_scale_bar:eq(2)").attr("aria-label");
+		$(".dhx_scale_bar")[3].innerHTML =  $(".dhx_scale_bar:eq(3)").attr("aria-label");
+		$(".dhx_scale_bar")[4].innerHTML =  $(".dhx_scale_bar:eq(4)").attr("aria-label");
+		$(".dhx_scale_bar")[5].innerHTML =  $(".dhx_scale_bar:eq(5)").attr("aria-label");
+		$(".dhx_scale_bar")[6].innerHTML =  $(".dhx_scale_bar:eq(6)").attr("aria-label");
+		$(".dhx_cal_prev_button").show();
+		$(".dhx_cal_next_button").show();
+		$(".dhx_cal_today_button").show();
+		
+	} 
+
+	$scope.clearAllSchedule = function(){
+		var eventId = new Array();
+		angular.forEach($(".dhx_cal_event"), function(value, key) {
+		  eventId.push(value.getAttribute("event_id"));
+		});
+		angular.forEach(eventId, function(value, key) {
+			scheduler.deleteEvent(value);
+		});
+	}
+
+	$scope.copyMonFri = function(){
+		JSON.parse(scheduler.toJSON()).forEach(function(v){
+			var date = new Date(v.start_date);
+			if(date.getDay() == 1){
+				var start = new Date(v.start_date);
+				var end = new Date(v.end_date);
+				scheduler.parse([
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))}		
+				],"json");
+			}
+		});
+	}
+
+	$scope.copyMonSun = function(){
+		JSON.parse(scheduler.toJSON()).forEach(function(v){
+			var date = new Date(v.start_date);
+			if(date.getDay() == 1){
+				var start = new Date(v.start_date);
+				var end = new Date(v.end_date);
+				scheduler.parse([
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))},
+					{start_date: new Date(start.setDate(start.getDate() + 1)), end_date: new Date(end.setDate(end.getDate() + 1))}				
+				],"json");
+			}
+		});
+	}
+
+
 	function selectTo(cell) {
 		
 		var row = cell.parent();    
@@ -897,29 +977,29 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	};
 	$scope.dashboardInit();
 	
-	$scope.copyMonFri = function(){
-		$("#table").find("tr").each(function(){
-			if($(this).find("td:first-child").hasClass("selected")){
-				$(this).find("td:lt(5)").addClass("selected");
-			}
-		});
-	}
+	// $scope.copyMonFri = function(){
+	// 	$("#table").find("tr").each(function(){
+	// 		if($(this).find("td:first-child").hasClass("selected")){
+	// 			$(this).find("td:lt(5)").addClass("selected");
+	// 		}
+	// 	});
+	// }
 	
-	$scope.copyMonSun = function(){
-		$("#table").find("tr").each(function(){
-			if($(this).find("td:first-child").hasClass("selected")){
-				$(this).find("td:lt(7)").addClass("selected");
-			}
-		});
-	}
+	// $scope.copyMonSun = function(){
+	// 	$("#table").find("tr").each(function(){
+	// 		if($(this).find("td:first-child").hasClass("selected")){
+	// 			$(this).find("td:lt(7)").addClass("selected");
+	// 		}
+	// 	});
+	// }
 	
-	$scope.clearAll = function(){
-		$("#table tr td").removeClass("selected");
-		$scope.schedule.schedule_start_time = '';
-		$scope.schedule.schedule_end_time = '';
-		$scope.schedule.schedule_weekday = '';
-		$scope.blocks = [];
-	}
+	// $scope.clearAll = function(){
+	// 	$("#table tr td").removeClass("selected");
+	// 	$scope.schedule.schedule_start_time = '';
+	// 	$scope.schedule.schedule_end_time = '';
+	// 	$scope.schedule.schedule_weekday = '';
+	// 	$scope.blocks = [];
+	// }
 	
 	$scope.removeHolidaySchdule = function(key){
 		var tmpExceptions = [];
