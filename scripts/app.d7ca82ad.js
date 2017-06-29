@@ -644,6 +644,14 @@ var app = angular
         templateUrl: 'views/tmpl/admin/dashboard.html'
       })
 
+
+      //facility dashboard
+      .state('app.admin.dashboardfacility', {
+        url: '/dashboard-facility/:facility_id',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/tmpl/admin/dashboard.html'
+      })
+
       //admin profile settings
       .state('app.admin.profile-settings', {
         url: '/profile-settings',
@@ -9481,46 +9489,7 @@ app.filter('emptyVal', function () {
     return (input == null || input == 'null' || input == 0) ? 0 : input;
   }
 });
-app.directive("number", function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      element.on('keypress', function (e) {
-        console.log(e);
-        if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
-          e.preventDefault();
-        }
-      });
-    }
-  }
-});
 
-app.directive("noSpace", function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      element.on('keypress', function (e) {
-        if (e.keyCode == 32 || e.charCode == 32) {
-          e.preventDefault();
-        }
-      });
-    }
-  }
-});
-
-app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
-  function link(scope, element, attrs) {
-    element.bind('click', function () {
-      $cookies.remove("token", { path: '/' });
-      $cookies.remove("token", { path: '/elika-warehouse' });
-      $location.path('/core/login');
-    });
-  }
-
-  return {
-    link: link
-  };
-}]);
 
 app
   .filter('facilityStatus', function () {
