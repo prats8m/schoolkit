@@ -184,7 +184,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>
-										<md-card ng-repeat="user in technicianList">											
+										<md-card ng-repeat="user in technicianList track by user.technician_id">											
 											
 											<md-card-content>
 												<h2 class="md-title">{{ user.technician_name }}</h2>

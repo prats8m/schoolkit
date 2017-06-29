@@ -14,7 +14,7 @@
 
 var baseUrl = 'http://35.162.244.123:8080/'; 
 
-var baseUrl = 'http://34.208.197.185:8080/';
+//var baseUrl = 'http://34.208.197.185:8080/';
 //var baseUrl = 'http://35.162.244.123:8080/'; 
 
 //var baseUrl = 'http://127.0.0.1:8080/';
