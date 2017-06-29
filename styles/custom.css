@@ -292,7 +292,6 @@ tr[ng-show="::showSpinners"] {
     height: 20px;
     display: inline-block;
     text-decoration: none!important;
-    margin-left: 5px;
     text-align: center;
     line-height: 20px;
     font-size: 14px;
@@ -411,6 +410,8 @@ md-tabs .md-tab.md-focused {
     margin-right: 5px;
     max-width: none!important;
 	cursor: pointer;
+	pointer-events: auto!important;
+    opacity: 1!important;
 }
 
 .hometabs .mapview {
@@ -1812,11 +1813,9 @@ md-card:hover .moreitemsondevice {
 }
 
 .userexp .dropdown-menu.ng-valid-date-disabled {
-	position: fixed;
+	position: absolute;
     top: auto !important;
     bottom: 45px;
-    left: auto!important;
-    right: 0;
 }
 
 .leftwrap {
@@ -2664,6 +2663,10 @@ span.edittxt {position: absolute;
   border-color: #3c8719;
 }
 
+.credintials .table > tbody > tr > td {
+	word-break: break-all;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
@@ -2831,7 +2834,7 @@ span.edittxt {position: absolute;
 	#hpopup .form-control {
 		padding: 22px 0px 12px;
 	}
-	.btn-group.btnrounded>.btn {
+	.btn-group.btnrounded>.btn, .btn-group.btnrounded>.btn:hover {
 		padding: 12px 25px;
 	}
 	.profilephoto .input-group-btn .btn, .input-group-btn .btn, .search .btn {
@@ -2951,8 +2954,8 @@ span.edittxt {position: absolute;
 	}
 	.refreshbtn {
 		width: 48px;
-		height: 48px;
-		line-height: 48px;
+		height: 47px;
+		line-height: 47px;
 	}
 	.addpopup a.add {
 		margin: 13px 15px 0 0!important;
@@ -3412,6 +3415,12 @@ span.edittxt {position: absolute;
 	.slimscrolls {
 		max-height: 297px;
 		min-height: 297px;
+	}
+	.table-responsive {
+		overflow-x: scroll;
+	}
+	.table-responsive > .table-bordered {
+		width: 1139px;
 	}
 }
 
