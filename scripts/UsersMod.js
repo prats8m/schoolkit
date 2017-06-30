@@ -266,6 +266,11 @@ app
                 if (succResponse.status) {
                     $scope.rfid_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.rfid_code_list = [];
+                    }
+                }
             });
         };
 
@@ -384,6 +389,11 @@ app
                 if (succResponse.status) {
                     $scope.phone_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.phone_code_list = [];
+                    }
+                }
             });
         };
 
@@ -391,6 +401,11 @@ app
             userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.wiegand_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.wiegand_code_list = [];
+                    }
                 }
             });
         };
@@ -445,6 +460,11 @@ app
             userSvc.getBleList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=ble_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.ble_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.ble_code_list = [];
+                    }
                 }
             });
         };
@@ -520,6 +540,11 @@ app
                 if (succResponse.status) {
                     $scope.nfc_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.nfc_code_list = [];
+                    }
+                }
             });
         };
 
@@ -575,6 +600,11 @@ app
             userSvc.getAccessCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=access_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.access_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.access_code_list = [];
+                    }
                 }
             });
         };
@@ -905,9 +935,9 @@ app
                     $scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
                     $scope.editUser.address = angular.copy($scope.userData.user_address);
                     $scope.editUser.email = angular.copy($scope.userData.user_email);
-                    if($scope.userData.user_expiration_date != 0){
+                    if ($scope.userData.user_expiration_date != 0) {
                         var date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
-                        $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
+                        $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' + date.getUTCFullYear());
                     }
                     $scope.editUser.status = angular.copy($scope.userData.user_status);
                     $scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
@@ -1102,12 +1132,12 @@ app
 
         $scope.editassignedGroup();
         $rootScope.userNotAssignedGroup = function (facility_id) {
-            if(facility_id == undefined){
+            if (facility_id == undefined) {
                 $("#add_group_facility").addClass("disable-button");
-            }      
-            else{
+            }
+            else {
                 $("#add_group_facility").removeClass("disable-button");
-            } 
+            }
             userSvc.userNotAssignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($stateParams.user_id), facility_id: facility_id }, function (succResponse) {
                 $rootScope.usergroups = [];
                 if (succResponse.status) {
@@ -1195,19 +1225,19 @@ app
             submitData.facility_id = parseInt($cookies.get("facilityId"));
             // submitData.expiration_date = submitData.expiration_date;
             var ex_date = '';
-            if(submitData.no_expirations == 1 || submitData.status == 0){
-                submitData.expirationdate  = '';
+            if (submitData.no_expirations == 1 || submitData.status == 0) {
+                submitData.expirationdate = '';
             }
-            else{
+            else {
                 ex_date = submitData.expirationdate;
-                if(isNaN(submitData.expirationdate)){
-                var d = submitData.expirationdate.split("/");
-                var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+                if (isNaN(submitData.expirationdate)) {
+                    var d = submitData.expirationdate.split("/");
+                    var date = new Date(d[2] + "/" + d[1] + "/" + d[0]);
                 }
-                else{
+                else {
                     var date = submitData.expirationdate;
                 }
-                submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+                submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
                 delete submitData["expirationdate"];
             }
             $rootScope.masters = [];
@@ -1335,6 +1365,11 @@ app
                 if (succResponse.status) {
                     $scope.nfc_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.nfc_code_list = [];
+                    }
+                }
             });
         };
         $scope.getNfcCodeList();
@@ -1344,6 +1379,11 @@ app
             userSvc.getPhoneList(appConstants.credentiallist + '?user_id=' + parseInt($stateParams.user_id) + '&type=phone_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.phone_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.phone_code_list = [];
+                    }
                 }
             });
         };
@@ -1390,6 +1430,11 @@ app
                 if (succResponse.status) {
                     $scope.rfid_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.rfid_code_list = [];
+                    }
+                }
             });
         };
         $scope.getRfidList();
@@ -1398,6 +1443,11 @@ app
             userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($stateParams.user_id) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.wiegand_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.wiegand_code_list = [];
+                    }
                 }
             });
         };
@@ -1475,6 +1525,11 @@ app
                 if (succResponse.status) {
                     $scope.ble_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.ble_code_list = [];
+                    }
+                }
             });
         };
         $scope.getBleList();
@@ -1506,10 +1561,10 @@ app
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                     $scope.getBleList();
-                   // $scope.bleerror = appConstants.empty;
+                    // $scope.bleerror = appConstants.empty;
                 }
                 else {
-                   // $scope.bleerror = succResponse.msg;
+                    // $scope.bleerror = succResponse.msg;
                 }
             });
         };

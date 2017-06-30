@@ -25,8 +25,12 @@
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
 						<div class="thumb thumb-xxll mb-20 rel">
-							<img class="img-circle" src="images/avatar.jpg" alt="">
-							<span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+							<img id="profileImage" class="img-circle" ng-src="{{currentUser.user_photo}}" alt="">
+							<span class="edit"><label for="profilePicAddUpdate"><i class="fa fa-pencil" aria-hidden="true"></i></label>
+							<input type="file" accept="image/*" ng-model="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
+ onchange="angular.element(this).scope().uploadProfilePic(this ,angular.element(this).scope().user_id);" />
+							</span>
+
 							<span class="edittxt">Change</span>
 						</div>
 						<h3 class="mb-10"><strong>{{currentUser.user_first_name+' '+currentUser.user_last_name}}</strong></h3>
@@ -141,8 +145,7 @@
 													</div>
 													<div class="form-group overflow">
 														<label for="answer">Answer</label>
-														<input  name="answer" autocomplete="off" required ng-model="profileSettings.changeSecurityQuestions.answer" class="form-control"
-														 >
+														<input name="answer" autocomplete="off" required ng-model="profileSettings.changeSecurityQuestions.answer" class="form-control">
 													</div>
 													<div class="form-group overflow">
 														<label for="password">Current password</label>
