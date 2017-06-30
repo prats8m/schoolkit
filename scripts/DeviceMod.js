@@ -85,21 +85,21 @@ app
 		if(!device_form.validate()){
 			return false;
 		}
-            device.technician_id = parseInt(device.technician_id);
-            devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
-                if(succResponse.status){
-                    toaster.pop(appConstants.success,succResponse.msg);
-                    $scope.pageNo = 1;
-                    // $rootScope.dashboardData.primary_device++;
-                    $scope.dashboardInit();
-                    $scope.deviceInit();
-                    $timeout(function(){$("#close").click();})
-                }
-                else {
-                    $rootScope.masters = [];
-                    $rootScope.masters = succResponse.error ;
-                }
-            });
+        device.technician_id = parseInt(device.technician_id);
+        devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,succResponse.msg);
+                $scope.pageNo = 1;
+                // $rootScope.dashboardData.primary_device++;
+                $scope.dashboardInit();
+                $scope.deviceInit();
+                $timeout(function(){$("#close").click();})
+            }
+            else {
+                $rootScope.masters = [];
+                $rootScope.masters = succResponse.error ;
+            }
+        });
 	};
 	
 	$scope.pageNo = 1;
@@ -109,12 +109,13 @@ app
 		if(!$scope.searchText){
 			$scope.searchText = appConstants.empty;
 		}
-        devicesSvc.deviceInit(appConstants.devicelistmaster+'?searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.deviceInit(appConstants.devicelistmaster+'?searchVal='+$scope.searchText+'&facility_id='+ $cookies.current_facility_id,
+                appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                    $scope.data = [];
-                    angular.forEach(succResponse["data"]["data"], function (device, index) {
-                            $scope.data.push(device);
-                    });
+                $scope.data = [];
+                angular.forEach(succResponse["data"]["data"], function (device, index) {
+                    $scope.data.push(device);
+                });
                 $rootScope.deviceList = succResponse.data.data;
                 $scope.pageNo = $scope.pageNo + 1 ;
                 $scope.totalDisplayed = 8;

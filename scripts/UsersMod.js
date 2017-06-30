@@ -6,6 +6,9 @@
  * @description
  * # UserCtrl
  * Controller of the minovateApp
+
+ 
+ 
  */
 app
     .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc) {
@@ -103,7 +106,10 @@ app
         $scope.searchText = appConstants.empty;
         $scope.users = [];
         $scope.usersInit = function () {
-            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            $scope.current_facility_id = $cookies.get('current_facility_id');
+            $scope.current_facility_id = (!($scope.current_facility_id == 0 || $scope.current_facility_id == '0')) ? $scope.current_facility_id : '' ;
+
+            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + $scope.current_facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.users = [];
                     angular.forEach(succResponse["data"]["data"], function (user, index) {
@@ -888,7 +894,7 @@ app
         $scope.editBle.status = 1;
         $scope.profileInit = function () {
             //userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
-            userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $cookies.userId, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
 
                     $scope.userData = succResponse.data;
@@ -1500,10 +1506,10 @@ app
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                     $scope.getBleList();
-                    $scope.bleerror = appConstants.empty;
+                   // $scope.bleerror = appConstants.empty;
                 }
                 else {
-                    $scope.bleerror = succResponse.msg;
+                   // $scope.bleerror = succResponse.msg;
                 }
             });
         };

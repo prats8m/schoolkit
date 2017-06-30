@@ -8094,7 +8094,7 @@ ul.abn-tree li.abn-tree-row.active a {
   .table.table-custom > tbody > tr:first-child th {
     border-top: 0; }
 .table.table {
-  margin-top: 10px !important;
+  margin-top: 0 !important;
   margin-bottom: 0 !important; }
 
 .table-responsive {

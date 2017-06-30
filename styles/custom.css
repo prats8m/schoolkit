@@ -9,16 +9,16 @@
 
 .refreshbtn {
 	position: absolute;
-    top: 0;
-    right: 0;
+    top: 1px;
+    right: 1px;
     width: 38px;
     text-align: center;
     background: #dbe0e2;
-    height: 38px;
+    height: 36px;
     border-radius: 0 3px 3px 0;
     line-height: 38px;
     color: #616f77;
-	border: 0 none;
+    border: 0 none;
 }
 
 .refreshbtn:hover {
@@ -292,7 +292,6 @@ tr[ng-show="::showSpinners"] {
     height: 20px;
     display: inline-block;
     text-decoration: none!important;
-    margin-left: 5px;
     text-align: center;
     line-height: 20px;
     font-size: 14px;
@@ -411,6 +410,8 @@ md-tabs .md-tab.md-focused {
     margin-right: 5px;
     max-width: none!important;
 	cursor: pointer;
+	pointer-events: auto!important;
+    opacity: 1!important;
 }
 
 .hometabs .mapview {
@@ -1073,7 +1074,10 @@ a.serplan:hover {
 }
 
 .glview md-card md-card-content .md-title {
-    font-size: 16px
+    font-size: 16px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .glview md-card md-card-content p {
@@ -1809,11 +1813,9 @@ md-card:hover .moreitemsondevice {
 }
 
 .userexp .dropdown-menu.ng-valid-date-disabled {
-	position: fixed;
+	position: absolute;
     top: auto !important;
     bottom: 45px;
-    left: auto!important;
-    right: 0;
 }
 
 .leftwrap {
@@ -2440,6 +2442,231 @@ span.edittxt {position: absolute;
 	margin-left: 30px;
 }
 
+.contactheading {
+    text-align: center;
+    width: 60%;
+    margin: 50px auto 75px;
+}
+
+.contactheading h1 {
+	font-size: 34px;
+    font-weight: 300;
+}
+
+.contactheading p {
+    font-size: 18px;
+    line-height: 32px;
+	margin-top: 25px;
+}
+
+.addresswrap {
+    margin: 50px 0px 0;   
+}
+
+.addresswrap .mb-80 {
+	margin-bottom: 80px;
+}
+
+.addbox {
+    border: 1px solid #ddd;
+    padding: 40px 25px 25px;
+    text-align: center;
+    position: relative;
+	display: table;
+    width: 100%;
+}
+
+.boxinfo {
+	display: table-cell;
+    vertical-align: middle;
+    height: 120px;
+}
+
+.addbox p {
+	font-size: 17px;
+    margin: 10px 0;
+    line-height: 20px;
+}
+
+.conticon {
+    position: absolute;
+    top: -42px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 40px;
+    line-height: 80px;
+}
+
+.map {
+	width: 100%;
+	height: 525px;
+	border: 5px solid rgba(0,0,0,0.1);
+}
+
+.contactus {
+    border: 5px solid rgba(0,0,0,0.1);
+    padding: 25px;
+}
+
+.contactus h2 {
+	background: rgba(0,0,0,0.1);
+    margin: -25px -25px 25px;
+    padding: 15px 25px;
+    text-align: center;
+}
+
+@-webkit-keyframes uil-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0 0 0 0;
+  }
+  33% {
+    width: 44%;
+    height: 44%;
+    margin: -22% 0 0 -22%;
+    opacity: 1;
+  }
+  100% {
+    width: 88%;
+    height: 88%;
+    margin: -44% 0 0 -44%;
+    opacity: 0;
+  }
+}
+@-moz-keyframes uil-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0 0 0 0;
+  }
+  33% {
+    width: 44%;
+    height: 44%;
+    margin: -22% 0 0 -22%;
+    opacity: 1;
+  }
+  100% {
+    width: 88%;
+    height: 88%;
+    margin: -44% 0 0 -44%;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes uil-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0 0 0 0;
+  }
+  33% {
+    width: 44%;
+    height: 44%;
+    margin: -22% 0 0 -22%;
+    opacity: 1;
+  }
+  100% {
+    width: 88%;
+    height: 88%;
+    margin: -44% 0 0 -44%;
+    opacity: 0;
+  }
+}
+@-o-keyframes uil-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0 0 0 0;
+  }
+  33% {
+    width: 44%;
+    height: 44%;
+    margin: -22% 0 0 -22%;
+    opacity: 1;
+  }
+  100% {
+    width: 88%;
+    height: 88%;
+    margin: -44% 0 0 -44%;
+    opacity: 0;
+  }
+}
+@keyframes uil-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0 0 0 0;
+  }
+  33% {
+    width: 44%;
+    height: 44%;
+    margin: -22% 0 0 -22%;
+    opacity: 1;
+  }
+  100% {
+    width: 88%;
+    height: 88%;
+    margin: -44% 0 0 -44%;
+    opacity: 0;
+  }
+}
+.loaders {
+	background: rgba(231,234,235,0.95);
+	position: fixed;
+	top: 0;
+	top: 0;
+	z-index: 99999;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+.uil-ripple-css {
+  background: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -120px 0 0 -100px; 
+  width: 200px;
+  height: 200px;
+}
+.uil-ripple-css div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  border-radius: 50%;
+  border-width: 12px;
+  border-style: solid;
+  -webkit-animation: uil-ripple 2s ease-out infinite;
+  animation: uil-ripple 2s ease-out infinite;
+}
+.uil-ripple-css div:nth-of-type(1) {
+  border-color: #e05d6f;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+.uil-ripple-css div:nth-of-type(2) {
+  border-color: #3c8719;
+}
+
+.credintials .table > tbody > tr > td {
+	word-break: break-all;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
@@ -2607,7 +2834,7 @@ span.edittxt {position: absolute;
 	#hpopup .form-control {
 		padding: 22px 0px 12px;
 	}
-	.btn-group.btnrounded>.btn {
+	.btn-group.btnrounded>.btn, .btn-group.btnrounded>.btn:hover {
 		padding: 12px 25px;
 	}
 	.profilephoto .input-group-btn .btn, .input-group-btn .btn, .search .btn {
@@ -2727,8 +2954,8 @@ span.edittxt {position: absolute;
 	}
 	.refreshbtn {
 		width: 48px;
-		height: 48px;
-		line-height: 48px;
+		height: 47px;
+		line-height: 47px;
 	}
 	.addpopup a.add {
 		margin: 13px 15px 0 0!important;
@@ -2766,6 +2993,9 @@ span.edittxt {position: absolute;
 	}
 	.card-container .card .front, .card-container .card .noback {
 		height: 248px;
+	}
+	.map {
+		height: 600px;
 	}
 }
 
@@ -3185,6 +3415,12 @@ span.edittxt {position: absolute;
 	.slimscrolls {
 		max-height: 297px;
 		min-height: 297px;
+	}
+	.table-responsive {
+		overflow-x: scroll;
+	}
+	.table-responsive > .table-bordered {
+		width: 1139px;
 	}
 }
 
