@@ -410,8 +410,6 @@ md-tabs .md-tab.md-focused {
     margin-right: 5px;
     max-width: none!important;
 	cursor: pointer;
-	pointer-events: auto!important;
-    opacity: 1!important;
 }
 
 .hometabs .mapview {

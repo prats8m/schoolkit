@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc) {
+	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc, utilitySvc) {
 		$scope.page = {
 			title: appConstants.doorsUITitle,
 			subtitle: appConstants.dashboardSubTitle
@@ -91,14 +91,14 @@ app
 			$scope.myOrderBy = x;
 		};
 
-		$scope.dashboardInit = function () {
-			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+		/*$scope.dashboardInit = function () {
+			doorsSvc.dashboardInit(appConstants.userDashboard +"&facility_id="+ utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
 				}
 			});
 		};
-		$scope.dashboardInit();
+		$scope.dashboardInit();*/
 
 
 		//Create Doors
@@ -132,7 +132,9 @@ app
 			}
 			$scope.pageNo = 1;
 			$scope.users = [];
-			doorsSvc.searchFunction(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+			
+
+			doorsSvc.searchFunction(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				$scope.adoors = [];
 				if (succResponse.status) {
 					$scope.adoors = succResponse.data.data;
@@ -147,8 +149,9 @@ app
 		$scope.pageNo = 1;
 		$scope.searchText = appConstants.empty;
 		$scope.adoors = [];
+		
 		$scope.listDoors = function () {
-			doorsSvc.listDoors(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo, appConstants.getMethod, {}, {}, function (succResponse) {
+			doorsSvc.listDoors(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo != 1) {
 						for (var i in succResponse.data.data) {
@@ -280,14 +283,14 @@ app
 			});
 		}
 
-		$scope.dashboardInit = function () {
+		/*$scope.dashboardInit = function () {
 			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
 				}
 			});
 		};
-		$scope.dashboardInit();
+		$scope.dashboardInit();*/
 
 	});
 
@@ -354,17 +357,18 @@ app
 			doorsSvc.editDoordata(appConstants.dooredit, appConstants.putMethod, {}, doorData, function (succResponse) {
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, succResponse.msg);
+					$location.path('/app/admin/door/doors');
 				}
 			});
 		};
 
-		$scope.dashboardInit = function () {
+		/*$scope.dashboardInit = function () {
 			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
 				}
 			});
 		};
-		$scope.dashboardInit();
+		$scope.dashboardInit();*/
 	});
 

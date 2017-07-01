@@ -41,14 +41,14 @@ app
     	});
     }
 
-    $scope.dashboardInit = function(){
+    /* $scope.dashboardInit = function(){
         administratorSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
     };
-    $scope.dashboardInit();
+    $scope.dashboardInit();*/
 
 	$scope.imagePath = 'http://localhost/elika/images';	
 	
@@ -137,14 +137,14 @@ app
         $scope.myOrderBy = x;
     }
 
-    $scope.dashboardInit = function(){
+    /* $scope.dashboardInit = function(){
         administratorSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
     };
-    $scope.dashboardInit();
+    $scope.dashboardInit();*/
     
     $scope.imagePath = 'http://localhost:8080/elika/images';    
     
@@ -240,14 +240,14 @@ app
        $scope.myOrderBy = x;
   }
 
-  $scope.dashboardInit = function(){
+  /* $scope.dashboardInit = function(){
       administratorSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
           if(succResponse.status){
               $rootScope.dashboardData = succResponse.data;
           }
       });
   };
-  $scope.dashboardInit();
+  $scope.dashboardInit();*/
   
   $scope.imagePath = 'http://elikastaging.ml/images'; 
   

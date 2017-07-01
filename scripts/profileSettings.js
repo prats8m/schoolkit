@@ -75,16 +75,18 @@ app
         };
         //.....Init
         $scope.dashboardInit();
+        $scope.user_id = $cookies.get('userId');
         $scope.getUserprofile = function () {
             var userId = $cookies.get('userId');
             userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + userId, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.currentUser = succResponse.data;
+                    $scope.currentUser.user_photo = $scope.currentUser.user_photo + '?_ts=' + new Date().getTime();
                 }
             });
         }
         $scope.getUserprofile();
-       $scope.getDateTimeFormat = function (value) {
+        $scope.getDateTimeFormat = function (value) {
             var monthNames = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
             ];
@@ -95,4 +97,24 @@ app
             var combined = day + ' ' + month + ' , ' + year;
             return combined;
         }
+        $scope.uploadProfilePic = function (file, user_id) {                    
+            var fd = new FormData();
+            fd.append('user_id', user_id);
+            fd.append('file', file.files[0]);
+            userSvc.uploadProfilePic(appConstants.userpicupload, appConstants.postMethod, {}, fd, function (succResponse) {
+                if (succResponse.status) {
+                    toaster.pop(appConstants.success, appConstants._successImageUpload);
+                    $scope.currentUser = null;
+                    $scope.currentUser = new Object();
+                    setTimeout(function () {
+                        $scope.$apply();
+                    }, 300);
+                  
+                    setTimeout(function () {                      
+                        $scope.getUserprofile();
+                    }, 600);
+
+                }
+            });
+        };
     });

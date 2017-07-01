@@ -10,7 +10,7 @@
 	<div class="page page-core page-login core-new">
 		<div id="hpopup" class="container signup p-40 bg-white text-center login-box-shadow borderradius6">
 			<h2 class="login-h2 text-greensea">Create a new account</h2>
-			<form name="form" class="form-validation mt-20" ng-submit="submitSignUpForm(user)">
+			<form name="form" class="form-validation mt-20" ng-validate="validationOptions" id="signup_form" name="signup_form" ng-submit="submitSignUpForm(user,signup_form)">
 				<div class="overflow">
 					<input type="text" class="form-control underline-input" placeholder="First Name" ng-model="user.first_name" required>					
 					<input type="text" class="form-control underline-input" placeholder="Last Name" ng-model="user.last_name" required>					
@@ -18,12 +18,12 @@
 				
 				<div class="overflow">
 					<input type="email" class="form-control underline-input" placeholder="Email Address" ng-model="user.email" required>					
-					<input type="text" class="form-control underline-input" ui-mask="999 999 9999" placeholder="Phone Number" ng-model="user.phone" required>
+					<input type="text" class="form-control underline-input" ui-mask="999 999 9999" placeholder="Phone Number" ng-model="user.phone" ui-mask-placeholder-char="space" required>
 				</div>
 				
 				<div class="overflow">
 					<input type="text" class="form-control underline-input" placeholder="Address" ng-model="user.address" required>
-					<input type="number" minlength="4" maxlength="6" class="form-control underline-input" placeholder="Zip Code" ng-model="user.zipcode" required>
+					<input type="text" minlength="4" maxlength="6" class="form-control underline-input" placeholder="Zip Code" ng-model="user.zipcode" required>
 				</div>
 				
 				<div class="overflow">
@@ -33,9 +33,9 @@
 				
 				<div class="overflow">
 					<div class="signupselect">
-						<select id="selectedQuestion1" ng-model="user.secret_question" name="selectedQuestion1" class="form-control underline-input mb-20" required="required">
-							<option value="" selected="selected">Select Secret Question</option>
-							<option value=1 label="What was your favorite place to visit as a child?">What was your favourite place to visit as a child?</option>
+						<select id="selectedQuestion1" ng-model="user.secret_question" name="selectedQuestion1" class="form-control underline-input mb-20" required="required" ng-options="item.sq_id as item.sq_question for item in lstSecurityQuestions track by item.sq_id" ng-init="getSecurityQuestion()">
+							<option value="">Select Secret Question</option>
+							<!-- <option value=1 label="What was your favorite place to visit as a child?">What was your favourite place to visit as a child?</option>
 							<option value=2 label="Who is your favorite actor, musician, or artist?">Who is your favorite actor, musician, or artist?</option>
 							<option value=3 label="What is the name of your favorite pet?">What is the name of your favorite pet?</option>
 							<option value=4 label="In what city were you born?">In what city were you born?</option>
@@ -49,7 +49,7 @@
 							<option value=12 label="What is your favorite color?">What is your favorite color?</option>
 							<option value=13 label="What is your father's middle name?">What is your father's middle name?</option>
 							<option value=14 label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
-							<option value=15 label="What was your high school mascot?">What was your high school mascot?</option>
+							<option value=15 label="What was your high school mascot?">What was your high school mascot?</option> -->
 						</select>
 					</div>
 					<input type="text" class="form-control underline-input" placeholder="Answer" ng-model="user.secret_ans" required>
