@@ -69,7 +69,14 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+											<div class="form-group col-sm-6 col-md-6" >
+												<label for="">Schedule Type <span class="text-danger">*</span></label><br/>
+												<div class="btn-group btnrounded" >
+													<a href="javascript:void(0)" ng-click="custom_schedular()"><label class="btn btn-default" ng-model="$parent.schedule.schedule_type" uib-btn-radio="1">Custom</label></a>
+													<a href="javascript:void(0)" ng-click="repetive_schedular()"><label class="btn btn-default" ng-model="$parent.schedule.schedule_type" uib-btn-radio="0">Repetitive</label></a>
+												</div>
+												</div>
+											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="$parent.$parent.schedule.schedule_type == 0">
 												<label for="">Start Date <span class="text-danger">*</span></label>
 												<div class="input-group">
 													<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="$parent.$parent.schedule.selected_schedule_start_date" min-date="$parent.minStartDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
@@ -80,7 +87,7 @@
 											</div>
 											
 										</div>
-										<div class="row">
+									<!-- 	<div class="row">
 											<div class="col-sm-12 col-md-6">
 												<div class="row">
 													<div class="col-sm-6 col-md-6 form-group">
@@ -106,7 +113,7 @@
 												</select>
 												<button type="button" ng-click="$parent.deleteBlock()" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10 mt-5">Delete Block</button>
 											</div>
-										</div>
+										</div> -->
 										
 										
 										<div>

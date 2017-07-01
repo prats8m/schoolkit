@@ -890,7 +890,7 @@ var app = angular
 
       //admin schedule view-schedule
       .state('app.admin.schedule.edit-schedule-groups', {
-        url: '/edit-schedule-groups/:schedule_id',
+        url: '/edit-schedule-groups/:schedule_id?schedule_type=',
         controller: 'EditScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
@@ -2343,12 +2343,46 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function (size) {
+    $rootScope.initSchedule = function() {
+    
+    scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+    window.resizeTo(950,700);
+    scheduler.config.day_date = "%F%d";
+    scheduler.config.first_hour = 0;
+    scheduler.config.multi_day = true;
+    scheduler.config.date_step = "5";
+    scheduler.config.show_loading = true;
+    scheduler.init('scheduler_here',new Date(),"week");
+    scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+    }
 
+    $scope.scheduleopen = function (size) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function () {
+        $rootScope.initSchedule();
+      });
+    };
+
+    $scope.open = function (size) {
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
