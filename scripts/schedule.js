@@ -320,14 +320,14 @@ app
 	// 	$scope.blocks = [];
 	// }
 	
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();  */
 
 	$scope.blocks = [];
 	
@@ -585,7 +585,7 @@ app
         $scope.myOrderBy = x;
     }
 
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
 
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
@@ -593,7 +593,7 @@ app
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();  */
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 		
@@ -630,14 +630,14 @@ app
     	}
     });
 
-    $scope.dashboardInit = function(){
+    /*  $scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();*/
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
@@ -968,14 +968,14 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
         });
 	}
 
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();*/
 	
 	// $scope.copyMonFri = function(){
 	// 	$("#table").find("tr").each(function(){

@@ -12,17 +12,11 @@
 
 // var baseUrl = 'http://35.160.142.158:8080/';
 
-<<<<<<< HEAD
+
 //var baseUrl = 'http://34.208.197.185:8080/';
 var baseUrl = 'http://35.162.244.123:8080/'; 
 
-=======
-var baseUrl = 'http://35.162.244.123:8080/'; 
 
-//var baseUrl = 'http://34.208.197.185:8080/';
-//var baseUrl = 'http://35.162.244.123:8080/'; 
-
->>>>>>> 7b6a70dcf866428007d10f4a1be54880a2f98408
 //var baseUrl = 'http://127.0.0.1:8080/';
 var app = angular
   .module('minovateApp', [

@@ -16,14 +16,14 @@ app
         };
 
         $rootScope.cameraidsToCreateGroup = [];
-        $scope.dashboardInit = function () {
+        /*$scope.dashboardInit = function () {
             cameraDVRSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
                 }
             });
         };
-        $scope.dashboardInit();
+        $scope.dashboardInit();*/
 
         $scope.showcamadd = function () {
             $("#camform").css("display", appConstants.inlineblock);

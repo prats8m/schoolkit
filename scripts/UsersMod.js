@@ -11,7 +11,7 @@
  
  */
 app
-    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc) {
+    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc,utilitySvc) {
 
         $scope.page = {
             title: appConstants.titleUsersUI,
@@ -106,10 +106,8 @@ app
         $scope.searchText = appConstants.empty;
         $scope.users = [];
         $scope.usersInit = function () {
-            $scope.current_facility_id = $cookies.get('current_facility_id');
-            $scope.current_facility_id = (!($scope.current_facility_id == 0 || $scope.current_facility_id == '0')) ? $scope.current_facility_id : '' ;
-
-            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + $scope.current_facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
+            
+            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.users = [];
                     angular.forEach(succResponse["data"]["data"], function (user, index) {
@@ -152,7 +150,7 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilityList = succResponse.data.data;
-                    $scope.facility = appConstants.empty;
+                    $scope.facility = (utilitySvc.getCurrentFacility() != '') ? parseInt(utilitySvc.getCurrentFacility()) : "";
                 }
                 else {
                     $scope.facilityList = {};
@@ -820,7 +818,7 @@ app
             });
         };
 
-        $scope.dashboardInit = function () {
+        /*$scope.dashboardInit = function () {
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data;
@@ -828,7 +826,7 @@ app
             });
         };
 
-        if (!$rootScope.hasOwnProperty('dashboardData')) { $scope.dashboardInit(); }
+        if (!$rootScope.hasOwnProperty('dashboardData')) { $scope.dashboardInit(); }*/
     });
 
 

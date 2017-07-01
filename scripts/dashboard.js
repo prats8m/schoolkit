@@ -1,14 +1,14 @@
 'use strict';
 
 app
-    .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster,$stateParams,$cookies){
+    .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster,$stateParams,$cookies,utilitySvc){
         $scope.page = {
             title: appConstants.dashboardTitle,
             subtitle: appConstants.dashboardSubTitle
         };
 
         $scope.dashboardInit = function(){
-            dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+            dashboardSvc.getDashboardData(appConstants.userDashboard +"?facility_id="+ utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.dashboardData = succResponse.data?succResponse.data:[];
                     console.log($rootScope.dashboardData);

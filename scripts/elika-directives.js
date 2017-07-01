@@ -108,8 +108,8 @@ app
             </div>`,
         restrict: 'E',
         //scope: {},
-        controller: ['$scope','dashboardSvc',"appConstants",'$rootScope', function flipHeaderController($scope,dashboardSvc,appConstants,$rootScope) {
-            dashboardSvc.getDashboardData(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+        controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc', function flipHeaderController($scope,dashboardSvc,appConstants,$rootScope,utilitySvc) {
+            dashboardSvc.getDashboardData(appConstants.userDashboard + '?facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.dashboardData = succResponse.data?succResponse.data:[];
                 }

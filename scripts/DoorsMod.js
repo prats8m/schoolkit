@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc) {
+	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc, utilitySvc) {
 		$scope.page = {
 			title: appConstants.doorsUITitle,
 			subtitle: appConstants.dashboardSubTitle
@@ -91,14 +91,14 @@ app
 			$scope.myOrderBy = x;
 		};
 
-		$scope.dashboardInit = function () {
-			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+		/*$scope.dashboardInit = function () {
+			doorsSvc.dashboardInit(appConstants.userDashboard +"&facility_id="+ utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
 				}
 			});
 		};
-		$scope.dashboardInit();
+		$scope.dashboardInit();*/
 
 
 		//Create Doors
@@ -132,10 +132,9 @@ app
 			}
 			$scope.pageNo = 1;
 			$scope.users = [];
-			$scope.current_facility_id = $cookies.get('current_facility_id');
-			$scope.current_facility_id = (!($scope.current_facility_id == 0 || $scope.current_facility_id == '0')) ? $scope.current_facility_id : '' ;
+			
 
-			doorsSvc.searchFunction(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+			doorsSvc.searchFunction(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				$scope.adoors = [];
 				if (succResponse.status) {
 					$scope.adoors = succResponse.data.data;
@@ -150,10 +149,9 @@ app
 		$scope.pageNo = 1;
 		$scope.searchText = appConstants.empty;
 		$scope.adoors = [];
-		$scope.current_facility_id = $cookies.get('current_facility_id');
-		$scope.current_facility_id = (!($scope.current_facility_id == 0 || $scope.current_facility_id == '0')) ? $scope.current_facility_id : '' ;
+		
 		$scope.listDoors = function () {
-			doorsSvc.listDoors(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + $scope.current_facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
+			doorsSvc.listDoors(appConstants.doorlist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo != 1) {
 						for (var i in succResponse.data.data) {
@@ -285,14 +283,14 @@ app
 			});
 		}
 
-		$scope.dashboardInit = function () {
+		/*$scope.dashboardInit = function () {
 			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
 				}
 			});
 		};
-		$scope.dashboardInit();
+		$scope.dashboardInit();*/
 
 	});
 
@@ -364,13 +362,13 @@ app
 			});
 		};
 
-		$scope.dashboardInit = function () {
+		/*$scope.dashboardInit = function () {
 			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
 				}
 			});
 		};
-		$scope.dashboardInit();
+		$scope.dashboardInit();*/
 	});
 
