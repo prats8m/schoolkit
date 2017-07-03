@@ -64,5 +64,22 @@ app
             });
         };
 
+        dashboardSvcResp.getFacilityName = function (url, method, params, data, cb) {
+            
+            if(utilitySvc.getCurrentFacility() == ''){
+                var responceData = {"status":true,"msg":"Success","data":{"facility_id":0,"facility_name":"CRYSTAL COVE","facility_location":"NEWPORT COAST"},"error":null};
+                cb(responceData);
+            }
+            var url = url + utilitySvc.getCurrentFacility();
+            utilitySvc.callHttpService(url , method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                } else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
         return dashboardSvcResp;
     }]);

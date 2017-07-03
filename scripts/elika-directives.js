@@ -128,7 +128,40 @@ app
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
-                    console.log($rootScope.headerFacilityList);
+                    //console.log($rootScope.headerFacilityList);
+                }
+            });
+        }]
+    };
+});
+
+app
+.directive('elikaFacilityDashboard', function() {
+  return {
+    template:`<span><strong>{{dashboard_facility_name}}</strong> {{dashboard_facility_quote}}</span>`,
+    restrict: 'C',
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacility($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
+            dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.dashboard_facility_name = succResponse.data.facility_name;
+                    $scope.dashboard_facility_quote = succResponse.data.facility_location;
+                    
+                }
+            });
+        }]
+    };
+});
+
+app
+.directive('elikaFacilityName', function() {
+  return {
+    template:`<span> Facility name :</span> {{innerpage_facility_name}}`,
+    restrict: 'C',
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacility($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
+            dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.innerpage_facility_name = succResponse.data.facility_name;
+                    //$scope.dashboard_facility_quote = succResponse.data.facility_location;
                 }
             });
         }]

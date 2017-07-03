@@ -13,6 +13,7 @@ app
 			subtitle: appConstants.dashboardSubTitle
 		};
 		$rootScope.addDoors = {};
+		$rootScope.door = {};
 		$scope.hideLoadMore = false;
 		$rootScope.facilityId = $cookies.get('facilityId');
 
@@ -67,7 +68,13 @@ app
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.facilityList = succResponse.data.data;
-					$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));
+					//$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));
+					
+	                if(utilitySvc.getCurrentFacility() != ''){
+	                    $rootScope.door.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+	                    $rootScope.facility_disable = true;
+	                    //$rootScope.getDoorsList();
+	                }
 				}
 			});
 		};

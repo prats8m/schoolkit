@@ -150,7 +150,7 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilityList = succResponse.data.data;
-                    $scope.facility = (utilitySvc.getCurrentFacility() != '') ? parseInt(utilitySvc.getCurrentFacility()) : "";
+                    $scope.facility = appConstants.empty;
                 }
                 else {
                     $scope.facilityList = {};
@@ -847,7 +847,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc) {
+    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc,utilitySvc) {
         $scope.page = {
             title: $location.path().indexOf('view-user') >= 0 ? appConstants._titleviewUser : appConstants._titleEditUser,
             subtitle: appConstants.empty
@@ -900,8 +900,7 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.facilityList = succResponse.data.data;
-                }
-                else {
+                } else {
                     $rootScope.facilityList = {};
                 }
             });
@@ -1671,7 +1670,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc) {
+    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc,utilitySvc) {
         $scope.page = {
             title: appConstants._titleUserGroups,
             subtitle: appConstants.empty,
@@ -1971,7 +1970,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc) {
+    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc,utilitySvc) {
 
         $scope.page = {
             title: appConstants._titleUserGroups,
