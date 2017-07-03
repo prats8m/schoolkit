@@ -97,10 +97,16 @@ app
             var combined = day + ' ' + month + ' , ' + year;
             return combined;
         }
-        $scope.uploadProfilePic = function (file, user_id) {                    
+        $scope.$watch('myFile', function (newVal, oldVal) {
+            if (newVal != oldVal) {
+                $scope.getFile();
+            }
+        })
+        $scope.uploadProfilePic = function (file, user_id) {
+            // return;
             var fd = new FormData();
             fd.append('user_id', user_id);
-            fd.append('file', file.files[0]);
+            fd.append('file', file);
             userSvc.uploadProfilePic(appConstants.userpicupload, appConstants.postMethod, {}, fd, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successImageUpload);
@@ -108,13 +114,36 @@ app
                     $scope.currentUser = new Object();
                     setTimeout(function () {
                         $scope.$apply();
-                    }, 300);
-                  
-                    setTimeout(function () {                      
+                    }, 100);
+
+                    setTimeout(function () {
                         $scope.getUserprofile();
-                    }, 600);
+                    }, 300);
 
                 }
             });
+        };
+        $scope.myFile = "";
+        $scope.getFile = function () {
+            if ($scope.myFile.compressed) {
+                var blob = dataURItoBlob($scope.myFile.compressed.dataURL);
+                $scope.myFile._file = blob;
+                $scope.uploadProfilePic($scope.myFile._file, $scope.user_id);
+            }
+        }
+        var dataURItoBlob = function (dataURI) {
+            // convert base64/URLEncoded data component to raw binary data held in a string
+            var byteString;
+            if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+                byteString = atob(dataURI.split(',')[1]);
+            } else {
+                byteString = decodeURI(dataURI.split(',')[1]);
+            }
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            var array = [];
+            for (var i = 0; i < byteString.length; i++) {
+                array.push(byteString.charCodeAt(i));
+            }
+            return new Blob([new Uint8Array(array)], { type: mimeString });
         };
     });
