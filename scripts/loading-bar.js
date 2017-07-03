@@ -166,7 +166,7 @@ angular.module('cfp.loadingBar', [])
     this.latencyThreshold = 100;
     this.startSize = 0.02;
     this.parentSelector = 'body';
-    this.spinnerTemplate = '<div class="loader" id="preloader"><div class="spinner"><img src="images/loader_89.gif"/></div></div>';
+    this.spinnerTemplate = '<div class="loaders"><div class="uil-ripple-css" style="transform:scale(0.55);"><div></div><div></div></div></div>';
     this.loadingBarTemplate = '<div id="loading-bar"><div class="bar"><div class="peg"></div></div></div>';
 
     this.$get = ['$injector', '$document', '$timeout', '$rootScope', function ($injector, $document, $timeout, $rootScope) {

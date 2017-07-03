@@ -19,69 +19,7 @@
 					</div>
 				</div>
 			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device}}</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}	</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
+			<flip-header></flip-header>			
 		</div>
 		
 		<div ng-if="result">									
@@ -127,7 +65,7 @@
 									</label> -->
 								</div>
 								<div class="col-sm-4 col-md-4 search">
-									<input type="text" class="form-control" placeholder="Search by text....">
+									<input type="text" class="form-control" maxlength="50" placeholder="Search by text....">
 									<button class="btn btn-default br-2-r" type="button">Search</button>
 								</div>
 								<div class="col-sm-4 col-md-4">

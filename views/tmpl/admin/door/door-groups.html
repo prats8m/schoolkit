@@ -8,7 +8,7 @@
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
-						<div class="bg-transparent">
+						<div class="bg-transparent doorsbg">
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
@@ -19,10 +19,72 @@
 					</div>
 				</div>
 			</div>			
-			<flip-header></flip-header>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.device.devices">
+					<div class="noback bg-blue cardheight">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/device-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Devices</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.door.doors">
+					<div class="noback bg-slategray lt cardheight">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/doors-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">	
+								<div class="itxt">							
+									<p class="text-elg text-strong mt-5 mb-5">22</p>
+									<span class="text-lg">Doors</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
+			<div class="card-container col-sm-4 col-md-3">
+				<div class="card">
+					<a ui-sref="app.admin.user.users">
+					<div class="noback bg-lightred cardheight">						
+						<div class="row">
+							<div class="col-xs-6 ta-r">
+								<div class="iconbx">
+									<img src="images/users-icon.png" alt="">
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="itxt">								
+									<p class="text-elg text-strong mt-5 mb-5">45</p>
+									<span class="text-lg">Users</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+			</div>			
 		</div>
 		
-		<div class="row">
+		<div class="row" ng-controller="DoorGroupsCtrl">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="tile-header dvd dvd-btm">
@@ -31,23 +93,39 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form" ng-submit="submitCreateDoorGroup(doorGroup)">
+										<form name="form1" role="form">
 											<div class="modal-header"><h4 class="modal-title custom-font">Create Door Groups</h4></div>
-											<div class="modal-body">					<span class="error">{{errormsg}}</span>
-												<div class="form-group overflow">
-													<label for="">Group Name <span class="text-danger">*</span></label>
-													<input type="text" name="group_name" ng-model="doorGroup.name" id="" class="form-control" placeholder="" required>
+											<div class="modal-body">						
+												<div class="row">
+													<div class="form-group col-md-6">
+														<label for="">Group Name</label>
+														<input type="text" name="" id="" class="form-control" placeholder="">
+													</div>
+													<div class="form-group col-md-6">
+														<label for="">Facility</label><br/>
+														<select class="form-control" chosen="{width: '100%'}">
+															<option selected>USA Corporate Services</option>
+															<option>Aerzen USA Corporation</option>
+														</select>
+													</div>
 												</div>
 												<div class="form-group">
-													<label for="">Doors <span class="text-danger">*</span></label>
-													<select class="form-control" name="door" ng-model="doorGroup.doors_id" Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
-
+													<label for="">Doors</label>
+													<select class="form-control" Multiple chosen="{width: '100%'}">
+														<option>Main Gate Front</option>
+														<option>Main Gate Back</option>
+														<option>Exit Gate Front</option>
+														<option>Exit Gate Back</option>
+														<option>Parking Entry Gate</option>
+														<option>Parking Exit Gate</option>
+														<option>Pool Gate</option>														
+														<option>Gym Gate</option>
 													</select>
 													<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()" id="group_close"><i class="fa fa-arrow-left"></i> Close</button>
+												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 											</div>
 										</form>
@@ -64,57 +142,26 @@
 								<div layout="row" ng-class="statusclass">									
 									{{result}}
 								</div>
-							</div>							
-							<div class="table-responsive">
-								<table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-custom">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>No of Doors</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="doorgroup in doorGroupList">
-											<td>{{ doorgroup.doorgroup_name }}</td>
-											<td>{{ doorgroup.door_count }}</td>
-											<td width="220">							
-												<div ng-controller="ModalDoorGroupCtrl" style="display: inline-block;">
-												
-								
-												
-												
-													<button type="button" ng-click="open(doorgroup)" class="btn btn-success btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-edit"></i> <span>Edit</span></button>
-												</div>
-												<button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="showConfirm($event,doorgroup.doorgroup_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
 							</div>
-							<script type="text/ng-template" id="myModalContent1.html">
-								<form name="form1" role="form" ng-submit="doorGroupSubmit(doorgroup)">
-									<div class="modal-header">
-										<h4 class="modal-title custom-font">Edit Door Groups</h4>
-									</div>
-									<div class="modal-body">	
-										<div class="form-group overflow">
-											<label for="">Group Name </label>
-											<input type="text" name="group_name" id="" class="form-control mb-10" ng-model="doorgroup.doorgroup_name" required />
-										</div>
-										<div class="form-group">
-											<label for="">Doors</label>
-											<select class="form-control" name="doors" Multiple chosen="{width: '100%'}" ng-model="doorgroup.door_id" ng-options="item.door_id as item.door_name for item in doorList">
-											</select>
-											<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.subadmin.door.doors">Add Door</a></small>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-										<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
-									</div>
-								</form>								
-							</script>
+							<div ng-class="class">
+								<div class="glview">
+									<md-content>			
+										<md-card ng-repeat="doorgroup in doorgroups">
+											<md-card-content>
+												<h2 class="md-title mt-40">{{ doorgroup.title }}</h2>
+												<p>No of doors: {{ doorgroup.noofdoors }}</p>
+												<p class="mb-20">USA Corporate Services</p>
+											</md-card-content>
+											<div class="md-actions" layout="row" layout-align="center center">
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.door.view-door-groups">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.door.edit-door-groups">Edit</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+											</div>
+										</md-card>										
+									</md-content>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</section>

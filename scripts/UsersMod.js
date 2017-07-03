@@ -16,13 +16,10 @@ app
         };
         $scope.facility = appConstants.empty;
         $rootScope.facilityId = $cookies.get("facilityId");
-
         $timeout(function () {
-            if ($cookies.get("userId") == undefined) {
-                $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
-                $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
-            }
-        }, 500);
+            $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
+            $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
+        });
 
         //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 
@@ -159,7 +156,7 @@ app
         };
 
         $scope.doorList = function () {
-            userSvc.doorList(appConstants.userlistdoorcredential + parseInt($cookies.get("userId")), appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.doorList(appConstants.userlistdoorcredential + parseInt($cookies.get("newUserId")), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.door_lists = succResponse.data;
                 }
@@ -235,9 +232,9 @@ app
                         var file = $scope.myFile;
                         $scope.uploadProfilePic(file, succResponse.data.user_id);
                     }
-                    $cookies.put("userId", succResponse.data.user_id);
+                    $cookies.put("newUserId", succResponse.data.user_id);
                     $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "visible").css("opacity", "1");
-                    $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
+                    $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.7");
                     $("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
                     $timeout(function () {
                         $(".ng-scope:contains(User Groups)").trigger("click");
@@ -259,9 +256,14 @@ app
         $scope.rfid.status = 1;
 
         $scope.getRfidList = function () {
-            userSvc.getRfidList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=rfid_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getRfidList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=rfid_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.rfid_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.rfid_code_list = [];
+                    }
                 }
             });
         };
@@ -274,7 +276,7 @@ app
                 $rootScope.rfid_error = appConstants.incompleteform;
                 return false;
             }
-            rfid.user_id = parseInt($cookies.get("userId"));
+            rfid.user_id = parseInt($cookies.get("newUserId"));
             rfid.credential_type = "rfid_code";
 
             rfid.details = {};
@@ -324,7 +326,7 @@ app
                 $rootScope.wiegand_error = appConstants.incompleteform;
                 return false;
             }
-            wiegand.user_id = parseInt($cookies.get("userId"));
+            wiegand.user_id = parseInt($cookies.get("newUserId"));
             wiegand.credential_type = "wiegand_code";
 
             $scope.wiegand = {};
@@ -377,17 +379,27 @@ app
 
 
         $scope.getPhoneList = function () {
-            userSvc.getPhoneList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=phone_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getPhoneList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=phone_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.phone_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.phone_code_list = [];
+                    }
                 }
             });
         };
 
         $scope.getWiegandList = function () {
-            userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.wiegand_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.wiegand_code_list = [];
+                    }
                 }
             });
         };
@@ -397,7 +409,7 @@ app
             if (!phone_form.validate()) {
                 return false;
             }
-            phoneCode.user_id = parseInt($cookies.get("userId"));
+            phoneCode.user_id = parseInt($cookies.get("newUserId"));
             phoneCode.credential_type = "phone_code";
             phoneCode.details = {};
             phoneCode.details.phone_code = phoneCode.phone_code;
@@ -439,9 +451,14 @@ app
         };
 
         $scope.getBleList = function () {
-            userSvc.getBleList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=ble_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getBleList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=ble_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.ble_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.ble_code_list = [];
+                    }
                 }
             });
         };
@@ -456,7 +473,7 @@ app
                 $scope.blecode_error = appConstants.incompleteform;
                 return false;
             }
-            ble_code.user_id = parseInt($cookies.get("userId"));
+            ble_code.user_id = parseInt($cookies.get("newUserId"));
             ble_code.credential_type = "ble_code";
             ble_code.details = {};
             ble_code.details.ble_username = ble_code.ble_name;
@@ -513,9 +530,14 @@ app
 
         //NFC code edit
         $scope.getNfcCodeList = function () {
-            userSvc.getNfcCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=nfc_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getNfcCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=nfc_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.nfc_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.nfc_code_list = [];
+                    }
                 }
             });
         };
@@ -526,7 +548,7 @@ app
             if (!nfc_form.validate()) {
                 return false;
             }
-            savenfc.user_id = parseInt($cookies.get("userId"));
+            savenfc.user_id = parseInt($cookies.get("newUserId"));
             savenfc.credential_type = "nfc_code";
             savenfc.details = {};
             savenfc.details.nfc_code = savenfc.nfc_code;
@@ -569,9 +591,14 @@ app
 
         //End Of NFC Code Edit
         $scope.getAccessCodeList = function () {
-            userSvc.getAccessCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("userId")) + '&type=access_code', appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getAccessCodeList(appConstants.credentiallist + '?user_id=' + parseInt($cookies.get("newUserId")) + '&type=access_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.access_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.access_code_list = [];
+                    }
                 }
             });
         };
@@ -583,7 +610,7 @@ app
             if (!access_code.validate()) {
                 return false;
             }
-            accesscode.user_id = parseInt($cookies.get("userId"));
+            accesscode.user_id = parseInt($cookies.get("newUserId"));
             accesscode.credential_type = "access_code";
             accesscode.details = {};
             accesscode.details.access_code = accesscode.access_code;
@@ -627,9 +654,10 @@ app
                     arr.push(index);
                 }
             });
-            userSvc.assignUserGroup(appConstants.userassignusergrouop, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), user_group_id: arr, facility_id: user_group.facility_id }, function (succResponse) {
+            userSvc.assignUserGroup(appConstants.userassignusergrouop, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("newUserId")), user_group_id: arr, facility_id: user_group.facility_id }, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroupmsg = succResponse.msg;
+                    $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
                     $timeout(function () {
                         $scope.doorList();
                     });
@@ -655,7 +683,7 @@ app
 
 
         $rootScope.unassignUserToUsergroup = function (user_group_id, facility_id) {
-            userSvc.unassignUserToUsergroup(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), user_group_id: user_group_id }, function (succResponse) {
+            userSvc.unassignUserToUsergroup(appConstants.removeusergroup, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("newUserId")), user_group_id: user_group_id }, function (succResponse) {
                 if (succResponse.status) {
                     $scope.unassignedUserGroup = appConstants._successUserGroupRemoved;
                 }
@@ -670,7 +698,7 @@ app
         };
 
         $scope.assignedGroup = function () {
-            userSvc.assignedGroup(appConstants.usergroupassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")) }, function (succResponse) {
+            userSvc.assignedGroup(appConstants.usergroupassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("newUserId")) }, function (succResponse) {
                 if (succResponse.status) {
                     if (succResponse.data) {
                         $rootScope.assingned_usergroups = succResponse.data;
@@ -681,7 +709,7 @@ app
         };
 
         $scope.unassignedGroup = function (facility_id) {
-            userSvc.unassignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("userId")), facility_id: facility_id }, function (succResponse) {
+            userSvc.unassignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("newUserId")), facility_id: facility_id }, function (succResponse) {
                 $rootScope.usergroups = {};
                 if (succResponse.status) {
                     $rootScope.usergroup = {};
@@ -889,6 +917,7 @@ app
         $scope.editBle = {};
         $scope.editBle.status = 1;
         $scope.profileInit = function () {
+            //userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
             userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + $stateParams.user_id, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
 
@@ -900,8 +929,10 @@ app
                     $scope.editUser.last_name = angular.copy($scope.userData.user_last_name);
                     $scope.editUser.address = angular.copy($scope.userData.user_address);
                     $scope.editUser.email = angular.copy($scope.userData.user_email);
-                    var date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
-                    $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
+                    if ($scope.userData.user_expiration_date != 0) {
+                        var date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
+                        $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' + date.getUTCFullYear());
+                    }
                     $scope.editUser.status = angular.copy($scope.userData.user_status);
                     $scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);
                     // $scope.editAccess.access_code = angular.copy($scope.userData.access_code);
@@ -1048,6 +1079,7 @@ app
         $rootScope.usergroup.usergrouparr = [];
 
         $rootScope.assignEditUserGroup = function (user_group) {
+            console.log(user_group);
             var arr = [];
             $.each(user_group.usergrouparr, function (index, value) {
                 if (value == true) {
@@ -1079,10 +1111,12 @@ app
                 $scope.nogroup = false;
                 if (succResponse.status) {
                     if (succResponse.data == null) {
+                        $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
                         $scope.nogroup = appConstants.nousergroupassigned;
                         $scope.userGroup = appConstants.empty;
                     }
                     else {
+                        $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
                         $scope.userGroup = succResponse.data;
                         $scope.groupcount = succResponse.data.length;
                     }
@@ -1092,6 +1126,12 @@ app
 
         $scope.editassignedGroup();
         $rootScope.userNotAssignedGroup = function (facility_id) {
+            if (facility_id == undefined) {
+                $("#add_group_facility").addClass("disable-button");
+            }
+            else {
+                $("#add_group_facility").removeClass("disable-button");
+            }
             userSvc.userNotAssignedGroup(appConstants.usergroupnotassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($stateParams.user_id), facility_id: facility_id }, function (succResponse) {
                 $rootScope.usergroups = [];
                 if (succResponse.status) {
@@ -1178,18 +1218,22 @@ app
             submitData.zipcode = parseInt(submitData.user_zipcode);
             submitData.facility_id = parseInt($cookies.get("facilityId"));
             // submitData.expiration_date = submitData.expiration_date;
-
-            var ex_date = submitData.expirationdate;
-            if(isNaN(submitData.expirationdate)){
-            var d = submitData.expirationdate.split("/");
-            var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
+            var ex_date = '';
+            if (submitData.no_expirations == 1 || submitData.status == 0) {
+                submitData.expirationdate = '';
             }
-            else{
-                var date = submitData.expirationdate;
+            else {
+                ex_date = submitData.expirationdate;
+                if (isNaN(submitData.expirationdate)) {
+                    var d = submitData.expirationdate.split("/");
+                    var date = new Date(d[2] + "/" + d[1] + "/" + d[0]);
+                }
+                else {
+                    var date = submitData.expirationdate;
+                }
+                submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                delete submitData["expirationdate"];
             }
-            submitData.expiration_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
-            delete submitData["expirationdate"];
-
             $rootScope.masters = [];
             userSvc.submitEditUser(appConstants.useredit, appConstants.putMethod, {}, submitData, function (succResponse) {
                 submitData.expirationdate = ex_date;
@@ -1315,6 +1359,11 @@ app
                 if (succResponse.status) {
                     $scope.nfc_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.nfc_code_list = [];
+                    }
+                }
             });
         };
         $scope.getNfcCodeList();
@@ -1324,6 +1373,11 @@ app
             userSvc.getPhoneList(appConstants.credentiallist + '?user_id=' + parseInt($stateParams.user_id) + '&type=phone_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.phone_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.phone_code_list = [];
+                    }
                 }
             });
         };
@@ -1370,6 +1424,11 @@ app
                 if (succResponse.status) {
                     $scope.rfid_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.rfid_code_list = [];
+                    }
+                }
             });
         };
         $scope.getRfidList();
@@ -1378,6 +1437,11 @@ app
             userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($stateParams.user_id) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.wiegand_code_list = succResponse.data;
+                }
+                else {
+                    if (!succResponse.error) {
+                        $scope.wiegand_code_list = [];
+                    }
                 }
             });
         };
@@ -1455,6 +1519,11 @@ app
                 if (succResponse.status) {
                     $scope.ble_code_list = succResponse.data;
                 }
+                else {
+                    if (!succResponse.error) {
+                        $scope.ble_code_list = [];
+                    }
+                }
             });
         };
         $scope.getBleList();
@@ -1486,10 +1555,10 @@ app
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                     $scope.getBleList();
-                    $scope.bleerror = appConstants.empty;
+                    // $scope.bleerror = appConstants.empty;
                 }
                 else {
-                    $scope.bleerror = succResponse.msg;
+                    // $scope.bleerror = succResponse.msg;
                 }
             });
         };

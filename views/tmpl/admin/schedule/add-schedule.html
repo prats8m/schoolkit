@@ -29,564 +29,31 @@
 						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
 					</div>
 					<div class="tile-body p-0"> 
+
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-12" data-ng-init="init()">
 								<div class="col-md-7 pl-0">
-									<div class="calendar">															
-										<table style="width:100%" cellspacing="0">
-											<thead>
-												<tr>
-													<th class="nobrl time">&nbsp;</th>
-													<th class="mon">Mon</th>
-													<th class="tue">Tue</th>
-													<th class="wed">Wed</th>
-													<th class="thr">Thu</th>
-													<th class="fri">Fri</th>
-													<th class="sat">Sat</th>
-													<th class="sun">Sun</th>
-													<!--th class="holidays">Holidays</th-->
-												</tr>
-											</thead>																
-										</table>
-										<div class="calendartime">
-											<table style="width:100%" cellspacing="0">
-												<tbody>
-													<tr>
-														<td style="width: 50px;">
-															<table style="width:100%" cellspacing="0" id="tablehead">
-																<tr>
-																	<th class="calendartimehead">12am</th>
-																	<th class="calendartimehead">1am</th>
-																	<th class="calendartimehead">2am</th>
-																	<th class="calendartimehead">3am</th>
-																	<th class="calendartimehead">4am</th>
-																	<th class="calendartimehead">5am</th>
-																	<th class="calendartimehead">6am</th>
-																	<th class="calendartimehead">7am</th>
-																	<th class="calendartimehead">8am</th>
-																	<th class="calendartimehead">9am</th>
-																	<th class="calendartimehead">10am</th>
-																	<th class="calendartimehead">11am</th>
-																	<th class="calendartimehead">12pm</th>
-																	<th class="calendartimehead">1pm</th>
-																	<th class="calendartimehead">2pm</th>
-																	<th class="calendartimehead">3pm</th>
-																	<th class="calendartimehead">4pm</th>
-																	<th class="calendartimehead">5pm</th>
-																	<th class="calendartimehead">6pm</th>
-																	<th class="calendartimehead">7pm</th>
-																	<th class="calendartimehead">8pm</th>
-																	<th class="calendartimehead">9pm</th>
-																	<th class="calendartimehead">10pm</th>
-																	<th class="calendartimehead">11pm</th>
-																	<th style="display:none;" class="calendartimehead">12am</th>
-																</tr>
-															</table>
-														</td>
-														<td>
-															<table style="width:100%" cellspacing="0" id="table">
-																<tr value="00:00" class="00">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="00:00" class="00">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="01:00" class="01">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="01:00" class="01">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="02:00" class="02">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="02:00" class="02">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="03:00" class="03">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="03:00" class="03">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="04:00" class="04">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="04:00" class="04">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="05:00" class="05">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="05:00" class="05">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="06:00" class="06">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="06:00" class="06">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="07:00" class="07">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="07:00" class="07">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="08:00" class="08">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="08:00" class="08">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="09:00" class="09">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="09:00" class="09">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="10:00" class="10">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="10:00" class="10">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="11:00" class="11">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="11:00" class="11">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="12:00" class="12">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="12:00" class="12">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="13:00" class="13">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="13:00" class="13">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="14:00" class="14">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="14:00" class="14">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="15:00" class="15">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="15:00" class="15">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="16:00" class="16">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="16:00" class="16">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="17:00" class="17">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="17:00" class="17">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="18:00" class="18">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="18:00" class="18">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="19:00" class="19">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="19:00" class="19">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="20:00" class="20">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="20:00" class="20">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="21:00" class="21">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="21:00" class="21">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="22:00" class="22">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="22:00" class="22">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="23:00" class="23">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="23:00" class="23">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-																<tr value="24:00" class="24" style="display:none;">
-																	<td class="nobrl mon" value="Monday">&nbsp;</td>
-																	<td class="tue" value="Tuesday">&nbsp;</td>
-																	<td class="wed" value="Wednesday">&nbsp;</td>
-																	<td class="thr" value="Thursday">&nbsp;</td>
-																	<td class="fri" value="Friday">&nbsp;</td>
-																	<td class="sat" value="Saturday">&nbsp;</td>
-																	<td class="sun" value="Sunday">&nbsp;</td>
-																	<!--td class="holidays" value="holidays">&nbsp;</td-->
-																</tr>
-															</table>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="copybtn">
-												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonFri()">Copy Mon -> Mon-Fri</a>
-												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonSun()">Copy Mon -> Mon-Sun</a>
-												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="clearAll()">Clear All</a>
-											</div>
-										</div>
+									<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:600px;' >
+									<div class="dhx_cal_navline">
+									<div class="dhx_cal_prev_button" >&nbsp;</div>
+									<div class="dhx_cal_next_button" >&nbsp;</div>
+									<div class="dhx_cal_today_button" ></div>
+									<div class="dhx_cal_date" style="display: none;"></div>
+									<!-- <div class="dhx_minical_icon" id="dhx_minical_icon" onclick="show_minical()">&nbsp;</div> -->
+									<!-- <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+									<div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+									<div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div> -->
 									</div>
+									<div class="dhx_cal_header">
+									</div>
+									<div class="dhx_cal_data">
+									</div>
+									</div>
+									<div class="copybtn">
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonFri()">Copy Mon -&gt; Mon-Fri</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="copyMonSun()">Copy Mon -&gt; Mon-Sun</a>
+												<a class="btn btn-primary btn-slategray btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="clearAllSchedule()">Clear All</a>
+											</div>
 								</div>														
 								<div class="modal-body col-md-5" ng-controller="ModalDemoCtrl">
 									<form name="addSchedule" ng-validate="validationOptions" ng-submit="submitSchedule(schedule,addSchedule)">
@@ -604,10 +71,17 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl">
+											<div class="form-group col-sm-6 col-md-6" ng-init="schedule.schedule_type=1">
+												<label for="">Schedule Type <span class="text-danger">*</span></label><br/>
+												<div class="btn-group btnrounded" >
+													<a href="javascript:void(0)" ng-click="custom_schedular()"><label class="btn btn-default" ng-model="schedule.schedule_type" uib-btn-radio="1">Custom</label></a>
+													<a href="javascript:void(0)" ng-click="repetive_schedular()"><label class="btn btn-default" ng-model="schedule.schedule_type" uib-btn-radio="0">Repetitive</label></a>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="schedule.schedule_type == 0">
 												<label for="">Start Date <span class="text-danger">*</span></label>
-												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.schedulestart_date" is-open="opened" min-date="$parent.minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" name="start_date" required="required" />
+												<div class="input-group" >
+													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.schedulestart_date" is-open="opened" min-date="$parent.minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" name="start_date" required="required"/>
 													<span class="input-group-btn" >
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
@@ -615,7 +89,7 @@
 											</div>
 											
 										</div>
-										<div class="row">
+										<!-- <div class="row">
 											<div class="col-sm-12 col-md-6">
 												<div class="row">
 													<div class="col-sm-6 col-md-6 form-group">
@@ -639,10 +113,10 @@
 												</select>
 												<button type="button" ng-click="deleteBlock()" class="btn btn-default btn-ef btn-ef-6 btn-ef-6a btn-rounded pull-right ml-10 mt-5">Delete Block</button>
 											</div>
-										</div>
+										</div> -->
 										
 										
-										<div>
+										<div ng-show="schedule.schedule_type == 0">
 											<uib-accordion close-others="oneAtATime">
 												<uib-accordion-group is-open="status.open1" class="panel-default mt-20">
 													<uib-accordion-heading>Holidays Observed <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
