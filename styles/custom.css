@@ -3943,3 +3943,6 @@ span.edittxt {position: absolute;
     pointer-events: none;
     opacity: 0.5;
 }
+.dhtmlx-alert{
+        z-index: 1050 !important;
+}

@@ -26,14 +26,15 @@
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
 						<div class="thumb thumb-xxll mb-20 rel">
-							<img id="profileImage" class="img-circle" ng-src="{{currentUser.user_photo}}" alt="">
+							<img id="profileImage" class="img-circle" ng-src="{{currentUser.user_photo}}" fallback-src="images/image-not-available.jpg" alt="">
+							
 							<span class="edit"><label for="profilePicAddUpdate"><i class="fa fa-pencil" aria-hidden="true"></i></label>
-							<input type="file" accept="image/*" ng-model="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
- onchange="angular.element(this).scope().uploadProfilePic(this ,angular.element(this).scope().user_id);" />
+							<input type="file" accept="image/*" ng-image-compress image="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
+  resize-max-height="200" resize-max-width="200" resize-quality=".6" resize-type="image/jpg"/>
 							</span>
 
 							<span class="edittxt">Change</span>
-						</div>
+						</div>						
 						<h3 class="mb-10"><strong>{{currentUser.user_first_name+' '+currentUser.user_last_name}}</strong></h3>
 						<span class="text-muted">You're logged in as {{currentUser.user_email}}</span><br/>
 						<span class="text-muted">{{currentUser.user_phone_no}}</span>

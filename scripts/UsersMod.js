@@ -24,8 +24,26 @@ app
             $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
         });
 
-        //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        $scope.open_credentials = function(){
+           $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "block").css("opacity", "1");
+           $timeout(function () { 
+            $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").click();
+           });
+        }
 
+        //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        $rootScope.initSchedule = function() {
+            scheduler.config.collision_limit = 1;
+            scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+            window.resizeTo(950,700);
+            scheduler.config.day_date = "%D, %F %d";
+            scheduler.config.first_hour = 0;
+            scheduler.config.multi_day = true;
+            scheduler.config.date_step = "5";
+            scheduler.config.show_loading = true;
+            scheduler.init('scheduler_here',new Date(),"week");
+            scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+        }
 
         $scope.cleanAccordionFormObject = function (UI, objectType) {
             switch (UI) {
@@ -517,7 +535,7 @@ app
         $scope.generateAddAccessCode = function () {
             // $scope.accesscode = {};
             var x = Math.floor(Math.random() * 9999999999) + 10000;
-            $scope.accesscode.access_code = parseInt((appConstants.empty + x).substring(8, length));
+            $scope.accesscode.access_code = parseInt((appConstants.empty + x).substring($scope.accesscode.accesscode_size, length));
         };
 
         $rootScope.generateAddPhoneCode = function () {
