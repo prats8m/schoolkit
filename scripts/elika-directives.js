@@ -145,7 +145,9 @@ app
                 if(succResponse.status){
                     $scope.dashboard_facility_name = succResponse.data.facility_name;
                     $scope.dashboard_facility_quote = succResponse.data.facility_location;
-                    
+                }else{
+                    $scope.dashboard_facility_name = appConstants.dashboard_facility_name;
+                    $scope.dashboard_facility_quote = appConstants.dashboard_facility_quote;
                 }
             });
         }]
