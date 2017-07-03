@@ -65,7 +65,9 @@ var app = angular
     'angular-loading-bar',
     'ngValidate',
     'toaster',
-    "com.2fdevs.videogular"
+    "com.2fdevs.videogular",
+    "ngImageCompress",
+    "dcbImgFallback"
   ])
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
@@ -235,7 +237,7 @@ var app = angular
         controller: 'ActivityCtrl',
         templateUrl: 'views/tmpl/admin/activity.html'
       })
-	  //admin contact
+      //admin contact
       .state('app.admin.contact', {
         url: '/contact-us',
         controller: 'ContactCtrl',
@@ -382,20 +384,20 @@ var app = angular
         controller: 'DoorGroupsCtrl',
         templateUrl: 'views/tmpl/subadmin/door/door-groups.html'
       })
-	  
-	  //admin door view-door-groups
-		.state('app.admin.door.view-door-groups', {
-		  url: '/view-door-groups',
-		  controller: 'ViewDoorGroupsCtrl',
-		  templateUrl: 'views/tmpl/admin/door/view-door-groups.html'
-		})
-		
-		//admin door edit-door-groups
-		.state('app.admin.door.edit-door-groups', {
-		  url: '/edit-door-groups',
-		  controller: 'EditDoorGroupsCtrl',
-		  templateUrl: 'views/tmpl/admin/door/edit-door-groups.html'
-		})
+
+      //admin door view-door-groups
+      .state('app.admin.door.view-door-groups', {
+        url: '/view-door-groups',
+        controller: 'ViewDoorGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/door/view-door-groups.html'
+      })
+
+      //admin door edit-door-groups
+      .state('app.admin.door.edit-door-groups', {
+        url: '/edit-door-groups',
+        controller: 'EditDoorGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/door/edit-door-groups.html'
+      })
 
 
       //subadmin permissions
@@ -1275,29 +1277,29 @@ app
  */
 app
   .controller('ViewDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Door Group Details',
     };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$state.go('app.admin.door.door-groups');
-		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
+
+    $scope.result = '';
+    $scope.showConfirm = function (ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Would you like to delete Door?')
+        .content('')
+        .ok('Yes')
+        .cancel('No')
+        .targetEvent(ev);
+      $mdDialog.show(confirm).then(function () {
+        $state.go('app.admin.door.door-groups');
+      }, function () {
+        $scope.result = 'You decided to keep Door.';
+        $scope.statusclass = 'alert alert-success alert-dismissable';
+      });
     };
-	
-	$scope.imagePath = 'http://localhost/elikastaging/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost/elikastaging/images';
+
+  });
 
 'use strict';
 /**
@@ -1309,29 +1311,29 @@ app
  */
 app
   .controller('EditDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
-     $scope.page = {
+    $scope.page = {
       title: 'Edit Door Group',
     };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$state.go('app.admin.door.door-groups');
-		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
+
+    $scope.result = '';
+    $scope.showConfirm = function (ev) {
+      var confirm = $mdDialog.confirm()
+        .title('Would you like to delete Door?')
+        .content('')
+        .ok('Yes')
+        .cancel('No')
+        .targetEvent(ev);
+      $mdDialog.show(confirm).then(function () {
+        $state.go('app.admin.door.door-groups');
+      }, function () {
+        $scope.result = 'You decided to keep Door.';
+        $scope.statusclass = 'alert alert-success alert-dismissable';
+      });
     };
-	
-	$scope.imagePath = 'http://localhost/elikastaging/images';	
-	
-});
+
+    $scope.imagePath = 'http://localhost/elikastaging/images';
+
+  });
 
 'use strict';
 /**
@@ -2100,10 +2102,10 @@ angular.module('lazyModel', [])
 app
   .controller('ContactCtrl', function ($scope) {
     $scope.page = {
-		title: 'Contact Us',
+      title: 'Contact Us',
     };
-	
-});
+
+  });
 
 /**
  * @ngdoc function
@@ -9569,8 +9571,8 @@ app.directive('datepickerLocaldate', ['$parse', function ($parse) {
       if (!modelValue) {
         return undefined;
       }
-      var res= modelValue.split('/');
-      modelValue=res[1]+'/'+res[0]+'/'+res[2];
+      var res = modelValue.split('/');
+      modelValue = res[1] + '/' + res[0] + '/' + res[2];
       // date constructor will apply timezone deviations from UTC (i.e. if locale is behind UTC 'dt' will be one day behind)
       var dt = new Date(modelValue);
       // 'undo' the timezone offset again (so we end up on the original date again)
