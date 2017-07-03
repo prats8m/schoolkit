@@ -66,7 +66,7 @@
 											</div>
 											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Facility <span class="text-danger">*</span></label>
-												<select class="form-control" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" name="facility_name" required>
+												<select class="form-control" ng-disabled="facility_disable" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" name="facility_name" required>
 													<option value="">Select</option>
 												</select>
 											</div>

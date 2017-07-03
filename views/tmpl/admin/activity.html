@@ -71,7 +71,7 @@
 										</div>
 										<div class="col-sm-3 col-md-3">
 											<label for="">Facility</label><br/>
-											<select class="form-control" ng-model="facility_id" ng-options="x.facility_id as x.facility_name for x in facility" ng-change="getDoorsList()">
+											<select class="form-control" ng-disabled="facility_disable" ng-model="facility_id" ng-options="x.facility_id as x.facility_name for x in facility" ng-change="getDoorsList()">
 												<option value="">Select</option>
 											</select>
 										</div>
