@@ -230,37 +230,37 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
         };
 
         scheduleSvcResp.submitEditSchedule=function(url,method,params,data,cb) {
-            var mon = [];   var tue = [];   var wed = [];   var thr = [];   var fri = [];   var sat = [];   var sun = [];
-            var myTable = $("#table");
-            myTable.find( "tr" ).each(function(){
-                $(this).find("td").each(function(){
-                    if($(this).hasClass("selected")){
-                        if($(this).hasClass("mon")){
-                            mon.push($(this).parent().attr("value"));
-                        }else if($(this).hasClass("tue")){
-                            tue.push($(this).parent().attr("value"));
-                        }else if($(this).hasClass("wed")){
-                            wed.push($(this).parent().attr("value"));
-                        }else if($(this).hasClass("thr")){
-                            thr.push($(this).parent().attr("value"));
-                        }else if($(this).hasClass("fri")){
-                            fri.push($(this).parent().attr("value"));
-                        }else if($(this).hasClass("sat")){
-                            sat.push($(this).parent().attr("value"));
-                        }else if($(this).hasClass("sun")){
-                            sun.push($(this).parent().attr("value"));
-                        }
-                    }
-                });
-            });
+            // var mon = [];   var tue = [];   var wed = [];   var thr = [];   var fri = [];   var sat = [];   var sun = [];
+            // var myTable = $("#table");
+            // myTable.find( "tr" ).each(function(){
+            //     $(this).find("td").each(function(){
+            //         if($(this).hasClass("selected")){
+            //             if($(this).hasClass("mon")){
+            //                 mon.push($(this).parent().attr("value"));
+            //             }else if($(this).hasClass("tue")){
+            //                 tue.push($(this).parent().attr("value"));
+            //             }else if($(this).hasClass("wed")){
+            //                 wed.push($(this).parent().attr("value"));
+            //             }else if($(this).hasClass("thr")){
+            //                 thr.push($(this).parent().attr("value"));
+            //             }else if($(this).hasClass("fri")){
+            //                 fri.push($(this).parent().attr("value"));
+            //             }else if($(this).hasClass("sat")){
+            //                 sat.push($(this).parent().attr("value"));
+            //             }else if($(this).hasClass("sun")){
+            //                 sun.push($(this).parent().attr("value"));
+            //             }
+            //         }
+            //     });
+            // });
             
-            data.schedule_mon = scheduleSvcResp.timeBlock(mon);
-            data.schedule_tue = scheduleSvcResp.timeBlock(tue);
-            data.schedule_wed = scheduleSvcResp.timeBlock(wed);
-            data.schedule_thu = scheduleSvcResp.timeBlock(thr);
-            data.schedule_fri = scheduleSvcResp.timeBlock(fri);
-            data.schedule_sat = scheduleSvcResp.timeBlock(sat);
-            data.schedule_sun = scheduleSvcResp.timeBlock(sun);
+            // data.schedule_mon = scheduleSvcResp.timeBlock(mon);
+            // data.schedule_tue = scheduleSvcResp.timeBlock(tue);
+            // data.schedule_wed = scheduleSvcResp.timeBlock(wed);
+            // data.schedule_thu = scheduleSvcResp.timeBlock(thr);
+            // data.schedule_fri = scheduleSvcResp.timeBlock(fri);
+            // data.schedule_sat = scheduleSvcResp.timeBlock(sat);
+            // data.schedule_sun = scheduleSvcResp.timeBlock(sun);
             // data.expiration = scheduleSvcResp.convert(data.expiration);
             data.block = "  ";
             data.facility_id = data.schedule_facility_id;

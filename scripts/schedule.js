@@ -33,7 +33,7 @@ app
 		}
 
 	$scope.init = function() {
-		
+		JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
 		scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
 		window.resizeTo(950,700);
 		scheduler.config.day_date = "%D, %F %d";
@@ -84,6 +84,8 @@ app
 			scheduler.deleteEvent(value);
 		});
 	}
+	$timeout(function () {$scope.clearAllSchedule();});
+	
 
 	$scope.copyMonFri = function(){
 		JSON.parse(scheduler.toJSON()).forEach(function(v){
@@ -232,7 +234,9 @@ app
 	});
 	
 	$scope.timedropdown = appConstants.timedropdown2;
-
+	$timeout(function () {
+		$scope.clearAllSchedule();
+	});
 	$scope.submitSchedule = function(data,form){
 		if(!form.validate()){
 			return false;
@@ -245,19 +249,23 @@ app
 		weekday[4] = "Thursday";
 		weekday[5] = "Friday";
 		weekday[6] = "Saturday";
-
 		var ind = new Array();
 		JSON.parse(scheduler.toJSON()).forEach(function(v){ 
-			delete v.id; 
-			delete v.text; 
-			v.day = weekday[new Date(v.start_date).getDay()]; 
-			v.starttime = v.start_date.split(" ")[1]; 
-			v.endtime = v.end_date.split(" ")[1]; 
-			if($scope.schedule.schedule_type == 1)
-				v.date = v.start_date.split(" ")[0];
-			delete v.start_date;
-			delete v.end_date;
-			ind.push(v)
+			if(v.start_date != "NaN/NaN/NaN NaN:NaN")
+			{
+				delete v.id; 
+				delete v.text; 
+				var split_date = v.start_date.split(" ");
+				v.day = weekday[new Date(v.start_date).getDay()]; 
+				v.starttime = split_date[1]; 
+				v.endtime = v.end_date.split(" ")[1]; 
+				if($scope.schedule.schedule_type == 1)
+					v.date = split_date[0].replace("/", "-").replace("/", "-");
+				delete v.start_date;
+				delete v.end_date;
+				ind.push(v);
+			}
+
 		});
 		data.schedule = ind;
 		
@@ -265,14 +273,18 @@ app
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date))/1000;
-
-		var start_date = data.schedulestart_date;
-		var date = new Date(data.schedulestart_date)  
-		data.schedule_start_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
-
-		var expiration_date = data.expiration;
-		var exp_date = new Date(data.expiration)  
-		data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
+		delete data.schedule_start_date;
+		if(data.schedulestart_date != undefined )
+		{
+			var start_date = data.schedulestart_date;
+			var date = new Date(data.schedulestart_date);
+			data.schedule_start_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+		}
+		if(data.expiration != undefined){
+			var expiration_date = data.expiration;
+			var exp_date = new Date(data.expiration);
+			data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
+		}
 
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
 		
@@ -320,14 +332,14 @@ app
 	// 	$scope.blocks = [];
 	// }
 	
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();  */
 
 	$scope.blocks = [];
 	
@@ -585,7 +597,7 @@ app
         $scope.myOrderBy = x;
     }
 
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
 
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
@@ -593,7 +605,7 @@ app
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();  */
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';
 		
@@ -630,14 +642,14 @@ app
     	}
     });
 
-    $scope.dashboardInit = function(){
+    /*  $scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();*/
 	
 	$scope.imagePath = 'http://localhost:8080/elika/images';	
 	
@@ -665,18 +677,18 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	
 	var weekDay = [];
 
-	$scope.initSchedule = function() {
-		scheduler.config.collision_limit = 1;
-		scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
-		window.resizeTo(950,700);
-		scheduler.config.day_date = "%D, %F %d";
-		scheduler.config.first_hour = 0;
-		scheduler.config.multi_day = true;
-		scheduler.config.date_step = "5";
-		scheduler.config.show_loading = true;
-		scheduler.init('scheduler_here',new Date(),"week");
-		scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
-	}
+	// $scope.initSchedule = function() {
+	// 	scheduler.config.collision_limit = 1;
+	// 	scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+	// 	window.resizeTo(950,700);
+	// 	scheduler.config.day_date = "%D, %F %d";
+	// 	scheduler.config.first_hour = 0;
+	// 	scheduler.config.multi_day = true;
+	// 	scheduler.config.date_step = "5";
+	// 	scheduler.config.show_loading = true;
+	// 	scheduler.init('scheduler_here',new Date(),"week");
+	// 	scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+	// }
 
 	$scope.repetive_schedular = function(){
 		angular.forEach($(".dhx_scale_bar"), function(value, key) {
@@ -862,26 +874,68 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	}
 	
 	$scope.viewSchedule = function(){
-		scheduleSvc.viewSchedule(appConstants.scheduleView, appConstants.getMethod,{schedule_id:$stateParams.schedule_id},{},function (succResponse) {
+		scheduleSvc.viewSchedule(appConstants.scheduleView, appConstants.getMethod,{schedule_id:$stateParams.schedule_id, schedule_type:$stateParams.schedule_type},{},function (succResponse) {
         	if(succResponse.status){
 				$scope.schedule = succResponse.data;
 
 				$scope.holidayScheduleList();
-				var mon = $scope.schedule.schedule_mon;
-				var tue = $scope.schedule.schedule_tue;
-				var wed = $scope.schedule.schedule_wed;
-				var thu = $scope.schedule.schedule_thu;
-				var fri = $scope.schedule.schedule_fri;
-				var sat = $scope.schedule.schedule_sat;
-				var sun = $scope.schedule.schedule_sun;
-				scheduleSvc.getSelectedBlocks(mon,'mon');
-				scheduleSvc.getSelectedBlocks(tue,'tue');
-				scheduleSvc.getSelectedBlocks(wed,'wed');
-				scheduleSvc.getSelectedBlocks(thu,'thr');
-				scheduleSvc.getSelectedBlocks(fri,'fri');
-				scheduleSvc.getSelectedBlocks(sat,'sat');
-				scheduleSvc.getSelectedBlocks(sun,'sun');
+				JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
 				
+				var weekday = new Array(7);
+				weekday["Sunday"] = 0;
+				weekday["Monday"] = 1;
+				weekday["Tuesday"] = 2;
+				weekday["Wednesday"] = 3;
+				weekday["Thursday"] = 4;
+				weekday["Friday"] = 5;
+				weekday["Saturday"] = 6;
+				var arr = [];
+				if($scope.schedule.schedule_category == 'repeat'){
+					$scope.schedule.schedule_input.forEach(function(v){
+						var	week_date = new Date();
+						var sch = {}; 
+						var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
+						sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.starttime; 
+						sch.end_date= (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.endtime;
+						arr.push(sch); 
+					});
+				}
+				else{
+					$scope.schedule.schedule_input.forEach(function(v){
+						var	week_date = new Date();
+						var sch = {}; 
+						// var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
+						sch.start_date = v.date+" "+v.starttime; sch.end_date= v.date+" "+v.endtime;
+						arr.push(sch); 
+					});
+				}
+				scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+				window.resizeTo(950,700);
+				scheduler.config.day_date = "%D, %F %d";
+				if($scope.schedule.schedule_category == 'repeat')
+				{
+					$timeout(function () {
+						$scope.repetive_schedular();
+					});
+				}
+				else{
+					$timeout(function () {
+						$scope.custom_schedular();
+					});
+				}
+				scheduler.config.first_hour = 0;
+				scheduler.config.multi_day = false;
+				scheduler.config.date_step = "5";
+				scheduler.config.show_loading = true;
+				scheduler.init('scheduler_here',new Date(),"week");
+				$timeout(function () {
+					$scope.clearAllSchedule();
+				});
+				$timeout(function () {
+					scheduler.parse(arr,"json");
+				});
+				$scope.schedule.schedule_type = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
+				if($scope.schedule.schedule_exceptions != undefined)
 				$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
 				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
 				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
@@ -893,7 +947,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				}
 
 				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" :$scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);;
-				$scope.blocks = scheduleSvc.autoPopulateBlocks();
+				// $scope.blocks = scheduleSvc.autoPopulateBlocks();
             }
         });
 	};
@@ -958,6 +1012,32 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 		data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
 
 
+		var weekday = new Array(7);
+		weekday[0] = "Sunday";
+		weekday[1] = "Monday";
+		weekday[2] = "Tuesday";
+		weekday[3] = "Wednesday";
+		weekday[4] = "Thursday";
+		weekday[5] = "Friday";
+		weekday[6] = "Saturday";
+		var ind = new Array();
+		JSON.parse(scheduler.toJSON()).forEach(function(v){ 
+			if(v.start_date != "NaN/NaN/NaN NaN:NaN"){
+			delete v.id; 
+			delete v.text; 
+			var split_date = v.start_date.split(" ");
+			v.day = weekday[new Date(v.start_date).getDay()]; 
+			v.starttime = split_date[1]; 
+			v.endtime = v.end_date.split(" ")[1]; 
+			if($scope.schedule.schedule_type == 1)
+				v.date = split_date[0].replace("/", "-").replace("/", "-");
+			delete v.start_date;
+			delete v.end_date;
+			ind.push(v);
+			}
+		});
+		data.schedule = ind;
+
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod,{},$scope.schedule,function (succResponse) {
         	if(succResponse.status){
 				data.schedulestart_date = start_date;
@@ -968,14 +1048,14 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
         });
 	}
 
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
         scheduleSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();*/
 	
 	// $scope.copyMonFri = function(){
 	// 	$("#table").find("tr").each(function(){

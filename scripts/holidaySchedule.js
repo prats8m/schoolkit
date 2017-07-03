@@ -105,15 +105,15 @@ app
             $scope.getHolidayScheduleList();
         };
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
             HolidayScheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data;
                 }
                 $scope.getHolidayScheduleList();
             });
-        };
-        $scope.dashboardInit();
+        }; 
+        $scope.dashboardInit(); */
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
@@ -133,7 +133,7 @@ app
             });
         };
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
             HolidayScheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data;
@@ -141,7 +141,7 @@ app
                 $scope.getSelectedHolidayScheduleDetail();
             });
         };
-        $scope.dashboardInit();
+        $scope.dashboardInit(); */
 
     })
 

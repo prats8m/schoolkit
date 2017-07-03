@@ -165,7 +165,7 @@ app
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
             dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.dashboardData = succResponse.data ? succResponse.data : [];
@@ -174,7 +174,7 @@ app
         };
         if (!$rootScope.hasOwnProperty('dashboardData')) {
             $scope.dashboardInit();
-        }
+        }*/
 
     });
 

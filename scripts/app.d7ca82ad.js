@@ -666,6 +666,14 @@ var app = angular
         templateUrl: 'views/tmpl/admin/dashboard.html'
       })
 
+
+      //facility dashboard
+      .state('app.admin.dashboardfacility', {
+        url: '/dashboard-facility/:facility_id',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/tmpl/admin/dashboard.html'
+      })
+
       //admin profile settings
       .state('app.admin.profile-settings', {
         url: '/profile-settings',
@@ -892,7 +900,7 @@ var app = angular
 
       //admin schedule view-schedule
       .state('app.admin.schedule.edit-schedule-groups', {
-        url: '/edit-schedule-groups/:schedule_id',
+        url: '/edit-schedule-groups/:schedule_id?schedule_type=',
         controller: 'EditScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
@@ -2345,12 +2353,46 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function (size) {
+    $rootScope.initSchedule = function() {
+    
+    scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+    window.resizeTo(950,700);
+    scheduler.config.day_date = "%F%d";
+    scheduler.config.first_hour = 0;
+    scheduler.config.multi_day = true;
+    scheduler.config.date_step = "5";
+    scheduler.config.show_loading = true;
+    scheduler.init('scheduler_here',new Date(),"week");
+    scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+    }
 
+    $scope.scheduleopen = function (size) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function () {
+        $rootScope.initSchedule();
+      });
+    };
+
+    $scope.open = function (size) {
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -9586,46 +9628,7 @@ app.filter('emptyVal', function () {
     return (input == null || input == 'null' || input == 0) ? 0 : input;
   }
 });
-app.directive("number", function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      element.on('keypress', function (e) {
-        console.log(e);
-        if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
-          e.preventDefault();
-        }
-      });
-    }
-  }
-});
 
-app.directive("noSpace", function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      element.on('keypress', function (e) {
-        if (e.keyCode == 32 || e.charCode == 32) {
-          e.preventDefault();
-        }
-      });
-    }
-  }
-});
-
-app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
-  function link(scope, element, attrs) {
-    element.bind('click', function () {
-      $cookies.remove("token", { path: '/' });
-      $cookies.remove("token", { path: '/elika-warehouse' });
-      $location.path('/core/login');
-    });
-  }
-
-  return {
-    link: link
-  };
-}]);
 
 app
   .filter('facilityStatus', function () {

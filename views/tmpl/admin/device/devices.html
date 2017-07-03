@@ -70,7 +70,7 @@
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Facility <span class="text-danger">*</span></label><br/>
-														<select class="form-control" ng-model="device.facility_id" ng-change="getDoorsList()" ng-options="item.facility_id as item.facility_name for item in facilityList">
+														<select class="form-control" id="facility_id" ng-model="device.facility_id" ng-change="getDoorsList()" ng-options="item.facility_id as item.facility_name for item in facilityList">
 															<option value="">Select</option>
 														</select>
 													</div>

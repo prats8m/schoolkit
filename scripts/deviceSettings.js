@@ -296,7 +296,7 @@ app
             });
         };
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
 
             devicesSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -304,5 +304,5 @@ app
                 }
             });
         };
-        $scope.dashboardInit();
+        $scope.dashboardInit(); */
     });

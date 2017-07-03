@@ -243,7 +243,7 @@
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="0">Inactive</label>
 												</div>
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" ng-init="schedule.no_expirations=1">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="schedule.schedule_status=='0' || schedule.schedule_type == 1" ng-init="schedule.no_expirations=1" >
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
 													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations

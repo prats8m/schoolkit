@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,appConstants,devicesSvc) {
+  .controller('DeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout,appConstants,devicesSvc,utilitySvc) {
     $scope.page = {
 		title: appConstants.deviceTitle,
 		subtitle: appConstants.dashboardSubTitle
@@ -65,7 +65,7 @@ app
 	//........This method has been updated to change URL........................
 
 	$rootScope.getDoorsList = function(){
-        devicesSvc.getDoorsList(appConstants.doorlistnotassigntodevice+'?facility_id='+$rootScope.device.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.getDoorsList(appConstants.doorlistnotassigntodevice+'?facility_id=' + $rootScope.device.facility_id,appConstants.getMethod,{},{},function (succResponse) {
             $rootScope.doorList = [];
         	if(succResponse.status){
                 $rootScope.doorList = succResponse.data;
@@ -85,21 +85,21 @@ app
 		if(!device_form.validate()){
 			return false;
 		}
-            device.technician_id = parseInt(device.technician_id);
-            devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
-                if(succResponse.status){
-                    toaster.pop(appConstants.success,succResponse.msg);
-                    $scope.pageNo = 1;
-                    // $rootScope.dashboardData.primary_device++;
-                    $scope.dashboardInit();
-                    $scope.deviceInit();
-                    $timeout(function(){$("#close").click();})
-                }
-                else {
-                    $rootScope.masters = [];
-                    $rootScope.masters = succResponse.error ;
-                }
-            });
+        device.technician_id = parseInt(device.technician_id);
+        devicesSvc.formSubmit(appConstants.deviceadd,appConstants.postMethod,{},device,function (succResponse) {
+            if(succResponse.status){
+                toaster.pop(appConstants.success,succResponse.msg);
+                $scope.pageNo = 1;
+                 $rootScope.dashboardData.primary_device++;
+               // $scope.dashboardInit();
+                $scope.deviceInit();
+                $timeout(function(){$("#close").click();})
+            }
+            else {
+                $rootScope.masters = [];
+                $rootScope.masters = succResponse.error ;
+            }
+        });
 	};
 	
 	$scope.pageNo = 1;
@@ -109,12 +109,13 @@ app
 		if(!$scope.searchText){
 			$scope.searchText = appConstants.empty;
 		}
-        devicesSvc.deviceInit(appConstants.devicelistmaster+'?searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.deviceInit(appConstants.devicelistmaster+'?searchVal='+$scope.searchText+ '&facility_id=' + utilitySvc.getCurrentFacility(),
+                appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
-                    $scope.data = [];
-                    angular.forEach(succResponse["data"]["data"], function (device, index) {
-                            $scope.data.push(device);
-                    });
+                $scope.data = [];
+                angular.forEach(succResponse["data"]["data"], function (device, index) {
+                    $scope.data.push(device);
+                });
                 $rootScope.deviceList = succResponse.data.data;
                 $scope.pageNo = $scope.pageNo + 1 ;
                 $scope.totalDisplayed = 8;
@@ -153,7 +154,7 @@ app
 			$scope.searchText = appConstants.empty;
 		}
 		$scope.pageNo = 1;
-        devicesSvc.searchFunction(appConstants.devicelistmaster+'?searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.searchFunction(appConstants.devicelistmaster+'?searchVal='+$scope.searchText+ '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             $scope.data =  [];
         	if(succResponse.status){
                 $scope.data =  succResponse.data.data;
@@ -163,7 +164,7 @@ app
 	};
 	
 	$scope.getDoorsList = function(){
-        devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1'+ '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             $rootScope.doorList = [];
         	if(succResponse.status){
                 $rootScope.doorList = succResponse.data.data;
@@ -182,9 +183,14 @@ app
 	
 
 	$scope.facilityInit = function(){
-        devicesSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.facilityInit(appConstants.facilitylist+ '?facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.facilityList = succResponse.data.data;
+                if(utilitySvc.getCurrentFacility() != ''){
+                    $rootScope.device.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                    $('#facility_id').attr('disabled','disabled'); 
+                    $rootScope.getDoorsList();
+                }
             }
         });
 	};
@@ -202,14 +208,14 @@ app
         });
 	};
 
-	$scope.dashboardInit = function(){
-        devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+	/* $scope.dashboardInit = function(){
+        devicesSvc.dashboardInit(appConstants.userDashboard + '?facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit(); */
 	
 	$scope.imagePath = baseURL+appConstants.imagePath;
 	
@@ -225,7 +231,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams,$cookies,toaster,$rootScope,baseURL,errorHandler,$location,appConstants,devicesSvc) {
+  .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams,$cookies,toaster,$rootScope,baseURL,errorHandler,$location,appConstants,devicesSvc,utilitySvc) {
      $scope.page = {
       title: appConstants.deviceviewUITitle,
       subtitle: appConstants.dashboardSubTitle
@@ -286,7 +292,7 @@ app
 	};	
 
 	$scope.dependentDeviceInit = function(){
-        devicesSvc.dependentDeviceInit(appConstants.deviceview+'?device_id='+device_id,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.dependentDeviceInit(appConstants.deviceview+'?device_id='+device_id + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.details = succResponse.data;
                 $scope.editDevice = succResponse.data;
@@ -332,7 +338,7 @@ app
 		if(!$scope.searchText){
 			$scope.searchText = appConstants.empty;
 		}
-        devicesSvc.dependentDevices(appConstants.listslaveofmasterdevice+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.dependentDevices(appConstants.listslaveofmasterdevice+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.dependent_devices = succResponse.data;
             }
@@ -362,11 +368,11 @@ app
 		device.serial_no = parseInt(device.device_serial_no);
 		device.facility_id = parseInt($rootScope.facilityId);
 
-			devicesSvc.editFormSubmit(appConstants.deviceedit,appConstants.putMethod,{},device,function (succResponse) {
-				if(succResponse.status){
-					toaster.pop(appConstants.success,appConstants.submitSuccessfully);
-				}
-        	});
+		devicesSvc.editFormSubmit(appConstants.deviceedit,appConstants.putMethod,{},device,function (succResponse) {
+			if(succResponse.status){
+				toaster.pop(appConstants.success,appConstants.submitSuccessfully);
+			}
+    	});
 	};
 	
 	$scope.getTechnicianList = function(device){
@@ -386,7 +392,7 @@ app
 		}
 		$scope.pageNo = 1;
 
-        devicesSvc.searchFunction(appConstants.listslaveofmasterdevice+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.searchFunction(appConstants.listslaveofmasterdevice+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText+'&device_master_id='+$stateParams.device_id + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.data =  succResponse.data.data;
                 $scope.pageNo = $scope.pageNo + 1 ;
@@ -410,7 +416,7 @@ app
 	$scope.deviceData = [];
 	$scope.pageNo = 1;
 	$scope.deviceInit = function(){
-        devicesSvc.deviceInit(appConstants.devicelistmaster+'?limit=100&pageNo='+$scope.pageNo+'&facilityId='+$rootScope.facilityId,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.deviceInit(appConstants.devicelistmaster+'?limit=100&pageNo='+$scope.pageNo+ '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.deviceData = succResponse.data.data;
                 $scope.pageNo = $scope.pageNo + 1 ;
@@ -420,14 +426,14 @@ app
 	};
 	$scope.deviceInit();
 	
-	$scope.dashboardInit = function(){
+	/* $scope.dashboardInit = function(){
         devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-		$scope.dashboardInit();
+	$scope.dashboardInit();*/
 
 });
 
@@ -440,7 +446,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDependentDeviceCtrl', function($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster,errorHandler,baseURL, $location,appConstants,devicesSvc){
+  .controller('ViewDependentDeviceCtrl', function($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster,errorHandler,baseURL, $location,appConstants,devicesSvc,utilitySvc){
     $scope.page = {
       title: appConstants.dependentDevice,
       subtitle: appConstants.dashboardSubTitle
@@ -545,14 +551,14 @@ app
 	};
 	$scope.getTechnicianList();
 	
-	$scope.dashboardInit = function(){
+	/*  $scope.dashboardInit = function(){
         devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-		$scope.dashboardInit();
+	$scope.dashboardInit();*/
 	
 	
 	$scope.deleteThisDevice = function(){
@@ -577,7 +583,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler,baseURL, $location, arrayPushService,appConstants,devicesSvc,$timeout) {
+  .controller('DependentDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, errorHandler,baseURL, $location, arrayPushService,appConstants,devicesSvc,$timeout,utilitySvc) {
     $scope.page = {
 		title: appConstants.dependentDevice+'s',
 		subtitle: appConstants.dashboardSubTitle
@@ -635,7 +641,7 @@ app
 	$scope.dependentDevice = [];
 	$scope.hideLoadMore = false;
 	$scope.getDependentDevice = function(){
-        devicesSvc.getDependentDevice(appConstants.devicelistslave+'?limits=8&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.getDependentDevice(appConstants.devicelistslave+'?limits=8&pageNo=1' + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                     $scope.dependentDevice = [];
                     angular.forEach(succResponse["data"]["data"], function (dependentDevice, index) {
@@ -652,7 +658,7 @@ app
       $scope.getDependentDevice();
 	
 	$scope.getDoorsList = function(){
-        devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1'+ '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             $rootScope.doorList = [];
         	if(succResponse.status){
                 $rootScope.doorList = succResponse.data.data;
@@ -700,7 +706,7 @@ app
 	};
 	
 	$scope.searchFunction = function(){
-        devicesSvc.searchFunction(appConstants.devicelistslave+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.searchFunction(appConstants.devicelistslave+'?limit=8&pageNo='+$scope.pageNo+'&searchVal='+$scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.dependentDevice = succResponse.data.data;
             }
@@ -718,7 +724,7 @@ app
 		if(!$scope.searchText){
 			$scope.searchText = appConstants.empty;
 		}
-        devicesSvc.deviceInit(appConstants.devicelistmaster+'?limit=100&pageNo='+$scope.pageNo+'&facilityId='+$rootScope.facilityId,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.deviceInit(appConstants.devicelistmaster+'?limit=100&pageNo='+$scope.pageNo+ '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.deviceList =  succResponse.data.data;
                 $scope.pageNo = $scope.pageNo + 1 ;
@@ -731,20 +737,20 @@ app
 			}
         });
 	};
-      $scope.deviceInit();
+    $scope.deviceInit();
 
-      $scope.dashboardInit = function(){
-        devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+    /*  $scope.dashboardInit = function(){
+        devicesSvc.dashboardInit(appConstants.userDashboard + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-		$scope.dashboardInit();
+	$scope.dashboardInit();*/
 	
 	
 	$scope.facilityInit = function(){
-        devicesSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.facilityInit(appConstants.facilitylist+ '?facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.facilityList = succResponse.data.data;
             }
@@ -767,7 +773,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('EditDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, $state, errorHandler, baseURL, $location,appConstants,devicesSvc) {
+  .controller('EditDeviceCtrl', function ($scope, $mdDialog, $http, $rootScope, $stateParams, $cookies, toaster, $state, errorHandler, baseURL, $location,appConstants,devicesSvc,utilitySvc) {
      $scope.page = {
       title: appConstants.editDeviceUiTitle
     };
@@ -806,7 +812,7 @@ app
 	$scope.deviceModelInit();
 	
 	$scope.facilityInit = function(){
-        devicesSvc.facilityInit(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.facilityInit(appConstants.facilitylist + '?facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.facilityList = succResponse.data.data;
             }
@@ -815,7 +821,7 @@ app
 	$scope.facilityInit();
 	
 	$scope.dependentDeviceInit = function(){
-        devicesSvc.dependentDeviceInit(appConstants.deviceview+'?device_id='+device_id,appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.dependentDeviceInit(appConstants.deviceview+'?device_id='+device_id + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.details = succResponse.data;
                 $scope.editDevice = succResponse.data;
@@ -860,7 +866,7 @@ app
 	$scope.getTechnicianList();
 	
 	$scope.getDoorsList = function(){
-        devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1',appConstants.getMethod,{},{},function (succResponse) {
+        devicesSvc.getDoorsList(appConstants.doorlist+'?limits=100&pageNo=1' + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             $rootScope.doorList = [];
         	if(succResponse.status){
                 $rootScope.doorList = succResponse.data.data;
@@ -892,7 +898,7 @@ app
 	};
 	
 	$scope.getmasterDevice = function(){
-       devicesSvc.getmasterDevice(appConstants.devicelistmaster,appConstants.getMethod,{},{},function (succResponse) {
+       devicesSvc.getmasterDevice(appConstants.devicelistmaster + '?facility_id='+ utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             $rootScope.masterDevices = [];
             if(succResponse.status){
                 $rootScope.masterDevices = succResponse.data.data;
@@ -901,13 +907,13 @@ app
 	};
 	$scope.getmasterDevice();
 	
-	$scope.dashboardInit = function(){
-        devicesSvc.dashboardInit(appConstants.userDashboard,appConstants.getMethod,{},{},function (succResponse) {
+	/*$scope.dashboardInit = function(){
+        devicesSvc.dashboardInit(appConstants.userDashboard + '&facility_id=' + utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $rootScope.dashboardData = succResponse.data;
             }
         });
 	};
-	$scope.dashboardInit();
+	$scope.dashboardInit();*/
 
 });

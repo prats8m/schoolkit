@@ -100,8 +100,8 @@ app
 
     $scope.mediafile = 'images/avatar.jpg';
     $scope.mediatype = 'jpeg';
-    $scope.viewActivity = function(device_id,mediafile){
-        var url = appConstants.geteventmediaurl + '?device_id='+device_id+'&media_file='+mediafile;
+    $scope.viewActivity = function(device_id,mediafile,event_id){
+        var url = appConstants.geteventmediaurl + '?device_id='+device_id+'&media_file='+mediafile+'&event_id='+event_id;
         //var mediaArr = mediafile.split(".");
         //console.log(mediaArr);
         activitiesSvc.viewActivity(url ,appConstants.getMethod,{},{},function (succResponse) {
