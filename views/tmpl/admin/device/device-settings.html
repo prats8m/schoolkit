@@ -42,7 +42,9 @@
 													<li><a href="#gstab7" native-tab>Speaker &amp; Microphone Setup</a></li>
 													<li><a href="#gstab8" native-tab>Call Button Setup</a></li>
 													<li><a href="#gstab9" native-tab>Lockout Setup</a></li>
-													<li><a ng-click="getWiegandDeviceList();"  href="#gstab10" native-tab>Wiegand Code Settings</a></li>
+													<li><a ng-click="getWiegandDeviceList();" href="#gstab10" native-tab>Wiegand Code Settings</a></li>
+													<li><a href="#gstab11" native-tab>Welcome Settings</a></li>
+													<li><a href="#gstab12" native-tab>Call Settings</a></li>
 												</ul>
 											</div>
 
@@ -76,6 +78,7 @@
 																	<div class="col-sm-2 pr-0">
 																		<label for="address1">Strike Time {{$index + 1}}</label>
 																		<input type="text" class="form-control" ng-model="relay.strike_time" id="address1" value="1000">
+																		<span class="error" ng-if="parseInt(relay.strike_time)>4500 || parseInt(relay.strike_time)<500">{{GenericError}}</span>
 																	</div>
 																	<div class="col-sm-3 pr-0">
 																		<label for="">Door</label><br/>
@@ -267,7 +270,7 @@
 															<div class="form-group mt-40 col-sm-12">
 																<div layout>
 																	<md-slider min="10" max="240" flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_talk_time['talk-time']" md-discrete
-																	    ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
+																	 ng-model="device.dgs_talk_time" step="1" min="10" max="240" aria-label="rating"></md-slider>
 																</div>
 															</div>
 														</div>
@@ -301,7 +304,7 @@
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
 																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['keypad-brightness']"
-																			    step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			 step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -323,7 +326,7 @@
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
 																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_led['courtesy-brightness']"
-																			    step="1" min="0" max="100" aria-label="rating"></md-slider>
+																			 step="1" min="0" max="100" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -345,8 +348,8 @@
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
-																		<label for="address1">Speaker Volume <small>(0-3, Default 2)</small></label>
-																		<input min="0" max="3" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']">
+																		<label for="address1">Speaker Volume <small>(0-100, Default 2)</small></label>
+																		<input min="0" max="100" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']">
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
@@ -360,8 +363,8 @@
 																	</div>
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider min="0" max="3" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']"
-																			    step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['speaker-volume']"
+																			 step="1" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -369,10 +372,10 @@
 															<div class="form-group col-sm-12 col-md-12 col-lg-6">
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-6">
-																		<label for="address1">Microphone Sensitivity <small>(0-3, Default 2)</small></label>
-																		<input min="0" max="3" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']">
+																		<label for="address1">Microphone Sensitivity <small>(0-100, Default 2)</small></label>
+																		<input min="0" max="100" type="number" ng-keypress="$event.preventDefault();" class="form-control" id="address1" ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']">
 																	</div>
-																	<div class="form-group col-sm-6 col-md-6">
+																	<!--<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Beeper Option</label><br/>
 																		<select ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-beeper']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
 																			<option value=0>Off all the time</option>
@@ -381,11 +384,11 @@
 																			<option value=3>Keypad feedback &amp; All events</option>
 																			<option value=4>All events</option>
 																		</select>
-																	</div>
+																	</div>-->
 																	<div class="form-group mt-40 col-sm-12">
 																		<div layout>
-																			<md-slider min="0" max="3" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']"
-																			    step="1" min="0" max="3" aria-label="rating"></md-slider>
+																			<md-slider min="0" max="100" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_speaker['microphone-sensitivity']"
+																			 step="1" aria-label="rating"></md-slider>
 																		</div>
 																	</div>
 																</div>
@@ -525,7 +528,7 @@
 																<div class="form-group mt-40">
 																	<div layout>
 																		<md-slider min="3" max="10" flex class="md-primary" ng-model="deviceGeneralSettingModals.dgs_lockout_mode['max-tries']" md-discrete
-																		    step="1" min="3" max="10" aria-label="rating"></md-slider>
+																		 step="1" min="3" max="10" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
@@ -535,7 +538,7 @@
 																<div class="form-group mt-40">
 																	<div layout>
 																		<md-slider min="10" max="600" flex class="md-primary" md-discrete ng-model="deviceGeneralSettingModals.dgs_lockout_mode['lockout-period']"
-																		    step="1" min="10" max="600" aria-label="rating"></md-slider>
+																		 step="1" min="10" max="600" aria-label="rating"></md-slider>
 																	</div>
 																</div>
 															</div>
@@ -558,7 +561,7 @@
 															</div>
 															<div class="col-sm-2 pr-0">
 																<label for="">Device</label><br/>
-																<select chosen="{width: '100%'}" ng-model="wiegand['wiegand-device']" ng-options="x.wd_id as x.wd_name for x in wiegandDevice" >
+																<select chosen="{width: '100%'}" ng-model="wiegand['wiegand-device']" ng-options="x.wd_id as x.wd_name for x in wiegandDevice">
 																</select>
 															</div>
 															<div class="col-sm-2" pr-0>
@@ -574,7 +577,7 @@
 															</div>
 															<div class="col-sm-3 pr-0">
 																<label for="">Device Serial number</label><br/>
-																<input type="text" class="form-control" ng-model="wiegand['wiegand-device-serialno']" placeholder="Wiegand Device Serial no" >
+																<input type="text" class="form-control" ng-model="wiegand['wiegand-device-serialno']" placeholder="Wiegand Device Serial no">
 															</div>
 
 														</div>
@@ -587,8 +590,50 @@
 														</div>
 														<!--</form>-->
 													</div>
-
-
+													<div class="tab-pane fade" id="gstab11">
+														<form ng-submit="setWelcomeMessage(welcomeMessage)">
+															<h4><strong>Welcome Message</strong></h4>
+															<div class="row mt-20">
+																<div class="form-group col-sm-4">
+																	<label for="welcomeMessage">Message</label>
+																	<input type="text" maxlength="200" class="form-control" ng-model="welcomeMessage" id="welcomeMessage" required>
+																</div>
+															</div>
+															<div class="row">
+																<div class="form-group col-md-12 legend">
+																	<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																	<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="tab-pane fade" id="gstab12">
+														<form ng-submit="setCallSettings(callsettings)">
+															<h4><strong>Voip Call Setting</strong></h4>
+															<div class="row mt-20">
+																<div class="form-group col-md-3">
+																	<div class="row">
+																		<div class="col-sm-12 col-md-6">
+																			<label class="checkbox checkbox-custom-alt">
+																			<input name="customRadioCardAudio" ng-model="callsettings" value="0" type="radio" checked="checked"><i></i> Audio
+																		</label>
+																		</div>
+																		<div class="col-sm-12 col-md-6">
+																			<label class="checkbox checkbox-custom-alt">
+																			<input name="customRadioCardaudioandVideo" ng-model="callsettings" value="1" type="radio"><i></i> Audio and Video
+																		</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="form-group col-md-12 legend">
+																	<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																	<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
+																</div>
+															</div>
+														</form>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -643,7 +688,7 @@
 														<div class="row">
 															<div class="form-group col-sm-3">
 																<input type="text" ng-model="advanceClockSetting.date" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask"
-																    ui-options="{alias: 'dd/mm/yyyy'}">
+																 ui-options="{alias: 'dd/mm/yyyy'}">
 															</div>
 															<div class="form-group col-sm-3 validtime">
 																<span ng-controller="TimepickerDemoCtrl">
@@ -744,7 +789,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<input type="text" ng-model="advanceDiagRealTime.date" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask"
-																		    ui-options="{alias: 'dd/mm/yyyy'}">
+																		 ui-options="{alias: 'dd/mm/yyyy'}">
 																	</div>
 																	<div class="form-group col-sm-6 validtime">
 																		<span ng-controller="TimepickerDemoCtrl">
