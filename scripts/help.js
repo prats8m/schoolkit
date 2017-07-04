@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('FaqsCtrl', function ($scope, $http,baseURL,$stateParams) {
+  .controller('FaqsCtrl', function ($scope, $http,baseURL,$stateParams,siteURL) {
      $scope.page = {
       title: 'Faqs',
     };
@@ -20,7 +20,7 @@ app
     $scope.module_name = $stateParams.module_name;
     // console.log($scope.module_name);
 
-  $http.get('http://localhost:8887/' + 'json/admin/faqs.json')
+  $http.get( siteURL + 'json/admin/faqs.json')
   .then(function(response) {
     if(response.data[$scope.module_name]){
       $scope.groups = response.data[$scope.module_name];
