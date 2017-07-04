@@ -68,7 +68,7 @@
 									</div>
 								</div>
 								<div class="col-sm-3 col-md-3">
-									<div class="gridlistbar ta-r pull-right">
+									<div class="gridlistbar ta-r pull-right" style="display: block;">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
@@ -95,6 +95,9 @@
 											<md-card-content>
 												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
 												<p>{{ user.user_phone_no }}</p>
+												<p ng-hide="class=='gridview'">{{ user.user_zipcode }}</p>
+												<p ng-hide="class=='gridview'">{{ user.user_status ? 'Active':'In Active'  }}</p>
+												<p ng-hide="class=='gridview'">{{ user.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.view-user({user_id:user.user_id})">View</a>
