@@ -94,7 +94,8 @@ app.constant("appConstants", {
     geteventmediaurl: 'event/get-event-media-url',
     edittechnician: 'technician/edit',
     addmasteradmin: 'warehouse/add-master-admin',
-
+    getCameraDoorList: 'list-door-of-camera',
+    openDoorCommand:'open-door?door_id=',
 
 
 
