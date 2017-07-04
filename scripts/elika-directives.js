@@ -172,3 +172,18 @@ app
         }]
     };
 });
+
+app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cookies) {
+  function link(scope, element, attrs) {
+    element.bind('click', function () {
+      console.log($location.path());
+      //console.log(element.closest('[ui-view]').data('$uiView').state);
+      //console.log(element.inheritedData('$uiView').state);
+    });
+  }
+
+  return {
+    restrict: 'A',
+    link: link
+  };
+}]);
