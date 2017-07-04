@@ -334,6 +334,39 @@ app
                 $rootScope.rfid_error = appConstants.incompleteform;
                 return false;
             }
+            //Add scheduler
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var ind = new Array();
+            $scope.rfid_schedule = {};
+            JSON.parse(scheduler.toJSON()).forEach(function(v){ 
+            if(v.start_date != "NaN/NaN/NaN NaN:NaN")
+            {
+                delete v.id; 
+                delete v.text;
+                $scope.rfid_schedule.schedule_category = 0;
+                var split_date = v.start_date.split(" ");
+                v.day = weekday[new Date(v.start_date).getDay()]; 
+                v.starttime = split_date[1]; 
+                v.endtime = v.end_date.split(" ")[1]; 
+                if($scope.schedule.schedule_type == "ONETIME"){
+                    v.date = split_date[0].replace("/", "-").replace("/", "-");
+                    $scope.rfid_schedule.schedule_category = 1;
+                }
+                delete v.start_date;
+                delete v.end_date;
+                ind.push(v);
+            }
+
+            });
+            //End of add scheduler
+            $scope.rfid_schedule.schedule = ind;
             rfid.user_id = parseInt($cookies.get("newUserId"));
             rfid.credential_type = "rfid_code";
 
@@ -353,27 +386,76 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.saveRFID(url, meth, {}, rfid, function (succResponse) {
-                $scope.rfid_error = appConstants.empty;
-                if (succResponse.status) {
-                    $timeout(function () {
-                        $(".accordion-toggle")[3].click();
-                    });
-                    $timeout(function () {
-                        $scope.getRfidList();
-                    });
-                    if (!rfid.uc_id) {
-                        toaster.pop(appConstants.success, appConstants.rfidaddedsuccessfully);
+
+            if(scheduler.toJSON() == "[]"){
+                userSvc.saveRFID(url, meth, {}, rfid, function (succResponse) {
+                    $scope.rfid_error = appConstants.empty;
+                    if (succResponse.status) {
+                        
+                        $timeout(function () {
+                            $(".accordion-toggle")[3].click();
+                        });
+                        $timeout(function () {
+                            $scope.getRfidList();
+                        });
+                        if (!rfid.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.rfidaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.rfidupdatedsuccessfully);
+                        }
+                        $scope.rfid.credential_id = null;
                     }
                     else {
-                        toaster.pop(appConstants.success, appConstants.rfidupdatedsuccessfully);
+                        $scope.rfid_error = succResponse.msg;
                     }
-                    $scope.rfid.credential_id = null;
+                });
+            }
+            else{
+                if($scope.schedule.date != undefined){
+
+                var start_date = new Date($scope.schedule.date);
+                $scope.rfid_schedule.schedule_start_date = (start_date.getMonth()+1)+"-"+start_date.getDate()+"-"+start_date.getFullYear();
+
                 }
-                else {
-                    $scope.rfid_error = succResponse.msg;
+                $scope.rfid_schedule.no_expirations = $scope.schedule.no_expirations;
+                if($scope.schedule.expiration != undefined){
+                    var exp_date = new Date($scope.schedule.expiration);
+                    $scope.rfid_schedule.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
                 }
-            });
+                $scope.rfid_schedule.schedule_type = "credential"; 
+                userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},$scope.rfid_schedule,function (success) {
+                    JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
+
+                    if (success.status) {
+                        rfid.schedule_id = success.data;
+                        rfid.schedule_type = 2; 
+                        userSvc.saveRFID(url, meth, {}, rfid, function (succResponse) {
+                            $scope.rfid_error = appConstants.empty;
+                            if (succResponse.status) {
+                                $timeout(function () {
+                                    $(".accordion-toggle")[3].click();
+                                });
+                                $timeout(function () {
+                                    $scope.getRfidList();
+                                });
+                                if (!rfid.uc_id) {
+                                    toaster.pop(appConstants.success, appConstants.rfidaddedsuccessfully);
+                                }
+                                else {
+                                    toaster.pop(appConstants.success, appConstants.rfidupdatedsuccessfully);
+                                }
+                                $scope.rfid.credential_id = null;
+                            }
+                            else {
+                                $scope.rfid_error = succResponse.msg;
+                            }
+                        });
+                    }
+                });
+            }
+            
+
         };
 
         $scope.saveWiegand = function (wiegand, wiegand_form) {
@@ -384,6 +466,39 @@ app
                 $rootScope.wiegand_error = appConstants.incompleteform;
                 return false;
             }
+            //Add scheduler
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var ind = new Array();
+            $scope.wiegand_schedule = {};
+            JSON.parse(scheduler.toJSON()).forEach(function(v){ 
+            if(v.start_date != "NaN/NaN/NaN NaN:NaN")
+            {
+                delete v.id; 
+                delete v.text;
+                $scope.wiegand_schedule.schedule_category = 0;
+                var split_date = v.start_date.split(" ");
+                v.day = weekday[new Date(v.start_date).getDay()]; 
+                v.starttime = split_date[1]; 
+                v.endtime = v.end_date.split(" ")[1]; 
+                if($scope.schedule.schedule_type == "ONETIME"){
+                    v.date = split_date[0].replace("/", "-").replace("/", "-");
+                    $scope.wiegand_schedule.schedule_category = 1;
+                }
+                delete v.start_date;
+                delete v.end_date;
+                ind.push(v);
+            }
+
+            });
+            //End of add scheduler
+            $scope.wiegand_schedule.schedule = ind;
             wiegand.user_id = parseInt($cookies.get("newUserId"));
             wiegand.credential_type = "wiegand_code";
 
@@ -406,28 +521,72 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
-                $scope.wiegand_error = appConstants.empty;
-                if (succResponse.status) {
-                    $scope.wiegand = {};
-                    $timeout(function () {
-                        // $(".accordion-toggle")[3].click();
-                    });
-                    $timeout(function () {
-                        $scope.getWiegandList();
-                    });
-                    if (!wiegand.uc_id) {
-                        toaster.pop(appConstants.success, appConstants.wiegandaddedsuccessfully);
+            if(scheduler.toJSON() == "[]"){
+                userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
+                    $scope.wiegand_error = appConstants.empty;
+                    if (succResponse.status) {
+                        $scope.wiegand = {};
+                        $timeout(function () {
+                            // $(".accordion-toggle")[3].click();
+                        });
+                        $timeout(function () {
+                            $scope.getWiegandList();
+                        });
+                        if (!wiegand.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.wiegandaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.wiegandupdatedsuccessfully);
+                        }
+                        $scope.wiegand.credential_id = null;
                     }
                     else {
-                        toaster.pop(appConstants.success, appConstants.wiegandupdatedsuccessfully);
+                        $scope.wiegand_error = succResponse.msg;
                     }
-                    $scope.wiegand.credential_id = null;
+                });
+            }
+            else{
+                if($scope.schedule.date != undefined){
+                    var start_date = new Date($scope.schedule.date);
+                    $scope.wiegand_schedule.schedule_start_date = (start_date.getMonth()+1)+"-"+start_date.getDate()+"-"+start_date.getFullYear();
                 }
-                else {
-                    $scope.wiegand_error = succResponse.msg;
+                $scope.wiegand_schedule.no_expirations = $scope.schedule.no_expirations;
+                if($scope.schedule.expiration != undefined){
+                    var exp_date = new Date($scope.schedule.expiration);
+                    $scope.wiegand_schedule.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
                 }
-            });
+                $scope.wiegand_schedule.schedule_type = "credential"; 
+                userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},$scope.wiegand_schedule,function (success) {
+                    JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
+
+                    if (success.status) {
+                        wiegand.schedule_id = success.data;
+                    userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
+                    $scope.wiegand_error = appConstants.empty;
+                    if (succResponse.status) {
+                        $scope.wiegand = {};
+                        $timeout(function () {
+                            // $(".accordion-toggle")[3].click();
+                        });
+                        $timeout(function () {
+                            $scope.getWiegandList();
+                        });
+                        if (!wiegand.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.wiegandaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.wiegandupdatedsuccessfully);
+                        }
+                        $scope.wiegand.credential_id = null;
+                    }
+                    else {
+                        $scope.wiegand_error = succResponse.msg;
+                    }
+                });
+                    }
+                });
+
+            }
         };
 
         $scope.phoneCode = {};
@@ -467,6 +626,40 @@ app
             if (!phone_form.validate()) {
                 return false;
             }
+
+            //Add scheduler
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var ind = new Array();
+            $scope.phoneCode = {};
+            JSON.parse(scheduler.toJSON()).forEach(function(v){ 
+            if(v.start_date != "NaN/NaN/NaN NaN:NaN")
+            {
+                delete v.id; 
+                delete v.text;
+                $scope.phoneCode.schedule_category = 0;
+                var split_date = v.start_date.split(" ");
+                v.day = weekday[new Date(v.start_date).getDay()]; 
+                v.starttime = split_date[1]; 
+                v.endtime = v.end_date.split(" ")[1]; 
+                if($scope.schedule.schedule_type == "ONETIME"){
+                    v.date = split_date[0].replace("/", "-").replace("/", "-");
+                    $scope.phoneCode.schedule_category = 1;
+                }
+                delete v.start_date;
+                delete v.end_date;
+                ind.push(v);
+            }
+
+            });
+            //End of add scheduler
+            $scope.phoneCode.schedule = ind;
             phoneCode.user_id = parseInt($cookies.get("newUserId"));
             phoneCode.credential_type = "phone_code";
             phoneCode.details = {};
@@ -486,26 +679,66 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
-                if (succResponse.status) {
-                    $timeout(function () {
-                        $(".accordion-toggle")[2].click();
-                    });
-                    $timeout(function () {
-                        $scope.getPhoneList();
-                    });
-                    if (!phoneCode.uc_id) {
-                        toaster.pop(appConstants.success, appConstants.phonecodeaddedsuccessfully);
+            if(scheduler.toJSON() == "[]"){
+                userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
+                    if (succResponse.status) {
+                        $timeout(function () {
+                            $(".accordion-toggle")[2].click();
+                        });
+                        $timeout(function () {
+                            $scope.getPhoneList();
+                        });
+                        if (!phoneCode.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.phonecodeaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.appConstants.success, appConstants.phonecodeupdatedsuccessfully);
+                        }
+                        $scope.phoneCode.credential_id = null;
                     }
                     else {
-                        toaster.pop(appConstants.appConstants.success, appConstants.phonecodeupdatedsuccessfully);
+                        $rootScope.phone_error = succResponse.msg;
                     }
-                    $scope.phoneCode.credential_id = null;
+                });
+            }
+            else{
+                 if($scope.schedule.date != undefined){
+                    var start_date = new Date($scope.schedule.date);
+                    $scope.phoneCode.schedule_start_date = (start_date.getMonth()+1)+"-"+start_date.getDate()+"-"+start_date.getFullYear();
                 }
-                else {
-                    $rootScope.phone_error = succResponse.msg;
+                $scope.phoneCode.no_expirations = $scope.schedule.no_expirations;
+                if($scope.schedule.expiration != undefined){    
+                    var exp_date = new Date($scope.schedule.expiration);
+                    $scope.phoneCode.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
                 }
-            });
+                $scope.phoneCode.schedule_type = "credential"; 
+                userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},$scope.phoneCode,function (success) {
+                    JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
+                    if (success.status) {
+                    phoneCode.schedule_id = success.data;
+                    userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
+                    if (succResponse.status) {
+                        $timeout(function () {
+                            $(".accordion-toggle")[2].click();
+                        });
+                        $timeout(function () {
+                            $scope.getPhoneList();
+                        });
+                        if (!phoneCode.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.phonecodeaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.appConstants.success, appConstants.phonecodeupdatedsuccessfully);
+                        }
+                        $scope.phoneCode.credential_id = null;
+                    }
+                    else {
+                        $rootScope.phone_error = succResponse.msg;
+                    }
+                });
+                    }
+                });
+            }
         };
 
         $scope.getBleList = function () {
@@ -531,6 +764,39 @@ app
                 $scope.blecode_error = appConstants.incompleteform;
                 return false;
             }
+            //Add scheduler
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var ind = new Array();
+            $scope.ble_code = {};
+            JSON.parse(scheduler.toJSON()).forEach(function(v){ 
+            if(v.start_date != "NaN/NaN/NaN NaN:NaN")
+            {
+                delete v.id; 
+                delete v.text;
+                $scope.ble_code.schedule_category = 0;
+                var split_date = v.start_date.split(" ");
+                v.day = weekday[new Date(v.start_date).getDay()]; 
+                v.starttime = split_date[1]; 
+                v.endtime = v.end_date.split(" ")[1]; 
+                if($scope.schedule.schedule_type == "ONETIME"){
+                    v.date = split_date[0].replace("/", "-").replace("/", "-");
+                    $scope.ble_code.schedule_category = 1;
+                }
+                delete v.start_date;
+                delete v.end_date;
+                ind.push(v);
+            }
+
+            });
+            //End of add scheduler
+            $scope.ble_code.schedule = ind;
             ble_code.user_id = parseInt($cookies.get("newUserId"));
             ble_code.credential_type = "ble_code";
             ble_code.details = {};
@@ -549,23 +815,62 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
-                if (succResponse.status) {
-                    $timeout(function () {
-                        $scope.getBleList();
-                    });
-                    if (!ble_code.uc_id) {
-                        toaster.pop(appConstants.success, appConstants.blecodeaddedsuccessfully);
+            if(scheduler.toJSON() == "[]"){
+                userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
+                    if (succResponse.status) {
+                        $timeout(function () {
+                            $scope.getBleList();
+                        });
+                        if (!ble_code.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.blecodeaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.blecodeupdatedsuccessfully);
+                        }
+                        $scope.ble_code.credential_id = null;
                     }
                     else {
-                        toaster.pop(appConstants.success, appConstants.blecodeupdatedsuccessfully);
+                        $rootScope.blecode_error = succResponse.msg;
                     }
-                    $scope.ble_code.credential_id = null;
+                });
+            }
+            else{
+                if($scope.schedule.date != undefined){
+                    var start_date = new Date($scope.schedule.date);
+                    $scope.ble_code.schedule_start_date = (start_date.getMonth()+1)+"-"+start_date.getDate()+"-"+start_date.getFullYear();
                 }
-                else {
-                    $rootScope.blecode_error = succResponse.msg;
+                $scope.ble_code.no_expirations = $scope.schedule.no_expirations;
+                if($scope.schedule.expiration != undefined){
+                    var exp_date = new Date($scope.schedule.expiration);
+                    $scope.ble_code.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
+                }
+                $scope.ble_code.schedule_type = "credential"; 
+                userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},$scope.ble_code,function (success) {
+                    JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
+
+                    if (success.status) {
+                        ble_code.schedule_id = success.data;
+                        userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
+                        if (succResponse.status) {
+                            $timeout(function () {
+                                $scope.getBleList();
+                            });
+                            if (!ble_code.uc_id) {
+                                toaster.pop(appConstants.success, appConstants.blecodeaddedsuccessfully);
+                            }
+                            else {
+                                toaster.pop(appConstants.success, appConstants.blecodeupdatedsuccessfully);
+                            }
+                            $scope.ble_code.credential_id = null;
+                        }
+                        else {
+                            $rootScope.blecode_error = succResponse.msg;
+                        }
+
+                    });
                 }
             });
+            }
         };
 
         $scope.generateAddAccessCode = function () {
@@ -577,13 +882,12 @@ app
         $rootScope.generateAddPhoneCode = function () {
             // $scope.phoneCode = {};
             var x = Math.floor(Math.random() * 9999999999) + 10000;
-            $scope.phoneCode.phone_code = (appConstants.empty + x).substring(8, length);
+            $scope.phoneCode.phone_code = (appConstants.empty + x).substring($scope.phoneCode.phoneCode_size, length);
         };
-
         $scope.generateNFCCode = function () {
             // $scope.savenfc = {};
             var x = Math.floor(Math.random() * 9999999999) + 10000;
-            $scope.savenfc.nfc_code = (appConstants.empty + x).substring(8, length);
+            $scope.savenfc.nfc_code = (appConstants.empty + x).substring($scope.savenfc.savenfc_size, length);
         };
 
         //NFC code edit
@@ -624,27 +928,105 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
-                if (succResponse.status) {
-                    $timeout(function () {
-                        $(".accordion-toggle")[4].click();
-                    });
-                    $timeout(function () {
-                        $scope.getNfcCodeList();
-                    });
-                    if (!savenfc.uc_id) {
-                        toaster.pop(appConstants.success, appConstants.nfccodeaddedsuccessfully);
+
+             //Add scheduler
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var ind = new Array();
+            // $scope.savenfc = {};
+            JSON.parse(scheduler.toJSON()).forEach(function(v){ 
+            if(v.start_date != "NaN/NaN/NaN NaN:NaN")
+            {
+                delete v.id; 
+                delete v.text;
+                $scope.savenfc.schedule_category = 0;
+                var split_date = v.start_date.split(" ");
+                v.day = weekday[new Date(v.start_date).getDay()]; 
+                v.starttime = split_date[1]; 
+                v.endtime = v.end_date.split(" ")[1]; 
+                if($scope.schedule.schedule_type == "ONETIME"){
+                    v.date = split_date[0].replace("/", "-").replace("/", "-");
+                    $scope.savenfc.schedule_category = 1;
+                }
+                delete v.start_date;
+                delete v.end_date;
+                ind.push(v);
+            }
+
+            });
+            //End of add scheduler
+            $scope.savenfc.schedule = ind;
+
+            if(scheduler.toJSON() == "[]"){
+                userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
+                    if (succResponse.status) {
+                        $timeout(function () {
+                            $(".accordion-toggle")[4].click();
+                        });
+                        $timeout(function () {
+                            $scope.getNfcCodeList();
+                        });
+                        if (!savenfc.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.nfccodeaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.nfccodeupdatedsuccessfully);
+                        }
+                        $scope.savenfc.credential_id = null;
+                        $rootScope.NFCCodeMessage = appConstants.empty;
                     }
                     else {
-                        toaster.pop(appConstants.success, appConstants.nfccodeupdatedsuccessfully);
+                        // $scope.savenfc.nfc_code = savenfc.details.nfc_code;
+
+                        $rootScope.NFCCodeMessage = succResponse.msg;
                     }
-                    $scope.savenfc.credential_id = null;
-                    $rootScope.NFCCodeMessage = appConstants.empty;
+                });
+            }
+            else{
+                if($scope.schedule.date != undefined){
+                    var start_date = new Date($scope.schedule.date);
+                    $scope.savenfc.schedule_start_date = (start_date.getMonth()+1)+"-"+start_date.getDate()+"-"+start_date.getFullYear();
                 }
-                else {
-                    $rootScope.NFCCodeMessage = succResponse.msg;
+                $scope.savenfc.no_expirations = $scope.schedule.no_expirations;
+                if($scope.schedule.expiration != undefined){    
+                    var exp_date = new Date($scope.schedule.expiration);
+                    $scope.savenfc.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
                 }
-            });
+                $scope.savenfc.schedule_type = "credential"; 
+                userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},$scope.savenfc,function (success) {
+                    JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
+                    if (success.status) {
+                        savenfc.schedule_id = success.data;
+                       userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
+                        if (succResponse.status) {
+                            $timeout(function () {
+                                $(".accordion-toggle")[4].click();
+                            });
+                            $timeout(function () {
+                                $scope.getNfcCodeList();
+                            });
+                            if (!savenfc.uc_id) {
+                                toaster.pop(appConstants.success, appConstants.nfccodeaddedsuccessfully);
+                            }
+                            else {
+                                toaster.pop(appConstants.success, appConstants.nfccodeupdatedsuccessfully);
+                            }
+                            $scope.savenfc.credential_id = null;
+                            $rootScope.NFCCodeMessage = appConstants.empty;
+                        }
+                        else {
+                            $rootScope.NFCCodeMessage = succResponse.msg;
+                        }
+                        }); 
+                    }
+                });
+            }
         };
 
         //End Of NFC Code Edit
@@ -684,14 +1066,14 @@ app
             {
                 delete v.id; 
                 delete v.text;
-                $scope.accesscode_schedule.schedule_type = "repeat"; 
+                $scope.accesscode_schedule.schedule_category = 0;
                 var split_date = v.start_date.split(" ");
                 v.day = weekday[new Date(v.start_date).getDay()]; 
                 v.starttime = split_date[1]; 
                 v.endtime = v.end_date.split(" ")[1]; 
                 if($scope.schedule.schedule_type == "ONETIME"){
                     v.date = split_date[0].replace("/", "-").replace("/", "-");
-                    $scope.accesscode_schedule.schedule_type = "custom";
+                    $scope.accesscode_schedule.schedule_category = 1;
                 }
                 delete v.start_date;
                 delete v.end_date;
@@ -716,28 +1098,56 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
-            if (succResponse.status) {
 
+            if(scheduler.toJSON() == "[]"){
+                userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
+                        if (succResponse.status) {
+
+                            $timeout(function () {
+                            $scope.getAccessCodeList();
+                        });
+                        if (!accesscode.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.accesscodeaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.accesscodeupdatedsuccessfully);
+                        }
+                            $scope.accesscode.credential_id = null;
+                        }
+                        else {
+                            $rootScope.accesscode_error = succResponse.msg;
+                        }
+                        });
+
+            }
+
+            else{
+                $scope.accesscode_schedule.schedule_type = "credential"; 
                 userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},$scope.accesscode_schedule,function (success) {
                 JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
-                });
+                    if(success.status){
+                        accesscode.schedule_id = success.data;
+                        userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
+                        if (succResponse.status) {
 
-                $timeout(function () {
-                $scope.getAccessCodeList();
-            });
-            if (!accesscode.uc_id) {
-                toaster.pop(appConstants.success, appConstants.accesscodeaddedsuccessfully);
+                            $timeout(function () {
+                            $scope.getAccessCodeList();
+                        });
+                        if (!accesscode.uc_id) {
+                            toaster.pop(appConstants.success, appConstants.accesscodeaddedsuccessfully);
+                        }
+                        else {
+                            toaster.pop(appConstants.success, appConstants.accesscodeupdatedsuccessfully);
+                        }
+                            $scope.accesscode.credential_id = null;
+                        }
+                        else {
+                            $rootScope.accesscode_error = succResponse.msg;
+                        }
+                        });
+                    }
+                });
             }
-            else {
-                toaster.pop(appConstants.success, appConstants.accesscodeupdatedsuccessfully);
-            }
-                $scope.accesscode.credential_id = null;
-            }
-            else {
-                $rootScope.accesscode_error = succResponse.msg;
-            }
-        });
             
 
            

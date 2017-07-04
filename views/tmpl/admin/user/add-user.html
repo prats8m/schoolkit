@@ -306,13 +306,13 @@
 																	<div class="col-sm-6 col-md-6 form-group">
 																		<label for="">Start Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="exception.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="date" onkeypress="return false;"/>
+																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="date" onkeypress="return false;"/>
 																			<span class="input-group-btn">
 																				<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																			</span>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.schedule_status=='0' || schedule.schedule_type == 1" ng-init="schedule.no_expirations=1" >
+																	<div class="form-group col-sm-6 col-md-6"  ng-init="schedule.no_expirations=1" >
 																	<label for="">&nbsp;</label><br/>
 																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
 																	<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
@@ -500,6 +500,14 @@
 																		<div style="position: relative">
 																			<input type="text" name="access_code" id="phone_code" class="form-control" disabled ng-model="phoneCode.phone_code">
 																			<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
+																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																				<div class="btn-group" role="group" aria-label="1">
+																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=5>5</label>
+																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=6>6</label>
+																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=7>7</label>
+																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=8>8</label>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-4">
@@ -740,10 +748,10 @@
 																			<span class="refreshbtn" ng-click="generateNFCCode()"><i class="fa fa-refresh"></i></span>
 																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 																				<div class="btn-group" role="group" aria-label="1">
-																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=5>5</label>
-																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=6>6</label>
-																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=7>7</label>
-																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=8>8</label>
+																					<label class="btn btn-default" ng-model="savenfc.savenfc_size" uib-btn-radio=5>5</label>
+																					<label class="btn btn-default" ng-model="savenfc.savenfc_size" uib-btn-radio=6>6</label>
+																					<label class="btn btn-default" ng-model="savenfc.savenfc_size" uib-btn-radio=7>7</label>
+																					<label class="btn btn-default" ng-model="savenfc.savenfc_size" uib-btn-radio=8>8</label>
 																				</div>
 																			</div>
 																		</div>

@@ -278,12 +278,12 @@ app
 		{
 			var start_date = data.schedulestart_date;
 			var date = new Date(data.schedulestart_date);
-			data.schedule_start_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+			data.schedule_start_date = (date.getMonth()+1)+"-"+date.getDate()+"-"+date.getFullYear();
 		}
 		if(data.expiration != undefined){
 			var expiration_date = data.expiration;
 			var exp_date = new Date(data.expiration);
-			data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
+			data.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
 		}
 
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
