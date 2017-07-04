@@ -288,20 +288,20 @@
 																	<div class="col-sm-12 col-md-6 form-group">
 																		<label for=""><strong>Schedule Type</strong></label><br/>
 																		<div class="row">
-																			<div class="pull-left ml-10 pl-5">
+																			<div class="pull-left ml-10 pl-5" ng-click="custom_schedular()">
 																				<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-																					<input name="customRadioAlt" ng-model="schedule.type" value="ONETIME" type="radio" ng-init="schedule.type='ONETIME'"><i></i> One Time
+																					<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-init="schedule.schedule_type='ONETIME'" ><i></i> One Time
 																				</label>
 																			</div>
-																			<div class="pull-left ml-40">
+																			<div class="pull-left ml-40" ng-click="repetive_schedular()">
 																				<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-																					<input name="customRadioAlt" ng-model="schedule.type" value="REPEATING" type="radio"><i></i> Repeating
+																					<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ><i></i> Repeating
 																				</label>
 																			</div>
 																		</div>
 																	</div>
 																</div>
-																<div class="row" ng-init="visibiltyUserGroup=false"  ng-show="visibiltyUserGroup">
+																<div class="row" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
 																	<div class="col-sm-6 col-md-6 form-group">
 																		<label for="">Start Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
@@ -311,17 +311,24 @@
 																			</span>
 																		</div>
 																	</div>
-																	<div class="col-sm-6 col-md-6 form-group">
-																		<label for="">End Date</label>
-																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="exception.date" min-date="schedule.schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" name="date" onkeypress="return false;"/>
+																	<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.schedule_status=='0' || schedule.schedule_type == 1" ng-init="schedule.no_expirations=1" >
+																	<label for="">&nbsp;</label><br/>
+																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
+																	<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
+																	</label>											
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6"></div>
+																	<div class="form-group col-sm-6 col-md-6"  ng-controller="DatepickerDemoCtrl" ng-show="schedule.no_expirations">
+																		<div class="input-group">
+																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
 																			<span class="input-group-btn">
-																				<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+																			<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																			</span>
 																		</div>
 																	</div>
 																</div>
-																<div class="row">
+
+																<!-- <div class="row">
 																	<div class="col-sm-12 col-md-12" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">													
 																		<div class="row">
 																			<div class="col-sm-6 col-md-4 form-group">
@@ -365,10 +372,11 @@
 																			</div>
 																		</div>
 																	</div>
-																</div>
+																</div> -->
 																<div class="row" >
 																	<div class="col-sm-12 col-md-12" >
-																		<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:300px;' >
+																	<div class="schedule_scroll">
+																		<div id="scheduler_here" class="dhx_cal_container" style='height:300px;' >
 																		<div class="dhx_cal_navline">
 																		<div class="dhx_cal_prev_button" >&nbsp;</div>
 																		<div class="dhx_cal_next_button" >&nbsp;</div>
@@ -381,12 +389,14 @@
 																		<div class="dhx_cal_data">
 																		</div>
 																		</div>
+																		</div>
+
 																	</div>
 																</div>
 															</div>
 															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
-																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Save</button>	
+																<!-- <button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button> -->
+																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="cancel()"><i class="fa fa-arrow-right"></i> Save</button>	
 															</div>
 														</form>		
 													</script>
@@ -727,6 +737,14 @@
 																		<div style="position: relative;">
 																			<input type="text" name="nfc_code" id="" class="form-control" placeholder="" ng-model="savenfc.nfc_code" required disabled>
 																			<span class="refreshbtn" ng-click="generateNFCCode()"><i class="fa fa-refresh"></i></span>
+																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																				<div class="btn-group" role="group" aria-label="1">
+																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=5>5</label>
+																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=6>6</label>
+																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=7>7</label>
+																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=8>8</label>
+																				</div>
+																			</div>
 																		</div>
 																	</div>																	
 																	<div class="form-group col-sm-6 col-md-4">

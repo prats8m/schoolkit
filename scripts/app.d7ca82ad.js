@@ -2361,7 +2361,7 @@ app
     
     scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
     window.resizeTo(950,700);
-    scheduler.config.day_date = "%F%d";
+    scheduler.config.day_date = "%D, %F %d";
     scheduler.config.first_hour = 0;
     scheduler.config.multi_day = true;
     scheduler.config.date_step = "5";
