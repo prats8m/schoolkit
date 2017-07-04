@@ -11,8 +11,8 @@
  
  */
 app
-    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc,utilitySvc) {
-
+    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc, utilitySvc) {
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.page = {
             title: appConstants.titleUsersUI,
             subtitle: appConstants.empty
@@ -24,25 +24,25 @@ app
             $("md-tab-item[aria-controls^=tab-content]:contains('User Groups')").css("pointer-events", "none").css("opacity", "0.5");
         });
 
-        $scope.open_credentials = function(){
-           $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "block").css("opacity", "1");
-           $timeout(function () { 
-            $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").click();
-           });
+        $scope.open_credentials = function () {
+            $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "block").css("opacity", "1");
+            $timeout(function () {
+                $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").click();
+            });
         }
 
         //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-        $rootScope.initSchedule = function() {
+        $rootScope.initSchedule = function () {
             scheduler.config.collision_limit = 1;
             scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
-            window.resizeTo(950,700);
+            window.resizeTo(950, 700);
             scheduler.config.day_date = "%D, %F %d";
             scheduler.config.first_hour = 0;
             scheduler.config.multi_day = true;
             scheduler.config.date_step = "5";
             scheduler.config.show_loading = true;
-            scheduler.init('scheduler_here',new Date(),"week");
-            scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+            scheduler.init('scheduler_here', new Date(), "week");
+            scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
         }
 
         $scope.cleanAccordionFormObject = function (UI, objectType) {
@@ -123,14 +123,30 @@ app
         $scope.pageNo = 1;
         $scope.searchText = appConstants.empty;
         $scope.users = [];
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.usersInit();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.usersInit();
+
+        }
         $scope.usersInit = function () {
-            
-            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+
+            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.users = [];
+                    if ($scope.pageNo <= 1)
+                        $scope.users = [];
                     angular.forEach(succResponse["data"]["data"], function (user, index) {
                         $scope.users.push(user);
                     });
+                    $scope.count = succResponse["data"].count;
                     // $scope.users =  arrayPushService.arrayPush(succResponse.data.data, $scope.users);
                     $scope.pageNo = $scope.pageNo + 1;
                 }
@@ -149,6 +165,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
+            $(".f-wm:contains(" + appConstants.nomoredataavailable+")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             $scope.users = [];
             userSvc.searchFunction(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -865,7 +882,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc,utilitySvc) {
+    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc, utilitySvc) {
         $scope.page = {
             title: $location.path().indexOf('view-user') >= 0 ? appConstants._titleviewUser : appConstants._titleEditUser,
             subtitle: appConstants.empty
@@ -1688,7 +1705,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc,utilitySvc) {
+    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc, utilitySvc) {
         $scope.page = {
             title: appConstants._titleUserGroups,
             subtitle: appConstants.empty,
@@ -1768,8 +1785,8 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.facilityList = succResponse.data.data;
-                    if(utilitySvc.getCurrentFacility() != ''){
-                        $rootScope.userGroup.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                    if (utilitySvc.getCurrentFacility() != '') {
+                        $rootScope.userGroup.facility_id = parseInt(utilitySvc.getCurrentFacility());
                         $rootScope.facility_disable = true;
                         //$rootScope.getDoorsList();
                     }
@@ -1870,7 +1887,7 @@ app
             }
             $scope.pageNo = 1;
             $scope.usergroups = [];
-            userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo +'&facility_id='+utilitySvc.getCurrentFacility()+ '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
                     $scope.pageNo = $scope.pageNo + 1;
@@ -1888,7 +1905,7 @@ app
         $scope.searchText = appConstants.empty;
 
         $scope.getUserGroupList = function () {
-            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo+'&facility_id='+utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroups = [];
                     angular.forEach(succResponse["data"]["data"], function (userGroup, index) {
@@ -1993,7 +2010,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc,utilitySvc) {
+    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc, utilitySvc) {
 
         $scope.page = {
             title: appConstants._titleUserGroups,

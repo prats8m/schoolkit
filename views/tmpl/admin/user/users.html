@@ -1,10 +1,10 @@
 <div class="page page-users">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
-	</div>	
-	
+	</div>
+
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,18 +12,18 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<p>{{page.subtitle}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<flip-header></flip-header>		
+			</div>
+			<flip-header></flip-header>
 		</div>
-		
+
 		<div class="row">
-			<div class="col-md-12">	   
+			<div class="col-md-12">
 				<section class="tile box-shadow">
 					<div class="tile-header dvd dvd-btm">
 						<h1 class="custom-font">{{page.title}}</h1>
@@ -31,17 +31,18 @@
 							<a class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add" ui-sref="app.admin.user.add-user"><i class="fa fa-plus"></i> <span>Add User</span></a>
 						</div>
 					</div>
-					
+
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-40">
 								<div class="col-sm-3 col-md-3 filterorder">
-									
+
 								</div>
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
 										<div class="col-sm-8 col-md-9 search">
-											<input type="text" class="form-control" maxlength="50" placeholder="Search by text...."  maxlength="50" ng-keyup="searchFunction($event)" ng-model="searchText" >
+											<input type="text" class="form-control" maxlength="50" placeholder="Search by text...." maxlength="50" ng-keyup="searchFunction($event)"
+											 ng-model="searchText">
 											<button class="btn btn-default br-2-r" type="button" ng-click="searchFunction()">Search</button>
 										</div>
 										<!-- <div class="col-sm-4 col-md-3 profilephoto csvupload">
@@ -74,10 +75,10 @@
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div>
 								</div>
-								
+
 							</div>
-							<div ng-if="result">									
-								<div layout="row" ng-class="statusclass">									
+							<div ng-if="result">
+								<div layout="row" ng-class="statusclass">
 									{{result}}
 								</div>
 							</div>
@@ -87,11 +88,17 @@
 									No Record Found
 								</div>
 							</div>
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
+								</div>
+							</div>
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
-									<md-content>		
+									<md-content>
 										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy track by $index">
-											<a ui-sref="app.admin.user.view-user({user_id:user.user_id})"><img ng-src="{{user.user_photo ? user.user_photo : 'images/avatar.jpg'}}" onerror="this.onError=null;this.src='images/avatar.jpg';" class="md-card-image" alt="Washed Out"></a>
+											<a ui-sref="app.admin.user.view-user({user_id:user.user_id})"><img ng-src="{{user.user_photo ? user.user_photo : 'images/avatar.jpg'}}" onerror="this.onError=null;this.src='images/avatar.jpg';"
+												 class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
 												<p>{{ user.user_phone_no }}</p>
@@ -101,13 +108,14 @@
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.user.edit-user({user_id:user.user_id})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,user.user_id)">Delete</a>
 											</div>
-										</md-card>										
+										</md-card>
 									</md-content>
-									<button ng-if="users && users.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="usersInit()" ng-style="lmbtn">Load more</button>
+									<button ng-if="count>8 && users.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="usersInit()"
+									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</section>
 			</div>
 		</div>
