@@ -96,6 +96,7 @@ app.constant("appConstants", {
     addmasteradmin: 'warehouse/add-master-admin',
     getCameraDoorList: 'list-door-of-camera',
     openDoorCommand:'open-door?door_id=',
+    historylist:'history/list',
 
 
 
