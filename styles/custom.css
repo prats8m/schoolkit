@@ -3,14 +3,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 .lh-38 {
-	line-height: 33px;
-	margin-bottom: 10px;
+    line-height: 33px;
+    margin-bottom: 10px;
 }
 .schedule_scroll{width: 470px; overflow-x: auto;}
 #scheduler_here{width: 750px;}
 
 .refreshbtn {
-	position: absolute;
+    position: absolute;
     top: 1px;
     right: 1px;
     width: 38px;
@@ -24,62 +24,62 @@
 }
 
 .refreshbtn:hover {
-	background: #616f77;
-	color: #ffffff;
+    background: #616f77;
+    color: #ffffff;
 }
 
 .close {
-	opacity: 0.75!important;
+    opacity: 0.75!important;
 }
 
 tr td {
-	position: relative;
+    position: relative;
 }
 
 span.loader {
-	position: absolute;
+    position: absolute;
     left: 0;
     top: 0;
     background: rgba(255,255,255,0.9);
     width: 100%;
     text-align: center;
     line-height: 38px;
-	display: none;
+    display: none;
 }
 
 .alert-dismissable .close, .alert-dismissible .close {
-	position: absolute!important;
+    position: absolute!important;
     top: 50%!important;
     right: 15px!important;
     margin-top: -11px!important;
 }
 
 .credintials .widget-todo form .form-control:hover, .credintials .widget-todo form .form-control:focus, .credintials .widget-todo form .form-control:focus:hover {
-	border: 1px solid #dbe0e2;
+    border: 1px solid #dbe0e2;
 }
 
 .chosen-disabled  a.search-choice-close {
-	display: none!important; 
+    display: none!important; 
 }
 
 .chosen-disabled li.search-choice {
-	padding-right: 10px!important;
+    padding-right: 10px!important;
 }
 
 .lh-38.cpass {
-	line-height: 20px!important;
+    line-height: 20px!important;
     margin-bottom: 3px!important;
 }
 
 .greenseatx {
-	color: #8cc34b;
-	font-weight: 500;
+    color: #8cc34b;
+    font-weight: 500;
 }
 
 .paycard {
-	margin-right: 15px;
-	font-size: 36px;
-	float: left;
+    margin-right: 15px;
+    font-size: 36px;
+    float: left;
 }
 
 .pl-0,
@@ -122,11 +122,11 @@ span.loader {
 }
 
 .mobmenu {
-	display: none;
+    display: none;
 }
 
 .entercvv {
-	display: none;
+    display: none;
 }
 
 .hovershadow {
@@ -143,22 +143,22 @@ textarea.form-control {
 
 .profilephoto {
     overflow: hidden;
-	position: relative;
+    position: relative;
 }
 
 .profilephoto .user-profilep {
     font-size: 13px;
     position: absolute;
     left: -75px;
-	left: 0px\9;
+    left: 0px\9;
     top: 0;
     padding: 8px 0;
     width: 101%;
-    background-color: #eee;	
+    background-color: #eee; 
 }
 
 _:-ms-input-placeholder, :root .profilephoto .user-profilep { 
-	left: 0px;
+    left: 0px;
 }
 
 .profilephoto.csvupload .user-profilep {
@@ -168,23 +168,23 @@ _:-ms-input-placeholder, :root .profilephoto .user-profilep {
 }
 
 .topmenu .branding {
-	display: none;
+    display: none;
 }
 
 .modal-header {
-	background: #f8f8f8;
+    background: #f8f8f8;
 }
 
 .modal-header h4 {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 .modal-body label, .profile-settings label {
-	font-weight: 400;
+    font-weight: 400;
 }
 
 .modal-body .form-group.legend {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .profilephoto .form-control {
@@ -218,18 +218,18 @@ tr[ng-show="::showSpinners"] {
     margin: 11px 15px 0 0!important;
     padding: 10px 15px 8px!important;
     text-transform: uppercase;
-	font-size: 12px;
+    font-size: 12px;
 }
 
 .addusers {
-	float: right;
+    float: right;
 }
 
 .addusers a.add {
     margin: -1px 0 0!important;
     padding: 10px 15px 8px!important;
     text-transform: uppercase;
-	font-size: 12px;
+    font-size: 12px;
 }
 
 .addpopup a.add i, .addusers a.add i {
@@ -261,12 +261,12 @@ tr[ng-show="::showSpinners"] {
     line-height: 32px;
     border: 1px solid #c2c2c2;
     font-size: 14px;
-	cursor: pointer;
-	margin-bottom: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .gridlistbar a:first-child, .customicon a:first-child {
-	margin-left: 0;
+    margin-left: 0;
 }
 
 .gridlistbar a.active, .gridlistbar a:hover, .customicon a:hover {
@@ -276,20 +276,20 @@ tr[ng-show="::showSpinners"] {
 }
 
 .gridlistbar .dropdown-menu > li > a, .gridlistbar .dropdown-menu > li > a:hover, .gridlistbar .dropdown-menu > li > a.active {
-	width: auto;
-	height: auto;
-	border: 0 none;
-	background: transparent;
-	text-align: left;
-	margin-bottom: 0px;
+    width: auto;
+    height: auto;
+    border: 0 none;
+    background: transparent;
+    text-align: left;
+    margin-bottom: 0px;
 }
 
 .gridlistbar .dropdown-menu > li > a:hover, .gridlistbar .dropdown-menu > li > a.active {
-	background: #f5f5f5;
+    background: #f5f5f5;
 }
 
 .credintialicon a {
-	color: #888;
+    color: #888;
     width: 20px;
     height: 20px;
     display: inline-block;
@@ -300,7 +300,7 @@ tr[ng-show="::showSpinners"] {
 }
 
 .credintialicon a:hover {
-	color: #3c8719;
+    color: #3c8719;
 }
 
 md-content {
@@ -411,7 +411,7 @@ md-tabs .md-tab.md-focused {
     border-radius: 3px;
     margin-right: 5px;
     max-width: none!important;
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .hometabs .mapview {
@@ -485,7 +485,7 @@ md-tabs .md-tab.md-focused {
 }
 
 .usergroups md-pagination-wrapper {
-	left: 15px!important;
+    left: 15px!important;
 }
 
 .credintials .addphone,
@@ -555,7 +555,7 @@ md-tabs .md-tab.md-focused {
 .usergroup .tile .tile-header {
     padding: 0;
     margin-bottom: 20px;
-	background: transparent;
+    background: transparent;
 }
 
 .usergroup .tile .tile-header .controls {
@@ -568,17 +568,17 @@ md-tabs .md-tab.md-focused {
 }
 
 .usergroup .table > tbody > tr > td:first-child {
-	padding: 0;
+    padding: 0;
 }
 
 .usergroup a {
-	color: #616f77;
-	display: block;
-	padding: 8px; 
+    color: #616f77;
+    display: block;
+    padding: 8px; 
 }
 
 .usergroup a:hover {
-	color: #3c8719;
+    color: #3c8719;
 }
 
 .usergroup .tile .tile-header .addpopup a.add {
@@ -588,7 +588,7 @@ md-tabs .md-tab.md-focused {
     font-size: 12px;
     padding: 8px 8px 7px!important;
     border-radius: 3px;
-	color: #95a2a9;
+    color: #95a2a9;
 }
 
 .usergroup .tile .tile-header .addpopup a.add i {
@@ -616,7 +616,7 @@ md-tabs .md-tab.md-focused {
 }
 
 .profiledetail p {
-	margin: 0 0 5px 0;
+    margin: 0 0 5px 0;
 }
 
 .profiledetail p label {
@@ -626,10 +626,10 @@ md-tabs .md-tab.md-focused {
 .tcol .text-muted {
     display: block;
     margin: 10px 0 13px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	padding: 0 10px;
-	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+    overflow: hidden;
 }
 
 .deviceactiondrop {
@@ -657,22 +657,22 @@ table.dstatus tr td.online i {
 }
 
 .onoroffdevice {
-	position: absolute;
+    position: absolute;
     left: 10px;
     top: 9px;
-	/*display: none;*/
-	font-size: 13px;
+    /*display: none;*/
+    font-size: 13px;
     line-height: 12px;
 }
 
 .listview .glview md-card .onoroffdevice {
-	font-size: 0px;
-	left: 5px;
+    font-size: 0px;
+    left: 5px;
     top: 5px;
 }
 
 .glview md-card:nth-child(1) .onoroffdevice, .glview md-card:nth-child(3) .onoroffdevice, .glview md-card:nth-child(4) .onoroffdevice, .glview md-card:nth-child(8) .onoroffdevice, .glview md-card:nth-child(9) .onoroffdevice, .glview md-card:nth-child(15) .onoroffdevice {
-	display: block;
+    display: block;
 }
 
 .onoroffdevice .online {
@@ -711,7 +711,7 @@ a.serplan:hover {
 }
 
 .wrap-reset uib-accordion .panel .panel-heading  h4 {
-	border-bottom: 0 none;
+    border-bottom: 0 none;
     padding-bottom: 0
 }
 
@@ -728,15 +728,15 @@ a.serplan:hover {
     padding: 0;
     height: 170px;
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 50%, #2cb5e8 100%);
-	border-radius: 5px;
-	overflow: hidden;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .dashboardbg {
     background: #000000;
     height: 370px!important;
-	border-radius: 7px;
-	overflow: hidden;
+    border-radius: 7px;
+    overflow: hidden;
 }
 
 .card-container .card .bg-dashboard .bg-transparent {
@@ -746,73 +746,73 @@ a.serplan:hover {
     position: relative;
     cursor: default;
     background-size: cover;
-	padding: 15px;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.pdevicebg {
     background: url(../images/pdevicebg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.ddevicebg {
     background: url(../images/ddevicebg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.usersbg {
     background: url(../images/usersbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.doorbg {
     background: url(../images/doorbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.doorsbg {
     background: url(../images/doorsbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.cameradvrbg {
     background: url(../images/ddevicebg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.rolesbg {
     background: url(../images/rolesbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.schedulebg {
     background: url(../images/schedulebg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.reportsbg {
     background: url(../images/reportsbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.technicianbg {
     background: url(../images/technicianbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent.diagnosticsbg {
     background: url(../images/diagnosticsbg.png) right bottom no-repeat;
-	background-size: cover;
-	padding: 15px;
+    background-size: cover;
+    padding: 15px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent h3 {
@@ -824,7 +824,7 @@ a.serplan:hover {
     font-family: 'roboto condensed', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
-	background: rgba(255, 255, 255, 0.85)!important;
+    background: rgba(255, 255, 255, 0.85)!important;
     color: #04aec5!important
 }
 
@@ -833,38 +833,38 @@ a.serplan:hover {
 }
 
 .crystalcove {
-	width: 66%;
+    width: 66%;
     height: 100%;
     display: inline-block;
     vertical-align: top;
 }
 
 .covertext {
-	display: table;
+    display: table;
     width: 100%;
     text-align: center;
     height: 100%;
 }
 
 .covertext span {
-	display: table-cell;
+    display: table-cell;
     width: 100%;
     height: 100%;
     vertical-align: middle;
     color: #fff;
     text-transform: uppercase;
-	font-size: 30px;
+    font-size: 30px;
 }
 
 .covertext span  strong {
-	display: block;
+    display: block;
     font-size: 46px;
-	line-height: normal;
-	position: relative;
+    line-height: normal;
+    position: relative;
 }
 
 .covertext span  strong:after {
-	position: absolute;
+    position: absolute;
     left: 50%;
     bottom: -60px;
     content: "";
@@ -875,19 +875,21 @@ a.serplan:hover {
 }
 
 .myshortcuts {
-	background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.9);
     width: 34%;
     overflow: hidden;
     display: inline-block;
     float: right;
 }
-
+.myshortcuts .slimScrollDiv .slimScrollBar{
+    background: rgb(255, 255, 255) !important;
+}
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent {
-	padding: 0;
+    padding: 0;
 }
 
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
-	width: 100%;
+    width: 100%;
     display: block;
     color: #fff!important;
     font-size: 24px;
@@ -899,33 +901,33 @@ a.serplan:hover {
 }
 
 .myshortcuts h3 .addsc {
-	font-size: 14px;
+    font-size: 14px;
     margin-top: 5px;
 }
 
 .myshortcuts ul {
-	list-style: none;
+    list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .myshortcuts ul li { 
     margin: 15px;
-	background: #f88858;
+    background: #f88858;
     border-radius: 3px;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .myshortcuts ul li:hover a {
-	background: rgba(0, 0, 0, .25);
+    background: rgba(0, 0, 0, .25);
 }
 
 .myshortcuts ul li:hover .icons {
-	background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, .5);
 }
 
 .myshortcuts ul li a {
-	display: table;
+    display: table;
     width: 75.89%;
     color: #fff!important;
     font-family: 'Roboto Condensed', sans-serif;
@@ -936,14 +938,14 @@ a.serplan:hover {
 }
 
 .myshortcuts ul li a span {
-	display: table-cell;
+    display: table-cell;
     height: 44px;
     vertical-align: middle;
-	padding: 0 10px 0 10px;
+    padding: 0 10px 0 10px;
 }
 
 .myshortcuts ul li .icons {
-	width: 24.11%;
+    width: 24.11%;
     display: inline-block;
     text-align: center;
     height: 44px;
@@ -967,9 +969,9 @@ a.serplan:hover {
     padding: 12px 17px 12px;
     display: block;
     border-radius: 3px;
-	overflow: hidden;
-	color: #04aec5!important;
-	color: #f35626;
+    overflow: hidden;
+    color: #04aec5!important;
+    color: #f35626;
     background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -980,10 +982,10 @@ a.serplan:hover {
     margin: 20px 0 5px;
     font-size: 18px;
     color: #fff;
-	font-weight: 100;
+    font-weight: 100;
 }
 .card-container .card .bg-dashboard .bg-transparent p.dashtext {
-	font-size: 28px;
+    font-size: 28px;
 }
 
 .card-container .card .bg-dashboard .bg-transparent .realtimeloader {
@@ -996,7 +998,7 @@ a.serplan:hover {
 
 .card-container .card {
     margin-bottom: 30px;
-	font-weight: 100;
+    font-weight: 100;
 }
 
 .card-container .card .back>.row>div a {
@@ -1012,8 +1014,8 @@ a.serplan:hover {
 }
 
 .tcol .text-transparent-white {
-	font-size: 16px;
-	font-weight: 400
+    font-size: 16px;
+    font-weight: 400
 }
 
 .page-dashboard .tcol a h3 {
@@ -1051,7 +1053,7 @@ a.serplan:hover {
 }
 
 .glview md-card:nth-child(4n+4) {
-	margin-right: 0;
+    margin-right: 0;
 } 
 
 .glview md-card:hover {
@@ -1075,7 +1077,7 @@ a.serplan:hover {
 
 .glview md-card md-card-content .md-title {
     font-size: 16px;
-	overflow: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -1095,7 +1097,7 @@ a.serplan:hover {
     display: inline-block;
     margin: 10px 4px 0;
     font-weight: 600;
-	width: 65px;
+    width: 65px;
 }
 
 .glview md-card .facilityname {
@@ -1114,21 +1116,21 @@ a.serplan:hover {
 }
 
 .wrap-reset .glview md-card {
-	width: 29.95%;
-	margin: 0 1.7% 30px;
+    width: 29.95%;
+    margin: 0 1.7% 30px;
 }
 
 .wrap-reset .glview md-card:nth-child(4n+4) {
-	margin-right: 1.7%;
+    margin-right: 1.7%;
 }
 
 .wrap-reset .glview md-card:nth-child(3n+3) {
-	margin-right: 0;
+    margin-right: 0;
 }
 
 .wrap-reset .listview .glview md-card {
-	width: 100%;
-	margin: 0 0 15px 0;
+    width: 100%;
+    margin: 0 0 15px 0;
 }
 
 .listview .glview {
@@ -1290,11 +1292,11 @@ a.serplan:hover {
     right: 1px;
     top: 1px;
     padding: 8px 12px 5px;
-	font-size: 15px;
+    font-size: 15px;
 }
 
 .wrap-reset .modal-body {
-	padding: 0;
+    padding: 0;
 }
 
 .headmenu a {
@@ -1340,45 +1342,45 @@ span.devicecamname {
 }
 
 video {
-	width: 100%!important;
-	display: block;
+    width: 100%!important;
+    display: block;
 }
 
 #boundary {
-	overflow: hidden;
-	width: 100%;
-	position: relative;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
 }
 
 .onegrid #boundary #vstage {
-	position: relative;
-	height: 418px;
+    position: relative;
+    height: 418px;
 }
 
 .twogrid #boundary #vstage, .fourgrid #boundary #vstage {
-	position: relative;
-	height: 342px;
+    position: relative;
+    height: 342px;
 }
 
 .sixgrid #boundary #vstage {
-	position: relative;
-	height: 223px;
+    position: relative;
+    height: 223px;
 }
 
 #boundary #vstage video {
-	position: absolute;
-	
+    position: absolute;
+    
 }
 
 #boundary #controls button {
     background: transparent;
     border: 0 none;
     color: #fff;
-	position: absolute;
+    position: absolute;
 }
 
 #boundary #controls #change {
-	display: inline-block;
+    display: inline-block;
     position: absolute;
     right: 30px;
     bottom: 30px;
@@ -1386,22 +1388,22 @@ video {
     height: 42px;
     background: rgba(0,0,0,0.5);
     border-radius: 50px;
-	transition: 1s;
+    transition: 1s;
     -webkit-transition: 1s
 }
 
 #boundary #controls #change.widthinc{
-	width: 100px;
+    width: 100px;
     height: 100px;
 }
 
 #boundary #controls #change.widthinc button {
-	opacity: 1!important;
-	display: block!important;
+    opacity: 1!important;
+    display: block!important;
 }
 
 #boundary #controls #change button.play {
-	top: 50%;
+    top: 50%;
     left: 50%;
     margin-top: -21px;
     margin-left: -21px;
@@ -1409,26 +1411,26 @@ video {
     height: 42px;
     background: rgba(0,0,0,0.75);
     border-radius: 21px;
-	transform: rotate(180deg);
+    transform: rotate(180deg);
     font-size: 18px;
-	color: #ffffff;
-	text-indent: -2px;
+    color: #ffffff;
+    text-indent: -2px;
 }
 
 #boundary #controls #change.widthinc button.play {
-	text-indent: 0px;
+    text-indent: 0px;
 }
 
 #boundary #controls #change button.zoomin {
-	top: -30px;
+    top: -30px;
     left: 50%;
     margin-left: -12px;
-	opacity: 0;
-	display: none;
+    opacity: 0;
+    display: none;
 }
 
 #boundary #controls #change button.volumeup {
-	top: 50%;
+    top: 50%;
     left: -35px;
     margin-top: -13px;
     opacity: 0;
@@ -1436,7 +1438,7 @@ video {
 }
 
 #boundary #controls #change button.volumedown {
-	top: 50%;
+    top: 50%;
     right: -27px;
     margin-top: -13px;
     opacity: 0;
@@ -1444,44 +1446,44 @@ video {
 }
 
 #boundary #controls #change button.zoomout {
-	bottom: -30px;
+    bottom: -30px;
     left: 50%;
     margin-left: -12px;
     z-index: 99;
-	opacity: 0;
-	display: none;
+    opacity: 0;
+    display: none;
 }
 
 #boundary #controls #change button.left {
-	left: 0;
+    left: 0;
     top: 50%;
     margin-top: -13px;
-	opacity: 0;
-	display: none;
+    opacity: 0;
+    display: none;
 }
 
 #boundary #controls #change button.right {
-	right: 0;
+    right: 0;
     top: 50%;
     margin-top: -13px;
-	opacity: 0;
-	display: none;
+    opacity: 0;
+    display: none;
 }
 
 #boundary #controls #change button.up {
-	left: 50%;
+    left: 50%;
     margin-left: -13.5px;
     top: 0;
-	opacity: 0;
-	display: none;
+    opacity: 0;
+    display: none;
 }
 
 #boundary #controls #change button.down {
-	left: 50%;
+    left: 50%;
     margin-left: -13.5px;
     bottom: 0;
-	opacity: 0;
-	display: none;
+    opacity: 0;
+    display: none;
 }
 
 
@@ -1562,11 +1564,11 @@ video {
 }
 
 .permissionsheader {
-	margin: -15px -15px 20px;
+    margin: -15px -15px 20px;
     padding: 10px 15px;
     background: #f8f8f8;
     border-bottom: 1px solid #e5e5e5;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .groupslist,
@@ -1614,15 +1616,15 @@ video {
 }
 
 .moreitemsondevice {
-	position: absolute;
+    position: absolute;
     top: 10px;
     right: 10px;
     text-align: right;
-	display: none;
+    display: none;
 }
 
 md-card:hover .moreitemsondevice {
-	display: block;
+    display: block;
 }
 
 .moreitemsondevice a {
@@ -1633,11 +1635,11 @@ md-card:hover .moreitemsondevice {
     width: 24px;
     height: 24px;
     text-align: center;
-	margin-left: 10px;
+    margin-left: 10px;
 }
 
 .moreitemsondevice a:hover {
-	color: #357935;
+    color: #357935;
 }
 
 .btn-group.btnrounded.hsdays>.btn {
@@ -1674,7 +1676,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .chosen-container-multi .chosen-drop .result-selected {
-	display: none!important;
+    display: none!important;
 }
 
 #header,
@@ -1697,11 +1699,11 @@ md-card:hover .moreitemsondevice {
     line-height: 42px;
     display: block;
     cursor: pointer;
-	color: #5f6060!important;
+    color: #5f6060!important;
 }
 
 #header .topmenu .nav-right > li a:hover span, #header .topmenu .nav-right > li span:hover, .dropdown-menu > li > a:hover {
-	color: #16a086!important;
+    color: #16a086!important;
 }
 
 .bg-blue {
@@ -1714,7 +1716,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .bg-slategray.dk {
-	background-color: #cea000!important;
+    background-color: #cea000!important;
 }
 
 .bg-greensea {
@@ -1728,7 +1730,7 @@ md-card:hover .moreitemsondevice {
 
 .card-container .card .back {
     border-radius: 5px!important;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .bg-cyan {
@@ -1762,15 +1764,15 @@ md-card:hover .moreitemsondevice {
 .card-container .card .front,
 .card-container .card .noback {
     border-radius: 5px;
-	height: 170px;
+    height: 170px;
 }
 
 .card-container .card .front.cardheight .row, .card-container .card .noback.cardheight .row {
-	height: 100%;
+    height: 100%;
 }
 
 .card-container .card .front.cardheight .row  .col-xs-6, .card-container .card .noback.cardheight .row .col-xs-6 {
-	display: table;
+    display: table;
     height: 100%;
 }
 
@@ -1789,11 +1791,11 @@ md-card:hover .moreitemsondevice {
 }
 
 .card-container .card .back>.row>div a img {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .card-container .card .front .row .col-xs-6:last-child, .card-container .card .noback .row .col-xs-6:last-child {
-	margin-left: -15px;
+    margin-left: -15px;
 }
 
 .itxt {
@@ -1801,7 +1803,7 @@ md-card:hover .moreitemsondevice {
     width: 100%;
     height: 100%;
     vertical-align: middle;
-	text-align: center;
+    text-align: center;
 }
 
 .border5, .br-5 {
@@ -1813,7 +1815,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .userexp .dropdown-menu.ng-valid-date-disabled {
-	position: absolute;
+    position: absolute;
     top: auto !important;
     bottom: 45px;
 }
@@ -1894,12 +1896,12 @@ md-card:hover .moreitemsondevice {
     font-weight: 300;
     color: #0eba8c;
     margin: 0 0 25px;
-	text-align: left;
+    text-align: left;
 }
 
 #hpopup p {
-	text-align: left;
-	line-height: 18px;
+    text-align: left;
+    line-height: 18px;
 }
 
 #hpopup p small {
@@ -1909,11 +1911,11 @@ md-card:hover .moreitemsondevice {
 }
 
 #hpopup p.m-0 {
-	text-align: center;
+    text-align: center;
 }
 
 #hpopup label.forgotpass {
-	display: block;
+    display: block;
     text-align: left;
     font-size: 18px;
     color: #bfc7cb;
@@ -1938,21 +1940,21 @@ md-card:hover .moreitemsondevice {
 }
 
 input.input-sm.input-unstyled {
-	border: 1px solid #ffffff!important;
-	-webkit-transition: all 0.3s ease;
+    border: 1px solid #ffffff!important;
+    -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 input.input-sm.input-unstyled:hover, input.input-sm.input-unstyled:focus {
-	border: 1px solid #e5e5e5!important;
-	padding-left: 10px;
+    border: 1px solid #e5e5e5!important;
+    padding-left: 10px;
 }
 
 input.input-sm.input-unstyled::-webkit-input-placeholder {
-	font-size: 15px;
-	font-style: normal;
+    font-size: 15px;
+    font-style: normal;
 }
 
 .p-40 {
@@ -1996,21 +1998,21 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 
 /****************  calendar for schedule groups **************************/
 .calendar {
-	
+    
 }
 
 .calendar table {
-	vertical-align: top;
+    vertical-align: top;
 }
 
 .calendar th {
-	text-align: center;
-	font-weight: 400;
-	background: #f1f1f1;
-	padding: 6px 0;
-	border-left: 1px solid #e5e5e5;
-	border-bottom: 1px solid #e5e5e5;
-	font-size: 16px;
+    text-align: center;
+    font-weight: 400;
+    background: #f1f1f1;
+    padding: 6px 0;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 16px;
 }
 
 .calendar th.nobrl.time {width: 47px;}
@@ -2025,58 +2027,58 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 .calendar th.nobrl.scroll {width: 16px;}
 
 .calendar th.nobrl, .calendar td.nobrl {
-	border-left: 0 none !important;
+    border-left: 0 none !important;
 }
 
 .calendar .calendartime {
-	position:relative;
-	width:100%;
-	/*overflow-x: hidden;
-	overflow-y: auto;
-	height: 720px;*/
+    position:relative;
+    width:100%;
+    /*overflow-x: hidden;
+    overflow-y: auto;
+    height: 720px;*/
 }
 
 .calendar .calendartime th {
-	text-align: right;
-	font-weight: 100;
-	float: left;
-	padding: 2px 5px 1px 0;
-	font-size: 14px;
-	border-left: 0 none;
-	width: 49px;
+    text-align: right;
+    font-weight: 100;
+    float: left;
+    padding: 2px 5px 1px 0;
+    font-size: 14px;
+    border-left: 0 none;
+    width: 49px;
 }
 
 .calendar .calendartime td {
-	border-bottom: 1px solid #e5e5e5;
-	border-left: 1px solid #e5e5e5;
-	cursor: pointer;
-	vertical-align: top;
+    border-bottom: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    cursor: pointer;
+    vertical-align: top;
 }
 
 .calendar .calendartime #tablehead tr th:last-child {
-	border-bottom: 0 none;
+    border-bottom: 0 none;
 }
 
 .calendar .calendartime #table tr td {
-	padding: 0 5px 0 0;
+    padding: 0 5px 0 0;
     line-height: 12px;
-	border-right: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
 }
 
 .calendar .calendartime #table tr:nth-child(odd) td {
-	border-bottom: 1px dotted #e5e5e5;
+    border-bottom: 1px dotted #e5e5e5;
 }
 
 .calendar .calendartime #table tr:last-child td {
-	border-bottom: 0 none;
+    border-bottom: 0 none;
 }
 
 .calendar .calendartime #table td.selected {
-	background: #e5e5e5;
+    background: #e5e5e5;
 }
 
 .copybtn { 
-	text-align: center;
+    text-align: center;
     padding: 25px 0; 
 }
 
@@ -2084,83 +2086,83 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 /****************  end calendar for schedule groups **************************/
 
 span.error {
-	font-size: 14px;
-	color: #ff0000;
-	line-height: 22px;
+    font-size: 14px;
+    color: #ff0000;
+    line-height: 22px;
 }
 
 .tile .tile-header h1.h1head {
-	font-size: 28px;
-	text-transform: capitalize;
-	line-height: 34px;
+    font-size: 28px;
+    text-transform: capitalize;
+    line-height: 34px;
 }
 
 .tplans thead tr {
-	background: #e5e5e5;
+    background: #e5e5e5;
 }
 
 .tplans tbody tr:nth-child(even) {
-	background: #f9f9f9;
+    background: #f9f9f9;
 }
 
 .table.noborder > tbody > tr > td {
-	border-top: 0 none;
-	padding: 8px 15px 0;
+    border-top: 0 none;
+    padding: 8px 15px 0;
 }
 
 #camerandvr .tabs-dark .nav-tabs {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 #camerandvr .tab-content .tab-pane {
-	padding: 0;
+    padding: 0;
 }
 
 #camerandvr .sixgrid, #camerandvr .fourgrid, #camerandvr .twogrid, #camerandvr .onegrid { 
-	overflow: hidden;
+    overflow: hidden;
 }
 
 #camerandvr .livevideo {
-	float: left;
+    float: left;
     margin-bottom: 20px;
     border: 4px solid #777777;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 #camerandvr .livevideo:nth-child(even) {
-	margin-left: 20px;
+    margin-left: 20px;
 }
 
 #camerandvr .sixgrid .livevideo {
-	width: 32.29%;    
+    width: 32.29%;    
     height: 264px;
-	margin-left: 0px!important;
+    margin-left: 0px!important;
 }
 
 #camerandvr .sixgrid .livevideo:nth-child(3n+2) {
-	margin-left: 20px!important; margin-right: 20px;
+    margin-left: 20px!important; margin-right: 20px;
 }
 
 #camerandvr .fourgrid .livevideo, #camerandvr .twogrid .livevideo {
-	width: 49.20%;
+    width: 49.20%;
     height: 383px;
 }
 
 #camerandvr .onegrid .livevideo {
-	width: 60%;
+    width: 60%;
     float: none;
     margin: 0 auto;
-	display: none;
+    display: none;
 }
 
 #camerandvr .selectcam {
-	background: #777777;
-	color: #ffffff;
+    background: #777777;
+    color: #ffffff;
     padding: 5px 15px;
 }
 
 #camerandvr .selectcam label {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 #camerandvr .selectcam label a i {
@@ -2170,7 +2172,7 @@ span.error {
 }
 
 #camerandvr .video img {
-	width: 100%;
+    width: 100%;
 }
 
 #camerandvr .selectcam .open > .dropdown-menu {
@@ -2183,20 +2185,20 @@ span.error {
 }
 
 #camerandvr .searchvideoitems {
-	min-height: 400px;
+    min-height: 400px;
     border-top: 1px solid #e9e9e9;
     margin-top: 20px;
-	padding: 20px 20px 0;
+    padding: 20px 20px 0;
 }
 
 #camerandvr .searchvideoitems .livevideo {
-	width: 100%;
-	border: 4px solid #777777;
-	padding: 0;
+    width: 100%;
+    border: 4px solid #777777;
+    padding: 0;
 }
 
 #camerandvr .searchvideoitems .searchitems {
-	border: 2px solid #a5a5a5;
+    border: 2px solid #a5a5a5;
     height: 100px;
     color: #fff;
     float: left;
@@ -2205,104 +2207,104 @@ span.error {
 }
 
 #camerandvr .searchvideoitems .searchitems a {
-	display: block;
+    display: block;
     background: #b5b5b5;
     color: #fff;
     padding: 0;
-	width: 100%;
+    width: 100%;
     height: 100%;
-	padding: 6px 10px;
+    padding: 6px 10px;
 }
 
 #camerandvr .searchvideoitems .searchitems.active a {
-	background: #a5a5a5;
+    background: #a5a5a5;
 }
 
 #camerandvr .searchvideoitems .searchitems:nth-child(even) {
-	margin-left: 4%;
+    margin-left: 4%;
 }
 
 #camerandvr .twogrid .livevideo, #camerandvr .fourgrid .livevideo:nth-child(5), #camerandvr .fourgrid .livevideo:nth-child(6), #camerandvr .searchvideoitems .tabs-menu > li.searchitems.active:after {
-	display: none;
+    display: none;
 }
 
 #camerandvr .twogrid .livevideo:nth-child(1), #camerandvr .twogrid .livevideo:nth-child(2), #camerandvr .onegrid .livevideo:nth-child(1), #camerandvr .searchvideoitems .searchitems small {
-	display: block;
+    display: block;
 }
 
 #camerandvr .profile-settings .col-centered {
     display: block;
     float: none;
-	margin: 20px auto 0;
-	/*overflow: hidden;*/
+    margin: 20px auto 0;
+    /*overflow: hidden;*/
 }
 
 .cameradetail p label {
-	width: 175px;
-	margin-bottom: 0;
+    width: 175px;
+    margin-bottom: 0;
 }
 
 .cameradetail p span {
-	display: block;
-	padding-left: 175px;
+    display: block;
+    padding-left: 175px;
 }
 
 .bootstrap-touchspin .input-group-btn .btn {
-	padding: 8px 14px;
+    padding: 8px 14px;
 }
 
 span.error { 
-	font-size: 14px; 
-	color: #ff0000; 
-	line-height: 22px;
+    font-size: 14px; 
+    color: #ff0000; 
+    line-height: 22px;
 }
 
 label.error {
-	font-size: 14px;
-	font-weight: 100;
-	font-style: italic;
-	color: #ff0000;
+    font-size: 14px;
+    font-weight: 100;
+    font-style: italic;
+    color: #ff0000;
 }
 
 input.ng-invalid-required.error { 
-	border: 1px solid #ff0000;
+    border: 1px solid #ff0000;
 }
 
 .addaccess .aassigndoor {
-	width: 850px;
+    width: 850px;
 }
 
 .phoneaccess .passigndoor {
-	width: 725px;
+    width: 725px;
 }
 
 .rfidcode  .rassigndoor {
-	width: 700px;
+    width: 700px;
 }
 
 .wiegandcode .wassigndoor {
-	width: 700px;
+    width: 700px;
 }
 
 .nfccode .nassigndoor {
-	width: 850px;
+    width: 850px;
 }
 
 .blecode .bassigndoor {
-	width: 725px;
+    width: 725px;
 }
 
 .addaccess .aaction, .phoneaccess .paction, .rfidcode .raction, .wiegandcode .waction, .nfccode .naction, .blecode .baction {
-	width: 75px;
+    width: 75px;
 }
 
 .rel {
-	position: relative; 
-	overflow: hidden;
+    position: relative; 
+    overflow: hidden;
 }
 
 span.edit {
-	position: absolute;
+    position: absolute;
     bottom: -100%;
     left: 0;
     right: 0;
@@ -2316,13 +2318,13 @@ span.edit {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     margin-bottom: -22px;
-	color: #fff;
+    color: #fff;
     font-size: 20px;
     line-height: 44px;
 }
 
 .rel:hover span.edit{
-	bottom: 50%;
+    bottom: 50%;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -2342,19 +2344,19 @@ span.edittxt {position: absolute;
 }
 
 .usergroup-img {
-	margin: -30px -30px 0;
+    margin: -30px -30px 0;
     background: #1a7dbb;
     border-bottom: 5px solid #1a7dbb;
 }
 
 .usergroup-img img {
-	width: 100%;
+    width: 100%;
     opacity: 0.75;
 }
 
 
 .tabwrap {
-	margin-right: -10px;
+    margin-right: -10px;
 }
 .tabwrap .btn.btn-slategray span {
     display: table-cell;
@@ -2380,35 +2382,35 @@ span.edittxt {position: absolute;
     background: rgba(255,255,255,0.96);
     color: #222!important;
     border-color: transparent;
-	transition: 0.5s;
+    transition: 0.5s;
 }
 
 .tabwrap .shortbtn .btn.btn-slategray:hover {
-	background: rgba(0,0,0,0.96);
+    background: rgba(0,0,0,0.96);
     color: #fff!important;
 }
 
 .activity img {
-	width: 100%;
+    width: 100%;
 }
 
 .activity img.userimg {
-	width: 200px;
+    width: 200px;
     margin: 0 auto;
     display: block;
 }
 
 .activity h3 {
-	font-size: 18px;
+    font-size: 18px;
     border-bottom: 1px dashed #e5e5e5;
     padding-bottom: 12px;
     margin-bottom: 25px;
 }
 
 .slimscrolls {
-	max-height: 293px;
-	min-height: 293px;
-	margin-bottom: 20px;
+    max-height: 293px;
+    min-height: 293px;
+    margin-bottom: 20px;
 }
 
 .access-code-disable {
@@ -2417,7 +2419,7 @@ span.edittxt {position: absolute;
 }
 
 .dropdown-menu > li.version  {
-	text-align: center;
+    text-align: center;
     padding: 5px 15px;
     background: #e5e5e5;
     margin-top: 10px;
@@ -2425,21 +2427,21 @@ span.edittxt {position: absolute;
 }
 
 .signup {
-	width: 650px;
+    width: 650px;
 }
 
 .signup .overflow {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .signup form {
-	margin-left: -30px;
+    margin-left: -30px;
 }
 
 .signup input, .signupselect {
-	float: left;
-	width: 45%;
-	margin-left: 30px;
+    float: left;
+    width: 45%;
+    margin-left: 30px;
 }
 
 .contactheading {
@@ -2449,14 +2451,14 @@ span.edittxt {position: absolute;
 }
 
 .contactheading h1 {
-	font-size: 34px;
+    font-size: 34px;
     font-weight: 300;
 }
 
 .contactheading p {
     font-size: 18px;
     line-height: 32px;
-	margin-top: 25px;
+    margin-top: 25px;
 }
 
 .addresswrap {
@@ -2464,7 +2466,7 @@ span.edittxt {position: absolute;
 }
 
 .addresswrap .mb-80 {
-	margin-bottom: 80px;
+    margin-bottom: 80px;
 }
 
 .addbox {
@@ -2472,18 +2474,18 @@ span.edittxt {position: absolute;
     padding: 40px 25px 25px;
     text-align: center;
     position: relative;
-	display: table;
+    display: table;
     width: 100%;
 }
 
 .boxinfo {
-	display: table-cell;
+    display: table-cell;
     vertical-align: middle;
     height: 120px;
 }
 
 .addbox p {
-	font-size: 17px;
+    font-size: 17px;
     margin: 10px 0;
     line-height: 20px;
 }
@@ -2504,9 +2506,9 @@ span.edittxt {position: absolute;
 }
 
 .map {
-	width: 100%;
-	height: 525px;
-	border: 5px solid rgba(0,0,0,0.1);
+    width: 100%;
+    height: 525px;
+    border: 5px solid rgba(0,0,0,0.1);
 }
 
 .contactus {
@@ -2515,7 +2517,7 @@ span.edittxt {position: absolute;
 }
 
 .contactus h2 {
-	background: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.1);
     margin: -25px -25px 25px;
     padding: 15px 25px;
     text-align: center;
@@ -2622,14 +2624,14 @@ span.edittxt {position: absolute;
   }
 }
 .loaders {
-	background: rgba(231,234,235,0.95);
-	position: fixed;
-	top: 0;
-	top: 0;
-	z-index: 99999;
-	width: 100%;
-	height: 100%;
-	text-align: center;
+    background: rgba(231,234,235,0.95);
+    position: fixed;
+    top: 0;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 .uil-ripple-css {
   background: none;
@@ -2664,1246 +2666,1280 @@ span.edittxt {position: absolute;
 }
 
 .credintials .table > tbody > tr > td {
-	word-break: break-all;
+    word-break: break-all;
 }
+.facility-view {
+   float: right;
+    font-size: 14px;
+}
+.facility-view span{
+    font-size: 15px;
+    color: #3c8719;
+    font-weight: 600;
+}
+
+.cahtdiv { background: #ffffff; width: 350px; right: 0; top: 100px; bottom: 0; z-index: 9999; position: fixed; border-left: 1px solid #dad2d2;-o-transform:translateY(-o-calc(100% - 54px));    
+    -ms-transform:translateY(c-ms-alc(100% - 54px));
+    -moz-transform:translateY(-moz-calc(100% - 54px));
+    -webkit-transform:translateY(-webkit-calc(100% - 54px));
+    transform:translateY(calc(100% - 54px)); }
+.chat-title { background: #16a086; color: #fff; position: relative; padding: 15px; }
+.chat-title span { position: absolute; right: 9px; top: 16px; }
+.cahtdiv .chatbody { min-height: 300px; padding-top: 15px; padding-bottom: 15px; }
+.cahtdiv .chatfooter { position: absolute; bottom: 0; left: 0; right: 0; min-height: 100px; border-top: 1px solid #f1f1f1; padding: 6px 12px; }
+.cahtdiv .chatuser { max-width: 90%; padding: 6px 12px; }
+.chatreply { max-width: 90%; padding: 6px 12px; float: right; }
+.cahtdiv .chattext {-moz-border-radius: 5px;-webkit-border-radius: 5px;-o-border-radius: 5px;border-radius: 5px; padding: 10px 15px; background: #f5f5f5; margin-top: 15px; position: relative; font-size: 12px; }
+.chatreply ul { text-align: right; }
+.cahtdiv .chatbody ul { font-size: 12px; }
+.cahtdiv .chatbody .subject { font-weight: 700; }
+.chatuser .chattext:after { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 9px solid rgba(255, 199, 0, 0.4); content: ""; top: -9px; position: absolute; left: 15px; }
+.chatreply .chattext:after { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 9px solid rgba(29, 138, 207, 0.34); content: ""; top: -9px; position: absolute; right: 15px; }
+.chatuser .chattext { background: rgba(255, 199, 0, 0.4); }
+.chatreply .chattext { background: rgba(29, 138, 207, 0.34); }
+.chatfooter .formsend { position: relative; }
+.chatfooter .formsend input[type="text"] { padding-right: 40px; border: 0px; }
+.chatfooter .formsend input[type="text"]:focus { border: 0px; box-shadow: none; }
+.chatfooter .formsend button { position: absolute; border-radius: 100%; overflow: hidden; text-align: center; right: 0px; bottom: 0; box-shadow: none; background: #16a086; color: #fff; border: 0px solid #ccc; display: block; width: 38px; padding-right: 10px; top: 0; height: 100%;
+ }
+
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
     }
-	.tcol .text-muted {
-		margin: 10px 0 12px;
-	}
+    .tcol .text-muted {
+        margin: 10px 0 12px;
+    }
 }
 /********** @media **********/
 @media only screen and (min-width: 1920px) {
-	.listview .glview md-card {
-		width: 100%!important;
-		margin: 0 0 15px!important;
-	}
-	.glview md-card {
-		width: 17.8%!important;
-		margin: 0 1.1% 40px!important;
-	}
-	.wrap-reset .glview md-card {
-		width: 22.6%!important;
-		margin: 0 1.2% 30px!important;
-	}
-	.wrap-reset .glview md-card:nth-child(5n+5) {
-		margin-right: 1.2%!important;
-	}
-	.wrap-reset .listview .glview md-card {
-		width: 100%!important;
-		margin: 0 0 15px 0!important;
-	}
+    .listview .glview md-card {
+        width: 100%!important;
+        margin: 0 0 15px!important;
+    }
+    .glview md-card {
+        width: 17.8%!important;
+        margin: 0 1.1% 40px!important;
+    }
+    .wrap-reset .glview md-card {
+        width: 22.6%!important;
+        margin: 0 1.2% 30px!important;
+    }
+    .wrap-reset .glview md-card:nth-child(5n+5) {
+        margin-right: 1.2%!important;
+    }
+    .wrap-reset .listview .glview md-card {
+        width: 100%!important;
+        margin: 0 0 15px 0!important;
+    }
 }
 
 @media only screen and (min-width: 1680px) {
-	body {
-		line-height: 1.8;
-	}
-	.tile .tile-header, .tile .tile-widget, .tile .tile-body, .tile .tile-footer {
-		padding: 20px;
-	}
-	.page {
-		padding: 20px 30px 10px;
-	}
-	.page.page-dashboard {
-		padding: 30px 30px 20px;
-	}
-	#header .branding {
-		width: 350px;
-	}
-	.filterfields label {
-		font-weight: 500;
-	}
-	.small, small {
-		font-size: 13px!important;
-	}
-	.btn-sm, .btn-group-sm > .btn, .chosen-container-multi .chosen-choices li.search-choice, .chosen-container .chosen-results li, .addpopup a.add, .addusers a.btn  {
-		font-size: 14px;
-	}
-	.glview md-card .md-actions a, .dropdown-menu, .btn, .form-control::-webkit-input-placeholder {
-		font-size: 15px;
-	}
-	.modal-body .form-control::-webkit-input-placeholder {
-		opacity: 0;
-		-webkit-appearance: none !important;
-	}
-	.glview md-card md-card-content p, #header .nav-right > li.nav-profile > a, #header .nav-left > li.nav-profile > a, .form-control, .btn-group.btnrounded>.btn, .profilephoto #profilep-2, .md-tab, .chosen-container-single .chosen-single, .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-		font-size: 16px;
-	}	
-	body {
-		font-size: 17px;
-	}
-	.glview md-card md-card-content .md-title, .page-dashboard .tile-simple .text-muted, .nav-tabs > li > a, .tabs-menu > li > a {
-		font-size: 18px;
-	}
-	.modal-header h4, .backpage a, .leftdetail h4 {
-		font-size: 20px;
-	}
-	.wrap-reset h4 , .tcol .text-transparent-white {
-		font-size: 22px;
-	}
-	#header .branding a.brand, h3, .h3, .card-container .card .bg-dashboard .bg-transparent h3  {
-		font-size: 24px;
-	}
-	.card-container .card .back>.row>div a {
-		font-size: 28px;
-	}
-	.page-dashboard .tcol a h3 {
-		font-size: 32px;
-	}
-	.tcol h2 {
-		font-size: 34px;
-	}
-	.card-container .card .bg-dashboard .bg-transparent p.dashtext, .page-dashboard .text-lg, .noback .text-lg {
-		font-size: 38px!important;
-	}
-	.card-container .card .bg-dashboard .bg-transparent h3.h3link {
-		font-size: 40px;
-	}
-	.page-dashboard .text-elg, .noback .text-elg {
-		font-size: 90px!important;
-		line-height: 70px;
-	}
-	.chosen-container-multi .chosen-choices, .chosen-container .chosen-results li {
-		padding: 7px 10px;
-	}
-	.chosen-container-multi .chosen-choices li.search-choice {
-		padding: 7px 25px 6px 10px;
-	}
-	.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-		height: 32px;
-	}
-	.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
-		top: 8px;
-		right: 5px;
-	}
-	#header .branding, #header .branding a.brand {
-		height: 65px;
-	}	
-	.appWrapper.header-fixed.aside-fixed #content {
-		top: 65px;
-	}
-	#header .branding a.brand {
-		line-height: 65px;
-	}
-	#header .nav-right > li.nav-profile, #header .nav-left > li.nav-profile, #header .dropdown>.dropdown-menu {
-		margin-top: 10px;
-	}
-	#header .nav-right > li, #header .nav-left > li {
-		margin-top: 12px;
-	}	
-	#header .dropdown>.dropdown-menu {
-		border-top: 0 none;
-	}
-	.dashboardbg {
-		height: 526px!important;
-	}
-	.card-container .card .bg-dashboard .bg-transparent h3, .card-container .card .bg-dashboard .bg-transparent h3.h3link a {
-		padding: 15px 20px 15px;
-		border-radius: 5px;
-	}	
-	.iconbx img {
-		width: 125px;
-	}
-	.card-container .card .back>.row>div a img {
-		width: 60%;
-		margin-bottom: 25px;
-	}
-	.above1800.p-20 {
-		padding: 30px !important;
-	}
-	.cameradvr .above1800 img {
-		height: 50px;
-	}
-	 .above1800.p-30 img {
-		height: 75px;
-	}
-	.page-dashboard .tile-simple .text-muted {
-		margin: 15px 0 16px;
-	}	
-	.card-container .card .bg-dashboard {
-		height: 248px;
-	}	
-	.form-control, .credintials .widget-todo form .form-control, .chosen-container-single .chosen-single {
-		height: auto;
-		padding: 12px 10px;
-	}
-	#hpopup .form-control {
-		padding: 22px 0px 12px;
-	}
-	.btn-group.btnrounded>.btn, .btn-group.btnrounded>.btn:hover {
-		padding: 12px 25px;
-	}
-	.profilephoto .input-group-btn .btn, .input-group-btn .btn, .search .btn {
-		padding: 14px 15px 11px !important;
-	}
-	.profilephoto #profilep-2 {
-		padding: 10px 20px;
-		left: -120px;
-		width: 115%;
-	}
-	.calendar .calendartime th {
-		padding: 4px 5px 4px 0;
-	}
-	.calendar .calendartime #table tr td {
-		line-height: 16px;
-	}
-	.calendar .calendartime {
-		height: 815px;
-	}
-	.modal-dialog {
-		width: 650px;
-		margin: 40px auto 20px;
-	}
-	.lh-38 {
-		line-height: 45px;
-	}
-	.glview {
-		margin: 0 -20px;
-	}
-	.glview md-card:nth-child(4n+4) {
-		margin-right: 1.1%;
-	}
-	.glview md-card:nth-child(5n+5) {
-		margin-right: 0;
-	}
-	.glview md-card {
-		width: 17.53%;
-		margin: 0 1.25% 40px;
-	}
-	.glview md-card.slaveusers {
-		width: 23%;
-	}
-	.listview .glview md-card {
-		width: 100%;
-	}
-	.wrap-reset .glview {
-		margin: 0 -15px;
-	}
-	.wrap-reset .glview md-card {
-		width: 22.2%;
-		margin: 0 1.4% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 0;
-	}
-	.wrap-reset .glview md-card:nth-child(5n+5) {
-		margin-right: 1.4%;
-	}
-	.btn-ef.btn-ef-4, .btn-ef.btn-ef-3 {
-		padding: 10px 30px;
-	}
-	.btn-ef.btn-ef-4 > i, .btn-ef.btn-ef-3 > i {
-		line-height: 40px;
-	}
-	form.form-horizontal {
-		position: relative;
-	}
-	.btn.addpost {
-		padding: 12px 15px 11px;
-	}
-	.credintials .addphone, .editaddphone .addphone {
-		margin-top: -48px;
-		height: 48px;
-		padding: 15px 18px;
-	}
-	.dropdown-menu.panel.notification {
-		min-width: 350px;
-	}
-	.chosen-container-single .chosen-single div b {
-		background-position: 0 14px;
-	}
-	#camerandvr .onegrid .livevideo {
-		width: 72%;
-		margin-bottom: 15px;
-	}
-	.onegrid #boundary #vstage {
-		height: 714px;
-	}
-	#camerandvr .fourgrid .livevideo, #camerandvr .twogrid .livevideo {
-		width: 49.40%;
-		height: 530px;
-	}
-	.twogrid #boundary #vstage, .fourgrid #boundary #vstage {
-		height: 485px;
-	}
-	#camerandvr .sixgrid .livevideo {
-		width: 32.50%;
-		height: 365px;
-	}
-	.sixgrid #boundary #vstage {
-		height: 324px;
-	}
-	.page-dashboard .tcol a {
-		padding: 10px 0;
-	}
-	.page-dashboard .adminroles .tile, .page-dashboard .holidayschedule .tile, .page-dashboard .historyreports .tile, .page-dashboard .technicians .tile {
-		margin-bottom: 10px;
-	}
-	.tcol.bg-blue a {
-		padding-top: 6px;
-	}
-	.tile .tile-header {
-		padding: 15px 20px;
-	}
-	.form-group {
-		margin-bottom: 20px;
-	}
-	.refreshbtn {
-		width: 48px;
-		height: 47px;
-		line-height: 47px;
-	}
-	.addpopup a.add {
-		margin: 13px 15px 0 0!important;
-	}
-	.gridlistbar {
-		margin: 8px 0 0;
-	}
-	.profiledetail p label {
-		width: 175px;
-	}
-	span.loader {
-		line-height: 63px;
-	}
-	.credintials .btn {
-		padding: 14px 25px 13px;
-	}
-	.credintials .btn:hover {
-		padding: 12px 23px 11px;
-	}
-	.addusers {
-		margin: -1px -5px 0 0;
-	}
-	.slimscrolls {
-		max-height: 449px;
-		min-height: 449px;
-	}
-	.myshortcuts ul li .icons {
-		height: 54px;
-		line-height: 54px;
-		font-size: 18px;
-	}
-	.myshortcuts ul li a {
-		height: 54px;
-		font-size: 18px;
-	}
-	.card-container .card .front, .card-container .card .noback {
-		height: 248px;
-	}
-	.map {
-		height: 600px;
-	}
+
+    body {
+        line-height: 1.8;
+    }
+    .tile .tile-header, .tile .tile-widget, .tile .tile-body, .tile .tile-footer {
+        padding: 20px;
+    }
+    .page {
+        padding: 20px 30px 10px;
+    }
+    .page.page-dashboard {
+        padding: 30px 30px 20px;
+    }
+    #header .branding {
+        width: 350px;
+    }
+    .filterfields label {
+        font-weight: 500;
+    }
+    .small, small {
+        font-size: 13px!important;
+    }
+    .btn-sm, .btn-group-sm > .btn, .chosen-container-multi .chosen-choices li.search-choice, .chosen-container .chosen-results li, .addpopup a.add, .addusers a.btn  {
+        font-size: 14px;
+    }
+    .glview md-card .md-actions a, .dropdown-menu, .btn, .form-control::-webkit-input-placeholder {
+        font-size: 15px;
+    }
+    .modal-body .form-control::-webkit-input-placeholder {
+        opacity: 0;
+        -webkit-appearance: none !important;
+    }
+    .glview md-card md-card-content p, #header .nav-right > li.nav-profile > a, #header .nav-left > li.nav-profile > a, .form-control, .btn-group.btnrounded>.btn, .profilephoto #profilep-2, .md-tab, .chosen-container-single .chosen-single, .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+        font-size: 16px;
+    }   
+    body {
+        font-size: 17px;
+    }
+    .glview md-card md-card-content .md-title, .page-dashboard .tile-simple .text-muted, .nav-tabs > li > a, .tabs-menu > li > a {
+        font-size: 18px;
+    }
+    .modal-header h4, .backpage a, .leftdetail h4 {
+        font-size: 20px;
+    }
+    .wrap-reset h4 , .tcol .text-transparent-white {
+        font-size: 22px;
+    }
+    #header .branding a.brand, h3, .h3, .card-container .card .bg-dashboard .bg-transparent h3  {
+        font-size: 24px;
+    }
+    .card-container .card .back>.row>div a {
+        font-size: 28px;
+    }
+    .page-dashboard .tcol a h3 {
+        font-size: 32px;
+    }
+    .tcol h2 {
+        font-size: 34px;
+    }
+    .card-container .card .bg-dashboard .bg-transparent p.dashtext, .page-dashboard .text-lg, .noback .text-lg {
+        font-size: 38px!important;
+    }
+    .card-container .card .bg-dashboard .bg-transparent h3.h3link {
+        font-size: 40px;
+    }
+    .page-dashboard .text-elg, .noback .text-elg {
+        font-size: 90px!important;
+        line-height: 70px;
+    }
+    .chosen-container-multi .chosen-choices, .chosen-container .chosen-results li {
+        padding: 7px 10px;
+    }
+    .chosen-container-multi .chosen-choices li.search-choice {
+        padding: 7px 25px 6px 10px;
+    }
+    .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+        height: 32px;
+    }
+    .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+        top: 8px;
+        right: 5px;
+    }
+    #header .branding, #header .branding a.brand {
+        height: 65px;
+    }   
+    .appWrapper.header-fixed.aside-fixed #content {
+        top: 65px;
+    }
+    #header .branding a.brand {
+        line-height: 65px;
+    }
+    #header .nav-right > li.nav-profile, #header .nav-left > li.nav-profile, #header .dropdown>.dropdown-menu {
+        margin-top: 10px;
+    }
+    #header .nav-right > li, #header .nav-left > li {
+        margin-top: 12px;
+    }   
+    #header .dropdown>.dropdown-menu {
+        border-top: 0 none;
+    }
+    .dashboardbg {
+        height: 526px!important;
+    }
+    .card-container .card .bg-dashboard .bg-transparent h3, .card-container .card .bg-dashboard .bg-transparent h3.h3link a {
+        padding: 15px 20px 15px;
+        border-radius: 5px;
+    }   
+    .iconbx img {
+        width: 125px;
+    }
+    .card-container .card .back>.row>div a img {
+        width: 60%;
+        margin-bottom: 25px;
+    }
+    .above1800.p-20 {
+        padding: 30px !important;
+    }
+    .cameradvr .above1800 img {
+        height: 50px;
+    }
+     .above1800.p-30 img {
+        height: 75px;
+    }
+    .page-dashboard .tile-simple .text-muted {
+        margin: 15px 0 16px;
+    }   
+    .card-container .card .bg-dashboard {
+        height: 248px;
+    }   
+    .form-control, .credintials .widget-todo form .form-control, .chosen-container-single .chosen-single {
+        height: auto;
+        padding: 12px 10px;
+    }
+    #hpopup .form-control {
+        padding: 22px 0px 12px;
+    }
+    .btn-group.btnrounded>.btn, .btn-group.btnrounded>.btn:hover {
+        padding: 12px 25px;
+    }
+    .profilephoto .input-group-btn .btn, .input-group-btn .btn, .search .btn {
+        padding: 14px 15px 11px !important;
+    }
+    .profilephoto #profilep-2 {
+        padding: 10px 20px;
+        left: -120px;
+        width: 115%;
+    }
+    .calendar .calendartime th {
+        padding: 4px 5px 4px 0;
+    }
+    .calendar .calendartime #table tr td {
+        line-height: 16px;
+    }
+    .calendar .calendartime {
+        height: 815px;
+    }
+    .modal-dialog {
+        width: 650px;
+        margin: 40px auto 20px;
+    }
+    .lh-38 {
+        line-height: 45px;
+    }
+    .glview {
+        margin: 0 -20px;
+    }
+    .glview md-card:nth-child(4n+4) {
+        margin-right: 1.1%;
+    }
+    .glview md-card:nth-child(5n+5) {
+        margin-right: 0;
+    }
+    .glview md-card {
+        width: 17.53%;
+        margin: 0 1.25% 40px;
+    }
+    .glview md-card.slaveusers {
+        width: 23%;
+    }
+    .listview .glview md-card {
+        width: 100%;
+    }
+    .wrap-reset .glview {
+        margin: 0 -15px;
+    }
+    .wrap-reset .glview md-card {
+        width: 22.2%;
+        margin: 0 1.4% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 0;
+    }
+    .wrap-reset .glview md-card:nth-child(5n+5) {
+        margin-right: 1.4%;
+    }
+    .btn-ef.btn-ef-4, .btn-ef.btn-ef-3 {
+        padding: 10px 30px;
+    }
+    .btn-ef.btn-ef-4 > i, .btn-ef.btn-ef-3 > i {
+        line-height: 40px;
+    }
+    form.form-horizontal {
+        position: relative;
+    }
+    .btn.addpost {
+        padding: 12px 15px 11px;
+    }
+    .credintials .addphone, .editaddphone .addphone {
+        margin-top: -48px;
+        height: 48px;
+        padding: 15px 18px;
+    }
+    .dropdown-menu.panel.notification {
+        min-width: 350px;
+    }
+    .chosen-container-single .chosen-single div b {
+        background-position: 0 14px;
+    }
+    #camerandvr .onegrid .livevideo {
+        width: 72%;
+        margin-bottom: 15px;
+    }
+    .onegrid #boundary #vstage {
+        height: 714px;
+    }
+    #camerandvr .fourgrid .livevideo, #camerandvr .twogrid .livevideo {
+        width: 49.40%;
+        height: 530px;
+    }
+    .twogrid #boundary #vstage, .fourgrid #boundary #vstage {
+        height: 485px;
+    }
+    #camerandvr .sixgrid .livevideo {
+        width: 32.50%;
+        height: 365px;
+    }
+    .sixgrid #boundary #vstage {
+        height: 324px;
+    }
+    .page-dashboard .tcol a {
+        padding: 10px 0;
+    }
+    .page-dashboard .adminroles .tile, .page-dashboard .holidayschedule .tile, .page-dashboard .historyreports .tile, .page-dashboard .technicians .tile {
+        margin-bottom: 10px;
+    }
+    .tcol.bg-blue a {
+        padding-top: 6px;
+    }
+    .tile .tile-header {
+        padding: 15px 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .refreshbtn {
+        width: 48px;
+        height: 47px;
+        line-height: 47px;
+    }
+    .addpopup a.add {
+        margin: 13px 15px 0 0!important;
+    }
+    .gridlistbar {
+        margin: 8px 0 0;
+    }
+    .profiledetail p label {
+        width: 175px;
+    }
+    span.loader {
+        line-height: 63px;
+    }
+    .credintials .btn {
+        padding: 14px 25px 13px;
+    }
+    .credintials .btn:hover {
+        padding: 12px 23px 11px;
+    }
+    .addusers {
+        margin: -1px -5px 0 0;
+    }
+    .slimscrolls {
+        max-height: 449px;
+        min-height: 449px;
+    }
+    .myshortcuts ul li .icons {
+        height: 54px;
+        line-height: 54px;
+        font-size: 18px;
+    }
+    .myshortcuts ul li a {
+        height: 54px;
+        font-size: 18px;
+    }
+    .card-container .card .front, .card-container .card .noback {
+        height: 248px;
+    }
+    .map {
+        height: 600px;
+    }
 }
 
 @media screen and (max-width:1679px) and (min-width:1400px) {
-	.dashboardbg {
-		height: 432px!important;
-	}
-	.page.page-dashboard {
-		padding: 30px 30px 10px;
-	}
-	.page {
-		padding: 20px 30px 10px;
-	}
-	.above1800.p-20 {
-		padding: 30px !important;
-	}
-	.cameradvr .above1800 img {
-		height: 49px;
-	}
-	.iconbx img {
-		width: 95px;
-	}
-	.page-dashboard .text-elg, .noback .text-elg {
-		font-size: 70px!important;
-		line-height: 60px;
-	}
-	.card-container .card .back>.row>div a img {
-		width: 60%;
-		margin-bottom: 25px;
-	}
-	.card-container .card .back>.row>div a {
-		font-size: 20px;
-	}
-	.card-container .card .bg-dashboard {
-		height: 201px;
-	}
-	.glview md-card {
-		width: 22.8%;
-		margin: 0 1.1% 30px;
-	}
-	.wrap-reset .glview md-card {
-		width: 29.95%;
-		margin: 0 1.7% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 1.7%;
-	}
-	.wrap-reset .glview md-card:nth-child(3n+3) {
-		margin-right: 0;
-	}
-	.card-container .card .front, .card-container .card .noback {
-		height: 201px;
-	}
-	.slimscrolls {
-		max-height: 355px;
-		min-height: 355px;
-	}
+    .dashboardbg {
+        height: 432px!important;
+    }
+    .page.page-dashboard {
+        padding: 30px 30px 10px;
+    }
+    .page {
+        padding: 20px 30px 10px;
+    }
+    .above1800.p-20 {
+        padding: 30px !important;
+    }
+    .cameradvr .above1800 img {
+        height: 49px;
+    }
+    .iconbx img {
+        width: 95px;
+    }
+    .page-dashboard .text-elg, .noback .text-elg {
+        font-size: 70px!important;
+        line-height: 60px;
+    }
+    .card-container .card .back>.row>div a img {
+        width: 60%;
+        margin-bottom: 25px;
+    }
+    .card-container .card .back>.row>div a {
+        font-size: 20px;
+    }
+    .card-container .card .bg-dashboard {
+        height: 201px;
+    }
+    .glview md-card {
+        width: 22.8%;
+        margin: 0 1.1% 30px;
+    }
+    .wrap-reset .glview md-card {
+        width: 29.95%;
+        margin: 0 1.7% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 1.7%;
+    }
+    .wrap-reset .glview md-card:nth-child(3n+3) {
+        margin-right: 0;
+    }
+    .card-container .card .front, .card-container .card .noback {
+        height: 201px;
+    }
+    .slimscrolls {
+        max-height: 355px;
+        min-height: 355px;
+    }
 }
 
 @media only screen and (max-width: 1399px) {
-	.page-login.core-new { 
-		padding-left: 388px;
-	}
+    .page-login.core-new { 
+        padding-left: 388px;
+    }
 }
 
 @media only screen and (max-width: 1365px) {
-	.list-inline > li {
-		padding-right: 2px;
-		padding-left: 2px;
-	}
-	.glview md-card {
-		margin: 0 1.2% 30px;
-		width: 22.6%;
-	}
-	.wrap-reset .glview md-card {
-		width: 29.72%;
-		margin: 0 1.8% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 1.8%;
-	}
-	.wrap-reset .glview md-card:nth-child(3n+3) {
-		margin-right: 0;
-	}
-	.crystalcove {
-		width: 64%;
-	}
-	.myshortcuts {
-		width: 36%;
-	}
-	.covertext span {
-		font-size: 24px;
-	}
-	.covertext span strong {
-		font-size: 40px;
-	}
-	.covertext span  strong:after {
-		bottom: -50px;
-	}	
-	.card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
-		font-size: 20px;
-	}
-	.slimscrolls {
-		max-height: 297px;
-		min-height: 297px;
-	}
+    .list-inline > li {
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+    .glview md-card {
+        margin: 0 1.2% 30px;
+        width: 22.6%;
+    }
+    .wrap-reset .glview md-card {
+        width: 29.72%;
+        margin: 0 1.8% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 1.8%;
+    }
+    .wrap-reset .glview md-card:nth-child(3n+3) {
+        margin-right: 0;
+    }
+    .crystalcove {
+        width: 64%;
+    }
+    .myshortcuts {
+        width: 36%;
+    }
+    .covertext span {
+        font-size: 24px;
+    }
+    .covertext span strong {
+        font-size: 40px;
+    }
+    .covertext span  strong:after {
+        bottom: -50px;
+    }   
+    .card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
+        font-size: 20px;
+    }
+    .slimscrolls {
+        max-height: 297px;
+        min-height: 297px;
+    }
 }
 
 @media only screen and (max-width: 1279px) {
-	.page.bodyfix {
-		position: fixed;
-	}
-	.view-container.bodygray section#content:before {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background: rgba(0,0,0,0.75);
-		left: 0;
-		top: 0;
-		content: "";
-		z-index: 99;
-	}
-	#header .branding {
-		padding: 0 10px;
-	}
-	.appWrapper.sidebar-sm #header .branding {
-		width: auto;
-		margin-left: 0;
-	}
-	.topmenu  {
-		width: 225px;
-		position: fixed;
-		height: 100%;
-		transition: 0.25s;
-		left: -100%;
-		top: 45px;
-		background: #fff;
-		box-shadow: 0 5px 5px rgba(0,0,0,0.1);
-	}
-	
-	.topmenu.pull-left {
-		float: none!important;
-		overflow-x: hidden;
-		overflow-y: auto;
-	}
-	
-	.topmenu .list-inline > li {
-		display: block;
-	}
-	
-	#header .topmenu  .nav-right > li, #header .topmenu .nav-left > li {
-		margin-top: 0px;
-	}
-	
-	.topmenu.openmmenu {
-		left:0;
-	}
-	
-	.topmenu .list-inline > li {
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	
-	#header .topmenu .nav-right > li > a, #header .topmenu .nav-left > li > a {
-		display: block;
-	}
-	
-	#header .topmenu .nav-right > li > span i, #header .topmenu .nav-left > li > span i{
-		float: right;
-		margin-top: 11px;
-	}
-	
-	#header .topmenu .nav-right > li.open > span i, #header .topmenu .nav-left > li > span i {
-		transform: rotate(180deg);
-	}
-	
-	.topmenu .dropdown-menu {
-		position: relative;
-		top: 0;
-		left: 0;
-		margin: 0 -10px;
-	}
-	
-	.topmenu .dropdown-menu.open, #header .nav-right>li.open {
-		background: #f1f1f1!important;
-	}
-	#header .nav-right>li.nav-profile.open {
-		background: transparent!important;
-	}
-	
-	#header .nav-right.pull-right>li.open {
-		background: #ffffff!important;
-	}
-	
-	.topmenu .dropdown-menu.panel {
-		min-width: 100%;
-		width: 235px;
-		box-shadow: 0 0 0 rgba(0,0,0,0);
-		animation-duration: 0s!important;
-		background: #f9f9f9;
-		border:0 none;
-		border-top: 1px solid #f1f1f1!important;
-		border-bottom: 1px solid #f1f1f1;
-		padding: 5px 0 0 0;
-	}
-	
-	.topmenu .dropdown-menu > li > a {
-		padding: 8px 15px;
-	}
-	
-	.mobmenu {		
-		display: block;
-		float: left;
-	}
-	
-	.animated-arrow {
-		display: block;
-		padding: 21px;
-		position: relative;
-	}
-	
-	.animated-arrow span, .animated-arrow span:after, .animated-arrow span:before {
-		cursor: pointer;
-		height: 3px;
-		width: 24px;
-		background: #449d44;
-		position: absolute;
-		display: block;
-		content: '';
-		transition: .25s;
-		left: 50%;
-		margin-left: -12px;
-	}
-	
-	.animated-arrow span:before {
-		top: -7px;
-	}
-	
-	.animated-arrow span:after {
-		bottom: -7px;
-	}
-	
-	.openmenu.animated-arrow span::after, .openmenu.animated-arrow span::before {
-		background-color: #e05d6f;
-	}
-	
-	.openmenu.animated-arrow span {
-		background-color: transparent;
-	}
-	
-	.openmenu.animated-arrow span:before {
-		transform: rotate(45deg);
-		-moz-transform: rotate(45deg);
-		-ms-transform: rotate(45deg);
-		-o-transform: rotate(45deg);
-		-webkit-transform: rotate(45deg);
-		bottom: 0;
-	}
-	
-	.openmenu.animated-arrow span:after {
-		transform: rotate(-45deg);
-		-moz-transform: rotate(-45deg);
-		-ms-transform: rotate(-45deg);
-		-o-transform: rotate(-45deg);
-		-webkit-transform: rotate(-45deg);
-	}
-	
-	.openmenu.animated-arrow.active span:after, .openmenu.animated-arrow span:before {
-		top: 0;
-	}
-	
-	.openmenu.animated-arrow span:after {
-		bottom: 0;
-	}
-	
-	.card-container .card {
-		margin-bottom: 20px;
-	}
-	.dashboardbg {
-		height: 360px!important;
-	}
-	.card-container .card .back>.row>div a img {
-		width: 76px;
-	}
-	.text-lg {
-		font-size: 26px !important;
-	}
-	.page-dashboard .tcol a h3 {
-		font-size: 22px;
-	}
-	.cameradvr .above1800 img {
-		height: 40px;
-	}
-	.glview md-card {
-		margin: 0 1.35% 30px;
-		width: 30.625%;
-	}
-	.glview md-card:nth-child(3n+3) {
-		margin-right: 0;
-	}
-	.glview md-card:nth-child(4n+4) {
-		margin-right: 1.35%;
-	}
-	.wrap-reset .glview md-card {
-		width: 29.15%;
-		margin: 0 2.1% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 2.1%;
-	}
-	.wrap-reset .glview md-card:nth-child(3n+3) {
-		margin-right: 0;
-	}
-	.crystalcove {
-		width: 60%;
-	}
-	.myshortcuts {
-		width: 40%;
-	}
-	.covertext span {
-		font-size: 20px;
-	}
-	.covertext span strong {
-		font-size: 36px;
-	}
-	.covertext span strong:after {
-		bottom: -45px;
-		margin-left: -50px;
-		width: 100px;
-	}
-	.slimscrolls {
-		max-height: 287px;
-		min-height: 287px;
-	}
+    .page.bodyfix {
+        position: fixed;
+    }
+    .view-container.bodygray section#content:before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.75);
+        left: 0;
+        top: 0;
+        content: "";
+        z-index: 99;
+    }
+    #header .branding {
+        padding: 0 10px;
+    }
+    .appWrapper.sidebar-sm #header .branding {
+        width: auto;
+        margin-left: 0;
+    }
+    .topmenu  {
+        width: 225px;
+        position: fixed;
+        height: 100%;
+        transition: 0.25s;
+        left: -100%;
+        top: 45px;
+        background: #fff;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    }
+    
+    .topmenu.pull-left {
+        float: none!important;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    .topmenu .list-inline > li {
+        display: block;
+    }
+    
+    #header .topmenu  .nav-right > li, #header .topmenu .nav-left > li {
+        margin-top: 0px;
+    }
+    
+    .topmenu.openmmenu {
+        left:0;
+    }
+    
+    .topmenu .list-inline > li {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    #header .topmenu .nav-right > li > a, #header .topmenu .nav-left > li > a {
+        display: block;
+    }
+    
+    #header .topmenu .nav-right > li > span i, #header .topmenu .nav-left > li > span i{
+        float: right;
+        margin-top: 11px;
+    }
+    
+    #header .topmenu .nav-right > li.open > span i, #header .topmenu .nav-left > li > span i {
+        transform: rotate(180deg);
+    }
+    
+    .topmenu .dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 -10px;
+    }
+    
+    .topmenu .dropdown-menu.open, #header .nav-right>li.open {
+        background: #f1f1f1!important;
+    }
+    #header .nav-right>li.nav-profile.open {
+        background: transparent!important;
+    }
+    
+    #header .nav-right.pull-right>li.open {
+        background: #ffffff!important;
+    }
+    
+    .topmenu .dropdown-menu.panel {
+        min-width: 100%;
+        width: 235px;
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+        animation-duration: 0s!important;
+        background: #f9f9f9;
+        border:0 none;
+        border-top: 1px solid #f1f1f1!important;
+        border-bottom: 1px solid #f1f1f1;
+        padding: 5px 0 0 0;
+    }
+    
+    .topmenu .dropdown-menu > li > a {
+        padding: 8px 15px;
+    }
+    
+    .mobmenu {      
+        display: block;
+        float: left;
+    }
+    
+    .animated-arrow {
+        display: block;
+        padding: 21px;
+        position: relative;
+    }
+    
+    .animated-arrow span, .animated-arrow span:after, .animated-arrow span:before {
+        cursor: pointer;
+        height: 3px;
+        width: 24px;
+        background: #449d44;
+        position: absolute;
+        display: block;
+        content: '';
+        transition: .25s;
+        left: 50%;
+        margin-left: -12px;
+    }
+    
+    .animated-arrow span:before {
+        top: -7px;
+    }
+    
+    .animated-arrow span:after {
+        bottom: -7px;
+    }
+    
+    .openmenu.animated-arrow span::after, .openmenu.animated-arrow span::before {
+        background-color: #e05d6f;
+    }
+    
+    .openmenu.animated-arrow span {
+        background-color: transparent;
+    }
+    
+    .openmenu.animated-arrow span:before {
+        transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        bottom: 0;
+    }
+    
+    .openmenu.animated-arrow span:after {
+        transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+    
+    .openmenu.animated-arrow.active span:after, .openmenu.animated-arrow span:before {
+        top: 0;
+    }
+    
+    .openmenu.animated-arrow span:after {
+        bottom: 0;
+    }
+    
+    .card-container .card {
+        margin-bottom: 20px;
+    }
+    .dashboardbg {
+        height: 360px!important;
+    }
+    .card-container .card .back>.row>div a img {
+        width: 76px;
+    }
+    .text-lg {
+        font-size: 26px !important;
+    }
+    .page-dashboard .tcol a h3 {
+        font-size: 22px;
+    }
+    .cameradvr .above1800 img {
+        height: 40px;
+    }
+    .glview md-card {
+        margin: 0 1.35% 30px;
+        width: 30.625%;
+    }
+    .glview md-card:nth-child(3n+3) {
+        margin-right: 0;
+    }
+    .glview md-card:nth-child(4n+4) {
+        margin-right: 1.35%;
+    }
+    .wrap-reset .glview md-card {
+        width: 29.15%;
+        margin: 0 2.1% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 2.1%;
+    }
+    .wrap-reset .glview md-card:nth-child(3n+3) {
+        margin-right: 0;
+    }
+    .crystalcove {
+        width: 60%;
+    }
+    .myshortcuts {
+        width: 40%;
+    }
+    .covertext span {
+        font-size: 20px;
+    }
+    .covertext span strong {
+        font-size: 36px;
+    }
+    .covertext span strong:after {
+        bottom: -45px;
+        margin-left: -50px;
+        width: 100px;
+    }
+    .slimscrolls {
+        max-height: 287px;
+        min-height: 287px;
+    }
 }
 
 @media only screen and (max-width: 1139px) {
-	.dnone {
-		display: none;
-	}
-	.card-container .card {
-		margin-bottom: 30px;
-	}
-	.page-dashboard .adminroles .above1800.p-30 {
-		padding: 20px !important;
-	}
-	.page-dashboard .adminroles .above1800.p-30 img {
-		height: 40px;
-	}	
-	.page-dashboard .adminroles .tcol a h3 {
-		margin-top: 10px;
-		margin-bottom: 5px;
-	}
-	.page-dashboard .adminroles .tile-simple .text-muted {
-		margin-top: 10px;
-		margin-bottom: 2px;
-	}
-	.dashboardbg {
-		height: 370px!important;
-	}
-	.appWrapper.sidebar-sm #header .branding .brand > span {
-		display: block;
-	}
-	.appWrapper.sidebar-sm #header .branding .brand {
-		margin-left: 0;
-	}
-	.thumb.thumb-xxll {
-		width: 100px;
-		margin-bottom: 10px;
-	}
-	.glview md-card:nth-child(4n+4) {
-		margin-right: 1.5%;
-	}
-	.glview md-card:nth-child(3n+3) {
-		margin-right: 0;
-	}
-	.glview md-card {
-		width: 30.32%;
-		margin: 0 1.5% 30px;
-	}
-	.leftwrap {
-		width: 250px;
-		padding: 30px 20px;
-	}
-	.leftwrap .newlogo img {
-		width: 200px;
-	}
-	.welcometxt {
-		left: 25px;
-		margin-top: -65px;
-	}
-	.welcometxt h1 {
-		font-size: 40px;
-	}
-	.welcometxt span {
-		border-bottom: 5px solid #0eba8c;
-	}
-	.page-login.core-new { 
-		padding-left: 250px;
-	}
-	.moreitemsondevice {
-		display: block;
-	}
-	.moreitemsondevice a {
-		color: #aaa;
-	}
-	.wrap-reset .glview md-card {
-		width: 22%;
-		margin: 0 1.5% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(3n+3) {
-		margin-right: 1.5%;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 0;
-	}
-	.slimscrolls {
-		max-height: 297px;
-		min-height: 297px;
-	}
-	.table-responsive {
-		overflow-x: scroll;
-	}
-	.table-responsive > .table-bordered {
-		width: 1139px;
-	}
+    .dnone {
+        display: none;
+    }
+    .card-container .card {
+        margin-bottom: 30px;
+    }
+    .page-dashboard .adminroles .above1800.p-30 {
+        padding: 20px !important;
+    }
+    .page-dashboard .adminroles .above1800.p-30 img {
+        height: 40px;
+    }   
+    .page-dashboard .adminroles .tcol a h3 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .page-dashboard .adminroles .tile-simple .text-muted {
+        margin-top: 10px;
+        margin-bottom: 2px;
+    }
+    .dashboardbg {
+        height: 370px!important;
+    }
+    .appWrapper.sidebar-sm #header .branding .brand > span {
+        display: block;
+    }
+    .appWrapper.sidebar-sm #header .branding .brand {
+        margin-left: 0;
+    }
+    .thumb.thumb-xxll {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    .glview md-card:nth-child(4n+4) {
+        margin-right: 1.5%;
+    }
+    .glview md-card:nth-child(3n+3) {
+        margin-right: 0;
+    }
+    .glview md-card {
+        width: 30.32%;
+        margin: 0 1.5% 30px;
+    }
+    .leftwrap {
+        width: 250px;
+        padding: 30px 20px;
+    }
+    .leftwrap .newlogo img {
+        width: 200px;
+    }
+    .welcometxt {
+        left: 25px;
+        margin-top: -65px;
+    }
+    .welcometxt h1 {
+        font-size: 40px;
+    }
+    .welcometxt span {
+        border-bottom: 5px solid #0eba8c;
+    }
+    .page-login.core-new { 
+        padding-left: 250px;
+    }
+    .moreitemsondevice {
+        display: block;
+    }
+    .moreitemsondevice a {
+        color: #aaa;
+    }
+    .wrap-reset .glview md-card {
+        width: 22%;
+        margin: 0 1.5% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(3n+3) {
+        margin-right: 1.5%;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 0;
+    }
+    .slimscrolls {
+        max-height: 297px;
+        min-height: 297px;
+    }
+    .table-responsive {
+        overflow-x: scroll;
+    }
+    .table-responsive > .table-bordered {
+        width: 1139px;
+    }
 }
 
 @media only screen and (max-width: 919px) {
-	.page {
-		padding: 15px 20px;
-	}
-	.iconbx img {
-		width: 60px;
-	}
-	.text-elg {
-		font-size: 40px !important;
-		line-height: 26px;
-	}
-	.text-lg {
-		font-size: 22px !important;
-	}
-	.itxt {
-		margin-top: 28px;
-	}
-	.card-container .card {
-		margin-bottom: 20px;
-	}
-	.pageheader {
-		margin-bottom: 10px;
-	}
-	.page-dashboard .card-container .card {
-		margin-bottom: 10px;
-	}
-	.page-dashboard .card-container {
-		padding: 0 10px;
-	}
-	.card-container .card .back>.row>div a {
-		padding: 15px 10px 0;
-		font-size: 16px;
-	}
-	.dashboardbg {
-		height: 290px!important;
-	}
-	.card .back>.row>div a img {
-		width: 50px;
-		margin-bottom: 10px;
-	}
-	.doors {
-		margin-top: 10px;
-		width: 50%;
-	}
-	.card-container.doors .card .front {
-		height: 170px;
-	}
-	.cameradvr, .adminroles   {
-		margin-top: 10px;
-		width: 50%;
-		margin-bottom: 0!important;
-	}
-	.page-dashboard .above1800.p-30 img {
-		height: 40px;
-	}
-	.page-dashboard .above1800.p-30 {
-		padding: 20px !important;
-	}
-	.holidayschedule {
-		width: 50%;
-		margin-top: 10px;
-	}
-	.historyreports, .technicians {
-		width: 50%;
-	}
-	.page-dashboard .adminroles .tcol a h3 {
-		margin-top: 20px;
-		margin-bottom: 10px;
-	}
-	.page-dashboard .adminroles .tile-simple .text-muted {
-		margin: 10px 0 12px;
-	}
-	.card-container .card .back>.row>div a img {
-		width: 50px;
-		margin-bottom: 10px;
-	}
-	.leftwrap {
-		width: 100%;
-		padding: 15px;
-		box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-		height: auto;
-	}
-	.leftwrap .newlogo img {
-		width: 175px;
-	}
-	.welcometxt {
-		display: none;
-	}
-	.page-login.core-new {
-		padding: 125px 0 50px;
-	}
-	.filterorder label:nth-child(2) a {
-		padding-right: 0px;
-		margin-right: 0px;
-	}
-	.search {
-		padding: 0 15px 0 0;
-	}
-	.profilephoto {
-		padding: 0 1px;
-	}
-	.profilephoto .input-group-btn .btn {
-		padding: 8px 9px;
-	}
-	.filterorder label>a {
-		padding-right: 10px;
-		margin-right: 5px;
-	}
-	.credintials .col-sm-3 {
-		width: 50%;
-	}
-	.addaccess .aassigndoor {
-		width: 350px;
-	}
-	.phoneaccess .passigndoor {
-		width: 225px;
-	}
-	.rfidcode  .rassigndoor {
-		width: 200px;
-	}
-	.wiegandcode .wassigndoor {
-		width: 225px;
-	}
-	.nfccode .nassigndoor {
-		width: 350px;
-	}
-	.blecode .bassigndoor {
-		width: 300px;
-	}
-	.glview md-card:nth-child(4n+4) {
-		margin-right: 2%;
-	}
-	.glview md-card:nth-child(3n+3) {
-		margin-right: 2%;
-	}
-	.glview md-card:nth-child(2n+2) {
-		margin-right: 0;
-	}
-	.glview md-card {
-		width: 46%;
-		margin: 0 2% 30px;
-	}
-	.wrap-reset .glview md-card {
-		width: 29.3%;
-		margin: 0 2% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(3n+3) {
-		margin-right: 0;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 2%;
-	}
-	.crystalcove {
-		width: 55%;
-	}
-	.myshortcuts {
-		width: 45%;
-	}
-	.covertext span strong {
-		font-size: 30px;
-	}
-	.covertext span {
-		font-size: 20px;
-	}
-	.slimscrolls {
-		max-height: 218px;
-		min-height: 218px;
-	}
-	.card-container .card .front, .card-container .card .noback {
-		height: 140px;
-	}
+    .page {
+        padding: 15px 20px;
+    }
+    .iconbx img {
+        width: 60px;
+    }
+    .text-elg {
+        font-size: 40px !important;
+        line-height: 26px;
+    }
+    .text-lg {
+        font-size: 22px !important;
+    }
+    .itxt {
+        margin-top: 28px;
+    }
+    .card-container .card {
+        margin-bottom: 20px;
+    }
+    .pageheader {
+        margin-bottom: 10px;
+    }
+    .page-dashboard .card-container .card {
+        margin-bottom: 10px;
+    }
+    .page-dashboard .card-container {
+        padding: 0 10px;
+    }
+    .card-container .card .back>.row>div a {
+        padding: 15px 10px 0;
+        font-size: 16px;
+    }
+    .dashboardbg {
+        height: 290px!important;
+    }
+    .card .back>.row>div a img {
+        width: 50px;
+        margin-bottom: 10px;
+    }
+    .doors {
+        margin-top: 10px;
+        width: 50%;
+    }
+    .card-container.doors .card .front {
+        height: 170px;
+    }
+    .cameradvr, .adminroles   {
+        margin-top: 10px;
+        width: 50%;
+        margin-bottom: 0!important;
+    }
+    .page-dashboard .above1800.p-30 img {
+        height: 40px;
+    }
+    .page-dashboard .above1800.p-30 {
+        padding: 20px !important;
+    }
+    .holidayschedule {
+        width: 50%;
+        margin-top: 10px;
+    }
+    .historyreports, .technicians {
+        width: 50%;
+    }
+    .page-dashboard .adminroles .tcol a h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .page-dashboard .adminroles .tile-simple .text-muted {
+        margin: 10px 0 12px;
+    }
+    .card-container .card .back>.row>div a img {
+        width: 50px;
+        margin-bottom: 10px;
+    }
+    .leftwrap {
+        width: 100%;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        height: auto;
+    }
+    .leftwrap .newlogo img {
+        width: 175px;
+    }
+    .welcometxt {
+        display: none;
+    }
+    .page-login.core-new {
+        padding: 125px 0 50px;
+    }
+    .filterorder label:nth-child(2) a {
+        padding-right: 0px;
+        margin-right: 0px;
+    }
+    .search {
+        padding: 0 15px 0 0;
+    }
+    .profilephoto {
+        padding: 0 1px;
+    }
+    .profilephoto .input-group-btn .btn {
+        padding: 8px 9px;
+    }
+    .filterorder label>a {
+        padding-right: 10px;
+        margin-right: 5px;
+    }
+    .credintials .col-sm-3 {
+        width: 50%;
+    }
+    .addaccess .aassigndoor {
+        width: 350px;
+    }
+    .phoneaccess .passigndoor {
+        width: 225px;
+    }
+    .rfidcode  .rassigndoor {
+        width: 200px;
+    }
+    .wiegandcode .wassigndoor {
+        width: 225px;
+    }
+    .nfccode .nassigndoor {
+        width: 350px;
+    }
+    .blecode .bassigndoor {
+        width: 300px;
+    }
+    .glview md-card:nth-child(4n+4) {
+        margin-right: 2%;
+    }
+    .glview md-card:nth-child(3n+3) {
+        margin-right: 2%;
+    }
+    .glview md-card:nth-child(2n+2) {
+        margin-right: 0;
+    }
+    .glview md-card {
+        width: 46%;
+        margin: 0 2% 30px;
+    }
+    .wrap-reset .glview md-card {
+        width: 29.3%;
+        margin: 0 2% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(3n+3) {
+        margin-right: 0;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 2%;
+    }
+    .crystalcove {
+        width: 55%;
+    }
+    .myshortcuts {
+        width: 45%;
+    }
+    .covertext span strong {
+        font-size: 30px;
+    }
+    .covertext span {
+        font-size: 20px;
+    }
+    .slimscrolls {
+        max-height: 218px;
+        min-height: 218px;
+    }
+    .card-container .card .front, .card-container .card .noback {
+        height: 140px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
-	.page {
-		padding: 15px;
-	}
-	.page-dashboard .card-container {
-		float: none;
-		width: 100%;
-		padding: 0 15px;
-		margin: 0 auto 20px;
-	}
-	.card-container {
-		position: relative;
-		float: left;
-		padding: 0 0 0 15px;
-		width: 32.50%;
-	}
-	.cameradvr, .adminroles {
-		margin-top: 5px;
-	}
-	.glview md-card {
-		width: 46%;
-		margin: 0 2% 25px;
-	}
-	.glview md-card:nth-child(3n+3), .glview md-card:nth-child(4n+4){
-		margin-right: 2%;
-	}
-	.glview md-card:nth-child(2n+2){
-		margin-right: 0;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder {
-		width: 30%;
-		float: left;
-		text-align: left;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-6.col-md-6 {
-		width: 51%;
-		float: left;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 {
-		float: left;
-		width: 19%;
-		text-align: right;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 .gridlistbar label, .wrap-reset .table-custom .row .col-sm-3.col-md-4 .gridlistbar label {
-		display: none;
-	}
-	.search {
-		padding: 0 15px 0 0;
-		width: 62%;
-		float: left;
-	}
-	.profilephoto.csvupload {
-		padding: 0 15px 0 1px;
-		width: 38%;
-		float: right;
-		margin-right: 0;
-		text-align: right;
-	}
-	.profilephoto.csvupload i {
-		display: none;
-	}
-	.profilephoto.csvupload .input-group-btn .btn {
-		padding: 8px 12px 8px 0;
-	}
-	.filterfields .col-md-3 {
-		width: 100%!important;
-		text-align: left!important;
-		margin-bottom: 15px;
-	}
-	.credintials .col-sm-3 {
-		width: 100%;
-	}
-	.glview md-card:nth-child(4n+4) {
-		margin-right: 2.55%;
-	}
-	.glview md-card:nth-child(3n+3) {
-		margin-right: 2.55%;
-	}
-	.glview md-card {
-		width: 44.9%;
-		margin: 0 2.55% 30px;
-	}
-	.wrap-reset .glview md-card {
-		width: 44.8%;
-		margin: 0 2.6% 30px;
-	}
-	.wrap-reset .glview md-card:nth-child(2n+2) {
-		margin-right: 0;
-	}
-	.wrap-reset .glview md-card:nth-child(3n+3) {
-		margin-right: 2.6%;
-	}
-	.wrap-reset .glview md-card:nth-child(4n+4) {
-		margin-right: 2.6%;
-	}
-	.crystalcove {
-		width: 60%;
-	}
-	.myshortcuts {
-		width: 40%;
-	}
-	.iconbx img {
-		width: auto;
-	}
-	.signup {
-		width: 550px;
-		padding: 30px;
-	}
-	.signup input, .signupselect {
-		width: 44%;
-	}
-	.signup .negmargin40 {
-		margin: 0px -30px -30px;
-	}
-
-
+    .page {
+        padding: 15px;
+    }
+    .page-dashboard .card-container {
+        float: none;
+        width: 100%;
+        padding: 0 15px;
+        margin: 0 auto 20px;
+    }
+    .card-container {
+        position: relative;
+        float: left;
+        padding: 0 0 0 15px;
+        width: 32.50%;
+    }
+    .cameradvr, .adminroles {
+        margin-top: 5px;
+    }
+    .glview md-card {
+        width: 46%;
+        margin: 0 2% 25px;
+    }
+    .glview md-card:nth-child(3n+3), .glview md-card:nth-child(4n+4){
+        margin-right: 2%;
+    }
+    .glview md-card:nth-child(2n+2){
+        margin-right: 0;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder {
+        width: 30%;
+        float: left;
+        text-align: left;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-6.col-md-6 {
+        width: 51%;
+        float: left;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 {
+        float: left;
+        width: 19%;
+        text-align: right;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 .gridlistbar label, .wrap-reset .table-custom .row .col-sm-3.col-md-4 .gridlistbar label {
+        display: none;
+    }
+    .search {
+        padding: 0 15px 0 0;
+        width: 62%;
+        float: left;
+    }
+    .profilephoto.csvupload {
+        padding: 0 15px 0 1px;
+        width: 38%;
+        float: right;
+        margin-right: 0;
+        text-align: right;
+    }
+    .profilephoto.csvupload i {
+        display: none;
+    }
+    .profilephoto.csvupload .input-group-btn .btn {
+        padding: 8px 12px 8px 0;
+    }
+    .filterfields .col-md-3 {
+        width: 100%!important;
+        text-align: left!important;
+        margin-bottom: 15px;
+    }
+    .credintials .col-sm-3 {
+        width: 100%;
+    }
+    .glview md-card:nth-child(4n+4) {
+        margin-right: 2.55%;
+    }
+    .glview md-card:nth-child(3n+3) {
+        margin-right: 2.55%;
+    }
+    .glview md-card {
+        width: 44.9%;
+        margin: 0 2.55% 30px;
+    }
+    .wrap-reset .glview md-card {
+        width: 44.8%;
+        margin: 0 2.6% 30px;
+    }
+    .wrap-reset .glview md-card:nth-child(2n+2) {
+        margin-right: 0;
+    }
+    .wrap-reset .glview md-card:nth-child(3n+3) {
+        margin-right: 2.6%;
+    }
+    .wrap-reset .glview md-card:nth-child(4n+4) {
+        margin-right: 2.6%;
+    }
+    .crystalcove {
+        width: 60%;
+    }
+    .myshortcuts {
+        width: 40%;
+    }
+    .iconbx img {
+        width: auto;
+    }
+    .signup {
+        width: 550px;
+        padding: 30px;
+    }
+    .signup input, .signupselect {
+        width: 44%;
+    }
+    .signup .negmargin40 {
+        margin: 0px -30px -30px;
+    }
 }
 
 @media only screen and (max-width: 599px) {
-	.branding, .dropdown-menu.pull-right.with-arrow:after {
-		display: none;
-	}
-	.appWrapper.sidebar-sm #header .branding {
-		width: 100%;
-		float: none;
-	}
-	.appWrapper.sidebar-sm #header .branding .brand {
-		margin-left: 4px;
-		float: none;
-		display: block;
-	}
-	.topmenu .branding {
-		display: block;
-	}
-	.dropdown-menu.panel.notification {
-		min-width: 300px;
-		top: 44px;
-		right: -65px;
-	}
-	.leftwrap {
-		padding: 10px;
-	}
-	.leftwrap .newlogo img {
-		width: 125px;
-	}
-	.page-login.core-new {
-		padding: 75px 0 25px;
-	}
-	#hpopup {
-		padding: 15px;
-		width: 350px;
-	}
-	.signup form {
-		margin-left: 0;
-	}
-	.signup .overflow {
-		margin-bottom: 0;
-	}
-	.signup .signuplabel {
-		margin-left: 0!important;
-	}
-	.signup input, .signupselect {
-		float: left;
-		width: 100%;
-		margin-left: 0;
-		margin-bottom: 20px;
-	}
-	.signupselect {
-		margin-bottom: 0;
-	}
-	.negmargin40 {
-		margin: 0px -15px -15px;
-	}
-	.dashboardbg {
-		height: 390px!important;
-	}
-	.crystalcove {
-		width: 100%;
-		height: 85px;
-		margin-bottom: 15px;
-	}
-	.covertext span strong {
-		font-size: 26px;
-	}
-	.covertext span strong:after {
-		bottom: -30px;
-		height: 1px;
-	}
-	.covertext span {
-		font-size: 16px;
-	}
-	.myshortcuts {
-		width: 100%;
-	}
-	.myshortcuts ul li .icons {
-		width: 20%;
-	}
-	.myshortcuts ul li a {
-		width: 80%;
-	}
-	.page-dashboard .card-container, .card-container {
-		float: none;
-		width: 100%!important;
-		padding: 0 15px;
-	}
-	.glview md-card {
-		width: 92%;
-		margin: 0 auto 20px!important;
-		float: none;
-		display: block;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder, .wrap-reset .table-custom .row .col-sm-4.col-md-4.filterorder {
-		width: 100%;
-		float: left;
-		text-align: left;
-		margin-top: 0;
-		display: none;
-	}
-	.search {
-		padding: 0 15px;
-		width: 100%;
-		float: left;
-		margin: 0 0 15px 0;
-	}
-	.profilephoto.csvupload {
-		padding: 0 16px;
-		width: 50%;
-		float: left;
-		margin-right: 0;
-		text-align: left;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 {
-		float: right;
-		width: 50%;
-		text-align: right;
-		margin-top: -38px;
-	}
-	.hometabs .tile-body.table-custom .row .col-sm-6.col-md-6 {
-		width: 100%;
-		float: left;
-	}
-	.listview .glview md-card {
-		padding: 0 0 50px;
-	}
-	.listview .glview md-card .md-actions {
-		right: 0;
-	}
-	.listview .glview md-card .md-actions a {
-		margin: 0 0 0 15px;
-		border: 0 none;
-		padding: 0;
-		font-weight: 500;
-	}
-	.listview .glview md-card .moreitemsondevice {
-		display: block;
-		top: auto;
-		right: auto;
-		left: 0px;
-		bottom: 10px;
-		width: 25%;
-		text-align: center;
-	}
-	.listview .glview md-card .moreitemsondevice a {
-		margin-left: 5px;
-		margin-right: 5px;
-	}
-	.listview .glview md-card .moreitemsondevice ~ a {
-		display: block;
-		float: left;
-		width: 25%;
-		margin-right: 5%;
-	}
-	.listview .glview md-card .md-card-image {
-		width: 100%;
-		height: 100%;
-	}
-	.listview .glview md-card md-card-content {
-		float: left;
-		width: 70%!important;
-	}
+    .branding, .dropdown-menu.pull-right.with-arrow:after {
+        display: none;
+    }
+    .appWrapper.sidebar-sm #header .branding {
+        width: 100%;
+        float: none;
+    }
+    .appWrapper.sidebar-sm #header .branding .brand {
+        margin-left: 4px;
+        float: none;
+        display: block;
+    }
+    .topmenu .branding {
+        display: block;
+    }
+    .dropdown-menu.panel.notification {
+        min-width: 300px;
+        top: 44px;
+        right: -65px;
+    }
+    .leftwrap {
+        padding: 10px;
+    }
+    .leftwrap .newlogo img {
+        width: 125px;
+    }
+    .page-login.core-new {
+        padding: 75px 0 25px;
+    }
+    #hpopup {
+        padding: 15px;
+        width: 350px;
+    }
+    .signup form {
+        margin-left: 0;
+    }
+    .signup .overflow {
+        margin-bottom: 0;
+    }
+    .signup .signuplabel {
+        margin-left: 0!important;
+    }
+    .signup input, .signupselect {
+        float: left;
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+    .signupselect {
+        margin-bottom: 0;
+    }
+    .negmargin40 {
+        margin: 0px -15px -15px;
+    }
+    .dashboardbg {
+        height: 390px!important;
+    }
+    .crystalcove {
+        width: 100%;
+        height: 85px;
+        margin-bottom: 15px;
+    }
+    .covertext span strong {
+        font-size: 26px;
+    }
+    .covertext span strong:after {
+        bottom: -30px;
+        height: 1px;
+    }
+    .covertext span {
+        font-size: 16px;
+    }
+    .myshortcuts {
+        width: 100%;
+    }
+    .myshortcuts ul li .icons {
+        width: 20%;
+    }
+    .myshortcuts ul li a {
+        width: 80%;
+    }
+    .page-dashboard .card-container, .card-container {
+        float: none;
+        width: 100%!important;
+        padding: 0 15px;
+    }
+    .glview md-card {
+        width: 92%;
+        margin: 0 auto 20px!important;
+        float: none;
+        display: block;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder, .wrap-reset .table-custom .row .col-sm-4.col-md-4.filterorder {
+        width: 100%;
+        float: left;
+        text-align: left;
+        margin-top: 0;
+        display: none;
+    }
+    .search {
+        padding: 0 15px;
+        width: 100%;
+        float: left;
+        margin: 0 0 15px 0;
+    }
+    .profilephoto.csvupload {
+        padding: 0 16px;
+        width: 50%;
+        float: left;
+        margin-right: 0;
+        text-align: left;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 {
+        float: right;
+        width: 50%;
+        text-align: right;
+        margin-top: -38px;
+    }
+    .hometabs .tile-body.table-custom .row .col-sm-6.col-md-6 {
+        width: 100%;
+        float: left;
+    }
+    .listview .glview md-card {
+        padding: 0 0 50px;
+    }
+    .listview .glview md-card .md-actions {
+        right: 0;
+    }
+    .listview .glview md-card .md-actions a {
+        margin: 0 0 0 15px;
+        border: 0 none;
+        padding: 0;
+        font-weight: 500;
+    }
+    .listview .glview md-card .moreitemsondevice {
+        display: block;
+        top: auto;
+        right: auto;
+        left: 0px;
+        bottom: 10px;
+        width: 25%;
+        text-align: center;
+    }
+    .listview .glview md-card .moreitemsondevice a {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .listview .glview md-card .moreitemsondevice ~ a {
+        display: block;
+        float: left;
+        width: 25%;
+        margin-right: 5%;
+    }
+    .listview .glview md-card .md-card-image {
+        width: 100%;
+        height: 100%;
+    }
+    .listview .glview md-card md-card-content {
+        float: left;
+        width: 70%!important;
+    }
     .schedule_scroll{width: 300px;}
-	
+    
 }
 
 @media only screen and (max-width: 399px) {
-	#hpopup {
-		width: 280px;
-	}
-	#hpopup .login-h2 {
-		font-size: 22px;
-	}
-	#hpopup a, #hpopup label, #hpopup p  {
-		font-size: 14px!important;
-	}
-	#hpopup button[type="submit"] {
-		margin-top: 20px!important;
-		margin-bottom: 10px;
-	}
-	.glview md-card {
-		width: 89.5%;
-	}
-	.listview .glview md-card .moreitemsondevice ~ a, .listview .glview md-card .moreitemsondevice {
-		width: 30%;
-	}
-	.listview .glview md-card md-card-content {
-		width: 65%!important;
-	}
+    #hpopup {
+        width: 280px;
+    }
+    #hpopup .login-h2 {
+        font-size: 22px;
+    }
+    #hpopup a, #hpopup label, #hpopup p  {
+        font-size: 14px!important;
+    }
+    #hpopup button[type="submit"] {
+        margin-top: 20px!important;
+        margin-bottom: 10px;
+    }
+    .glview md-card {
+        width: 89.5%;
+    }
+    .listview .glview md-card .moreitemsondevice ~ a, .listview .glview md-card .moreitemsondevice {
+        width: 30%;
+    }
+    .listview .glview md-card md-card-content {
+        width: 65%!important;
+    }
 }
 
 

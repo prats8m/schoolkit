@@ -46,7 +46,7 @@ app
                     $scope.lockoutMode = succResponse.data.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode];
                     $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess]);
                     $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
-
+                    // $scope.welcomeMessage = succResponse.data.dgs_welcome_setting
                 }
             });
         };
@@ -71,7 +71,13 @@ app
             data.value[appConstants.deviceSettings.recordingstatus] = $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.recordingstatus];
             commonSetHTTPService(data, appConstants._successCameraConfigured);
         };
-
+        $scope.setWelcomeMessage = function (msg) {
+            var data = new commonSetAPIDataObject();
+            data.module = appConstants.deviceSettings.welcomesetting;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.welcomemessagekey] = msg;
+            commonSetHTTPService(data, 'Welcome Message Configured');
+        }
         $scope.parseIntArr = function (data) {
             var response = [];
             for (var i = 0; i < data.length; i++) {
@@ -112,7 +118,7 @@ app
             data.module = appConstants.deviceSettings.speakermicrophonesetup;
             data.type = appConstants.deviceSettings.commonGetAPIData.type;
             data.value[appConstants.deviceSettings.speakerbeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.speakerbeeper]);
-            data.value[appConstants.deviceSettings.microphonebeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonebeeper]);
+           // data.value[appConstants.deviceSettings.microphonebeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonebeeper]);
             data.value[appConstants.deviceSettings.speakervolume] = $scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.speakervolume];
             data.value[appConstants.deviceSettings.microphonesensitivity] = $scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonesensitivity];
             commonSetHTTPService(data, appConstants._successspeakerandmicrophoneconfigured);
@@ -176,7 +182,7 @@ app
             commonSetHTTPService(data, appConstants._successmastercodeconfigured);
         };
         var decodeTimeStamp = function (stamp) {
-           var temp = stamp ;
+            var temp = stamp;
             return temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear();
         };
         var createTimeStamp = function (appliedDate, appliedTime) {
@@ -274,7 +280,16 @@ app
             });
         };
 
-
+        $scope.setCallSettings = function (value) {
+            if (value == undefined || value == '') {
+                return false;
+            }
+            var data = new commonSetAPIDataObject();
+            data.module = appConstants.deviceSettings.callsetting;
+            data.type = appConstants.deviceSettings.commonGetAPIData.type;
+            data.value[appConstants.deviceSettings.voipcallsettingkey] = parseInt(value);
+            commonSetHTTPService(data, 'Call Settings Configured');
+        }
 
         $scope.setRelayDoorSetup = function () {
             var data = {
@@ -286,6 +301,12 @@ app
                 singleObject.relay = $scope.relayNDoorGenSetting[i].drd_relay;
                 singleObject.door_id = $scope.relayNDoorGenSetting[i].drd_door_id;
                 singleObject.status = $scope.relayNDoorGenSetting[i].drd_status;
+                if (parseInt($scope.relayNDoorGenSetting[i].strike_time) < 500 || parseInt($scope.relayNDoorGenSetting[i].strike_time) > 4500) {
+                    $scope.GenericError = "Relay strike time range from 500 to 4500 ms ";
+                    //  setTimeout(function () { $scope.GenericError = '' }, 5000);
+                    return null;
+                    break;
+                }
                 singleObject.strike_time = $scope.relayNDoorGenSetting[i].strike_time;
                 data.relays.push(singleObject);
             }

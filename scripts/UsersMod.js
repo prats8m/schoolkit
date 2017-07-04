@@ -196,7 +196,7 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilityList = succResponse.data.data;
-                    $scope.facility = (utilitySvc.getCurrentFacility() != '') ? parseInt(utilitySvc.getCurrentFacility()) : "";
+                    $scope.facility = appConstants.empty;
                 }
                 else {
                     $scope.facilityList = {};
@@ -942,7 +942,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc) {
+    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc,utilitySvc) {
         $scope.page = {
             title: $location.path().indexOf('view-user') >= 0 ? appConstants._titleviewUser : appConstants._titleEditUser,
             subtitle: appConstants.empty
@@ -995,8 +995,7 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.facilityList = succResponse.data.data;
-                }
-                else {
+                } else {
                     $rootScope.facilityList = {};
                 }
             });
@@ -1766,13 +1765,13 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc) {
+    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc,utilitySvc) {
         $scope.page = {
             title: appConstants._titleUserGroups,
             subtitle: appConstants.empty,
             member: appConstants._membersUserGroups
         };
-
+        $rootScope.userGroup = {};
         $scope.items = ['item1', 'item2', 'item3'];
         $scope.addGroupOpen = function (size) {
             var modalInstance = $uibModal.open({
@@ -1846,6 +1845,11 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.facilityList = succResponse.data.data;
+                    if(utilitySvc.getCurrentFacility() != ''){
+                        $rootScope.userGroup.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                        $rootScope.facility_disable = true;
+                        //$rootScope.getDoorsList();
+                    }
                 }
                 else {
                     $rootScope.facilityList = {};
@@ -1943,7 +1947,7 @@ app
             }
             $scope.pageNo = 1;
             $scope.usergroups = [];
-            userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo +'&facility_id='+utilitySvc.getCurrentFacility()+ '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
                     $scope.pageNo = $scope.pageNo + 1;
@@ -1961,7 +1965,7 @@ app
         $scope.searchText = appConstants.empty;
 
         $scope.getUserGroupList = function () {
-            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo+'&facility_id='+utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroups = [];
                     angular.forEach(succResponse["data"]["data"], function (userGroup, index) {
@@ -2066,7 +2070,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc) {
+    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc,utilitySvc) {
 
         $scope.page = {
             title: appConstants._titleUserGroups,
