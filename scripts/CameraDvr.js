@@ -43,7 +43,41 @@ app
                 return false;
             }
         };
-
+        $scope.doorlist = [];
+        $scope.getDoorList = function (id) {
+            cameraDVRSvc.getCameraDoorList(appConstants.getCameraDoorList + '?camera_id=' + id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    if (succResponse.data.length > 0) {
+                        var list = {};
+                        list.camera_id = succResponse.data[0].camera_id;
+                        list.doorlist = [];
+                        angular.forEach(succResponse.data, function (doorlist, index) {
+                            var lst = {};
+                            lst.door_id = doorlist.door_id;
+                            lst.door_name = doorlist.door_name;
+                            list.doorlist.push(lst);
+                        });
+                        $scope.doorlist.push(list);
+                    }
+                }
+            })
+        }
+        $scope.getCameraDoor = function (id) {
+            var list = [];
+            angular.forEach($scope.doorlist, function (doorlist, index) {
+                if (doorlist.camera_id == id) {
+                    list = doorlist.doorlist;
+                }
+            })
+            return list;
+        }
+        $scope.openDoor = function (door_id) {
+            cameraDVRSvc.openCameraDoor(appConstants.openDoorCommand + door_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    toaster.pop(appConstants.success, "Door Opened Successfully");
+                }
+            });
+        }
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev) {
 
