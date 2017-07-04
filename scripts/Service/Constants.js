@@ -175,6 +175,8 @@ app.constant("appConstants", {
     //.........Home/Dashboard....................................................
     dashboardTitle: 'Dashboard',
     dashboardSubTitle: 'So much more to see at a glance.',
+    dashboard_facility_name: "Dashboard",
+    dashboard_facility_quote: "Welcome to elika",
 
     //...........................................................................
 

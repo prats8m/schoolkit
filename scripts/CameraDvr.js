@@ -7,13 +7,15 @@
  * Controller of the minovateApp
  */
 app
-    .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope, $filter, toaster, $sce, $timeout, appConstants, cameraDVRSvc) {
+    .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope, $filter, toaster, $sce, $timeout, appConstants, cameraDVRSvc,utilitySvc) {
         $scope.page = {
             title: appConstants.cameraDVRtitle
         };
         $scope.camgroup = {
             name: appConstants.cameraGroupButtonTitle
         };
+
+        $scope.recordedFeedsSearchObj = {}
 
         $rootScope.cameraidsToCreateGroup = [];
         /*$scope.dashboardInit = function () {
@@ -347,6 +349,10 @@ app
                 if (succResponse.status) {
                     if (succResponse.data) {
                         $scope.facilityList = succResponse.data.data;
+                    }
+                    if(utilitySvc.getCurrentFacility() != ''){
+                        $scope.recordedFeedsSearchObj.facility = parseInt( utilitySvc.getCurrentFacility() );
+                        //$scope.facility_disable = true;
                     }
                     $scope.getCameraGroups(function (lstCameraGroup) {
                         cb($scope.facilityList, lstCameraGroup);
