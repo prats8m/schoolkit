@@ -176,9 +176,10 @@ app
 app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cookies) {
   function link(scope, element, attrs) {
     element.bind('click', function () {
-      console.log($location.path());
-      //console.log(element.closest('[ui-view]').data('$uiView').state);
-      //console.log(element.inheritedData('$uiView').state);
+      // console.log( $location.path() );
+      var url = $location.path();
+      var moduleArr = url.split("/");
+      var module = moduleArr[4];
     });
   }
 
