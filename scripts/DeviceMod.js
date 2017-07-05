@@ -127,7 +127,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
-            devicesSvc.deviceInit(appConstants.devicelistmaster + '?limit=20&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet,
+            devicesSvc.deviceInit(appConstants.devicelistmaster + '?limit='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet,
                 appConstants.getMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         if ($scope.pageNo <= 1)

@@ -22,8 +22,11 @@
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>{{current_facility}} &nbsp; <fa name="angle-down"></fa> </span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
-					<li><a ui-sref="app.admin.facility.facility" ng-click="setCurrentFacility(staticcurrent_facility)">All Facilities</a></li>
-					<li ng-repeat="facility in headerFacilityList"><a ui-sref="app.admin.dashboardfacility({facility_id:facility.facility_id})" ng-click="setCurrentFacility(facility.facility_name)">{{ facility.facility_name }}</a></li>
+					<!-- <li><a ui-sref="app.admin.dashboard" ng-click="setCurrentFacility(staticcurrent_facility)">Home Dashboard</a></li> 
+					ui-sref="app.admin.dashboardfacility({facility_id:facility.facility_id})"
+					-->
+					<li ><a ui-sref="app.admin.facility.facility" ng-click="goFacilityList()">Facilites List</a></li>
+					<li ng-repeat="facility in headerFacilityList"><a ng-click="setCurrentFacility(facility.facility_name,facility.facility_id)">{{ facility.facility_name }}</a></li>
 				</ul>
 			</li>
 			<!-- <li class="dropdown" uib-dropdown>

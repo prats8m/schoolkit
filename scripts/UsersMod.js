@@ -171,7 +171,7 @@ app
         }
         $scope.usersInit = function () {
 
-            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.usersInit(appConstants.userlist + '?limit='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     if ($scope.pageNo <= 1)
                         $scope.users = [];
@@ -204,7 +204,7 @@ app
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             $scope.users = [];
-            userSvc.searchFunction(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.searchFunction(appConstants.userlist + '?limit='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.users = succResponse.data.data;
                     $scope.pageNo = $scope.pageNo + 1;
