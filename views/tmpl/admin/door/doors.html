@@ -44,13 +44,13 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6 last">
 														<label for="">Facility {{door.facility_id}}<span class="text-danger">*</span></label><br/>
-														<select class="form-control" ng-disabled="facility_disable" ng-model="door.facility_id"  ng-options="item.facility_id as item.facility_name for item in facilityList"
+														<select class="form-control" ng-disabled="facility_disable" ng-model="door.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList"
 														 required>
 															<option value="">Select</option>
 														</select>
 													</div>
 												</div>
-												
+
 												<div class="row" style="display:none;">
 													<div class="form-group col-sm-6 col-md-6 first">
 														<label for="">Door Status <span class="text-danger">*</span></label><br/>
@@ -163,6 +163,11 @@
 									No Record Found
 								</div>
 							</div>
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
+								</div>
+							</div>
 							<div ng-class="class" ng-cloak ng-if="adoors.length >0 ">
 								<div class="glview">
 									<md-content>
@@ -180,8 +185,8 @@
 											</div>
 										</md-card>
 									</md-content>
-									<button ng-hide="hideLoadMore" ng-if="adoors && adoors.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm"
-									 ng-click="listDoors()" ng-style="lmbtn">Load more</button>
+									<button ng-if="count>20 && adoors.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="listDoors()"
+									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
