@@ -1,11 +1,11 @@
 <div class="page page-users">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 		<div class="facility-view elika-facility-name"></div>
 	</div>
-	
+
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -13,16 +13,16 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<!--<p>{{page.subtitle}}</p>-->									
+									<!--<p>{{page.subtitle}}</p>-->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<flip-header></flip-header>			
+			</div>
+			<flip-header></flip-header>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
@@ -32,7 +32,7 @@
 							<a class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add" ui-sref="app.admin.schedule.add-schedule"><i class="fa fa-plus"></i> <span>Add Schedule</span></a>
 						</div>
 					</div>
-					
+
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-20">
@@ -107,9 +107,15 @@
 									</div>
 								</div-->
 							</div>
-							<div ng-if="status">									
-								<div layout="row" ng-class="statusclass">							
+							<div ng-if="status">
+								<div layout="row" ng-class="statusclass">
 									{{status}}
+								</div>
+							</div>
+
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)" ng-class="(x=='All' && searchAlphabet=='')?'md-raised':(searchAlphabet==x?'md-raised':'')">{{x}}</button>
 								</div>
 							</div>
 							<div ng-if="schedules.length == 0">
@@ -121,7 +127,7 @@
 							</div>
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
-									<md-content>			
+									<md-content>
 										<md-card ng-repeat="schedule in schedules | limitTo:totalDisplayed | filter:text | filter:title | filter:role | orderBy:myOrderBy track by $index">
 											<md-card-content>
 												<h2 class="md-title">{{ schedule.schedule_name }}</h2>
@@ -132,16 +138,17 @@
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.schedule.edit-schedule-groups({schedule_id:schedule.schedule_id, schedule_type:schedule.schedule_category})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,schedule.schedule_id)">Delete</a>
 											</div>
-										</md-card>										
+										</md-card>
 									</md-content>
-									<button ng-if="schedules && schedules.length > 0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button ng-if="count>20 && schedules.length <count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="scheduleInit()"
+									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
 			</div>
-		</div>	
-	
+		</div>
+
 	</div>
 </div>

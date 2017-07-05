@@ -180,7 +180,7 @@ app
 					});
 					$scope.pageNo = $scope.pageNo + 1;
 					$scope.count = succResponse.data.count;
-				} else if (succResponse.msg == 'No_Record_Found') {
+				} else if (succResponse.msg == 'No_Records_Found') {
 					$scope.adoors = [];
 					$scope.status = succResponse.msg.replace(/_/g, ' ');;
 					$scope.statusclass = appConstants.error;

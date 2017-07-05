@@ -157,7 +157,7 @@
 							</div>
 							<div class="btn-toolbar" role="toolbar" aria-label="...">
 								<div class="btn-group btn-group-xs" role="group" aria-label="...">
-									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)" ng-class="(x=='All' && searchAlphabet=='')?'md-raised':(searchAlphabet==x?'md-raised':'')">{{x}}</button>
 								</div>
 							</div>
 							<div ng-class="class" ng-cloak>

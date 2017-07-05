@@ -104,7 +104,7 @@ app
             facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search, facility_id: current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
-                } else if (succResponse.msg == "No_Record_Found") {
+                } else if (succResponse.msg == "No_Records_Found") {
                     $scope.facilities = [];
                 }
                 else {
@@ -139,7 +139,7 @@ app
                     });
                     $scope.pageNo = $scope.pageNo + 1;
                     $scope.count = succResponse.data.count
-                } else if (succResponse.msg == "No_Record_Found") {
+                } else if (succResponse.msg == "No_Records_Found") {
                     $scope.facilities = [];
                 }
             });

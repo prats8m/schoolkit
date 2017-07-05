@@ -162,7 +162,7 @@ app
             cameraDVRSvc.cameraInit(appConstants.cameralist + '?facility_id=' + $scope.selectedFacility + '&cameragroup_id=' + $scope.selectedCameraGroup, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.changedClass();
-                    if (succResponse.msg === 'No_Record_Found') {
+                    if (succResponse.msg === 'No_Records_Found') {
                         toaster.pop(appConstants.error, appConstants.nocamerafoundonfilter);
                         $scope.totalNoOfCameras = 0;
                         $scope.cameras = [];

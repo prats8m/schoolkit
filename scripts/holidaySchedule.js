@@ -51,33 +51,43 @@ app
         $scope.orderByMe = function (x) {
             $scope.myOrderBy = x;
         };
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+        $scope.pageNo = 1;
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.getHolidayScheduleList();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.getHolidayScheduleList();
+        }
         $scope.getHolidayScheduleList = function () {
-            HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist + '?limit=' + $scope.schedularLimit + '&pageNo=' + $scope.pageNo + '&search_val=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
-
+            HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist + '?limit=' + $scope.schedularLimit + '&pageNo=' + $scope.pageNo + '&search_val=' + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    if ($scope.pageNo == 1) {
+                    if ($scope.pageNo == 1)
                         $scope.lstHolidaySchedular = [];
-                        angular.forEach(succResponse.data, function (holidayschedule, index) {
-                            $scope.lstHolidaySchedular.push(holidayschedule);
-                        });
-                    }
-                    else {
-                        //$scope.lstHolidaySchedular = [];
-                        $scope.lstHolidaySchedular = $scope.lstHolidaySchedular.concat(succResponse.data);
-                    }
-                    $scope.manageHolidayScheduleListLoadMoreButton(succResponse.data.length);
+                    angular.forEach(succResponse.data, function (holidayschedule, index) {
+                        $scope.lstHolidaySchedular.push(holidayschedule);
+                    });
+                    $scope.pageNo = $scope.pageNo + 1;
+                    $scope.count = succResponse.data.count;
                 } else {
-                    if (succResponse.msg == 'No_Record_Found') {
+                    if (succResponse.msg == 'No_Records_Found') {
                         $scope.lstHolidaySchedular = [];
                         $scope.manageHolidayScheduleListLoadMoreButton(0);
                         $scope.status = succResponse.msg.replace(/_/g, ' ');;
                         $scope.statusclass = appConstants.error;
                     }
                 }
-                //$scope.$apply();
             });
         };
+        $scope.getHolidayScheduleList();
         $scope.getDateTime = function (date, time) {
             if (!date) {
                 debugger;
