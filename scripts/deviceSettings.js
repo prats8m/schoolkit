@@ -118,7 +118,7 @@ app
             data.module = appConstants.deviceSettings.speakermicrophonesetup;
             data.type = appConstants.deviceSettings.commonGetAPIData.type;
             data.value[appConstants.deviceSettings.speakerbeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.speakerbeeper]);
-           // data.value[appConstants.deviceSettings.microphonebeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonebeeper]);
+            // data.value[appConstants.deviceSettings.microphonebeeper] = parseInt($scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonebeeper]);
             data.value[appConstants.deviceSettings.speakervolume] = $scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.speakervolume];
             data.value[appConstants.deviceSettings.microphonesensitivity] = $scope.deviceGeneralSettingModals.dgs_speaker[appConstants.deviceSettings.microphonesensitivity];
             commonSetHTTPService(data, appConstants._successspeakerandmicrophoneconfigured);
@@ -290,7 +290,17 @@ app
             data.value[appConstants.deviceSettings.voipcallsettingkey] = parseInt(value);
             commonSetHTTPService(data, 'Call Settings Configured');
         }
-
+        $scope.getAvailablity = function (door_id, drd_id, relayNDoorGenSetting) {
+            var temp = false;
+            angular.forEach(relayNDoorGenSetting, function (data, index) {
+                if (data.drd_id != drd_id) {
+                    if (data.drd_door_id == door_id) {
+                        temp = true;
+                    }
+                }
+            });
+            return temp;
+        }
         $scope.setRelayDoorSetup = function () {
             var data = {
                 device_id: $scope.device_id,

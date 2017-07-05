@@ -12,7 +12,19 @@ app
             title: appConstants.doorsgroupUiTitle,
             subtitle: appConstants.dashboardSubTitle
         };
+        $scope.layout = appConstants.gridLayout;
+        $scope.class = appConstants.gridviewClass;
+        $scope.changeClass = function () {
+            if ($scope.class === appConstants.gridviewClass)
+                $scope.class = appConstants.listviewClass;
+            $scope.layout = appConstants.listLayout;
+        };
 
+        $scope.changeaClass = function () {
+            if ($scope.class === appConstants.listviewClass)
+                $scope.class = appConstants.gridviewClass;
+            $scope.layout = appConstants.gridLayout;
+        };
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, id) {
             var confirm = $mdDialog.confirm()
