@@ -173,7 +173,7 @@ app
         $scope.getTechnicianList = function (device) {
             devicesSvc.getTechnicianList(appConstants.technicianlist, appConstants.getMethod, {}, device, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.technicianList = succResponse.data;
+                    $rootScope.technicianList = succResponse.data.data;
                 }
             });
         };
