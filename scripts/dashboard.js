@@ -1,12 +1,13 @@
 'use strict';
 
 app
-    .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster,$stateParams,$cookies,utilitySvc){
+    .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster,$stateParams,$cookies,utilitySvc,$state){
         $scope.page = {
             title: appConstants.dashboardTitle,
             subtitle: appConstants.dashboardSubTitle
         };
 
+        
         $scope.dashboardInit = function(){
             dashboardSvc.getDashboardData(appConstants.userDashboard +"?facility_id="+ utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
@@ -50,7 +51,7 @@ app
 
         ($stateParams.facility_id) ? $cookies.put('current_facility_id',$stateParams.facility_id) : $cookies.put('current_facility_id',0);
 
-       $scope.dashboardInit();
+        $scope.dashboardInit();
     })
 
 

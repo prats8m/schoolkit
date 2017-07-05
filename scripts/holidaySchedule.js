@@ -6,7 +6,7 @@ app
         };
 
         $scope.pageNo = 1;
-        $scope.schedularLimit = 8;
+        $scope.schedularLimit = appConstants.pageLimit;
         $scope.searchText = appConstants.empty;
         $scope.status = appConstants.empty;
 

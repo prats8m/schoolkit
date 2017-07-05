@@ -124,14 +124,23 @@ app
   return {
     templateUrl:'views/header.html',
     restrict: 'E',
-    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc) {
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc','$cookies','$state', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc,$cookies,$state) {
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
                 }
             });
 
-            $scope.setCurrentFacility = function(facility_name){
+            $scope.goFacilityList = function(){
+                $cookies.put('current_facility_id',0);
+                $state.go('app.admin.facility.facility');
+            };
+
+
+            $scope.setCurrentFacility = function(facility_name, facility_id){
+                $cookies.put('current_facility_id',facility_id);
+                $state.reload();
+
                 $scope.current_facility = facility_name;
             }
             $scope.staticcurrent_facility = appConstants.allfacilities;

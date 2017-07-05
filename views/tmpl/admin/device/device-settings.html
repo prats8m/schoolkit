@@ -83,7 +83,8 @@
 																	</div>
 																	<div class="col-sm-3 pr-0">
 																		<label for="">Door</label><br/>
-																		<select chosen="{width: '100%'}" ng-model="relay.drd_door_id" ng-options="x.door_id as x.door_name for x in doorListAdvanceSetting">
+																		<select class="form-control" ng-model="relay.drd_door_id" ng-options="x.door_id as x.door_name disable when getAvailablity(x.door_id,relay.drd_id,relayNDoorGenSetting) for x in doorListAdvanceSetting track by x.door_id">
+																			<option value="" disabled>Select Door</option>
 																		</select>
 																	</div>
 																	<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">

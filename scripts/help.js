@@ -50,7 +50,7 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('HistoryReportsCtrl', function ($scope, $http, baseURL, $stateParams, helpSvc, appConstants ) {
+  .controller('HistoryReportsCtrl', function ($scope, $http, baseURL, $stateParams, helpSvc, appConstants, $rootScope, $state) {
      $scope.page = {
       title: 'History & Reports',
     };
@@ -94,8 +94,10 @@ app
     };
 
     $scope.resetHistory = function(){
-      $scope.bigCurrentPage = 1;
-      $scope.historyList();
+      // $scope.bigCurrentPage = 1;
+      // $scope.historyList();
+      // $scope.setPage($scope.bigCurrentPage);
+      $state.reload();
     }
 
     
