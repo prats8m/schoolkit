@@ -36,6 +36,7 @@ app.constant("appConstants", {
     getWiegandDevice:'device/get-wiegand-device',
     doorassigndevice:'door/assign-device',
     doorgroupadd:'doorgroup/add',
+    doorgroupview:'doorgroup/view',
     doorgrouplist:'doorgroup/list',
     doorgroupedit:'doorgroup/edit',
     doorgroupdelete:'doorgroup/delete',
@@ -291,6 +292,17 @@ app.constant("appConstants", {
     _successfulldoorsadded:'Door added successfully',
     viewdoordetailsUITitle:'Doors Details',
     editdoorUiTitle:'Edit Door',
+
+    //..................Doors Group....................................................
+
+    
+    doorGroupdeleteconfirmationmessage:'Would you like to delete Door Group ?',
+    _messageoncanceltodeletedoorGroup:'You decided to keep Door Group' ,
+    _successfuldoorsdelete:'Your Door Group has been deleted successfully',
+    doorsGroupUITitle:'Door Group',
+    _successfulldoorsGroupadded:'Door Group added successfully',
+    viewdoorGroupdetailsUITitle:'Doors Group Details',
+    editdoorGroupUiTitle:'Edit Door Group',
 
     //...........................................................................
 

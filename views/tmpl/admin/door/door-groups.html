@@ -84,7 +84,7 @@
 			</div>			
 		</div>
 		
-		<div class="row" ng-controller="DoorGroupsCtrl">
+		<div class="row" >
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="tile-header dvd dvd-btm">
@@ -93,40 +93,43 @@
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
-										<form name="form1" role="form">
+										<form name="create_doorGroup" ng-validate="validationOptions" role="form" ng-submit="createDoorGroup(doorGrp,create_doorGroup)">
 											<div class="modal-header"><h4 class="modal-title custom-font">Create Door Groups</h4></div>
 											<div class="modal-body">						
 												<div class="row">
 													<div class="form-group col-md-6">
 														<label for="">Group Name</label>
-														<input type="text" name="" id="" class="form-control" placeholder="">
+														<input type="text" name="" id="" class="form-control" placeholder="" ng-model="doorGrp.name">
 													</div>
 													<div class="form-group col-md-6">
-														<label for="">Facility</label><br/>
-														<select class="form-control" chosen="{width: '100%'}">
-															<option selected>USA Corporate Services</option>
-															<option>Aerzen USA Corporation</option>
-														</select>
+														<label for="">Facility</label><br/>														
+														<select name="mySelect" id="mySelect" class="form-control" chosen="{width: '100%'}"													
+														ng-options="item.facility_id as item.facility_name for item in facilityList"
+														ng-model="doorGrp.facility_id" ng-init="doorGrp.facility_id = facilityId"></select>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="">Doors</label>
-													<select class="form-control" Multiple chosen="{width: '100%'}">
-														<option>Main Gate Front</option>
-														<option>Main Gate Back</option>
-														<option>Exit Gate Front</option>
-														<option>Exit Gate Back</option>
-														<option>Parking Entry Gate</option>
-														<option>Parking Exit Gate</option>
-														<option>Pool Gate</option>														
-														<option>Gym Gate</option>
-													</select>
+													<select name="mySelect" id="mySelect" class="form-control" Multiple chosen="{width: '100%'}"													
+													ng-options="door.door_id as door.door_name for door in doorList"
+													
+													ng-model="doorGrp.door_id" ng-init="doorGrp.door_id = doorid"
+													></select>
 													<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
+												</div>
+												<div class="row" style="display:none;">
+													<div class="form-group col-sm-6 col-md-6 first">
+														<label for="">Door Status <span class="text-danger">*</span></label><br/>
+														<div class="btn-group btnrounded" ng-init="doorGrp.status = 1">
+															<label class="btn btn-default" ng-model="doorGrp.status" uib-btn-radio="1">Active</label>
+															<label class="btn btn-default" ng-model="doorGrp.status" uib-btn-radio="0">Inactive</label>
+														</div>
+													</div>
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c door_close"  id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
+												<button type="submit"  class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
 											</div>
 										</form>
 									</script>
@@ -146,16 +149,16 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="doorgroup in doorgroups">
+										<md-card ng-repeat="doorgroup in doorgroups track by doorgroup.doorgroup_id">
 											<md-card-content>
-												<h2 class="md-title mt-40">{{ doorgroup.title }}</h2>
-												<p>No of doors: {{ doorgroup.noofdoors }}</p>
-												<p class="mb-20">USA Corporate Services</p>
+												<h2 class="md-title mt-40">{{ doorgroup.doorgroup_name }}</h2>
+												<p>No of doors: {{ doorgroup.doorgroup_door_count }}</p>
+												<p class="mb-20">{{doorgroup.facility_name}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
-												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.door.view-door-groups">View</a>
-												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.door.edit-door-groups">Edit</a>
-												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event)">Delete</a>
+												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.door.view-door-groups({doorgroup_id:doorgroup.doorgroup_id, type:'view'})">View</a>
+												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.door.edit-door-groups({doorgroup_id:doorgroup.doorgroup_id, type:'edit'})">Edit</a>
+												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,doorgroup.doorgroup_id)">Delete</a>
 											</div>
 										</md-card>										
 									</md-content>
