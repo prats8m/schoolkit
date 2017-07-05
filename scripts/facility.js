@@ -104,7 +104,7 @@ app
             facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search, facility_id: current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
-                } else if (succResponse.msg == "No_Record_Found") {
+                } else if (succResponse.msg == "No_Records_Found") {
                     $scope.facilities = [];
                 }
                 else {
@@ -112,6 +112,11 @@ app
                 }
             });
         };
+        $scope.refreshList = function () {
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.facilityInit();
+        }
         $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.pageNo = 1;
         // $scope.devicePageLimit = 8;
@@ -139,7 +144,7 @@ app
                     });
                     $scope.pageNo = $scope.pageNo + 1;
                     $scope.count = succResponse.data.count
-                } else if (succResponse.msg == "No_Record_Found") {
+                } else if (succResponse.msg == "No_Records_Found") {
                     $scope.facilities = [];
                 }
             });
@@ -290,6 +295,7 @@ app
 
         //Code starts to search facility device by text
         $scope.search_facility_device = function (facility) {
+            $scope.searchAlphabet = '';
             facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster, appConstants.getMethod, { limit: 20, pageNo: 1, facilityId: $stateParams.facility_id, searchVal: facility.search_val }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.devices = succResponse.data.data;
