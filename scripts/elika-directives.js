@@ -130,19 +130,26 @@ app
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
                 }
             });
+            $scope.current_facility = appConstants.allfacilities;
+            $scope.facility_id = $cookies.get('current_facility_id');
+            $scope.navbar_facilities_count = $cookies.get('facilityId').split(",").length;
+
 
             $scope.goFacilityList = function(){
                 $cookies.put('current_facility_id',0);
-                $state.go('app.admin.facility.facility');
+                $scope.facility_id = 0;
+                $scope.current_facility = appConstants.allfacilities;
+                ($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
+                
             };
-
 
             $scope.setCurrentFacility = function(facility_name, facility_id){
                 $cookies.put('current_facility_id',facility_id);
-                $state.reload();
-
+                $scope.facility_id = facility_id;
+                ($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
                 $scope.current_facility = facility_name;
             }
+
             $scope.staticcurrent_facility = appConstants.allfacilities;
 
             if(utilitySvc.getCurrentFacility() == ''){

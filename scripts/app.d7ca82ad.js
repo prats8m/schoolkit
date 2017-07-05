@@ -661,18 +661,18 @@ var app = angular
 
       //admin dashboard
       .state('app.admin.dashboard', {
-        url: '/dashboard',
+        url: '/dashboard/:facility_id',
         controller: 'DashboardCtrl',
         templateUrl: 'views/tmpl/admin/dashboard.html'
       })
 
 
       //facility dashboard
-      .state('app.admin.dashboardfacility', {
-        url: '/dashboard-facility/:facility_id',
-        controller: 'DashboardCtrl',
-        templateUrl: 'views/tmpl/admin/dashboard.html'
-      })
+      // .state('app.admin.dashboardfacility', {
+      //   url: '/dashboard-facility/:facility_id',
+      //   controller: 'DashboardCtrl',
+      //   templateUrl: 'views/tmpl/admin/dashboard.html'
+      // })
 
       //admin profile settings
       .state('app.admin.profile-settings', {
