@@ -286,6 +286,7 @@ app
 			else{
 				v.type = "enable";
 			}
+			delete v.status;
 		});
 		data.schedule_exception_array = angular.copy($scope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
