@@ -95,6 +95,8 @@ app
 
         if(!user.tnc) { toaster.pop('error',appConstants._chktnc);
          return false; }
+         user.zipcode = parseInt(user.zipcode);
+
         user.secret_question = parseInt(user.secret_question);
         dashboardSvc.submitSignUpForm(appConstants.addmasteradmin,appConstants.postMethod,{},user,function (succResponse) {
             if(succResponse.status){

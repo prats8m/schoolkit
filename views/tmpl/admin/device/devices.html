@@ -1,10 +1,11 @@
 <div class="page admin">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<div class="facility-view elika-facility-name"></div>
 	</div>
-	
-	<div class="pagecontent">	
-		<div class="row">		
+
+	<div class="pagecontent">
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,16 +13,16 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<!-- <p>{{page.subtitle}}</p> -->									
+									<!-- <p>{{page.subtitle}}</p> -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<flip-header></flip-header>		
+			<flip-header></flip-header>
 		</div>
-		
+
 		<div class="row" ng-controller="DeviceCtrl">
 			<div class="col-md-12">
 				<section class="tile box-shadow">
@@ -32,19 +33,23 @@
 								<div ng-controller="ModalDemoCtrl">
 									<script type="text/ng-template" id="myModalContent.html">
 										<form name="device_form" ng-validate="validationOptions" id="device_form" role="form">
-											<div class="modal-header"><h4 class="modal-title custom-font">Add Configuration Device</h4></div>
+											<div class="modal-header">
+												<h4 class="modal-title custom-font">Add Configuration Device</h4>
+											</div>
 											<div class="modal-body mt-5">
 												<div class="row">
 													<div class="form-group col-sm-12 col-md-12">
 														<label for="">Device Name <span class="text-danger">*</span></label>
-														<input type="text" maxlength="30" name="device_name" ng-model="device.device_name" id="" class="form-control" placeholder="" required autocomplete="off" ui-number-mask>
+														<input type="text" maxlength="30" name="device_name" ng-model="device.device_name" id="" class="form-control" placeholder=""
+														 required autocomplete="off" ui-number-mask>
 													</div>
-													
+
 												</div>
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Serial Number <span class="text-danger">*</span></label>
-														<input type="text" maxlength="32" name="serial_no" id="" ng-model="device.serial_no" class="form-control" placeholder="" required>
+														<input type="text" maxlength="32" name="serial_no" id="" ng-model="device.serial_no" class="form-control" placeholder=""
+														 required>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Registration Code <span class="text-danger">*</span></label>
@@ -66,7 +71,7 @@
 														</select>
 													</div>
 												</div>
-												
+
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Facility <span class="text-danger">*</span></label><br/>
@@ -76,16 +81,18 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Technician <span class="text-danger">*</span></label><br/>
-														<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"  ng-model="device.technician_id" required>
+														<select class="form-control" name="technician_id" ng-options="item.technician_id as item.technician_name for item in technicianList track by item.technician_id"
+														 ng-model="device.technician_id" required>
 															<option value="">Select</option>
 														</select>
 														<small class="pull-right"><a ng-click="cancel()" ui-sref="app.admin.support.technician">Add Technician</a></small>
 													</div>
 												</div>
-												
+
 												<div class="row">
 													<div class="col-md-12">
-														<label for="">Doors <span class="text-danger">*</span></label><br/><!--doorList-->
+														<label for="">Doors <span class="text-danger">*</span></label><br/>
+														<!--doorList-->
 														<select ng-model="device.door_id" multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
 														</select>
 													</div>
@@ -95,16 +102,18 @@
 												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 												<button ng-click="formSubmit(device,device_form)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>
 											</div>
-										</form>		
+										</form>
 									</script>
 									<a ng-click="open();resetDeviceModel();" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Devices</span></a>
-								</div>								
+								</div>
 							</li>
 							<li class="addpopup">
 								<div ng-controller="ModalDemo1Ctrl">
 									<script type="text/ng-template" id="myModalContent1.html">
 										<form name="form1" role="form">
-											<div class="modal-header"><h4 class="modal-title custom-font">Add Device Plan</h4></div>
+											<div class="modal-header">
+												<h4 class="modal-title custom-font">Add Device Plan</h4>
+											</div>
 											<div class="modal-body mt-5">
 												<div class="overflow mt-40 pt-40 mb-40 pb-40 ta-c">
 													<h3>work in progress</h3>
@@ -112,16 +121,16 @@
 											</div>
 											<div class="modal-footer">
 												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>
 											</div>
-										</form>		
+										</form>
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Devices plan</span></a>
-								</div>								
+								</div>
 							</li>
 						</ul>
 					</div>
-					
+
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-40">
@@ -168,7 +177,7 @@
 									</div>
 								</div>
 								<div class="col-sm-3 col-md-3">
-									<div class="gridlistbar ta-r pull-right">
+									<div class="gridlistbar ta-r pull-right" style="display: block;">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
@@ -189,8 +198,8 @@
 									</div>
 								</div>-->
 							</div>
-							<div ng-if="result">									
-								<div layout="row" ng-class="statusclass">									
+							<div ng-if="result">
+								<div layout="row" ng-class="statusclass">
 									{{result}}
 								</div>
 							</div>
@@ -200,9 +209,14 @@
 									No Record Found
 								</div>
 							</div>
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
+								</div>
+							</div>
 							<div ng-class="class" ng-cloak>
 								<div class="glview" ng-init="deviceInit()">
-									<md-content>			
+									<md-content>
 										<md-card ng-repeat="device in data | limitTo:totalDisplayed track by $index">
 											<span class="onoroffdevice">
 												<span ng-class="device.device_health == 1 ? 'online' : 'offline'"><i class="fa fa-circle"></i>{{ device.device_health == 1 ? 'online' : 'offline'}}</span>
@@ -216,15 +230,20 @@
 												<h2 class="md-title">{{ device.device_name }}</h2>
 												<p>{{ device.device_model }}</p>
 												<p>Dependent {{ device.device_slave_count }}</p>
+												<p ng-hide="class == 'gridview'">Serial No: {{ device.device_serial_no }}</p>
+												<p ng-hide="class == 'gridview'">Facility Name: {{ device.device_facility_name }}</p>
+												<p ng-hide="class == 'gridview'">Device Health: {{ device.device_health }}</p>
+												<p ng-hide="class == 'gridview'">Device Type: {{ device.device_type | uppercase }}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.view-device({device_id:device.device_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.device.edit-device({device_id:device.device_id})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm(device.device_id,device.device_facility_id)">Delete</a>
 											</div>
-										</md-card>										
+										</md-card>
 									</md-content>
-									<button ng-if="data && data.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button ng-if="count>8 && data.length<count " class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="deviceInit()"
+									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

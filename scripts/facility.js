@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc) {
+    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc,utilitySvc) {
 
         $scope.page = {
             title: appConstants.facilityTitle,
@@ -100,7 +100,8 @@ app
             if(!$scope.search){
                 $scope.search = appConstants.empty;
             }
-            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search }, {}, function (succResponse) {
+            var current_facility = utilitySvc.getCurrentFacility();
+            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search,facility_id:current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
                 }else if (succResponse.msg == "No_Record_Found") {
@@ -113,7 +114,8 @@ app
         };
 
         $scope.facilityInit = function () {
-            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 8, page_no: 1 }, {}, function (succResponse) {
+            var current_facility = utilitySvc.getCurrentFacility();
+            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 8, page_no: 1,facility_id:current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = [];
                     angular.forEach(succResponse["data"]["data"], function (facility, index) {

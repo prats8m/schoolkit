@@ -128,9 +128,63 @@ app
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
-                    console.log($rootScope.headerFacilityList);
                 }
             });
         }]
     };
 });
+
+app
+.directive('elikaFacilityDashboard', function() {
+  return {
+    template:`<span><strong>{{dashboard_facility_name}}</strong> {{dashboard_facility_quote}}</span>`,
+    restrict: 'C',
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacility($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
+            dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.dashboard_facility_name = succResponse.data.facility_name;
+                    $scope.dashboard_facility_quote = succResponse.data.facility_location;
+                }else{
+                    $scope.dashboard_facility_name = appConstants.dashboard_facility_name;
+                    $scope.dashboard_facility_quote = appConstants.dashboard_facility_quote;
+                }
+            });
+        }]
+    };
+});
+
+app
+.directive('elikaFacilityName', function() {
+  return {
+    template:`<span ng-show="vinnerpage_facility_name"> Facility name :</span> {{innerpage_facility_name}}`,
+    restrict: 'C',
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacility($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
+            dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+                if(succResponse.status){
+                    $scope.innerpage_facility_name = succResponse.data.facility_name;
+                    $scope.vinnerpage_facility_name = true;
+                }else{
+                    $scope.innerpage_facility_name = "";
+                    $scope.vinnerpage_facility_name = false;
+                }
+            });
+        }]
+    };
+});
+
+app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cookies) {
+  function link(scope, element, attrs) {
+    element.bind('click', function () {
+      var url = $location.path();
+      var moduleArr = url.split("/");
+      var module_name = moduleArr[3];
+      $location.path('/app/admin/help/faqs/' + module_name);
+      // $state.go('app.admin.help.faqs({module_name:module_name})');
+    });
+  }
+
+  return {
+    restrict: 'A',
+    link: link
+  };
+}]);

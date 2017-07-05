@@ -278,12 +278,12 @@ app
 		{
 			var start_date = data.schedulestart_date;
 			var date = new Date(data.schedulestart_date);
-			data.schedule_start_date = date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+			data.schedule_start_date = (date.getMonth()+1)+"-"+date.getDate()+"-"+date.getFullYear();
 		}
 		if(data.expiration != undefined){
 			var expiration_date = data.expiration;
 			var exp_date = new Date(data.expiration);
-			data.expiration = exp_date.getDate()+"-"+(exp_date.getMonth()+1)+"-"+exp_date.getFullYear();
+			data.expiration = (exp_date.getMonth()+1)+"-"+exp_date.getDate()+"-"+exp_date.getFullYear();
 		}
 
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
@@ -303,6 +303,11 @@ app
 		scheduleSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod,{},{},function (succResponse) {
         	if(succResponse.status){
                 $rootScope.facilityList = succResponse.data.data;
+                if(utilitySvc.getCurrentFacility() != ''){
+                    $scope.schedule.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                    $scope.facility_disable = true;
+                    //$rootScope.getDoorsList();
+                }
             }
         });
 	}
@@ -890,11 +895,19 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				weekday["Friday"] = 5;
 				weekday["Saturday"] = 6;
 				var arr = [];
+				var	week_date = new Date();
 				if($scope.schedule.schedule_category == 'repeat'){
 					$scope.schedule.schedule_input.forEach(function(v){
-						var	week_date = new Date();
+						week_date = new Date();
 						var sch = {}; 
-						var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
+						var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
+						if(week_date.getDay() > get_diff)
+						{
+							var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+						}
+						else{
+							var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
+						}
 						sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.starttime; 
 						sch.end_date= (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.endtime;
 						arr.push(sch); 
@@ -902,7 +915,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				}
 				else{
 					$scope.schedule.schedule_input.forEach(function(v){
-						var	week_date = new Date();
+						week_date = new Date(v.date);
 						var sch = {}; 
 						// var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
 						sch.start_date = v.date+" "+v.starttime; sch.end_date= v.date+" "+v.endtime;
@@ -927,7 +940,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 				scheduler.config.multi_day = false;
 				scheduler.config.date_step = "5";
 				scheduler.config.show_loading = true;
-				scheduler.init('scheduler_here',new Date(),"week");
+				scheduler.init('scheduler_here',week_date,"week");
 				$timeout(function () {
 					$scope.clearAllSchedule();
 				});
