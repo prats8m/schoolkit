@@ -3953,3 +3953,5 @@ span.edittxt {position: absolute;
 /*.modal-dialog {
     width: 800px !important;
 }*/
+.form-group .btn-toolbar{margin-top: 8px;
+    float: right;}

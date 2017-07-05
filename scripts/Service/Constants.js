@@ -39,6 +39,7 @@ app.constant("appConstants", {
     doorgrouplist: 'doorgroup/list',
     doorgroupedit: 'doorgroup/edit',
     doorgroupdelete: 'doorgroup/delete',
+    doorgroupview:'doorgroup/view',
     doordelete: 'door/delete/',
     dooradd: 'door/add',
     doorview: 'door/view',
@@ -299,6 +300,17 @@ app.constant("appConstants", {
     _successfulldoorsadded: 'Door added successfully',
     viewdoordetailsUITitle: 'Doors Details',
     editdoorUiTitle: 'Edit Door',
+
+    //..................Doors Group....................................................
+
+    
+    doorGroupdeleteconfirmationmessage:'Would you like to delete Door Group ?',
+    _messageoncanceltodeletedoorGroup:'You decided to keep Door Group' ,
+    _successfuldoorsdelete:'Your Door Group has been deleted successfully',
+    doorsGroupUITitle:'Door Group',
+    _successfulldoorsGroupadded:'Door Group added successfully',
+    viewdoorGroupdetailsUITitle:'Doors Group Details',
+    editdoorGroupUiTitle:'Edit Door Group',
 
     //...........................................................................
 

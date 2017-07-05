@@ -119,31 +119,26 @@
 							<h1 class="custom-font">{{page.title}}</h1>
 						</div>						
 						<div class="hometabs">	
+							<form name="doorGrp_data"  ng-submit="editDoorGrpdata(doorGrpData, doorGrp_data)" ng-validate="validationOptions">
 							<div class="wrap-reset modal-body m-0 pt-20">
 								<div class="row">
 									<div class="form-group col-md-6">
 										<label for="">Name</label>
-										<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+										<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="doorGrpData.doorgroup_name" >
 									</div>
 									<div class="form-group col-md-6">
-										<label for="">Facility</label><br/>
-										<select class="form-control" chosen="{width: '100%'}">
-											<option selected>USA Corporate Services</option>
-											<option>Aerzen USA Corporation</option>
-										</select>
-									</div>
+										<label for="">Facility</label><br/>			
+										<select name="mySelect" id="mySelect" class="form-control" chosen="{width: '100%'}"													
+										ng-options="item.facility_name as item.facility_name for item in facilityList"
+										ng-model="doorGrpData.facility_name" ng-init="doorGrp.facility_name = facilityname"></select>
+										
+									</div>									
 									<div class="form-group col-sm-12 col-md-12">
 										<label for="">Doors</label>
-										<select class="form-control" Multiple chosen="{width: '100%'}">
-											<option>Main Gate Front</option>
-											<option>Main Gate Back</option>
-											<option>Exit Gate Front</option>
-											<option>Exit Gate Back</option>
-											<option>Parking Entry Gate</option>
-											<option>Parking Exit Gate</option>
-											<option>Pool Gate</option>														
-											<option>Gym Gate</option>
-										</select>
+										<select name="mySelect" id="mySelect" class="form-control" Multiple chosen="{width: '100%'}"													
+													ng-options="door.door_id as door.door_name for door in doorList"													
+													ng-model="doorGrpData.door_name" ng-init="doorGrp.door_name = doorname"
+													></select>
 										<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
 									</div>
 								</div>
@@ -155,6 +150,7 @@
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>
 					</div>
 				</section>

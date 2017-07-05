@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('DoorGroupsCtrl', function ($scope, $mdDialog, DTOptionsBuilder, DTColumnDefBuilder, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, doorsSvc) {
+    .controller('DoorGroupsCtrl', function ($scope, $mdDialog, DTOptionsBuilder, DTColumnDefBuilder, $http, $timeout, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, doorsSvc) {
         $scope.page = {
             title: appConstants.doorsgroupUiTitle,
             subtitle: appConstants.dashboardSubTitle
@@ -16,7 +16,7 @@ app
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, id) {
             var confirm = $mdDialog.confirm()
-                .title(appConstants.doorsdeleteconfirmationmessage)
+                .title(appConstants.doorGroupdeleteconfirmationmessage)
                 .content(appConstants.content)
                 .ok(appConstants.delete)
                 .cancel(appConstants.cancel)
@@ -26,20 +26,11 @@ app
                 //$scope.statusclass = 'alert alert-danger alert-dismissable';
                 $scope.doorGroupDelete(id);
             }, function () {
-                toaster.pop('info', appConstants._messageoncanceltodeletedoors);
+                toaster.pop('info', appConstants._messageoncanceltodeletedoorGroup);
             });
         };
 
-        $scope.doorgroups = [{
-            title: 'Pool Gate',
-            noofdoors: 20
-        }, {
-            title: 'Entry Gate',
-            noofdoors: 8
-        }, {
-            title: 'Exit Gate',
-            noofdoors: 8
-        }];
+
 
         $scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap();
         $scope.dtColumnDefs = [
@@ -65,11 +56,26 @@ app
                 }
             });
         };
-
+        $rootScope.createDoorGroup = function (doorGrp,isValid) {
+            if (!isValid.validate()) {                
+                return false;
+            }
+        doorsSvc.createDoorGrp(appConstants.doorgroupadd, appConstants.postMethod, {}, doorGrp, function (succResponse) {
+				if (succResponse.status) {
+                    $scope.getDoorGroupList();
+					toaster.pop(appConstants.success, appConstants._successfulldoorsadded);					
+					$timeout(function () {
+						$("#close").click();
+					});
+                    
+				}
+			});
+        };
         $scope.getDoorGroupList = function () {
             doorsSvc.getDoorGroupList(appConstants.doorgrouplist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.doorGroupList = succResponse.data;
+                    //$rootScope.doorGroupList = succResponse.data;
+                    $scope.doorgroups = succResponse.data;
                 }
             });
         };
@@ -79,13 +85,14 @@ app
             doorsSvc.getDoorsList(appConstants.doorlist + '?limits=100&pageNo=1', appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.doorList = succResponse.data.data;
+                   
                 }
             });
         };
         $scope.getDoorsList();
 
         $rootScope.doorGroupSubmit = function (doorGroup) {
-            //console.log(doorGroup);
+            
             var data = {};
             data.doorgroup_id = parseInt(doorGroup.doorgroup_id);
             data.name = doorGroup.doorgroup_name;
@@ -101,9 +108,19 @@ app
         $scope.doorGroupDelete = function (id) {
             doorsSvc.doorGroupDelete(appConstants.doorgroupdelete + '?doorgroup_id=' + id, appConstants.delete, {}, {}, function (succResponse) {
                 if (succResponse.status) {
+                    $scope.getDoorGroupList();
                     toaster.pop('info', appConstants._successfuldoorsdelete);
+                     
                 }
             });
         };
-
+$scope.facilityInit = function () {
+			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
+				if (succResponse.status) {
+					$rootScope.facilityList = succResponse.data.data;			
+					
+				}
+			});
+		};
+        $scope.facilityInit();
     });
