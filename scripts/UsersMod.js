@@ -386,8 +386,14 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    rfid.schedule_type = 1;
+                }
+                else{
+                    rfid.schedule_type = 0;
+                }
+
                 userSvc.saveRFID(url, meth, {}, rfid, function (succResponse) {
                     $scope.rfid_error = appConstants.empty;
                     if (succResponse.status) {
@@ -522,6 +528,12 @@ app
                 var url = appConstants.usereditcredential;
             }
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    wiegand.schedule_type = 1;
+                }
+                else{
+                    wiegand.schedule_type = 0;
+                }
                 userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
                     $scope.wiegand_error = appConstants.empty;
                     if (succResponse.status) {
@@ -561,6 +573,7 @@ app
 
                     if (success.status) {
                         wiegand.schedule_id = success.data;
+                        wiegand.schedule_type = 2;
                     userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
                     $scope.wiegand_error = appConstants.empty;
                     if (succResponse.status) {
@@ -680,6 +693,12 @@ app
                 var url = appConstants.usereditcredential;
             }
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    phoneCode.schedule_type = 1;
+                }
+                else{
+                    phoneCode.schedule_type = 0;
+                }
                 userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -716,6 +735,7 @@ app
                     JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
                     if (success.status) {
                     phoneCode.schedule_id = success.data;
+                    phoneCode.schedule_type = 2;
                     userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -816,6 +836,12 @@ app
                 var url = appConstants.usereditcredential;
             }
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    ble_code.schedule_type = 1;
+                }
+                else{
+                    ble_code.schedule_type = 0;
+                }
                 userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -850,6 +876,7 @@ app
 
                     if (success.status) {
                         ble_code.schedule_id = success.data;
+                        ble_code.schedule_type = 2;
                         userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
                         if (succResponse.status) {
                             $timeout(function () {
@@ -964,6 +991,12 @@ app
             $scope.savenfc.schedule = ind;
 
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    savenfc.schedule_type = 1;
+                }
+                else{
+                    savenfc.schedule_type = 0;
+                }
                 userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -1003,6 +1036,7 @@ app
                     JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
                     if (success.status) {
                         savenfc.schedule_id = success.data;
+                        savenfc.schedule_type = 2;
                        userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
                         if (succResponse.status) {
                             $timeout(function () {
@@ -1100,6 +1134,12 @@ app
             }
 
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    accesscode.schedule_type = 1;
+                }
+                else{
+                    accesscode.schedule_type = 0;
+                }
                 userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
                         if (succResponse.status) {
 
@@ -1127,6 +1167,7 @@ app
                 JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
                     if(success.status){
                         accesscode.schedule_id = success.data;
+                        accesscode.schedule_type = 2;
                         userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
                         if (succResponse.status) {
 

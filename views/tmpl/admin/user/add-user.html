@@ -319,7 +319,7 @@
 																	</label>											
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6"></div>
-																	<div class="form-group col-sm-6 col-md-6"  ng-controller="DatepickerDemoCtrl" ng-show="schedule.no_expirations">
+																	<div class="form-group col-sm-6 col-md-6"  ng-controller="DatepickerDemoCtrl" ng-hide="schedule.no_expirations">
 																		<div class="input-group">
 																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
 																			<span class="input-group-btn">
