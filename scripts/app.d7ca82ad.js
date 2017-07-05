@@ -940,30 +940,37 @@ var app = angular
       })
 
       //admin help
-      .state('app.admin.help', {
-        url: '/help',
-        template: '<div ui-view></div>'
-      })
-
+    .state('app.admin.help', {
+      url: '/help',
+      template: '<div ui-view></div>'
+    })
+    
       //admin help message-notification
       .state('app.admin.help.message-notification', {
         url: '/message-notification',
         controller: 'MessageNotificationCtrl',
         templateUrl: 'views/tmpl/admin/help/message-notification.html'
       })
-
-      //admin help diagnostics-help
-      .state('app.admin.help.diagnostics-help', {
-        url: '/diagnostics-help',
-        controller: 'DiagnosticsHelpCtrl',
-        templateUrl: 'views/tmpl/admin/help/diagnostics-help.html'
+      
+      //admin help diagnostics
+      .state('app.admin.help.diagnostics', {
+        url: '/diagnostics',
+        controller: 'DiagnosticsCtrl',
+        templateUrl: 'views/tmpl/admin/help/diagnostics.html'
       })
-
-      //admin help history-events
-      .state('app.admin.help.history-events', {
-        url: '/history-events',
-        controller: 'HistoryEventsCtrl',
-        templateUrl: 'views/tmpl/admin/help/history-events.html'
+      
+      //admin help faqs
+      .state('app.admin.help.faqs', {
+        url: '/faqs/:module_name',
+        controller: 'FaqsCtrl',
+        templateUrl: 'views/tmpl/admin/help/faqs.html'
+      })
+      
+      //admin help history-and-reports
+      .state('app.admin.help.history-and-reports', {
+        url: '/history-and-reports',
+        controller: 'HistoryReportsCtrl',
+        templateUrl: 'views/tmpl/admin/help/history-and-reports.html'
       })
 
       //admin camera
@@ -2361,7 +2368,7 @@ app
     
     scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
     window.resizeTo(950,700);
-    scheduler.config.day_date = "%F%d";
+    scheduler.config.day_date = "%D, %F %d";
     scheduler.config.first_hour = 0;
     scheduler.config.multi_day = true;
     scheduler.config.date_step = "5";
@@ -9446,6 +9453,9 @@ app
       $("#" + cvv).show();
     }
   });
+
+
+
 
 'use strict';
 /**

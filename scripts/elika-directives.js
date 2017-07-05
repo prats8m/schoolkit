@@ -128,7 +128,6 @@ app
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
-                    //console.log($rootScope.headerFacilityList);
                 }
             });
         }]
@@ -172,3 +171,20 @@ app
         }]
     };
 });
+
+app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cookies) {
+  function link(scope, element, attrs) {
+    element.bind('click', function () {
+      var url = $location.path();
+      var moduleArr = url.split("/");
+      var module_name = moduleArr[3];
+      $location.path('/app/admin/help/faqs/' + module_name);
+      // $state.go('app.admin.help.faqs({module_name:module_name})');
+    });
+  }
+
+  return {
+    restrict: 'A',
+    link: link
+  };
+}]);

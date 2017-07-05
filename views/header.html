@@ -18,14 +18,16 @@
 			</a>
 		</div>
 		<ul class="nav-right list-inline headmenu">
-			<li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li>
+			<!-- <li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li> -->
 			<li class="dropdown" uib-dropdown>
-
 				<span class="dropdown-toggle" uib-dropdown-toggle>Facilities &nbsp; <fa name="angle-down"></fa> </span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.dashboard">All Facilities</a></li>
 					<li ng-repeat="facility in headerFacilityList"><a ui-sref="app.admin.dashboardfacility({facility_id:facility.facility_id})">{{ facility.facility_name }}</a></li>
 				</ul>
+			</li>
+			<li class="dropdown" uib-dropdown>
+				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facility </span>
 			</li>
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Devices &nbsp;<fa name="angle-down"></fa></span>
@@ -157,7 +159,8 @@
 			</a>
 			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">
 				<li><a ui-sref="app.admin.profile-settings"><i class="fa fa-cog" aria-hidden="true"></i> Profile Settings</a></li>
-				<li><a ui-sref="app.admin.help.faqs"><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li>
+				<!-- <li><a ui-sref="app.admin.help.faqs"><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li> -->
+				<li ><a elika-faqs><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li>
 				<li><a logout-btn><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
 				<li class="version">Version 1.0.0</li>
 				<!-- logout-btn -->

@@ -6,6 +6,8 @@
     line-height: 33px;
     margin-bottom: 10px;
 }
+.schedule_scroll{width: 470px; overflow-x: auto;}
+#scheduler_here{width: 750px;}
 
 .refreshbtn {
     position: absolute;
@@ -2734,6 +2736,7 @@ span.edittxt {position: absolute;
 }
 
 @media only screen and (min-width: 1680px) {
+
     body {
         line-height: 1.8;
     }
@@ -3910,6 +3913,7 @@ span.edittxt {position: absolute;
         float: left;
         width: 70%!important;
     }
+    .schedule_scroll{width: 300px;}
     
 }
 
@@ -3946,3 +3950,6 @@ span.edittxt {position: absolute;
 .dhtmlx-alert{
         z-index: 1050 !important;
 }
+/*.modal-dialog {
+    width: 800px !important;
+}*/

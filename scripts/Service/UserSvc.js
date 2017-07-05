@@ -5,6 +5,18 @@ app
 
         var userSvcSvcResp = this;
 
+        userSvcSvcResp.submitSchedule=function(url,method,params,data,cb) {
+
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
         userSvcSvcResp.uploadProfilePic = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
@@ -568,6 +580,21 @@ app
         };
 
         userSvcSvcResp.doorList = function (url, method, params, data, cb) {
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g, ' ');
+                    //  if (succResponse.msg != 'No_Result_Found')
+                    // toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+
+        userSvcSvcResp.alldoorList = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
                     cb(succResponse);
