@@ -275,7 +275,7 @@ app
             $scope.editHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_end_date, $scope.editHolidayScheduleObj.hs_endtime) / 1000;
             $scope.editHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_expiration) / 1000;
             $scope.editHolidayScheduleObj.hs_status = parseInt($scope.editHolidayScheduleObj.hs_status);
-
+            $scope.editHolidayScheduleObj.hs_type = "holiday";
             delete $scope.editHolidayScheduleObj.hs_starttime;
             delete $scope.editHolidayScheduleObj.hs_endtime;
             $uibModalInstance.close($scope.editHolidayScheduleObj);
