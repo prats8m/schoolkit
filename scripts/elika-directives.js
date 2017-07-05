@@ -124,12 +124,29 @@ app
   return {
     templateUrl:'views/header.html',
     restrict: 'E',
-    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope) {
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc) {
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
                 }
             });
+
+            $scope.setCurrentFacility = function(facility_name){
+                $scope.current_facility = facility_name;
+            }
+            $scope.staticcurrent_facility = appConstants.allfacilities;
+
+            if(utilitySvc.getCurrentFacility() == ''){
+                $scope.current_facility = appConstants.allfacilities;
+            }else{
+                dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+                    if(succResponse.status){
+                        $scope.current_facility = succResponse.data.facility_name;
+                    }else{
+                        $scope.current_facility = appConstants.allfacilities;
+                    }
+                });
+            }
         }]
     };
 });

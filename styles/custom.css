@@ -3955,3 +3955,12 @@ span.edittxt {position: absolute;
 }*/
 .form-group .btn-toolbar{margin-top: 8px;
     float: right;}
+
+ .wrap-reset .btn-toolbar{
+   display: inline-block;
+    vertical-align: top;
+}
+.wrap-reset .pagination{
+    float: right;
+    margin: 0;
+}

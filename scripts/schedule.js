@@ -424,7 +424,7 @@ app
 		$scope.holidayScheduleList = function (data) {
 			scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
-					$rootScope.holidaySchedules = succResponse.data;
+					$rootScope.holidaySchedules = succResponse.data.data;
 				}
 			});
 		}
@@ -995,10 +995,10 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 	$scope.facilityInit();
 
 	$rootScope.holidaySchedules = [];
-	$scope.holidayScheduleList = function (data) {
-		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod, {}, {}, function (succResponse) {
-			if (succResponse.status) {
-				$rootScope.holidaySchedules = succResponse.data;
+	$scope.holidayScheduleList = function(data){
+		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod,{},{},function (succResponse) {
+        	if(succResponse.status){
+				$rootScope.holidaySchedules = succResponse.data.data;
 				$scope.setHolidays();
 			}
 		});
