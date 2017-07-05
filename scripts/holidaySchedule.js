@@ -51,6 +51,11 @@ app
         $scope.orderByMe = function (x) {
             $scope.myOrderBy = x;
         };
+        $scope.refreshList = function () {
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.getHolidayScheduleList();
+        }
         $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
         $scope.pageNo = 1;

@@ -542,7 +542,11 @@ app
 			$scope.layout = 'grid';
 		};
 
-
+		$scope.refreshList = function () {
+			$scope.pageNo = 1;
+			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+			$scope.scheduleInit();
+		}
 		$scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 		$scope.pageNo = 1;
 		$scope.searchAlphabet = '';
@@ -586,6 +590,7 @@ app
 				$scope.searchText = '';
 			}
 			$scope.pageNo = 1;
+			$scope.searchAlphabet = '';
 			var params = { limit: 1000, pageNo: 1, search_val: $scope.searchText };
 			scheduleSvc.scheduleInit(appConstants.scheduleList, appConstants.getMethod, params, {}, function (succResponse) {
 				if (succResponse.status) {

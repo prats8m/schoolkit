@@ -147,7 +147,11 @@ app
             $scope.layout = appConstants.gridLayout;
         };
 
-
+        $scope.refreshList = function () {
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.usersInit();
+        }
         $scope.pageNo = 1;
         $scope.searchText = appConstants.empty;
         $scope.users = [];
@@ -196,6 +200,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
+            $scope.searchAlphabet = '';
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             $scope.users = [];
@@ -2413,6 +2418,7 @@ app
             }
             $scope.pageNo = 1;
             $scope.usergroups = [];
+            $scope.searchAlphabet = '';
             userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
@@ -2425,7 +2431,11 @@ app
                 }
             });
         };
-
+        $scope.refreshList = function () {
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.getUserGroupList();
+        }
         $scope.pageNo = 1;
         $scope.usergroups = [];
         $scope.searchText = appConstants.empty;
