@@ -1000,7 +1000,7 @@ app.controller('EditScheduleCtrl',function ($scope, appConstants, scheduleSvc, $
 	$scope.holidayScheduleList = function(data){
 		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod,{},{},function (succResponse) {
         	if(succResponse.status){
-				$rootScope.holidaySchedules = succResponse.data;
+				$rootScope.holidaySchedules = succResponse.data.data;
 				$scope.setHolidays();
             }
         });
