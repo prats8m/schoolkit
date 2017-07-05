@@ -165,7 +165,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
-            $(".f-wm:contains(" + appConstants.nomoredataavailable+")").text('Load More').css("opacity", 1);
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             $scope.users = [];
             userSvc.searchFunction(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -1706,6 +1706,7 @@ app
  */
 app
     .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc, utilitySvc) {
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.page = {
             title: appConstants._titleUserGroups,
             subtitle: appConstants.empty,
@@ -1903,11 +1904,25 @@ app
         $scope.pageNo = 1;
         $scope.usergroups = [];
         $scope.searchText = appConstants.empty;
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.getUserGroupList();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.getUserGroupList();
 
+        }
         $scope.getUserGroupList = function () {
-            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.usergroups = [];
+                    if ($scope.pageNo <= 1)
+                        $scope.usergroups = [];
                     angular.forEach(succResponse["data"]["data"], function (userGroup, index) {
                         $scope.usergroups.push(userGroup);
                     });
