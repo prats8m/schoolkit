@@ -241,6 +241,7 @@ app
 			if (!form.validate()) {
 				return false;
 			}
+			data.schedule_category = 0;
 			var weekday = new Array(7);
 			weekday[0] = "Sunday";
 			weekday[1] = "Monday";
@@ -258,8 +259,10 @@ app
 					v.day = weekday[new Date(v.start_date).getDay()];
 					v.starttime = split_date[1];
 					v.endtime = v.end_date.split(" ")[1];
-					if ($scope.schedule.schedule_type == 1)
+					if ($scope.schedule.schedule_type == 1) {
 						v.date = split_date[0].replace("/", "-").replace("/", "-");
+						data.schedule_category = 1;
+					}
 					delete v.start_date;
 					delete v.end_date;
 					ind.push(v);
@@ -269,6 +272,21 @@ app
 			data.schedule = ind;
 
 			data.block = "";
+			$scope.exceptions.forEach(function (v) {
+				if (v.type == 'ONETIME') {
+					v.frequency = "one-time";
+				}
+				else {
+					v.frequency = "repeat";
+				}
+				if (v.status == "Disabled") {
+					v.type = "disable";
+				}
+				else {
+					v.type = "enable";
+				}
+				delete v.status;
+			});
 			data.schedule_exception_array = angular.copy($scope.exceptions);
 			data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 			// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date))/1000;
@@ -285,13 +303,16 @@ app
 			}
 
 			// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
-
+			data.schedule_type = "usergroup";
 			scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod, {}, data, function (succResponse) {
 				data.schedulestart_date = start_date;
 				data.expiration = expiration_date;
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants.submitSuccessfully);
 					$location.path('/app/admin/schedule/schedule-groups');
+				}
+				else {
+					$scope.schedule.schedule_type = data.schedule_category;
 				}
 			});
 		}
@@ -1007,6 +1028,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		data.block = "";
 		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
+		data.schedule_category = 0;
 		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
 		var start_date = data.selected_schedule_start_date;
@@ -1035,15 +1057,17 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				v.day = weekday[new Date(v.start_date).getDay()];
 				v.starttime = split_date[1];
 				v.endtime = v.end_date.split(" ")[1];
-				if ($scope.schedule.schedule_type == 1)
+				if ($scope.schedule.schedule_type == 1) {
 					v.date = split_date[0].replace("/", "-").replace("/", "-");
+					data.schedule_category = 1;
+				}
 				delete v.start_date;
 				delete v.end_date;
 				ind.push(v);
 			}
 		});
 		data.schedule = ind;
-
+		data.schedule_type = "usergroup";
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
 			if (succResponse.status) {
 				data.schedulestart_date = start_date;
