@@ -1629,6 +1629,7 @@ video {
 	color: #ff0000;
 }
 
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px

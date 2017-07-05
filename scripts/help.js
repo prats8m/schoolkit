@@ -55,21 +55,28 @@ app
       title: 'History & Reports',
     };
 
-    $scope.pageNo = 1;
     $scope.limit = 10;
     $scope.count= 0;
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 0;
+    $scope.bigCurrentPage = 1;
 
     $scope.historyList = function(){
-      	helpSvc.historyList(appConstants.historylist,appConstants.getMethod,{'limit':10,pageNo:$scope.pageNo},{},function (succResponse) {
+        $scope.bigCurrentPage = ($scope.bigCurrentPage < 1) ? 1 : $scope.bigCurrentPage ;
+      	helpSvc.historyList(appConstants.historylist,appConstants.getMethod,{'limit':10,pageNo:$scope.bigCurrentPage},{},function (succResponse) {
             if(succResponse.status){
                $scope.histories= succResponse.data.rows;
                $scope.count= succResponse.data.count;
+               $scope.bigTotalItems = succResponse.data.count;
+
             }else{
             	$scope.histories= [];
                $scope.count= 0;
             }
         });
     }
+
+
     $scope.historyList();
 
     $scope.next = function(){
@@ -80,7 +87,20 @@ app
     	$scope.pageNo--;
     	$scope.historyList();
     }
-  
+
+    $scope.pageChanged = function(bigCurrentPage) {
+      $scope.bigCurrentPage = bigCurrentPage;
+      $scope.historyList();
+    };
+
+    $scope.resetHistory = function(){
+      $scope.bigCurrentPage = 1;
+      $scope.historyList();
+    }
+
+    
+
+
   $scope.imagePath = 'http://elikastaging.ml/images'; 
   
 }); 
