@@ -117,8 +117,8 @@
 										</div> -->
 										
 										
-										<div>
-											<uib-accordion close-others="oneAtATime" ng-show="$parent.$parent.schedule.schedule_type == 0">
+										<div ng-show="$parent.schedule.schedule_type == 0">
+											<uib-accordion close-others="oneAtATime" >
 												<uib-accordion-group is-open="status.open1" class="panel-default mt-20">
 													<uib-accordion-heading>Holidays Observed <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
 														<ul class="hslist">
