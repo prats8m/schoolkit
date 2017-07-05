@@ -303,6 +303,7 @@ app
 
 app
 	.controller('EditDoorCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, appConstants, doorsSvc) {
+		
 		$scope.page = {
 			title: appConstants.editdoorUiTitle
 		};
@@ -314,6 +315,7 @@ app
 				if (succResponse.status) {
 					$rootScope.facilityList = succResponse.data.data;
 					$scope.doorInit();
+					
 				}
 			});
 		};
