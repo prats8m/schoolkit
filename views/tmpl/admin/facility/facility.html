@@ -163,7 +163,7 @@
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
 									<md-content>
-										<md-card ng-repeat="facility in facilities | limitTo:totalDisplayed | filter:text | filter:title | filter:location | orderBy:myOrderBy track by $index">
+										<md-card ng-repeat="facility in facilities track by facility.facility_id">
 											<a ui-sref="app.admin.facility.facility-details"><img ng-src="images/facility/1.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ facility.facility_name }}</h2>
@@ -178,7 +178,7 @@
 											</div>
 										</md-card>
 									</md-content>
-									<button ng-if="facilities && facilities.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()"
+									<button ng-if="count>20 && facilities.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="facilityInit()"
 									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
