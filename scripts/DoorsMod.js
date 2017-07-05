@@ -139,7 +139,7 @@ app
 			}
 			$scope.pageNo = 1;
 			$scope.users = [];
-
+			$scope.searchAlphabet = '';
 
 			doorsSvc.searchFunction(appConstants.doorlist + '?limit=20&pageNo=' + 1 + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				$scope.adoors = [];
@@ -151,7 +151,11 @@ app
 		};
 
 		//End of search door
-
+		$scope.refreshList = function () {
+			$scope.pageNo = 1;
+			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+			$scope.listDoors();
+		}
 		//List Doors
 		$scope.pageNo = 1;
 		$scope.searchText = appConstants.empty;
@@ -180,7 +184,7 @@ app
 					});
 					$scope.pageNo = $scope.pageNo + 1;
 					$scope.count = succResponse.data.count;
-				} else if (succResponse.msg == 'No_Record_Found') {
+				} else if (succResponse.msg == 'No_Records_Found') {
 					$scope.adoors = [];
 					$scope.status = succResponse.msg.replace(/_/g, ' ');;
 					$scope.statusclass = appConstants.error;
@@ -302,7 +306,7 @@ app
 
 app
 	.controller('EditDoorCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, appConstants, doorsSvc) {
-		
+
 		$scope.page = {
 			title: appConstants.editdoorUiTitle
 		};
@@ -314,7 +318,7 @@ app
 				if (succResponse.status) {
 					$rootScope.facilityList = succResponse.data.data;
 					$scope.doorInit();
-					
+
 				}
 			});
 		};

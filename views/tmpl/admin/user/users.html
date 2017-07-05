@@ -36,7 +36,9 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-40">
 								<div class="col-sm-3 col-md-3 filterorder">
-
+									<div class="btn-group pull-left">
+										<button class="list-icon" ng-click="refreshList()"><i class="fa fa-refresh"></i></button>
+									</div>
 								</div>
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
@@ -82,15 +84,16 @@
 									{{result}}
 								</div>
 							</div>
+
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)" ng-class="(x=='All' && searchAlphabet=='')?'md-raised':(searchAlphabet==x?'md-raised':'')">{{x}}</button>
+								</div>
+							</div>
 							<div ng-if="users.length == 0">
 								<div layout="row" class="error" ng-class="statusclass">
 									<!--{{status}}-->
 									No Record Found
-								</div>
-							</div>
-							<div class="btn-toolbar" role="toolbar" aria-label="...">
-								<div class="btn-group btn-group-xs" role="group" aria-label="...">
-									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
 								</div>
 							</div>
 							<div ng-class="class" ng-cloak>
@@ -103,7 +106,7 @@
 												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
 												<p>{{ user.user_phone_no }}</p>
 												<p ng-hide="class=='gridview'">{{ user.user_zipcode }}</p>
-												<p ng-hide="class=='gridview'">{{ user.user_status ? 'Active':'In Active'  }}</p>
+												<p ng-hide="class=='gridview'">{{ user.user_status ? 'Active':'In Active' }}</p>
 												<p ng-hide="class=='gridview'">{{ user.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">

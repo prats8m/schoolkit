@@ -120,17 +120,9 @@
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-20">
 								<div class="col-sm-3 col-md-3 filterorder">
-									<!-- <label class="control-label" ng-init="filtershow=true">
-										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
-									</label>
-									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
-										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
-										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
-											<li><a href="" ng-click="orderByMe('name')">Name</a></li>
-											<li><a href="" ng-click="orderByMe('company')">Company</a></li>
-											<li><a href="" ng-click="orderByMe('phone')">Phone</a></li>
-										</ul>
-									</label> -->
+									<div class="btn-group pull-left">
+										<button class="list-icon" ng-click="refreshList()"><i class="fa fa-refresh"></i></button>
+									</div>
 								</div>
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
@@ -194,9 +186,10 @@
 							</div>
 							<div class="btn-toolbar" role="toolbar" aria-label="...">
 								<div class="btn-group btn-group-xs" role="group" aria-label="...">
-									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)" ng-class="(x=='All' && searchAlphabet=='')?'md-raised':(searchAlphabet==x?'md-raised':'')">{{x}}</button>
 								</div>
 							</div>
+
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>

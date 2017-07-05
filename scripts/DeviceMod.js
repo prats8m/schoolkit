@@ -102,7 +102,11 @@ app
                 }
             });
         };
-
+        $scope.refreshList = function () {
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.deviceInit();
+        }
         $scope.pageNo = 1;
         // $scope.devicePageLimit = 8;
         $scope.searchAlphabet = '';
@@ -151,6 +155,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
+            $scope.searchAlphabet = '';
             $scope.pageNo = 1;
             devicesSvc.searchFunction(appConstants.devicelistmaster + '?searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
                 $scope.data = [];
@@ -173,7 +178,7 @@ app
         $scope.getTechnicianList = function (device) {
             devicesSvc.getTechnicianList(appConstants.technicianlist, appConstants.getMethod, {}, device, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.technicianList = succResponse.data;
+                    $rootScope.technicianList = succResponse.data.data;
                 }
             });
         };
