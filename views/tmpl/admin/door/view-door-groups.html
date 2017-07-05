@@ -95,7 +95,7 @@
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
-						<h4 class="mb-0"><strong>Pool Gate</strong></h4>
+						<h4 class="mb-0"><strong>{{doorGrpData.doorgroup_name}}</strong></h4>
 						<div class="mt-40">
 							<a ui-sref="app.admin.door.edit-door-groups" class="btn btn-rounded-20 btn-sm btn-greensea">Edit Door</a>
 							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
@@ -105,7 +105,7 @@
 						<ul class="list-inline tbox m-0">
 							<li class="tcol p-10">
 								<h3 class="m-0 mb-5">Facility</h3>
-								<span class="text-transparent-white mt-15"><a ui-sref="app.admin.facility.facility-details">USA Corporate Services</a></span>
+								<span class="text-transparent-white mt-15"><a ui-sref="app.admin.facility.facility-details"> {{doorGrpData.facility_name}}</a></span>
 							</li>
 						</ul>
 					</div>					
@@ -122,11 +122,11 @@
 							<div class="wrap-reset m-0 pt-20">
 								<div class="row">
 									<div class="col-sm-12 col-md-12">
-										<div class="form-group profiledetail">
-											<p><label>Name</label> Pool Gate</p>
-											<p><label>Facility</label> USA Corporate Services</p>
-											<p><label>No Of Doors</label> 2</p>
-											<p><label>Doors</label> Main gate Front, Main Gate Back</p>
+										<div class="form-group profiledetail">											
+											<p><label>Name</label> {{doorGrpData.doorgroup_name}}</p>
+											<p><label>Facility</label> {{doorGrpData.facility_name}}</p>
+											<p><label>No Of Doors</label> {{doorGrpData.doorgroup_door_count}}</p>
+											<p><label>Doors</label> <span ng-repeat="item in doorGrpData.door_name track by $index">{{item  }}</span></p>
 										</div>
 									</div>
 								</div>

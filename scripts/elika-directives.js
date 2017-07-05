@@ -134,8 +134,19 @@ app
             $scope.setCurrentFacility = function(facility_name){
                 $scope.current_facility = facility_name;
             }
-            $scope.current_facility = appConstants.allfacilities;
             $scope.staticcurrent_facility = appConstants.allfacilities;
+
+            if(utilitySvc.getCurrentFacility() == ''){
+                $scope.current_facility = appConstants.allfacilities;
+            }else{
+                dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+                    if(succResponse.status){
+                        $scope.current_facility = succResponse.data.facility_name;
+                    }else{
+                        $scope.current_facility = appConstants.allfacilities;
+                    }
+                });
+            }
         }]
     };
 });
@@ -177,26 +188,6 @@ app
         }]
     };
 });
-
-app
-.directive('elikaFacilityNameForMenu', function() {
-  return {
-    template:`{{innerpage_facility_name}}`,
-    restrict: 'E',
-    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacilityNameForMenu($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
-            dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.innerpage_facility_name = succResponse.data.facility_name;
-                    //$scope.vinnerpage_facility_name = true;
-                }else{
-                    $scope.innerpage_facility_name = "All Facility";
-                    //$scope.vinnerpage_facility_name = false;
-                }
-            });
-        }]
-    };
-});
-
 
 app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cookies) {
   function link(scope, element, attrs) {

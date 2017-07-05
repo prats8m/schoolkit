@@ -1,11 +1,11 @@
 <div class="page page-users">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
 		<div class="facility-view elika-facility-name"></div>
-	</div>	
-	
+	</div>
+
 	<div class="pagecontent">
-		<div class="row">		
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -13,99 +13,109 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<!-- <p>{{page.subtitle}}</p> -->									
+									<!-- <p>{{page.subtitle}}</p> -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<flip-header></flip-header>			
+			</div>
+			<flip-header></flip-header>
 		</div>
-		
+
 		<div class="row">
-			<div class="col-md-12">	   
+			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="tile-header dvd dvd-btm">
 						<h1 class="custom-font"><strong>{{page.title}}</strong></h1>
 						<ul class="controls">
 							<li class="addpopup">
 								<div ng-controller="ModalDemoCtrl">
-									<script type="text/ng-template" id="myModalContent.html">			<form ng-validate="validationOptions" name="add_technician" ng-submit="addTechnicianSubmit(addTechnician,add_technician)">						
-										<div class="modal-header"><h4 class="modal-title custom-font">Add Technician</h4></div>
-										<div class="hometabs">											
-											<!--md-content class="md-padding tabsdemoDynamicHeight">
+									<script type="text/ng-template" id="myModalContent.html">
+										<form ng-validate="validationOptions" name="add_technician" ng-submit="addTechnicianSubmit(addTechnician,add_technician)">
+											<div class="modal-header">
+												<h4 class="modal-title custom-font">Add Technician</h4>
+											</div>
+											<div class="hometabs">
+												<!--md-content class="md-padding tabsdemoDynamicHeight">
 												<md-tabs md-dynamic-height md-border-bottom>		
 													<md-tab label="Account">
 														<md-content-->
-														
-															<div class="modal-body mt-10">
-																<div class="form-group row">
-																	<div class="col-sm-6 col-md-6">
-																		<label for="">First Name <span class="text-danger">*</span></label>
-																		<input type="text" name="first_name" id="" class="form-control" maxlength="15" placeholder="" ng-model="addTechnician.first_name" required="required">
-																	</div>
-																	<div class="col-sm-6 col-md-6">												
-																		<label for="">Last Name <span class="text-danger">*</span></label>
-																		<input type="text" name="last_name" maxlength="15" id="" class="form-control" placeholder="" ng-model="addTechnician.last_name" required="required">													
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-sm-6 col-md-6">
-																		<label for="">Email Address <span class="text-danger">*</span></label>
-																		<input type="email" name="email" id="" class="form-control" placeholder=""  ng-model="addTechnician.email" maxlength="64" required="required">
-																	</div>
-																	<div class="col-sm-6 col-md-6">																		
-																		<label for="">Phone Number <span class="text-danger">*</span></label>
-																		<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.phone_number" ui-mask="(999) 999-9999" required="required" style="">
-																	</div>
-																</div>
-																<div class="form-group row">																	
-																	<div class="col-sm-6 col-md-6">
-																		<label for="">Address <span class="text-danger">*</span></label>
-																		<input type="text" name="address" id="" class="form-control" placeholder="" ng-model="addTechnician.address" required="required">
-																	</div>
-																	<div class="col-sm-6 col-md-6">
-																		<label for="">Zip Code <span class="text-danger">*</span></label>
-																		<input type="text" maxlength="6" name="zip_code" id="" class="form-control" placeholder="" ng-model="addTechnician.zipcode" number required="required">
-																	</div>
-																</div>
-																<div class="form-group row" >
-																	<div class="col-sm-6 col-md-6">
-																		<label for="">Status <span class="text-danger">*</span></label><br/>
-																		<div class="btn-group btnrounded" ng-init="addTechnician.status=1">
-																			<label class="btn btn-default" ng-model="addTechnician.status" uib-btn-radio="1">Active</label>
-																			<label class="btn btn-default" ng-model="addTechnician.status" uib-btn-radio="0">Inactive</label>
-																		</div>
-																	</div>
-																	<div class="col-sm-6 col-md-6" >
-																		<div ng-controller="DatepickerDemoCtrl">
-																			<label for="">Expiration Date <span class="text-danger">*</span></label>
-																			<div class="input-group userexp">
-																				<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.addTechnician.expirationdate" min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" />
-																				<span class="input-group-btn">
+
+												<div class="modal-body mt-10">
+													<div class="form-group row">
+														<div class="col-sm-6 col-md-6">
+															<label for="">First Name <span class="text-danger">*</span></label>
+															<input type="text" name="first_name" id="" class="form-control" maxlength="15" placeholder="" ng-model="addTechnician.first_name"
+															 required="required">
+														</div>
+														<div class="col-sm-6 col-md-6">
+															<label for="">Last Name <span class="text-danger">*</span></label>
+															<input type="text" name="last_name" maxlength="15" id="" class="form-control" placeholder="" ng-model="addTechnician.last_name"
+															 required="required">
+														</div>
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-6 col-md-6">
+															<label for="">Email Address <span class="text-danger">*</span></label>
+															<input type="email" name="email" id="" class="form-control" placeholder="" ng-model="addTechnician.email" maxlength="64"
+															 required="required">
+														</div>
+														<div class="col-sm-6 col-md-6">
+															<label for="">Phone Number <span class="text-danger">*</span></label>
+															<input type="text" name="" id="" class="form-control" placeholder="" ng-model="addTechnician.phone_number" ui-mask="(999) 999-9999"
+															 required="required" style="">
+														</div>
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-6 col-md-6">
+															<label for="">Address <span class="text-danger">*</span></label>
+															<input type="text" name="address" id="" class="form-control" placeholder="" ng-model="addTechnician.address" required="required">
+														</div>
+														<div class="col-sm-6 col-md-6">
+															<label for="">Zip Code <span class="text-danger">*</span></label>
+															<input type="text" maxlength="6" name="zip_code" id="" class="form-control" placeholder="" ng-model="addTechnician.zipcode"
+															 number required="required">
+														</div>
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-6 col-md-6">
+															<label for="">Status <span class="text-danger">*</span></label><br/>
+															<div class="btn-group btnrounded" ng-init="addTechnician.status=1">
+																<label class="btn btn-default" ng-model="addTechnician.status" uib-btn-radio="1">Active</label>
+																<label class="btn btn-default" ng-model="addTechnician.status" uib-btn-radio="0">Inactive</label>
+															</div>
+														</div>
+														<div class="col-sm-6 col-md-6">
+															<div ng-controller="DatepickerDemoCtrl">
+																<label for="">Expiration Date <span class="text-danger">*</span></label>
+																<div class="input-group userexp">
+																	<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$parent.addTechnician.expirationdate"
+																	 min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"
+																	 onkeypress="return false;" />
+																	<span class="input-group-btn">
 																					<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																				</span>
-																			</div>
-																		</div>
-																	</div>
 																</div>
-															</div>	
-																			   
-														
-										</div>
-										<div class="modal-footer">
-											<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()" id="close"><i class="fa fa-arrow-left"></i> Close</div>
-											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
-										</div>
-										</form>											
+															</div>
+														</div>
+													</div>
+												</div>
+
+
+											</div>
+											<div class="modal-footer">
+												<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()" id="close"><i class="fa fa-arrow-left"></i> Close</div>
+												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>
+											</div>
+										</form>
 									</script>
 									<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Technician</span></a>
 								</div>
 							</li>
 						</ul>
 					</div>
-					
+
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-20">
@@ -177,16 +187,21 @@
 									</div>
 								</div> -->
 							</div>
-							<div ng-if="status">									
-								<div layout="row" ng-class="statusclass">									
+							<div ng-if="status">
+								<div layout="row" ng-class="statusclass">
 									{{status}}
+								</div>
+							</div>
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)">{{x}}</button>
 								</div>
 							</div>
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>
-										<md-card ng-repeat="user in technicianList track by user.technician_id">											
-											
+										<md-card ng-repeat="user in technicianList track by user.technician_id">
+
 											<md-card-content>
 												<h2 class="md-title">{{ user.technician_name }}</h2>
 												<!-- <p><a href="#" target="_blank">{{ user.company }}</a></p> -->
@@ -197,13 +212,14 @@
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.support.technician-profile({technician_id:user.technician_id})">Edit</a>
 												<a class="btn btn-danger btn-border btn-rounded" ng-click="showConfirm($event,user.technician_id)">Delete</a>
 											</div>
-										</md-card>										
+										</md-card>
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button ng-if="count>8 &&technicianList.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="getTechnicians()"
+									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</section>
 			</div>
 		</div>

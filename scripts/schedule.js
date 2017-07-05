@@ -241,6 +241,7 @@ app
 		if(!form.validate()){
 			return false;
 		}
+		data.schedule_category = 0;
 		var weekday = new Array(7);
 		weekday[0] = "Sunday";
 		weekday[1] = "Monday";
@@ -259,8 +260,10 @@ app
 				v.day = weekday[new Date(v.start_date).getDay()]; 
 				v.starttime = split_date[1]; 
 				v.endtime = v.end_date.split(" ")[1]; 
-				if($scope.schedule.schedule_type == 1)
+				if($scope.schedule.schedule_type == 1){
 					v.date = split_date[0].replace("/", "-").replace("/", "-");
+					data.schedule_category = 1;
+				}
 				delete v.start_date;
 				delete v.end_date;
 				ind.push(v);
@@ -287,7 +290,7 @@ app
 		}
 
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
-		
+		data.schedule_type = "usergroup";
 		scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod,{},data,function (succResponse) {
 			data.schedulestart_date = start_date;
 			data.expiration = expiration_date;

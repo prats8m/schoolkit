@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc,utilitySvc) {
+    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc, utilitySvc) {
 
         $scope.page = {
             title: appConstants.facilityTitle,
@@ -95,42 +95,50 @@ app
         };
 
         $rootScope.search_facility = function (e) {
-            if(e)
-            if(e.keyCode!=13){return false;}
-            if(!$scope.search){
+            if (e)
+                if (e.keyCode != 13) { return false; }
+            if (!$scope.search) {
                 $scope.search = appConstants.empty;
             }
             var current_facility = utilitySvc.getCurrentFacility();
-            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search,facility_id:current_facility }, {}, function (succResponse) {
+            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search, facility_id: current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
-                }else if (succResponse.msg == "No_Record_Found") {
+                } else if (succResponse.msg == "No_Record_Found") {
                     $scope.facilities = [];
                 }
-                else{
-                    $scope.facilities =  [];
+                else {
+                    $scope.facilities = [];
                 }
             });
         };
-
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        $scope.pageNo = 1;
+        // $scope.devicePageLimit = 8;
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.facilityInit();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.facilityInit();
+        }
         $scope.facilityInit = function () {
             var current_facility = utilitySvc.getCurrentFacility();
-            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 8, page_no: 1,facility_id:current_facility }, {}, function (succResponse) {
+            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: $scope.pageNo, facility_id: current_facility, albhabet: $scope.searchAlphabet }, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.facilities = [];
+                    if ($scope.pageNo <= 1)
+                        $scope.facilities = [];
                     angular.forEach(succResponse["data"]["data"], function (facility, index) {
                         $scope.facilities.push(facility);
                     });
-                    $scope.totalDisplayed = 8;
-                    if (succResponse.data.count > $scope.totalDisplayed) {
-                        $scope.lmbtn = {
-                            display: appConstants.block
-                        };
-                    } else {
-                        $scope.lmbtn = {
-                            display: appConstants.none
-                        };
-                    }
+                    $scope.pageNo = $scope.pageNo + 1;
+                    $scope.count = succResponse.data.count
                 } else if (succResponse.msg == "No_Record_Found") {
                     $scope.facilities = [];
                 }

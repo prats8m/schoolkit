@@ -387,14 +387,14 @@ var app = angular
 
       //admin door view-door-groups
       .state('app.admin.door.view-door-groups', {
-        url: '/view-door-groups',
+        url: '/view-door-groups/:doorgroup_id',
         controller: 'ViewDoorGroupsCtrl',
         templateUrl: 'views/tmpl/admin/door/view-door-groups.html'
       })
 
       //admin door edit-door-groups
       .state('app.admin.door.edit-door-groups', {
-        url: '/edit-door-groups',
+        url: '/edit-door-groups/:doorgroup_id',
         controller: 'EditDoorGroupsCtrl',
         templateUrl: 'views/tmpl/admin/door/edit-door-groups.html'
       })
@@ -1291,11 +1291,18 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('ViewDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
+  .controller('ViewDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http,$stateParams,appConstants,doorsSvc) {
     $scope.page = {
       title: 'Door Group Details',
-    };
-
+    };    
+  $scope.doorGrpInit = function () {    
+			doorsSvc.doorInit(appConstants.doorgroupview + '?doorgroup_id=' + $stateParams.doorgroup_id, appConstants.getMethod, {}, {}, function (succResponse) {
+				if (succResponse.status) {
+					$scope.doorGrpData = succResponse.data;					
+				}
+			});
+		};
+		$scope.doorGrpInit();
     $scope.result = '';
     $scope.showConfirm = function (ev) {
       var confirm = $mdDialog.confirm()
@@ -1325,11 +1332,72 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('EditDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
+  .controller('EditDoorGroupsCtrl', function ($scope, $mdDialog, $state,toaster, $rootScope,$http,doorsSvc,appConstants,$stateParams) {
     $scope.page = {
       title: 'Edit Door Group',
     };
+     $scope.getDoorsList = function () {
+            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=100&pageNo=1', appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $rootScope.doorList = succResponse.data.data;
+                   
+                }
+            });
+        };
+    $scope.getDoorsList();
+    $scope.facilityInit = function () {
+			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
+				if (succResponse.status) {
+					$rootScope.facilityList = succResponse.data.data;			
+					
+				}
+			});
+		};
+        $scope.facilityInit();
+    $scope.doorGrpInit = function () {    
+			doorsSvc.doorInit(appConstants.doorgroupview + '?doorgroup_id=' + $stateParams.doorgroup_id, appConstants.getMethod, {}, {}, function (succResponse) {
+				if (succResponse.status) {
+					$scope.doorGrpData = succResponse.data;	          				
+				}
+			});
+		};
+		$scope.doorGrpInit();
 
+    $scope.editDoorGrpdata=function(doorGrpData, doorGrp_data){
+      if (!doorGrp_data.validate()) {
+				return false;
+			}
+     
+      var editDoorGrpData={
+        doorgroup_id:parseInt($stateParams.doorgroup_id) ,
+        name:doorGrpData.doorgroup_name,
+        status:doorGrpData.doorgroup_status,
+        door_id:[],
+        facility_id:0
+      };
+      angular.forEach($rootScope.facilityList, function(value, key) {
+        if(value.facility_name==doorGrpData.facility_name)
+        {
+          editDoorGrpData.facility_id=value.facility_id;
+        };
+      });
+			angular.forEach($rootScope.doorList, function(value1, key) {
+        angular.forEach(doorGrpData.door_name, function(value2, key) {
+        if(value1.door_name==value2)
+        {
+          editDoorGrpData.door_id.push(value1.door_id);
+        };
+      });
+       
+    });
+    
+			doorsSvc.editDoorGrpdata(appConstants.doorgroupedit, appConstants.putMethod, {}, editDoorGrpData, function (succResponse) {
+				if (succResponse.status) {          
+					toaster.pop(appConstants.success, succResponse.msg);
+					$location.path('/app/admin/door/doors');
+				}
+			});
+    };
     $scope.result = '';
     $scope.showConfirm = function (ev) {
       var confirm = $mdDialog.confirm()

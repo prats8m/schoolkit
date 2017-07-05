@@ -11,8 +11,8 @@
  
  */
 app
-    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc,utilitySvc) {
-
+    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc, utilitySvc) {
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.page = {
             title: appConstants.titleUsersUI,
             subtitle: appConstants.empty
@@ -151,14 +151,30 @@ app
         $scope.pageNo = 1;
         $scope.searchText = appConstants.empty;
         $scope.users = [];
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.usersInit();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.usersInit();
+
+        }
         $scope.usersInit = function () {
-            
-            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+
+            userSvc.usersInit(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.users = [];
+                    if ($scope.pageNo <= 1)
+                        $scope.users = [];
                     angular.forEach(succResponse["data"]["data"], function (user, index) {
                         $scope.users.push(user);
                     });
+                    $scope.count = succResponse["data"].count;
                     // $scope.users =  arrayPushService.arrayPush(succResponse.data.data, $scope.users);
                     $scope.pageNo = $scope.pageNo + 1;
                 }
@@ -177,6 +193,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             $scope.users = [];
             userSvc.searchFunction(appConstants.userlist + '?limit=8&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -386,8 +403,14 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    rfid.schedule_type = 1;
+                }
+                else{
+                    rfid.schedule_type = 0;
+                }
+
                 userSvc.saveRFID(url, meth, {}, rfid, function (succResponse) {
                     $scope.rfid_error = appConstants.empty;
                     if (succResponse.status) {
@@ -522,6 +545,12 @@ app
                 var url = appConstants.usereditcredential;
             }
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    wiegand.schedule_type = 1;
+                }
+                else{
+                    wiegand.schedule_type = 0;
+                }
                 userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
                     $scope.wiegand_error = appConstants.empty;
                     if (succResponse.status) {
@@ -561,6 +590,7 @@ app
 
                     if (success.status) {
                         wiegand.schedule_id = success.data;
+                        wiegand.schedule_type = 2;
                     userSvc.savewiegand(url, meth, {}, wiegand, function (succResponse) {
                     $scope.wiegand_error = appConstants.empty;
                     if (succResponse.status) {
@@ -680,6 +710,12 @@ app
                 var url = appConstants.usereditcredential;
             }
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    phoneCode.schedule_type = 1;
+                }
+                else{
+                    phoneCode.schedule_type = 0;
+                }
                 userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -716,6 +752,7 @@ app
                     JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
                     if (success.status) {
                     phoneCode.schedule_id = success.data;
+                    phoneCode.schedule_type = 2;
                     userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -816,6 +853,12 @@ app
                 var url = appConstants.usereditcredential;
             }
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    ble_code.schedule_type = 1;
+                }
+                else{
+                    ble_code.schedule_type = 0;
+                }
                 userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -850,6 +893,7 @@ app
 
                     if (success.status) {
                         ble_code.schedule_id = success.data;
+                        ble_code.schedule_type = 2;
                         userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
                         if (succResponse.status) {
                             $timeout(function () {
@@ -964,6 +1008,12 @@ app
             $scope.savenfc.schedule = ind;
 
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    savenfc.schedule_type = 1;
+                }
+                else{
+                    savenfc.schedule_type = 0;
+                }
                 userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
                     if (succResponse.status) {
                         $timeout(function () {
@@ -1003,6 +1053,7 @@ app
                     JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
                     if (success.status) {
                         savenfc.schedule_id = success.data;
+                        savenfc.schedule_type = 2;
                        userSvc.saveNFCcode(url, meth, {}, savenfc, function (succResponse) {
                         if (succResponse.status) {
                             $timeout(function () {
@@ -1100,6 +1151,12 @@ app
             }
 
             if(scheduler.toJSON() == "[]"){
+                if($scope.assingned_usergroups == undefined){
+                    accesscode.schedule_type = 1;
+                }
+                else{
+                    accesscode.schedule_type = 0;
+                }
                 userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
                         if (succResponse.status) {
 
@@ -1127,6 +1184,7 @@ app
                 JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
                     if(success.status){
                         accesscode.schedule_id = success.data;
+                        accesscode.schedule_type = 2;
                         userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
                         if (succResponse.status) {
 
@@ -1352,7 +1410,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc,utilitySvc) {
+    .controller('UserProfileCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, $filter, appConstants, userSvc, utilitySvc) {
         $scope.page = {
             title: $location.path().indexOf('view-user') >= 0 ? appConstants._titleviewUser : appConstants._titleEditUser,
             subtitle: appConstants.empty
@@ -2175,7 +2233,8 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc,utilitySvc) {
+    .controller('UserGroupsCtrl', function ($scope, $mdDialog, $http, baseURL, $stateParams, $rootScope, $cookies, toaster, arrayPushService, $timeout, schedul, $uibModal, $log, $location, appConstants, userSvc, utilitySvc) {
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.page = {
             title: appConstants._titleUserGroups,
             subtitle: appConstants.empty,
@@ -2255,8 +2314,8 @@ app
             userSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.facilityList = succResponse.data.data;
-                    if(utilitySvc.getCurrentFacility() != ''){
-                        $rootScope.userGroup.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                    if (utilitySvc.getCurrentFacility() != '') {
+                        $rootScope.userGroup.facility_id = parseInt(utilitySvc.getCurrentFacility());
                         $rootScope.facility_disable = true;
                         //$rootScope.getDoorsList();
                     }
@@ -2357,7 +2416,7 @@ app
             }
             $scope.pageNo = 1;
             $scope.usergroups = [];
-            userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo +'&facility_id='+utilitySvc.getCurrentFacility()+ '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.searchFunction(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.usergroups = arrayPushService.arrayPush(succResponse.data.data, $scope.usergroups);
                     $scope.pageNo = $scope.pageNo + 1;
@@ -2373,11 +2432,25 @@ app
         $scope.pageNo = 1;
         $scope.usergroups = [];
         $scope.searchText = appConstants.empty;
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.getUserGroupList();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.getUserGroupList();
 
+        }
         $scope.getUserGroupList = function () {
-            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo+'&facility_id='+utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
+            userSvc.getUserGroupList(appConstants.usergrouplist + '?limit=8&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + '&searchVal=' + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.usergroups = [];
+                    if ($scope.pageNo <= 1)
+                        $scope.usergroups = [];
                     angular.forEach(succResponse["data"]["data"], function (userGroup, index) {
                         $scope.usergroups.push(userGroup);
                     });
@@ -2480,7 +2553,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc,utilitySvc) {
+    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc, utilitySvc) {
 
         $scope.page = {
             title: appConstants._titleUserGroups,
