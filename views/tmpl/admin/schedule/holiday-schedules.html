@@ -301,7 +301,8 @@
 											</div>
 										</md-card>
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMoreScheduleList()" ng-style="lmbtn">Load more</button>
+									<button ng-if="count>20 && lstHolidaySchedular.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm"
+									 ng-click="getHolidayScheduleList()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

@@ -77,7 +77,7 @@ app
                 if (succResponse.status) {
                     if ($scope.pageNo == 1)
                         $scope.lstHolidaySchedular = [];
-                    angular.forEach(succResponse.data, function (holidayschedule, index) {
+                    angular.forEach(succResponse.data.data, function (holidayschedule, index) {
                         $scope.lstHolidaySchedular.push(holidayschedule);
                     });
                     $scope.pageNo = $scope.pageNo + 1;
