@@ -41,26 +41,17 @@ app
           $mdDialog.cancel();
         }
         else{
-          // $rootScope.exceptions.forEach(function (v) {
-          // if (v.type == 'ONETIME') {
-          //   v.frequency = "one-time";
-          // }
-          // else {
-          //   v.frequency = "repeat";
-          // }
-          // if (v.status == "Disabled") {
-          //   v.type = "disable";
-          // }
-          // else {
-          //   v.type = "enable";
-          // }
-          // delete v.status;
-          // });
-
+          
           //Schedule edit 
-          var spli_date = schedule.date.split("/");
-          var date = new Date(spli_date[1]+"/"+spli_date[0]+"/"+spli_date[2]);
-          schedule.schedule_start_date = (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+          if(isNaN(schedule.date)){  
+            var spli_date = schedule.date.split("/");
+             schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
+          }
+          else{
+            
+             schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+          }
+         
           var set_exp = schedule.expiration;
           var exp_date = new Date(schedule.expiration);
           schedule.expiration = (exp_date.getMonth() + 1) + "-" + exp_date.getDate() + "-" + exp_date.getFullYear();
@@ -97,6 +88,7 @@ app
           });
           schedule.schedule = ind;
           schedule.schedule_category = (schedule.schedule_type == "ONETIME" ? 1 : 0);
+          var sch_type = schedule.schedule_type;
           schedule.schedule_type = "credential";
 
 
@@ -112,7 +104,13 @@ app
           userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
           if (succResponse.status) {
             schedule.expiration =  set_exp;
-            $mdDialog.cancel();
+            schedule.schedule_type = sch_type;
+             $timeout(function () {
+              $(".close_add").click();
+            });
+          }
+          else{
+            schedule.schedule_type = sch_type;
           }
           });
           //End Schedule Edit

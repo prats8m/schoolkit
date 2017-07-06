@@ -2456,7 +2456,7 @@ app
     }
 
 
-     $rootScope.setScheduler = function(schedule_id){
+     $rootScope.setScheduler = function(schedule_id, form_type){
       scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
         if(succResponse.status){
         $scope.schedule = succResponse.data;
@@ -2512,6 +2512,12 @@ app
             $scope.custom_schedular();
           });
         }
+        if(form_type == 'view'){
+          scheduler.config.readonly = true;
+        }
+        else{
+           scheduler.config.readonly = false;
+        }
         scheduler.config.first_hour = 0;
         scheduler.config.multi_day = false;
         scheduler.config.date_step = "5";
@@ -2527,7 +2533,7 @@ app
         var sc_date = new Date($scope.schedule.schedule_start_time*1000);
         $rootScope.schedule.date =  (sc_date.getUTCDate() + '/' + (sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCFullYear());
         $rootScope.schedule.schedule_id = schedule_id;
-        if($scope.schedule.schedule_category != "custom" && schedule_expiration_date != null){
+        if($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null){
           var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
           $rootScope.schedule.expiration = (sc_exp.getUTCDate() + '/' + (sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCFullYear());
         }
@@ -2537,11 +2543,14 @@ app
           }
           else{
             $rootScope.initSchedule();
+            $timeout(function () {
+              $(".close_add").click();
+            });
           }
       });
     }
 
-    $scope.scheduleviewopen = function (schedule_id) {
+    $scope.scheduleviewopen = function (schedule_id, form_type) {
         var modalInstance = $uibModal.open({
             templateUrl: 'myModalContent2.html',
             controller: 'ModalInstanceCtrl',
@@ -2558,11 +2567,12 @@ app
          $log.info('Modal dismissed at: ' + new Date());
         });
         $timeout(function () {
-          $rootScope.setScheduler(schedule_id);
+          $rootScope.setScheduler(schedule_id, form_type);
         });
     };
 
     $scope.scheduleopen = function (size) {
+
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -2573,17 +2583,17 @@ app
           }
         }
       });
-
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-      $timeout(function () {
-        $rootScope.clearAllSchedule();
-      });
+      
       $timeout(function () {
         $rootScope.initSchedule();
+      });
+      $timeout(function () {
+        $rootScope.clearAllSchedule();
       });
     };
 
