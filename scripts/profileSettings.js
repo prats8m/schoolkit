@@ -5,9 +5,10 @@ app
         };
 
         //..Model......................................
-
+        $scope.user_id = $cookies.get('userId');
         $scope.profileSettings = {
             changepassword: {
+                user_id: $scope.user_id,
                 current_password: null,
                 new_password: null,
                 confirm_password: null
@@ -75,7 +76,7 @@ app
         };
         //.....Init
         $scope.dashboardInit();
-        $scope.user_id = $cookies.get('userId');
+
         $scope.getUserprofile = function () {
             var userId = $cookies.get('userId');
             userSvc.profileInit(appConstants.userviewuserdetails + '?user_id=' + userId, appConstants.getMethod, {}, {}, function (succResponse) {
