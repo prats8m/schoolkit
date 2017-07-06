@@ -131,9 +131,12 @@ app
                 }
             });
             $scope.current_facility = appConstants.allfacilities;
-            $scope.facility_id = $cookies.get('current_facility_id');
             $scope.navbar_facilities_count = $cookies.get('facilityId').split(",").length;
-
+            if($scope.navbar_facilities_count == 1){
+                $scope.facility_id = $cookies.get('facilityId');
+            }else{
+                $scope.facility_id = 0;
+            }
 
             $scope.goFacilityList = function(){
                 $cookies.put('current_facility_id',0);
