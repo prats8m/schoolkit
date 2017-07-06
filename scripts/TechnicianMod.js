@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('TechnicianCtrl', function ($state,$scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, technicianSvc) {
+	.controller('TechnicianCtrl', function ($state, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, technicianSvc) {
 
 		$scope.page = {
 			title: appConstants.technicianUiTitle,
@@ -42,10 +42,12 @@ app
 			$scope.layout = appConstants.gridLayout;
 		};
 		$scope.refreshList = function () {
+			$scope.searchAlphabet = '';
 			$scope.pageNo = 1;
 			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
 			$scope.getTechnicians();
 		}
+		$scope.searchAlphabet = '';
 		$scope.pageNo = 1;
 		$scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 		$scope.searchByAlphabet = function (alphabet) {
@@ -63,7 +65,7 @@ app
 		}
 		$scope.technicianList = [];
 		$scope.getTechnicians = function () {
-			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + '' + '&limits='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + '' + '&limits=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo <= 1) {
 						$scope.technicianList = []

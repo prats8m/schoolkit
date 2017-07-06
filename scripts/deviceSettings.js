@@ -46,7 +46,8 @@ app
                     $scope.lockoutMode = succResponse.data.dgs_lockout_mode[appConstants.deviceSettings.lockoutmode];
                     $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.videorecordingaccess]);
                     $scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess] = $scope.parseStringArr($scope.deviceGeneralSettingModals.dgs_camera[appConstants.deviceSettings.picturesnapshotsaccess]);
-                    // $scope.welcomeMessage = succResponse.data.dgs_welcome_setting
+                    $scope.welcomeMessage = succResponse.data.dgs_welcome_setting["welcome-message-key"];
+                    $scope.callsettings = succResponse.data.dgs_call_setting["voip-call-setting-key"];
                 }
             });
         };
