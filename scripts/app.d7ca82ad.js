@@ -2456,7 +2456,7 @@ app
     }
 
 
-     $rootScope.setScheduler = function(schedule_id){
+     $rootScope.setScheduler = function(schedule_id, form_type){
       scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
         if(succResponse.status){
         $scope.schedule = succResponse.data;
@@ -2512,6 +2512,12 @@ app
             $scope.custom_schedular();
           });
         }
+        if(form_type == 'view'){
+          scheduler.config.readonly = true;
+        }
+        else{
+           scheduler.config.readonly = false;
+        }
         scheduler.config.first_hour = 0;
         scheduler.config.multi_day = false;
         scheduler.config.date_step = "5";
@@ -2541,7 +2547,7 @@ app
       });
     }
 
-    $scope.scheduleviewopen = function (schedule_id) {
+    $scope.scheduleviewopen = function (schedule_id, form_type) {
         var modalInstance = $uibModal.open({
             templateUrl: 'myModalContent2.html',
             controller: 'ModalInstanceCtrl',
@@ -2558,11 +2564,12 @@ app
          $log.info('Modal dismissed at: ' + new Date());
         });
         $timeout(function () {
-          $rootScope.setScheduler(schedule_id);
+          $rootScope.setScheduler(schedule_id, form_type);
         });
     };
 
     $scope.scheduleopen = function (size) {
+      
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -2573,17 +2580,17 @@ app
           }
         }
       });
-
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-      $timeout(function () {
-        $rootScope.clearAllSchedule();
-      });
+      
       $timeout(function () {
         $rootScope.initSchedule();
+      });
+      $timeout(function () {
+        $rootScope.clearAllSchedule();
       });
     };
 

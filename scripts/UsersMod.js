@@ -97,6 +97,7 @@ app
           });
           schedule.schedule = ind;
           schedule.schedule_category = (schedule.schedule_type == "ONETIME" ? 1 : 0);
+          var sch_type = schedule.schedule_type;
           schedule.schedule_type = "credential";
 
 
@@ -112,7 +113,11 @@ app
           userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
           if (succResponse.status) {
             schedule.expiration =  set_exp;
+            schedule.schedule_type = sch_type;
             $mdDialog.cancel();
+          }
+          else{
+            schedule.schedule_type = sch_type;
           }
           });
           //End Schedule Edit
