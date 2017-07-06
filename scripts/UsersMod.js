@@ -11,7 +11,7 @@
  
  */
 app
-    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc, utilitySvc, $uibModal) {
+    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc, utilitySvc, $uibModal, $filter) {
         $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.page = {
             title: appConstants.titleUsersUI,
@@ -66,7 +66,8 @@ app
           weekday[5] = "Friday";
           weekday[6] = "Saturday";
           var ind = new Array();
-          JSON.parse(scheduler.toJSON()).forEach(function (v) {
+          var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+          sched_json.forEach(function (v) {
           if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
             delete v.id;
             delete v.text;
@@ -441,7 +442,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.rfid_schedule = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -578,7 +580,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.wiegand_schedule = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -745,7 +748,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.phoneCode = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -888,7 +892,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.ble_code = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -1059,7 +1064,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             // $scope.savenfc = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -1211,7 +1217,8 @@ app
           weekday[5] = "Friday";
           weekday[6] = "Saturday";
           var ind = new Array();
-          JSON.parse(scheduler.toJSON()).forEach(function (v) {
+          var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+          sched_json.forEach(function (v) {
           if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
             delete v.id;
             delete v.text;
@@ -1268,7 +1275,9 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.accesscode_schedule = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -1992,7 +2001,7 @@ app
             // $scope.editUser.access_code = Date.now();
             // $scope.accesscode = {};
             var x = Math.floor(Math.random() * 9999999999) + 10000;
-            $scope.editAccess.access_code = parseInt((appConstants.empty + x).substring(8, length));
+            $scope.editAccess.access_code = parseInt((appConstants.empty + x).substring($scope.editAccess.accesscode_size, length));
         };
 
         $scope.generatePhoneCode = function () {
