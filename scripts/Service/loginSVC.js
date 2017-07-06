@@ -17,6 +17,11 @@ app
                         $cookies.put('facilityId', succResponse.data.facilityId,{expiry:now});
                         $cookies.put('userFirstName', succResponse.data.userFirstName,{expiry:now});
                         $cookies.put('userLastName', succResponse.data.userLastName,{expiry:now});
+                        if(succResponse.data.facilityId.length == 1){
+                            $cookies.put('current_facility_id', succResponse.data.facilityId,{expiry:now});
+                        }else{
+                            $cookies.put('current_facility_id', "");
+                        }
                         //	}
                     }
 

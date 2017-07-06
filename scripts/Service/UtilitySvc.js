@@ -104,6 +104,7 @@ app
                 $modalStack.dismissAll('LoggedOut'); // close all opened modals................
                 toaster.clear();  //clears all toast messages
                 $cookies.remove(appConstants.sessionTokenCookieID);
+                $cookies.remove('current_facility_id');
                 $location.path('/core/login');
             },1500);
         };
