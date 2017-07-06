@@ -41,7 +41,7 @@ app
           $mdDialog.cancel();
         }
         else{
-          
+
           //Schedule edit 
           if(isNaN(schedule.date)){  
             var spli_date = schedule.date.split("/");
@@ -104,8 +104,10 @@ app
           schedule.schedule_exception_array = [];
           userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
           if (succResponse.status) {
-            schedule.expiration =  set_exp;
-            schedule.schedule_type = sch_type;
+            $scope.schedule = {}
+            // schedule.expiration =  set_exp;
+            // schedule.schedule_type = sch_type;
+
              $timeout(function () {
               $(".close_add").click();
             });
@@ -1264,6 +1266,12 @@ app
         $scope.saveAccessCode = function (accesscode, access_code) {
             if (!access_code.validate()) {
                 return false;
+            }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
             }
             //Add scheduler
             var weekday = new Array(7);

@@ -2503,6 +2503,7 @@ app
         scheduler.config.day_date = "%D, %F %d";
         if($scope.schedule.schedule_category == 'repeat')
         {
+          $rootScope.visibiltyUserGroup = true;
           $timeout(function () {
             $scope.repetive_schedular();
           });
@@ -2533,12 +2534,21 @@ app
         var sc_date = new Date($scope.schedule.schedule_start_time*1000);
         $rootScope.schedule.date =  (sc_date.getUTCDate() + '/' + (sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCFullYear());
         $rootScope.schedule.schedule_id = schedule_id;
+        
+
         if($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null){
           var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
           $rootScope.schedule.expiration = (sc_exp.getUTCDate() + '/' + (sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCFullYear());
+          $rootScope.schedule.no_expirations = 0;
         }
         else{
           $rootScope.schedule.no_expirations = 1;
+        }
+
+        if($scope.schedule.schedule_category == "repeat"){
+          $timeout(function () {
+            $(".checkbox-custom-alt:contains('Repeating')").click();
+          });
         }
           }
           else{
@@ -2572,7 +2582,7 @@ app
     };
 
     $scope.scheduleopen = function (size) {
-
+      $rootScope.schedule = {};
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
