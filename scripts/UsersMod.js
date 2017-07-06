@@ -58,9 +58,15 @@ app
           // });
 
           //Schedule edit 
-          var spli_date = schedule.date.split("/");
-          var date = new Date(spli_date[1]+"/"+spli_date[0]+"/"+spli_date[2]);
-          schedule.schedule_start_date = (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+          if(isNaN(schedule.date)){  
+            var spli_date = schedule.date.split("/");
+             schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
+          }
+          else{
+            
+             schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+          }
+         
           var set_exp = schedule.expiration;
           var exp_date = new Date(schedule.expiration);
           schedule.expiration = (exp_date.getMonth() + 1) + "-" + exp_date.getDate() + "-" + exp_date.getFullYear();
