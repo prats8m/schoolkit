@@ -68,12 +68,10 @@ app
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.facilityList = succResponse.data.data;
-					//$rootScope.addDoors.facility_id = parseInt($cookies.get('facilityId'));
 
 					if (utilitySvc.getCurrentFacility() != '') {
 						$rootScope.door.facility_id = parseInt(utilitySvc.getCurrentFacility());
 						$rootScope.facility_disable = true;
-						//$rootScope.getDoorsList();
 					}
 				}
 			});
@@ -141,7 +139,7 @@ app
 			$scope.users = [];
 			$scope.searchAlphabet = '';
 
-			doorsSvc.searchFunction(appConstants.doorlist + '?limit=20&pageNo=' + 1 + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+			doorsSvc.searchFunction(appConstants.doorlist + '?limit='+ appConstants.pageLimit +'&pageNo=' + 1 + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
 				$scope.adoors = [];
 				if (succResponse.status) {
 					$scope.adoors = succResponse.data.data;
@@ -175,7 +173,7 @@ app
 			$scope.listDoors();
 		}
 		$scope.listDoors = function () {
-			doorsSvc.listDoors(appConstants.doorlist + '?limit=20&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + "&albhabet=" + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+			doorsSvc.listDoors(appConstants.doorlist + '?limit='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&facility_id=' + utilitySvc.getCurrentFacility() + "&albhabet=" + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo <= 1)
 						$scope.adoors = [];

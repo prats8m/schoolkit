@@ -196,7 +196,7 @@
 										<md-card ng-repeat="user in technicianList track by user.technician_id">
 
 											<md-card-content>
-												<h2 class="md-title">{{ user.technician_name }}</h2>
+												<h2 class="md-title">{{ user.technician_first_name + ' ' + user.technician_last_name }}</h2>
 												<!-- <p><a href="#" target="_blank">{{ user.company }}</a></p> -->
 												<!-- <p>{{ user.phone }}</p> -->
 											</md-card-content>

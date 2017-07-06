@@ -1031,6 +1031,21 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 			return false;
 		}
 		data.block = "";
+		$rootScope.exceptions.forEach(function (v) {
+				if (v.type == 'ONETIME') {
+					v.frequency = "one-time";
+				}
+				else {
+					v.frequency = "repeat";
+				}
+				if (v.status == "Disabled") {
+					v.type = "disable";
+				}
+				else {
+					v.type = "enable";
+				}
+				delete v.status;
+			});
 		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 		data.schedule_category = 0;
@@ -1038,11 +1053,10 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
 		var start_date = data.selected_schedule_start_date;
 		var date = new Date(data.selected_schedule_start_date)
-		data.schedule_start_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-
+		data.schedule_start_date = (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
 		var expiration_date = data.selected_schedule_expiration_date;
 		var exp_date = new Date(data.selected_schedule_expiration_date)
-		data.expiration = exp_date.getDate() + "-" + (exp_date.getMonth() + 1) + "-" + exp_date.getFullYear();
+		data.expiration = (exp_date.getMonth() + 1) + "-" + exp_date.getDate() + "-" + exp_date.getFullYear();
 
 
 		var weekday = new Array(7);
@@ -1073,6 +1087,16 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		});
 		data.schedule = ind;
 		data.schedule_type = "usergroup";
+
+
+
+		delete data.schedule_sat; 
+		delete data.schedule_sun;
+		delete data.schedule_mon;
+		delete data.schedule_tue;
+		delete data.schedule_wed;
+		delete data.schedule_thu;
+		delete data.schedule_fri;
 		scheduleSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
 			if (succResponse.status) {
 				data.schedulestart_date = start_date;

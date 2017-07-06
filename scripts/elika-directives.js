@@ -124,16 +124,32 @@ app
   return {
     templateUrl:'views/header.html',
     restrict: 'E',
-    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc) {
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc','$cookies','$state', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc,$cookies,$state) {
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
                 }
             });
+            $scope.current_facility = appConstants.allfacilities;
+            $scope.facility_id = $cookies.get('current_facility_id');
+            $scope.navbar_facilities_count = $cookies.get('facilityId').split(",").length;
 
-            $scope.setCurrentFacility = function(facility_name){
+
+            $scope.goFacilityList = function(){
+                $cookies.put('current_facility_id',0);
+                $scope.facility_id = 0;
+                $scope.current_facility = appConstants.allfacilities;
+                ($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
+                
+            };
+
+            $scope.setCurrentFacility = function(facility_name, facility_id){
+                $cookies.put('current_facility_id',facility_id);
+                $scope.facility_id = facility_id;
+                ($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
                 $scope.current_facility = facility_name;
             }
+
             $scope.staticcurrent_facility = appConstants.allfacilities;
 
             if(utilitySvc.getCurrentFacility() == ''){

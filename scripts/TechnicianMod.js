@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('TechnicianCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, technicianSvc) {
+	.controller('TechnicianCtrl', function ($state,$scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, technicianSvc) {
 
 		$scope.page = {
 			title: appConstants.technicianUiTitle,
@@ -63,7 +63,7 @@ app
 		}
 		$scope.technicianList = [];
 		$scope.getTechnicians = function () {
-			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + '' + '&limits=20&pageNo=' + $scope.pageNo + '&albhabet' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + '' + '&limits='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo <= 1) {
 						$scope.technicianList = []
