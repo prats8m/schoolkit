@@ -100,6 +100,7 @@ app
             $scope.getDoorGroupList();
         }
         $scope.refreshList = function () {
+            $scope.searchAlphabet = '';
             $scope.pageNo = 1;
             $scope.getDoorGroupList();
         }

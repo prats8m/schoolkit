@@ -46,7 +46,7 @@ app
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
-                    $scope.facilityInit();
+                    $scope.refreshList();
                     $rootScope.fac_error = succResponse.msg.replace(/_/g, " ");
                 }
                 else {
@@ -113,6 +113,7 @@ app
             });
         };
         $scope.refreshList = function () {
+            $scope.searchAlphabet = '';
             $scope.pageNo = 1;
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.facilityInit();

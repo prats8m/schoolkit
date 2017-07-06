@@ -52,6 +52,7 @@ app
             $scope.myOrderBy = x;
         };
         $scope.refreshList = function () {
+            $scope.searchAlphabet = '';
             $scope.pageNo = 1;
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.getHolidayScheduleList();
