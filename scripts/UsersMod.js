@@ -43,13 +43,16 @@ app
         else{
 
           //Schedule edit 
-          if(isNaN(schedule.date)){  
-            var spli_date = schedule.date.split("/");
-             schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
-          }
-          else{
+          if(schedule.date != undefined){
             
-             schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+            if(isNaN(schedule.date)){  
+              var spli_date = schedule.date.split("/");
+               schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
+            }
+            else{
+              
+               schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+            }
           }
          
           var set_exp = schedule.expiration;

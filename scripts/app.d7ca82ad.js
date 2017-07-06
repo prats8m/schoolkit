@@ -2428,7 +2428,7 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants, $filter) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -2455,6 +2455,19 @@ app
       });
     }
 
+      $scope.custom_schedular = function () {
+            $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
+            $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
+            $(".dhx_scale_bar")[2].innerHTML = $(".dhx_scale_bar:eq(2)").attr("aria-label");
+            $(".dhx_scale_bar")[3].innerHTML = $(".dhx_scale_bar:eq(3)").attr("aria-label");
+            $(".dhx_scale_bar")[4].innerHTML = $(".dhx_scale_bar:eq(4)").attr("aria-label");
+            $(".dhx_scale_bar")[5].innerHTML = $(".dhx_scale_bar:eq(5)").attr("aria-label");
+            $(".dhx_scale_bar")[6].innerHTML = $(".dhx_scale_bar:eq(6)").attr("aria-label");
+            $(".dhx_cal_prev_button").show();
+            $(".dhx_cal_next_button").show();
+            $(".dhx_cal_today_button").show();
+
+        }
 
      $rootScope.setScheduler = function(schedule_id, form_type){
       scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
@@ -2581,8 +2594,29 @@ app
         });
     };
 
+    $rootScope.editviewopen = function (schedule_id, form_type) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'myModalContent2.html',
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+              items: function () {
+                return $scope.items;
+              }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+        });
+        $timeout(function () {
+          $rootScope.setScheduler(schedule_id, form_type);
+        });
+    };
+
     $scope.scheduleopen = function (size) {
-      $rootScope.schedule = {};
+      delete $rootScope.schedule.schedule_id;
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
