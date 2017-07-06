@@ -41,22 +41,7 @@ app
           $mdDialog.cancel();
         }
         else{
-          // $rootScope.exceptions.forEach(function (v) {
-          // if (v.type == 'ONETIME') {
-          //   v.frequency = "one-time";
-          // }
-          // else {
-          //   v.frequency = "repeat";
-          // }
-          // if (v.status == "Disabled") {
-          //   v.type = "disable";
-          // }
-          // else {
-          //   v.type = "enable";
-          // }
-          // delete v.status;
-          // });
-
+          
           //Schedule edit 
           if(isNaN(schedule.date)){  
             var spli_date = schedule.date.split("/");
@@ -120,7 +105,9 @@ app
           if (succResponse.status) {
             schedule.expiration =  set_exp;
             schedule.schedule_type = sch_type;
-            $mdDialog.cancel();
+             $timeout(function () {
+              $(".close_add").click();
+            });
           }
           else{
             schedule.schedule_type = sch_type;
