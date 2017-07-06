@@ -84,6 +84,7 @@ app.constant("appConstants", {
     holidayscheduledelete: 'holiday-schedule/delete',
     schedulelistschedule: 'schedule/list-schedule',
     scheduleView: 'schedule/view',
+    credentialscheduleView: 'schedule-credential/view',
     shortcutslist: 'shortcut/list',
     shortcutadd: 'shortcut/add',
     roleadd: 'role/add',

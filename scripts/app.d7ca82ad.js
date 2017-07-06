@@ -2428,7 +2428,7 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -2445,7 +2445,131 @@ app
     scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
     }
 
+    $rootScope.clearAllSchedule = function () {
+      var eventId = new Array();
+      angular.forEach($(".dhx_cal_event"), function (value, key) {
+        eventId.push(value.getAttribute("event_id"));
+      });
+      angular.forEach(eventId, function (value, key) {
+        scheduler.deleteEvent(value);
+      });
+    }
+
+
+     $rootScope.setScheduler = function(schedule_id, form_type){
+      scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
+        if(succResponse.status){
+        $scope.schedule = succResponse.data;
+        JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
+        
+        var weekday = new Array(7);
+        weekday["Sunday"] = 0;
+        weekday["Monday"] = 1;
+        weekday["Tuesday"] = 2;
+        weekday["Wednesday"] = 3;
+        weekday["Thursday"] = 4;
+        weekday["Friday"] = 5;
+        weekday["Saturday"] = 6;
+        var arr = [];
+        var week_date = new Date();
+        if($scope.schedule.schedule_category == 'repeat'){
+          $scope.schedule.schedule_input.forEach(function(v){
+            week_date = new Date();
+            var sch = {}; 
+            var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
+            if(week_date.getDay() > weekday[v.day])
+            {
+              var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+            }
+            else{
+              var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
+            }
+            sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.starttime; 
+            sch.end_date= (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.endtime;
+            arr.push(sch); 
+          });
+        }
+        else{
+          $scope.schedule.schedule_input.forEach(function(v){
+            week_date = new Date(v.date);
+            var sch = {}; 
+            // var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
+            sch.start_date = v.date+" "+v.starttime; sch.end_date= v.date+" "+v.endtime;
+            arr.push(sch); 
+          });
+        }
+        scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+        window.resizeTo(950,700);
+        scheduler.config.day_date = "%D, %F %d";
+        if($scope.schedule.schedule_category == 'repeat')
+        {
+          $timeout(function () {
+            $scope.repetive_schedular();
+          });
+        }
+        else{
+          $timeout(function () {
+            $scope.custom_schedular();
+          });
+        }
+        if(form_type == 'view'){
+          scheduler.config.readonly = true;
+        }
+        else{
+           scheduler.config.readonly = false;
+        }
+        scheduler.config.first_hour = 0;
+        scheduler.config.multi_day = false;
+        scheduler.config.date_step = "5";
+        scheduler.config.show_loading = true;
+        scheduler.init('scheduler_here',week_date,"week");
+        $timeout(function () {
+          $rootScope.clearAllSchedule();
+        });
+        $timeout(function () {
+          scheduler.parse(arr,"json");
+        });
+        $rootScope.schedule.schedule_type = ($scope.schedule.schedule_category == "repeat" ? "REPEATING" : "ONETIME");
+        var sc_date = new Date($scope.schedule.schedule_start_time*1000);
+        $rootScope.schedule.date =  (sc_date.getUTCDate() + '/' + (sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCFullYear());
+        $rootScope.schedule.schedule_id = schedule_id;
+        if($scope.schedule.schedule_category != "custom" && schedule_expiration_date != null){
+          var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
+          $rootScope.schedule.expiration = (sc_exp.getUTCDate() + '/' + (sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCFullYear());
+        }
+        else{
+          $rootScope.schedule.no_expirations = 1;
+        }
+          }
+          else{
+            $rootScope.initSchedule();
+          }
+      });
+    }
+
+    $scope.scheduleviewopen = function (schedule_id, form_type) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'myModalContent2.html',
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+              items: function () {
+                return $scope.items;
+              }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+        });
+        $timeout(function () {
+          $rootScope.setScheduler(schedule_id, form_type);
+        });
+    };
+
     $scope.scheduleopen = function (size) {
+      
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -2456,14 +2580,17 @@ app
           }
         }
       });
-
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      
       $timeout(function () {
         $rootScope.initSchedule();
+      });
+      $timeout(function () {
+        $rootScope.clearAllSchedule();
       });
     };
 

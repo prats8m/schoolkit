@@ -299,6 +299,7 @@ app
                     }
                 }
             });
+            console.log(temp)
             return temp;
         }
         $scope.setRelayDoorSetup = function () {
