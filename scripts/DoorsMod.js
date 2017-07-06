@@ -227,6 +227,8 @@ app
 			subtitle: appConstants.dashboardSubTitle
 		};
 
+		
+
 		$scope.imagePath = baseURL + appConstants.imagePath;
 		// $scope.doorData = {};
 		// $scope.doorData.door_status = 1;
@@ -311,6 +313,8 @@ app
 		};
 
 		$scope.imagePath = baseURL + appConstants.imagePath;
+
+		
 
 		$scope.facilityInit = function () {
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {

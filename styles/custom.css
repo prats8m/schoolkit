@@ -3969,3 +3969,8 @@ span.edittxt {position: absolute;
     right: 0;
     left: auto;
 }
+ .div-width{position: relative;}
+
+ .div-width{float: left; width: 45%; margin-left: 30px;position: relative;}
+ .signup .div-width input, .div-width .signupselect{width: 100%;float: none;margin-left: 0px;}
+ .div-width input + label{position: absolute;left: 0px;top: 45px;z-index: 999;font-size: 12px;font-style: normal;font-weight: 400;}

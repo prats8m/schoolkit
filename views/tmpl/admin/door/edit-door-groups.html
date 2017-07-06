@@ -35,8 +35,8 @@
 					<div class="leftdetail tile-widget p-30 text-center">
 						<h4 class="mb-0"><strong>Pool Gate</strong></h4>
 						<div class="mt-40">
-							<a ui-sref="app.admin.door.view-door-groups" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
-							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
+							<a ui-sref="app.admin.door.view-door-groups({doorgroup_id:doorgroup_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
+							<a ng-click="showConfirm($event,doorgroup_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
 						</div>
 					</div>
 					<div class="tile-body text-center bg-blue p-0"> 
@@ -75,7 +75,7 @@
 										<label for="">Doors</label>
 										<select name="mySelect" id="mySelect" class="form-control" Multiple chosen="{width: '100%'}"													
 													ng-options="door.door_id as door.door_name for door in doorList"													
-													ng-model="doorGrpData.door_name" ng-init="doorGrp.door_name = doorname"
+													ng-model="doorGrpData.door_id" 
 													></select>
 										<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
 									</div>

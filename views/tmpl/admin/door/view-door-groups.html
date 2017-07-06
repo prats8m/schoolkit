@@ -33,10 +33,10 @@
 			<div class="col-sm-12 col-md-4">
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
-						<h4 class="mb-0"><strong>{{doorGrpData.doorgroup_name}}</strong></h4>
+						<h4 class="mb-0"><strong>{{doorGrpData.doorgroup_name}} </strong></h4>
 						<div class="mt-40">
-							<a ui-sref="app.admin.door.edit-door-groups" class="btn btn-rounded-20 btn-sm btn-greensea">Edit Door</a>
-							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
+							<a ui-sref="app.admin.door.edit-door-groups({doorgroup_id:doorgroup_id})" class="btn btn-rounded-20 btn-sm btn-greensea">Edit Door  </a>
+							<a ng-click="showConfirm($event,doorgroup_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
 						</div>
 					</div>
 					<div class="tile-body text-center bg-blue p-0"> 
@@ -64,7 +64,7 @@
 											<p><label>Name</label> {{doorGrpData.doorgroup_name}}</p>
 											<p><label>Facility</label> {{doorGrpData.facility_name}}</p>
 											<p><label>No Of Doors</label> {{doorGrpData.doorgroup_door_count}}</p>
-											<p><label>Doors</label> <span ng-repeat="item in doorGrpData.door_name track by $index">{{item  }}</span></p>
+											<p><label>Doors</label> <span ng-repeat="item in doorGrpData.door_name track by $index">{{item.door_name}}<i ng-if="!$index">,</i></span></p>
 										</div>
 									</div>
 								</div>
