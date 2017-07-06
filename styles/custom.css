@@ -3964,3 +3964,8 @@ span.edittxt {position: absolute;
     float: right;
     margin: 0;
 }
+.facility-view .dropdown-menu{
+        float: left;
+    right: 0;
+    left: auto;
+}
