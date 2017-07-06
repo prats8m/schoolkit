@@ -17,6 +17,29 @@ app
             });
         };
 
+        userSvcSvcResp.submitEditSchedule=function(url,method,params,data,cb) {
+            // data.block = "  ";
+            data.facility_id = data.schedule_facility_id;
+            if(data.schedule_category == 0){    
+                data.schedule_start_date = data.schedule_start_date.toString();
+                data.schedule_end_date = data.expiration.toString();
+                data.expiration = data.expiration.toString();
+            }
+
+
+
+            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
+                if(succResponse.status){
+                    cb(succResponse);
+                }else {
+                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+
+
         userSvcSvcResp.uploadProfilePic = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
