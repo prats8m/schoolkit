@@ -41,15 +41,18 @@ app
           $mdDialog.cancel();
         }
         else{
-          
+
           //Schedule edit 
-          if(isNaN(schedule.date)){  
-            var spli_date = schedule.date.split("/");
-             schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
-          }
-          else{
+          if(schedule.date != undefined){
             
-             schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+            if(isNaN(schedule.date)){  
+              var spli_date = schedule.date.split("/");
+               schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
+            }
+            else{
+              
+               schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+            }
           }
          
           var set_exp = schedule.expiration;
@@ -104,8 +107,10 @@ app
           schedule.schedule_exception_array = [];
           userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
           if (succResponse.status) {
-            schedule.expiration =  set_exp;
-            schedule.schedule_type = sch_type;
+            $scope.schedule = {}
+            // schedule.expiration =  set_exp;
+            // schedule.schedule_type = sch_type;
+
              $timeout(function () {
               $(".close_add").click();
             });
@@ -1264,6 +1269,12 @@ app
         $scope.saveAccessCode = function (accesscode, access_code) {
             if (!access_code.validate()) {
                 return false;
+            }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
             }
             //Add scheduler
             var weekday = new Array(7);

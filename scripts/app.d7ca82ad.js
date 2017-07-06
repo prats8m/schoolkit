@@ -2294,7 +2294,7 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants, $filter) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -2321,6 +2321,19 @@ app
       });
     }
 
+      $scope.custom_schedular = function () {
+            $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
+            $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
+            $(".dhx_scale_bar")[2].innerHTML = $(".dhx_scale_bar:eq(2)").attr("aria-label");
+            $(".dhx_scale_bar")[3].innerHTML = $(".dhx_scale_bar:eq(3)").attr("aria-label");
+            $(".dhx_scale_bar")[4].innerHTML = $(".dhx_scale_bar:eq(4)").attr("aria-label");
+            $(".dhx_scale_bar")[5].innerHTML = $(".dhx_scale_bar:eq(5)").attr("aria-label");
+            $(".dhx_scale_bar")[6].innerHTML = $(".dhx_scale_bar:eq(6)").attr("aria-label");
+            $(".dhx_cal_prev_button").show();
+            $(".dhx_cal_next_button").show();
+            $(".dhx_cal_today_button").show();
+
+        }
 
      $rootScope.setScheduler = function(schedule_id, form_type){
       scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
@@ -2369,6 +2382,7 @@ app
         scheduler.config.day_date = "%D, %F %d";
         if($scope.schedule.schedule_category == 'repeat')
         {
+          $rootScope.visibiltyUserGroup = true;
           $timeout(function () {
             $scope.repetive_schedular();
           });
@@ -2399,12 +2413,21 @@ app
         var sc_date = new Date($scope.schedule.schedule_start_time*1000);
         $rootScope.schedule.date =  (sc_date.getUTCDate() + '/' + (sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCFullYear());
         $rootScope.schedule.schedule_id = schedule_id;
+        
+
         if($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null){
           var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
           $rootScope.schedule.expiration = (sc_exp.getUTCDate() + '/' + (sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCFullYear());
+          $rootScope.schedule.no_expirations = 0;
         }
         else{
           $rootScope.schedule.no_expirations = 1;
+        }
+
+        if($scope.schedule.schedule_category == "repeat"){
+          $timeout(function () {
+            $(".checkbox-custom-alt:contains('Repeating')").click();
+          });
         }
           }
           else{
@@ -2437,8 +2460,29 @@ app
         });
     };
 
-    $scope.scheduleopen = function (size) {
+    $rootScope.editviewopen = function (schedule_id, form_type) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'myModalContent2.html',
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+              items: function () {
+                return $scope.items;
+              }
+            }
+        });
 
+        modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+        });
+        $timeout(function () {
+          $rootScope.setScheduler(schedule_id, form_type);
+        });
+    };
+
+    $scope.scheduleopen = function (size) {
+      delete $rootScope.schedule.schedule_id;
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
