@@ -99,7 +99,7 @@
 																		<label for="">Expiration Date <span class="text-danger">*</span></label>
 																		<div class="input-group">
 
-																			<input type="text" id="expirationDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_expiration"
+																			<input type="text" name="expirationdate" id="expirationDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="addHolidayScheduleObj.hs_expiration"
 																			 is-open="opened" min-date="addHolidayScheduleObj.hs_end_date" datepicker-options="dateOptions" ng-required="true"
 																			 close-text="Close" onkeypress="return false;" />
 
@@ -203,8 +203,8 @@
 											<md-card-content>
 												<h2 class="md-title">{{ schedule.hs_name }}</h2>
 												<p>{{ schedule.hs_status==1?'Active':'InActive' }}</p>
-												<p><strong>Start Date:&nbsp;</strong>{{ schedule.hs_start_date.date+' '+schedule.hs_start_date.time }}</p>
-												<p><strong>End Date:&nbsp;</strong>{{ schedule.hs_end_date.date+' '+schedule.hs_end_date.time}}</p>
+												<p><strong>Start Date:&nbsp;</strong>{{ schedule.hs_start_date*1000 | date:'medium'}}</p>
+												<p><strong>End Date:&nbsp;</strong>{{ schedule.hs_end_date*1000 | date:'medium'}}</p>
 											</md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.schedule.view-holiday-schedule({hs_id:schedule.hs_id})">View</a>
