@@ -105,7 +105,13 @@ app
           delete schedule.schedule_thu;
           delete schedule.schedule_fri;
           schedule.schedule_exception_array = [];
-          userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
+          if(schedule.expiration == "NaN-NaN-NaN")
+            delete schedule.expiration;
+
+          if(schedule.schedule_end_date == "NaN-NaN-NaN")
+            delete schedule.schedule_end_date;
+
+          userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, schedule, function (succResponse) {
           if (succResponse.status) {
             $scope.schedule = {}
             // schedule.expiration =  set_exp;
@@ -437,6 +443,12 @@ app
                 $rootScope.rfid_error = appConstants.incompleteform;
                 return false;
             }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
+            }
             //Add scheduler
             var weekday = new Array(7);
             weekday[0] = "Sunday";
@@ -574,6 +586,12 @@ app
             if (wiegand == undefined) {
                 $rootScope.wiegand_error = appConstants.incompleteform;
                 return false;
+            }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
             }
             //Add scheduler
             var weekday = new Array(7);
@@ -742,6 +760,12 @@ app
             if (!phone_form.validate()) {
                 return false;
             }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
+            }
 
             //Add scheduler
             var weekday = new Array(7);
@@ -886,6 +910,12 @@ app
             if (ble_code == undefined) {
                 $scope.blecode_error = appConstants.incompleteform;
                 return false;
+            }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
             }
             //Add scheduler
             var weekday = new Array(7);
@@ -1039,6 +1069,12 @@ app
         $scope.saveNFCcode = function (savenfc, nfc_form) {
             if (!nfc_form.validate()) {
                 return false;
+            }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
             }
             savenfc.user_id = parseInt($cookies.get("newUserId"));
             savenfc.credential_type = "nfc_code";
@@ -1452,8 +1488,9 @@ app
         $scope.assignedGroup = function () {
             userSvc.assignedGroup(appConstants.usergroupassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($cookies.get("newUserId")) }, function (succResponse) {
                 if (succResponse.status) {
+                  $scope.assingned_usergroups = {};
                     if (succResponse.data) {
-                        $rootScope.assingned_usergroups = succResponse.data;
+                        $scope.assingned_usergroups = succResponse.data;
                         $scope.groupcount = succResponse.data.length ? succResponse.data.length : 0;
                     }
                 }
