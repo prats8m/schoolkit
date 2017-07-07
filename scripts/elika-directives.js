@@ -124,7 +124,66 @@ app
   return {
     templateUrl:'views/header.html',
     restrict: 'E',
-    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc','$cookies','$state', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc,$cookies,$state) {
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc','$cookies','$state','dataService', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc,$cookies,$state,dataService) {
+            
+            // dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
+            //     if(succResponse.status){
+            //         $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
+            //     }
+            // });
+            // $scope.current_facility = appConstants.allfacilities;
+            // $scope.navbar_facilities_count = $cookies.get('facilityId').split(",").length;
+            // if($scope.navbar_facilities_count == 1){
+            //     $scope.facility_id = $cookies.get('facilityId');
+            // }else{
+            //     $scope.facility_id = 0;
+            // }
+
+            // $scope.goFacilityList = function(){
+            //     $cookies.put('current_facility_id',0);
+            //     $scope.facility_id = 0;
+            //     $scope.current_facility = appConstants.allfacilities;
+            //     ($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
+                
+            // };
+
+            // $scope.setCurrentFacility = function(facility_name, facility_id){
+            //     $cookies.put('current_facility_id',facility_id);
+            //     $scope.facility_id = facility_id;
+            //     ($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
+            //     $scope.current_facility = facility_name;
+            // }
+
+            // $scope.staticcurrent_facility = appConstants.allfacilities;
+
+            // if(utilitySvc.getCurrentFacility() == ''){
+            //     $scope.current_facility = appConstants.allfacilities;
+            // }else{
+            //     dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+            //         if(succResponse.status){
+            //             $scope.current_facility = succResponse.data.facility_name;
+            //         }else{
+            //             $scope.current_facility = appConstants.allfacilities;
+            //         }
+            //     });
+            // }
+        }]
+    };
+});
+
+//..............................................................................................
+app
+.directive('elikaFacilityName', function() {
+  return {
+    template:`<ul class="nav-right list-inline headmenu" ng-if="navbar_facilities_count > 1"><li class="dropdown" uib-dropdown>
+                    <span class="dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">{{current_facility}} &nbsp;<i class="fa fa-angle-down" name="angle-down"></i></span>
+                    <ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu" style="">
+                        <li ><a ng-click="setCurrentFacility(staticcurrent_facility,0)"">All Facilities</a></li>
+                        <li ng-repeat="facility in headerFacilityList"><a ng-click="setCurrentFacility(facility.facility_name,facility.facility_id)">{{ facility.facility_name }}</a></li>
+                    </ul>
+                </li></ul>`,
+    restrict: 'C',
+    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','utilitySvc','$cookies','$state','dataService', function elikaHeader($scope,dashboardSvc,appConstants,$rootScope,utilitySvc,$cookies,$state,dataService) {
             dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 if(succResponse.status){
                     $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
@@ -142,14 +201,15 @@ app
                 $cookies.put('current_facility_id',0);
                 $scope.facility_id = 0;
                 $scope.current_facility = appConstants.allfacilities;
-                ($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
-                
+                $state.reload();
+                //($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
             };
 
             $scope.setCurrentFacility = function(facility_name, facility_id){
                 $cookies.put('current_facility_id',facility_id);
-                $scope.facility_id = facility_id;
-                ($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
+               $scope.facility_id = facility_id;
+                //($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
+                $state.reload();
                 $scope.current_facility = facility_name;
             }
 
@@ -189,24 +249,24 @@ app
     };
 });
 
-app
-.directive('elikaFacilityName', function() {
-  return {
-    template:`<span ng-show="vinnerpage_facility_name"> Facility name :</span> {{innerpage_facility_name}}`,
-    restrict: 'C',
-    controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacility($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
-            dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.innerpage_facility_name = succResponse.data.facility_name;
-                    $scope.vinnerpage_facility_name = true;
-                }else{
-                    $scope.innerpage_facility_name = "";
-                    $scope.vinnerpage_facility_name = false;
-                }
-            });
-        }]
-    };
-});
+// app
+// .directive('elikaFacilityName', function() {
+//   return {
+//     template:`<span ng-show="vinnerpage_facility_name"> Facility name :</span> {{innerpage_facility_name}}`,
+//     restrict: 'C',
+//     controller: ['$scope','dashboardSvc',"appConstants",'$rootScope','$cookies', function elikaFacility($scope,dashboardSvc,appConstants,$rootScope,$cookies) {
+//             dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
+//                 if(succResponse.status){
+//                     $scope.innerpage_facility_name = succResponse.data.facility_name;
+//                     $scope.vinnerpage_facility_name = true;
+//                 }else{
+//                     $scope.innerpage_facility_name = "";
+//                     $scope.vinnerpage_facility_name = false;
+//                 }
+//             });
+//         }]
+//     };
+// });
 
 app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cookies) {
   function link(scope, element, attrs) {
@@ -223,4 +283,9 @@ app.directive('elikaFaqs', ['$location', '$cookies', function ($location, $cooki
     restrict: 'A',
     link: link
   };
+}]);
+
+app.factory('dataService', [function(){
+    var facility_id = 0;
+  return facility_id;
 }]);

@@ -11,7 +11,7 @@
  
  */
 app
-    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc, utilitySvc, $uibModal) {
+    .controller('UserCtrl', function ($stateParams, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, appConstants, userSvc, utilitySvc, $uibModal, $filter) {
         $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.page = {
             title: appConstants.titleUsersUI,
@@ -41,15 +41,18 @@ app
           $mdDialog.cancel();
         }
         else{
-          
+
           //Schedule edit 
-          if(isNaN(schedule.date)){  
-            var spli_date = schedule.date.split("/");
-             schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
-          }
-          else{
+          if(schedule.date != undefined){
             
-             schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+            if(isNaN(schedule.date)){  
+              var spli_date = schedule.date.split("/");
+               schedule.schedule_start_date = spli_date[1]+"-"+spli_date[0]+"-"+spli_date[2];
+            }
+            else{
+              
+               schedule.schedule_start_date = (schedule.date.getMonth() + 1) + "-" + schedule.date.getDate() + "-" + schedule.date.getFullYear();
+            }
           }
          
           var set_exp = schedule.expiration;
@@ -66,7 +69,8 @@ app
           weekday[5] = "Friday";
           weekday[6] = "Saturday";
           var ind = new Array();
-          JSON.parse(scheduler.toJSON()).forEach(function (v) {
+          var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+          sched_json.forEach(function (v) {
           if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
             delete v.id;
             delete v.text;
@@ -103,8 +107,10 @@ app
           schedule.schedule_exception_array = [];
           userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, $scope.schedule, function (succResponse) {
           if (succResponse.status) {
-            schedule.expiration =  set_exp;
-            schedule.schedule_type = sch_type;
+            $scope.schedule = {}
+            // schedule.expiration =  set_exp;
+            // schedule.schedule_type = sch_type;
+
              $timeout(function () {
               $(".close_add").click();
             });
@@ -442,7 +448,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.rfid_schedule = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -579,7 +586,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.wiegand_schedule = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -746,7 +754,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.phoneCode = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -889,7 +898,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.ble_code = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -1060,7 +1070,8 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             // $scope.savenfc = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -1212,7 +1223,8 @@ app
           weekday[5] = "Friday";
           weekday[6] = "Saturday";
           var ind = new Array();
-          JSON.parse(scheduler.toJSON()).forEach(function (v) {
+          var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+          sched_json.forEach(function (v) {
           if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
             delete v.id;
             delete v.text;
@@ -1258,6 +1270,12 @@ app
             if (!access_code.validate()) {
                 return false;
             }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
+            }
             //Add scheduler
             var weekday = new Array(7);
             weekday[0] = "Sunday";
@@ -1269,7 +1287,9 @@ app
             weekday[6] = "Saturday";
             var ind = new Array();
             $scope.accesscode_schedule = {};
-            JSON.parse(scheduler.toJSON()).forEach(function (v) {
+
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
                     delete v.id;
                     delete v.text;
@@ -1993,7 +2013,7 @@ app
             // $scope.editUser.access_code = Date.now();
             // $scope.accesscode = {};
             var x = Math.floor(Math.random() * 9999999999) + 10000;
-            $scope.editAccess.access_code = parseInt((appConstants.empty + x).substring(8, length));
+            $scope.editAccess.access_code = parseInt((appConstants.empty + x).substring($scope.editAccess.accesscode_size, length));
         };
 
         $scope.generatePhoneCode = function () {
@@ -2044,7 +2064,15 @@ app
                 }
             });
         };
-        $scope.getAccessCodeList();
+        // $scope.getAccessCodeList();
+        $scope.getCredentials = function(){
+            $scope.getAccessCodeList();
+            $scope.getNfcCodeList();
+            $scope.getPhoneList();
+            $scope.getBleList();
+            $scope.getWiegandList();
+            $scope.getRfidList();
+        }
         //NFC code edit
         $scope.submitEditNfcCode = function (submitData, nfc_edit_form) {
             if (!nfc_edit_form.validate()) {
@@ -2097,7 +2125,7 @@ app
                 }
             });
         };
-        $scope.getNfcCodeList();
+        //$scope.getNfcCodeList();
 
         //End Of NFC Code Edit
         $scope.getPhoneList = function () {
@@ -2112,7 +2140,7 @@ app
                 }
             });
         };
-        $scope.getPhoneList();
+        ///$scope.getPhoneList();
 
         $scope.submitEditPhoneCode = function (submitData, phone_edit_form) {
 
@@ -2162,7 +2190,7 @@ app
                 }
             });
         };
-        $scope.getRfidList();
+        // $scope.getRfidList();
 
         $scope.getWiegandList = function () {
             userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($stateParams.user_id) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
@@ -2177,7 +2205,7 @@ app
             });
         };
 
-        $scope.getWiegandList();
+        // $scope.getWiegandList();
         $scope.submitEditRFIDCode = function (submitData, rfid_form) {
             if (!rfid_form.validate()) {
                 return false;
@@ -2257,7 +2285,7 @@ app
                 }
             });
         };
-        $scope.getBleList();
+        // $scope.getBleList();
 
         $scope.submitEditBLECode = function (submitData, ble_edit_form) {
             if (!ble_edit_form.validate()) {

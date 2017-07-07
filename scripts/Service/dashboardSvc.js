@@ -65,7 +65,7 @@ app
         };
 
         dashboardSvcResp.getFacilityName = function (url, method, params, data, cb) {
-            
+            console.log(utilitySvc.getCurrentFacility());
             if(utilitySvc.getCurrentFacility() == ''){
                 var responceData = {"status":false,"msg":"Success","data":{"facility_id":0,"facility_name":"CRYSTAL COVE","facility_location":"NEWPORT COAST"},"error":null};
                 cb(responceData);

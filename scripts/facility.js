@@ -40,8 +40,6 @@ app
             if (!addFacility.validate()) {
                 return false;
             }
-            //(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
-            // $scope.fileupload = fileUpload.uploadFileToUrl(facility.profile_pic, "")
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);

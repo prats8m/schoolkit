@@ -28,7 +28,8 @@ app
                             $cookies.remove('password');
                         }
                         console.log($rootScope.current_user);
-                        ($cookies.get('facilityId').split(",").length == 1) ? $state.go('app.admin.dashboard',{facility_id:$cookies.get('facilityId')}) : $state.go('app.admin.dashboard',{facility_id:0})
+                        $state.go('app.admin.dashboard')
+                        //($cookies.get('facilityId').split(",").length == 1) ? $state.go('app.admin.dashboard',{facility_id:$cookies.get('facilityId')}) : $state.go('app.admin.dashboard',{facility_id:0})
                         // $state.go('app.admin.dashboard');
                     }
                 }

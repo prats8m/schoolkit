@@ -491,15 +491,16 @@ app
 'use strict';
 /**
  * @ngdoc function
- * @name minovateApp.controller:ScheduleGroupsCtrl
+ * @name minovateApp.controller:SchedulesCtrl
  * @description
- * # ScheduleGroupsCtrl
+ * # SchedulesCtrl
  * Controller of the minovateApp
+ * Previously ScheduleGroupsCtrl
  */
 app
-	.controller('ScheduleGroupsCtrl', function ($scope, appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, $timeout, dataService) {
+	.controller('SchedulesCtrl', function ($scope, appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, $timeout, dataService) {
 		$scope.page = {
-			title: 'Schedule Groups',
+			title: 'Schedules',
 			subtitle: 'So much more to see at a glance.'
 		};
 
@@ -508,7 +509,7 @@ app
 			scheduleSvc.deleteSchedule(appConstants.scheduleDelete, appConstants.deleteMethod, { schedule_id: id }, {}, function (succResponse) {
 				if (succResponse.status) {
 					toaster.pop('success', appConstants.deleteSchedule);
-					$scope.scheduleInit();
+					$scope.refreshList();
 				}
 			});
 		};

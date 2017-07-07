@@ -49,7 +49,7 @@ app
                 });
         };
 
-        ($stateParams.facility_id) ? $cookies.put('current_facility_id',$stateParams.facility_id) : $cookies.put('current_facility_id',0);
+        //($stateParams.facility_id) ? $cookies.put('current_facility_id',$stateParams.facility_id) : $cookies.put('current_facility_id',0);
 
         $scope.dashboardInit();
     })

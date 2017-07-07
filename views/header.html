@@ -19,17 +19,18 @@
 		</div>
 		<ul class="nav-right list-inline headmenu">
 			<!-- <li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li> -->
-			<li ng-if="navbar_facilities_count > 1" class="dropdown" uib-dropdown>
+			<!-- <li ng-if="navbar_facilities_count > 1" class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>{{current_facility}} &nbsp; <fa name="angle-down"></fa> </span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
-					<!-- <li><a ui-sref="app.admin.dashboard" ng-click="setCurrentFacility(staticcurrent_facility)">Home Dashboard</a></li> 
-					ui-sref="app.admin.dashboardfacility({facility_id:facility.facility_id})"
-					-->
+								
 					<li ><a ng-click="goFacilityList()">All Facilities</a></li>
 					<li ng-repeat="facility in headerFacilityList"><a ng-click="setCurrentFacility(facility.facility_name,facility.facility_id)">{{ facility.facility_name }}</a></li>
 				</ul>
 			</li>
 			<li ng-if="navbar_facilities_count == 1" class="dropdown" uib-dropdown>
+				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
+			</li> -->
+			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
 			</li>
 			<li class="dropdown" uib-dropdown>
@@ -58,7 +59,7 @@
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Schedules &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
-					<li><a ui-sref="app.admin.schedule.schedule-groups">Schedules</a></li>
+					<li><a ui-sref="app.admin.schedule.schedules">Schedules</a></li>
 					<li><a ui-sref="app.admin.schedule.add-schedule">Add Schedule</a></li>
 					<li><a ui-sref="app.admin.schedule.holiday-schedules">Holiday Schedules</a></li>
 				</ul>

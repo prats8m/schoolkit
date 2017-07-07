@@ -12,26 +12,43 @@
 			<h2 class="login-h2 text-greensea">Create a new account</h2>
 			<form class="form-validation mt-20" ng-validate="validationOptions" id="signup_form" name="signup_form" ng-submit="submitSignUpForm(user,signup_form)">
 				<div class="overflow">
-					<input type="text" name="firstname" class="form-control underline-input" placeholder="First Name" ng-model="user.first_name" required>					
-					<input type="text" name="lastname" class="form-control underline-input" placeholder="Last Name" ng-model="user.last_name" required>					
+					<div class="div-width">
+					<input type="text" name="firstname" class="form-control underline-input" placeholder="First Name" ng-model="user.first_name" required>
+					</div>
+					<div class="div-width">
+					<input type="text" name="lastname" class="form-control underline-input" placeholder="Last Name" ng-model="user.last_name" required>		
+					</div>			
 				</div>
 				
 				<div class="overflow">
-					<input type="email" name="email" class="form-control underline-input" placeholder="Email Address" ng-model="user.email" required>					
+					<div class="div-width">
+					<input type="email" name="email" class="form-control underline-input" placeholder="Email Address" ng-model="user.email" required>	
+					</div>
+					<div class="div-width">				
 					<input type="text" name="phonenumber" class="form-control underline-input" ui-mask="999 999 9999" placeholder="Phone Number" ng-model="user.phone" ui-mask-placeholder-char="space" required>
+					</div>
 				</div>
 				
 				<div class="overflow">
+					<div class="div-width">
 					<input type="text" name="address" class="form-control underline-input" placeholder="Address" ng-model="user.address" required>
+					</div>
+					<div class="div-width">	
 					<input type="text" name="zipcode" minlength="4" maxlength="6" class="form-control underline-input" placeholder="Zip Code" ng-model="user.zipcode" required>
+					</div>
 				</div>
 				
 				<div class="overflow">
+					<div class="div-width">	
 					<input type="password" name="password" placeholder="Password" class="form-control underline-input" ng-model="user.password" required>
+					</div>
+					<div class="div-width">	
 					<input type="password" name="cpassword" placeholder="Confirm Password" class="form-control underline-input" ng-model="user.confirm_password" required>
+					</div>
 				</div>
 				
 				<div class="overflow">
+					<div class="div-width">
 					<div class="signupselect">
 						<select id="selectedQuestion1" ng-model="user.secret_question" name="selectedQuestion1" class="form-control underline-input mb-20" required="required" ng-options="item.sq_id as item.sq_question for item in lstSecurityQuestions track by item.sq_id" ng-init="getSecurityQuestion()">
 							<option value="">Select Secret Question</option>
@@ -51,8 +68,10 @@
 							<option value=14 label="What is the name of your first grade teacher?">What is the name of your first grade teacher?</option>
 							<option value=15 label="What was your high school mascot?">What was your high school mascot?</option> -->
 						</select>
-					</div>
+					</div></div>
+					<div class="div-width">
 					<input type="text" name="answer" class="form-control underline-input" placeholder="Answer" ng-model="user.secret_ans" required>
+					</div>
 				</div>
 				
 				<div class="form-group text-left signuplabel" style="margin-left: 30px; margin-top: -15px;">        

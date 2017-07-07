@@ -885,11 +885,11 @@ var app = angular
       })
 
       //admin schedule schedules
-      .state('app.admin.schedule.schedules', {
-        url: '/schedules',
-        controller: 'ScheduleCtrl',
-        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
-      })
+      // .state('app.admin.schedule.schedules', {
+      //   url: '/schedules',
+      //   controller: 'ScheduleCtrl',
+      //   templateUrl: 'views/tmpl/admin/schedule/schedules.html'
+      // })
 
       //admin schedule view-schedule
       .state('app.admin.schedule.view-schedule', {
@@ -905,11 +905,12 @@ var app = angular
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
 
-      //admin schedule schedule-groups
-      .state('app.admin.schedule.schedule-groups', {
-        url: '/schedule-groups',
-        controller: 'ScheduleGroupsCtrl',
-        templateUrl: 'views/tmpl/admin/schedule/schedule-groups.html'
+      //admin schedule schedules
+      //previously admin schedule schedule-groups
+      .state('app.admin.schedule.schedules', {
+        url: '/schedules',
+        controller: 'SchedulesCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
       })
 
       //admin schedule view-holiday-schedule
@@ -1282,141 +1283,7 @@ app
 
   });
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:ViewDoorGroupsCtrl
- * @description
- * # ViewDoorGroupsCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('ViewDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http,$stateParams,appConstants,doorsSvc) {
-    $scope.page = {
-      title: 'Door Group Details',
-    };    
-  $scope.doorGrpInit = function () {    
-			doorsSvc.doorInit(appConstants.doorgroupview + '?doorgroup_id=' + $stateParams.doorgroup_id, appConstants.getMethod, {}, {}, function (succResponse) {
-				if (succResponse.status) {
-					$scope.doorGrpData = succResponse.data;					
-				}
-			});
-		};
-		$scope.doorGrpInit();
-    $scope.result = '';
-    $scope.showConfirm = function (ev) {
-      var confirm = $mdDialog.confirm()
-        .title('Would you like to delete Door?')
-        .content('')
-        .ok('Yes')
-        .cancel('No')
-        .targetEvent(ev);
-      $mdDialog.show(confirm).then(function () {
-        $state.go('app.admin.door.door-groups');
-      }, function () {
-        $scope.result = 'You decided to keep Door.';
-        $scope.statusclass = 'alert alert-success alert-dismissable';
-      });
-    };
 
-    $scope.imagePath = 'http://localhost/elikastaging/images';
-
-  });
-
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:EditDoorGroupsCtrl
- * @description
- * # EditDoorGroupsCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('EditDoorGroupsCtrl', function ($scope, $mdDialog, $state,toaster, $rootScope,$http,doorsSvc,appConstants,$stateParams) {
-    $scope.page = {
-      title: 'Edit Door Group',
-    };
-     $scope.getDoorsList = function () {
-            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=100&pageNo=1', appConstants.getMethod, {}, {}, function (succResponse) {
-                if (succResponse.status) {
-                    $rootScope.doorList = succResponse.data.data;
-                   
-                }
-            });
-        };
-    $scope.getDoorsList();
-    $scope.facilityInit = function () {
-			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
-				if (succResponse.status) {
-					$rootScope.facilityList = succResponse.data.data;			
-					
-				}
-			});
-		};
-        $scope.facilityInit();
-    $scope.doorGrpInit = function () {    
-			doorsSvc.doorInit(appConstants.doorgroupview + '?doorgroup_id=' + $stateParams.doorgroup_id, appConstants.getMethod, {}, {}, function (succResponse) {
-				if (succResponse.status) {
-					$scope.doorGrpData = succResponse.data;	          				
-				}
-			});
-		};
-		$scope.doorGrpInit();
-
-    $scope.editDoorGrpdata=function(doorGrpData, doorGrp_data){
-      if (!doorGrp_data.validate()) {
-				return false;
-			}
-     
-      var editDoorGrpData={
-        doorgroup_id:parseInt($stateParams.doorgroup_id) ,
-        name:doorGrpData.doorgroup_name,
-        status:doorGrpData.doorgroup_status,
-        door_id:[],
-        facility_id:0
-      };
-      angular.forEach($rootScope.facilityList, function(value, key) {
-        if(value.facility_name==doorGrpData.facility_name)
-        {
-          editDoorGrpData.facility_id=value.facility_id;
-        };
-      });
-			angular.forEach($rootScope.doorList, function(value1, key) {
-        angular.forEach(doorGrpData.door_name, function(value2, key) {
-        if(value1.door_name==value2)
-        {
-          editDoorGrpData.door_id.push(value1.door_id);
-        };
-      });
-       
-    });
-    
-			doorsSvc.editDoorGrpdata(appConstants.doorgroupedit, appConstants.putMethod, {}, editDoorGrpData, function (succResponse) {
-				if (succResponse.status) {          
-					toaster.pop(appConstants.success, succResponse.msg);
-					$location.path('/app/admin/door/doors');
-				}
-			});
-    };
-    $scope.result = '';
-    $scope.showConfirm = function (ev) {
-      var confirm = $mdDialog.confirm()
-        .title('Would you like to delete Door?')
-        .content('')
-        .ok('Yes')
-        .cancel('No')
-        .targetEvent(ev);
-      $mdDialog.show(confirm).then(function () {
-        $state.go('app.admin.door.door-groups');
-      }, function () {
-        $scope.result = 'You decided to keep Door.';
-        $scope.statusclass = 'alert alert-success alert-dismissable';
-      });
-    };
-
-    $scope.imagePath = 'http://localhost/elikastaging/images';
-
-  });
 
 'use strict';
 /**
@@ -2428,7 +2295,7 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants, $filter) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -2455,6 +2322,19 @@ app
       });
     }
 
+      $scope.custom_schedular = function () {
+            $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
+            $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
+            $(".dhx_scale_bar")[2].innerHTML = $(".dhx_scale_bar:eq(2)").attr("aria-label");
+            $(".dhx_scale_bar")[3].innerHTML = $(".dhx_scale_bar:eq(3)").attr("aria-label");
+            $(".dhx_scale_bar")[4].innerHTML = $(".dhx_scale_bar:eq(4)").attr("aria-label");
+            $(".dhx_scale_bar")[5].innerHTML = $(".dhx_scale_bar:eq(5)").attr("aria-label");
+            $(".dhx_scale_bar")[6].innerHTML = $(".dhx_scale_bar:eq(6)").attr("aria-label");
+            $(".dhx_cal_prev_button").show();
+            $(".dhx_cal_next_button").show();
+            $(".dhx_cal_today_button").show();
+
+        }
 
      $rootScope.setScheduler = function(schedule_id, form_type){
       scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
@@ -2503,6 +2383,7 @@ app
         scheduler.config.day_date = "%D, %F %d";
         if($scope.schedule.schedule_category == 'repeat')
         {
+          $rootScope.visibiltyUserGroup = true;
           $timeout(function () {
             $scope.repetive_schedular();
           });
@@ -2533,12 +2414,21 @@ app
         var sc_date = new Date($scope.schedule.schedule_start_time*1000);
         $rootScope.schedule.date =  (sc_date.getUTCDate() + '/' + (sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCFullYear());
         $rootScope.schedule.schedule_id = schedule_id;
+        
+
         if($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null){
           var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
           $rootScope.schedule.expiration = (sc_exp.getUTCDate() + '/' + (sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCFullYear());
+          $rootScope.schedule.no_expirations = 0;
         }
         else{
           $rootScope.schedule.no_expirations = 1;
+        }
+
+        if($scope.schedule.schedule_category == "repeat"){
+          $timeout(function () {
+            $(".checkbox-custom-alt:contains('Repeating')").click();
+          });
         }
           }
           else{
@@ -2571,8 +2461,29 @@ app
         });
     };
 
-    $scope.scheduleopen = function (size) {
+    $rootScope.editviewopen = function (schedule_id, form_type) {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'myModalContent2.html',
+            controller: 'ModalInstanceCtrl',
+            resolve: {
+              items: function () {
+                return $scope.items;
+              }
+            }
+        });
 
+        modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        }, function () {
+         $log.info('Modal dismissed at: ' + new Date());
+        });
+        $timeout(function () {
+          $rootScope.setScheduler(schedule_id, form_type);
+        });
+    };
+
+    $scope.scheduleopen = function (size) {
+      delete $rootScope.schedule.schedule_id;
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
