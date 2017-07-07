@@ -6,8 +6,15 @@
     line-height: 33px;
     margin-bottom: 10px;
 }
-.schedule_scroll{width: 470px; overflow-x: auto;}
-#scheduler_here{width: 750px;}
+
+.schedule_scroll {
+    width: 470px;
+    overflow-x: auto;
+}
+
+#scheduler_here {
+    width: 750px;
+}
 
 .refreshbtn {
     position: absolute;
@@ -40,26 +47,29 @@ span.loader {
     position: absolute;
     left: 0;
     top: 0;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     width: 100%;
     text-align: center;
     line-height: 38px;
     display: none;
 }
 
-.alert-dismissable .close, .alert-dismissible .close {
+.alert-dismissable .close,
+.alert-dismissible .close {
     position: absolute!important;
     top: 50%!important;
     right: 15px!important;
     margin-top: -11px!important;
 }
 
-.credintials .widget-todo form .form-control:hover, .credintials .widget-todo form .form-control:focus, .credintials .widget-todo form .form-control:focus:hover {
+.credintials .widget-todo form .form-control:hover,
+.credintials .widget-todo form .form-control:focus,
+.credintials .widget-todo form .form-control:focus:hover {
     border: 1px solid #dbe0e2;
 }
 
-.chosen-disabled  a.search-choice-close {
-    display: none!important; 
+.chosen-disabled a.search-choice-close {
+    display: none!important;
 }
 
 .chosen-disabled li.search-choice {
@@ -154,10 +164,11 @@ textarea.form-control {
     top: 0;
     padding: 8px 0;
     width: 101%;
-    background-color: #eee; 
+    background-color: #eee;
 }
 
-_:-ms-input-placeholder, :root .profilephoto .user-profilep { 
+_:-ms-input-placeholder,
+:root .profilephoto .user-profilep {
     left: 0px;
 }
 
@@ -179,7 +190,8 @@ _:-ms-input-placeholder, :root .profilephoto .user-profilep {
     font-size: 18px;
 }
 
-.modal-body label, .profile-settings label {
+.modal-body label,
+.profile-settings label {
     font-weight: 400;
 }
 
@@ -232,7 +244,8 @@ tr[ng-show="::showSpinners"] {
     font-size: 12px;
 }
 
-.addpopup a.add i, .addusers a.add i {
+.addpopup a.add i,
+.addusers a.add i {
     font-size: 120%!important;
     line-height: 37px!important;
     background: #b3b3b3;
@@ -248,7 +261,8 @@ tr[ng-show="::showSpinners"] {
     margin: 3px 0 0
 }
 
-.gridlistbar a, .customicon a {
+.gridlistbar a,
+.customicon a {
     background: #f9f9f9;
     color: #888;
     width: 32px;
@@ -265,17 +279,22 @@ tr[ng-show="::showSpinners"] {
     margin-bottom: 5px;
 }
 
-.gridlistbar a:first-child, .customicon a:first-child {
+.gridlistbar a:first-child,
+.customicon a:first-child {
     margin-left: 0;
 }
 
-.gridlistbar a.active, .gridlistbar a:hover, .customicon a:hover {
+.gridlistbar a.active,
+.gridlistbar a:hover,
+.customicon a:hover {
     background: #3c8719;
     border: 1px solid #3c8719;
     color: #fff
 }
 
-.gridlistbar .dropdown-menu > li > a, .gridlistbar .dropdown-menu > li > a:hover, .gridlistbar .dropdown-menu > li > a.active {
+.gridlistbar .dropdown-menu > li > a,
+.gridlistbar .dropdown-menu > li > a:hover,
+.gridlistbar .dropdown-menu > li > a.active {
     width: auto;
     height: auto;
     border: 0 none;
@@ -284,7 +303,8 @@ tr[ng-show="::showSpinners"] {
     margin-bottom: 0px;
 }
 
-.gridlistbar .dropdown-menu > li > a:hover, .gridlistbar .dropdown-menu > li > a.active {
+.gridlistbar .dropdown-menu > li > a:hover,
+.gridlistbar .dropdown-menu > li > a.active {
     background: #f5f5f5;
 }
 
@@ -574,7 +594,7 @@ md-tabs .md-tab.md-focused {
 .usergroup a {
     color: #616f77;
     display: block;
-    padding: 8px; 
+    padding: 8px;
 }
 
 .usergroup a:hover {
@@ -671,7 +691,12 @@ table.dstatus tr td.online i {
     top: 5px;
 }
 
-.glview md-card:nth-child(1) .onoroffdevice, .glview md-card:nth-child(3) .onoroffdevice, .glview md-card:nth-child(4) .onoroffdevice, .glview md-card:nth-child(8) .onoroffdevice, .glview md-card:nth-child(9) .onoroffdevice, .glview md-card:nth-child(15) .onoroffdevice {
+.glview md-card:nth-child(1) .onoroffdevice,
+.glview md-card:nth-child(3) .onoroffdevice,
+.glview md-card:nth-child(4) .onoroffdevice,
+.glview md-card:nth-child(8) .onoroffdevice,
+.glview md-card:nth-child(9) .onoroffdevice,
+.glview md-card:nth-child(15) .onoroffdevice {
     display: block;
 }
 
@@ -710,7 +735,7 @@ a.serplan:hover {
     padding-bottom: 10px
 }
 
-.wrap-reset uib-accordion .panel .panel-heading  h4 {
+.wrap-reset uib-accordion .panel .panel-heading h4 {
     border-bottom: 0 none;
     padding-bottom: 0
 }
@@ -816,11 +841,11 @@ a.serplan:hover {
 }
 
 .card-container .card .bg-dashboard .bg-transparent h3 {
-    margin: 0;    
+    margin: 0;
     display: inline-block;
     padding: 10px 12px 10px;
     border-radius: 3px;
-    font-size: 22px;    
+    font-size: 22px;
     font-family: 'roboto condensed', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
@@ -856,14 +881,14 @@ a.serplan:hover {
     font-size: 30px;
 }
 
-.covertext span  strong {
+.covertext span strong {
     display: block;
     font-size: 46px;
     line-height: normal;
     position: relative;
 }
 
-.covertext span  strong:after {
+.covertext span strong:after {
     position: absolute;
     left: 50%;
     bottom: -60px;
@@ -875,15 +900,17 @@ a.serplan:hover {
 }
 
 .myshortcuts {
-    background: rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.9);
     width: 34%;
     overflow: hidden;
     display: inline-block;
     float: right;
 }
-.myshortcuts .slimScrollDiv .slimScrollBar{
+
+.myshortcuts .slimScrollDiv .slimScrollBar {
     background: rgb(255, 255, 255) !important;
 }
+
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent {
     padding: 0;
 }
@@ -895,7 +922,7 @@ a.serplan:hover {
     font-size: 24px;
     margin: 0;
     padding: 15px 15px 16px;
-    background: rgba(0,0,0,0.5)!important;
+    background: rgba(0, 0, 0, 0.5)!important;
     font-weight: 400;
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -911,7 +938,7 @@ a.serplan:hover {
     padding: 0;
 }
 
-.myshortcuts ul li { 
+.myshortcuts ul li {
     margin: 15px;
     background: #f88858;
     border-radius: 3px;
@@ -956,13 +983,12 @@ a.serplan:hover {
 }
 
 @-webkit-keyframes hue {
-  from {
-    -webkit-filter: hue-rotate(0deg);
-  }
-
-  to {
-    -webkit-filter: hue-rotate(-360deg);
-  }
+    from {
+        -webkit-filter: hue-rotate(0deg);
+    }
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+    }
 }
 
 .card-container .card .bg-dashboard .bg-transparent h3.h3link a {
@@ -972,7 +998,7 @@ a.serplan:hover {
     overflow: hidden;
     color: #04aec5!important;
     color: #f35626;
-    background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+    background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-animation: hue 15s infinite linear;
@@ -984,6 +1010,7 @@ a.serplan:hover {
     color: #fff;
     font-weight: 100;
 }
+
 .card-container .card .bg-dashboard .bg-transparent p.dashtext {
     font-size: 28px;
 }
@@ -1054,7 +1081,7 @@ a.serplan:hover {
 
 .glview md-card:nth-child(4n+4) {
     margin-right: 0;
-} 
+}
 
 .glview md-card:hover {
     box-shadow: 0 8px 5px rgba(0, 0, 0, .15)
@@ -1357,7 +1384,8 @@ video {
     height: 418px;
 }
 
-.twogrid #boundary #vstage, .fourgrid #boundary #vstage {
+.twogrid #boundary #vstage,
+.fourgrid #boundary #vstage {
     position: relative;
     height: 342px;
 }
@@ -1369,7 +1397,6 @@ video {
 
 #boundary #vstage video {
     position: absolute;
-    
 }
 
 #boundary #controls button {
@@ -1386,13 +1413,13 @@ video {
     bottom: 30px;
     width: 42px;
     height: 42px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 50px;
     transition: 1s;
     -webkit-transition: 1s
 }
 
-#boundary #controls #change.widthinc{
+#boundary #controls #change.widthinc {
     width: 100px;
     height: 100px;
 }
@@ -1409,7 +1436,7 @@ video {
     margin-left: -21px;
     width: 42px;
     height: 42px;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.75);
     border-radius: 21px;
     transform: rotate(180deg);
     font-size: 18px;
@@ -1485,8 +1512,6 @@ video {
     opacity: 0;
     display: none;
 }
-
-
 
 .messnoti li:nth-child(odd) {
     background: #f9f9f9
@@ -1694,7 +1719,8 @@ md-card:hover .moreitemsondevice {
     color: #16a086!important
 }
 
-#header .topmenu .nav-right > li a span, #header .topmenu .nav-right > li span {
+#header .topmenu .nav-right > li a span,
+#header .topmenu .nav-right > li span {
     padding: 0 5px;
     line-height: 42px;
     display: block;
@@ -1702,12 +1728,14 @@ md-card:hover .moreitemsondevice {
     color: #5f6060!important;
 }
 
-#header .topmenu .nav-right > li a:hover span, #header .topmenu .nav-right > li span:hover, .dropdown-menu > li > a:hover {
+#header .topmenu .nav-right > li a:hover span,
+#header .topmenu .nav-right > li span:hover,
+.dropdown-menu > li > a:hover {
     color: #16a086!important;
 }
 
 .bg-blue {
-   background-color: #1d8acf!important; 
+    background-color: #1d8acf!important;
 }
 
 .bg-slategray,
@@ -1754,7 +1782,7 @@ md-card:hover .moreitemsondevice {
 }
 
 .appWrapper.header-fixed #header {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .sm-img {
@@ -1767,11 +1795,13 @@ md-card:hover .moreitemsondevice {
     height: 170px;
 }
 
-.card-container .card .front.cardheight .row, .card-container .card .noback.cardheight .row {
+.card-container .card .front.cardheight .row,
+.card-container .card .noback.cardheight .row {
     height: 100%;
 }
 
-.card-container .card .front.cardheight .row  .col-xs-6, .card-container .card .noback.cardheight .row .col-xs-6 {
+.card-container .card .front.cardheight .row .col-xs-6,
+.card-container .card .noback.cardheight .row .col-xs-6 {
     display: table;
     height: 100%;
 }
@@ -1794,7 +1824,8 @@ md-card:hover .moreitemsondevice {
     margin-bottom: 15px;
 }
 
-.card-container .card .front .row .col-xs-6:last-child, .card-container .card .noback .row .col-xs-6:last-child {
+.card-container .card .front .row .col-xs-6:last-child,
+.card-container .card .noback .row .col-xs-6:last-child {
     margin-left: -15px;
 }
 
@@ -1806,7 +1837,8 @@ md-card:hover .moreitemsondevice {
     text-align: center;
 }
 
-.border5, .br-5 {
+.border5,
+.br-5 {
     border-radius: 5px
 }
 
@@ -1947,7 +1979,8 @@ input.input-sm.input-unstyled {
     transition: all 0.3s ease;
 }
 
-input.input-sm.input-unstyled:hover, input.input-sm.input-unstyled:focus {
+input.input-sm.input-unstyled:hover,
+input.input-sm.input-unstyled:focus {
     border: 1px solid #e5e5e5!important;
     padding-left: 10px;
 }
@@ -1997,9 +2030,8 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 
 
 /****************  calendar for schedule groups **************************/
-.calendar {
-    
-}
+
+.calendar {}
 
 .calendar table {
     vertical-align: top;
@@ -2015,24 +2047,55 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
     font-size: 16px;
 }
 
-.calendar th.nobrl.time {width: 47px;}
-.calendar th.mon {width: 75px;}
-.calendar th.tue {width: 82px;}
-.calendar th.wed {width: 82px;}
-.calendar th.thr {width: 82px;}
-.calendar th.fri{width: 82px;}
-.calendar th.sat {width: 82px;}
-.calendar th.sun {width: 82px;}
-.calendar th.holidays {width: 82px; border-right: 1px solid #e5e5e5;}
-.calendar th.nobrl.scroll {width: 16px;}
+.calendar th.nobrl.time {
+    width: 47px;
+}
 
-.calendar th.nobrl, .calendar td.nobrl {
+.calendar th.mon {
+    width: 75px;
+}
+
+.calendar th.tue {
+    width: 82px;
+}
+
+.calendar th.wed {
+    width: 82px;
+}
+
+.calendar th.thr {
+    width: 82px;
+}
+
+.calendar th.fri {
+    width: 82px;
+}
+
+.calendar th.sat {
+    width: 82px;
+}
+
+.calendar th.sun {
+    width: 82px;
+}
+
+.calendar th.holidays {
+    width: 82px;
+    border-right: 1px solid #e5e5e5;
+}
+
+.calendar th.nobrl.scroll {
+    width: 16px;
+}
+
+.calendar th.nobrl,
+.calendar td.nobrl {
     border-left: 0 none !important;
 }
 
 .calendar .calendartime {
-    position:relative;
-    width:100%;
+    position: relative;
+    width: 100%;
     /*overflow-x: hidden;
     overflow-y: auto;
     height: 720px;*/
@@ -2077,12 +2140,17 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
     background: #e5e5e5;
 }
 
-.copybtn { 
+.copybtn {
     text-align: center;
-    padding: 25px 0; 
+    padding: 25px 0;
 }
 
-.copybtn a { display: inline-block; margin: 0 10px; }
+.copybtn a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+
 /****************  end calendar for schedule groups **************************/
 
 span.error {
@@ -2118,7 +2186,10 @@ span.error {
     padding: 0;
 }
 
-#camerandvr .sixgrid, #camerandvr .fourgrid, #camerandvr .twogrid, #camerandvr .onegrid { 
+#camerandvr .sixgrid,
+#camerandvr .fourgrid,
+#camerandvr .twogrid,
+#camerandvr .onegrid {
     overflow: hidden;
 }
 
@@ -2134,16 +2205,18 @@ span.error {
 }
 
 #camerandvr .sixgrid .livevideo {
-    width: 32.29%;    
+    width: 32.29%;
     height: 264px;
     margin-left: 0px!important;
 }
 
 #camerandvr .sixgrid .livevideo:nth-child(3n+2) {
-    margin-left: 20px!important; margin-right: 20px;
+    margin-left: 20px!important;
+    margin-right: 20px;
 }
 
-#camerandvr .fourgrid .livevideo, #camerandvr .twogrid .livevideo {
+#camerandvr .fourgrid .livevideo,
+#camerandvr .twogrid .livevideo {
     width: 49.20%;
     height: 383px;
 }
@@ -2224,11 +2297,17 @@ span.error {
     margin-left: 4%;
 }
 
-#camerandvr .twogrid .livevideo, #camerandvr .fourgrid .livevideo:nth-child(5), #camerandvr .fourgrid .livevideo:nth-child(6), #camerandvr .searchvideoitems .tabs-menu > li.searchitems.active:after {
+#camerandvr .twogrid .livevideo,
+#camerandvr .fourgrid .livevideo:nth-child(5),
+#camerandvr .fourgrid .livevideo:nth-child(6),
+#camerandvr .searchvideoitems .tabs-menu > li.searchitems.active:after {
     display: none;
 }
 
-#camerandvr .twogrid .livevideo:nth-child(1), #camerandvr .twogrid .livevideo:nth-child(2), #camerandvr .onegrid .livevideo:nth-child(1), #camerandvr .searchvideoitems .searchitems small {
+#camerandvr .twogrid .livevideo:nth-child(1),
+#camerandvr .twogrid .livevideo:nth-child(2),
+#camerandvr .onegrid .livevideo:nth-child(1),
+#camerandvr .searchvideoitems .searchitems small {
     display: block;
 }
 
@@ -2253,9 +2332,9 @@ span.error {
     padding: 8px 14px;
 }
 
-span.error { 
-    font-size: 14px; 
-    color: #ff0000; 
+span.error {
+    font-size: 14px;
+    color: #ff0000;
     line-height: 22px;
 }
 
@@ -2266,7 +2345,7 @@ label.error {
     color: #ff0000;
 }
 
-input.ng-invalid-required.error { 
+input.ng-invalid-required.error {
     border: 1px solid #ff0000;
 }
 
@@ -2278,7 +2357,7 @@ input.ng-invalid-required.error {
     width: 725px;
 }
 
-.rfidcode  .rassigndoor {
+.rfidcode .rassigndoor {
     width: 700px;
 }
 
@@ -2294,12 +2373,17 @@ input.ng-invalid-required.error {
     width: 725px;
 }
 
-.addaccess .aaction, .phoneaccess .paction, .rfidcode .raction, .wiegandcode .waction, .nfccode .naction, .blecode .baction {
+.addaccess .aaction,
+.phoneaccess .paction,
+.rfidcode .raction,
+.wiegandcode .waction,
+.nfccode .naction,
+.blecode .baction {
     width: 75px;
 }
 
 .rel {
-    position: relative; 
+    position: relative;
     overflow: hidden;
 }
 
@@ -2308,7 +2392,7 @@ span.edit {
     bottom: -100%;
     left: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -2323,7 +2407,7 @@ span.edit {
     line-height: 44px;
 }
 
-.rel:hover span.edit{
+.rel:hover span.edit {
     bottom: 50%;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -2331,14 +2415,15 @@ span.edit {
     transition: all 0.3s ease;
 }
 
-span.edittxt {position: absolute;
+span.edittxt {
+    position: absolute;
     bottom: 0;
     width: 100%;
     left: 0;
     right: 0;
     font-size: 12px;
     color: #fff;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     padding: 7px 0 4px;
     text-transform: uppercase;
 }
@@ -2354,15 +2439,16 @@ span.edittxt {position: absolute;
     opacity: 0.75;
 }
 
-
 .tabwrap {
     margin-right: -10px;
 }
+
 .tabwrap .btn.btn-slategray span {
     display: table-cell;
     vertical-align: middle;
     white-space: pre-wrap;
 }
+
 .tabwrap .btn.btn-slategray {
     padding: 20px;
     font-size: 20px;
@@ -2373,20 +2459,22 @@ span.edittxt {position: absolute;
     text-align: center;
     margin-bottom: 10px;
 }
+
 .tabwrap .shortbtn {
-   width: 211px;
+    width: 211px;
     float: left;
     margin: 0 10px 0 0;
 }
+
 .tabwrap .shortbtn .btn.btn-slategray {
-    background: rgba(255,255,255,0.96);
+    background: rgba(255, 255, 255, 0.96);
     color: #222!important;
     border-color: transparent;
     transition: 0.5s;
 }
 
 .tabwrap .shortbtn .btn.btn-slategray:hover {
-    background: rgba(0,0,0,0.96);
+    background: rgba(0, 0, 0, 0.96);
     color: #fff!important;
 }
 
@@ -2418,7 +2506,7 @@ span.edittxt {position: absolute;
     background-color: #f1f1f1;
 }
 
-.dropdown-menu > li.version  {
+.dropdown-menu > li.version {
     text-align: center;
     padding: 5px 15px;
     background: #e5e5e5;
@@ -2438,7 +2526,8 @@ span.edittxt {position: absolute;
     margin-left: -30px;
 }
 
-.signup input, .signupselect {
+.signup input,
+.signupselect {
     float: left;
     width: 45%;
     margin-left: 30px;
@@ -2462,7 +2551,7 @@ span.edittxt {position: absolute;
 }
 
 .addresswrap {
-    margin: 50px 0px 0;   
+    margin: 50px 0px 0;
 }
 
 .addresswrap .mb-80 {
@@ -2508,123 +2597,128 @@ span.edittxt {position: absolute;
 .map {
     width: 100%;
     height: 525px;
-    border: 5px solid rgba(0,0,0,0.1);
+    border: 5px solid rgba(0, 0, 0, 0.1);
 }
 
 .contactus {
-    border: 5px solid rgba(0,0,0,0.1);
+    border: 5px solid rgba(0, 0, 0, 0.1);
     padding: 25px;
 }
 
 .contactus h2 {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     margin: -25px -25px 25px;
     padding: 15px 25px;
     text-align: center;
 }
 
 @-webkit-keyframes uil-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0 0 0 0;
-  }
-  33% {
-    width: 44%;
-    height: 44%;
-    margin: -22% 0 0 -22%;
-    opacity: 1;
-  }
-  100% {
-    width: 88%;
-    height: 88%;
-    margin: -44% 0 0 -44%;
-    opacity: 0;
-  }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0 0 0 0;
+    }
+    33% {
+        width: 44%;
+        height: 44%;
+        margin: -22% 0 0 -22%;
+        opacity: 1;
+    }
+    100% {
+        width: 88%;
+        height: 88%;
+        margin: -44% 0 0 -44%;
+        opacity: 0;
+    }
 }
+
 @-moz-keyframes uil-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0 0 0 0;
-  }
-  33% {
-    width: 44%;
-    height: 44%;
-    margin: -22% 0 0 -22%;
-    opacity: 1;
-  }
-  100% {
-    width: 88%;
-    height: 88%;
-    margin: -44% 0 0 -44%;
-    opacity: 0;
-  }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0 0 0 0;
+    }
+    33% {
+        width: 44%;
+        height: 44%;
+        margin: -22% 0 0 -22%;
+        opacity: 1;
+    }
+    100% {
+        width: 88%;
+        height: 88%;
+        margin: -44% 0 0 -44%;
+        opacity: 0;
+    }
 }
+
 @-webkit-keyframes uil-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0 0 0 0;
-  }
-  33% {
-    width: 44%;
-    height: 44%;
-    margin: -22% 0 0 -22%;
-    opacity: 1;
-  }
-  100% {
-    width: 88%;
-    height: 88%;
-    margin: -44% 0 0 -44%;
-    opacity: 0;
-  }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0 0 0 0;
+    }
+    33% {
+        width: 44%;
+        height: 44%;
+        margin: -22% 0 0 -22%;
+        opacity: 1;
+    }
+    100% {
+        width: 88%;
+        height: 88%;
+        margin: -44% 0 0 -44%;
+        opacity: 0;
+    }
 }
+
 @-o-keyframes uil-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0 0 0 0;
-  }
-  33% {
-    width: 44%;
-    height: 44%;
-    margin: -22% 0 0 -22%;
-    opacity: 1;
-  }
-  100% {
-    width: 88%;
-    height: 88%;
-    margin: -44% 0 0 -44%;
-    opacity: 0;
-  }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0 0 0 0;
+    }
+    33% {
+        width: 44%;
+        height: 44%;
+        margin: -22% 0 0 -22%;
+        opacity: 1;
+    }
+    100% {
+        width: 88%;
+        height: 88%;
+        margin: -44% 0 0 -44%;
+        opacity: 0;
+    }
 }
+
 @keyframes uil-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0 0 0 0;
-  }
-  33% {
-    width: 44%;
-    height: 44%;
-    margin: -22% 0 0 -22%;
-    opacity: 1;
-  }
-  100% {
-    width: 88%;
-    height: 88%;
-    margin: -44% 0 0 -44%;
-    opacity: 0;
-  }
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        margin: 0 0 0 0;
+    }
+    33% {
+        width: 44%;
+        height: 44%;
+        margin: -22% 0 0 -22%;
+        opacity: 1;
+    }
+    100% {
+        width: 88%;
+        height: 88%;
+        margin: -44% 0 0 -44%;
+        opacity: 0;
+    }
 }
+
 .loaders {
-    background: rgba(231,234,235,0.95);
+    background: rgba(231, 234, 235, 0.95);
     position: fixed;
     top: 0;
     top: 0;
@@ -2633,102 +2727,334 @@ span.edittxt {position: absolute;
     height: 100%;
     text-align: center;
 }
+
 .uil-ripple-css {
-  background: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -120px 0 0 -100px; 
-  width: 200px;
-  height: 200px;
+    background: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -120px 0 0 -100px;
+    width: 200px;
+    height: 200px;
 }
+
 .uil-ripple-css div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: 0;
-  width: 0;
-  height: 0;
-  opacity: 0;
-  border-radius: 50%;
-  border-width: 12px;
-  border-style: solid;
-  -webkit-animation: uil-ripple 2s ease-out infinite;
-  animation: uil-ripple 2s ease-out infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    border-radius: 50%;
+    border-width: 12px;
+    border-style: solid;
+    -webkit-animation: uil-ripple 2s ease-out infinite;
+    animation: uil-ripple 2s ease-out infinite;
 }
+
 .uil-ripple-css div:nth-of-type(1) {
-  border-color: #e05d6f;
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
+    border-color: #e05d6f;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
 }
+
 .uil-ripple-css div:nth-of-type(2) {
-  border-color: #3c8719;
+    border-color: #3c8719;
 }
 
 .credintials .table > tbody > tr > td {
     word-break: break-all;
 }
+
 .facility-view {
-   float: right;
+    float: right;
     font-size: 14px;
 }
-.facility-view span{
-    font-size: 15px;
+
+.backpage .facility-view span {
     color: #3c8719;
-    font-weight: 600;
+    font-weight: 500;
+    cursor: pointer;
+	text-transform: uppercase;
+	font-size: 17px;
 }
 
-.cahtdiv { background: #ffffff; width: 350px; right: 0; top: 100px; bottom: 0; z-index: 9999; position: fixed; border-left: 1px solid #dad2d2;-o-transform:translateY(-o-calc(100% - 54px));    
-    -ms-transform:translateY(c-ms-alc(100% - 54px));
-    -moz-transform:translateY(-moz-calc(100% - 54px));
-    -webkit-transform:translateY(-webkit-calc(100% - 54px));
-    transform:translateY(calc(100% - 54px)); }
-.chat-title { background: #16a086; color: #fff; position: relative; padding: 15px; }
-.chat-title span { position: absolute; right: 9px; top: 16px; }
-.cahtdiv .chatbody { min-height: 300px; padding-top: 15px; padding-bottom: 15px; }
-.cahtdiv .chatfooter { position: absolute; bottom: 0; left: 0; right: 0; min-height: 100px; border-top: 1px solid #f1f1f1; padding: 6px 12px; }
-.cahtdiv .chatuser { max-width: 90%; padding: 6px 12px; }
-.chatreply { max-width: 90%; padding: 6px 12px; float: right; }
-.cahtdiv .chattext {-moz-border-radius: 5px;-webkit-border-radius: 5px;-o-border-radius: 5px;border-radius: 5px; padding: 10px 15px; background: #f5f5f5; margin-top: 15px; position: relative; font-size: 12px; }
-.chatreply ul { text-align: right; }
-.cahtdiv .chatbody ul { font-size: 12px; }
-.cahtdiv .chatbody .subject { font-weight: 700; }
-.chatuser .chattext:after { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 9px solid rgba(255, 199, 0, 0.4); content: ""; top: -9px; position: absolute; left: 15px; }
-.chatreply .chattext:after { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 9px solid rgba(29, 138, 207, 0.34); content: ""; top: -9px; position: absolute; right: 15px; }
-.chatuser .chattext { background: rgba(255, 199, 0, 0.4); }
-.chatreply .chattext { background: rgba(29, 138, 207, 0.34); }
-.chatfooter .formsend { position: relative; }
-.chatfooter .formsend input[type="text"] { padding-right: 40px; border: 0px; }
-.chatfooter .formsend input[type="text"]:focus { border: 0px; box-shadow: none; }
-.chatfooter .formsend button { position: absolute; border-radius: 100%; overflow: hidden; text-align: center; right: 0px; bottom: 0; box-shadow: none; background: #16a086; color: #fff; border: 0px solid #ccc; display: block; width: 38px; padding-right: 10px; top: 0; height: 100%;
- }
+.backpage .dropdown-menu > li > a {
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.cahtdiv {
+    background: #ffffff;
+    width: 350px;
+    right: 0;
+    top: 100px;
+    bottom: 0;
+    z-index: 9999;
+    position: fixed;
+    border-left: 1px solid #dad2d2;
+    -o-transform: translateY(-o-calc(100% - 54px));
+    -ms-transform: translateY(c-ms-alc(100% - 54px));
+    -moz-transform: translateY(-moz-calc(100% - 54px));
+    -webkit-transform: translateY(-webkit-calc(100% - 54px));
+    transform: translateY(calc(100% - 54px));
+}
+
+.chat-title {
+    background: #16a086;
+    color: #fff;
+    position: relative;
+    padding: 15px;
+}
+
+.chat-title span {
+    position: absolute;
+    right: 9px;
+    top: 16px;
+}
+
+.cahtdiv .chatbody {
+    min-height: 300px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.cahtdiv .chatfooter {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+    border-top: 1px solid #f1f1f1;
+    padding: 6px 12px;
+}
+
+.cahtdiv .chatuser {
+    max-width: 90%;
+    padding: 6px 12px;
+}
+
+.chatreply {
+    max-width: 90%;
+    padding: 6px 12px;
+    float: right;
+}
+
+.cahtdiv .chattext {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background: #f5f5f5;
+    margin-top: 15px;
+    position: relative;
+    font-size: 12px;
+}
+
+.chatreply ul {
+    text-align: right;
+}
+
+.cahtdiv .chatbody ul {
+    font-size: 12px;
+}
+
+.cahtdiv .chatbody .subject {
+    font-weight: 700;
+}
+
+.chatuser .chattext:after {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 9px solid rgba(255, 199, 0, 0.4);
+    content: "";
+    top: -9px;
+    position: absolute;
+    left: 15px;
+}
+
+.chatreply .chattext:after {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 9px solid rgba(29, 138, 207, 0.34);
+    content: "";
+    top: -9px;
+    position: absolute;
+    right: 15px;
+}
+
+.chatuser .chattext {
+    background: rgba(255, 199, 0, 0.4);
+}
+
+.chatreply .chattext {
+    background: rgba(29, 138, 207, 0.34);
+}
+
+.chatfooter .formsend {
+    position: relative;
+}
+
+.chatfooter .formsend input[type="text"] {
+    padding-right: 40px;
+    border: 0px;
+}
+
+.chatfooter .formsend input[type="text"]:focus {
+    border: 0px;
+    box-shadow: none;
+}
+
+.chatfooter .formsend button {
+    position: absolute;
+    border-radius: 100%;
+    overflow: hidden;
+    text-align: center;
+    right: 0px;
+    bottom: 0;
+    box-shadow: none;
+    background: #16a086;
+    color: #fff;
+    border: 0px solid #ccc;
+    display: block;
+    width: 38px;
+    padding-right: 10px;
+    top: 0;
+    height: 100%;
+}
+
 .gridview .grid-hide {
     display: none;
 }
-.listview .glview md-card md-card-content{
+
+.listview .glview md-card md-card-content {
     width: -webkit-calc(100% - 140px)!important;
     width: -moz-calc(100% - 140px)!important;
     width: calc(100% - 140px)!important;
     display: table;
 }
+
 .listview .glview md-card md-card-content .list-view {
     display: table-cell;
-        width: 33%;
+    width: 33%;
 }
+
+
+.disable-button {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.dhtmlx-alert {
+    z-index: 1050 !important;
+}
+
+.form-group .btn-toolbar {
+    margin-top: 8px;
+    float: right;
+}
+
+.wrap-reset .btn-toolbar {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wrap-reset .pagination {
+    float: right;
+    margin: 0;
+}
+
+.facility-view .dropdown-menu {
+    float: left;
+    right: 0;
+    left: auto;
+}
+
+.div-width {
+    position: relative;
+}
+
+.div-width {
+    float: left;
+    width: 45%;
+    margin-left: 30px;
+    position: relative;
+}
+
+.signup .div-width input,
+.div-width .signupselect {
+    width: 100%;
+    float: none;
+    margin-left: 0px;
+}
+
+.div-width input + label {
+    position: absolute;
+    left: 0px;
+    top: 45px;
+    z-index: 999;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.btn-toolbar {
+    margin: 0 0 25px 0!important;
+    border-bottom: 1px dashed #e5e5e5;
+    border-top: 1px dashed #e5e5e5;
+    padding: 10px 0;
+}
+
+.btn-toolbar button {
+    width: 44px;
+    padding: 0;
+	margin: 0 5px 0 0;
+}
+
+.filterorder button.list-icon {
+	background: transparent;
+    border: 1px solid #d5d5d5;
+    width: 42px;
+    height: 42px;
+    margin-top: -4px;
+    border-radius: 3px;
+	transition: 0.5s;
+}
+
+.filterorder button.list-icon:hover {
+	background: #357935;
+    border: 1px solid #357935;
+	color: #ffffff;
+}
+
+.btn-toolbar button.md-raised,
+.btn-toolbar button:hover {
+	background: #357935!important;
+    color: #fff;
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.15)!important;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .profilephoto #profilep-1, .profilephoto #profilep-2 {
+    .profilephoto #profilep-1,
+    .profilephoto #profilep-2 {
         left: -85px
     }
     .tcol .text-muted {
         margin: 10px 0 12px;
     }
 }
-/********** @media **********/
+
 @media only screen and (min-width: 1920px) {
     .listview .glview md-card {
         width: 100%!important;
         margin: 0 0 15px!important;
-
     }
     .glview md-card {
         width: 17.8%!important;
@@ -2748,11 +3074,13 @@ span.edittxt {position: absolute;
 }
 
 @media only screen and (min-width: 1680px) {
-
     body {
         line-height: 1.8;
     }
-    .tile .tile-header, .tile .tile-widget, .tile .tile-body, .tile .tile-footer {
+    .tile .tile-header,
+    .tile .tile-widget,
+    .tile .tile-body,
+    .tile .tile-footer {
         padding: 20px;
     }
     .page {
@@ -2767,35 +3095,61 @@ span.edittxt {position: absolute;
     .filterfields label {
         font-weight: 500;
     }
-    .small, small {
+    .small,
+    small {
         font-size: 13px!important;
     }
-    .btn-sm, .btn-group-sm > .btn, .chosen-container-multi .chosen-choices li.search-choice, .chosen-container .chosen-results li, .addpopup a.add, .addusers a.btn  {
+    .btn-sm,
+    .btn-group-sm > .btn,
+    .chosen-container-multi .chosen-choices li.search-choice,
+    .chosen-container .chosen-results li,
+    .addpopup a.add,
+    .addusers a.btn {
         font-size: 14px;
     }
-    .glview md-card .md-actions a, .dropdown-menu, .btn, .form-control::-webkit-input-placeholder {
+    .glview md-card .md-actions a,
+    .dropdown-menu,
+    .btn,
+    .form-control::-webkit-input-placeholder {
         font-size: 15px;
     }
     .modal-body .form-control::-webkit-input-placeholder {
         opacity: 0;
         -webkit-appearance: none !important;
     }
-    .glview md-card md-card-content p, #header .nav-right > li.nav-profile > a, #header .nav-left > li.nav-profile > a, .form-control, .btn-group.btnrounded>.btn, .profilephoto #profilep-2, .md-tab, .chosen-container-single .chosen-single, .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    .glview md-card md-card-content p,
+    #header .nav-right > li.nav-profile > a,
+    #header .nav-left > li.nav-profile > a,
+    .form-control,
+    .btn-group.btnrounded>.btn,
+    .profilephoto #profilep-2,
+    .md-tab,
+    .chosen-container-single .chosen-single,
+    .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
         font-size: 16px;
-    }   
+    }
     body {
         font-size: 17px;
     }
-    .glview md-card md-card-content .md-title, .page-dashboard .tile-simple .text-muted, .nav-tabs > li > a, .tabs-menu > li > a {
+    .glview md-card md-card-content .md-title,
+    .page-dashboard .tile-simple .text-muted,
+    .nav-tabs > li > a,
+    .tabs-menu > li > a {
         font-size: 18px;
     }
-    .modal-header h4, .backpage a, .leftdetail h4 {
+    .modal-header h4,
+    .backpage a,
+    .leftdetail h4 {
         font-size: 20px;
     }
-    .wrap-reset h4 , .tcol .text-transparent-white {
+    .wrap-reset h4,
+    .tcol .text-transparent-white {
         font-size: 22px;
     }
-    #header .branding a.brand, h3, .h3, .card-container .card .bg-dashboard .bg-transparent h3  {
+    #header .branding a.brand,
+    h3,
+    .h3,
+    .card-container .card .bg-dashboard .bg-transparent h3 {
         font-size: 24px;
     }
     .card-container .card .back>.row>div a {
@@ -2807,17 +3161,21 @@ span.edittxt {position: absolute;
     .tcol h2 {
         font-size: 34px;
     }
-    .card-container .card .bg-dashboard .bg-transparent p.dashtext, .page-dashboard .text-lg, .noback .text-lg {
+    .card-container .card .bg-dashboard .bg-transparent p.dashtext,
+    .page-dashboard .text-lg,
+    .noback .text-lg {
         font-size: 38px!important;
     }
     .card-container .card .bg-dashboard .bg-transparent h3.h3link {
         font-size: 40px;
     }
-    .page-dashboard .text-elg, .noback .text-elg {
+    .page-dashboard .text-elg,
+    .noback .text-elg {
         font-size: 90px!important;
         line-height: 70px;
     }
-    .chosen-container-multi .chosen-choices, .chosen-container .chosen-results li {
+    .chosen-container-multi .chosen-choices,
+    .chosen-container .chosen-results li {
         padding: 7px 10px;
     }
     .chosen-container-multi .chosen-choices li.search-choice {
@@ -2830,31 +3188,36 @@ span.edittxt {position: absolute;
         top: 8px;
         right: 5px;
     }
-    #header .branding, #header .branding a.brand {
+    #header .branding,
+    #header .branding a.brand {
         height: 65px;
-    }   
+    }
     .appWrapper.header-fixed.aside-fixed #content {
         top: 65px;
     }
     #header .branding a.brand {
         line-height: 65px;
     }
-    #header .nav-right > li.nav-profile, #header .nav-left > li.nav-profile, #header .dropdown>.dropdown-menu {
+    #header .nav-right > li.nav-profile,
+    #header .nav-left > li.nav-profile,
+    #header .dropdown>.dropdown-menu {
         margin-top: 10px;
     }
-    #header .nav-right > li, #header .nav-left > li {
+    #header .nav-right > li,
+    #header .nav-left > li {
         margin-top: 12px;
-    }   
+    }
     #header .dropdown>.dropdown-menu {
         border-top: 0 none;
     }
     .dashboardbg {
         height: 526px!important;
     }
-    .card-container .card .bg-dashboard .bg-transparent h3, .card-container .card .bg-dashboard .bg-transparent h3.h3link a {
+    .card-container .card .bg-dashboard .bg-transparent h3,
+    .card-container .card .bg-dashboard .bg-transparent h3.h3link a {
         padding: 15px 20px 15px;
         border-radius: 5px;
-    }   
+    }
     .iconbx img {
         width: 125px;
     }
@@ -2868,26 +3231,31 @@ span.edittxt {position: absolute;
     .cameradvr .above1800 img {
         height: 50px;
     }
-     .above1800.p-30 img {
+    .above1800.p-30 img {
         height: 75px;
     }
     .page-dashboard .tile-simple .text-muted {
         margin: 15px 0 16px;
-    }   
+    }
     .card-container .card .bg-dashboard {
         height: 248px;
-    }   
-    .form-control, .credintials .widget-todo form .form-control, .chosen-container-single .chosen-single {
+    }
+    .form-control,
+    .credintials .widget-todo form .form-control,
+    .chosen-container-single .chosen-single {
         height: auto;
         padding: 12px 10px;
     }
     #hpopup .form-control {
         padding: 22px 0px 12px;
     }
-    .btn-group.btnrounded>.btn, .btn-group.btnrounded>.btn:hover {
+    .btn-group.btnrounded>.btn,
+    .btn-group.btnrounded>.btn:hover {
         padding: 12px 25px;
     }
-    .profilephoto .input-group-btn .btn, .input-group-btn .btn, .search .btn {
+    .profilephoto .input-group-btn .btn,
+    .input-group-btn .btn,
+    .search .btn {
         padding: 14px 15px 11px !important;
     }
     .profilephoto #profilep-2 {
@@ -2943,10 +3311,12 @@ span.edittxt {position: absolute;
     .wrap-reset .glview md-card:nth-child(5n+5) {
         margin-right: 1.4%;
     }
-    .btn-ef.btn-ef-4, .btn-ef.btn-ef-3 {
+    .btn-ef.btn-ef-4,
+    .btn-ef.btn-ef-3 {
         padding: 10px 30px;
     }
-    .btn-ef.btn-ef-4 > i, .btn-ef.btn-ef-3 > i {
+    .btn-ef.btn-ef-4 > i,
+    .btn-ef.btn-ef-3 > i {
         line-height: 40px;
     }
     form.form-horizontal {
@@ -2955,7 +3325,8 @@ span.edittxt {position: absolute;
     .btn.addpost {
         padding: 12px 15px 11px;
     }
-    .credintials .addphone, .editaddphone .addphone {
+    .credintials .addphone,
+    .editaddphone .addphone {
         margin-top: -48px;
         height: 48px;
         padding: 15px 18px;
@@ -2973,11 +3344,13 @@ span.edittxt {position: absolute;
     .onegrid #boundary #vstage {
         height: 714px;
     }
-    #camerandvr .fourgrid .livevideo, #camerandvr .twogrid .livevideo {
+    #camerandvr .fourgrid .livevideo,
+    #camerandvr .twogrid .livevideo {
         width: 49.40%;
         height: 530px;
     }
-    .twogrid #boundary #vstage, .fourgrid #boundary #vstage {
+    .twogrid #boundary #vstage,
+    .fourgrid #boundary #vstage {
         height: 485px;
     }
     #camerandvr .sixgrid .livevideo {
@@ -2990,7 +3363,10 @@ span.edittxt {position: absolute;
     .page-dashboard .tcol a {
         padding: 10px 0;
     }
-    .page-dashboard .adminroles .tile, .page-dashboard .holidayschedule .tile, .page-dashboard .historyreports .tile, .page-dashboard .technicians .tile {
+    .page-dashboard .adminroles .tile,
+    .page-dashboard .holidayschedule .tile,
+    .page-dashboard .historyreports .tile,
+    .page-dashboard .technicians .tile {
         margin-bottom: 10px;
     }
     .tcol.bg-blue a {
@@ -3041,7 +3417,8 @@ span.edittxt {position: absolute;
         height: 54px;
         font-size: 18px;
     }
-    .card-container .card .front, .card-container .card .noback {
+    .card-container .card .front,
+    .card-container .card .noback {
         height: 248px;
     }
     .map {
@@ -3068,7 +3445,8 @@ span.edittxt {position: absolute;
     .iconbx img {
         width: 95px;
     }
-    .page-dashboard .text-elg, .noback .text-elg {
+    .page-dashboard .text-elg,
+    .noback .text-elg {
         font-size: 70px!important;
         line-height: 60px;
     }
@@ -3096,7 +3474,8 @@ span.edittxt {position: absolute;
     .wrap-reset .glview md-card:nth-child(3n+3) {
         margin-right: 0;
     }
-    .card-container .card .front, .card-container .card .noback {
+    .card-container .card .front,
+    .card-container .card .noback {
         height: 201px;
     }
     .slimscrolls {
@@ -3106,7 +3485,7 @@ span.edittxt {position: absolute;
 }
 
 @media only screen and (max-width: 1399px) {
-    .page-login.core-new { 
+    .page-login.core-new {
         padding-left: 388px;
     }
 }
@@ -3142,9 +3521,9 @@ span.edittxt {position: absolute;
     .covertext span strong {
         font-size: 40px;
     }
-    .covertext span  strong:after {
+    .covertext span strong:after {
         bottom: -50px;
-    }   
+    }
     .card-container .card .bg-dashboard.dashboardbg .bg-transparent .myshortcuts h3 {
         font-size: 20px;
     }
@@ -3162,7 +3541,7 @@ span.edittxt {position: absolute;
         position: absolute;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.75);
+        background: rgba(0, 0, 0, 0.75);
         left: 0;
         top: 0;
         content: "";
@@ -3175,7 +3554,7 @@ span.edittxt {position: absolute;
         width: auto;
         margin-left: 0;
     }
-    .topmenu  {
+    .topmenu {
         width: 225px;
         position: fixed;
         height: 100%;
@@ -3183,91 +3562,82 @@ span.edittxt {position: absolute;
         left: -100%;
         top: 45px;
         background: #fff;
-        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
     }
-    
     .topmenu.pull-left {
         float: none!important;
         overflow-x: hidden;
         overflow-y: auto;
     }
-    
     .topmenu .list-inline > li {
         display: block;
     }
-    
-    #header .topmenu  .nav-right > li, #header .topmenu .nav-left > li {
+    #header .topmenu .nav-right > li,
+    #header .topmenu .nav-left > li {
         margin-top: 0px;
     }
-    
     .topmenu.openmmenu {
-        left:0;
+        left: 0;
     }
-    
     .topmenu .list-inline > li {
         padding-left: 10px;
         padding-right: 10px;
     }
-    
-    #header .topmenu .nav-right > li > a, #header .topmenu .nav-left > li > a {
+    #header .topmenu .nav-right > li > a,
+    #header .topmenu .nav-left > li > a {
         display: block;
     }
-    
-    #header .topmenu .nav-right > li > span i, #header .topmenu .nav-left > li > span i{
+    #header .topmenu .nav-right > li > span i,
+    #header .topmenu .nav-left > li > span i {
         float: right;
         margin-top: 11px;
     }
-    
-    #header .topmenu .nav-right > li.open > span i, #header .topmenu .nav-left > li > span i {
+    #header .topmenu .nav-right > li.open > span i,
+    #header .topmenu .nav-left > li > span i {
         transform: rotate(180deg);
     }
-    
     .topmenu .dropdown-menu {
         position: relative;
         top: 0;
         left: 0;
         margin: 0 -10px;
     }
-    
-    .topmenu .dropdown-menu.open, #header .nav-right>li.open {
+    .topmenu .dropdown-menu.open,
+    #header .nav-right>li.open {
         background: #f1f1f1!important;
     }
     #header .nav-right>li.nav-profile.open {
         background: transparent!important;
     }
-    
     #header .nav-right.pull-right>li.open {
         background: #ffffff!important;
     }
-    
     .topmenu .dropdown-menu.panel {
         min-width: 100%;
         width: 235px;
-        box-shadow: 0 0 0 rgba(0,0,0,0);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
         animation-duration: 0s!important;
         background: #f9f9f9;
-        border:0 none;
+        border: 0 none;
         border-top: 1px solid #f1f1f1!important;
         border-bottom: 1px solid #f1f1f1;
         padding: 5px 0 0 0;
     }
-    
     .topmenu .dropdown-menu > li > a {
         padding: 8px 15px;
     }
-    
-    .mobmenu {      
+    .mobmenu {
         display: block;
         float: left;
     }
-    
     .animated-arrow {
         display: block;
         padding: 21px;
         position: relative;
     }
-    
-    .animated-arrow span, .animated-arrow span:after, .animated-arrow span:before {
+    .animated-arrow span,
+    .animated-arrow span:after,
+    .animated-arrow span:before {
         cursor: pointer;
         height: 3px;
         width: 24px;
@@ -3279,23 +3649,19 @@ span.edittxt {position: absolute;
         left: 50%;
         margin-left: -12px;
     }
-    
     .animated-arrow span:before {
         top: -7px;
     }
-    
     .animated-arrow span:after {
         bottom: -7px;
     }
-    
-    .openmenu.animated-arrow span::after, .openmenu.animated-arrow span::before {
+    .openmenu.animated-arrow span::after,
+    .openmenu.animated-arrow span::before {
         background-color: #e05d6f;
     }
-    
     .openmenu.animated-arrow span {
         background-color: transparent;
     }
-    
     .openmenu.animated-arrow span:before {
         transform: rotate(45deg);
         -moz-transform: rotate(45deg);
@@ -3304,7 +3670,6 @@ span.edittxt {position: absolute;
         -webkit-transform: rotate(45deg);
         bottom: 0;
     }
-    
     .openmenu.animated-arrow span:after {
         transform: rotate(-45deg);
         -moz-transform: rotate(-45deg);
@@ -3312,15 +3677,13 @@ span.edittxt {position: absolute;
         -o-transform: rotate(-45deg);
         -webkit-transform: rotate(-45deg);
     }
-    
-    .openmenu.animated-arrow.active span:after, .openmenu.animated-arrow span:before {
+    .openmenu.animated-arrow.active span:after,
+    .openmenu.animated-arrow span:before {
         top: 0;
     }
-    
     .openmenu.animated-arrow span:after {
         bottom: 0;
     }
-    
     .card-container .card {
         margin-bottom: 20px;
     }
@@ -3394,7 +3757,7 @@ span.edittxt {position: absolute;
     }
     .page-dashboard .adminroles .above1800.p-30 img {
         height: 40px;
-    }   
+    }
     .page-dashboard .adminroles .tcol a h3 {
         margin-top: 10px;
         margin-bottom: 5px;
@@ -3443,7 +3806,7 @@ span.edittxt {position: absolute;
     .welcometxt span {
         border-bottom: 5px solid #0eba8c;
     }
-    .page-login.core-new { 
+    .page-login.core-new {
         padding-left: 250px;
     }
     .moreitemsondevice {
@@ -3521,7 +3884,8 @@ span.edittxt {position: absolute;
     .card-container.doors .card .front {
         height: 170px;
     }
-    .cameradvr, .adminroles   {
+    .cameradvr,
+    .adminroles {
         margin-top: 10px;
         width: 50%;
         margin-bottom: 0!important;
@@ -3536,7 +3900,8 @@ span.edittxt {position: absolute;
         width: 50%;
         margin-top: 10px;
     }
-    .historyreports, .technicians {
+    .historyreports,
+    .technicians {
         width: 50%;
     }
     .page-dashboard .adminroles .tcol a h3 {
@@ -3553,7 +3918,7 @@ span.edittxt {position: absolute;
     .leftwrap {
         width: 100%;
         padding: 15px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         height: auto;
     }
     .leftwrap .newlogo img {
@@ -3591,7 +3956,7 @@ span.edittxt {position: absolute;
     .phoneaccess .passigndoor {
         width: 225px;
     }
-    .rfidcode  .rassigndoor {
+    .rfidcode .rassigndoor {
         width: 200px;
     }
     .wiegandcode .wassigndoor {
@@ -3642,7 +4007,8 @@ span.edittxt {position: absolute;
         max-height: 218px;
         min-height: 218px;
     }
-    .card-container .card .front, .card-container .card .noback {
+    .card-container .card .front,
+    .card-container .card .noback {
         height: 140px;
     }
 }
@@ -3663,17 +4029,19 @@ span.edittxt {position: absolute;
         padding: 0 0 0 15px;
         width: 32.50%;
     }
-    .cameradvr, .adminroles {
+    .cameradvr,
+    .adminroles {
         margin-top: 5px;
     }
     .glview md-card {
         width: 46%;
         margin: 0 2% 25px;
     }
-    .glview md-card:nth-child(3n+3), .glview md-card:nth-child(4n+4){
+    .glview md-card:nth-child(3n+3),
+    .glview md-card:nth-child(4n+4) {
         margin-right: 2%;
     }
-    .glview md-card:nth-child(2n+2){
+    .glview md-card:nth-child(2n+2) {
         margin-right: 0;
     }
     .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder {
@@ -3690,7 +4058,8 @@ span.edittxt {position: absolute;
         width: 19%;
         text-align: right;
     }
-    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 .gridlistbar label, .wrap-reset .table-custom .row .col-sm-3.col-md-4 .gridlistbar label {
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3 .gridlistbar label,
+    .wrap-reset .table-custom .row .col-sm-3.col-md-4 .gridlistbar label {
         display: none;
     }
     .search {
@@ -3755,7 +4124,8 @@ span.edittxt {position: absolute;
         width: 550px;
         padding: 30px;
     }
-    .signup input, .signupselect {
+    .signup input,
+    .signupselect {
         width: 44%;
     }
     .signup .negmargin40 {
@@ -3764,7 +4134,8 @@ span.edittxt {position: absolute;
 }
 
 @media only screen and (max-width: 599px) {
-    .branding, .dropdown-menu.pull-right.with-arrow:after {
+    .branding,
+    .dropdown-menu.pull-right.with-arrow:after {
         display: none;
     }
     .appWrapper.sidebar-sm #header .branding {
@@ -3806,7 +4177,8 @@ span.edittxt {position: absolute;
     .signup .signuplabel {
         margin-left: 0!important;
     }
-    .signup input, .signupselect {
+    .signup input,
+    .signupselect {
         float: left;
         width: 100%;
         margin-left: 0;
@@ -3845,7 +4217,8 @@ span.edittxt {position: absolute;
     .myshortcuts ul li a {
         width: 80%;
     }
-    .page-dashboard .card-container, .card-container {
+    .page-dashboard .card-container,
+    .card-container {
         float: none;
         width: 100%!important;
         padding: 0 15px;
@@ -3856,7 +4229,8 @@ span.edittxt {position: absolute;
         float: none;
         display: block;
     }
-    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder, .wrap-reset .table-custom .row .col-sm-4.col-md-4.filterorder {
+    .hometabs .tile-body.table-custom .row .col-sm-3.col-md-3.filterorder,
+    .wrap-reset .table-custom .row .col-sm-4.col-md-4.filterorder {
         width: 100%;
         float: left;
         text-align: left;
@@ -3925,8 +4299,9 @@ span.edittxt {position: absolute;
         float: left;
         width: 70%!important;
     }
-    .schedule_scroll{width: 300px;}
-    
+    .schedule_scroll {
+        width: 300px;
+    }
 }
 
 @media only screen and (max-width: 399px) {
@@ -3936,7 +4311,9 @@ span.edittxt {position: absolute;
     #hpopup .login-h2 {
         font-size: 22px;
     }
-    #hpopup a, #hpopup label, #hpopup p  {
+    #hpopup a,
+    #hpopup label,
+    #hpopup p {
         font-size: 14px!important;
     }
     #hpopup button[type="submit"] {
@@ -3946,43 +4323,11 @@ span.edittxt {position: absolute;
     .glview md-card {
         width: 89.5%;
     }
-    .listview .glview md-card .moreitemsondevice ~ a, .listview .glview md-card .moreitemsondevice {
+    .listview .glview md-card .moreitemsondevice ~ a,
+    .listview .glview md-card .moreitemsondevice {
         width: 30%;
     }
     .listview .glview md-card md-card-content {
         width: 65%!important;
     }
 }
-
-
-.disable-button{
-    pointer-events: none;
-    opacity: 0.5;
-}
-.dhtmlx-alert{
-        z-index: 1050 !important;
-}
-/*.modal-dialog {
-    width: 800px !important;
-}*/
-.form-group .btn-toolbar{margin-top: 8px;
-    float: right;}
-
- .wrap-reset .btn-toolbar{
-   display: inline-block;
-    vertical-align: top;
-}
-.wrap-reset .pagination{
-    float: right;
-    margin: 0;
-}
-.facility-view .dropdown-menu{
-        float: left;
-    right: 0;
-    left: auto;
-}
- .div-width{position: relative;}
-
- .div-width{float: left; width: 45%; margin-left: 30px;position: relative;}
- .signup .div-width input, .div-width .signupselect{width: 100%;float: none;margin-left: 0px;}
- .div-width input + label{position: absolute;left: 0px;top: 45px;z-index: 999;font-size: 12px;font-style: normal;font-weight: 400;}
