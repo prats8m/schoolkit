@@ -315,11 +315,16 @@ app
                 singleObject.status = $scope.relayNDoorGenSetting[i].drd_status;
                 if (parseInt($scope.relayNDoorGenSetting[i].strike_time) < 500 || parseInt($scope.relayNDoorGenSetting[i].strike_time) > 4500) {
                     $scope.GenericError = "Relay strike time range from 500 to 4500 ms ";
-                    //  setTimeout(function () { $scope.GenericError = '' }, 5000);
+                    return null;
+                    break;
+                }
+                if (($scope.relayNDoorGenSetting[i].drd_door_id != undefined && $scope.relayNDoorGenSetting[i].drd_door_id != '') && ($scope.relayNDoorGenSetting[i].interface_type == undefined || $scope.relayNDoorGenSetting[i].interface_type == '' || $scope.relayNDoorGenSetting[i].interface_type == 0)) {
+                    $scope.errorMsg = "please Select an Interface Type";
                     return null;
                     break;
                 }
                 singleObject.strike_time = $scope.relayNDoorGenSetting[i].strike_time;
+                singleObject.interface_type = $scope.relayNDoorGenSetting[i].interface_type
                 data.relays.push(singleObject);
             }
             devicesSvc.setRelayDoorSetup(appConstants.doorassigndevice, appConstants.putMethod, {}, data, function (succResponse) {

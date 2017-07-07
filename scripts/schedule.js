@@ -997,9 +997,9 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 	$scope.facilityInit();
 
 	$rootScope.holidaySchedules = [];
-	$scope.holidayScheduleList = function(data){
-		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod,{},{},function (succResponse) {
-        	if(succResponse.status){
+	$scope.holidayScheduleList = function (data) {
+		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod, {}, {}, function (succResponse) {
+			if (succResponse.status) {
 				$rootScope.holidaySchedules = succResponse.data.data;
 				$scope.setHolidays();
 			}
@@ -1033,7 +1033,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 			return false;
 		}
 		data.block = "";
-		$rootScope.exceptions.forEach(function (v) {
+		if ($rootScope.exceptions)
+			$rootScope.exceptions.forEach(function (v) {
 				if (v.type == 'ONETIME') {
 					v.frequency = "one-time";
 				}
@@ -1092,7 +1093,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 
 
 
-		delete data.schedule_sat; 
+		delete data.schedule_sat;
 		delete data.schedule_sun;
 		delete data.schedule_mon;
 		delete data.schedule_tue;
