@@ -885,11 +885,11 @@ var app = angular
       })
 
       //admin schedule schedules
-      .state('app.admin.schedule.schedules', {
-        url: '/schedules',
-        controller: 'ScheduleCtrl',
-        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
-      })
+      // .state('app.admin.schedule.schedules', {
+      //   url: '/schedules',
+      //   controller: 'ScheduleCtrl',
+      //   templateUrl: 'views/tmpl/admin/schedule/schedules.html'
+      // })
 
       //admin schedule view-schedule
       .state('app.admin.schedule.view-schedule', {
@@ -905,11 +905,12 @@ var app = angular
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
 
-      //admin schedule schedule-groups
-      .state('app.admin.schedule.schedule-groups', {
-        url: '/schedule-groups',
-        controller: 'ScheduleGroupsCtrl',
-        templateUrl: 'views/tmpl/admin/schedule/schedule-groups.html'
+      //admin schedule schedules
+      //previously admin schedule schedule-groups
+      .state('app.admin.schedule.schedules', {
+        url: '/schedules',
+        controller: 'SchedulesCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
       })
 
       //admin schedule view-holiday-schedule
