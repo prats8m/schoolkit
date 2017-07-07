@@ -178,7 +178,7 @@ app
     template:`<ul class="nav-right list-inline headmenu" ng-if="navbar_facilities_count > 1"><li class="dropdown" uib-dropdown>
                     <span class="dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">{{current_facility}} &nbsp;<i class="fa fa-angle-down" name="angle-down"></i></span>
                     <ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu" style="">
-                        <li ><a ng-click="goFacilityList()">All Facilities</a></li>
+                        <li ><a ng-click="setCurrentFacility(staticcurrent_facility,0)"">All Facilities</a></li>
                         <li ng-repeat="facility in headerFacilityList"><a ng-click="setCurrentFacility(facility.facility_name,facility.facility_id)">{{ facility.facility_name }}</a></li>
                     </ul>
                 </li></ul>`,
@@ -201,13 +201,15 @@ app
                 $cookies.put('current_facility_id',0);
                 $scope.facility_id = 0;
                 $scope.current_facility = appConstants.allfacilities;
-                ($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
+                $state.reload();
+                //($state.is('app.admin.facility.facility')) ? $state.reload() : $state.go('app.admin.facility.facility');
             };
 
             $scope.setCurrentFacility = function(facility_name, facility_id){
                 $cookies.put('current_facility_id',facility_id);
                $scope.facility_id = facility_id;
-                ($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
+                //($state.is('app.admin.dashboard')) ? $state.go('app.admin.dashboard',{facility_id:facility_id}) : $state.reload();
+                $state.reload();
                 $scope.current_facility = facility_name;
             }
 

@@ -221,7 +221,7 @@
 												<a ui-sref="app.admin.device.device-settings({device_id:device.device_id})"><i class="fa fa-cog" aria-hidden="true"></i></a>
 											</span>
 											<a ui-sref="app.admin.device.view-device({device_id:device.device_id})"><img ng-src="images/device/elika-76-bronze.png" class="md-card-image" alt="Washed Out"></a>
-											<md-card-content>
+											<!-- <md-card-content>
 												<h2 class="md-title">{{ device.device_name }}</h2>
 												<p>{{ device.device_model }}</p>
 												<p>Dependent {{ device.device_slave_count }}</p>
@@ -229,7 +229,34 @@
 												<p ng-hide="class == 'gridview'">Facility Name: {{ device.device_facility_name }}</p>
 												<p ng-hide="class == 'gridview'">Device Health: {{ device.device_health }}</p>
 												<p ng-hide="class == 'gridview'">Device Type: {{ device.device_type | uppercase }}</p>
-											</md-card-content>
+											</md-card-content> -->
+											<md-card-content>
+									           <!-- <div class="list-view">
+									            <h2 class="md-title">{{ device.device_name }}</h2>
+									            <p>{{ device.device_model }}</p>
+									            <p>Dependent {{ device.device_slave_count }}</p>
+									           </div> -->
+									           <div class="list-view">
+									            <h2 class="md-title">{{ device.device_name }} </h2>
+									            <p> {{ device.device_facility_name | uppercase }}</p>
+									            <p> {{ device.device_slave_count }} Dependent Device </p>
+									            
+									           </div>
+									           <div class="list-view grid-hide">
+									            <h2 class="md-title"> Type</h2>
+									            <p>  {{ device.device_type | uppercase }} </p>
+									            <p>  Device Uptime : {{ device.device_uptime ? device.device_uptime : 0}} </p>
+									            <!-- <p> 302342</p> -->
+									           </div>
+
+									           <div class="list-view grid-hide">
+									            <h2 class="md-title"> Created By</h2>
+									            <p> {{ device.device_created_by_name }} </p>
+									            <!-- <p> Door Name </p> -->
+									            
+									            
+									           </div>
+									           </md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.device.view-device({device_id:device.device_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.device.edit-device({device_id:device.device_id})">Edit</a>

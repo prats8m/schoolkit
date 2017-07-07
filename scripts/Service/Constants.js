@@ -323,9 +323,12 @@ app.constant("appConstants", {
     //...........Technician.......................................................
 
     technicianUiTitle: 'Technician',
+    deletetechnicianconfirmationmessage: 'Would you like to delete Technician',
     deleteuserconfirmationmessage: 'Would you like to delete your user',
     _successfullyuserdeletedmessage: 'Your user has been deleted successfully',
+    _successfullytechniciandeletedmessage: 'Technician has been deleted successfully',
     _canceluserfromdelete: 'You decided to keep your users',
+    _canceltechnicianfromdelete: 'You decided to keep Technician',
     technicianProfileUiTitle: 'Technician',
     _successfullyuserupdatemessage: 'Technician updated successfully.',
 

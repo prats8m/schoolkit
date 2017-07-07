@@ -2702,8 +2702,19 @@ span.edittxt {position: absolute;
 .chatfooter .formsend input[type="text"]:focus { border: 0px; box-shadow: none; }
 .chatfooter .formsend button { position: absolute; border-radius: 100%; overflow: hidden; text-align: center; right: 0px; bottom: 0; box-shadow: none; background: #16a086; color: #fff; border: 0px solid #ccc; display: block; width: 38px; padding-right: 10px; top: 0; height: 100%;
  }
-
-
+.gridview .grid-hide {
+    display: none;
+}
+.listview .glview md-card md-card-content{
+    width: -webkit-calc(100% - 140px)!important;
+    width: -moz-calc(100% - 140px)!important;
+    width: calc(100% - 140px)!important;
+    display: table;
+}
+.listview .glview md-card md-card-content .list-view {
+    display: table-cell;
+        width: 33%;
+}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {
         left: -85px
@@ -2717,6 +2728,7 @@ span.edittxt {position: absolute;
     .listview .glview md-card {
         width: 100%!important;
         margin: 0 0 15px!important;
+
     }
     .glview md-card {
         width: 17.8%!important;
@@ -3969,3 +3981,8 @@ span.edittxt {position: absolute;
     right: 0;
     left: auto;
 }
+ .div-width{position: relative;}
+
+ .div-width{float: left; width: 45%; margin-left: 30px;position: relative;}
+ .signup .div-width input, .div-width .signupselect{width: 100%;float: none;margin-left: 0px;}
+ .div-width input + label{position: absolute;left: 0px;top: 45px;z-index: 999;font-size: 12px;font-style: normal;font-weight: 400;}
