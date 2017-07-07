@@ -365,6 +365,10 @@
 																		 multiple required>
 																		</select>
 																	</div>
+																	<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																		<label for="">Add Schedule</label><br/>
+																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12">
@@ -437,6 +441,10 @@
 																		 multiple required>
 																		</select>
 																	</div>
+																	<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																		<label for="">Add Schedule</label><br/>
+																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-3 col-md-4">
@@ -461,6 +469,7 @@
 																				<th>Phone Code</th>
 																				<th width="325">Assigned Doors</th>
 																				<th>Phone Number</th>
+																				<th>Schedules</th>
 																				<th>Status</th>
 																				<th width="75">Action</th>
 																			</tr>
@@ -471,6 +480,10 @@
 																				<td>{{phone_code.Door_Name}}</td>
 																				<td>
 																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div>
+																				</td>
+																				<td>
+																					<a ng-click="editviewopen(phone_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="phone_code.credential_schedule_id == 0">View</a> 
+																					<a ng-click="editviewopen(phone_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="phone_code.credential_schedule_id == 0">Edit</a>
 																				</td>
 																				<td>
 																					<!--<select style="border: 0; width: 100%;">-->
@@ -576,6 +589,10 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
 																		 multiple required></select>
 																	</div>
+																	<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																		<label for="">Add Schedule</label><br/>
+																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-3 col-md-4">
@@ -601,6 +618,7 @@
 																			<th>Card Number</th>
 																			<th>Facility Code</th>
 																			<th width="400">Assigned Doors</th>
+																			<th>Schedules</th>
 																			<th>Status</th>
 																			<th width="75">Action</th>
 																		</tr>
@@ -610,6 +628,10 @@
 																			<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
 																			<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
 																			<td>{{wiegand_code.Door_Name}} </td>
+																			<td>
+																					<a ng-click="editviewopen(wiegand_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="wiegand_code.credential_schedule_id == 0">View</a> 
+																					<a ng-click="editviewopen(wiegand_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="wiegand_code.credential_schedule_id == 0">Edit</a>
+																				</td>
 																			<td>
 																				{{wiegand_code.status==0?'Inactive':'Active'}}
 
@@ -712,6 +734,10 @@
 																			 multiple required>
 																			</select>
 																		</div>
+																		<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																			<label for="">Add Schedule</label><br/>
+																			<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																		</div>
 																	</div>
 																	<div class="row">
 																		<div class="form-group col-sm-3 col-md-4">
@@ -737,6 +763,7 @@
 																				<th>Username</th>
 																				<th>Password</th>
 																				<th width="325">Assigned Doors</th>
+																				<th>Schedules</th>
 																				<th>Status</th>
 																				<th width="75">Action</th>
 																			</tr>
@@ -746,6 +773,10 @@
 																				<td>{{blecode.Detail.ble_username}}</td>
 																				<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																				<td>{{blecode.Door_Name}}</td>
+																				<td>
+																					<a ng-click="editviewopen(blecode.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="blecode.credential_schedule_id == 0">View</a> 
+																					<a ng-click="editviewopen(blecode.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="blecode.credential_schedule_id == 0">Edit</a>
+																				</td>
 																				<td>
 																					<!--<select style="border: 0; width: 100%;">-->
 																					<!--<option value="" ng-selected="blecode.status == 1">Active</option>-->

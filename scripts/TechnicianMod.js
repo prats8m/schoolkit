@@ -16,7 +16,7 @@ app
 		$scope.status = '  ';
 		$scope.showConfirm = function (ev, id) {
 			var confirm = $mdDialog.confirm()
-				.title(appConstants.deleteuserconfirmationmessage)
+				.title(appConstants.deletetechnicianconfirmationmessage)
 				.content(appConstants.content)
 				.ok(appConstants.delete)
 				.cancel(appConstants.cancel)
@@ -24,7 +24,7 @@ app
 			$mdDialog.show(confirm).then(function () {
 				$scope.deleteTechnician(id);
 			}, function () {
-				toaster.pop(appConstants.success, appConstants._canceluserfromdelete);
+				toaster.pop(appConstants.success, appConstants._canceltechnicianfromdelete);
 			});
 		};
 
@@ -106,7 +106,7 @@ app
 		$scope.deleteTechnician = function (technician_id) {
 			technicianSvc.deleteTechnician(appConstants.deletetechnician + "?technician_id=" + technician_id, appConstants.deleteMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
-					toaster.pop(appConstants.success, appConstants._successfullyuserdeletedmessage);
+					toaster.pop(appConstants.success, appConstants._successfullytechniciandeletedmessage);
 					$scope.getTechnicians();
 				}
 			});

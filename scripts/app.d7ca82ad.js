@@ -2395,6 +2395,7 @@ app
         }
         if(form_type == 'view'){
           scheduler.config.readonly = true;
+
         }
         else{
            scheduler.config.readonly = false;
@@ -2412,13 +2413,13 @@ app
         });
         $rootScope.schedule.schedule_type = ($scope.schedule.schedule_category == "repeat" ? "REPEATING" : "ONETIME");
         var sc_date = new Date($scope.schedule.schedule_start_time*1000);
-        $rootScope.schedule.date =  (sc_date.getUTCDate() + '/' + (sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCFullYear());
+        $rootScope.schedule.date =  new Date((sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCDate() + '/' + sc_date.getUTCFullYear());
         $rootScope.schedule.schedule_id = schedule_id;
         
 
         if($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null){
           var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
-          $rootScope.schedule.expiration = (sc_exp.getUTCDate() + '/' + (sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCFullYear());
+          $rootScope.schedule.expiration = new Date((sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCDate() + '/' + sc_exp.getUTCFullYear());
           $rootScope.schedule.no_expirations = 0;
         }
         else{
@@ -2429,6 +2430,11 @@ app
           $timeout(function () {
             $(".checkbox-custom-alt:contains('Repeating')").click();
           });
+        if(form_type == 'view'){
+          $timeout(function () {
+            $('.check_view').find(':input').prop('disabled', true);
+          });
+        }
         }
           }
           else{
@@ -2482,7 +2488,7 @@ app
         });
     };
 
-    $scope.scheduleopen = function (size) {
+    $rootScope.scheduleopen = function (size) {
       delete $rootScope.schedule.schedule_id;
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
