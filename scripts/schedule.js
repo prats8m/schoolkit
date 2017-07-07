@@ -309,7 +309,7 @@ app
 				data.expiration = expiration_date;
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-					$location.path('/app/admin/schedule/schedule-groups');
+					$location.path('/app/admin/schedule/schedules');
 				}
 				else {
 					$scope.schedule.schedule_type = data.schedule_category;
@@ -725,8 +725,6 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		$(".dhx_cal_prev_button").hide();
 		$(".dhx_cal_next_button").hide();
 		$(".dhx_cal_today_button").hide();
-
-
 	}
 
 	$scope.custom_schedular = function () {
@@ -1105,7 +1103,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				data.schedulestart_date = start_date;
 				data.expiration = expiration_date;
 				toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-				$location.path('/app/admin/schedule/schedule-groups');
+				$location.path('/app/admin/schedule/schedules');
 			}
 		});
 	}

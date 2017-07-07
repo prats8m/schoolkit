@@ -199,6 +199,7 @@ app.constant("appConstants", {
     _successDeleteFacility: 'Your Facility has been deleted successfully.',
     _cancelFacilityDelete: 'You decided to keep Facility.',
     _editFacilitySuccess: 'Facility Edited Successfully',
+    _switchtootherfacility: 'Switch to other facility before deleting this facility.',
     //...........................................................................
 
     //.................Devices....................................................

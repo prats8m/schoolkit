@@ -191,6 +191,17 @@
 																		</span>
 																	</div>
 																</div>
+
+																<div class="form-group col-sm-6 col-md-3">
+																	<label for="">SIP Username <span class="text-danger">*</span></label>
+																	<input type="text" name="sip_username" id="sip_username" ng-model="userData.sip_username" class="form-control" required>
+																</div>
+																<div class="form-group col-sm-6 col-md-3">
+																	<label for="">SIP Password <span class="text-danger">*</span></label>
+																	<input type="password" name="sip_password" id="" ng-model="userData.sip_password" class="form-control" required>
+																</div>
+
+
 															</div>
 														</div>
 													</div>
@@ -285,7 +296,7 @@
 														<form name="form1" role="form"  >
 															<div class="modal-header"><h4 class="modal-title custom-font">Add Schedule</h4></div>
 															<div class="modal-body mt-5 pb-30">
-																<div class="row">
+																<div class="row check_view">
 																	<div class="col-sm-12 col-md-6 form-group">
 																		<label for=""><strong>Schedule Type</strong></label><br/>
 																		<div class="row">
@@ -302,7 +313,7 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="row" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
+																<div class="row check_view" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
 																	<div class="col-sm-6 col-md-6 form-group">
 																		<label for="">Start Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
@@ -396,8 +407,8 @@
 																</div>
 															</div>
 															<div class="modal-footer">
-																<!-- <button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button> -->
-																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>	
+																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left" ng-hide="schedule.schedule_id"></i> Close</button>
+																<!-- <button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>	 -->
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)" ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>	
 															</div>
 														</form>		
@@ -562,8 +573,8 @@
 																				<td>{{phone_code.Detail.phone_code}}</td>
 																				<td>{{phone_code.Door_Name}}</td>
 																				<td>
-																					<a ng-click="scheduleviewopen(phone_code.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
-																					<a ng-click="scheduleviewopen(phone_code.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a> 
+																					<a ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
+																					<a ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a> 
 
 																				</td>
 																				<td>
@@ -649,8 +660,8 @@
 																				<td>{{rfid_code.Detail.rfid_card_no}}</td>								
 																				<td>{{rfid_code.Door_Name}} </td>
 																				<td>
-																					<a ng-click="scheduleviewopen(rfid_code.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
-																					<a ng-click="scheduleviewopen(rfid_code.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
+																					<a ng-click="scheduleviewopen(rfid_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
+																					<a ng-click="scheduleviewopen(rfid_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
 																				</td>
 																				<td>{{rfid_code.Detail.rfid_facility_id}}</td>
 																				<td>
@@ -729,8 +740,8 @@
 																				<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
 																				<td>{{wiegand_code.Door_Name}} </td>
 																				<td>
-																					<a ng-click="scheduleviewopen(wiegand_code.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
-																					<a ng-click="scheduleviewopen(wiegand_code.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
+																					<a ng-click="scheduleviewopen(wiegand_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
+																					<a ng-click="scheduleviewopen(wiegand_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
 																				</td>
 																				<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>						
 																				<td>{{wiegand_code.status==0?'Inactive':'Active'}}</td>
@@ -819,8 +830,8 @@
 																				<td>{{nfccode.Detail.nfc_code}}</td>
 																				<td>{{nfccode.Door_Name}} </td>
 																				<td>
-																					<a ng-click="scheduleviewopen(nfccode.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
-																					<a ng-click="scheduleviewopen(nfccode.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
+																					<a ng-click="scheduleviewopen(nfccode.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
+																					<a ng-click="scheduleviewopen(nfccode.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
 																				</td>
 																				<td></td>
 																				<td>
@@ -902,8 +913,8 @@
 																				<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																				<td>{{blecode.Door_Name}}</td>
 																				<td>
-																					<a ng-click="scheduleviewopen(blecode.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
-																					<a ng-click="scheduleviewopen(blecode.credential_schedule_id)" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
+																					<a ng-click="scheduleviewopen(blecode.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
+																					<a ng-click="scheduleviewopen(blecode.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a>
 																				</td>
 																				<td>
 																					<select style="border: 0; width: 100%;">
