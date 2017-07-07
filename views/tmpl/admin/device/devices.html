@@ -245,7 +245,7 @@
 									           <div class="list-view grid-hide">
 									            <h2 class="md-title"> Type</h2>
 									            <p>  {{ device.device_type | uppercase }} </p>
-									            <p>  Device Uptime : {{ device.device_uptime }} </p>
+									            <p>  Device Uptime : {{ device.device_uptime ? device.device_uptime : 0}} </p>
 									            <!-- <p> 302342</p> -->
 									           </div>
 
