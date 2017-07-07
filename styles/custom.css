@@ -2713,6 +2713,7 @@ span.edittxt {position: absolute;
 }
 .listview .glview md-card md-card-content .list-view {
     display: table-cell;
+        width: 33%;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1, .profilephoto #profilep-2 {

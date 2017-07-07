@@ -103,13 +103,30 @@
 										<md-card ng-repeat="user in users | limitTo:totalDisplayed | filter:text | filter:name | filter:group | filter:phone | orderBy:myOrderBy track by $index">
 											<a ui-sref="app.admin.user.view-user({user_id:user.user_id})"><img ng-src="{{user.user_photo ? user.user_photo : 'images/avatar.jpg'}}" onerror="this.onError=null;this.src='images/avatar.jpg';"
 												 class="md-card-image" alt="Washed Out"></a>
-											<md-card-content>
+											<!-- <md-card-content>
 												<h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
 												<p>{{ user.user_phone_no }}</p>
 												<p ng-hide="class=='gridview'">{{ user.user_zipcode }}</p>
 												<p ng-hide="class=='gridview'">{{ user.user_status ? 'Active':'In Active' }}</p>
 												<p ng-hide="class=='gridview'">{{ user.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
-											</md-card-content>
+											</md-card-content> -->
+											<md-card-content>
+           
+									           <div class="list-view">
+									            <h2 class="md-title">{{ user.user_first_name }} {{ user.user_last_name }}</h2>
+									            <p><b>{{ user.user_name_on_lcd }}</b></p>
+									            <p>{{ user.user_status ? 'Active':'In Active' }}</p>
+									           </div>
+									           <div class="list-view grid-hide">
+												<p>{{ user.user_zipcode }}</p>
+												<p>{{ user.user_phone_no }}</p>
+									           </div>
+
+									           <div class="list-view grid-hide">
+												<p>{{ user.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
+									            
+									           </div>
+									        </md-card-content>
 											<div class="md-actions" layout="row" layout-align="center center">
 												<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.view-user({user_id:user.user_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded" ui-sref="app.admin.user.edit-user({user_id:user.user_id})">Edit</a>
@@ -117,7 +134,7 @@
 											</div>
 										</md-card>
 									</md-content>
-									<button ng-if="count>8 && users.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="usersInit()"
+									<button ng-if="count > 20 && users.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="usersInit()"
 									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
