@@ -215,7 +215,7 @@ app
 
             $scope.staticcurrent_facility = appConstants.allfacilities;
 
-            if(utilitySvc.getCurrentFacility() == ''){
+            if(utilitySvc.getCurrentFacility() == '' || utilitySvc.getCurrentFacility() == 0){
                 $scope.current_facility = appConstants.allfacilities;
             }else{
                 dashboardSvc.getFacilityName(appConstants.facilityview,appConstants.getMethod,{},{},function (succResponse) {
@@ -223,6 +223,8 @@ app
                         $scope.current_facility = succResponse.data.facility_name;
                     }else{
                         $scope.current_facility = appConstants.allfacilities;
+                        $cookies.put('current_facility_id',0);
+                        $state.go('app.admin.dashboard');
                     }
                 });
             }

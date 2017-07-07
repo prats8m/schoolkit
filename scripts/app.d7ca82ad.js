@@ -661,7 +661,7 @@ var app = angular
 
       //admin dashboard
       .state('app.admin.dashboard', {
-        url: '/dashboard/:facility_id',
+        url: '/dashboard',
         controller: 'DashboardCtrl',
         templateUrl: 'views/tmpl/admin/dashboard.html'
       })

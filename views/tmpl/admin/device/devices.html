@@ -90,6 +90,17 @@
 														<small class="pull-right"><a ng-click="cancel()" ui-sref="app.admin.support.technician">Add Technician</a></small>
 													</div>
 												</div>
+												
+												<div class="row">
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">SIP Username <span class="text-danger">*</span></label>
+														<input type="text" maxlength="32" name="sip_username" id="" ng-model="device.sip_username" class="form-control" placeholder="" required>
+													</div>
+													<div class="form-group col-sm-6 col-md-6">
+														<label for="">SIP Password <span class="text-danger">*</span></label>
+														<input type="password" name="sip_password" maxlength="32" id="" ng-model="device.sip_password" class="form-control" placeholder="" required>
+													</div>
+												</div>
 
 												<div class="row">
 													<div class="col-md-12">
@@ -99,7 +110,8 @@
 														</select>
 													</div>
 												</div>
-											</div>
+
+												
 											<div class="modal-footer">
 												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
 												<button ng-click="formSubmit(device,device_form)" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>
