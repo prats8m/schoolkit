@@ -1639,6 +1639,15 @@ app
         };
         $scope.editUser = {};
         $("#mask02").datepicker();
+        $rootScope.schedule = {};
+
+        $scope.alldoorList = function () {
+            userSvc.alldoorList(appConstants.doorlist, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $rootScope.door_lists = succResponse.data.data;
+                }
+            });
+        };
 
         $scope.cleanAccordionFormObject = function (UI, objectType) {
             switch (UI) {
@@ -1898,10 +1907,11 @@ app
             userSvc.editassignedGroup(appConstants.usergroupassignedtouser, appConstants.postMethod, {}, { user_id: parseInt($stateParams.user_id) }, function (succResponse) {
                 $scope.nogroup = false;
                 if (succResponse.status) {
-                    if (succResponse.data == null) {
-                        $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
+                    if (succResponse.data == null || succResponse.data == "") {
+                        // $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "none").css("opacity", "0.5");
                         $scope.nogroup = appConstants.nousergroupassigned;
                         $scope.userGroup = appConstants.empty;
+                        $scope.alldoorList();                        
                     }
                     else {
                         $("md-tab-item[aria-controls^=tab-content]:contains('Credentials')").css("pointer-events", "visible").css("opacity", "1");
@@ -2062,6 +2072,41 @@ app
             if (!access_edit_form.validate()) {
                 return false;
             }
+            //Add scheduler
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var ind = new Array();
+            $scope.edit_access_schedule = {};
+
+            var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+            sched_json.forEach(function (v) {
+                if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
+                    delete v.id;
+                    delete v.text;
+                    $scope.edit_access_schedule.schedule_category = 0;
+                    var split_date = v.start_date.split(" ");
+                    v.day = weekday[new Date(v.start_date).getDay()];
+                    v.starttime = split_date[1];
+                    v.endtime = v.end_date.split(" ")[1];
+                    if ($scope.schedule.schedule_type == "ONETIME") {
+                        v.date = split_date[0].replace("/", "-").replace("/", "-");
+                        $scope.edit_access_schedule.schedule_category = 1;
+                    }
+                    delete v.start_date;
+                    delete v.end_date;
+                    ind.push(v);
+                }
+
+            });
+            //End of add scheduler
+            $scope.edit_access_schedule.schedule = ind;
+
             submitData.user_id = parseInt($stateParams.user_id);
             submitData.credential_type = "access_code";
             submitData.details = {};
@@ -2076,16 +2121,54 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-            userSvc.submitEditAccessCode(url, meth, {}, submitData, function (succResponse) {
-                $scope.editAccess.credential_id = null;
-                if (succResponse.status) {
-                    toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-                    $scope.getAccessCodeList();
+            
+            if($scope.edit_access_schedule.schedule.length == 0){
+              if ($scope.usergroups == undefined) {
+                    submitData.schedule_type = 1;
                 }
                 else {
-                    $scope.AccessCodeMessage = succResponse.msg;
+                    submitData.schedule_type = 0;
                 }
-            });
+              userSvc.submitEditAccessCode(url, meth, {}, submitData, function (succResponse) {
+                  $scope.editAccess.credential_id = null;
+                  if (succResponse.status) {
+                      toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+                      $scope.getAccessCodeList();
+                  }
+                  else {
+                      $scope.AccessCodeMessage = succResponse.msg;
+                  }
+              });
+            }
+            else{
+              if ($scope.schedule.date != undefined) {
+                    var start_date = new Date($scope.schedule.date);
+                    $scope.edit_access_schedule.schedule_start_date = (start_date.getMonth() + 1) + "-" + start_date.getDate() + "-" + start_date.getFullYear();
+                }
+                $scope.edit_access_schedule.no_expirations = $scope.schedule.no_expirations;
+                if ($scope.schedule.expiration != undefined) {
+                    var exp_date = new Date($scope.schedule.expiration);
+                    $scope.edit_access_schedule.expiration = (exp_date.getMonth() + 1) + "-" + exp_date.getDate() + "-" + exp_date.getFullYear();
+                }
+                $scope.edit_access_schedule.schedule_type = "credential";
+                userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod, {}, $scope.edit_access_schedule, function (success) {
+                    JSON.parse(scheduler.toJSON()).forEach(function (v) { scheduler.deleteEvent(v.id); });
+                    if (success.status) {
+                      submitData.schedule_type = 2;
+                      submitData.schedule_id = success.data;
+                      userSvc.submitEditAccessCode(url, meth, {}, submitData, function (succResponse) {
+                        $scope.editAccess.credential_id = null;
+                        if (succResponse.status) {
+                          toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+                          $scope.getAccessCodeList();
+                        }
+                        else {
+                          $scope.AccessCodeMessage = succResponse.msg;
+                        }
+                      });
+                    } 
+                });
+            }
         };
 
 

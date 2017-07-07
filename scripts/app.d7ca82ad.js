@@ -2488,7 +2488,7 @@ app
         });
     };
 
-    $scope.scheduleopen = function (size) {
+    $rootScope.scheduleopen = function (size) {
       delete $rootScope.schedule.schedule_id;
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
