@@ -2064,7 +2064,15 @@ app
                 }
             });
         };
-        $scope.getAccessCodeList();
+        // $scope.getAccessCodeList();
+        $scope.getCredentials = function(){
+            $scope.getAccessCodeList();
+            $scope.getNfcCodeList();
+            $scope.getPhoneList();
+            $scope.getBleList();
+            $scope.getWiegandList();
+            $scope.getRfidList();
+        }
         //NFC code edit
         $scope.submitEditNfcCode = function (submitData, nfc_edit_form) {
             if (!nfc_edit_form.validate()) {
@@ -2117,7 +2125,7 @@ app
                 }
             });
         };
-        $scope.getNfcCodeList();
+        //$scope.getNfcCodeList();
 
         //End Of NFC Code Edit
         $scope.getPhoneList = function () {
@@ -2132,7 +2140,7 @@ app
                 }
             });
         };
-        $scope.getPhoneList();
+        ///$scope.getPhoneList();
 
         $scope.submitEditPhoneCode = function (submitData, phone_edit_form) {
 
@@ -2182,7 +2190,7 @@ app
                 }
             });
         };
-        $scope.getRfidList();
+        // $scope.getRfidList();
 
         $scope.getWiegandList = function () {
             userSvc.getWiegandList(appConstants.credentiallist + '?user_id=' + parseInt($stateParams.user_id) + '&type=wiegand_code', appConstants.getMethod, {}, {}, function (succResponse) {
@@ -2197,7 +2205,7 @@ app
             });
         };
 
-        $scope.getWiegandList();
+        // $scope.getWiegandList();
         $scope.submitEditRFIDCode = function (submitData, rfid_form) {
             if (!rfid_form.validate()) {
                 return false;
@@ -2277,7 +2285,7 @@ app
                 }
             });
         };
-        $scope.getBleList();
+        // $scope.getBleList();
 
         $scope.submitEditBLECode = function (submitData, ble_edit_form) {
             if (!ble_edit_form.validate()) {
