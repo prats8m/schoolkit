@@ -67,14 +67,19 @@ var app = angular
     'toaster',
     "com.2fdevs.videogular",
     "ngImageCompress",
-    "dcbImgFallback"
+    "dcbImgFallback",
+    'mgo-angular-wizard'
   ])
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     var loginToken = $cookies.get("token");
+    var isWizardUsed = $cookies.get("isWizardUsed");
     if (!loginToken) {
       $location.path('/core/login');
+    }
+    if (loginToken && $cookies.get("isWizardUsed")) {
+      $state.go('core.setupWizard');
     }
     $rootScope.allowNumberOnly = function (evt) {
       var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -166,6 +171,11 @@ var app = angular
         url: '/login',
         controller: 'LoginCtrl',
         templateUrl: 'views/tmpl/login.html'
+      })
+      .state('core.setupWizard', {
+        url: '/setup-wizard',
+        controller: 'wizardCtrl',
+        templateUrl: 'views/tmpl/setupWizard.html'
       })
 
       //signup
@@ -893,14 +903,14 @@ var app = angular
 
       //admin schedule view-schedule
       .state('app.admin.schedule.view-schedule', {
-        url: '/view-schedule/:schedule_id',
+        url: '/view-schedule/:schedule_id?schedule_type=',
         controller: 'ViewScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/view-schedule.html'
       })
 
       //admin schedule view-schedule
       .state('app.admin.schedule.edit-schedule-groups', {
-        url: '/edit-schedule-groups/:schedule_id?schedule_type=',
+        url: '/edit-schedule/:schedule_id?schedule_type=',
         controller: 'EditScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
@@ -941,32 +951,32 @@ var app = angular
       })
 
       //admin help
-    .state('app.admin.help', {
-      url: '/help',
-      template: '<div ui-view></div>'
-    })
-    
+      .state('app.admin.help', {
+        url: '/help',
+        template: '<div ui-view></div>'
+      })
+
       //admin help message-notification
       .state('app.admin.help.message-notification', {
         url: '/message-notification',
         controller: 'MessageNotificationCtrl',
         templateUrl: 'views/tmpl/admin/help/message-notification.html'
       })
-      
+
       //admin help diagnostics
       .state('app.admin.help.diagnostics', {
         url: '/diagnostics',
         controller: 'DiagnosticsCtrl',
         templateUrl: 'views/tmpl/admin/help/diagnostics.html'
       })
-      
+
       //admin help faqs
       .state('app.admin.help.faqs', {
         url: '/faqs/:module_name',
         controller: 'FaqsCtrl',
         templateUrl: 'views/tmpl/admin/help/faqs.html'
       })
-      
+
       //admin help history-and-reports
       .state('app.admin.help.history-and-reports', {
         url: '/history-and-reports',
@@ -2295,21 +2305,21 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout,scheduleSvc, appConstants, $filter) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout, scheduleSvc, appConstants, $filter) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $rootScope.initSchedule = function() {
-    
-    scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
-    window.resizeTo(950,700);
-    scheduler.config.day_date = "%D, %F %d";
-    scheduler.config.first_hour = 0;
-    scheduler.config.multi_day = true;
-    scheduler.config.date_step = "5";
-    scheduler.config.show_loading = true;
-    scheduler.init('scheduler_here',new Date(),"week");
-    scheduler.templates.event_class=function(s,e,ev){ return ev.custom?"custom":""; };
+    $rootScope.initSchedule = function () {
+
+      scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+      window.resizeTo(950, 700);
+      scheduler.config.day_date = "%D, %F %d";
+      scheduler.config.first_hour = 0;
+      scheduler.config.multi_day = true;
+      scheduler.config.date_step = "5";
+      scheduler.config.show_loading = true;
+      scheduler.init('scheduler_here', new Date(), "week");
+      scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
     }
 
     $rootScope.clearAllSchedule = function () {
@@ -2322,182 +2332,179 @@ app
       });
     }
 
-      $scope.custom_schedular = function () {
-            $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
-            $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
-            $(".dhx_scale_bar")[2].innerHTML = $(".dhx_scale_bar:eq(2)").attr("aria-label");
-            $(".dhx_scale_bar")[3].innerHTML = $(".dhx_scale_bar:eq(3)").attr("aria-label");
-            $(".dhx_scale_bar")[4].innerHTML = $(".dhx_scale_bar:eq(4)").attr("aria-label");
-            $(".dhx_scale_bar")[5].innerHTML = $(".dhx_scale_bar:eq(5)").attr("aria-label");
-            $(".dhx_scale_bar")[6].innerHTML = $(".dhx_scale_bar:eq(6)").attr("aria-label");
-            $(".dhx_cal_prev_button").show();
-            $(".dhx_cal_next_button").show();
-            $(".dhx_cal_today_button").show();
+    $scope.custom_schedular = function () {
+      $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
+      $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
+      $(".dhx_scale_bar")[2].innerHTML = $(".dhx_scale_bar:eq(2)").attr("aria-label");
+      $(".dhx_scale_bar")[3].innerHTML = $(".dhx_scale_bar:eq(3)").attr("aria-label");
+      $(".dhx_scale_bar")[4].innerHTML = $(".dhx_scale_bar:eq(4)").attr("aria-label");
+      $(".dhx_scale_bar")[5].innerHTML = $(".dhx_scale_bar:eq(5)").attr("aria-label");
+      $(".dhx_scale_bar")[6].innerHTML = $(".dhx_scale_bar:eq(6)").attr("aria-label");
+      $(".dhx_cal_prev_button").show();
+      $(".dhx_cal_next_button").show();
+      $(".dhx_cal_today_button").show();
 
-        }
+    }
 
-     $rootScope.setScheduler = function(schedule_id, form_type){
-      scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod,{schedule_id:schedule_id},{},function (succResponse) {
-        if(succResponse.status){
-        $scope.schedule = succResponse.data;
-        JSON.parse(scheduler.toJSON()).forEach(function(v){scheduler.deleteEvent(v.id);});
-        
-        var weekday = new Array(7);
-        weekday["Sunday"] = 0;
-        weekday["Monday"] = 1;
-        weekday["Tuesday"] = 2;
-        weekday["Wednesday"] = 3;
-        weekday["Thursday"] = 4;
-        weekday["Friday"] = 5;
-        weekday["Saturday"] = 6;
-        var arr = [];
-        var week_date = new Date();
-        if($scope.schedule.schedule_category == 'repeat'){
-          $scope.schedule.schedule_input.forEach(function(v){
-            week_date = new Date();
-            var sch = {}; 
-            var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
-            if(week_date.getDay() > weekday[v.day])
-            {
-              var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
-            }
-            else{
-              var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
-            }
-            sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.starttime; 
-            sch.end_date= (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear()+" "+v.endtime;
-            arr.push(sch); 
-          });
-        }
-        else{
-          $scope.schedule.schedule_input.forEach(function(v){
-            week_date = new Date(v.date);
-            var sch = {}; 
-            // var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
-            sch.start_date = v.date+" "+v.starttime; sch.end_date= v.date+" "+v.endtime;
-            arr.push(sch); 
-          });
-        }
-        scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
-        window.resizeTo(950,700);
-        scheduler.config.day_date = "%D, %F %d";
-        if($scope.schedule.schedule_category == 'repeat')
-        {
-          $rootScope.visibiltyUserGroup = true;
-          $timeout(function () {
-            $scope.repetive_schedular();
-          });
-        }
-        else{
-          $timeout(function () {
-            $scope.custom_schedular();
-          });
-        }
-        if(form_type == 'view'){
-          scheduler.config.readonly = true;
+    $rootScope.setScheduler = function (schedule_id, form_type) {
+      scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod, { schedule_id: schedule_id }, {}, function (succResponse) {
+        if (succResponse.status) {
+          $scope.schedule = succResponse.data;
+          JSON.parse(scheduler.toJSON()).forEach(function (v) { scheduler.deleteEvent(v.id); });
 
-        }
-        else{
-           scheduler.config.readonly = false;
-        }
-        scheduler.config.first_hour = 0;
-        scheduler.config.multi_day = false;
-        scheduler.config.date_step = "5";
-        scheduler.config.show_loading = true;
-        scheduler.init('scheduler_here',week_date,"week");
-        $timeout(function () {
-          $rootScope.clearAllSchedule();
-        });
-        $timeout(function () {
-          scheduler.parse(arr,"json");
-        });
-        $rootScope.schedule.schedule_type = ($scope.schedule.schedule_category == "repeat" ? "REPEATING" : "ONETIME");
-        var sc_date = new Date($scope.schedule.schedule_start_time*1000);
-        $rootScope.schedule.date =  new Date((sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCDate() + '/' + sc_date.getUTCFullYear());
-        $rootScope.schedule.schedule_id = schedule_id;
-        
-
-        if($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null){
-          var sc_exp = new Date($scope.schedule.schedule_expiration_date*1000);
-          $rootScope.schedule.expiration = new Date((sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCDate() + '/' + sc_exp.getUTCFullYear());
-          $rootScope.schedule.no_expirations = 0;
-        }
-        else{
-          $rootScope.schedule.no_expirations = 1;
-        }
-
-        if($scope.schedule.schedule_category == "repeat"){
-          $timeout(function () {
-            $(".checkbox-custom-alt:contains('Repeating')").click();
-          });
-        
-        }
-          }
-          else{
-            $rootScope.initSchedule();
-            $timeout(function () {
-              $(".close_add").click();
+          var weekday = new Array(7);
+          weekday["Sunday"] = 0;
+          weekday["Monday"] = 1;
+          weekday["Tuesday"] = 2;
+          weekday["Wednesday"] = 3;
+          weekday["Thursday"] = 4;
+          weekday["Friday"] = 5;
+          weekday["Saturday"] = 6;
+          var arr = [];
+          var week_date = new Date();
+          if ($scope.schedule.schedule_category == 'repeat') {
+            $scope.schedule.schedule_input.forEach(function (v) {
+              week_date = new Date();
+              var sch = {};
+              var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
+              if (week_date.getDay() > weekday[v.day]) {
+                var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+              }
+              else {
+                var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
+              }
+              sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.starttime;
+              sch.end_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.endtime;
+              arr.push(sch);
             });
           }
+          else {
+            $scope.schedule.schedule_input.forEach(function (v) {
+              week_date = new Date(v.date);
+              var sch = {};
+              // var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
+              sch.start_date = v.date + " " + v.starttime; sch.end_date = v.date + " " + v.endtime;
+              arr.push(sch);
+            });
+          }
+          scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+          window.resizeTo(950, 700);
+          scheduler.config.day_date = "%D, %F %d";
+          if ($scope.schedule.schedule_category == 'repeat') {
+            $rootScope.visibiltyUserGroup = true;
+            $timeout(function () {
+              $scope.repetive_schedular();
+            });
+          }
+          else {
+            $timeout(function () {
+              $scope.custom_schedular();
+            });
+          }
+          if (form_type == 'view') {
+            scheduler.config.readonly = true;
+
+          }
+          else {
+            scheduler.config.readonly = false;
+          }
+          scheduler.config.first_hour = 0;
+          scheduler.config.multi_day = false;
+          scheduler.config.date_step = "5";
+          scheduler.config.show_loading = true;
+          scheduler.init('scheduler_here', week_date, "week");
+          $timeout(function () {
+            $rootScope.clearAllSchedule();
+          });
+          $timeout(function () {
+            scheduler.parse(arr, "json");
+          });
+          $rootScope.schedule.schedule_type = ($scope.schedule.schedule_category == "repeat" ? "REPEATING" : "ONETIME");
+          var sc_date = new Date($scope.schedule.schedule_start_time * 1000);
+          $rootScope.schedule.date = new Date((sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCDate() + '/' + sc_date.getUTCFullYear());
+          $rootScope.schedule.schedule_id = schedule_id;
+
+
+          if ($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null) {
+            var sc_exp = new Date($scope.schedule.schedule_expiration_date * 1000);
+            $rootScope.schedule.expiration = new Date((sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCDate() + '/' + sc_exp.getUTCFullYear());
+            $rootScope.schedule.no_expirations = 0;
+          }
+          else {
+            $rootScope.schedule.no_expirations = 1;
+          }
+
+          if ($scope.schedule.schedule_category == "repeat") {
+            $timeout(function () {
+              $(".checkbox-custom-alt:contains('Repeating')").click();
+            });
+          }
+        }
+        else {
+          $rootScope.initSchedule();
+          $timeout(function () {
+            $(".close_add").click();
+          });
+        }
       });
     }
 
     $scope.scheduleviewopen = function (schedule_id, form_type) {
-        var modalInstance = $uibModal.open({
-            templateUrl: 'myModalContent2.html',
-            controller: 'ModalInstanceCtrl',
-            resolve: {
-              items: function () {
-                return $scope.items;
-              }
-            }
-        });
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
 
-        modalInstance.result.then(function (selectedItem) {
+      modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
         $scope.viewScheduleForm = {};
-        }, function () {
-         $log.info('Modal dismissed at: ' + new Date());
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function () {
+        $rootScope.setScheduler(schedule_id, form_type);
+      });
+      if (form_type == 'view') {
+        $timeout(function () {
+          $('.check_view').find(':input').prop('disabled', true);
+
         });
         $timeout(function () {
-          $rootScope.setScheduler(schedule_id, form_type);
-        });
-        if(form_type == 'view'){
-          $timeout(function () {
-            $('.check_view').find(':input').prop('disabled', true);
-
+          angular.forEach($('.checkbox-custom-alt[role=button]'), function (value, key) {
+            $(value).css('cursor', 'not-allowed');
           });
-          $timeout(function(){
-            angular.forEach($('.checkbox-custom-alt[role=button]'), function(value, key) {
-              $(value).css('cursor','not-allowed');
-            });
-          })
-        }
-        if(form_type == 'view'){
-          
+        })
+      }
+      if (form_type == 'view') {
+
         $(".modal-footer").css("display", "none");
-        }
+      }
     };
 
     $rootScope.editviewopen = function (schedule_id, form_type) {
-        var modalInstance = $uibModal.open({
-            templateUrl: 'myModalContent2.html',
-            controller: 'ModalInstanceCtrl',
-            resolve: {
-              items: function () {
-                return $scope.items;
-              }
-            }
-        });
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
 
-        modalInstance.result.then(function (selectedItem) {
+      modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
-        }, function () {
-         $log.info('Modal dismissed at: ' + new Date());
-        });
-        $timeout(function () {
-          $rootScope.setScheduler(schedule_id, form_type);
-        });
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function () {
+        $rootScope.setScheduler(schedule_id, form_type);
+      });
     };
 
     $rootScope.scheduleopen = function (size) {
@@ -2517,7 +2524,7 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-      
+
       $timeout(function () {
         $rootScope.initSchedule();
       });
@@ -9842,46 +9849,46 @@ app.filter("timeago", function () {
 
 
 app.filter('tel', function () {
-    return function (tel) {
-        if (!tel) { return ''; }
+  return function (tel) {
+    if (!tel) { return ''; }
 
-        var value = tel.toString().trim().replace(/^\+/, '');
+    var value = tel.toString().trim().replace(/^\+/, '');
 
-        if (value.match(/[^0-9]/)) {
-            return tel;
-        }
+    if (value.match(/[^0-9]/)) {
+      return tel;
+    }
 
-        var country, city, number;
+    var country, city, number;
 
-        switch (value.length) {
-            case 10: // +1PPP####### -> C (PPP) ###-####
-                country = 1;
-                city = value.slice(0, 3);
-                number = value.slice(3);
-                break;
+    switch (value.length) {
+      case 10: // +1PPP####### -> C (PPP) ###-####
+        country = 1;
+        city = value.slice(0, 3);
+        number = value.slice(3);
+        break;
 
-            case 11: // +CPPP####### -> CCC (PP) ###-####
-                country = value[0];
-                city = value.slice(1, 4);
-                number = value.slice(4);
-                break;
+      case 11: // +CPPP####### -> CCC (PP) ###-####
+        country = value[0];
+        city = value.slice(1, 4);
+        number = value.slice(4);
+        break;
 
-            case 12: // +CCCPP####### -> CCC (PP) ###-####
-                country = value.slice(0, 3);
-                city = value.slice(3, 5);
-                number = value.slice(5);
-                break;
+      case 12: // +CCCPP####### -> CCC (PP) ###-####
+        country = value.slice(0, 3);
+        city = value.slice(3, 5);
+        number = value.slice(5);
+        break;
 
-            default:
-                return tel;
-        }
+      default:
+        return tel;
+    }
 
-        if (country == 1) {
-            country = "";
-        }
+    if (country == 1) {
+      country = "";
+    }
 
-        number = number.slice(0, 3) + '-' + number.slice(3);
+    number = number.slice(0, 3) + '-' + number.slice(3);
 
-        return (country + " (" + city + ") " + number).trim();
-    };
+    return (country + " (" + city + ") " + number).trim();
+  };
 });
