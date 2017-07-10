@@ -79,7 +79,7 @@
 																	<div class="col-sm-2 pr-0">
 																		<label for="address1">Strike Time {{$index + 1}}</label>
 																		<input type="text" class="form-control" ng-model="relay.strike_time" id="address1" value="1000">
-																		<span class="error" ng-if="parseInt(relay.strike_time)>4500 || parseInt(relay.strike_time)<500">{{GenericError}}</span>
+																		<span class="error" ng-if="(parseInt(relay.strike_time)>4500 || parseInt(relay.strike_time)<500)">{{GenericError}}</span>
 																	</div>
 																	<div class="col-sm-3 pr-0">
 																		<label for="">Door</label><br/>
@@ -685,12 +685,13 @@
 														<div class="row mt-20">
 															<div class="form-group col-sm-6">
 																<label for="address1">Real-Time Clock</label>
-																<select mg-model="deviceAdvanceSettingModals.das_clock_setting['time-zone']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched">
-																	<option value="UTC">USA (Pacific)</option>
+																<select ng-model="deviceAdvanceSettingModals.das_clock_setting['timezone']" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched"
+																 ng-options="tz.name as tz.name for tz in usTimeZonesForFacility">
+																	<option value="" disabled>Select</option>
 																</select>
 															</div>
 														</div>
-														<div class="row">
+														<!--<div class="row">
 															<div class="form-group col-sm-3">
 																<input type="text" ng-model="advanceClockSetting.date" class="form-control" id="mask02" placeholder="dd/mm/yyyy" ui-jq="inputmask"
 																 ui-options="{alias: 'dd/mm/yyyy'}">
@@ -700,7 +701,7 @@
 																	<uib-timepicker ng-model="advanceClockSetting.time" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
 																</span>
 															</div>
-														</div>
+														</div>-->
 														<div class="row">
 															<div class="form-group col-md-12 legend">
 																<button ng-click="setClockSettings();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
