@@ -73,11 +73,11 @@
 											<div class="form-group col-sm-6 col-md-6" >
 												<label for="">Schedule Type <span class="text-danger">*</span></label><br/>
 												<div class="btn-group btnrounded" >
-													<a href="javascript:void(0)" ng-click="custom_schedular()"><label class="btn btn-default" ng-model="$parent.schedule.schedule_type" uib-btn-radio="1">Custom</label></a>
-													<a href="javascript:void(0)" ng-click="repetive_schedular()"><label class="btn btn-default" ng-model="$parent.schedule.schedule_type" uib-btn-radio="0">Repetitive</label></a>
+													<a href="javascript:void(0)" ng-click="custom_schedular()"><label class="btn btn-default" ng-model="$parent.schedule.schedule_cat" uib-btn-radio="1">Custom</label></a>
+													<a href="javascript:void(0)" ng-click="repetive_schedular()"><label class="btn btn-default" ng-model="$parent.schedule.schedule_cat" uib-btn-radio="0">Repetitive</label></a>
 												</div>
 												</div>
-											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="$parent.$parent.schedule.schedule_type == 0">
+											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="$parent.$parent.schedule.schedule_cat == 0">
 												<label for="">Start Date <span class="text-danger">*</span></label>
 												<div class="input-group">
 													<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="$parent.$parent.schedule.selected_schedule_start_time" min-date="$parent.minStartDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
@@ -117,7 +117,7 @@
 										</div> -->
 										
 										
-										<div ng-show="$parent.schedule.schedule_type == 0">
+										<div ng-show="$parent.schedule.schedule_cat == 0">
 											<uib-accordion close-others="oneAtATime" >
 												<uib-accordion-group is-open="status.open1" class="panel-default mt-20">
 													<uib-accordion-heading>Holidays Observed <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
@@ -240,13 +240,13 @@
 													<label class="btn btn-default" ng-model="$parent.schedule.schedule_status" uib-btn-radio="0">Inactive</label>
 												</div>
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_status==0 || $parent.schedule.schedule_type == 1" ng-init="schedule.no_expirations=1">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_status==0 || $parent.schedule.schedule_cat == 1" ng-init="schedule.no_expirations=1">
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
 													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0" ><i></i> No Expirations 
 												</label>											
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_type == 1 || schedule.no_expirations == 1" ng-controller="DatepickerDemoCtrl">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_cat == 1 || schedule.no_expirations == 1" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
 													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">

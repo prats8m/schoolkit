@@ -967,7 +967,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				$timeout(function () {
 					scheduler.parse(arr, "json");
 				});
-				$scope.schedule.schedule_type = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
+				$scope.schedule.schedule_cat = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
 				if ($scope.schedule.schedule_exceptions != undefined)
 					$scope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
 				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
@@ -1026,6 +1026,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 	$scope.addException = function (exception) {
 
 		var key = angular.copy($scope.exceptions.length + 1);
+		if(exception.date && !isNaN(exception.date))
 		exception.date = (exception.date.getMonth() + 1) + "-" + exception.date.getDate() + "-" + exception.date.getFullYear();
 		var obj = angular.copy(exception);
 		obj.key = key;
@@ -1037,7 +1038,12 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		if (!form.validate()) {
 			return false;
 		}
+
 		data.block = "";
+		if($scope.schedule.schedule_cat == 0 && data.selected_schedule_start_time == undefined){
+			toaster.pop("error", "Please add schedule start date");
+			return false;
+		}
 
 		if ($scope.exceptions){
 			$scope.exceptions.forEach(function (v) {
@@ -1095,7 +1101,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				v.day = weekday[new Date(v.start_date).getDay()];
 				v.starttime = split_date[1];
 				v.endtime = v.end_date.split(" ")[1];
-				if ($scope.schedule.schedule_type == 1) {
+				if ($scope.schedule.schedule_cat == 1) {
 					v.date = split_date[0].replace("/", "-").replace("/", "-");
 					data.schedule_category = 1;
 				}

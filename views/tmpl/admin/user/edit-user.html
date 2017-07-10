@@ -365,7 +365,7 @@
 																		 multiple required>
 																		</select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																	<div class="form-group col-sm-6 col-md-2 access_div" ng-hide="userGroup.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -433,6 +433,14 @@
 																		<div style="position: relative">
 																			<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneedit.phone_code">
 																			<span class="refreshbtn" ng-click="generatePhoneCode()"><i class="fa fa-refresh"></i></span>
+																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																				<div class="btn-group" role="group" aria-label="1">
+																					<label class="btn btn-default" ng-model="phoneedit.phonecode_size" uib-btn-radio=5>5</label>
+																					<label class="btn btn-default" ng-model="phoneedit.phonecode_size" uib-btn-radio=6>6</label>
+																					<label class="btn btn-default" ng-model="phoneedit.phonecode_size" uib-btn-radio=7>7</label>
+																					<label class="btn btn-default" ng-model="phoneedit.phonecode_size" uib-btn-radio=8>8</label>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-3 col-md-8">
@@ -441,7 +449,7 @@
 																		 multiple required>
 																		</select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																	<div class="form-group col-sm-6 col-md-2 phone_div" ng-hide="userGroup.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -683,7 +691,7 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
 																		 multiple required></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																	<div class="form-group col-sm-6 col-md-2 wiegand_div" ng-hide="userGroup.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -828,7 +836,7 @@
 																			 multiple required>
 																			</select>
 																		</div>
-																		<div class="form-group col-sm-6 col-md-2" ng-hide="userGroup.length">
+																		<div class="form-group col-sm-6 col-md-2 ble_div" ng-hide="userGroup.length">
 																			<label for="">Add Schedule</label><br/>
 																			<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																		</div>
