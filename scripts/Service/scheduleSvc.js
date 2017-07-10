@@ -233,8 +233,10 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             data.block = "  ";
             data.facility_id = data.schedule_facility_id;
             data.schedule_start_date = data.schedule_start_date.toString();
-            data.schedule_end_date = data.expiration.toString();
-            data.expiration = data.expiration.toString();
+            if(data.expiration){
+                data.schedule_end_date = data.expiration.toString();
+                data.expiration = data.expiration.toString();
+            }
 
 
 

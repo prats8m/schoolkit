@@ -893,14 +893,14 @@ var app = angular
 
       //admin schedule view-schedule
       .state('app.admin.schedule.view-schedule', {
-        url: '/view-schedule/:schedule_id',
+        url: '/view-schedule/:schedule_id?schedule_type=',
         controller: 'ViewScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/view-schedule.html'
       })
 
       //admin schedule view-schedule
       .state('app.admin.schedule.edit-schedule-groups', {
-        url: '/edit-schedule-groups/:schedule_id?schedule_type=',
+        url: '/edit-schedule/:schedule_id?schedule_type=',
         controller: 'EditScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
