@@ -2025,6 +2025,9 @@ video {
 		width: 100%;
 		text-align: center;
 	}
+	.gridlistbar599 {
+		display: none;
+	}
 }
 
 @media only screen and (max-width: 399px) {
