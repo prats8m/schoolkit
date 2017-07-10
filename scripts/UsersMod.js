@@ -756,6 +756,7 @@ app
         };
 
         $scope.phoneCode.status = 1;
+        $scope.timedropdown = appConstants.timedropdown;
         $scope.submitPhoneCode = function (phoneCode, phone_form) {
             if (!phone_form.validate()) {
                 return false;
@@ -805,7 +806,9 @@ app
             phoneCode.details = {};
             phoneCode.details.phone_code = phoneCode.phone_code;
             phoneCode.details.phone_numbers = [];
-            phoneCode.details.phone_numbers[0] = phoneCode.phone_numbers;
+            phoneCode.details.phone_numbers[0] = {phone_number:phoneCode.phone_numbers1,starttime:phoneCode.starttime1,endtime:phoneCode.endtime1,type:phoneCode.type1};
+            phoneCode.details.phone_numbers[1] = {phone_number:phoneCode.phone_numbers2,starttime:phoneCode.starttime2,endtime:phoneCode.endtime3,type:phoneCode.type2};
+            phoneCode.details.phone_numbers[2] = {phone_number:phoneCode.phone_numbers3,starttime:phoneCode.starttime2,endtime:phoneCode.endtime3,type:phoneCode.type3};
             delete phoneCode.phone_code;
             delete phoneCode.phone_numbers;
 
@@ -1648,6 +1651,7 @@ app
                 }
             });
         };
+        $scope.timeddl = appConstants.timedropdown;
 
         $scope.cleanAccordionFormObject = function (UI, objectType) {
             switch (UI) {
@@ -1931,7 +1935,21 @@ app
                     $scope.phoneedit = {};
                     $scope.phoneedit.credential_id = cred_data.Credential_Id;
                     $scope.phoneedit.phone_code = cred_data.Detail.phone_code;
-                    $scope.phoneedit.phone_numbers = cred_data.Detail.phone_numbers[0];
+                    $scope.phoneedit.phone_numbers1 = cred_data.Detail.phone_numbers[0].phone_number;
+                    $scope.phoneedit.starttime1 = cred_data.Detail.phone_numbers[0].starttime;
+                    $scope.phoneedit.endtime1 = cred_data.Detail.phone_numbers[0].endtime;
+                    $scope.phoneedit.type1 = cred_data.Detail.phone_numbers[0].type;
+
+                    $scope.phoneedit.phone_numbers2 = cred_data.Detail.phone_numbers[1].phone_number;
+                    $scope.phoneedit.starttime2 = cred_data.Detail.phone_numbers[1].starttime;
+                    $scope.phoneedit.endtime2 = cred_data.Detail.phone_numbers[1].endtime;
+                    $scope.phoneedit.type2 = cred_data.Detail.phone_numbers[1].type;
+
+                    $scope.phoneedit.phone_numbers3 = cred_data.Detail.phone_numbers[2].phone_number;
+                    $scope.phoneedit.starttime3 = cred_data.Detail.phone_numbers[2].starttime;
+                    $scope.phoneedit.endtime3 = cred_data.Detail.phone_numbers[2].endtime;
+                    $scope.phoneedit.type3 = cred_data.Detail.phone_numbers[2].type;
+
                     $scope.phoneedit.status = cred_data.status;
                     var arr = [];
                     angular.forEach(cred_data.Door_Id.split(","), function (value, key) {
@@ -2440,7 +2458,10 @@ app
             submitData.details = {};
             submitData.details.phone_code = submitData.phone_code;
             submitData.details.phone_numbers = [];
-            submitData.details.phone_numbers[0] = submitData.phone_numbers;
+console.log(submitData);
+            submitData.details.phone_numbers[0] = {phone_number:submitData.phone_numbers1,starttime:submitData.starttime1,endtime:submitData.endtime1,type:submitData.type1};
+            submitData.details.phone_numbers[1] = {phone_number:submitData.phone_numbers2,starttime:submitData.starttime2,endtime:submitData.endtime2,type:submitData.type2};
+            submitData.details.phone_numbers[2] = {phone_number:submitData.phone_numbers3,starttime:submitData.starttime3,endtime:submitData.endtime3,type:submitData.type3};
 
             delete submitData.phone_code;
             delete submitData.phone_numbers;

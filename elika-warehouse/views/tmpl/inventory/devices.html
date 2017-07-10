@@ -141,27 +141,8 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r mb-10 pb-20">
-
-								<div class="col-sm-3 col-md-3 filterorder">
-									<!--label class="control-label" ng-init="filtershow=true">
-
-										<a href="javascript:void()"><input type="checkbox"  class="hideshowfilter"/>Search by</a>
-									</label>
-									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
-										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
-										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
-											<li><a href="" ng-click="orderByMe('title')">Device</a></li>
-											<li><a href="" ng-click="orderByMe('client')">Client</a></li>
-											<li><a href="" ng-click="orderByMe('serialno')">Serial Number</a></li>
-											<li><a href="" ng-click="orderByMe('registrationcode')">Registration Code</a></li>
-										</ul>
-
-									</label-->
-
-								</div>
-								
-								<div class="col-sm-6 col-md-6">
+							<div class="row pos-r mb-10 pb-20">								
+								<div class="col-sm-9 col-md-6">
 									<div class="row">
 										<div class="col-sm-7 col-md-9 search">
 											<input type="text" class="form-control" ng-model="searchText" maxlength="50" placeholder="Search by text...." ng-keyup="deviceInit($event)">
@@ -185,45 +166,18 @@
 														</div>
 													</form>		
 												</script>
-												<!-- <span ng-click="open()" class="group-span-filestyle input-group-btn"><label class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span> -->
 											</div>
 										</div>
 									</div>
 								</div>
 								
-								<div class="col-sm-3 col-md-3">
-									<div class="gridlistbar ta-r pull-right" style="display: block;">
+								<div class="col-sm-3 col-md-6">
+									<div class="gridlistbar gridlistbar599 ta-r pull-right">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div>
 								</div>
-
-								<!-- <div class="filterfields" ng-hide="filtershow">
-
-									<div class="col-sm-4 col-md-3">
-										<label for="">Device Status</label><br/> 
-										<select class="form-control">
-											<option value="">All Devices</option>
-											<option value="">Un-registered</option>
-											<option value="">registered</option>
-										</select>
-									</div>
-									<div class="col-sm-4 col-md-3">
-										<label for="">Start Date</label>
-										<input type="text" class="form-control" id="">
-									</div>
-									<div class="col-sm-4 col-md-3">
-										<label for="">End Date</label>
-										<input type="text" class="form-control" id="">
-									</div>
-									<div class="col-sm-4 col-md-3">
-										<label for="">Search by text</label>
-										<input type="text" class="form-control" id="fbtext" ng-model="text">
-									</div>
-
-								</div> -->
-
 							</div>
 							<div ng-if="result">									
 								<div layout="row" ng-class="statusclass">									

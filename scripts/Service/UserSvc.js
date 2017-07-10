@@ -60,7 +60,7 @@ app
                 else {
                     var n = [];
                     var arr = succResponse.error;
-                    if (arr != null) {
+                    if (arr != null && arr != "") {
                         $.each(arr, function (index, value) { n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1); $.each(value.messages, function (ind, value) { n[index] += " " + value }) });
                         succResponse.msg = n.join(", ");
                     }
@@ -81,7 +81,7 @@ app
                 else {
                     var n = [];
                     var arr = succResponse.error;
-                    if (arr != null) {
+                    if (arr != null && arr != "") {
                         $.each(arr, function (index, value) { n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1); $.each(value.messages, function (ind, value) { n[index] += " " + value }) });
                         succResponse.msg = n.join(", ");
                     }
