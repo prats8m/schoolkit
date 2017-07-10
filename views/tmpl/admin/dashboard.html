@@ -1,4 +1,8 @@
 <div class="page page-dashboard">
+	<div class="pageheader backpage">		
+		<a href > &nbsp </a>
+		<div class="facility-view elika-facility-name"></div>
+	</div>
 	<div class="pagecontent">
 		<div class="row">
 			<div class="card-container col-sm-8 col-md-6">
@@ -6,10 +10,11 @@
 					<div class="bg-dashboard dashboardbg">
 						<div class="bg-transparent">
 							<div class="crystalcove">
-								<div class="covertext">
-									<span>
+								<div class="covertext elika-facility-dashboard">
+									<!-- <span>
 										<strong>Crystal Cove</strong> Newport Coast
-									</span>
+									</span> -->
+									<!-- <elika-facility></elika-facility> -->
 								</div>
 							</div>
 							<div class="myshortcuts">
@@ -27,69 +32,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="devices card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.primary_device + dashboardData.dependent_device}}</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>
-			<div class="users card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.user}}</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>
-			<div class="doors card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">{{dashboardData.door}}</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>
+			<flip-header></flip-header>
 			<div class="cameradvr card-container col-sm-4 col-md-3 mb-10">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.camera.camera-dvr">
@@ -109,7 +52,7 @@
 					</div>
 				</section>
 			</div>
-			<div class="adminroles card-container col-sm-4 col-md-3">
+			<!--<div class="adminroles card-container col-sm-4 col-md-3">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.permissions.roles">
 						<div class="above1800 tile-widget bg-cyan text-center p-30 brt5">
@@ -133,7 +76,7 @@
 						</ul>
 					</div>
 				</section>
-			</div>
+			</div>-->
 			<div class="holidayschedule card-container col-sm-5 col-md-4">
 				<section class="tile tile-simple hovershadow border5">
 					<a ui-sref="app.admin.schedule.schedule-groups">

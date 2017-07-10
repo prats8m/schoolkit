@@ -1,6 +1,7 @@
 <div class="page page-profile">
 	<div class="pageheader backpage">		
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<div class="facility-view elika-facility-name"></div>
 	</div>
 	
 	<div class="pagecontent">
@@ -12,7 +13,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<!-- <p>{{page.subtitle}}</p> -->									
 								</div>
 							</div>
 						</div>
@@ -65,20 +66,20 @@
 											</div>
 											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Facility <span class="text-danger">*</span></label>
-												<select class="form-control" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" name="facility_name" required>
+												<select class="form-control" ng-disabled="facility_disable" ng-model="schedule.facility_id" ng-options="x.facility_id as x.facility_name for x in facilityList" name="facility_name" required>
 													<option value="">Select</option>
 												</select>
 											</div>
 										</div>
 										<div class="row">
-											<div class="form-group col-sm-6 col-md-6" ng-init="schedule.schedule_type=1">
+											<div class="form-group col-sm-6 col-md-6" ng-init="schedule.schedule_cat=1">
 												<label for="">Schedule Type <span class="text-danger">*</span></label><br/>
 												<div class="btn-group btnrounded" >
-													<a href="javascript:void(0)" ng-click="custom_schedular()"><label class="btn btn-default" ng-model="schedule.schedule_type" uib-btn-radio="1">Custom</label></a>
-													<a href="javascript:void(0)" ng-click="repetive_schedular()"><label class="btn btn-default" ng-model="schedule.schedule_type" uib-btn-radio="0">Repetitive</label></a>
+													<a href="javascript:void(0)" ng-click="custom_schedular()"><label class="btn btn-default" ng-model="schedule.schedule_cat" uib-btn-radio="1">Custom</label></a>
+													<a href="javascript:void(0)" ng-click="repetive_schedular()"><label class="btn btn-default" ng-model="schedule.schedule_cat" uib-btn-radio="0">Repetitive</label></a>
 												</div>
 											</div>
-											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="schedule.schedule_type == 0">
+											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="schedule.schedule_cat == 0">
 												<label for="">Start Date <span class="text-danger">*</span></label>
 												<div class="input-group" >
 													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.schedulestart_date" is-open="opened" min-date="$parent.minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" onkeypress="return false;" name="start_date" required="required"/>
@@ -116,7 +117,7 @@
 										</div> -->
 										
 										
-										<div ng-show="schedule.schedule_type == 0">
+										<div ng-show="schedule.schedule_cat == 0">
 											<uib-accordion close-others="oneAtATime">
 												<uib-accordion-group is-open="status.open1" class="panel-default mt-20">
 													<uib-accordion-heading>Holidays Observed <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
@@ -243,13 +244,13 @@
 													<label class="btn btn-default" ng-model="schedule.schedule_status" uib-btn-radio="0">Inactive</label>
 												</div>
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="radioModel=='Inactive'" ng-init="schedule.no_expirations=1">
+											<div class="form-group col-sm-12 col-md-6"  ng-hide="schedule.schedule_status=='0' || schedule.schedule_cat == 1" ng-init="schedule.no_expirations=1" >
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
 													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
 												</label>											
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="schedule.no_expirations" ng-controller="DatepickerDemoCtrl">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="schedule.no_expirations == 1 || schedule.schedule_cat == 1" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
 													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">

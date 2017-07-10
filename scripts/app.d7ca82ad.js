@@ -65,14 +65,21 @@ var app = angular
     'angular-loading-bar',
     'ngValidate',
     'toaster',
-    "com.2fdevs.videogular"
+    "com.2fdevs.videogular",
+    "ngImageCompress",
+    "dcbImgFallback",
+    'mgo-angular-wizard'
   ])
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     var loginToken = $cookies.get("token");
+    var isWizardUsed = $cookies.get("isWizardUsed");
     if (!loginToken) {
       $location.path('/core/login');
+    }
+    if (loginToken && $cookies.get("isWizardUsed")) {
+      $state.go('core.setupWizard');
     }
     $rootScope.allowNumberOnly = function (evt) {
       var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -165,6 +172,11 @@ var app = angular
         controller: 'LoginCtrl',
         templateUrl: 'views/tmpl/login.html'
       })
+      .state('core.setupWizard', {
+        url: '/setup-wizard',
+        controller: 'wizardCtrl',
+        templateUrl: 'views/tmpl/setupWizard.html'
+      })
 
       //signup
       .state('core.signup', {
@@ -235,7 +247,7 @@ var app = angular
         controller: 'ActivityCtrl',
         templateUrl: 'views/tmpl/admin/activity.html'
       })
-	  //admin contact
+      //admin contact
       .state('app.admin.contact', {
         url: '/contact-us',
         controller: 'ContactCtrl',
@@ -382,20 +394,20 @@ var app = angular
         controller: 'DoorGroupsCtrl',
         templateUrl: 'views/tmpl/subadmin/door/door-groups.html'
       })
-	  
-	  //admin door view-door-groups
-		.state('app.admin.door.view-door-groups', {
-		  url: '/view-door-groups',
-		  controller: 'ViewDoorGroupsCtrl',
-		  templateUrl: 'views/tmpl/admin/door/view-door-groups.html'
-		})
-		
-		//admin door edit-door-groups
-		.state('app.admin.door.edit-door-groups', {
-		  url: '/edit-door-groups',
-		  controller: 'EditDoorGroupsCtrl',
-		  templateUrl: 'views/tmpl/admin/door/edit-door-groups.html'
-		})
+
+      //admin door view-door-groups
+      .state('app.admin.door.view-door-groups', {
+        url: '/view-door-groups/:doorgroup_id',
+        controller: 'ViewDoorGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/door/view-door-groups.html'
+      })
+
+      //admin door edit-door-groups
+      .state('app.admin.door.edit-door-groups', {
+        url: '/edit-door-groups/:doorgroup_id',
+        controller: 'EditDoorGroupsCtrl',
+        templateUrl: 'views/tmpl/admin/door/edit-door-groups.html'
+      })
 
 
       //subadmin permissions
@@ -664,6 +676,14 @@ var app = angular
         templateUrl: 'views/tmpl/admin/dashboard.html'
       })
 
+
+      //facility dashboard
+      // .state('app.admin.dashboardfacility', {
+      //   url: '/dashboard-facility/:facility_id',
+      //   controller: 'DashboardCtrl',
+      //   templateUrl: 'views/tmpl/admin/dashboard.html'
+      // })
+
       //admin profile settings
       .state('app.admin.profile-settings', {
         url: '/profile-settings',
@@ -875,31 +895,32 @@ var app = angular
       })
 
       //admin schedule schedules
-      .state('app.admin.schedule.schedules', {
-        url: '/schedules',
-        controller: 'ScheduleCtrl',
-        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
-      })
+      // .state('app.admin.schedule.schedules', {
+      //   url: '/schedules',
+      //   controller: 'ScheduleCtrl',
+      //   templateUrl: 'views/tmpl/admin/schedule/schedules.html'
+      // })
 
       //admin schedule view-schedule
       .state('app.admin.schedule.view-schedule', {
-        url: '/view-schedule/:schedule_id',
+        url: '/view-schedule/:schedule_id?schedule_type=',
         controller: 'ViewScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/view-schedule.html'
       })
 
       //admin schedule view-schedule
       .state('app.admin.schedule.edit-schedule-groups', {
-        url: '/edit-schedule-groups/:schedule_id',
+        url: '/edit-schedule/:schedule_id?schedule_type=',
         controller: 'EditScheduleCtrl',
         templateUrl: 'views/tmpl/admin/schedule/edit-schedule-groups.html'
       })
 
-      //admin schedule schedule-groups
-      .state('app.admin.schedule.schedule-groups', {
-        url: '/schedule-groups',
-        controller: 'ScheduleGroupsCtrl',
-        templateUrl: 'views/tmpl/admin/schedule/schedule-groups.html'
+      //admin schedule schedules
+      //previously admin schedule schedule-groups
+      .state('app.admin.schedule.schedules', {
+        url: '/schedules',
+        controller: 'SchedulesCtrl',
+        templateUrl: 'views/tmpl/admin/schedule/schedules.html'
       })
 
       //admin schedule view-holiday-schedule
@@ -942,18 +963,25 @@ var app = angular
         templateUrl: 'views/tmpl/admin/help/message-notification.html'
       })
 
-      //admin help diagnostics-help
-      .state('app.admin.help.diagnostics-help', {
-        url: '/diagnostics-help',
-        controller: 'DiagnosticsHelpCtrl',
-        templateUrl: 'views/tmpl/admin/help/diagnostics-help.html'
+      //admin help diagnostics
+      .state('app.admin.help.diagnostics', {
+        url: '/diagnostics',
+        controller: 'DiagnosticsCtrl',
+        templateUrl: 'views/tmpl/admin/help/diagnostics.html'
       })
 
-      //admin help history-events
-      .state('app.admin.help.history-events', {
-        url: '/history-events',
-        controller: 'HistoryEventsCtrl',
-        templateUrl: 'views/tmpl/admin/help/history-events.html'
+      //admin help faqs
+      .state('app.admin.help.faqs', {
+        url: '/faqs/:module_name',
+        controller: 'FaqsCtrl',
+        templateUrl: 'views/tmpl/admin/help/faqs.html'
+      })
+
+      //admin help history-and-reports
+      .state('app.admin.help.history-and-reports', {
+        url: '/history-and-reports',
+        controller: 'HistoryReportsCtrl',
+        templateUrl: 'views/tmpl/admin/help/history-and-reports.html'
       })
 
       //admin camera
@@ -1265,73 +1293,7 @@ app
 
   });
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:ViewDoorGroupsCtrl
- * @description
- * # ViewDoorGroupsCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('ViewDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
-     $scope.page = {
-      title: 'Door Group Details',
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$state.go('app.admin.door.door-groups');
-		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.imagePath = 'http://localhost/elikastaging/images';	
-	
-});
 
-'use strict';
-/**
- * @ngdoc function
- * @name minovateApp.controller:EditDoorGroupsCtrl
- * @description
- * # EditDoorGroupsCtrl
- * Controller of the minovateApp
- */
-app
-  .controller('EditDoorGroupsCtrl', function ($scope, $mdDialog, $state, $http) {
-     $scope.page = {
-      title: 'Edit Door Group',
-    };
-	
-	$scope.result = '';
-    $scope.showConfirm = function(ev) {
-		var confirm = $mdDialog.confirm()		
-		.title('Would you like to delete Door?')
-		.content('')
-		.ok('Yes')
-		.cancel('No')
-		.targetEvent(ev);
-		$mdDialog.show(confirm).then(function() {
-			$state.go('app.admin.door.door-groups');
-		}, function() {
-			$scope.result = 'You decided to keep Door.';
-			$scope.statusclass = 'alert alert-success alert-dismissable';
-		});
-    };
-	
-	$scope.imagePath = 'http://localhost/elikastaging/images';	
-	
-});
 
 'use strict';
 /**
@@ -2100,10 +2062,10 @@ angular.module('lazyModel', [])
 app
   .controller('ContactCtrl', function ($scope) {
     $scope.page = {
-		title: 'Contact Us',
+      title: 'Contact Us',
     };
-	
-});
+
+  });
 
 /**
  * @ngdoc function
@@ -2343,12 +2305,235 @@ app
     };
   })
 
-  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log) {
+  .controller('ModalDemo2Ctrl', function ($scope, $uibModal, $log, $rootScope, $timeout, scheduleSvc, appConstants, $filter) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function (size) {
+    $rootScope.initSchedule = function () {
 
+      scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+      window.resizeTo(950, 700);
+      scheduler.config.day_date = "%D, %F %d";
+      scheduler.config.first_hour = 0;
+      scheduler.config.multi_day = true;
+      scheduler.config.date_step = "5";
+      scheduler.config.show_loading = true;
+      scheduler.init('scheduler_here', new Date(), "week");
+      scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
+    }
+
+    $rootScope.clearAllSchedule = function () {
+      var eventId = new Array();
+      angular.forEach($(".dhx_cal_event"), function (value, key) {
+        eventId.push(value.getAttribute("event_id"));
+      });
+      angular.forEach(eventId, function (value, key) {
+        scheduler.deleteEvent(value);
+      });
+    }
+
+    $scope.custom_schedular = function () {
+      $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
+      $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
+      $(".dhx_scale_bar")[2].innerHTML = $(".dhx_scale_bar:eq(2)").attr("aria-label");
+      $(".dhx_scale_bar")[3].innerHTML = $(".dhx_scale_bar:eq(3)").attr("aria-label");
+      $(".dhx_scale_bar")[4].innerHTML = $(".dhx_scale_bar:eq(4)").attr("aria-label");
+      $(".dhx_scale_bar")[5].innerHTML = $(".dhx_scale_bar:eq(5)").attr("aria-label");
+      $(".dhx_scale_bar")[6].innerHTML = $(".dhx_scale_bar:eq(6)").attr("aria-label");
+      $(".dhx_cal_prev_button").show();
+      $(".dhx_cal_next_button").show();
+      $(".dhx_cal_today_button").show();
+
+    }
+
+    $rootScope.setScheduler = function (schedule_id, form_type) {
+      scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod, { schedule_id: schedule_id }, {}, function (succResponse) {
+        if (succResponse.status) {
+          $scope.schedule = succResponse.data;
+          JSON.parse(scheduler.toJSON()).forEach(function (v) { scheduler.deleteEvent(v.id); });
+
+          var weekday = new Array(7);
+          weekday["Sunday"] = 0;
+          weekday["Monday"] = 1;
+          weekday["Tuesday"] = 2;
+          weekday["Wednesday"] = 3;
+          weekday["Thursday"] = 4;
+          weekday["Friday"] = 5;
+          weekday["Saturday"] = 6;
+          var arr = [];
+          var week_date = new Date();
+          if ($scope.schedule.schedule_category == 'repeat') {
+            $scope.schedule.schedule_input.forEach(function (v) {
+              week_date = new Date();
+              var sch = {};
+              var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
+              if (week_date.getDay() > weekday[v.day]) {
+                var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+              }
+              else {
+                var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
+              }
+              sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.starttime;
+              sch.end_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.endtime;
+              arr.push(sch);
+            });
+          }
+          else {
+            $scope.schedule.schedule_input.forEach(function (v) {
+              week_date = new Date(v.date);
+              var sch = {};
+              // var d = new Date(week_date.setDate(week_date.getDate() - Math.abs(weekday[v.day] - week_date.getDay())));
+              sch.start_date = v.date + " " + v.starttime; sch.end_date = v.date + " " + v.endtime;
+              arr.push(sch);
+            });
+          }
+          scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
+          window.resizeTo(950, 700);
+          scheduler.config.day_date = "%D, %F %d";
+          if ($scope.schedule.schedule_category == 'repeat') {
+            $rootScope.visibiltyUserGroup = true;
+            $timeout(function () {
+              $scope.repetive_schedular();
+            });
+          }
+          else {
+            $timeout(function () {
+              $scope.custom_schedular();
+            });
+          }
+          if (form_type == 'view') {
+            scheduler.config.readonly = true;
+
+          }
+          else {
+            scheduler.config.readonly = false;
+          }
+          scheduler.config.first_hour = 0;
+          scheduler.config.multi_day = false;
+          scheduler.config.date_step = "5";
+          scheduler.config.show_loading = true;
+          scheduler.init('scheduler_here', week_date, "week");
+          $timeout(function () {
+            $rootScope.clearAllSchedule();
+          });
+          $timeout(function () {
+            scheduler.parse(arr, "json");
+          });
+          $rootScope.schedule.schedule_type = ($scope.schedule.schedule_category == "repeat" ? "REPEATING" : "ONETIME");
+          var sc_date = new Date($scope.schedule.schedule_start_time * 1000);
+          $rootScope.schedule.date = new Date((sc_date.getUTCMonth() + 1) + '/' + sc_date.getUTCDate() + '/' + sc_date.getUTCFullYear());
+          $rootScope.schedule.schedule_id = schedule_id;
+
+
+          if ($scope.schedule.schedule_category != "custom" && $scope.schedule.schedule_expiration_date != null) {
+            var sc_exp = new Date($scope.schedule.schedule_expiration_date * 1000);
+            $rootScope.schedule.expiration = new Date((sc_exp.getUTCMonth() + 1) + '/' + sc_exp.getUTCDate() + '/' + sc_exp.getUTCFullYear());
+            $rootScope.schedule.no_expirations = 0;
+          }
+          else {
+            $rootScope.schedule.no_expirations = 1;
+          }
+
+          if ($scope.schedule.schedule_category == "repeat") {
+            $timeout(function () {
+              $(".checkbox-custom-alt:contains('Repeating')").click();
+            });
+          }
+        }
+        else {
+          $rootScope.initSchedule();
+          $timeout(function () {
+            $(".close_add").click();
+          });
+        }
+      });
+    }
+
+    $scope.scheduleviewopen = function (schedule_id, form_type) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        $scope.viewScheduleForm = {};
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function () {
+        $rootScope.setScheduler(schedule_id, form_type);
+      });
+      if (form_type == 'view') {
+        $timeout(function () {
+          $('.check_view').find(':input').prop('disabled', true);
+
+        });
+        $timeout(function () {
+          angular.forEach($('.checkbox-custom-alt[role=button]'), function (value, key) {
+            $(value).css('cursor', 'not-allowed');
+          });
+        })
+      }
+      if (form_type == 'view') {
+
+        $(".modal-footer").css("display", "none");
+      }
+    };
+
+    $rootScope.editviewopen = function (schedule_id, form_type) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $timeout(function () {
+        $rootScope.setScheduler(schedule_id, form_type);
+      });
+    };
+
+    $rootScope.scheduleopen = function (size) {
+      delete $rootScope.schedule.schedule_id;
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+
+      $timeout(function () {
+        $rootScope.initSchedule();
+      });
+      $timeout(function () {
+        $rootScope.clearAllSchedule();
+      });
+    };
+
+    $scope.open = function (size) {
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -9403,6 +9588,9 @@ app
     }
   });
 
+
+
+
 'use strict';
 /**
  * @ngdoc function
@@ -9569,8 +9757,8 @@ app.directive('datepickerLocaldate', ['$parse', function ($parse) {
       if (!modelValue) {
         return undefined;
       }
-      var res= modelValue.split('/');
-      modelValue=res[1]+'/'+res[0]+'/'+res[2];
+      var res = modelValue.split('/');
+      modelValue = res[1] + '/' + res[0] + '/' + res[2];
       // date constructor will apply timezone deviations from UTC (i.e. if locale is behind UTC 'dt' will be one day behind)
       var dt = new Date(modelValue);
       // 'undo' the timezone offset again (so we end up on the original date again)
@@ -9584,46 +9772,7 @@ app.filter('emptyVal', function () {
     return (input == null || input == 'null' || input == 0) ? 0 : input;
   }
 });
-app.directive("number", function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      element.on('keypress', function (e) {
-        console.log(e);
-        if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
-          e.preventDefault();
-        }
-      });
-    }
-  }
-});
 
-app.directive("noSpace", function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      element.on('keypress', function (e) {
-        if (e.keyCode == 32 || e.charCode == 32) {
-          e.preventDefault();
-        }
-      });
-    }
-  }
-});
-
-app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
-  function link(scope, element, attrs) {
-    element.bind('click', function () {
-      $cookies.remove("token", { path: '/' });
-      $cookies.remove("token", { path: '/elika-warehouse' });
-      $location.path('/core/login');
-    });
-  }
-
-  return {
-    link: link
-  };
-}]);
 
 app
   .filter('facilityStatus', function () {
@@ -9696,4 +9845,50 @@ app.filter("timeago", function () {
     }
     return (time <= local) ? span + ' before' : 'before' + span;
   }
+});
+
+
+app.filter('tel', function () {
+  return function (tel) {
+    if (!tel) { return ''; }
+
+    var value = tel.toString().trim().replace(/^\+/, '');
+
+    if (value.match(/[^0-9]/)) {
+      return tel;
+    }
+
+    var country, city, number;
+
+    switch (value.length) {
+      case 10: // +1PPP####### -> C (PPP) ###-####
+        country = 1;
+        city = value.slice(0, 3);
+        number = value.slice(3);
+        break;
+
+      case 11: // +CPPP####### -> CCC (PP) ###-####
+        country = value[0];
+        city = value.slice(1, 4);
+        number = value.slice(4);
+        break;
+
+      case 12: // +CCCPP####### -> CCC (PP) ###-####
+        country = value.slice(0, 3);
+        city = value.slice(3, 5);
+        number = value.slice(5);
+        break;
+
+      default:
+        return tel;
+    }
+
+    if (country == 1) {
+      country = "";
+    }
+
+    number = number.slice(0, 3) + '-' + number.slice(3);
+
+    return (country + " (" + city + ") " + number).trim();
+  };
 });

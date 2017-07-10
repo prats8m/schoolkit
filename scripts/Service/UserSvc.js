@@ -5,6 +5,41 @@ app
 
         var userSvcSvcResp = this;
 
+        userSvcSvcResp.submitSchedule = function (url, method, params, data, cb) {
+
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                } else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+        userSvcSvcResp.submitEditSchedule = function (url, method, params, data, cb) {
+            // data.block = "  ";
+            data.facility_id = data.schedule_facility_id;
+            if (data.schedule_category == 0) {
+                data.schedule_start_date = data.schedule_start_date.toString();
+                data.schedule_end_date = data.expiration.toString();
+                data.expiration = data.expiration.toString();
+            }
+
+
+
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                } else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+
+
         userSvcSvcResp.uploadProfilePic = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
@@ -16,7 +51,17 @@ app
                 }
             });
         };
-
+        userSvcSvcResp.addStartingWizard = function (url, method, params, data, cb) {
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
         userSvcSvcResp.submitUserData = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
@@ -25,7 +70,7 @@ app
                 else {
                     var n = [];
                     var arr = succResponse.error;
-                    if (arr != null) {
+                    if (arr != null && arr != "") {
                         $.each(arr, function (index, value) { n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1); $.each(value.messages, function (ind, value) { n[index] += " " + value }) });
                         succResponse.msg = n.join(", ");
                     }
@@ -46,7 +91,7 @@ app
                 else {
                     var n = [];
                     var arr = succResponse.error;
-                    if (arr != null) {
+                    if (arr != null && arr != "") {
                         $.each(arr, function (index, value) { n[index] = value.property.split("request.body.")[1].replace(/_/g, ' ')[0].toUpperCase() + value.property.split("request.body.")[1].replace(/_/g, ' ').slice(1); $.each(value.messages, function (ind, value) { n[index] += " " + value }) });
                         succResponse.msg = n.join(", ");
                     }
@@ -245,7 +290,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g, ' ');
-                   // toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    // toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
                     cb(succResponse);
                 }
             });
@@ -568,6 +613,21 @@ app
         };
 
         userSvcSvcResp.doorList = function (url, method, params, data, cb) {
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                }
+                else {
+                    succResponse.msg = succResponse.msg.replace(/_/g, ' ');
+                    //  if (succResponse.msg != 'No_Result_Found')
+                    // toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
+
+
+        userSvcSvcResp.alldoorList = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
                     cb(succResponse);

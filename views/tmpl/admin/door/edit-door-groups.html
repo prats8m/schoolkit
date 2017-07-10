@@ -1,6 +1,7 @@
 <div class="page page-profile">
 	<div class="pageheader backpage">		
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<div class="facility-view elika-facility-name"></div>
 	</div>
 	
 	<div class="pagecontent">
@@ -19,69 +20,7 @@
 					</div>
 				</div>
 			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.device.devices">
-					<div class="noback bg-blue cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/device-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Devices</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.door.doors">
-					<div class="noback bg-slategray lt cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/doors-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">	
-								<div class="itxt">							
-									<p class="text-elg text-strong mt-5 mb-5">22</p>
-									<span class="text-lg">Doors</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
-			<div class="card-container col-sm-4 col-md-3">
-				<div class="card">
-					<a ui-sref="app.admin.user.users">
-					<div class="noback bg-lightred cardheight">						
-						<div class="row">
-							<div class="col-xs-6 ta-r">
-								<div class="iconbx">
-									<img src="images/users-icon.png" alt="">
-								</div>
-							</div>
-							<div class="col-xs-6">
-								<div class="itxt">								
-									<p class="text-elg text-strong mt-5 mb-5">45</p>
-									<span class="text-lg">Users</span>
-								</div>	
-							</div>
-						</div>
-					</div>
-					</a>
-				</div>
-			</div>			
+			<flip-header></flip-header>		
 		</div>
 		
 		<div ng-if="result">									
@@ -92,12 +31,12 @@
 	
 		<div class="row">
 			<div class="col-sm-12 col-md-4">
-				<section class="tile tile-simple">
+				<!-- <section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
 						<h4 class="mb-0"><strong>Pool Gate</strong></h4>
 						<div class="mt-40">
-							<a ui-sref="app.admin.door.view-door-groups" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
-							<a ng-click="showConfirm($event)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
+							<a ui-sref="app.admin.door.view-door-groups({doorgroup_id:doorgroup_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
+							<a ng-click="showConfirm($event,doorgroup_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
 						</div>
 					</div>
 					<div class="tile-body text-center bg-blue p-0"> 
@@ -105,6 +44,23 @@
 							<li class="tcol p-10">
 								<h3 class="m-0 mb-5">Facility</h3>
 								<span class="text-transparent-white mt-15"><a ui-sref="app.admin.facility.facility-details">USA Corporate Services</a></span>
+							</li>
+						</ul>
+					</div>					
+				</section> -->
+				<section class="tile tile-simple">
+					<div class="leftdetail tile-widget p-30 text-center">
+						<h4 class="mb-0"><strong>{{doorGrpData.doorgroup_name}} </strong></h4>
+						<div class="mt-40">
+							<a ui-sref="app.admin.door.view-door-groups({doorgroup_id:doorgroup_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View Door</a>
+							<a ng-click="showConfirm($event,doorgroup_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete Door group</a>
+						</div>
+					</div>
+					<div class="tile-body text-center bg-blue p-0"> 
+						<ul class="list-inline tbox m-0">
+							<li class="tcol p-10">
+								<h3 class="m-0 mb-5">Facility</h3>
+								<span class="text-transparent-white mt-15"><a ui-sref="app.admin.facility.facility-details"> {{doorGrpData.facility_name}}</a></span>
 							</li>
 						</ul>
 					</div>					
@@ -118,31 +74,26 @@
 							<h1 class="custom-font">{{page.title}}</h1>
 						</div>						
 						<div class="hometabs">	
+							<form name="doorGrp_data"  ng-submit="editDoorGrpdata(doorGrpData, doorGrp_data)" ng-validate="validationOptions">
 							<div class="wrap-reset modal-body m-0 pt-20">
 								<div class="row">
 									<div class="form-group col-md-6">
 										<label for="">Name</label>
-										<input type="text" name="" id="" class="form-control mb-10" placeholder="">
+										<input type="text" name="" id="" class="form-control mb-10" placeholder="" ng-model="doorGrpData.doorgroup_name" >
 									</div>
 									<div class="form-group col-md-6">
-										<label for="">Facility</label><br/>
-										<select class="form-control" chosen="{width: '100%'}">
-											<option selected>USA Corporate Services</option>
-											<option>Aerzen USA Corporation</option>
-										</select>
-									</div>
+										<label for="">Facility</label><br/>			
+										<select name="mySelect" id="mySelect" class="form-control" chosen="{width: '100%'}"													
+										ng-options="item.facility_name as item.facility_name for item in facilityList"
+										ng-model="doorGrpData.facility_name" ng-init="doorGrp.facility_name = facilityname"></select>
+										
+									</div>									
 									<div class="form-group col-sm-12 col-md-12">
 										<label for="">Doors</label>
-										<select class="form-control" Multiple chosen="{width: '100%'}">
-											<option>Main Gate Front</option>
-											<option>Main Gate Back</option>
-											<option>Exit Gate Front</option>
-											<option>Exit Gate Back</option>
-											<option>Parking Entry Gate</option>
-											<option>Parking Exit Gate</option>
-											<option>Pool Gate</option>														
-											<option>Gym Gate</option>
-										</select>
+										<select name="mySelect" id="mySelect" class="form-control" Multiple chosen="{width: '100%'}"													
+													ng-options="door.door_id as door.door_name for door in doorList"													
+													ng-model="doorGrpData.door_id" 
+													></select>
 										<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
 									</div>
 								</div>
@@ -154,6 +105,7 @@
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>
 					</div>
 				</section>

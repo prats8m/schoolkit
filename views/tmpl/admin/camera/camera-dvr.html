@@ -1,6 +1,7 @@
 <div class="page admin">
 	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<div class="facility-view elika-facility-name"></div>
 	</div>
 
 	<div class="pagecontent">
@@ -178,6 +179,13 @@
 
 														</div>
 													</div>
+													<div ng-init="getDoorList(camera.camera_id)" style=" display: inline;">
+														<select ng-model="camera.selectedDoor" name="device_model+'camera.camera_id'" class="form-control" style=" float: left; width: 85%; margin-top: 10px;">
+															<option value="" disabled>Select Door To Open</option>
+															<option ng-repeat="door in getCameraDoor(camera.camera_id)" ng-value="door.door_id">{{door.door_name}}</option>															
+														</select>
+														<button type="button" ng-click="openDoor(camera.selectedDoor);" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10" style="float: right; margin-right: 10px; margin-bottom: 10px;">Open Door</button>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -190,7 +198,7 @@
 												<div class="col-sm-12 col-md-9 col-centered ">
 													<div class="col-sm-3 col-md-3 ">
 														<label for=" ">Facility <span class="text-danger">*</span></label><br/>
-														<select class="form-control " ng-model="recordedFeedsSearchObj.facility" ng-options="facility.facility_id as facility.facility_name for facility in facilityList track by facility.facility_id">
+														<select class="form-control" ng-disabled="facility_disable" ng-model="recordedFeedsSearchObj.facility" ng-options="facility.facility_id as facility.facility_name for facility in facilityList track by facility.facility_id">
 															<option value="">Select Facility</option>
 
 														</select>
@@ -198,8 +206,7 @@
 													<div class="col-sm-3 col-md-3 " ng-controller="DatepickerDemoCtrl ">
 														<label for=" ">Date <span class="text-danger">*</span></label>
 														<div class="input-group ">
-															<input type="text " class="form-control " uib-datepicker-popup="{{format}} "  ng-model="recordedFeedsSearchObj.dt "
-															 is-open="opened
+															<input type="text " class="form-control " uib-datepicker-popup="{{format}} " ng-model="recordedFeedsSearchObj.dt " is-open="opened
 												 " datepicker-options="dateOptions " ng-required="true " close-text="Close " />
 															<span class="input-group-btn ">
 																<button type="button " class="btn btn-default " ng-click="open($event) " style="padding: 8px 14px;
