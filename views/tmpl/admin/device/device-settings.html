@@ -79,32 +79,34 @@
 																	<div class="col-sm-2 pr-0">
 																		<label for="address1">Strike Time {{$index + 1}}</label>
 																		<input type="text" class="form-control" ng-model="relay.strike_time" id="address1" value="1000">
-																		<span class="error"  ng-if="parseInt(relay.strike_time)>4500 || parseInt(relay.strike_time)<500">{{GenericError}}</span>
+																		<span class="error" ng-if="parseInt(relay.strike_time)>4500 || parseInt(relay.strike_time)<500">{{GenericError}}</span>
 																	</div>
 																	<div class="col-sm-3 pr-0">
 																		<label for="">Door</label><br/>
 																		<select class="form-control" ng-model="relay.drd_door_id">
-																			<option value="">Select Door</option>
-																			<option ng-repeat="x in doorListAdvanceSetting track by x.door_id" name="{{x.door_id+'_'+relay.drd_id}}"  ng-value="x.door_id" ng-disabled="getAvailablity(x.door_id,relay.drd_id,relayNDoorGenSetting)" aria-disabled="{{getAvailablity(x.door_id,relay.drd_id,relayNDoorGenSetting)}}">{{x.door_name}}</option>
+																			<option value="" ng-selected="relay.drd_door_id==''">Select Door</option>
+																			<option ng-repeat="x in doorListAdvanceSetting track by x.door_id" name="{{x.door_id+'_'+relay.drd_id}}"  ng-value="x.door_id" ng-disabled="getAvailablity(x.door_id,relay.drd_id,relayNDoorGenSetting)" aria-disabled="{{getAvailablity(x.door_id,relay.drd_id,relayNDoorGenSetting)}}" ng-selected="relay.drd_door_id==x.door_id">{{x.door_name}}</option>
 																		</select>
 																	</div>
 																	<div class="col-sm-6 pr-0" ng-controller="ActivebtnCtrl">
 																		<div class="col-sm-5 pl-0" style="width:auto;">
-																			<label for="">Door Ajar</label><br/>
-																			<div class="btn-group btnrounded">
+																			<label for=""></label><br/>
+																			<div class="btn-group btnrounded" style=" margin-top: 5px;">
 																				<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="1">Active</label>
 																				<label class="btn btn-default" ng-model="relay.drd_status" uib-btn-radio="0">Inactive</label>
 																			</div>
 																		</div>
 																		<div class="col-sm-6 plr-0">
 																			<label for="">Interface Type</label><br/>
-																			<select ng-model="relay.drd_interface" chosen="{width: '100%'}">
-																				<option value=0>Master Relay</option>
-																				<option value=1>RS485</option>
-																				<option value=2>Wiegand</option>
-																				<option value=3>Take a snapshot through camera</option>
-																				<option value=4>CAN</option>
+																			<select ng-model="relay.interface_type" class="form-control">
+																				<option value=""  ng-selected="relay.interface_type==''">Select Interface Type</option>
+																				<option value="1" ng-selected="relay.interface_type==1">Master Relay</option>
+																				<option value="2"  ng-selected="relay.interface_type==2" >RS485</option>
+																				<option value="3" ng-selected="relay.interface_type==3">Wiegand</option>
+																				<option value="4" ng-selected="relay.interface_type==4">Zigbee</option>
+																				<option value="5" ng-selected="relay.interface_type==5">CAN</option>
 																			</select>
+																			<span class="error" ng-if="((relay.drd_door_id!=undefined && relay.drd_door_id!='')&&(relay.interface_type==undefined || relay.interface_type==''||relay.interface_type==0))">{{errorMsg}}</span>
 																		</div>
 																	</div>
 																</div>

@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc, utilitySvc) {
+    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc, utilitySvc, $cookies) {
 
         $scope.page = {
             title: appConstants.facilityTitle,
@@ -55,6 +55,10 @@ app
 
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, facilityId) {
+            if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deleteFacilityConfirm)
                 .content(appConstants.empty)
@@ -65,12 +69,12 @@ app
                 facilitiesSvc.deleteFacility(appConstants.facilitydelete + '?facility_id=' + facilityId, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         toaster.pop(appConstants.success, appConstants._successDeleteFacility);
-                        $scope.facilityInit();
+                        $scope.refreshList();
                     }
                     else {
-                        toaster.pop('info', appConstants._messageoncanceltodeletedoors);
-                        $scope.result = succResponse.msg;
-                        $scope.statusclass = appConstants.dangerstatusClass;
+                        toaster.pop('info', succResponse.msg);
+                        //$scope.result = succResponse.msg;
+                        //$scope.statusclass = appConstants.dangerstatusClass;
                     }
                 });
             }, function () {
@@ -219,6 +223,10 @@ app
 
         $scope.result = '';
         $scope.showConfirm = function (ev) {
+             if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deletePrimaryDevice)
                 .content(appConstants.content)
@@ -356,6 +364,10 @@ app
         $scope.imagePath = baseURL + appConstants.imagePath;
 
         $scope.showConfirm = function (ev, facilityId) {
+             if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deleteFacilityConfirm)
                 .content(appConstants.empty)
@@ -369,8 +381,9 @@ app
                         $location.path('/app/admin/facility/facility');
                     }
                     else {
-                        $scope.result = succResponse.msg;
-                        $scope.statusclass = appConstants.dangerstatusClass;
+                        toaster.pop('error',succResponse.msg);
+                        //$scope.result = succResponse.msg;
+                        //$scope.statusclass = appConstants.dangerstatusClass;
                     }
                 });
             }, function () {
@@ -454,6 +467,10 @@ app
         };
 
         $scope.showConfirm = function (ev, facilityId) {
+             if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deleteFacilityConfirm)
                 .content(appConstants.empty)

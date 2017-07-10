@@ -309,7 +309,7 @@ app
 				data.expiration = expiration_date;
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-					$location.path('/app/admin/schedule/schedule-groups');
+					$location.path('/app/admin/schedule/schedules');
 				}
 				else {
 					$scope.schedule.schedule_type = data.schedule_category;
@@ -725,8 +725,6 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		$(".dhx_cal_prev_button").hide();
 		$(".dhx_cal_next_button").hide();
 		$(".dhx_cal_today_button").hide();
-
-
 	}
 
 	$scope.custom_schedular = function () {
@@ -997,9 +995,9 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 	$scope.facilityInit();
 
 	$rootScope.holidaySchedules = [];
-	$scope.holidayScheduleList = function(data){
-		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod,{},{},function (succResponse) {
-        	if(succResponse.status){
+	$scope.holidayScheduleList = function (data) {
+		scheduleSvc.holidayScheduleList(appConstants.holidayschedulelist, appConstants.getMethod, {}, {}, function (succResponse) {
+			if (succResponse.status) {
 				$rootScope.holidaySchedules = succResponse.data.data;
 				$scope.setHolidays();
 			}
@@ -1033,9 +1031,9 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 			return false;
 		}
 		data.block = "";
-		if($rootScope.exceptions != undefined){
-			
-		$rootScope.exceptions.forEach(function (v) {
+
+		if ($rootScope.exceptions)
+			$rootScope.exceptions.forEach(function (v) {
 				if (v.type == 'ONETIME') {
 					v.frequency = "one-time";
 				}
@@ -1095,7 +1093,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 
 
 
-		delete data.schedule_sat; 
+		delete data.schedule_sat;
 		delete data.schedule_sun;
 		delete data.schedule_mon;
 		delete data.schedule_tue;
@@ -1107,7 +1105,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				data.schedulestart_date = start_date;
 				data.expiration = expiration_date;
 				toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-				$location.path('/app/admin/schedule/schedule-groups');
+				$location.path('/app/admin/schedule/schedules');
 			}
 		});
 	}
