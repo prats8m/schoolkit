@@ -756,6 +756,7 @@ app
         };
 
         $scope.phoneCode.status = 1;
+        $scope.timedropdown = appConstants.timedropdown;
         $scope.submitPhoneCode = function (phoneCode, phone_form) {
             if (!phone_form.validate()) {
                 return false;
@@ -805,7 +806,9 @@ app
             phoneCode.details = {};
             phoneCode.details.phone_code = phoneCode.phone_code;
             phoneCode.details.phone_numbers = [];
-            phoneCode.details.phone_numbers[0] = phoneCode.phone_numbers;
+            phoneCode.details.phone_numbers[0] = {phone_number:phoneCode.phone_numbers1,starttime:phoneCode.starttime1,endtime:phoneCode.endtime1,type:phoneCode.type1};
+            phoneCode.details.phone_numbers[1] = {phone_number:phoneCode.phone_numbers2,starttime:phoneCode.starttime2,endtime:phoneCode.endtime3,type:phoneCode.type2};
+            phoneCode.details.phone_numbers[2] = {phone_number:phoneCode.phone_numbers3,starttime:phoneCode.starttime2,endtime:phoneCode.endtime3,type:phoneCode.type3};
             delete phoneCode.phone_code;
             delete phoneCode.phone_numbers;
 
