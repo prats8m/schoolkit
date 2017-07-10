@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('AddScheduleCtrl', function ($scope, appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, $timeout, utilitySvc) {
+	.controller('AddScheduleCtrl', function ($scope, appConstants, scheduleSvc, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, $timeout, utilitySvc, $filter) {
 		$scope.page = {
 			title: 'Add Schedule',
 		};
@@ -251,7 +251,8 @@ app
 			weekday[5] = "Friday";
 			weekday[6] = "Saturday";
 			var ind = new Array();
-			JSON.parse(scheduler.toJSON()).forEach(function (v) {
+			var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+			angular.forEach(sched_json, function (v) {
 				if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
 					delete v.id;
 					delete v.text;
@@ -259,7 +260,7 @@ app
 					v.day = weekday[new Date(v.start_date).getDay()];
 					v.starttime = split_date[1];
 					v.endtime = v.end_date.split(" ")[1];
-					if ($scope.schedule.schedule_type == 1) {
+					if ($scope.schedule.schedule_cat == 1) {
 						v.date = split_date[0].replace("/", "-").replace("/", "-");
 						data.schedule_category = 1;
 					}
@@ -414,6 +415,7 @@ app
 
 		$scope.addException = function (exception) {
 			var key = angular.copy($scope.exceptions.length + 1);
+			exception.date = (exception.date.getMonth() + 1) + "-" + exception.date.getDate() + "-" + exception.date.getFullYear();
 			var obj = angular.copy(exception);
 			obj.key = key;
 			$scope.exceptions.push(obj);
@@ -654,8 +656,7 @@ app
 			title: 'Schedule',
 			subtitle: 'So much more to see at a glance.'
 		};
-
-		dataService.getData(null, baseURL + "schedule/view?schedule_id=" + $stateParams.schedule_id)
+		dataService.getData(null, baseURL + "schedule/view?schedule_id=" + $stateParams.schedule_id + "&schedule_type="+ $stateParams.schedule_type)
 			.success(function (response) {
 				if (response.status) {
 					$scope.ViewSchedule = response.data;
@@ -691,7 +692,7 @@ app
  * # ViewScheduleCtrl
  * Controller of the minovateApp
  */
-app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, $mdDialog, $stateParams, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, $timeout, dataService, utilitySvc) {
+app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, $mdDialog, $stateParams, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, $timeout, dataService, utilitySvc, $filter) {
 
 	$scope.page = {
 		title: 'Schedule',
@@ -968,7 +969,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				});
 				$scope.schedule.schedule_type = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
 				if ($scope.schedule.schedule_exceptions != undefined)
-					$rootScope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
+					$scope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
 				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
 				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
 				var newDate = new Date();
@@ -978,7 +979,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 					$scope.minStartDate = angular.copy($scope.minDate);
 				}
 
-				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" : $scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);;
+				if($scope.schedule.schedule_expiration_date)
+				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" : $scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);
 				// $scope.blocks = scheduleSvc.autoPopulateBlocks();
 			}
 		});
@@ -1008,8 +1010,10 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		var arr = [];
 		var ho = $scope.schedule.holiday_observed;
 		var hs = $rootScope.holidaySchedules;
-		for (var i = 0; i < ho.length; i++) {
-			arr.push(ho[i].hs_id);
+		if(ho){
+			for (var i = 0; i < ho.length; i++) {
+				arr.push(ho[i].hs_id);
+			}
 		}
 		for (var i = 0; i < hs.length; i++) {
 			if (arr.indexOf(hs[i].hs_id) != -1) {
@@ -1018,12 +1022,15 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		}
 		$rootScope.holidaySchedules = hs;
 	}
-
+	$scope.exceptions = [];
 	$scope.addException = function (exception) {
+
 		var key = angular.copy($scope.exceptions.length + 1);
+		exception.date = (exception.date.getMonth() + 1) + "-" + exception.date.getDate() + "-" + exception.date.getFullYear();
 		var obj = angular.copy(exception);
 		obj.key = key;
 		$scope.exceptions.push(obj);
+		$scope.exception = {};
 	}
 
 	$scope.submitEditSchedule = function (data, form) {
@@ -1031,8 +1038,9 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 			return false;
 		}
 		data.block = "";
-		if ($rootScope.exceptions)
-			$rootScope.exceptions.forEach(function (v) {
+
+		if ($scope.exceptions){
+			$scope.exceptions.forEach(function (v) {
 				if (v.type == 'ONETIME') {
 					v.frequency = "one-time";
 				}
@@ -1047,7 +1055,13 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				}
 				delete v.status;
 			});
-		data.schedule_exception_array = angular.copy($rootScope.exceptions);
+		}
+		if($scope.exceptions){
+			data.schedule_exception_array = angular.copy($scope.exceptions);
+		}
+		else{
+			data.schedule_exception_array = [];
+		}
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 		data.schedule_category = 0;
 		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
@@ -1055,9 +1069,12 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		var start_date = data.selected_schedule_start_date;
 		var date = new Date(data.selected_schedule_start_date)
 		data.schedule_start_date = (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+		if(data.selected_schedule_expiration_date){
+
 		var expiration_date = data.selected_schedule_expiration_date;
 		var exp_date = new Date(data.selected_schedule_expiration_date)
 		data.expiration = (exp_date.getMonth() + 1) + "-" + exp_date.getDate() + "-" + exp_date.getFullYear();
+		}
 
 
 		var weekday = new Array(7);
@@ -1069,7 +1086,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		weekday[5] = "Friday";
 		weekday[6] = "Saturday";
 		var ind = new Array();
-		JSON.parse(scheduler.toJSON()).forEach(function (v) {
+		var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
+		angular.forEach(sched_json, function (v) {
 			if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
 				delete v.id;
 				delete v.text;
@@ -1143,13 +1161,13 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 
 	$scope.removeHolidaySchdule = function (key) {
 		var tmpExceptions = [];
-		var exceptions = $rootScope.exceptions;
+		var exceptions = $scope.exceptions;
 		for (var i = 0; i < exceptions.length; i++) {
 			if (exceptions[i].key != key) {
 				tmpExceptions.push(exceptions[i]);
 			}
 		}
-		$rootScope.exceptions = tmpExceptions;
+		$scope.exceptions = tmpExceptions;
 	}
 
 	$scope.validateExpiration = function (exception) {
