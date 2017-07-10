@@ -382,7 +382,7 @@ app
         $scope.getTechnicianList = function (device) {
             devicesSvc.getTechnicianList(appConstants.technicianlist, appConstants.getMethod, {}, device, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.technicianList = succResponse.data;
+                    $rootScope.technicianList = succResponse.data.data;
                 }
             });
         };
@@ -549,7 +549,7 @@ app
         $scope.getTechnicianList = function (device) {
             devicesSvc.getTechnicianList(appConstants.technicianlist, appConstants.getMethod, {}, device, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.technicianList = succResponse.data;
+                    $scope.technicianList = succResponse.data.data;
                 }
             });
         };
@@ -675,7 +675,7 @@ app
         $scope.getTechnicianList = function (device) {
             devicesSvc.getTechnicianList(appConstants.technicianlist, appConstants.getMethod, {}, device, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.technicianList = succResponse.data;
+                    $rootScope.technicianList = succResponse.data.data;
                 }
             });
         };
@@ -829,6 +829,7 @@ app
                 if (succResponse.status) {
                     $scope.details = succResponse.data;
                     $scope.editDevice = succResponse.data;
+                
                     $scope.editDevice.technician_id = $scope.editDevice.device_technician_id;
                     var obj = $scope.editDevice.doors;
                     var tmpArray = [];
@@ -863,7 +864,7 @@ app
         $scope.getTechnicianList = function (device) {
             devicesSvc.getTechnicianList(appConstants.technicianlist, appConstants.getMethod, {}, device, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.technicianList = succResponse.data;
+                    $rootScope.technicianList = succResponse.data.data;
                 }
             });
         };

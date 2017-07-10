@@ -1032,7 +1032,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		}
 		data.block = "";
 
-		if ($rootScope.exceptions)
+		if ($rootScope.exceptions){
 			$rootScope.exceptions.forEach(function (v) {
 				if (v.type == 'ONETIME') {
 					v.frequency = "one-time";
