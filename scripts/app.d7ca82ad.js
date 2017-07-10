@@ -90,7 +90,9 @@ var app = angular
     $rootScope.logoutSessionExpiredMassageCount = 0;
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-
+      if (loginToken && $cookies.get("isWizardUsed")) {
+        $state.go('core.setupWizard');
+      }
       event.targetScope.$watch('$viewContentLoaded', function () {
 
         angular.element('html, body, #content').animate({ scrollTop: 0 }, 200);
