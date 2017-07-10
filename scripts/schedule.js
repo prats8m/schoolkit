@@ -1033,6 +1033,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 			return false;
 		}
 		data.block = "";
+		if($rootScope.exceptions != undefined){
+			
 		$rootScope.exceptions.forEach(function (v) {
 				if (v.type == 'ONETIME') {
 					v.frequency = "one-time";
@@ -1048,6 +1050,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				}
 				delete v.status;
 			});
+		}
 		data.schedule_exception_array = angular.copy($rootScope.exceptions);
 		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 		data.schedule_category = 0;

@@ -2193,6 +2193,12 @@ app
             if (!access_edit_form.validate()) {
                 return false;
             }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
+            }
             //Add scheduler
             var weekday = new Array(7);
             weekday[0] = "Sunday";
@@ -2284,6 +2290,7 @@ app
                           $scope.getAccessCodeList();
                         }
                         else {
+                          $scope.getAccessCodeList();
                           $scope.AccessCodeMessage = succResponse.msg;
                         }
                       });
@@ -2387,6 +2394,12 @@ app
 
             if (!phone_edit_form.validate()) {
                 return false;
+            }
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
             }
             //Add scheduler
             var weekday = new Array(7);
@@ -2558,7 +2571,12 @@ app
             // if(!wiegand_form.validate()){
             //  return false;
             // }
-
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
+            }
             //Add scheduler
             var weekday = new Array(7);
             weekday[0] = "Sunday";
@@ -2677,7 +2695,12 @@ app
             if (!ble_edit_form.validate()) {
                 return false;
             }
-
+            if($scope.schedule.schedule_type == "REPEATING"){
+              if($scope.schedule.date == undefined){
+                toaster.pop('error', "Please Add Start Date In Schedule");
+                return false;
+              }
+            }
             //Add scheduler
             var weekday = new Array(7);
             weekday[0] = "Sunday";
