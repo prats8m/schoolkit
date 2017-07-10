@@ -783,6 +783,7 @@ app
         };
         var device_id = $stateParams.device_id;
         $scope.device_id = device_id;
+        $scope.timeddl = appConstants.timedropdown;
 
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, id, facilityId) {

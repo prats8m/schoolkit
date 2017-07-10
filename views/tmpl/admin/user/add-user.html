@@ -544,18 +544,18 @@
 																	<div class="form-group col-sm-6 col-md-4">
 																		
 																		<label for="">Phone Number 1</label>
-																		<input type="text" name="phone_numbers1" id="phone_numbers1" class="form-control form-group" ng-model="phoneCode.phone_numbers1" required>
+																		<input type="text" name="phone_numbers1" id="phone_numbers1" class="form-control form-group" ng-model="phoneCode.phone_numbers1" ui-mask="999 999 9999" required>
 
 																		<div class="row">
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">Start Time </label><br/>
-																				<select class="form-control" ng-model="phoneCode.starttime1" ng-options="time as time for time in timedropdown track by time">
+																				<select class="form-control" name="st1" ng-model="phoneCode.starttime1" ng-options="time as time for time in timedropdown track by time" required>
 																				<option value="">Select Time</option>
 																			</select>
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">End Time </label><br/>
-																				<select class="form-control" ng-model="phoneCode.endtime1" ng-options="time as time for time in timedropdown track by time">
+																				<select class="form-control" name="et1" ng-model="phoneCode.endtime1" ng-options="time as time for time in timedropdown track by time" required>
 																				<option value="">Select Time</option>
 																			</select>
 																			</div>
@@ -573,17 +573,17 @@
 
 																	<div class="form-group col-sm-6 col-md-4">
 																		<label for="">Phone Number 2</label>
-																		<input type="text" name="phone_numbers2" id="phone_numbers2" class="form-control form-group" ng-model="phoneCode.phone_numbers2" required>
+																		<input type="text" name="phone_numbers2" id="phone_numbers2" class="form-control form-group" ng-model="phoneCode.phone_numbers2" ui-mask="999 999 9999" required>
 																		<div class="row">
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">Start Time </label><br/>
-																				<select class="form-control" ng-model="phoneCode.starttime2" ng-options="time as time for time in timedropdown track by time">
+																				<select class="form-control" name="st2" ng-model="phoneCode.starttime2" ng-options="time as time for time in timedropdown track by time" required>
 																				<option value="">Select Time</option>
 																			</select>
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">End Time </label><br/>
-																				<select class="form-control" ng-model="phoneCode.endtime2" ng-options="time as time for time in timedropdown track by time">
+																				<select class="form-control" name="et2" ng-model="phoneCode.endtime2" ng-options="time as time for time in timedropdown track by time" required>
 																				<option value="">Select Time</option>
 																			</select>
 																			</div>
@@ -602,18 +602,18 @@
 																	<div class="form-group col-sm-6 col-md-4">
 																		<div class="form-group col-sm-12 col-md-12">
 																			<label for="">Phone Number 3</label>
-																			<input type="text" name="phone_numbers3" id="phone_numbers3" class="form-control" ng-model="phoneCode.phone_numbers3" required>
+																			<input type="text" name="phone_numbers3" id="phone_numbers3" class="form-control" ng-model="phoneCode.phone_numbers3" ui-mask="999 999 9999" required>
 																		</div>
 																		<div class="row">
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">Start Time </label><br/>
-																				<select class="form-control" ng-model="phoneCode.starttime3" ng-options="time as time for time in timedropdown track by time">
+																				<select class="form-control" name="st3" ng-model="phoneCode.starttime3" ng-options="time as time for time in timedropdown track by time" required>
 																				<option value="">Select Time</option>
 																			</select>
 																			</div>
 																			<div class="col-sm-6 col-md-6 form-group">
 																				<label for="">End Time </label><br/>
-																				<select class="form-control" ng-model="phoneCode.endtime3" ng-options="time as time for time in timedropdown track by time">
+																				<select class="form-control" name="et3" ng-model="phoneCode.endtime3" ng-options="time as time for time in timedropdown track by time" required>
 																				<option value="">Select Time</option>
 																			</select>
 																			</div>
