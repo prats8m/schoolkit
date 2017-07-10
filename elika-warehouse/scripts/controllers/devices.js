@@ -132,6 +132,22 @@ app
 				});
 
 		}
+		
+		$scope.layout = 'grid';
+		$scope.class = 'gridview';
+		$scope.changeClass = function(){
+			if ($scope.class === 'gridview')
+			$scope.class = 'listview';
+			$scope.layout = 'list';
+		};
+		
+		$scope.changeaClass = function(){
+			if ($scope.class === 'listview')
+			$scope.class = 'gridview';
+			$scope.layout = 'grid';
+		};
+	
+	
 		$scope.deviceModelInit();
 	});
 

@@ -2430,11 +2430,7 @@ app
           $timeout(function () {
             $(".checkbox-custom-alt:contains('Repeating')").click();
           });
-        if(form_type == 'view'){
-          $timeout(function () {
-            $('.check_view').find(':input').prop('disabled', true);
-          });
-        }
+        
         }
           }
           else{
@@ -2459,12 +2455,28 @@ app
 
         modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
+        $scope.viewScheduleForm = {};
         }, function () {
          $log.info('Modal dismissed at: ' + new Date());
         });
         $timeout(function () {
           $rootScope.setScheduler(schedule_id, form_type);
         });
+        if(form_type == 'view'){
+          $timeout(function () {
+            $('.check_view').find(':input').prop('disabled', true);
+
+          });
+          $timeout(function(){
+            angular.forEach($('.checkbox-custom-alt[role=button]'), function(value, key) {
+              $(value).css('cursor','not-allowed');
+            });
+          })
+        }
+        if(form_type == 'view'){
+          
+        $(".modal-footer").css("display", "none");
+        }
     };
 
     $rootScope.editviewopen = function (schedule_id, form_type) {
