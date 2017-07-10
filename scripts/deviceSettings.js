@@ -6,7 +6,8 @@ app
             title: appConstants.settings,
             subtitle: appConstants.empty
         };
-
+        $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
+        console.log($scope.usTimeZonesForFacility);
         $scope.deviceGeneralSettingModals = {};
         $scope.grantAccessKey = {
             value: 0
@@ -198,11 +199,11 @@ app
         };
         $scope.setClockSettings = function () {
             var data = new commonSetAPIDataObject();
-            var time = createTimeStamp($scope.advanceClockSetting.date, $scope.advanceClockSetting.time);
+            //var time = createTimeStamp($scope.advanceClockSetting.date, $scope.advanceClockSetting.time);
             data.module = appConstants.deviceSettings.clocksettings;
             data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
-            data.value[appConstants.deviceSettings.realtimeclock] = Math.floor(time / 1000);
-            data.value[appConstants.deviceSettings.timezone] = $scope.deviceAdvanceSettingModals.das_clock_setting[appConstants.deviceSettings.timezone];
+            // data.value[appConstants.deviceSettings.realtimeclock] = Math.floor(time / 1000);
+            data.value[appConstants.deviceSettings.timezone] = $scope.deviceAdvanceSettingModals.das_clock_setting["timezone"];
             commonSetHTTPService(data, appConstants._successclockconfigured);
         };
 

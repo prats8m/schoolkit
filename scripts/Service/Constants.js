@@ -39,7 +39,7 @@ app.constant("appConstants", {
     doorgrouplist: 'doorgroup/list',
     doorgroupedit: 'doorgroup/edit',
     doorgroupdelete: 'doorgroup/delete',
-    doorgroupview:'doorgroup/view',
+    doorgroupview: 'doorgroup/view',
     doordelete: 'door/delete/',
     dooradd: 'door/add',
     doorview: 'door/view',
@@ -97,14 +97,14 @@ app.constant("appConstants", {
     edittechnician: 'technician/edit',
     addmasteradmin: 'warehouse/add-master-admin',
     getCameraDoorList: 'list-door-of-camera',
-    openDoorCommand:'open-door?door_id=',
-    historylist:'history/list',
-
+    openDoorCommand: 'open-door?door_id=',
+    historylist: 'history/list',
+    wizardadd: 'wizard',
     //...........................................................................
 
     //........Constants............................................................
 
-    pageLimit:20,
+    pageLimit: 20,
 
     //...........................................................................
 
@@ -170,7 +170,8 @@ app.constant("appConstants", {
 
 
 
-    //...........................................................................
+    //................wizard...........................................................
+    successFullAdd:'Setup successfully Configured',
 
     //.............Login.........................................................
 
@@ -184,7 +185,7 @@ app.constant("appConstants", {
     dashboardSubTitle: 'So much more to see at a glance.',
     dashboard_facility_name: "Dashboard",
     dashboard_facility_quote: "Welcome to elika",
-    allfacilities : 'All Facilities',
+    allfacilities: 'All Facilities',
 
     //...........................................................................
 
@@ -253,7 +254,7 @@ app.constant("appConstants", {
         lockoutperiod: 'lockout-period',
         mastercode: 'master-code',
         clocksettings: 'clock-settings',
-        timezone: 'time-zone',
+        timezone: 'timezone',
         latchcode: 'latch-code',
         accessgates: 'access-gates',
         diagnostics: 'diagnostics',
@@ -310,14 +311,14 @@ app.constant("appConstants", {
 
     //..................Doors Group....................................................
 
-    
-    doorGroupdeleteconfirmationmessage:'Would you like to delete Door Group ?',
-    _messageoncanceltodeletedoorGroup:'You decided to keep Door Group' ,
-    _successfuldoorsdelete:'Your Door Group has been deleted successfully',
-    doorsGroupUITitle:'Door Group',
-    _successfulldoorsGroupadded:'Door Group added successfully',
-    viewdoorGroupdetailsUITitle:'Doors Group Details',
-    editdoorGroupUiTitle:'Edit Door Group',
+
+    doorGroupdeleteconfirmationmessage: 'Would you like to delete Door Group ?',
+    _messageoncanceltodeletedoorGroup: 'You decided to keep Door Group',
+    _successfuldoorsdelete: 'Your Door Group has been deleted successfully',
+    doorsGroupUITitle: 'Door Group',
+    _successfulldoorsGroupadded: 'Door Group added successfully',
+    viewdoorGroupdetailsUITitle: 'Doors Group Details',
+    editdoorGroupUiTitle: 'Edit Door Group',
 
     //...........................................................................
 

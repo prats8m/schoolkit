@@ -5,22 +5,22 @@ app
 
         var userSvcSvcResp = this;
 
-        userSvcSvcResp.submitSchedule=function(url,method,params,data,cb) {
+        userSvcSvcResp.submitSchedule = function (url, method, params, data, cb) {
 
-            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
-                if(succResponse.status){
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
                     cb(succResponse);
-                }else {
-                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g,' '));
+                } else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
                     cb(succResponse);
                 }
             });
         };
 
-        userSvcSvcResp.submitEditSchedule=function(url,method,params,data,cb) {
+        userSvcSvcResp.submitEditSchedule = function (url, method, params, data, cb) {
             // data.block = "  ";
             data.facility_id = data.schedule_facility_id;
-            if(data.schedule_category == 0){    
+            if (data.schedule_category == 0) {
                 data.schedule_start_date = data.schedule_start_date.toString();
                 data.schedule_end_date = data.expiration.toString();
                 data.expiration = data.expiration.toString();
@@ -28,11 +28,11 @@ app
 
 
 
-            utilitySvc.callHttpService(url,method,params,data,function (succResponse) {
-                if(succResponse.status){
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
                     cb(succResponse);
-                }else {
-                    toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
+                } else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
                     cb(succResponse);
                 }
             });
@@ -51,7 +51,17 @@ app
                 }
             });
         };
-
+        userSvcSvcResp.addStartingWizard = function (url, method, params, data, cb) {
+            utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
+                if (succResponse.status) {
+                    cb(succResponse);
+                }
+                else {
+                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    cb(succResponse);
+                }
+            });
+        };
         userSvcSvcResp.submitUserData = function (url, method, params, data, cb) {
             utilitySvc.callHttpService(url, method, params, data, function (succResponse) {
                 if (succResponse.status) {
@@ -280,7 +290,7 @@ app
                 }
                 else {
                     succResponse.msg = succResponse.msg.replace(/_/g, ' ');
-                   // toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    // toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
                     cb(succResponse);
                 }
             });
