@@ -976,7 +976,7 @@ a.serplan:hover {
 .listview .glview md-card md-card-content {
     float: none;
     display: inline-block;
-    width: auto!important;
+    width: 100%!important;
     vertical-align: top;
     text-align: left
 }
