@@ -80,7 +80,7 @@
 											<div class="col-sm-6 col-md-6 form-group" ng-controller="DatepickerDemoCtrl" ng-show="$parent.$parent.schedule.schedule_cat == 0">
 												<label for="">Start Date <span class="text-danger">*</span></label>
 												<div class="input-group">
-													<input type="text" name="start_date" class="form-control" uib-datepicker-popup="{{format}}"  ng-model="$parent.$parent.schedule.selected_schedule_start_time" min-date="$parent.minStartDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
+													<input type="text" name="start_date" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.$parent.schedule.selected_schedule_start_time" min-date="$parent.minStartDate" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>

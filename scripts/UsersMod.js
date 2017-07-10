@@ -1997,6 +1997,7 @@ app
                 case 'ble_code':
                     $(".ble_div").hide();
                     $scope.editBle = {};
+                    $scope.editBle.schedule = {};
                     $scope.editBle.credential_id = cred_data.Credential_Id;
                     $scope.editBle.ble_name = cred_data.Detail.ble_username;
                     $scope.editBle.ble_pass = cred_data.Detail.ble_password;

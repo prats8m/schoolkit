@@ -415,6 +415,7 @@ app
 
 		$scope.addException = function (exception) {
 			var key = angular.copy($scope.exceptions.length + 1);
+			if(exception.date)
 			exception.date = (exception.date.getMonth() + 1) + "-" + exception.date.getDate() + "-" + exception.date.getFullYear();
 			var obj = angular.copy(exception);
 			obj.key = key;
@@ -970,7 +971,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				$scope.schedule.schedule_cat = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
 				if ($scope.schedule.schedule_exceptions != undefined)
 					$scope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
-				$scope.schedule.selected_schedule_start_date = new Date($scope.schedule.schedule_start_date * 1000);
+				$scope.schedule.selected_schedule_start_time = new Date($scope.schedule.schedule_start_time * 1000);
 				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
 				var newDate = new Date();
 				if (newDate < $scope.minDate) {
@@ -1072,8 +1073,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 		data.schedule_category = 0;
 		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
-		var start_date = data.selected_schedule_start_date;
-		var date = new Date(data.selected_schedule_start_date)
+		var start_date = data.selected_schedule_start_time;
+		var date = new Date(data.selected_schedule_start_time)
 		data.schedule_start_date = (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
 		if(data.selected_schedule_expiration_date){
 
