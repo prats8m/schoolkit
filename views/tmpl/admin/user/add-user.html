@@ -538,6 +538,7 @@
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
 </div>
+																	
 																	<div class="row">
 
 																	<div class="form-group col-sm-6 col-md-4">
@@ -667,7 +668,7 @@
 
 																				</td>
 																				<td>
-																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone}}</div>
+																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
 																				</td>
 																				<td>
 																					<select style="border: 0; width: 100%;">

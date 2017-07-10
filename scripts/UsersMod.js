@@ -2443,7 +2443,10 @@ app
             submitData.details = {};
             submitData.details.phone_code = submitData.phone_code;
             submitData.details.phone_numbers = [];
-            submitData.details.phone_numbers[0] = submitData.phone_numbers;
+
+            submitData.details.phone_numbers[0] = {phone_number:submitData.phone_numbers1,starttime:submitData.starttime1,starttime:submitData.endtime1,type:submitData.type1};
+            submitData.details.phone_numbers[1] = {phone_number:submitData.phone_numbers2,starttime:submitData.starttime2,starttime:submitData.endtime2,type:submitData.type2};
+            submitData.details.phone_numbers[2] = {phone_number:submitData.phone_numbers3,starttime:submitData.starttime3,starttime:submitData.endtime3,type:submitData.type3};
 
             delete submitData.phone_code;
             delete submitData.phone_numbers;
