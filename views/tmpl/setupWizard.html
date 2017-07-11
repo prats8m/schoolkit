@@ -168,7 +168,7 @@
                                     <label for="">Device Name <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="30" name="device_name" ng-model="wizard_setup.device.device_name" id="" class="form-control"
                                         placeholder="" required autocomplete="off" ui-number-mask>
-                                    <span class="error" ng-if="validDevice && device_form.device_name.$invalid">Please Enter Expiration Date</span>
+                                    <span class="error" ng-if="validDevice && device_form.device_name.$invalid">Please Enter Device Name</span>
                                 </div>
 
                             </div>
@@ -177,13 +177,13 @@
                                     <label for="">Serial Number <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="32" name="serial_no" id="" ng-model="wizard_setup.device.serial_no" class="form-control" placeholder=""
                                         required>
-                                    <span class="error" ng-if="validDevice && device_form.serial_no.$invalid">Please Enter Expiration Date</span>
+                                    <span class="error" ng-if="validDevice && device_form.serial_no.$invalid">Please Enter Serial Number</span>
                                 </div>
                                 <div class="form-group col-sm-6 col-md-6">
                                     <label for="">Registration Code <span class="text-danger">*</span></label>
                                     <input type="text" name="registration_code" maxlength="32" id="" ng-model="wizard_setup.device.registration_code" class="form-control"
                                         placeholder="" required>
-                                    <span class="error" ng-if="validDevice && device_form.registration_code.$invalid">Please Enter Expiration Date</span>
+                                    <span class="error" ng-if="validDevice && device_form.registration_code.$invalid">Please Enter Registration Code</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -191,13 +191,13 @@
                                     <label for="">SIP Username <span class="text-danger">*</span></label>
                                     <input type="text" autocomplete="off" maxlength="32" name="sip_username" id="" ng-model="wizard_setup.device.sip_username"
                                         class="form-control" placeholder="" required>
-                                    <span class="error" ng-if="validDevice && device_form.sip_username.$invalid">Please Enter Expiration Date</span>
+                                    <span class="error" ng-if="validDevice && device_form.sip_username.$invalid">Please Enter SIP Username</span>
                                 </div>
                                 <div class="form-group col-sm-6 col-md-6">
                                     <label for="">SIP Password <span class="text-danger">*</span></label>
                                     <input type="password" autocomplete="off" name="sip_password" maxlength="32" id="" ng-model="wizard_setup.device.sip_password"
                                         class="form-control" placeholder="" required>
-                                    <span class="error" ng-if="validDevice && device_form.sip_password.$invalid">Please Enter Expiration Date</span>
+                                    <span class="error" ng-if="validDevice && device_form.sip_password.$invalid">Please Enter SIP Password</span>
                                 </div>
                             </div>
                             <div class="modal-footer">
