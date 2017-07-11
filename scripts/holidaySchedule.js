@@ -219,6 +219,7 @@ app
 
             delete $scope.addHolidayScheduleObj.hs_starttime;
             delete $scope.addHolidayScheduleObj.hs_endtime;
+            delete $scope.addHolidayScheduleObj.hs_expiration;
             $uibModalInstance.close($scope.addHolidayScheduleObj);
         };
         $scope.cancel = function () {
