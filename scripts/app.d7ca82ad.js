@@ -2320,6 +2320,7 @@ app
       scheduler.config.multi_day = true;
       scheduler.config.date_step = "5";
       scheduler.config.show_loading = true;
+      scheduler.config.readonly = false;
       scheduler.init('scheduler_here', new Date(), "week");
       scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
     }
@@ -2436,14 +2437,7 @@ app
             $rootScope.schedule.no_expirations = 1;
           }
 
-          if (form_type == 'view') {
-            $timeout(function () {
-              $(".disable_modal").css("pointer-events","none");
-            });
-            $timeout(function () {
-              $(".modal-footer").hide();
-            });
-          }
+          
 
           if ($scope.schedule.schedule_category == "repeat") {
             $timeout(function () {
@@ -2513,6 +2507,15 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      if (form_type == 'view') {
+        $timeout(function () {
+          $(".disable_modal").css("pointer-events","none");
+        });
+        $timeout(function () {
+          $(".modal-footer").hide();
+        });
+      }
+      
       $timeout(function () {
         $rootScope.setScheduler(schedule_id, form_type);
       });

@@ -314,7 +314,7 @@ app.constant("appConstants", {
 
     doorGroupdeleteconfirmationmessage: 'Would you like to delete Door Group ?',
     _messageoncanceltodeletedoorGroup: 'You decided to keep Door Group',
-    _successfuldoorsdelete: 'Your Door Group has been deleted successfully',
+    _successfuldoorsdelete: 'Your Door is deleted successfully',
     doorsGroupUITitle: 'Door Group',
     _successfulldoorsGroupadded: 'Door Group added successfully',
     viewdoorGroupdetailsUITitle: 'Doors Group Details',
