@@ -1,7 +1,10 @@
-app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $http, $cookies, $rootScope, $location, toaster, baseURL, appConstants, userSvc, utilitySvc, $uibModal) {
-    if (!$cookies.get("isWizardUsed")) {
-        $state.go('app.admin.dashboard')
+app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state, $cookies, $rootScope, $location, toaster, baseURL, appConstants, userSvc, utilitySvc, $uibModal) {
+    $scope.checkIfValid = function () {
+        if (!$cookies.get("isWizardUsed")) {
+            $state.go('app.admin.dashboard')
+        }
     }
+    $scope.checkIfValid();
     $scope.wizard_setup = {
         facility: {
             facility_name: '',
@@ -51,6 +54,21 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $http, 
         if (!form)
             return false;
         if (form.$valid) {
+            angular.forEach($scope.wizard_setup.door, function (door, index) {
+                if (door.name.toLowerCase() == document.getElementById("door_name").value.toLowerCase()) {
+                    $scope.errMsg = "Please Enter a different Name"
+                    $scope.errormsg = true;
+                    return false;
+                    // break;
+                }
+                else {
+                    $scope.errMsg = "Please Enter a different Name"
+                    $scope.errormsg = false;
+                }
+            })
+            if ($scope.errormsg) {
+                return false;
+            }
             var doors = {
                 name: document.getElementById("door_name").value,
                 door_description: document.getElementById("door_description").value,

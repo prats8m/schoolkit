@@ -90,7 +90,9 @@ var app = angular
     $rootScope.logoutSessionExpiredMassageCount = 0;
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-
+      if ($cookies.get("token") && $cookies.get("isWizardUsed")) {
+        $state.go('core.setupWizard');
+      }
       event.targetScope.$watch('$viewContentLoaded', function () {
 
         angular.element('html, body, #content').animate({ scrollTop: 0 }, 200);
@@ -2318,6 +2320,7 @@ app
       scheduler.config.multi_day = true;
       scheduler.config.date_step = "5";
       scheduler.config.show_loading = true;
+      scheduler.config.readonly = false;
       scheduler.init('scheduler_here', new Date(), "week");
       scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
     }
@@ -2434,6 +2437,8 @@ app
             $rootScope.schedule.no_expirations = 1;
           }
 
+          
+
           if ($scope.schedule.schedule_category == "repeat") {
             $timeout(function () {
               $(".checkbox-custom-alt:contains('Repeating')").click();
@@ -2502,6 +2507,15 @@ app
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      if (form_type == 'view') {
+        $timeout(function () {
+          $(".disable_modal").css("pointer-events","none");
+        });
+        $timeout(function () {
+          $(".modal-footer").hide();
+        });
+      }
+      
       $timeout(function () {
         $rootScope.setScheduler(schedule_id, form_type);
       });

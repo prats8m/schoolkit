@@ -1921,7 +1921,13 @@ app
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
-                    $(".access_div").hide();
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".access_div").show();
+                    }
+                    else{
+                      $(".access_div").hide();
+                    }
+                    
                     $scope.editAccess = {};
                     $scope.editAccess.accesscode_size = cred_data.Access_Code.length;
                     $scope.editAccess.access_code = cred_data.Access_Code;
@@ -1934,7 +1940,13 @@ app
                     $scope.editAccess.door_id = arr;
                     break;
                 case 'phone_code':
-                    $(".phone_div").hide();
+
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".phone_div").show();
+                    }
+                    else{
+                      $(".phone_div").hide();
+                    }
                     $scope.phoneedit = {};
                     $scope.phoneedit.phonecode_size = cred_data.Detail.phone_code.length;
                     $scope.phoneedit.credential_id = cred_data.Credential_Id;
@@ -1962,7 +1974,12 @@ app
                     $scope.phoneedit.door_id = arr;
                     break;
                 case 'rfid_code':
-                    $(".rfid_div").hide();
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".rfid_div").show();
+                    }
+                    else{
+                      $(".rfid_div").hide();
+                    }
                     $scope.editRfid = {};
                     $scope.editRfid.credential_id = cred_data.Credential_Id;
                     $scope.editRfid.rfid_card_no = cred_data.Detail.rfid_card_no;
@@ -1973,7 +1990,12 @@ app
                     $scope.editRfid.door_id = arr;
                     break;
                 case 'wiegand_code':
-                    $(".wiegand_div").hide();
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".wiegand_div").show();
+                    }
+                    else{
+                      $(".wiegand_div").hide();
+                    }
                     $scope.wiegand = {};
                     $scope.wiegand.credential_id = cred_data.Credential_Id;
                     $scope.wiegand.wiegand_card_number = cred_data.Detail.wiegand_card_number;
@@ -1984,7 +2006,12 @@ app
                     $scope.wiegand.door_id = arr;
                     break;
                 case 'nfc_code':
-                    $(".nfc_div").hide();
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".nfc_div").show();
+                    }
+                    else{
+                      $(".nfc_div").hide();
+                    }
                     $scope.editNfc = {};
                     $scope.editNfc.credential_id = cred_data.Credential_Id;
                     $scope.editNfc.nfc_code = cred_data.Detail.nfc_code;
@@ -1995,7 +2022,12 @@ app
                     $scope.editNfc.door_id = arr;
                     break;
                 case 'ble_code':
-                    $(".ble_div").hide();
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".ble_div").show();
+                    }
+                    else{
+                      $(".ble_div").hide();
+                    }
                     $scope.editBle = {};
                     $scope.editBle.schedule = {};
                     $scope.editBle.credential_id = cred_data.Credential_Id;
