@@ -86,7 +86,6 @@
 												<p><label>Phone</label> {{userData.user_phone_no}}</p>
 												<p><label>Zipcode</label>{{userData.user_zipcode}}</p>
 												<p><label>Status</label> {{userData.user_status == 1 ? 'Active' : 'Inactive'}}</p>
-												<!-- <p><label>Password</label> *********</p> -->
 											</div>											
 										</div>
 										
@@ -97,45 +96,40 @@
 								<div class="wrap-reset"> 
 									<form ng-submit="submitEditProfile(userData)">
 									<div class="modal-body">											
-										<div class="row form-group">
-											<div class="col-sm-6 col-md-6">
+										<div class="row">
+											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">First Name <span class="text-danger">*</span></label>
 												<input type="text" name="" id="" class="form-control" ng-model="userData.user_first_name">
 											</div>
-											<div class="col-sm-6 col-md-6">
+											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Last Name <span class="text-danger">*</span></label>
 												<input type="text" name="" id="" class="form-control" ng-model="userData.user_last_name">
 											</div>
 										</div>
 										
-										<div class="form-group row">
-											<div class="col-sm-6 col-md-6">				
+										<div class="row">
+											<div class="col-sm-6 col-md-6 form-group">				
 												<label for="">Email Address <span class="text-danger">*</span></label>
 												<input type="email" name="" id="" class="form-control" ng-model="userData.user_email" disabled="">
 											</div>
-											<div class="col-sm-6 col-md-6">				
+											<div class="col-sm-6 col-md-6 form-group">				
 												<label for="">Phone <span class="text-danger">*</span></label>
 												<input type="text" name="" ui-mask="{{'999 999 9999'}}" id="" class="form-control" ng-model="userData.user_phone_no">
 											</div>
-										</div>
-										
-										<div class="form-group row">
-											<div class="col-sm-6 col-md-6">				
+										</div>										
+										<div class="row">
+											<div class="col-sm-6 col-md-6 form-group">				
 												<label for="">Zip Code <span class="text-danger">*</span></label>
 												<input type="number" name="" id="" class="form-control" ng-model="userData.user_zipcode">
 											</div>
-
-											<div class="col-sm-6 col-md-6">
+											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Status <span class="text-danger">*</span></label><br/>
 												<div class="btn-group btnrounded" >
 													<label class="btn btn-default" ng-model="userData.user_status" uib-btn-radio="1">Active</label>
 													<label class="btn btn-default" ng-model="userData.user_status" uib-btn-radio="0">Inactive</label>
 												</div>
-											</div>
-											
+											</div>											
 										</div>
-										
-										
 										<div class="form-group">
 											<a ui-sref="app.administrator.admin" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</a>
 											<button type="submit" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Submit</button>
