@@ -3057,6 +3057,9 @@ span.edittxt {
 
 .submit_wizard {
 	position: relative;
+	background: #ffffff;
+	width: 80%;
+	margin: 2.5% auto;
 }
 
 .submit_wizard h2.ng-binding {
