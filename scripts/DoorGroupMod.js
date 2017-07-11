@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('DoorGroupsCtrl', function ($scope, $mdDialog, DTOptionsBuilder, DTColumnDefBuilder, $http, $timeout, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, doorsSvc) {
+    .controller('DoorGroupsCtrl', function ($scope, $mdDialog, DTOptionsBuilder, DTColumnDefBuilder, $http, $timeout, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, doorsSvc,utilitySvc) {
         $scope.page = {
             title: appConstants.doorsgroupUiTitle,
             subtitle: appConstants.dashboardSubTitle
@@ -121,7 +121,7 @@ app
         }
         $scope.doorgroups = [];
         $scope.getDoorGroupList = function () {
-            doorsSvc.getDoorGroupList(appConstants.doorgrouplist + '?limits='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + "&searchVal=" + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+            doorsSvc.getDoorGroupList(appConstants.doorgrouplist + '?limits='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo +"&facility_id="+ utilitySvc.getCurrentFacility()+ "&searchVal=" + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     if ($scope.pageNo <= 1) {
                         $scope.doorgroups = [];
@@ -139,10 +139,12 @@ app
         $scope.getDoorGroupList();
 
         $scope.getDoorsList = function () {
-            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=1000&pageNo=1', appConstants.getMethod, {}, {}, function (succResponse) {
+            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=1000&pageNo=1&facility_id='+utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.doorList = succResponse.data.data;
 
+                }else{
+                    $rootScope.doorList = [];
                 }
             });
         };

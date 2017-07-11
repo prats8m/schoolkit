@@ -1921,7 +1921,9 @@ app
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
+                    $(".access_div").hide();
                     $scope.editAccess = {};
+                    $scope.editAccess.accesscode_size = cred_data.Access_Code.length;
                     $scope.editAccess.access_code = cred_data.Access_Code;
                     $scope.editAccess.credential_id = cred_data.Credential_Id;
                     $scope.editAccess.status = cred_data.status;
@@ -1932,7 +1934,9 @@ app
                     $scope.editAccess.door_id = arr;
                     break;
                 case 'phone_code':
+                    $(".phone_div").hide();
                     $scope.phoneedit = {};
+                    $scope.phoneedit.phonecode_size = cred_data.Detail.phone_code.length;
                     $scope.phoneedit.credential_id = cred_data.Credential_Id;
                     $scope.phoneedit.phone_code = cred_data.Detail.phone_code;
                     $scope.phoneedit.phone_numbers1 = cred_data.Detail.phone_numbers[0].phone_number;
@@ -1958,6 +1962,7 @@ app
                     $scope.phoneedit.door_id = arr;
                     break;
                 case 'rfid_code':
+                    $(".rfid_div").hide();
                     $scope.editRfid = {};
                     $scope.editRfid.credential_id = cred_data.Credential_Id;
                     $scope.editRfid.rfid_card_no = cred_data.Detail.rfid_card_no;
@@ -1968,6 +1973,7 @@ app
                     $scope.editRfid.door_id = arr;
                     break;
                 case 'wiegand_code':
+                    $(".wiegand_div").hide();
                     $scope.wiegand = {};
                     $scope.wiegand.credential_id = cred_data.Credential_Id;
                     $scope.wiegand.wiegand_card_number = cred_data.Detail.wiegand_card_number;
@@ -1978,6 +1984,7 @@ app
                     $scope.wiegand.door_id = arr;
                     break;
                 case 'nfc_code':
+                    $(".nfc_div").hide();
                     $scope.editNfc = {};
                     $scope.editNfc.credential_id = cred_data.Credential_Id;
                     $scope.editNfc.nfc_code = cred_data.Detail.nfc_code;
@@ -1988,7 +1995,9 @@ app
                     $scope.editNfc.door_id = arr;
                     break;
                 case 'ble_code':
+                    $(".ble_div").hide();
                     $scope.editBle = {};
+                    $scope.editBle.schedule = {};
                     $scope.editBle.credential_id = cred_data.Credential_Id;
                     $scope.editBle.ble_name = cred_data.Detail.ble_username;
                     $scope.editBle.ble_pass = cred_data.Detail.ble_password;
@@ -2204,7 +2213,7 @@ app
 
         $scope.generatePhoneCode = function () {
             var x = Math.floor(Math.random() * 9999999999) + 10000;
-            $scope.phoneedit.phone_code = (appConstants.empty + x).substring(8, length);
+            $scope.phoneedit.phone_code = (appConstants.empty + x).substring($scope.phoneedit.phonecode_size, length);
         };
 
         $scope.submitEditAccessCode = function (submitData, access_edit_form) {
@@ -2331,14 +2340,7 @@ app
             });
         };
         // $scope.getAccessCodeList();
-        $scope.getCredentials = function(){
-            $scope.getAccessCodeList();
-            $scope.getNfcCodeList();
-            $scope.getPhoneList();
-            $scope.getBleList();
-            $scope.getWiegandList();
-            $scope.getRfidList();
-        }
+        
         //NFC code edit
         $scope.submitEditNfcCode = function (submitData, nfc_edit_form) {
             if (!nfc_edit_form.validate()) {
@@ -2919,6 +2921,16 @@ console.log(submitData);
                 $("a:contains('Edit Account')").click();
             });
         }
+
+        $scope.getCredentials = function(){
+            $scope.getAccessCodeList();
+            $scope.getNfcCodeList();
+            $scope.getPhoneList();
+            $scope.getBleList();
+            $scope.getWiegandList();
+            $scope.getRfidList();
+        }
+        $scope.getCredentials();
     });
 
 'use strict';
