@@ -2434,6 +2434,15 @@ app
             $rootScope.schedule.no_expirations = 1;
           }
 
+          if (form_type == 'view') {
+            $timeout(function () {
+              $(".disable_modal").css("pointer-events","none");
+            });
+            $timeout(function () {
+              $(".modal-footer").hide();
+            });
+          }
+
           if ($scope.schedule.schedule_category == "repeat") {
             $timeout(function () {
               $(".checkbox-custom-alt:contains('Repeating')").click();

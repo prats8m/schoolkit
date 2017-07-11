@@ -68,7 +68,7 @@
 															<div class="modal-header"><h4 class="modal-title custom-font">Add Credential Schedule</h4></div>
 															<div class="modal-body mt-5 pb-30">
 																<div class="row">
-																	<div class="col-sm-12 col-md-6 form-group">
+																	<div class="col-sm-12 col-md-6 form-group disable_modal">
 																		<label for=""><strong>Schedule Type</strong></label><br/>
 																		<div class="row">
 																			<div class="pull-left ml-10 pl-5" ng-click="custom_schedular()">
@@ -84,7 +84,7 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="row" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
+																<div class="row disable_modal" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
 																	<div class="col-sm-6 col-md-6 form-group">
 																		<label for="">Start Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
