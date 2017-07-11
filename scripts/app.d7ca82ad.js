@@ -74,12 +74,8 @@ var app = angular
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     var loginToken = $cookies.get("token");
-    var isWizardUsed = $cookies.get("isWizardUsed");
     if (!loginToken) {
       $location.path('/core/login');
-    }
-    if (loginToken && $cookies.get("isWizardUsed")) {
-      $state.go('core.setupWizard');
     }
     $rootScope.allowNumberOnly = function (evt) {
       var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -90,9 +86,7 @@ var app = angular
     $rootScope.logoutSessionExpiredMassageCount = 0;
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-      if (loginToken && $cookies.get("isWizardUsed")) {
-        $state.go('core.setupWizard');
-      }
+     
       event.targetScope.$watch('$viewContentLoaded', function () {
 
         angular.element('html, body, #content').animate({ scrollTop: 0 }, 200);

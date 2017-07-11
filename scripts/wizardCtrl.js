@@ -1,9 +1,21 @@
+app
+    .directive('elikaWizard', function () {
+        return {
+            templateUrl: 'views/tmpl/setupWizard.html',
+            restrict: 'E',
+            scope: {
+                callback: '&'
+            },
+            controller: 'wizardCtrl'
+        };
+    });
 app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state, $cookies, $rootScope, $location, toaster, baseURL, appConstants, userSvc, utilitySvc, $uibModal) {
     $scope.checkIfValid = function () {
         if (!$cookies.get("isWizardUsed")) {
-            $state.go('app.admin.dashboard')
+            $scope.callback();
         }
     }
+
     $scope.checkIfValid();
     $scope.wizard_setup = {
         facility: {
@@ -118,7 +130,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             if (succResponse.status) {
                 toaster.pop(appConstants.success, appConstants.successFullAdd);
                 $cookies.remove("isWizardUsed");
-                $state.go('app.admin.dashboard')
+                $scope.callback();
             }
             else {
                 toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));

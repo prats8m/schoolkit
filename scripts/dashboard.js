@@ -1,52 +1,58 @@
 'use strict';
 
 app
-    .controller('DashboardCtrl', function($scope,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster,$stateParams,$cookies,utilitySvc,$state){
+    .controller('DashboardCtrl', function ($scope, $rootScope, appConstants, dashboardSvc, $uibModal, $log, toaster, $stateParams, $cookies, utilitySvc, $state) {
         $scope.page = {
             title: appConstants.dashboardTitle,
             subtitle: appConstants.dashboardSubTitle
         };
-
-        
-        $scope.dashboardInit = function(){
-            dashboardSvc.getDashboardData(appConstants.userDashboard +"?facility_id="+ utilitySvc.getCurrentFacility(),appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
-                    $rootScope.dashboardData = succResponse.data?succResponse.data:[];
+        $scope.checkForWizard = function () {
+            if ($cookies.get("isWizardUsed")) {
+                $scope.showWizard = true;
+            }
+        }
+        $scope.wizardCompleted = function () { 
+            $scope.showWizard = true;
+        }
+        $scope.dashboardInit = function () {
+            dashboardSvc.getDashboardData(appConstants.userDashboard + "?facility_id=" + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
                     console.log($rootScope.dashboardData);
                     $scope.getShortCutList();
                 }
             });
         };
 
-        $scope.getShortCutList=function(){
-            dashboardSvc.getShortCutList(appConstants.shortcutslist,appConstants.getMethod,{},{},function (succResponse) {
-                if(succResponse.status){
-                    $scope.shortcutsForLoggedInUser=[];
-                    $scope.shortcutsForLoggedInUser=succResponse.data?succResponse.data:[];
+        $scope.getShortCutList = function () {
+            dashboardSvc.getShortCutList(appConstants.shortcutslist, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.shortcutsForLoggedInUser = [];
+                    $scope.shortcutsForLoggedInUser = succResponse.data ? succResponse.data : [];
                 }
             });
         };
 
-        $scope.openShortCutPopup=function () {
-                var modalInstance = $uibModal.open({
-                    templateUrl: 'addshortcutondashboardModal.html',
-                    controller: 'addshortcutondashboardModalInstanceCtrl',
-                    resolve: {
-                        items: function () {
-                            return $scope.shortcutsForLoggedInUser;
-                        }
+        $scope.openShortCutPopup = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'addshortcutondashboardModal.html',
+                controller: 'addshortcutondashboardModalInstanceCtrl',
+                resolve: {
+                    items: function () {
+                        return $scope.shortcutsForLoggedInUser;
+                    }
+                }
+            });
+            modalInstance.result.then(function (selectedItem) {
+                dashboardSvc.addOrUpdateShortcuts(appConstants.shortcutadd, appConstants.postMethod, {}, { shortcut_data: selectedItem }, function (succResponse) {
+                    if (succResponse.status) {
+                        toaster.pop(appConstants.success, succResponse.msg.replace(/_/g, ' '));
+                        $scope.getShortCutList();
                     }
                 });
-                modalInstance.result.then(function (selectedItem) {
-                    dashboardSvc.addOrUpdateShortcuts(appConstants.shortcutadd,appConstants.postMethod,{},{shortcut_data:selectedItem},function (succResponse) {
-                        if(succResponse.status){
-                            toaster.pop(appConstants.success,succResponse.msg.replace(/_/g,' '));
-                            $scope.getShortCutList();
-                        }
-                    });
-                }, function () {
-                    $log.info('Modal dismissed at: ' + new Date());
-                });
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
         };
 
         //($stateParams.facility_id) ? $cookies.put('current_facility_id',$stateParams.facility_id) : $cookies.put('current_facility_id',0);
@@ -58,24 +64,24 @@ app
 
 
 
-//...................Add Short Cuts Popup Modal.................................................
+    //...................Add Short Cuts Popup Modal.................................................
 
-.controller('addshortcutondashboardModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+    .controller('addshortcutondashboardModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
 
-    $scope.lstDashboardShortCuts=angular.copy(items);
-    for(var key in $scope.lstDashboardShortCuts){
-        $scope.lstDashboardShortCuts[key].shortcutStatus=$scope.lstDashboardShortCuts[key].shortcutStatus==0?false:true;
-    }
-    $scope.ok = function () {
-        for(var key in $scope.lstDashboardShortCuts){
-            $scope.lstDashboardShortCuts[key].shortcutStatus=!$scope.lstDashboardShortCuts[key].shortcutStatus?0:1;
+        $scope.lstDashboardShortCuts = angular.copy(items);
+        for (var key in $scope.lstDashboardShortCuts) {
+            $scope.lstDashboardShortCuts[key].shortcutStatus = $scope.lstDashboardShortCuts[key].shortcutStatus == 0 ? false : true;
         }
-        $uibModalInstance.close($scope.lstDashboardShortCuts);
-    };
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-});
+        $scope.ok = function () {
+            for (var key in $scope.lstDashboardShortCuts) {
+                $scope.lstDashboardShortCuts[key].shortcutStatus = !$scope.lstDashboardShortCuts[key].shortcutStatus ? 0 : 1;
+            }
+            $uibModalInstance.close($scope.lstDashboardShortCuts);
+        };
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+    });
 
 
 
@@ -89,33 +95,35 @@ app
  * Controller of the minovateApp
  */
 app
-  .controller('SignupCtrl', function ($scope, $state,$rootScope,appConstants,dashboardSvc,$uibModal,$log,toaster,profileSettingsSvc) {
-    
-    $scope.submitSignUpForm = function(user,signup_form){
-        if ( ! signup_form.validate() ) { return false; }
+    .controller('SignupCtrl', function ($scope, $state, $rootScope, appConstants, dashboardSvc, $uibModal, $log, toaster, profileSettingsSvc) {
 
-        if(!user.tnc) { toaster.pop('error',appConstants._chktnc);
-         return false; }
-         user.zipcode = parseInt(user.zipcode);
+        $scope.submitSignUpForm = function (user, signup_form) {
+            if (!signup_form.validate()) { return false; }
 
-        user.secret_question = parseInt(user.secret_question);
-        dashboardSvc.submitSignUpForm(appConstants.addmasteradmin,appConstants.postMethod,{},user,function (succResponse) {
-            if(succResponse.status){
-                if(succResponse.msg == 'Success')
-                toaster.pop('success',appConstants._successsignup);
-                $state.go('core.login');
+            if (!user.tnc) {
+                toaster.pop('error', appConstants._chktnc);
+                return false;
             }
-        });
-    }
+            user.zipcode = parseInt(user.zipcode);
 
-    $scope.getSecurityQuestion = function () {
-        $scope.lstSecurityQuestions = [];
-        profileSettingsSvc.getSecurityQuestion(appConstants.listsecretquestions, appConstants.getMethod, {}, {}, function (succResponse) {
-            if (succResponse.status) {
-                $scope.lstSecurityQuestions = succResponse.data ? succResponse.data : [];
-            }
-        });
-    };
-    $scope.getSecurityQuestion();
+            user.secret_question = parseInt(user.secret_question);
+            dashboardSvc.submitSignUpForm(appConstants.addmasteradmin, appConstants.postMethod, {}, user, function (succResponse) {
+                if (succResponse.status) {
+                    if (succResponse.msg == 'Success')
+                        toaster.pop('success', appConstants._successsignup);
+                    $state.go('core.login');
+                }
+            });
+        }
 
-  });
+        $scope.getSecurityQuestion = function () {
+            $scope.lstSecurityQuestions = [];
+            profileSettingsSvc.getSecurityQuestion(appConstants.listsecretquestions, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.lstSecurityQuestions = succResponse.data ? succResponse.data : [];
+                }
+            });
+        };
+        $scope.getSecurityQuestion();
+
+    });

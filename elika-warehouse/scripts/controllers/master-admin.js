@@ -35,6 +35,11 @@ app
 		.success(function(response){
 		 	if(response.status == true){
 				toaster.pop('success','Your master admin has been deleted successfully.');
+				var log = [];var tempData = [];
+				angular.forEach($scope.listData, function(value, key) {
+				  	if(value.user_id !=id){tempData.push(value);}
+				}, log);
+				$scope.listData = tempData;
 		 	}else{
 		 		toaster.pop('success',response.msg.replace('/_/g'," "));
 		 	}
@@ -137,6 +142,26 @@ app
 		 .success(function(response){
 		 	if(response.status == true){
 		 		$scope.listData = response.data.data;
+		 		$scope.totalDisplayed = 8;
+
+				if ($scope.listData.length > $scope.totalDisplayed) {
+					$scope.lmbtn = {
+						"display": "block"
+					};
+				} else {
+					$scope.lmbtn = {
+						"display": "none"
+					};
+				}
+
+				$scope.loadMore = function () {
+					$scope.totalDisplayed += 8;
+					if ($scope.totalDisplayed > $scope.listData.length) {
+						$scope.lmbtn = {
+							"display": "none"
+						};
+					}
+				};
 		 	}else{
 		 		var n = [];
 		 		var arr = response.error;
@@ -216,7 +241,8 @@ app
 	//	 	confirm_password:data.user_first_name,
 		 	zipcode:data.user_zipcode,
 		 	user_status:data.user_status,
-		 	status:data.user_status
+		 	status:data.user_status,
+		 	address:' '
 		}
 		console.log(submitData);
 		dataService.putData(submitData,baseUrl + 'warehouse/edit-master-admin')
