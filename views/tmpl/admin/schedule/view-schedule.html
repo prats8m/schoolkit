@@ -54,7 +54,9 @@
 												<li ng-repeat="e in ViewSchedule.schedule_exceptions">
 													{{e.se_schedule_exception.frequency}}
 													{{e.se_schedule_exception.day}} 
-													{{e.se_schedule_exception.date| date:'dd-MMM-yyyy': 'UTC'}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
+													<span ng-hide="e.se_schedule_exception.date == 0">
+													{{e.se_schedule_exception.date * 1000| date:'dd-MMM-yyyy': 'UTC'}} </span>
+													from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
 													</li>
 												</ul>
 											</span> 
