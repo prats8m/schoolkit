@@ -11,7 +11,8 @@ app
                 $scope.showWizard = true;
             }
         }
-        $scope.wizardCompleted = function () { 
+        $scope.checkForWizard();
+        $scope.wizardCompleted = function () {
             $scope.showWizard = true;
         }
         $scope.dashboardInit = function () {
