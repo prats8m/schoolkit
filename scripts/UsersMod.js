@@ -1921,7 +1921,13 @@ app
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
-                    $(".access_div").hide();
+                    if(cred_data.credential_schedule_id == 0){
+                      $(".access_div").show();
+                    }
+                    else{
+                      $(".access_div").hide();
+                    }
+                    
                     $scope.editAccess = {};
                     $scope.editAccess.accesscode_size = cred_data.Access_Code.length;
                     $scope.editAccess.access_code = cred_data.Access_Code;
