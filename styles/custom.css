@@ -107,6 +107,10 @@ span.loader {
     position: relative
 }
 
+.m0auto {
+	margin: 0 auto;
+}
+
 .ta-l {
     text-align: left !important
 }
@@ -742,11 +746,6 @@ a.serplan:hover {
 .wrap-reset uib-accordion .panel .panel-heading h4 {
     border-bottom: 0 none;
     padding-bottom: 0
-}
-
-.page-core {
-    background: url(../images/loginbg.jpg) #3f4e62;
-    background-size: cover
 }
 
 .appWrapper.header-fixed.sidebar-sm #content {
@@ -1902,6 +1901,7 @@ md-card:hover .moreitemsondevice {
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
+	overflow: hidden;
 }
 
 .w-450 {
@@ -3055,6 +3055,39 @@ span.edittxt {
     font-weight: 500;
 }
 
+.submit_wizard {
+	position: relative;
+}
+
+.submit_wizard h2.ng-binding {
+	display: none;
+}
+
+.submit_wizard .modal-header {
+	margin-bottom: 75px;
+}
+
+.submit_wizard .steps-indicator {
+	top: 46px;
+	position: absolute;
+	bottom: auto!important;
+	height: 68px!important;
+	border-bottom: 1px dashed #e4e4e4;
+}
+
+.submit_wizard .steps-indicator li {
+	padding-top: 18px!important;
+}
+
+.submit_wizard .steps-indicator li a {
+	text-transform: capitalize!important;
+    font-weight: 400!important;
+}
+
+
+
+
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1,
     .profilephoto #profilep-2 {
@@ -4191,6 +4224,9 @@ span.edittxt {
         padding: 15px;
         width: 350px;
     }
+	.submit_wizard {
+		width: 96%;
+	}
     .signup form {
         margin-left: 0;
     }
