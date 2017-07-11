@@ -159,7 +159,7 @@
 													<div class="row" ng-controller="ActivebtnCtrl">
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Password <span class="text-danger">*</span></label>
-															<input type="password" minlength="8" maxlength="16" name="password" id="password" ng-model="userData.password" class="form-control" required>
+															<input type="password" name="password" id="password" ng-model="userData.password" class="form-control" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Confirm Password <span class="text-danger">*</span></label>
@@ -372,6 +372,7 @@
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Access Code</label>
 																		<div style="position: relative">
+																			
 																			<input type="text" name="access_code" id="access_code" class="form-control" disabled ng-model="accesscode.access_code">
 																			<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
 																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

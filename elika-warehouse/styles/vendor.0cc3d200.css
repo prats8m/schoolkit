@@ -6157,7 +6157,8 @@ button.close {
     border: 0
 }
 .modal-open {
-    overflow: hidden
+    overflow: hidden;
+	margin-right: 17px;
 }
 .modal {
     position: fixed;

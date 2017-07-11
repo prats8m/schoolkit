@@ -43,7 +43,7 @@ app
         };
 
         $scope.checkIfUserLoggedIn = function () {
-            if ($cookies.get(appConstants.sessionTokenCookieID) && !$cookies.get("isWizardUsed")) {
+            if ($cookies.get(appConstants.sessionTokenCookieID)) {
                 $state.go('app.admin.dashboard');
             }
         };
