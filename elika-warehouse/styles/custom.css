@@ -926,7 +926,7 @@ a.serplan:hover {
 }
 
 .glview md-card md-card-content p span.devicelengths {
-    width: 70%;
+    width: 65%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

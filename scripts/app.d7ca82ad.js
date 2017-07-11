@@ -90,7 +90,7 @@ var app = angular
     $rootScope.logoutSessionExpiredMassageCount = 0;
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-      if (loginToken && $cookies.get("isWizardUsed")) {
+      if ($cookies.get("token") && $cookies.get("isWizardUsed")) {
         $state.go('core.setupWizard');
       }
       event.targetScope.$watch('$viewContentLoaded', function () {

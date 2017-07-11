@@ -36,50 +36,29 @@
 								</div>								
 								<div class="row">
 									<div class="form-group col-sm-12 profiledetail">
-										<p><label>Schedule Name</label> {{ViewSchedule.schedule_name}}</p>
-										<p><label>Status</label> {{ViewSchedule.schedule_status | scheduleFilter}}</p>
-										<!--<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>-->
-										<!-- <p>&nbsp;</p> -->
-										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
-										<p><label>Start Date</label> {{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
-										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label> {{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
-										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label> No Limits</p>
-									 <p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">
+										<p><label>Schedule Name</label>{{ViewSchedule.schedule_name}}</p>
+										<p><label>Status</label>{{ViewSchedule.schedule_status | scheduleFilter}}</p>
+										<p><label>Start Date</label>{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
+										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label>{{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
+										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label>No Limits</p>
+										<p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">
 									 	<label>Facility Name</label>{{facility.facility_name}}
 									 </p>
-									 <p>
-									 	<label>
-									 		Schedule Type
-									 	</label>
-									 	<span>{{ViewSchedule.schedule_category == 'repeat' ? 'Repeatetive' : 'Custom'}}</span>
-									 </p>
-
-									 <p>
-									 	<label><b>Schedules</b>	</label>
-									 </p>
-									 <p ng-repeat="schedule_inp in ViewSchedule.schedule_input">
-									 	<label>{{schedule_inp.day}}</label>
-									 	<span>{{schedule_inp.starttime + ' - '+ schedule_inp.endtime + ' ' + schedule_inp.date}}</span>
-									 </p>
-									 
-
-
-									 <p><label><b>Holidays</b></label>
-									 <span ng-repeat="x in ViewSchedule.holiday_observed">{{x.hs_name}}<span ng-if="!$last">&nbsp;|&nbsp;</span></span></p>
-
-									 <p><label><b>Exceptions</b></label>
-										<span>
-										 <ul class="" style="list-style: none;">
-											<li ng-repeat="e in ViewSchedule.schedule_exceptions">
-												{{e.se_schedule_exception.frequency}}
-												{{e.se_schedule_exception.day}} 
-												{{e.se_schedule_exception.date| date:'dd-MMM-yyyy': 'UTC'}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
-												</li>
-											</ul>
-										</span> 
-										
-											
-									 </p>
+										<p><label>Schedule Type</label><span>{{ViewSchedule.schedule_category == 'repeat' ? 'Repeatetive' : 'Custom'}}</span></p>
+										<p class="mt-20"><label><b>Schedules</b></label></p>
+										<p ng-repeat="schedule_inp in ViewSchedule.schedule_input"><label>{{schedule_inp.day}}</label><span>{{schedule_inp.starttime + ' - '+ schedule_inp.endtime + ' ' + schedule_inp.date}}</span></p>
+										<p class="mt-20"><label><b>Holidays</b></label><span ng-repeat="x in ViewSchedule.holiday_observed">{{x.hs_name}}<span ng-if="!$last">&nbsp;|&nbsp;</span></span></p>
+										<p class="mt-20"><label><b>Exceptions</b></label>
+											<span>
+											 <ul class="" style="list-style: none; padding: 0;">
+												<li ng-repeat="e in ViewSchedule.schedule_exceptions">
+													{{e.se_schedule_exception.frequency}}
+													{{e.se_schedule_exception.day}} 
+													{{e.se_schedule_exception.date| date:'dd-MMM-yyyy': 'UTC'}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
+													</li>
+												</ul>
+											</span> 
+										</p>
 									</div>												
 								</div>							
 							</div>
