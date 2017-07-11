@@ -44,7 +44,7 @@
 										<p><label>Start Date</label> {{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label> {{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label> No Limits</p>
-									 <p ng-repeat="facility in ViewSchedule.facilityList ">
+									 <p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">
 									 	<label>Facility Name</label>{{facility.facility_name}}
 									 </p>
 									 <p>
