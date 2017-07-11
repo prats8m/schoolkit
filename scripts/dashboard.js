@@ -15,7 +15,7 @@ app
         $scope.checkForWizard();
         $scope.wizardCompleted = function () {
             $scope.showWizard = true;
-            $(header).css("z-index", "1");
+            $(header).css("z-index", "9");
         }
         $scope.dashboardInit = function () {
             dashboardSvc.getDashboardData(appConstants.userDashboard + "?facility_id=" + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
