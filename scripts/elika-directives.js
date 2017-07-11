@@ -123,12 +123,9 @@ app
     .directive('elikaHeader', function () {
         return {
             templateUrl: 'views/header.html',
-            scope: {
-                forSetup: '@'
-            },
             restrict: 'E',
             controller: ['$scope', 'dashboardSvc', "appConstants", '$rootScope', 'utilitySvc', '$cookies', '$state', 'dataService', function elikaHeader($scope, dashboardSvc, appConstants, $rootScope, utilitySvc, $cookies, $state, dataService) {
-                console.log($scope.forSetup);
+                //console.log($scope.forSetup);
                 // dashboardSvc.getHeaderFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
                 //     if(succResponse.status){
                 //         $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];

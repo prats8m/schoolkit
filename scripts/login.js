@@ -29,11 +29,8 @@ app
                         }
                         if (succResponse.data.isWizardUsed == 0) {
                             $cookies.put('isWizardUsed', succResponse.data.isWizardUsed);
-                            $state.go('core.setupWizard')
                         }
-                        //  console.log($rootScope.current_user);
-                        else
-                            $state.go('app.admin.dashboard')
+                        $state.go('app.admin.dashboard')
                         //($cookies.get('facilityId').split(",").length == 1) ? $state.go('app.admin.dashboard',{facility_id:$cookies.get('facilityId')}) : $state.go('app.admin.dashboard',{facility_id:0})
                         // $state.go('app.admin.dashboard');
                     }
@@ -48,9 +45,6 @@ app
         $scope.checkIfUserLoggedIn = function () {
             if ($cookies.get(appConstants.sessionTokenCookieID) && !$cookies.get("isWizardUsed")) {
                 $state.go('app.admin.dashboard');
-            }
-            else if($cookies.get(appConstants.sessionTokenCookieID) && $cookies.get("isWizardUsed")) {
-                $state.go('core.setupWizard');
             }
         };
 
