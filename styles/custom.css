@@ -1870,10 +1870,14 @@ md-card:hover .moreitemsondevice {
     width: 275px;
 }
 
-.page-login.core-new,
-.submitwizard {
+.page-login.core-new{
     background: url(../images/loginbg-new.jpg) top right no-repeat;
     background-size: cover;
+	overflow: hidden;
+    overflow-y: auto;
+}
+
+.submitwizard {
 	overflow: hidden;
     overflow-y: auto;
 }
@@ -3088,6 +3092,30 @@ span.edittxt {
     font-weight: 400!important;
 }
 
+.hometabs .md-tab {
+	pointer-events: auto!important;
+}
+
+.wizpopup {
+	position: absolute;
+    z-index: 99999;
+    background: rgba(0,0,0,0.75);
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    top: 0;
+    left: 0;
+}
+
+.pop-out {
+	position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+}
 
 
 
