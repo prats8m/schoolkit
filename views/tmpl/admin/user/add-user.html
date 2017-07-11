@@ -159,7 +159,7 @@
 													<div class="row" ng-controller="ActivebtnCtrl">
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Password <span class="text-danger">*</span></label>
-															<input type="password" minlength="8" maxlength="16" name="password" id="password" ng-model="userData.password" class="form-control" required>
+															<input type="password" name="password" id="password" ng-model="userData.password" class="form-control" required>
 														</div>
 														<div class="form-group col-sm-6 col-md-3">
 															<label for="">Confirm Password <span class="text-danger">*</span></label>
@@ -191,7 +191,6 @@
 																		</span>
 																	</div>
 																</div>
-
 																<div class="form-group col-sm-6 col-md-3">
 																	<label for="">SIP Username <span class="text-danger">*</span></label>
 																	<input type="text" name="sip_username" id="sip_username" ng-model="userData.sip_username" class="form-control" required>
@@ -230,11 +229,11 @@
 															<div class="col-sm-12 col-md-12">
 																<h3 class="custom-font"><strong>Assigned Groups</strong></h3>
 																<ul class="controls">
-																	<li class="addpopup" ng-hide="assingned_usergroups.length">
-																		<a class="btn btn-primary btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add" ng-click="open_credentials()"><i class="fa fa-plus"></i> <span>Skip</span></a>
-																	</li>
 																	<li class="addpopup">
 																		<a ng-click="open()" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Groups</span></a>
+																	</li>
+																	<li class="addpopup" ng-hide="assingned_usergroups.length">
+																		<a class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add" ng-click="open_credentials()">Skip</a>
 																	</li>
 																</ul>
 															</div>
@@ -337,75 +336,24 @@
 																		</div>
 																	</div>
 																</div>
-
-																<!-- <div class="row">
-																	<div class="col-sm-12 col-md-12" ng-init="visibiltyUserGroup=true" ng-hide="visibiltyUserGroup">													
-																		<div class="row">
-																			<div class="col-sm-6 col-md-4 form-group">
-																				<label for="">Starts at</label>
-																				<select type="text" name="" id="" class="form-control">
-																					<option value="">Select Time</option>
-																					<option value="">12:00 AM</option>
-																					<option value="">1:00 AM</option>
-																					<option value="">2:00 AM</option>
-																					<option value="">3:00 AM</option>
-																					<option value="">4:00 AM</option>
-																					<option value="">5:00 AM</option>
-																					<option value="">6:00 AM</option>
-																				</select>
-																			</div>
-																			<div class="col-sm-6 col-md-4 form-group">
-																				<label for="">Ends at</label>
-																				<select type="text" name="" id="" class="form-control">
-																					<option value="">Select Time</option>
-																					<option value="">12:00 AM</option>
-																					<option value="">1:00 AM</option>
-																					<option value="">2:00 AM</option>
-																					<option value="">3:00 AM</option>
-																					<option value="">4:00 AM</option>
-																					<option value="">5:00 AM</option>
-																					<option value="">6:00 AM</option>
-																				</select>
-																			</div>
-																			<div class="col-sm-6 col-md-4 form-group">
-																				<label for="">Choose Day</label>
-																				<select class="form-control" ng-model="exception.day">
-																					<option value="">Select</option>
-																					<option>Sunday</option>
-																					<option>Monday</option>
-																					<option>Tuesday</option>
-																					<option>Wednesday</option>
-																					<option>Thursday</option>
-																					<option>Friday</option>
-																					<option>Saturday</option>
-																				</select>
-																			</div>
-																		</div>
-																	</div>
-																</div> -->
 																<div class="row" >
 																	<div class="col-sm-12 col-md-12" >
-																	<div class="schedule_scroll">
-																		<div id="scheduler_here" class="dhx_cal_container" style='height:300px;' >
-																		<div class="dhx_cal_navline">
-																		<div class="dhx_cal_prev_button" >&nbsp;</div>
-																		<div class="dhx_cal_next_button" >&nbsp;</div>
-																		<div class="dhx_cal_today_button" ></div>
-																		<div class="dhx_cal_date" style="display: none;"></div>
-
+																		<div class="schedule_scroll">
+																			<div id="scheduler_here" class="dhx_cal_container" style='height:300px;' >
+																				<div class="dhx_cal_navline">
+																					<div class="dhx_cal_prev_button" >&nbsp;</div>
+																					<div class="dhx_cal_next_button" >&nbsp;</div>
+																					<div class="dhx_cal_today_button" ></div>
+																					<div class="dhx_cal_date" style="display: none;"></div>
+																				</div>
+																				<div class="dhx_cal_header"></div>
+																				<div class="dhx_cal_data"></div>
+																			</div>
 																		</div>
-																		<div class="dhx_cal_header">
-																		</div>
-																		<div class="dhx_cal_data">
-																		</div>
-																		</div>
-																		</div>
-
 																	</div>
 																</div>
 															</div>
 															<div class="modal-footer">
-																<!-- <button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left" ng-hide="schedule.schedule_id"></i> Close</button> -->
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>	
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)" ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>	
 															</div>
@@ -424,7 +372,7 @@
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Access Code</label>
 																		<div style="position: relative">
-
+																			
 																			<input type="text" name="access_code" id="access_code" class="form-control" disabled ng-model="accesscode.access_code">
 																			<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
 																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

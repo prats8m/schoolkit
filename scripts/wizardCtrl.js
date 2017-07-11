@@ -1,9 +1,35 @@
+app.controller('appCtrl', function ($scope, $cookies) {
+    $scope.checkForWizard = function () {
+        if (!$cookies.get("isWizardUsed")) {
+            $scope.showWizard = true;
+           // $(header).css("z-index", "0");
+        }
+    }
+    $scope.checkForWizard();
+    $scope.wizardCompleted = function () {
+        $scope.showWizard = false;
+       // alert('hi');
+                  // $(header).css("z-index", "9");
+    }
+});
+app
+    .directive('elikaWizard', function () {
+        return {
+            templateUrl: 'views/tmpl/setupWizard.html',
+            restrict: 'E',
+            scope: {
+                callback: '&'
+            },
+            controller: 'wizardCtrl'
+        };
+    });
 app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state, $cookies, $rootScope, $location, toaster, baseURL, appConstants, userSvc, utilitySvc, $uibModal) {
     $scope.checkIfValid = function () {
         if (!$cookies.get("isWizardUsed")) {
-            $state.go('app.admin.dashboard')
+           // $scope.callback();
         }
     }
+
     $scope.checkIfValid();
     $scope.wizard_setup = {
         facility: {
@@ -118,7 +144,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             if (succResponse.status) {
                 toaster.pop(appConstants.success, appConstants.successFullAdd);
                 $cookies.remove("isWizardUsed");
-                $state.go('app.admin.dashboard')
+                $scope.callback();
             }
             else {
                 toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
