@@ -1870,7 +1870,8 @@ md-card:hover .moreitemsondevice {
     width: 275px;
 }
 
-.page-login.core-new {
+.page-login.core-new,
+.submitwizard {
     background: url(../images/loginbg-new.jpg) top right no-repeat;
     background-size: cover;
 	overflow: hidden;
@@ -3059,7 +3060,7 @@ span.edittxt {
 	position: relative;
 	background: #ffffff;
 	width: 80%;
-	margin: 2.5% auto;
+	margin:5% auto;
 }
 
 .submit_wizard h2.ng-binding {
