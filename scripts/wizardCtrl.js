@@ -55,17 +55,20 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             return false;
         if (form.$valid) {
             angular.forEach($scope.wizard_setup.door, function (door, index) {
-                if (door.name == document.getElementById("door_name").value) {
+                if (door.name.toLowerCase() == document.getElementById("door_name").value.toLowerCase()) {
                     $scope.errMsg = "Please Enter a different Name"
                     $scope.errormsg = true;
                     return false;
-                   // break;
+                    // break;
                 }
                 else {
                     $scope.errMsg = "Please Enter a different Name"
                     $scope.errormsg = false;
                 }
             })
+            if ($scope.errormsg) {
+                return false;
+            }
             var doors = {
                 name: document.getElementById("door_name").value,
                 door_description: document.getElementById("door_description").value,
