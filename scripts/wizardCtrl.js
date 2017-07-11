@@ -1,3 +1,16 @@
+app.controller('appCtrl', function ($scope, $cookies) {
+    $scope.checkForWizard = function () {
+        if ($cookies.get("isWizardUsed")) {
+            $scope.showWizard = true;
+           // $(header).css("z-index", "0");
+        }
+    }
+    $scope.checkForWizard();
+    $scope.wizardCompleted = function () {
+        $scope.showWizard = true;
+       // $(header).css("z-index", "9");
+    }
+});
 app
     .directive('elikaWizard', function () {
         return {

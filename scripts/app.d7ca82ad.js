@@ -152,6 +152,7 @@ var app = angular
       .state('app', {
         abstract: true,
         url: '/app',
+        controller:'appCtrl',
         templateUrl: 'views/tmpl/app.html'
       })
 

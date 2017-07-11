@@ -31,6 +31,7 @@ app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cooki
             $cookies.remove("token", { path: '/' });
             $cookies.remove("token", { path: '/elika-warehouse' });
             $location.path('/core/login');
+            scope.$apply();
         });
     }
 
