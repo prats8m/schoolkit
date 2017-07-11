@@ -37,7 +37,7 @@
 							<img class="img-circle" ng-src="{{userData.user_photo}}" onerror="this.onError=null;this.src='images/users/2.jpg';" alt="">
 						</div>
 						<h4 class="mb-0"><strong>{{editUser.first_name}}</strong></h4>
-						<span class="text-muted">{{editUser.user_phone_no}}</span>
+						<span class="text-muted">{{editUser.user_phone_no|tel}}</span>
 						<div class="mt-40">
 							<a ui-sref="app.admin.user.view-user({user_id:editUser.user_id})" class="btn btn-rounded-20 btn-sm bg-slategray dk">View User</a>
 							<a ng-click="deleteUser($event,editUser.user_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User</a>
@@ -96,7 +96,7 @@
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6"  ng-init="schedule.no_expirations=1" >
 																	<label for="">&nbsp;</label><br/>
-																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
+																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;" ng-init="">
 																	<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
 																	</label>											
 																	</div>
@@ -240,7 +240,7 @@
 														</div>
 														<div class="form-group col-sm-6 col-md-2">
 															<label for=""> No Expirations</label><br/>
-															<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
+															<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;" ng-init="editUser.no_expirations = (editUser.expirationdate=='0')?'1':'0'">
 															<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="editUser.no_expirations" ng-true-value="1" ng-false-value="0" ng-disabled="editUser.user_status == 0" ng-checked="editUser.user_status == 0"><i></i>
 															</label>
 														</div>													

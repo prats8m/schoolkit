@@ -37,7 +37,7 @@
 							<img class="img-circle" ng-src="{{userData.user_photo}}" onerror="this.onError=null;this.src='images/users/2.jpg';" alt="">
 						</div>
 						<h4 class="mb-0"><strong>{{userData.user_first_name}} {{userData.user_last_name}}</strong></h4>
-						<span class="text-muted">{{userData.user_phone_no}}</span>
+						<span class="text-muted">{{userData.user_phone_no|tel}}</span>
 						<div class="mt-40">
 							<a ui-sref="app.admin.user.edit-user({user_id: editUser.user_id})" class="btn btn-rounded-20 btn-sm btn-greensea">Edit User</a>
 							<a ng-click="deleteUser($event,editUser.user_id)" class="btn btn-rounded-20 btn-sm bg-danger ml-5">Delete User</a>
@@ -71,13 +71,13 @@
 										<div class="form-group profiledetail">
 											<p><label>Name</label>{{userData.user_first_name}} {{userData.user_last_name}}</p>
 											<p><label>E-mail</label> {{userData.user_email}}</p>
-											<p><label>Phone</label>{{userData.user_phone_no}}</p>
+											<p><label>Phone</label>{{userData.user_phone_no|tel}}</p>
 											<p><label>LCD Name</label>{{userData.user_name_on_lcd}} </p>
 											<p><label>Address</label>{{userData.user_address}}</p>
 											<p><label>Zip Code</label> {{userData.user_zipcode}}</p>
 											<!-- <p><label>Password</label> *********</p> -->
 											<p><label>Status</label>{{userData.user_status}}</p>
-											<p><label>Expiration Date</label>{{userData.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
+											<p ng-if="userData.user_expiration_date!='0'"><label>Expiration Date</label>{{userData.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
 										</div>
 									</div>
 								</div>
@@ -142,7 +142,7 @@
 																			<td>{{phone_code.Detail.phone_code}}</td>
 																			<td>{{phone_code.Door_Name}}</td>
 																			<td>
-																				<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
+																				<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number|tel}}</div>
 																			</td>
 																			<td>
 																				{{phone_code.status==0?'Inactive':'Active'}}

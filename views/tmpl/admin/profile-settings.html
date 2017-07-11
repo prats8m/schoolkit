@@ -37,10 +37,10 @@
 						</div>						
 						<h3 class="mb-10"><strong>{{currentUser.user_first_name+' '+currentUser.user_last_name}}</strong></h3>
 						<span class="text-muted">You're logged in as {{currentUser.user_email}}</span><br/>
-						<span class="text-muted">{{currentUser.user_phone_no}}</span>
+						<span class="text-muted">{{currentUser.user_phone_no | tel}}</span>
 						<div class="form-group profiledetail mt-40">
 							<p><label>Last access time</label>: {{(currentUser.user_last_access_time*1000) | timeago}}</p>
-							<p><label>Member Since</label>: {{getDateTimeFormat(currentUser.user_created_on*1000)}}</p>
+							<p><label>Member Since</label>: {{currentUser.user_created_on*1000 | date:'dd-MM-yyyy'}}</p>
 						</div>
 						<div class="mt-40">
 							<a href="" class="btn btn-rounded-20 btn-sm btn-blue"><i class="fa fa-circle"></i> Active</a>
@@ -70,7 +70,7 @@
 													</div>
 													<div class="form-group overflow">
 														<label for="">New Password</label>
-														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control"
+														<input type="password" minlength="8" maxlength="16" name="" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control"
 														 value="">
 													</div>
 													<div class="form-group overflow">
