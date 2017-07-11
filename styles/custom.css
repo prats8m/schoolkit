@@ -3113,7 +3113,7 @@ span.edittxt {
     cursor: pointer;
 }
 
-.modal-open .appWrapper.header-fixed #header {
+.appWrapper.header-fixed.modal-open #header {
 	right: 17px;
 }
 
