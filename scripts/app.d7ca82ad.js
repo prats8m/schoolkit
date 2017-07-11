@@ -2320,6 +2320,7 @@ app
       scheduler.config.multi_day = true;
       scheduler.config.date_step = "5";
       scheduler.config.show_loading = true;
+      scheduler.config.readonly = false;
       scheduler.init('scheduler_here', new Date(), "week");
       scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
     }
