@@ -8,7 +8,7 @@ app.controller('appCtrl', function ($scope, $cookies) {
     $scope.checkForWizard();
     $scope.wizardCompleted = function () {
         $scope.showWizard = false;
-        alert('hi');
+       // alert('hi');
                   // $(header).css("z-index", "9");
     }
 });
