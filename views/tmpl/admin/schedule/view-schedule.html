@@ -41,7 +41,9 @@
 										<p><label>Start Date</label>{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label>{{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label>No Limits</p>
-										<p ng-repeat="facility in ViewSchedule.facilityList "><label>Facility Name</label>{{facility.facility_name}}</p>
+										<p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">
+									 	<label>Facility Name</label>{{facility.facility_name}}
+									 </p>
 										<p><label>Schedule Type</label><span>{{ViewSchedule.schedule_category == 'repeat' ? 'Repeatetive' : 'Custom'}}</span></p>
 										<p class="mt-20"><label><b>Schedules</b></label></p>
 										<p ng-repeat="schedule_inp in ViewSchedule.schedule_input"><label>{{schedule_inp.day}}</label><span>{{schedule_inp.starttime + ' - '+ schedule_inp.endtime + ' ' + schedule_inp.date}}</span></p>
