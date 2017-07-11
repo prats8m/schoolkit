@@ -2340,14 +2340,7 @@ app
             });
         };
         // $scope.getAccessCodeList();
-        $scope.getCredentials = function(){
-            $scope.getAccessCodeList();
-            $scope.getNfcCodeList();
-            $scope.getPhoneList();
-            $scope.getBleList();
-            $scope.getWiegandList();
-            $scope.getRfidList();
-        }
+        
         //NFC code edit
         $scope.submitEditNfcCode = function (submitData, nfc_edit_form) {
             if (!nfc_edit_form.validate()) {
@@ -2928,6 +2921,16 @@ console.log(submitData);
                 $("a:contains('Edit Account')").click();
             });
         }
+
+        $scope.getCredentials = function(){
+            $scope.getAccessCodeList();
+            $scope.getNfcCodeList();
+            $scope.getPhoneList();
+            $scope.getBleList();
+            $scope.getWiegandList();
+            $scope.getRfidList();
+        }
+        $scope.getCredentials();
     });
 
 'use strict';

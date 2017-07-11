@@ -139,10 +139,12 @@ app
         $scope.getDoorGroupList();
 
         $scope.getDoorsList = function () {
-            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=1000&pageNo=1', appConstants.getMethod, {}, {}, function (succResponse) {
+            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=1000&pageNo=1&facility_id='+utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.doorList = succResponse.data.data;
 
+                }else{
+                    $rootScope.doorList = [];
                 }
             });
         };
