@@ -292,6 +292,13 @@ app
                 if (succResponse.status) {
                     $scope.users = succResponse.data.data;
                     $scope.pageNo = $scope.pageNo + 1;
+                }else {
+                    // if (succResponse.data == null) {
+                    //     $(".f-wm:contains(Load more)").text(appConstants.nomoredataavailable).css("opacity", 0.7);
+                    // }
+                    if (succResponse.msg == 'No_Records_Found') {
+                        $scope.users = [];
+                    }
                 }
             });
         };
@@ -2202,15 +2209,18 @@ app
             }
             else {
                 ex_date = submitData.expirationdate;
-                if (isNaN(submitData.expirationdate)) {
-                    var d = submitData.expirationdate.split("/");
-                    var date = new Date(d[2] + "/" + d[1] + "/" + d[0]);
+                if(submitData.expirationdate){
+                  
+                  if (isNaN(submitData.expirationdate)) {
+                      var d = submitData.expirationdate.split("/");
+                      var date = new Date(d[2] + "/" + d[1] + "/" + d[0]);
+                  }
+                  else {
+                      var date = submitData.expirationdate;
+                  }
+                  submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                  delete submitData["expirationdate"];
                 }
-                else {
-                    var date = submitData.expirationdate;
-                }
-                submitData.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-                delete submitData["expirationdate"];
             }
             $rootScope.masters = [];
             userSvc.submitEditUser(appConstants.useredit, appConstants.putMethod, {}, submitData, function (succResponse) {

@@ -148,7 +148,7 @@ app
                 }
             });
         };
-
+        $scope.getSelectedHolidayScheduleDetail();
         /* $scope.dashboardInit = function () {
             HolidayScheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -276,13 +276,12 @@ app
         $scope.editHolidayScheduleObj = {
             hs_id: items.hs_id,
             hs_name: items.hs_name,
-            hs_start_date: new Date(items.hs_start_date.date),
-            hs_end_date: new Date(items.hs_end_date.date),
+            hs_start_date: new Date(items.hs_start_date*1000),
+            hs_end_date: new Date(items.hs_end_date*1000),
             hs_status: items.hs_status.toString(),
-            hs_expiration: new Date(items.hs_expiration.date),
-
-            hs_starttime: items.hs_start_date.time,
-            hs_endtime: items.hs_end_date.time
+            // hs_expiration: new Date(items.hs_expiration.date),
+            hs_starttime: (new Date(items.hs_start_date*1000).getHours().toString().length == 1 ? "0" : "") + new Date(items.hs_start_date*1000).getHours() + ":" + new Date(items.hs_start_date*1000).getMinutes(),
+            hs_endtime: (new Date(items.hs_end_date*1000).getHours().toString().length == 1 ? "0" : "") + new Date(items.hs_end_date*1000).getHours() + ":" + new Date(items.hs_end_date*1000).getMinutes()
         };
         $scope.mindate = new Date(items.hs_start_date.date);
 

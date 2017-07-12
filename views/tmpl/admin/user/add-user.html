@@ -321,10 +321,10 @@
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6"  ng-init="schedule.no_expirations=1" >
-																	<label for="">&nbsp;</label><br/>
-																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
-																	<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
-																	</label>											
+																		<label for="">&nbsp;</label><br/>
+																		<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
+																			<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
+																		</label>											
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6"></div>
 																	<div class="form-group col-sm-6 col-md-6"  ng-controller="DatepickerDemoCtrl" ng-hide="schedule.no_expirations">
@@ -369,13 +369,14 @@
 															<form ng-submit="saveAccessCode(accesscode, access_code)" name="access_code" id="access_code" ng-validate="validationOptions">
 																<div class="row">
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="accesscode.credential_id">
-																	<div class="form-group col-sm-6 col-md-3">
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">Access Code</label>
-																		<div style="position: relative">
-																			
-																			<input type="text" name="access_code" id="access_code" class="form-control" disabled ng-model="accesscode.access_code">
-																			<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
-																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																		<div class="overflow">
+																			<div class="w-240 pull-left pos-r">
+																				<input type="text" name="access_code" id="access_code" class="form-control" disabled ng-model="accesscode.access_code">
+																				<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
+																			</div>
+																			<div class="btn-numbers pull-left ml-10" role="toolbar" aria-label="Toolbar with button groups">
 																				<div class="btn-group" ng-init="accesscode.accesscode_size=6" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=6>6</label>
@@ -385,7 +386,7 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
+																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id"
 																		 multiple required>
@@ -395,7 +396,7 @@
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3">
+																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="accesscode.status" uib-btn-radio=1>Active</label>
@@ -415,27 +416,27 @@
 																		<thead>
 																			<tr>
 																				<th width="225">Access Code</th>
-																				<th width="775">Assigned Doors</th>
-																				<th width="600">Schedules</th>
-																				<th width="100">Status</th>
-																				<th width="75">Action</th>
+																				<th width="1225">Assigned Doors</th>
+																				<th width="100" class="ta-c">Schedules</th>
+																				<th width="125" class="ta-c">Status</th>
+																				<th width="100" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="accesscode in access_code_list">
 																				<td>{{accesscode.Access_Code}}</td>
-																				<td>{{accesscode.Door_Name}} </td>
-																				<td>
-																					<a ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="schedule.schedule_id == 0">View</a> 
-																					<a ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="schedule.schedule_id == 0">Edit</a> 
+																				<td>{{accesscode.Door_Name}}</td>
+																				<td class="credintialicon ta-c">
+																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'view')" ng-hide="schedule.schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'edit')" ng-hide="schedule.schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
 																				</td>
 																				<td>
-																					<select style="border: 0; width: 100%;">
+																					<select style="border:0; width:100%;">
 																						<option value="" ng-selected="accesscode.status == 1">Active</option>
 																						<option value="" ng-selected="accesscode.status == 0">Inactive</option>
 																					</select>
 																				</td>
-																				<td class="credintialicon">
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(accesscode, 'access_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
@@ -455,17 +456,16 @@
 															<span class="error">{{ phone_error }}</span>															
 															<form ng-submit="submitPhoneCode(phoneCode, phone_form)" name="phone_form" id="phone_code" ng-validate="validationOptions">
 																<div class="row">
-
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="phoneCode.credential_id">
-																	<div class="form-group col-sm-6 col-md-6">
-																		<label for="">Phone Code</label>
-																		<div class="w-450" style="position: relative">
-																			<input type="text" name="access_code" id="phone_code" class="form-control" disabled ng-model="phoneCode.phone_code">
-																			<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
-																		</div>
-
-																			<div class="" role="toolbar" aria-label="Toolbar with button groups">
-																				<div class="" ng-init="phoneCode.phoneCode_size=6" role="group" aria-label="1">
+																	<div class="form-group col-sm-6 col-md-5">
+																		<label for="">Access Code</label>
+																		<div class="overflow">
+																			<div class="w-240 pull-left pos-r">
+																				<input type="text" name="access_code" id="phone_code" class="form-control" disabled ng-model="phoneCode.phone_code">
+																				<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
+																			</div>
+																			<div class="btn-numbers pull-left ml-10" role="toolbar" aria-label="Toolbar with button groups">
+																				<div class="btn-group" ng-init="phoneCode.phoneCode_size=6" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=6>6</label>
 																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=7>7</label>
@@ -473,8 +473,8 @@
 																				</div>
 																			</div>
 																		</div>
-																	
-																	<div class="form-group col-sm-6 col-md-4">
+																	</div>
+																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id"
 																		 multiple required></select>
@@ -483,104 +483,98 @@
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
-</div>
-																	
-																	<div class="row">
-
-																	<div class="form-group col-sm-6 col-md-4">
-																		
-																		<label for="">Phone Number 1</label>
-																		<input type="text" name="phone_numbers1" id="phone_numbers1" class="form-control form-group" ng-model="phoneCode.phone_numbers1" ui-mask="999 999 9999" required>
-
-																		<div class="row">
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time </label><br/>
-																				<select class="form-control" name="st1" ng-model="phoneCode.starttime1" ng-options="time as time for time in timedropdown track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time </label><br/>
-																				<select class="form-control" name="et1" ng-model="phoneCode.endtime1" ng-options="time as time for time in timedropdown track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																			<div class="form-group col-sm-12 col-md-12">
-																				<label for="">Type</label><br/>
-																				<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																					<label class="btn btn-default" ng-model="phoneCode.type1" uib-btn-radio=1>Hunting</label>
-																					<label class="btn btn-default" ng-model="phoneCode.type1" uib-btn-radio=0>Cascading</label>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group col-sm-6 col-md-4">
-																		<label for="">Phone Number 2</label>
-																		<input type="text" name="phone_numbers2" id="phone_numbers2" class="form-control form-group" ng-model="phoneCode.phone_numbers2" ui-mask="999 999 9999" required>
-																		<div class="row">
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time </label><br/>
-																				<select class="form-control" name="st2" ng-model="phoneCode.starttime2" ng-options="time as time for time in timedropdown track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time </label><br/>
-																				<select class="form-control" name="et2" ng-model="phoneCode.endtime2" ng-options="time as time for time in timedropdown track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																		<div class="form-group col-sm-12 col-md-12">
-																			<label for="">Type</label><br/>
-																			<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																				<label class="btn btn-default" ng-model="phoneCode.type2" uib-btn-radio=1>Hunting</label>
-																				<label class="btn btn-default" ng-model="phoneCode.type2" uib-btn-radio=0>Cascading</label>
-																			</div>
-																		</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group col-sm-6 col-md-4">
-																		<div class="form-group col-sm-12 col-md-12">
-																			<label for="">Phone Number 3</label>
-																			<input type="text" name="phone_numbers3" id="phone_numbers3" class="form-control" ng-model="phoneCode.phone_numbers3" ui-mask="999 999 9999" required>
-																		</div>
-																		<div class="row">
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time </label><br/>
-																				<select class="form-control" name="st3" ng-model="phoneCode.starttime3" ng-options="time as time for time in timedropdown track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time </label><br/>
-																				<select class="form-control" name="et3" ng-model="phoneCode.endtime3" ng-options="time as time for time in timedropdown track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																		<div class="form-group col-sm-12 col-md-12">
-																			<label for="">Type</label><br/>
-																			<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																				<label class="btn btn-default" ng-model="phoneCode.type3" uib-btn-radio=1>Hunting</label>
-																				<label class="btn btn-default" ng-model="phoneCode.type3" uib-btn-radio=0>Cascading</label>
-																			</div>
-																		</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="row">
-																	<div class="form-group col-sm-6 col-md-3">
+																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneCode.status" uib-btn-radio=1>Active</label>
 																			<label class="btn btn-default" ng-model="phoneCode.status" uib-btn-radio=0>Inactive</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Phone Number 1</label>
+																		<input type="text" name="phone_numbers1" id="phone_numbers1" class="form-control" ng-model="phoneCode.phone_numbers1" ui-mask="999 999 9999" required>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">Start Time </label><br/>
+																				<select class="form-control" name="st1" ng-model="phoneCode.starttime1" ng-options="time as time for time in timedropdown track by time" required>
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">End Time </label><br/>
+																				<select class="form-control" name="et1" ng-model="phoneCode.endtime1" ng-options="time as time for time in timedropdown track by time" required>
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Type</label><br/>
+																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																			<label class="btn btn-default" ng-model="phoneCode.type1" uib-btn-radio=1>Hunting</label>
+																			<label class="btn btn-default" ng-model="phoneCode.type1" uib-btn-radio=0>Cascading</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Phone Number 2</label>
+																		<input type="text" name="phone_numbers2" id="phone_numbers2" class="form-control" ng-model="phoneCode.phone_numbers2" ui-mask="999 999 9999">
+																	</div>	
+																	<div class="form-group col-sm-6 col-md-4">	
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">Start Time </label><br/>
+																				<select class="form-control" name="st2" ng-model="phoneCode.starttime2" ng-options="time as time for time in timedropdown track by time">
+																				<option value="">Select Time</option>
+																			</select>
+																			</div>
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">End Time </label><br/>
+																				<select class="form-control" name="et2" ng-model="phoneCode.endtime2" ng-options="time as time for time in timedropdown track by time">
+																				<option value="">Select Time</option>
+																			</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Type</label><br/>
+																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																			<label class="btn btn-default" ng-model="phoneCode.type2" uib-btn-radio=1>Hunting</label>
+																			<label class="btn btn-default" ng-model="phoneCode.type2" uib-btn-radio=0>Cascading</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Phone Number 3</label>
+																		<input type="text" name="phone_numbers3" id="phone_numbers3" class="form-control" ng-model="phoneCode.phone_numbers3" ui-mask="999 999 9999">
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">Start Time </label><br/>
+																				<select class="form-control" name="st3" ng-model="phoneCode.starttime3" ng-options="time as time for time in timedropdown track by time">
+																				<option value="">Select Time</option>
+																			</select>
+																			</div>
+																			<div class="col-sm-6 col-md-6 form-group">
+																				<label for="">End Time </label><br/>
+																				<select class="form-control" name="et3" ng-model="phoneCode.endtime3" ng-options="time as time for time in timedropdown track by time">
+																				<option value="">Select Time</option>
+																			</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Type</label><br/>
+																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																			<label class="btn btn-default" ng-model="phoneCode.type3" uib-btn-radio=1>Hunting</label>
+																			<label class="btn btn-default" ng-model="phoneCode.type3" uib-btn-radio=0>Cascading</label>
 																		</div>
 																	</div>
 																</div>
@@ -597,11 +591,11 @@
 																		<thead>
 																			<tr>
 																				<th width="225">Phone Code</th>
-																				<th width="650">Assigned Doors</th>
-																				<th width="500">Schedules</th>
+																				<th width="1000">Assigned Doors</th>
 																				<th width="225">Phone Number</th>
-																				<th width="100">Status</th>
-																				<th width="75">Action</th>
+																				<th width="100" class="ta-c">Schedules</th>
+																				<th width="125" class="ta-c">Status</th>
+																				<th width="100" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
@@ -609,20 +603,19 @@
 																				<td>{{phone_code.Detail.phone_code}}</td>
 																				<td>{{phone_code.Door_Name}}</td>
 																				<td>
-																					<a ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">View</a> 
-																					<a ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Edit</a> 
-
-																				</td>
-																				<td>
 																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
 																				</td>
 																				<td>
-																					<select style="border: 0; width: 100%;">
+																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				</td>
+																				<td>
+																					<select style="border:0; width:100%;">
 																						<option value="" ng-selected="phone_code.status == 1">Active</option>
 																						<option value="" ng-selected="phone_code.status == 0">Inactive</option>
 																					</select>
 																				</td>
-																				<td class="credintialicon">
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(phone_code, 'phone_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
