@@ -15,6 +15,11 @@ app
         activitiesSvc.getFacilityList(appConstants.facilitylist,appConstants.getMethod,{},{},function (succResponse) {
             if(succResponse.status){
                 $scope.facility = succResponse.data.data;
+                if(utilitySvc.getCurrentFacility() != ''){
+                    $rootScope.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                    $rootScope.facility_disable = true;
+                    $scope.eventFetch();
+                }
             }
         });
 	};

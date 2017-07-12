@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('TechnicianCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, technicianSvc) {
+	.controller('TechnicianCtrl', function ($state, $scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, toaster, baseURL, $location, errorHandler, appConstants, technicianSvc) {
 
 		$scope.page = {
 			title: appConstants.technicianUiTitle,
@@ -16,7 +16,7 @@ app
 		$scope.status = '  ';
 		$scope.showConfirm = function (ev, id) {
 			var confirm = $mdDialog.confirm()
-				.title(appConstants.deleteuserconfirmationmessage)
+				.title(appConstants.deletetechnicianconfirmationmessage)
 				.content(appConstants.content)
 				.ok(appConstants.delete)
 				.cancel(appConstants.cancel)
@@ -24,7 +24,7 @@ app
 			$mdDialog.show(confirm).then(function () {
 				$scope.deleteTechnician(id);
 			}, function () {
-				toaster.pop(appConstants.success, appConstants._canceluserfromdelete);
+				toaster.pop(appConstants.success, appConstants._canceltechnicianfromdelete);
 			});
 		};
 
@@ -41,11 +41,39 @@ app
 				$scope.class = appConstants.gridviewClass;
 			$scope.layout = appConstants.gridLayout;
 		};
+		$scope.refreshList = function () {
+			$scope.searchAlphabet = '';
+			$scope.pageNo = 1;
+			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+			$scope.getTechnicians();
+		}
+		$scope.searchAlphabet = '';
+		$scope.pageNo = 1;
+		$scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+		$scope.searchByAlphabet = function (alphabet) {
+			//	$scope.searchText = '';
+			//	$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+			$scope.pageNo = 1;
+			if (alphabet == 'All') {
+				$scope.searchAlphabet = '';
+				$scope.getTechnicians();
+				return;
+			}
+			$scope.searchAlphabet = alphabet;
+			$scope.getTechnicians();
 
+		}
+		$scope.technicianList = [];
 		$scope.getTechnicians = function () {
-			technicianSvc.getTechnicians(appConstants.technicianlist, appConstants.getMethod, {}, {}, function (succResponse) {
+			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + '' + '&limits=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
-					$scope.technicianList = succResponse.data;
+					if ($scope.pageNo <= 1) {
+						$scope.technicianList = []
+					}
+					angular.forEach(succResponse.data.data, function (tech, index) {
+						$scope.technicianList.push(tech);
+					})
+					$scope.pageNo = $scope.pageNo + 1;
 				}
 			});
 		};
@@ -56,7 +84,7 @@ app
 		};
 
 		$rootScope.addTechnicianSubmit = function (data, form) {
-			
+
 			if (!form.validate()) {
 				return false;
 			}
@@ -78,7 +106,7 @@ app
 		$scope.deleteTechnician = function (technician_id) {
 			technicianSvc.deleteTechnician(appConstants.deletetechnician + "?technician_id=" + technician_id, appConstants.deleteMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
-					toaster.pop(appConstants.success, appConstants._successfullyuserdeletedmessage);
+					toaster.pop(appConstants.success, appConstants._successfullytechniciandeletedmessage);
 					$scope.getTechnicians();
 				}
 			});
@@ -109,7 +137,7 @@ app
 					$scope.technician = succResponse.data;
 					$scope.addTechnician = angular.copy($scope.technician);
 					var date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
-                    $scope.addTechnician.expiration_date = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' +  date.getUTCFullYear());
+					$scope.addTechnician.expiration_date = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' + date.getUTCFullYear());
 
 					// $scope.addTechnician.expiration_date = angular.copy(new Date($scope.addTechnician.technician_expiration_date * 1000));
 				}
@@ -151,13 +179,13 @@ app
 			var ex_date = Data.expiration_date;
 
 
-			if(isNaN(Data.expiration_date)){
-            var d = Data.expiration_date.split("/");
-            var date = new Date(d[2]+"/"+d[1]+"/"+d[0]); 
-            }
-            else{
-                var date = Data.expiration_date;
-            }
+			if (isNaN(Data.expiration_date)) {
+				var d = Data.expiration_date.split("/");
+				var date = new Date(d[2] + "/" + d[1] + "/" + d[0]);
+			}
+			else {
+				var date = Data.expiration_date;
+			}
 
 
 			Data.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();

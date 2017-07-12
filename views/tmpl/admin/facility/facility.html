@@ -1,10 +1,11 @@
 <div class="page subadmin">
-	<div class="pageheader backpage">		
+	<div class="pageheader backpage">
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<div class="facility-view elika-facility-name"></div>
 	</div>
-	
-	<div class="pagecontent">	
-		<div class="row">		
+
+	<div class="pagecontent">
+		<div class="row">
 			<div class="dnone card-container col-sm-3 col-md-3">
 				<div class="card">
 					<div class="bg-dashboard">
@@ -12,16 +13,16 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h3 class="custom-font">{{page.title}}</h3>
-									<p>{{page.subtitle}}</p>									
+									<p>{{page.subtitle}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
-			<flip-header></flip-header>			
+			</div>
+			<flip-header></flip-header>
 		</div>
-	
+
 		<div class="row">
 			<div class="col-md-12">
 				<section class="tile box-shadow">
@@ -32,65 +33,63 @@
 								<div>
 									<script type="text/ng-template" id="myModalContent.html">
 										<form name="addFacility" role="form" ng-validate>
-											<div class="modal-header"><h4 class="modal-title custom-font">Add Facility</h4></div>
+											<div class="modal-header">
+												<h4 class="modal-title custom-font">Add Facility</h4>
+											</div>
 											<div class="modal-body mt-5">
 												<span class="error">{{fac_error}}</span>
 												<div class="form-group">
 													<label for="">Facility Name <span class="text-danger">*</span></label>
-													<input type="text" name="facility_name" maxlength="30" ng-model="facility.facility_name" id="" class="form-control" placeholder="" required>
+													<input type="text" name="facility_name" maxlength="30" ng-model="facility.facility_name" id="" class="form-control" placeholder=""
+													 required>
 												</div>
 												<div class="form-group">
 													<label for="">Facility Location <span class="text-danger">*</span></label>
-													<input type="text" name="facility_location" id="" maxlength="30" ng-model="facility.facility_location" class="form-control" placeholder="" required>
+													<input type="text" name="facility_location" id="" maxlength="30" ng-model="facility.facility_location" class="form-control"
+													 placeholder="" required>
 												</div>
 												<div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Time Zone <span class="text-danger">*</span></label>
-														<select class="form-control" ng-model="facility.timezone" ng-options="tz.name as tz.name for tz in usTimeZonesForFacility track by tz.id" required>
+														<select class="form-control" ng-model="facility.timezone" ng-options="tz.name as tz.name for tz in usTimeZonesForFacility track by tz.id"
+														 required>
 															<option value="">Select</option>
 														</select>
 													</div>
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">Zip Code <span class="text-danger">*</span></label>
-														<input ng-keypress="allowNumberOnly($event);" type="text" name="zip_code" id="" maxlength="6" ng-model="facility.zip_code" class="form-control" placeholder="" required>
+														<input ng-keypress="allowNumberOnly($event);" type="text" name="zip_code" id="" maxlength="6" ng-model="facility.zip_code"
+														 class="form-control" placeholder="" required>
 													</div>
 												</div>
 												<div class="form-group" ng-init="facility.status=1" style="display:none;">
 													<label for="">Status <span class="text-danger">*</span></label><br/>
-													<div class="btn-group btnrounded" >
+													<div class="btn-group btnrounded">
 														<label class="btn btn-default" ng-model="facility.status" uib-btn-radio="1">Active</label>
 														<label class="btn btn-default" ng-model="facility.status" uib-btn-radio="0">Inactive</label>
 													</div>
-												</div>	
+												</div>
 
 											</div>
 											<div class="modal-footer">
-												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="cancel_facility"ng-click="$dismiss()"><i class="fa fa-arrow-left"></i> Cancel</button>
-												<button type="submit" ng-click="save(facility,addFacility);"class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>	
+												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="cancel_facility" ng-click="$dismiss()"><i class="fa fa-arrow-left"></i> Cancel</button>
+												<button type="submit" ng-click="save(facility,addFacility);" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>
 											</div>
-										</form>		
+										</form>
 									</script>
 									<a ng-click="addFacility();" class="btn btn-default btn-border btn-rounded btn-ef btn-ef-5 btn-ef-5b add"><i class="fa fa-plus"></i> <span>Add Facility</span></a>
 								</div>
 							</li>
 						</ul>
 					</div>
-					
+
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="row pos-r mb-40">
 								<div class="col-sm-3 col-md-3 filterorder">
-									<!--<label class="control-label" ng-init="filtershow=true">
-										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
-									</label>
-									<label class="control-label" uib-dropdown on-toggle="toggled(open)">
-										<a href uib-dropdown-toggle style="border-right: 0 none; ">Order by</a>
-										<ul class="dropdown-menu with-arrow animated littleFadeInUp">
-											<li><a href="" ng-click="orderByMe('title')">Title</a></li>
-											<li><a href="" ng-click="orderByMe('facility')">Facility</a></li>
-											<li><a href="" ng-click="orderByMe('model')">Model</a></li>
-										</ul>
-									</label>-->
+									<div class="btn-group pull-left">
+										<button class="list-icon" ng-click="refreshList()"><i class="fa fa-refresh"></i></button>
+									</div>
 								</div>
 								<div class="col-sm-6 col-md-6">
 									<div class="row">
@@ -143,15 +142,26 @@
 									</div>
 								</div>-->
 							</div>
-							<div ng-if="result">									
-								<div layout="row" ng-class="statusclass">									
+							<div ng-if="result">
+								<div layout="row" ng-class="statusclass">
 									{{result}}
+								</div>
+							</div>
+							<div class="btn-toolbar" role="toolbar" aria-label="...">
+								<div class="btn-group btn-group-xs" role="group" aria-label="...">
+									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)" ng-class="(x=='All' && searchAlphabet=='')?'md-raised':(searchAlphabet==x?'md-raised':'')">{{x}}</button>
+								</div>
+							</div>
+							<div ng-if="facilities.length <=0 ">
+								<div layout="row " class="error " ng-class="statusclass ">
+									<!--{{status}}-->
+									No Record Found
 								</div>
 							</div>
 							<div ng-class="class" ng-cloak>
 								<div class="glview">
-									<md-content>			
-										<md-card ng-repeat="facility in facilities | limitTo:totalDisplayed | filter:text | filter:title | filter:location | orderBy:myOrderBy track by $index">
+									<md-content>
+										<md-card ng-repeat="facility in facilities track by facility.facility_id">
 											<a ui-sref="app.admin.facility.facility-details"><img ng-src="images/facility/1.jpg" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ facility.facility_name }}</h2>
@@ -162,17 +172,18 @@
 												<a class="btn btn-orange btn-border btn-rounded btnMargin" ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})">View</a>
 												<a class="btn btn-success btn-border btn-rounded btnMargin" ui-sref="app.admin.facility.edit-facility({facility_id:facility.facility_id})">Edit</a>
 												<!-- <a class="btn btn-danger btn-border btn-rounded btnMargin" disabled ng-click="showConfirm($event)">Delete</a> -->
-												<a class="btn btn-danger btn-border btn-rounded btnMargin" ng-click="showConfirm($event,facility.facility_id)" >Delete</a>
+												<a class="btn btn-danger btn-border btn-rounded btnMargin" ng-click="showConfirm($event,facility.facility_id)">Delete</a>
 											</div>
-										</md-card>										
+										</md-card>
 									</md-content>
-									<button ng-if="facilities && facilities.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()"  ng-style="lmbtn">Load more</button>
+									<button ng-if="count>20 && facilities.length<count" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="facilityInit()"
+									 ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
-			</div>			
+			</div>
 		</div>
 	</div>
 </div>

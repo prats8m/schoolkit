@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-  .controller('ForgotPasswordCtrl', function ($scope,$state, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,dataService) {
+  .controller('ForgotPasswordCtrl', function ($scope,$state, $mdDialog, $http, $rootScope, $cookies, arrayPushService,toaster,baseURL,$location,errorHandler,$timeout, DTOptionsBuilder, DTColumnDefBuilder,dataService,forgetpasswordSvc,appConstants) {
     $scope.login = function() {
 		$state.go('core.otp');
     };
@@ -15,18 +15,30 @@ app
 
 
     $scope.submitForgetPassword = function(requestData){
-        requestData.type = 'otp';
+        // requestData.type = 'otp';
     	dataService.postData(requestData,baseURL + 'user/forget-password')
     	.success(function(response){
     		if(response.status){
-    			toaster.pop('success', response.msg.replace(/_/g," "));
-    			$cookies.put('forgetpasswordemail',requestData.email);
-    			$scope.login();
+                if(requestData.type == 'secret_ques'){
+                    toaster.pop('success', response.msg.replace(/_/g," "));
+                    $state.go('core.create-new-password');
+                }else if(requestData.type == 'otp'){
+                    toaster.pop('success', response.msg.replace(/_/g," "));
+                    $cookies.put('forgetpasswordemail',requestData.email);
+                    $scope.login();
+                }
     		}else{
     			dataService.responseError(response);
     		}
     	});
     }
+
+    $scope.questionsInit = function(){
+        forgetpasswordSvc.questionsInit(appConstants.listSecretQuestions,appConstants.getMethod,{},{}, function(succResponse){
+            $scope.questionsList = succResponse.data;
+        });
+    }
+    $scope.questionsInit();
 });
 
 'use strict';
@@ -66,12 +78,7 @@ app
     	});
     }
 
-    $scope.questionsInit = function(){
-        forgetpasswordSvc.questionsInit(appConstants.listSecretQuestions,appConstants.getMethod,{},{}, function(succResponse){
-            $scope.questionsList = succResponse.data;
-        });
-    }
-    $scope.questionsInit();
+    
     
     $scope.submitSecretQuestion = function(requestData){
         requestData.email = $cookies.get('forgetpasswordemail');

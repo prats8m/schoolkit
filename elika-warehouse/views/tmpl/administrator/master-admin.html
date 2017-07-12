@@ -65,52 +65,49 @@
 										<form name="add_master_admin" role="form" ng-validate="validationOptions" ng-submit="submitAddMasterAdmin(master,add_master_admin)">
 										<div class="modal-header"><h4 class="modal-title custom-font">Add Master Admin</h4></div>
 										<div class="modal-body">											
-											<div class="row form-group">
-												<div class="col-sm-6 col-md-6">
+											<div class="row">
+												<div class="col-sm-6 col-md-6 form-group">
 													<label for="">First Name <span class="text-danger">*</span></label>
 													<input type="text" name="first_name" id="" ng-model="master.first_name" class="form-control" placeholder="" required>
 												</div>
-												<div class="col-sm-6 col-md-6">
+												<div class="col-sm-6 col-md-6 form-group">
 													<label for="">Last Name <span class="text-danger">*</span></label>
 													<input type="text" name="last_name" id="" ng-model="master.last_name" class="form-control" placeholder="" required>
 												</div>
 											</div>
 											
-											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">				
+											<div class="row">
+												<div class="col-sm-6 col-md-6 form-group">				
 													<label for="">Email Address <span class="text-danger">*</span></label>
 												<input type="email" name="email" id="" ng-model="master.email" class="form-control" placeholder="" required="">
 												</div>
-												<div class="col-sm-6 col-md-6">				
+												<div class="col-sm-6 col-md-6 form-group">				
 													<label for="">Phone <span class="text-danger">*</span></label>
-												<!-- <input type="text" name="phone" id="" class="form-control" ng-model="master.phone" ui-mask="{{'999 999 9999'}}" required="" ui-mask-placeholder-char="space"> -->
-												<input type="text" name="phone1" id="" ui-mask="{{'999 999 9999'}}" class="form-control" ng-model="master.phone"  required />
+													<input type="text" name="phone1" id="" ui-mask="{{'999 999 9999'}}" class="form-control" ng-model="master.phone"  required />
 												</div>
 											</div>
 											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">				
+												<div class="col-sm-6 col-md-6 form-group">				
 													<label for="">Zip Code <span class="text-danger">*</span></label>
-												<input type="number" name="zipcode" id="" ng-model="master.zipcode" class="form-control" maxlength="6" placeholder="" required="">
+													<input type="number" name="zipcode" id="" ng-model="master.zipcode" class="form-control" maxlength="6" placeholder="" required="">
 												</div>
-												
-											</div>
-											
-											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">
+												<div class="col-sm-6 col-md-6 form-group">
+													<label for="">Admin Password <span class="text-danger">*</span></label>
+													<input type="password" name="admin_password" id="" ng-model="master.admin_password" class="form-control" maxlength="16" placeholder="" required="">
+												</div>
+											</div>											
+											<div class="row">
+												<div class="col-sm-6 col-md-6 form-group">
 													<label for="">Password <span class="text-danger">*</span></label>
 													<input type="password" name="password" id="" ng-model="master.password" class="form-control" maxlength="16" placeholder="" required="">
 												</div>
-												<div class="col-sm-6 col-md-6">
+												<div class="col-sm-6 col-md-6 form-group">
 													<label for="">Confirm Password <span class="text-danger">*</span></label>
 													<input type="password" name="confirm_password" id="" ng-model="master.confirm_password" class="form-control" maxlength="16" placeholder="" required="">
 												</div>
 											</div>		
-											<div class="form-group row">
-												<div class="col-sm-6 col-md-6">
-													<label for="">Admin Password <span class="text-danger">*</span></label>
-													<input type="password" name="admin_password" id="" ng-model="master.admin_password" class="form-control" maxlength="16" placeholder="" required="">
-												</div>
-												<div class="col-sm-6 col-md-6">
+											<div class="row">
+												<div class="col-sm-6 col-md-6 form-group">
 													<label for="">Status <span class="text-danger">*</span></label><br/>
 													<div class="btn-group btnrounded" >
 														<label class="btn btn-default" ng-model="master.user_status" uib-btn-radio="1">Active</label>
@@ -165,7 +162,7 @@
 													</div>
 												</form>		
 											</script>
-											<span class="group-span-filestyle input-group-btn"><label ng-click="open()" class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span>
+											<!-- <span class="group-span-filestyle input-group-btn"><label ng-click="open()" class="btn btn-default "><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp; Upload CSV</label></span> -->
 										</div>
 									</div>
 								</div>
@@ -205,6 +202,7 @@
 											</div>
 										</md-card>										
 									</md-content>
+									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>

@@ -104,6 +104,7 @@ app
                 $modalStack.dismissAll('LoggedOut'); // close all opened modals................
                 toaster.clear();  //clears all toast messages
                 $cookies.remove(appConstants.sessionTokenCookieID);
+                $cookies.remove('current_facility_id');
                 $location.path('/core/login');
             },1500);
         };
@@ -165,6 +166,12 @@ app
         factoryResp.dateToString = function(expiration_date){
             var date = new Date(expiration_date)  
             return date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+        };
+
+        factoryResp.getCurrentFacility = function(){
+            var current_facility_id = $cookies.get('current_facility_id');
+            return (!(current_facility_id == 0 || current_facility_id == '0')) ? current_facility_id : '' ;
+            
         };
 
         return factoryResp;

@@ -6,7 +6,7 @@ app
         };
 
         $scope.pageNo = 1;
-        $scope.schedularLimit = 8;
+        $scope.schedularLimit = appConstants.pageLimit;
         $scope.searchText = appConstants.empty;
         $scope.status = appConstants.empty;
 
@@ -51,33 +51,49 @@ app
         $scope.orderByMe = function (x) {
             $scope.myOrderBy = x;
         };
+        $scope.refreshList = function () {
+            $scope.searchAlphabet = '';
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.getHolidayScheduleList();
+        }
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+        $scope.pageNo = 1;
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.getHolidayScheduleList();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.getHolidayScheduleList();
+        }
         $scope.getHolidayScheduleList = function () {
-            HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist + '?limit=' + $scope.schedularLimit + '&pageNo=' + $scope.pageNo + '&search_val=' + $scope.searchText, appConstants.getMethod, {}, {}, function (succResponse) {
-
+            HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist + '?limit=' + $scope.schedularLimit + '&pageNo=' + $scope.pageNo + '&search_val=' + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    if ($scope.pageNo == 1) {
+                    if ($scope.pageNo == 1)
                         $scope.lstHolidaySchedular = [];
-                        angular.forEach(succResponse.data, function (holidayschedule, index) {
-                            $scope.lstHolidaySchedular.push(holidayschedule);
-                        });
-                    }
-                    else {
-                        //$scope.lstHolidaySchedular = [];
-                        $scope.lstHolidaySchedular = $scope.lstHolidaySchedular.concat(succResponse.data);
-                    }
-                    $scope.manageHolidayScheduleListLoadMoreButton(succResponse.data.length);
+                    angular.forEach(succResponse.data.data, function (holidayschedule, index) {
+                        $scope.lstHolidaySchedular.push(holidayschedule);
+                    });
+                    $scope.pageNo = $scope.pageNo + 1;
+                    $scope.count = succResponse.data.count;
                 } else {
-                    if (succResponse.msg == 'No_Record_Found') {
+                    if (succResponse.msg == 'No_Records_Found') {
                         $scope.lstHolidaySchedular = [];
                         $scope.manageHolidayScheduleListLoadMoreButton(0);
                         $scope.status = succResponse.msg.replace(/_/g, ' ');;
                         $scope.statusclass = appConstants.error;
                     }
                 }
-                //$scope.$apply();
             });
         };
+        $scope.getHolidayScheduleList();
         $scope.getDateTime = function (date, time) {
             if (!date) {
                 debugger;
@@ -105,15 +121,15 @@ app
             $scope.getHolidayScheduleList();
         };
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
             HolidayScheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data;
                 }
                 $scope.getHolidayScheduleList();
             });
-        };
-        $scope.dashboardInit();
+        }; 
+        $scope.dashboardInit(); */
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
@@ -133,7 +149,7 @@ app
             });
         };
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
             HolidayScheduleSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data;
@@ -141,7 +157,7 @@ app
                 $scope.getSelectedHolidayScheduleDetail();
             });
         };
-        $scope.dashboardInit();
+        $scope.dashboardInit(); */
 
     })
 
@@ -199,9 +215,11 @@ app
             $scope.addHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date, $scope.addHolidayScheduleObj.hs_endtime) / 1000;
             $scope.addHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_expiration) / 1000;
             $scope.addHolidayScheduleObj.hs_status = parseInt($scope.addHolidayScheduleObj.hs_status);
+            $scope.addHolidayScheduleObj.hs_type = "holiday";
 
             delete $scope.addHolidayScheduleObj.hs_starttime;
             delete $scope.addHolidayScheduleObj.hs_endtime;
+            delete $scope.addHolidayScheduleObj.hs_expiration;
             $uibModalInstance.close($scope.addHolidayScheduleObj);
         };
         $scope.cancel = function () {
@@ -274,7 +292,7 @@ app
             $scope.editHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_end_date, $scope.editHolidayScheduleObj.hs_endtime) / 1000;
             $scope.editHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_expiration) / 1000;
             $scope.editHolidayScheduleObj.hs_status = parseInt($scope.editHolidayScheduleObj.hs_status);
-
+            $scope.editHolidayScheduleObj.hs_type = "holiday";
             delete $scope.editHolidayScheduleObj.hs_starttime;
             delete $scope.editHolidayScheduleObj.hs_endtime;
             $uibModalInstance.close($scope.editHolidayScheduleObj);

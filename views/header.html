@@ -1,6 +1,6 @@
 <header class="clearfix">
 	<div class="branding">
-		<a class="brand" ui-sref="app.admin.dashboard">
+		<a class="brand" ui-sref="app.admin.dashboard({facility_id:facility_id})">
 			<span><strong>Elika</strong> Access Systems</span>
 		</a>
 	</div>
@@ -13,18 +13,25 @@
 	
 	<div class="topmenu pull-left">
 		<div class="branding">
-			<a class="brand" ui-sref="app.admin.dashboard">
+			<a class="brand" ui-sref="app.admin.dashboard({facility_id:facility_id})">
 				<span><strong>Elika</strong> Access System</span>
 			</a>
 		</div>
 		<ul class="nav-right list-inline headmenu">
-			<li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li>
-			<li class="dropdown" uib-dropdown>
-				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities &nbsp;<fa name="angle-down"></fa></span>
+			<!-- <li><a ui-sref="app.admin.dashboard"><span>Home</span></a></li> -->
+			<!-- <li ng-if="navbar_facilities_count > 1" class="dropdown" uib-dropdown>
+				<span class="dropdown-toggle" uib-dropdown-toggle>{{current_facility}} &nbsp; <fa name="angle-down"></fa> </span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
-					<li><a ui-sref="app.admin.facility.facility">All Facilities</a></li>
-					<li ng-repeat="facility in facilities"><a ui-sref="app.admin.facility.view-facility({facility_id:facility.facility_id})">{{ facility.facility_name }}</a></li>
+								
+					<li ><a ng-click="goFacilityList()">All Facilities</a></li>
+					<li ng-repeat="facility in headerFacilityList"><a ng-click="setCurrentFacility(facility.facility_name,facility.facility_id)">{{ facility.facility_name }}</a></li>
 				</ul>
+			</li>
+			<li ng-if="navbar_facilities_count == 1" class="dropdown" uib-dropdown>
+				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
+			</li> -->
+			<li class="dropdown" uib-dropdown>
+				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
 			</li>
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Devices &nbsp;<fa name="angle-down"></fa></span>
@@ -52,7 +59,7 @@
 			<li class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Schedules &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
-					<li><a ui-sref="app.admin.schedule.schedule-groups">Schedules</a></li>
+					<li><a ui-sref="app.admin.schedule.schedules">Schedules</a></li>
 					<li><a ui-sref="app.admin.schedule.add-schedule">Add Schedule</a></li>
 					<li><a ui-sref="app.admin.schedule.holiday-schedules">Holiday Schedules</a></li>
 				</ul>
@@ -156,7 +163,8 @@
 			</a>
 			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">
 				<li><a ui-sref="app.admin.profile-settings"><i class="fa fa-cog" aria-hidden="true"></i> Profile Settings</a></li>
-				<li><a ui-sref="app.admin.help.faqs"><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li>
+				<!-- <li><a ui-sref="app.admin.help.faqs"><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li> -->
+				<li ><a elika-faqs><i class="fa fa-question" aria-hidden="true"></i> Help and FAQ's</a></li>
 				<li><a logout-btn><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
 				<li class="version">Version 1.0.0</li>
 				<!-- logout-btn -->

@@ -442,8 +442,7 @@ app
       title: 'Monitor Diagnostics & Reported Issues',
     };
   });
-
-
+  
 'use strict';
 /**
  * @ngdoc function

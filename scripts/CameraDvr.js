@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope, $filter, toaster, $sce, $timeout, appConstants, cameraDVRSvc) {
+    .controller('CameraDVRCtrl', function ($scope, $mdDialog, $http, baseURL, $cookies, $rootScope, $filter, toaster, $sce, $timeout, appConstants, cameraDVRSvc,utilitySvc) {
         $scope.page = {
             title: appConstants.cameraDVRtitle
         };
@@ -15,15 +15,17 @@ app
             name: appConstants.cameraGroupButtonTitle
         };
 
+        $scope.recordedFeedsSearchObj = {}
+
         $rootScope.cameraidsToCreateGroup = [];
-        $scope.dashboardInit = function () {
+        /*$scope.dashboardInit = function () {
             cameraDVRSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
                 }
             });
         };
-        $scope.dashboardInit();
+        $scope.dashboardInit();*/
 
         $scope.showcamadd = function () {
             $("#camform").css("display", appConstants.inlineblock);
@@ -43,7 +45,41 @@ app
                 return false;
             }
         };
-
+        $scope.doorlist = [];
+        $scope.getDoorList = function (id) {
+            cameraDVRSvc.getCameraDoorList(appConstants.getCameraDoorList + '?camera_id=' + id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    if (succResponse.data.length > 0) {
+                        var list = {};
+                        list.camera_id = succResponse.data[0].camera_id;
+                        list.doorlist = [];
+                        angular.forEach(succResponse.data, function (doorlist, index) {
+                            var lst = {};
+                            lst.door_id = doorlist.door_id;
+                            lst.door_name = doorlist.door_name;
+                            list.doorlist.push(lst);
+                        });
+                        $scope.doorlist.push(list);
+                    }
+                }
+            })
+        }
+        $scope.getCameraDoor = function (id) {
+            var list = [];
+            angular.forEach($scope.doorlist, function (doorlist, index) {
+                if (doorlist.camera_id == id) {
+                    list = doorlist.doorlist;
+                }
+            })
+            return list;
+        }
+        $scope.openDoor = function (door_id) {
+            cameraDVRSvc.openCameraDoor(appConstants.openDoorCommand + door_id, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    toaster.pop(appConstants.success, "Door Opened Successfully");
+                }
+            });
+        }
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev) {
 
@@ -126,7 +162,7 @@ app
             cameraDVRSvc.cameraInit(appConstants.cameralist + '?facility_id=' + $scope.selectedFacility + '&cameragroup_id=' + $scope.selectedCameraGroup, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.changedClass();
-                    if (succResponse.msg === 'No_Record_Found') {
+                    if (succResponse.msg === 'No_Records_Found') {
                         toaster.pop(appConstants.error, appConstants.nocamerafoundonfilter);
                         $scope.totalNoOfCameras = 0;
                         $scope.cameras = [];
@@ -313,6 +349,10 @@ app
                 if (succResponse.status) {
                     if (succResponse.data) {
                         $scope.facilityList = succResponse.data.data;
+                    }
+                    if(utilitySvc.getCurrentFacility() != ''){
+                        $scope.recordedFeedsSearchObj.facility = parseInt( utilitySvc.getCurrentFacility() );
+                        //$scope.facility_disable = true;
                     }
                     $scope.getCameraGroups(function (lstCameraGroup) {
                         cb($scope.facilityList, lstCameraGroup);

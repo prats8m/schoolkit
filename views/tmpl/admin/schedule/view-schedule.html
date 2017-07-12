@@ -1,6 +1,7 @@
 <div class="page page-profile">
 	<div class="pageheader backpage">		
 		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<div class="facility-view elika-facility-name"></div>
 	</div>
 	
 	<div class="pagecontent">
@@ -30,70 +31,36 @@
 							<div class="profile-settings">
 								<div class="row">
 									<div class="form-group col-md-12 legend">
-										<h4><strong>Configuration Details</strong> <span class="pull-right"><a style="font-size: 14px;" ui-sref="app.admin.schedule.edit-schedule-groups({schedule_id:ViewSchedule.schedule_id})">Edit</a></span></h4>
+										<h4><strong>Configuration Details</strong> <span class="pull-right"><a style="font-size: 14px;" ui-sref="app.admin.schedule.edit-schedule-groups({schedule_id:ViewSchedule.schedule_id, schedule_type:ViewSchedule.schedule_category})">Edit</a></span></h4>
 									</div>
 								</div>								
 								<div class="row">
 									<div class="form-group col-sm-12 profiledetail">
-										<p><label>Schedule Name</label> {{ViewSchedule.schedule_name}}</p>
-										<p><label>Status</label> {{ViewSchedule.schedule_status | scheduleFilter}}</p>
-										<!--<p><label>Expiration Date</label> {{ViewSchedule.schedule_expiration_date | date :  "dd/MM/y"}}</p>-->
-										<!-- <p>&nbsp;</p> -->
-										<!-- <p><label>Schedule Date</label> {{ViewSchedule.schedule_expiration_date}}</p> -->
-										<p><label>Start Date</label> {{ViewSchedule.schedule_start_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
-										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label> {{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
-										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label> No Limits</p>
-									 <p ng-repeat="facility in ViewSchedule.facilityList ">
+										<p><label>Schedule Name</label>{{ViewSchedule.schedule_name}}</p>
+										<p><label>Status</label>{{ViewSchedule.schedule_status | scheduleFilter}}</p>
+										<p><label>Start Date</label>{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
+										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label>{{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
+										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label>No Limits</p>
+										<p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">
 									 	<label>Facility Name</label>{{facility.facility_name}}
 									 </p>
-
-
-									 <p>
-									 	<label><b>Schedules</b>	</label>
-									 </p>
-									 <p>
-									 	<label>Monday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_mon">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-									 <p>
-									 	<label>Tuesday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_tue">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-									  <p>
-									 	<label>Wednesday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_wed">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-									 <p>
-									 	<label>Thursday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_thu">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-									 <p>
-									 	<label>Friday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_fri">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-									 <p>
-									 	<label>Saturday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_sat">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-									 <p>
-									 	<label>Sunday</label>
-									 	<span ng-repeat="x in ViewSchedule.schedule_sun">{{x.starttime + ' - '+ x.endtime}}<span ng-if="!$last">|</span></span>
-									 </p>
-
-
-									 <p><label><b>Holidays</b></label>
-									 <span ng-repeat="x in ViewSchedule.holiday_observed">{{x.hs_name}}<span ng-if="!$last">&nbsp;|&nbsp;</span></span></p>
-
-									 <p><label><b>Exceptions</b></label>
-									 <ul class="" style="list-style: none;">
-										<li ng-repeat="e in ViewSchedule.schedule_exceptions">
-										
-											<span ng-if="e.se_schedule_exception.type=='ONETIME'">{{e.se_schedule_exception.status}} {{e.se_schedule_exception.date| date:'dd-MMM-yyyy': 'UTC'}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}</span> 
-											<span ng-if="e.se_schedule_exception.type=='REPEATING'">(Repeating) {{e.se_schedule_exception.status}} {{e.se_schedule_exception.week}} {{e.se_schedule_exception.day}} from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}</span> 
-											
-										</li>
-									</ul>
-									 </p>
+										<p><label>Schedule Type</label><span>{{ViewSchedule.schedule_category == 'repeat' ? 'Repeatetive' : 'Custom'}}</span></p>
+										<p class="mt-20"><label><b>Schedules</b></label></p>
+										<p ng-repeat="schedule_inp in ViewSchedule.schedule_input"><label>{{schedule_inp.day}}</label><span>{{schedule_inp.starttime + ' - '+ schedule_inp.endtime + ' ' + schedule_inp.date}}</span></p>
+										<p class="mt-20"><label><b>Holidays</b></label><span ng-repeat="x in ViewSchedule.holiday_observed">{{x.hs_name}}<span ng-if="!$last">&nbsp;|&nbsp;</span></span></p>
+										<p class="mt-20"><label><b>Exceptions</b></label>
+											<span>
+											 <ul class="" style="list-style: none; padding: 0;">
+												<li ng-repeat="e in ViewSchedule.schedule_exceptions">
+													{{e.se_schedule_exception.frequency}}
+													{{e.se_schedule_exception.day}} 
+													<span ng-hide="e.se_schedule_exception.date == 0">
+													{{e.se_schedule_exception.date * 1000| date:'dd-MMM-yyyy': 'UTC'}} </span>
+													from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
+													</li>
+												</ul>
+											</span> 
+										</p>
 									</div>												
 								</div>							
 							</div>

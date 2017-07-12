@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc) {
+    .controller('FacilityCtrl', function ($scope, $mdDialog, $rootScope, toaster, $timeout, baseURL, $uibModal, appConstants, facilitiesSvc, dashboardSvc, utilitySvc, $cookies) {
 
         $scope.page = {
             title: appConstants.facilityTitle,
@@ -40,13 +40,11 @@ app
             if (!addFacility.validate()) {
                 return false;
             }
-            //(facility.status == 'Active') ? facility.status = 1 : facility.status = 0
-            // $scope.fileupload = fileUpload.uploadFileToUrl(facility.profile_pic, "")
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
-                    $scope.facilityInit();
+                    $scope.refreshList();
                     $rootScope.fac_error = succResponse.msg.replace(/_/g, " ");
                 }
                 else {
@@ -57,6 +55,10 @@ app
 
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, facilityId) {
+            if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deleteFacilityConfirm)
                 .content(appConstants.empty)
@@ -67,12 +69,12 @@ app
                 facilitiesSvc.deleteFacility(appConstants.facilitydelete + '?facility_id=' + facilityId, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         toaster.pop(appConstants.success, appConstants._successDeleteFacility);
-                        $scope.facilityInit();
+                        $scope.refreshList();
                     }
                     else {
-                        toaster.pop('info', appConstants._messageoncanceltodeletedoors);
-                        $scope.result = succResponse.msg;
-                        $scope.statusclass = appConstants.dangerstatusClass;
+                        toaster.pop('info', succResponse.msg);
+                        //$scope.result = succResponse.msg;
+                        //$scope.statusclass = appConstants.dangerstatusClass;
                     }
                 });
             }, function () {
@@ -95,41 +97,57 @@ app
         };
 
         $rootScope.search_facility = function (e) {
-            if(e)
-            if(e.keyCode!=13){return false;}
-            if(!$scope.search){
+            if (e)
+                if (e.keyCode != 13) { return false; }
+            if (!$scope.search) {
                 $scope.search = appConstants.empty;
             }
-            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search }, {}, function (succResponse) {
+            var current_facility = utilitySvc.getCurrentFacility();
+            facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search, facility_id: current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.facilities = succResponse["data"]["data"] ? succResponse["data"]["data"] : [];
-                }else if (succResponse.msg == "No_Record_Found") {
+                } else if (succResponse.msg == "No_Records_Found") {
                     $scope.facilities = [];
                 }
-                else{
-                    $scope.facilities =  [];
+                else {
+                    $scope.facilities = [];
                 }
             });
         };
-
+        $scope.refreshList = function () {
+            $scope.searchAlphabet = '';
+            $scope.pageNo = 1;
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.facilityInit();
+        }
+        $scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        $scope.pageNo = 1;
+        // $scope.devicePageLimit = 8;
+        $scope.searchAlphabet = '';
+        $scope.searchByAlphabet = function (alphabet) {
+            $scope.searchText = '';
+            $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+            $scope.pageNo = 1;
+            if (alphabet == 'All') {
+                $scope.searchAlphabet = '';
+                $scope.facilityInit();
+                return;
+            }
+            $scope.searchAlphabet = alphabet;
+            $scope.facilityInit();
+        }
         $scope.facilityInit = function () {
-            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 8, page_no: 1 }, {}, function (succResponse) {
+            var current_facility = utilitySvc.getCurrentFacility();
+            facilitiesSvc.facility_Init(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: $scope.pageNo, facility_id: current_facility, albhabet: $scope.searchAlphabet }, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.facilities = [];
+                    if ($scope.pageNo <= 1)
+                        $scope.facilities = [];
                     angular.forEach(succResponse["data"]["data"], function (facility, index) {
                         $scope.facilities.push(facility);
                     });
-                    $scope.totalDisplayed = 8;
-                    if (succResponse.data.count > $scope.totalDisplayed) {
-                        $scope.lmbtn = {
-                            display: appConstants.block
-                        };
-                    } else {
-                        $scope.lmbtn = {
-                            display: appConstants.none
-                        };
-                    }
-                } else if (succResponse.msg == "No_Record_Found") {
+                    $scope.pageNo = $scope.pageNo + 1;
+                    $scope.count = succResponse.data.count
+                } else if (succResponse.msg == "No_Records_Found") {
                     $scope.facilities = [];
                 }
             });
@@ -165,7 +183,7 @@ app
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
-        $scope.dashboardInit = function () {
+        /* $scope.dashboardInit = function () {
             dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.dashboardData = succResponse.data ? succResponse.data : [];
@@ -174,7 +192,7 @@ app
         };
         if (!$rootScope.hasOwnProperty('dashboardData')) {
             $scope.dashboardInit();
-        }
+        }*/
 
     });
 
@@ -205,6 +223,10 @@ app
 
         $scope.result = '';
         $scope.showConfirm = function (ev) {
+             if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deletePrimaryDevice)
                 .content(appConstants.content)
@@ -280,6 +302,7 @@ app
 
         //Code starts to search facility device by text
         $scope.search_facility_device = function (facility) {
+            $scope.searchAlphabet = '';
             facilitiesSvc.getListMasterDevice(appConstants.devicelistmaster, appConstants.getMethod, { limit: 20, pageNo: 1, facilityId: $stateParams.facility_id, searchVal: facility.search_val }, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.devices = succResponse.data.data;
@@ -341,6 +364,10 @@ app
         $scope.imagePath = baseURL + appConstants.imagePath;
 
         $scope.showConfirm = function (ev, facilityId) {
+             if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deleteFacilityConfirm)
                 .content(appConstants.empty)
@@ -354,8 +381,9 @@ app
                         $location.path('/app/admin/facility/facility');
                     }
                     else {
-                        $scope.result = succResponse.msg;
-                        $scope.statusclass = appConstants.dangerstatusClass;
+                        toaster.pop('error',succResponse.msg);
+                        //$scope.result = succResponse.msg;
+                        //$scope.statusclass = appConstants.dangerstatusClass;
                     }
                 });
             }, function () {
@@ -439,6 +467,10 @@ app
         };
 
         $scope.showConfirm = function (ev, facilityId) {
+             if(facilityId == $cookies.get('current_facility_id')){
+                toaster.pop('error',appConstants._switchtootherfacility);
+                return false;
+            }
             var confirm = $mdDialog.confirm()
                 .title(appConstants._deleteFacilityConfirm)
                 .content(appConstants.empty)
