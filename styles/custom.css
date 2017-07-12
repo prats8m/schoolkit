@@ -8,7 +8,6 @@
 }
 
 .schedule_scroll {
-    width: 470px;
     overflow-x: auto;
 }
 
@@ -317,14 +316,14 @@ tr[ng-show="::showSpinners"] {
 }
 
 .credintialicon a {
-    color: #888;
-    width: 20px;
+    color: #505050;
+    width: 24px;
     height: 20px;
     display: inline-block;
     text-decoration: none!important;
     text-align: center;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .credintialicon a:hover {
@@ -4376,9 +4375,6 @@ span.edittxt {
     .listview .glview md-card md-card-content {
         float: left;
         width: 70%!important;
-    }
-    .schedule_scroll {
-        width: 300px;
     }
 	.gridlistbar {
 		display: none!important;
