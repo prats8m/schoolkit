@@ -422,7 +422,7 @@ app
  */
 app
     .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc) {
-
+        $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
         $scope.page = {
             title: $location.path().indexOf('view-facility') >= 0 ? appConstants.facilityDetailsTitle : appConstants.facilityedittitle,
             subtitle: appConstants.facilityDetailsSubTitle
