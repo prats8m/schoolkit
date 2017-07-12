@@ -62,7 +62,7 @@
 										<div class="row mt-10">
 											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Schedule Name <span class="text-danger">*</span></label>
-												<input type="text" ng-model="schedule.schedule_name" name="schedule_name" id="" class="form-control" required>
+												<input type="text" ng-model="schedule.schedule_name" name="schedule_name" id="" class="form-control" maxlength=30 required>
 											</div>
 											<div class="col-sm-6 col-md-6 form-group">
 												<label for="">Facility <span class="text-danger">*</span></label>
@@ -282,6 +282,7 @@
 											</div>
 										</div>
 										<div class="modal-footer">
+											<button class="btn btn-danger btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
 											<button class="btn btn-success btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Save</button>
 											<!--<button type="submit" ng-click="submitHS()" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>-->	
 										</div>											
