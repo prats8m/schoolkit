@@ -68,6 +68,7 @@ app
                 if (succResponse.status) {
                     if (succResponse.msg == "DoorGroup_Assigned") {
                         $("#group_close").click();
+                        $scope.refreshList();
                     }
                     else {
                         $rootScope.errormsg = succResponse.msg.replace(/_/g, " ");

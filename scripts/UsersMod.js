@@ -292,6 +292,13 @@ app
                 if (succResponse.status) {
                     $scope.users = succResponse.data.data;
                     $scope.pageNo = $scope.pageNo + 1;
+                }else {
+                    // if (succResponse.data == null) {
+                    //     $(".f-wm:contains(Load more)").text(appConstants.nomoredataavailable).css("opacity", 0.7);
+                    // }
+                    if (succResponse.msg == 'No_Records_Found') {
+                        $scope.users = [];
+                    }
                 }
             });
         };
