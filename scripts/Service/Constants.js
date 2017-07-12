@@ -454,39 +454,39 @@ app.constant("appConstants", {
     availableTimeZoneOptions: [
         {
             id: 'AKST',
-            name: 'USA (Alaska)'
+            name: 'USA/Alaska'
         },
         {
             id: 'UTC-11',
-            name: 'USA (Samoa)'
+            name: 'USA/Samoa'
         },
         {
             id: 'PST',
-            name: 'USA (Pacific)'
+            name: 'USA/Pacific'
         },
         {
             id: 'EST',
-            name: 'USA (Eastern)'
+            name: 'USA/Eastern'
         },
         {
             id: 'HST',
-            name: 'USA (Hawaii-Aleutian)'
+            name: 'USA/Hawaii-Aleutian'
         },
         {
             id: 'MST',
-            name: 'USA (Mountain)'
+            name: 'USA/Mountain'
         },
         {
             id: 'AST',
-            name: 'USA (Atlantic)'
+            name: 'USA/Atlantic'
         },
         {
             id: 'CST',
-            name: 'USA (Central)'
+            name: 'USA/Central'
         },
         {
             id: 'UTC+10',
-            name: 'USA (Chamorro)'
+            name: 'USA/Chamorro'
         }
     ],
 

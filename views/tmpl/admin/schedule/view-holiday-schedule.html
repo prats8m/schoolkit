@@ -37,13 +37,12 @@
 									</div>
 								</div>
 
-								<div class="row">
+								<div class="row" ng-init="getSelectedHolidayScheduleDetail()">
 									<div class="form-group col-sm-12 profiledetail">
 										<p><label><strong>Schedule Name&nbsp;</strong></label> {{holidayScheduleDetails.hs_name}}</p>
 										<p><label><strong>Status&nbsp;</strong></label> {{holidayScheduleDetails.hs_status==1?'Active':'InActive'}}</p>
 										<p><label><strong>Start Date&nbsp;</strong></label>{{ holidayScheduleDetails.hs_start_date.date+' '+holidayScheduleDetails.hs_start_date.time }}</p>
 										<p><label><strong>End Date&nbsp;</strong></label>{{ holidayScheduleDetails.hs_end_date.date+' '+holidayScheduleDetails.hs_end_date.time}}</p>
-										<p><label><strong>Expire Date&nbsp;</strong></label>{{holidayScheduleDetails.hs_expiration.date}}</p>
 									</div>
 								</div>
 

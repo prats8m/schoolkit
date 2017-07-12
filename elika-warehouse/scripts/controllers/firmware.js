@@ -95,7 +95,7 @@ app
 			  rules: {
 			    firmware: {
 			      maxlength: 15,
-			      regx: /^[0-9.]+$/
+			      regx: /^[0-9a-zA-Z.]+$/
 			    }
 			  },
 			  messages: {
