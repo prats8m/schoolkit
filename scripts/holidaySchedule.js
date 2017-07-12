@@ -94,6 +94,30 @@ app
             });
         };
         $scope.getHolidayScheduleList();
+
+
+        $scope.getEditHolidayScheduleList = function () {
+            $scope.pageNo = 1;
+            HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist + '?limit=' + $scope.schedularLimit + '&pageNo=' + $scope.pageNo + '&search_val=' + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    if ($scope.pageNo == 1)
+                        $scope.lstHolidaySchedular = [];
+                    angular.forEach(succResponse.data.data, function (holidayschedule, index) {
+                        $scope.lstHolidaySchedular.push(holidayschedule);
+                    });
+                    $scope.pageNo = $scope.pageNo + 1;
+                    $scope.count = succResponse.data.count;
+                } else {
+                    if (succResponse.msg == 'No_Records_Found') {
+                        $scope.lstHolidaySchedular = [];
+                        $scope.manageHolidayScheduleListLoadMoreButton(0);
+                        $scope.status = succResponse.msg.replace(/_/g, ' ');;
+                        $scope.statusclass = appConstants.error;
+                    }
+                }
+            });
+        };
+
         $scope.getDateTime = function (date, time) {
             if (!date) {
                 debugger;
@@ -257,7 +281,7 @@ app
                                     break;
                                 }
                             }
-                            $scope.$parent.getHolidayScheduleList();
+                            $scope.$parent.getEditHolidayScheduleList();
                             $scope.temp = true;
                         }
                     })
@@ -280,8 +304,8 @@ app
             hs_end_date: new Date(items.hs_end_date*1000),
             hs_status: items.hs_status.toString(),
             // hs_expiration: new Date(items.hs_expiration.date),
-            hs_starttime: (new Date(items.hs_start_date*1000).getHours().toString().length == 1 ? "0" : "") + new Date(items.hs_start_date*1000).getHours() + ":" + new Date(items.hs_start_date*1000).getMinutes(),
-            hs_endtime: (new Date(items.hs_end_date*1000).getHours().toString().length == 1 ? "0" : "") + new Date(items.hs_end_date*1000).getHours() + ":" + new Date(items.hs_end_date*1000).getMinutes()
+            hs_starttime: (new Date(items.hs_start_date*1000).getHours().toString().length == 1 ? "0" : "") + new Date(items.hs_start_date*1000).getHours() + ":" + (new Date(items.hs_start_date*1000).getMinutes().toString().length == 1 ? "0" : "") + new Date(items.hs_start_date*1000).getMinutes(),
+            hs_endtime: (new Date(items.hs_end_date*1000).getHours().toString().length == 1 ? "0" : "") + new Date(items.hs_end_date*1000).getHours() + ":" + (new Date(items.hs_end_date*1000).getMinutes().toString().length == 1 ? "0" : "") + new Date(items.hs_end_date*1000).getMinutes()
         };
         $scope.mindate = new Date(items.hs_start_date.date);
 
