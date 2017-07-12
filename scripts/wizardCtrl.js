@@ -1,6 +1,6 @@
 app.controller('appCtrl', function ($scope, $cookies) {
     $scope.checkForWizard = function () {
-        if (!$cookies.get("isWizardUsed")) {
+        if ($cookies.get("isWizardUsed")) {
             $scope.showWizard = true;
            // $(header).css("z-index", "0");
         }
@@ -26,7 +26,7 @@ app
 app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state, $cookies, $rootScope, $location, toaster, baseURL, appConstants, userSvc, utilitySvc, $uibModal) {
     $scope.checkIfValid = function () {
         if (!$cookies.get("isWizardUsed")) {
-           // $scope.callback();
+            $scope.callback();
         }
     }
 

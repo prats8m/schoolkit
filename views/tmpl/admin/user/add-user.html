@@ -321,10 +321,10 @@
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6"  ng-init="schedule.no_expirations=1" >
-																	<label for="">&nbsp;</label><br/>
-																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
-																	<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
-																	</label>											
+																		<label for="">&nbsp;</label><br/>
+																		<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
+																			<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
+																		</label>											
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6"></div>
 																	<div class="form-group col-sm-6 col-md-6"  ng-controller="DatepickerDemoCtrl" ng-hide="schedule.no_expirations">
@@ -369,13 +369,14 @@
 															<form ng-submit="saveAccessCode(accesscode, access_code)" name="access_code" id="access_code" ng-validate="validationOptions">
 																<div class="row">
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="accesscode.credential_id">
-																	<div class="form-group col-sm-6 col-md-3">
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">Access Code</label>
-																		<div style="position: relative">
-																			
-																			<input type="text" name="access_code" id="access_code" class="form-control" disabled ng-model="accesscode.access_code">
-																			<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
-																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																		<div class="overflow">
+																			<div class="w-240 pull-left pos-r">
+																				<input type="text" name="access_code" id="access_code" class="form-control" disabled ng-model="accesscode.access_code">
+																				<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
+																			</div>
+																			<div class="btn-numbers pull-left ml-10" role="toolbar" aria-label="Toolbar with button groups">
 																				<div class="btn-group" ng-init="accesscode.accesscode_size=6" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=6>6</label>
@@ -385,7 +386,7 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
+																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id"
 																		 multiple required>
@@ -395,7 +396,7 @@
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3">
+																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="accesscode.status" uib-btn-radio=1>Active</label>
