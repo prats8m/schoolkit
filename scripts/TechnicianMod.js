@@ -64,16 +64,30 @@ app
 
 		}
 		$scope.technicianList = [];
+
+		$scope.searchFunction = function(e){
+			if (e)
+                if (e.keyCode != 13) { return false; }
+            if (!$scope.searchText) {
+                $scope.searchText = appConstants.empty;
+            }
+            $scope.pageNo = 1;
+            $scope.getTechnicians();
+		}
+
 		$scope.getTechnicians = function () {
-			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + '' + '&limits=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+			if($scope.searchText == undefined){$scope.searchText = '';}
+			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + $scope.searchText + '&limits=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo <= 1) {
-						$scope.technicianList = []
+						$scope.technicianList = [];
 					}
 					angular.forEach(succResponse.data.data, function (tech, index) {
 						$scope.technicianList.push(tech);
 					})
 					$scope.pageNo = $scope.pageNo + 1;
+				}else{
+					$scope.technicianList = [];
 				}
 			});
 		};

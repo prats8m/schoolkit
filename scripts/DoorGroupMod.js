@@ -85,7 +85,7 @@ app
             }
             doorsSvc.createDoorGrp(appConstants.doorgroupadd, appConstants.postMethod, {}, doorGrp, function (succResponse) {
                 if (succResponse.status) {
-                    $scope.getDoorGroupList();
+                    $scope.refreshList();
                     toaster.pop(appConstants.success, appConstants._successfulldoorsadded);
                     $timeout(function () {
                         $("#close").click();
@@ -115,7 +115,13 @@ app
             $scope.pageNo = 1;
             $scope.getDoorGroupList();
         }
-        $scope.searchFunction = function () {
+        $scope.searchFunction = function (e) {
+            if (e)
+                if (e.keyCode != 13) { return false; }
+            if (!$scope.searchText) {
+                $scope.searchText = appConstants.empty;
+            }
+
             $scope.searchAlphabet = '';
             $scope.pageNo = 1;
             $scope.getDoorGroupList();
