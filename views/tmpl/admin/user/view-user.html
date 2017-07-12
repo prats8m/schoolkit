@@ -70,12 +70,11 @@
 										</div>
 										<div class="form-group profiledetail">
 											<p><label>Name</label>{{userData.user_first_name}} {{userData.user_last_name}}</p>
-											<p><label>E-mail</label> {{userData.user_email}}</p>
+											<p><label>E-mail</label>{{userData.user_email}}</p>
 											<p><label>Phone</label>{{userData.user_phone_no|tel}}</p>
 											<p><label>LCD Name</label>{{userData.user_name_on_lcd}} </p>
 											<p><label>Address</label>{{userData.user_address}}</p>
 											<p><label>Zip Code</label>{{userData.user_zipcode}}</p>
-											<!-- <p><label>Password</label> *********</p> -->
 											<p><label>Status</label>{{userData.user_status}}</p>
 											<p ng-if="userData.user_expiration_date!='0'"><label>Expiration Date</label>{{userData.user_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</p>
 										</div>
@@ -92,30 +91,25 @@
 													<uib-accordion-heading>Access Code <i class="pull-right fa" ng-class="{'fa-minus': status.isFirstOpen, 'fa-plus': !status.isFirstOpen}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
 														<span class="error">{{AccessCodeMessage}}</span>
-														<div class="row">
-														</div>
-														<div class="mt-40">
-															<div class="tile-body p-0 table-responsive">
-																<table class="table table-bordered">
-																	<thead>
-																		<tr>
-																			<th>Access Code</th>
-																			<th width="475">Assigned Doors</th>
-																			<th>Status</th>
-																		</tr>
-																	</thead>
-																	<tbody style="font-size:14px;">
-																		<tr ng-repeat="accesscode in access_code_list">
-																			<td>{{accesscode.Access_Code}}</td>
-																			<td>{{accesscode.Door_Name}} </td>
-																			<td>
-																				{{accesscode.status==0?'Inactive':'Active'}}
-																			</td>
-
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
+														<div class="tile-body p-0 table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th width="200">Access Code</th>
+																		<th width="600">Assigned Doors</th>
+																		<th width="100" class="ta-c">Schedules</th>
+																		<th width="100" class="ta-c">Status</th>
+																	</tr>
+																</thead>
+																<tbody style="font-size:14px;">
+																	<tr ng-repeat="accesscode in access_code_list">
+																		<td>{{accesscode.Access_Code}}</td>
+																		<td>{{accesscode.Door_Name}}</td>
+																		<td class="credintialicon ta-c"></td>
+																		<td class="ta-c">{{accesscode.status==0?'Inactive':'Active'}}</td>
+																	</tr>
+																</tbody>
+															</table>
 														</div>
 													</div>
 												</uib-accordion-group>
@@ -123,161 +117,144 @@
 												<uib-accordion-group is-open="status.open1" class="panel-default">
 													<uib-accordion-heading>Phone Code <i class="pull-right fa" ng-class="{'fa-minus': status.open1, 'fa-plus': !status.open1}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
-														<div class="row">
-
-														</div>
-														<div class="mt-40">
-															<div class="tile-body p-0 table-responsive">
-																<table class="table table-bordered">
-																	<thead>
-																		<tr>
-																			<th>Phone Code</th>
-																			<th width="325">Assigned Doors</th>
-																			<th>Phone Number</th>
-																			<th>Status</th>
-																		</tr>
-																	</thead>
-																	<tbody style="font-size:14px;">
-																		<tr ng-repeat="phone_code in phone_code_list">
-																			<td>{{phone_code.Detail.phone_code}}</td>
-																			<td>{{phone_code.Door_Name}}</td>
-																			<td>
-																				<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number|tel}}</div>
-																			</td>
-																			<td>
-																				{{phone_code.status==0?'Inactive':'Active'}}
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-												</uib-accordion-group>
-												<!--
-												<uib-accordion-group is-open="status.open2" class="panel-default">
-													<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
-													<div class="modal-body p-0">
-														<div class="row">
-														</div>
-														<div class="mt-40">
-															<div class="tile-body p-0 table-responsive">
-																<table class="table table-bordered">
-																	<thead>
-																		<tr>
-																			<th>Card Number</th>
-																			<th>Facility Code</th>
-																			<th width="325">Assigned Doors</th>
-																			<th>Status</th>
-																		</tr>
-																	</thead>
-																	<tbody style="font-size:14px;">
-																		<tr ng-repeat="rfid_code in rfid_code_list">
-																			<td>{{rfid_code.Detail.rfid_card_no}}</td>
-																			<td>{{rfid_code.Detail.rfid_facility_id}}</td>
-																			<td>{{rfid_code.Door_Name}} </td>
-																			<td>
-																				{{rfid_code.status==0?'Inactive':'Active'}}
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-												</uib-accordion-group>
-												-->
-												<uib-accordion-group is-open="status.open3" class="panel-default">
-													<uib-accordion-heading>Wiegand Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></uib-accordion-heading>
-													<div class="modal-body p-0">
-														<span class="error">{{ bleerror }}</span>
-													</div>
-													<div class="mt-40">
 														<div class="tile-body p-0 table-responsive">
 															<table class="table table-bordered">
 																<thead>
 																	<tr>
-																		<th>Card Number</th>
-																		<th>Facility Code</th>
+																		<th width="200">Phone Code</th>
 																		<th width="400">Assigned Doors</th>
-																		<th>Status</th>
+																		<th width="200">Phone Number</th>
+																		<th width="100" class="ta-c">Schedules</th>
+																		<th width="100" class="ta-c">Status</th>
 																	</tr>
 																</thead>
 																<tbody style="font-size:14px;">
-																	<tr ng-repeat="wiegand_code in wiegand_code_list">
-																		<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
-																		<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
-																		<td>{{wiegand_code.Door_Name}} </td>
+																	<tr ng-repeat="phone_code in phone_code_list">
+																		<td>{{phone_code.Detail.phone_code}}</td>
+																		<td>{{phone_code.Door_Name}}</td>
 																		<td>
-																			{{wiegand_code.status==0?'Inactive':'Active'}}
+																			<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number|tel}}</div>
 																		</td>
+																		<td class="credintialicon ta-c"></td>
+																		<td class="ta-c">{{phone_code.status==0?'Inactive':'Active'}}</td>
 																	</tr>
 																</tbody>
 															</table>
 														</div>
 													</div>
 												</uib-accordion-group>
-												<!---
-												<uib-accordion-group is-open="status.open4" class="panel-default">
-													<uib-accordion-heading>NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></uib-accordion-heading>
+												
+												<uib-accordion-group is-open="status.open2" class="panel-default">
+													<uib-accordion-heading>RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></uib-accordion-heading>
 													<div class="modal-body p-0">
-														<div class="row">
-															<span class="error">{{NfcCodeMessage}}</span>
-														</div>
-														<div class="mt-40">
-															<div class="tile-body p-0 table-responsive">
-																<table class="table table-bordered">
-																	<thead>
-																		<tr>
-																			<th>NFC Code</th>
-																			<th width="425">Assigned Doors</th>
-																			<th>Status</th>
-																		</tr>
-																	</thead>
-																	<tbody style="font-size:14px;">
-																		<tr ng-repeat="nfccode in nfc_code_list">
-																			<td>{{nfccode.Detail.nfc_code}}</td>
-																			<td>{{nfccode.Door_Name}}</td>
-																			<td>
-																				{{nfccode.status==0?'Inactive':'Active'}}
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
+														<div class="tile-body p-0 table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th width="200">Card Number</th>
+																		<th width="450">Assigned Doors</th>
+																		<th width="150">Facility Code</th>
+																		<th width="100" class="ta-c">Schedules</th>
+																		<th width="100" class="ta-c">Status</th>
+																	</tr>
+																</thead>
+																<tbody style="font-size:14px;">
+																	<tr ng-repeat="rfid_code in rfid_code_list">
+																		<td>{{rfid_code.Detail.rfid_card_no}}</td>
+																		<td>{{rfid_code.Door_Name}} </td>
+																		<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																		<td class="credintialicon ta-c"></td>
+																		<td class="ta-c">{{rfid_code.status==0?'Inactive':'Active'}}</td>
+																	</tr>
+																</tbody>
+															</table>
 														</div>
 													</div>
 												</uib-accordion-group>
-												-->
+												
+												<uib-accordion-group is-open="status.open3" class="panel-default">
+													<uib-accordion-heading>Wiegand Code <i class="pull-right fa" ng-class="{'fa-minus': status.open3, 'fa-plus': !status.open3}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">
+														<span class="error">{{ bleerror }}</span>
+														<div class="tile-body p-0 table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th width="200">Card Number</th>
+																		<th width="450">Assigned Doors</th>
+																		<th width="150">Facility Code</th>
+																		<th width="100" class="ta-c">Schedules</th>
+																		<th width="100" class="ta-c">Status</th>
+																	</tr>
+																</thead>
+																<tbody style="font-size:14px;">
+																	<tr ng-repeat="wiegand_code in wiegand_code_list">
+																		<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
+																		<td>{{wiegand_code.Door_Name}}</td>
+																		<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
+																		<td class="credintialicon ta-c"></td>
+																		<td class="ta-c">{{wiegand_code.status==0?'Inactive':'Active'}}</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</uib-accordion-group>
+												
+												<uib-accordion-group is-open="status.open4" class="panel-default">
+													<uib-accordion-heading>NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></uib-accordion-heading>
+													<div class="modal-body p-0">														
+														<span class="error">{{NfcCodeMessage}}</span>
+														<div class="tile-body p-0 table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th width="200">NFC Code</th>
+																		<th width="450">Assigned Doors</th>
+																		<th width="150">Facility Code</th>
+																		<th width="100" class="ta-c">Schedules</th>
+																		<th width="100" class="ta-c">Status</th>
+																	</tr>
+																</thead>
+																<tbody style="font-size:14px;">
+																	<tr ng-repeat="nfccode in nfc_code_list">
+																		<td>{{nfccode.Detail.nfc_code}}</td>
+																		<td>{{nfccode.Door_Name}}</td>
+																		<td></td>
+																		<td class="credintialicon ta-c"></td>
+																		<td class="ta-c">{{nfccode.status==0?'Inactive':'Active'}}</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</uib-accordion-group>
+												
 												<uib-accordion-group is-open="status.open5" class="panel-default">
 													<uib-accordion-heading>BLE Code <i class="pull-right fa" ng-class="{'fa-minus': status.open5, 'fa-plus': !status.open5}"></i></uib-accordion-heading>
-													<div class="modal-body p-0">
-														<div class="row">
-															<span class="error">{{ bleerror }}</span>
-														</div>
-														<div class="mt-40">
-															<div class="tile-body p-0 table-responsive">
-																<table class="table table-bordered">
-																	<thead>
-																		<tr>
-																			<th>Username</th>
-																			<th>Password</th>
-																			<th width="325">Assigned Doors</th>
-																			<th>Status</th>
-																		</tr>
-																	</thead>
-																	<tbody style="font-size:14px;">
-																		<tr ng-repeat="blecode in ble_code_list">
-																			<td>{{blecode.Detail.ble_username}}</td>
-																			<td>{{blecode.Detail.ble_password}}</td>
-																			<td>{{blecode.Door_Name}}</td>
-																			<td>
-																				{{blecode.status==0?'Inactive':'Active'}}
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
+													<div class="modal-body p-0">														
+														<span class="error">{{ bleerror }}</span>														
+														<div class="tile-body p-0 table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th width="200">Username</th>
+																		<th width="200">Password</th>
+																		<th width="400">Assigned Doors</th>
+																		<th width="100" class="ta-c">Schedules</th>
+																		<th width="100" class="ta-c">Status</th>
+																	</tr>
+																</thead>
+																<tbody style="font-size:14px;">
+																	<tr ng-repeat="blecode in ble_code_list">
+																		<td>{{blecode.Detail.ble_username}}</td>
+																		<td>{{blecode.Detail.ble_password}}</td>
+																		<td>{{blecode.Door_Name}}</td>
+																		<td class="credintialicon ta-c"></td>
+																		<td class="ta-c">{{blecode.status==0?'Inactive':'Active'}}</td>
+																	</tr>
+																</tbody>
+															</table>
 														</div>
 													</div>
 												</uib-accordion-group>
