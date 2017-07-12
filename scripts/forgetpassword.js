@@ -21,6 +21,7 @@ app
     		if(response.status){
                 if(requestData.type == 'secret_ques'){
                     toaster.pop('success', response.msg.replace(/_/g," "));
+                    $cookies.put('forgetpasswordemail',requestData.email);
                     $state.go('core.create-new-password');
                 }else if(requestData.type == 'otp'){
                     toaster.pop('success', response.msg.replace(/_/g," "));
