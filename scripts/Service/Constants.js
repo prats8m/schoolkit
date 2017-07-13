@@ -431,6 +431,7 @@ app.constant("appConstants", {
     _cancelholidayscheduledeletion: 'You decided to keep holiday schedule',
     _successholidayscheduleadded: 'Holiday Schedule added successfully',
     _successholidayscheduleedited: 'Holiday Schedule edited successfully',
+    _errorholidayvalidatitime: "Endtime can't be less than starttime",
 
     //........................................................................................
 

@@ -6080,6 +6080,10 @@ ol.list-type {
     max-width: 100%;
     vertical-align: middle;
 	box-shadow: 0 2px 5px rgba(0,0,0,0.25); }
+	.thumb.thumb-xxll img {
+		height: 200px;
+    width: 200px;
+	}
   .thumb.thumb-sm {
     width: 40px; }
   .thumb.thumb-md {
@@ -6092,8 +6096,10 @@ ol.list-type {
     width: 160px; }
   .thumb.thumb-xxll {
 	width: 200px;
-	border-radius: 50%;
-	margin-bottom: 10px; }
+    border-radius: 50%;
+    margin-bottom: 10px;
+    height: 200px;
+    overflow: hidden; }
   .thumb .thumb-header,
   .thumb .thumb-body {
     padding: 5px;
