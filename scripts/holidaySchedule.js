@@ -215,7 +215,7 @@ app
     })
 
 
-    .controller('AddHolidaySchedularModalInstanceCtrl', function ($scope, $uibModalInstance, items, appConstants, utilitySvc) {
+    .controller('AddHolidaySchedularModalInstanceCtrl', function ($scope, $uibModalInstance, items, appConstants, utilitySvc, toaster) {
         $scope.starttimedropdown = appConstants.timedropdown;
         $scope.endtimedropdown = appConstants.timedropdown;
         //$scope.addHolidayScheduleObj = items;  // we are returning items as null
@@ -235,12 +235,19 @@ app
             if (!form.validate()) {
                 return false;
             }
+            var start_date = $scope.addHolidayScheduleObj.hs_start_date;
+            var end_date = $scope.addHolidayScheduleObj.hs_end_date;
             $scope.addHolidayScheduleObj.hs_start_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date, $scope.addHolidayScheduleObj.hs_starttime) / 1000;
             $scope.addHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date, $scope.addHolidayScheduleObj.hs_endtime) / 1000;
             $scope.addHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_expiration) / 1000;
             $scope.addHolidayScheduleObj.hs_status = parseInt($scope.addHolidayScheduleObj.hs_status);
             $scope.addHolidayScheduleObj.hs_type = "holiday";
-
+            if($scope.addHolidayScheduleObj.hs_end_date < $scope.addHolidayScheduleObj.hs_start_date){
+                $scope.addHolidayScheduleObj.hs_start_date = start_date;
+                $scope.addHolidayScheduleObj.hs_end_date = end_date;
+                toaster.pop(appConstants.error, appConstants._errorholidayvalidatitime);
+                return false;
+            }
             delete $scope.addHolidayScheduleObj.hs_starttime;
             delete $scope.addHolidayScheduleObj.hs_endtime;
             delete $scope.addHolidayScheduleObj.hs_expiration;
@@ -293,7 +300,7 @@ app
     })
 
 
-    .controller('editHolidaySchedularModalInstanceCtrl', function ($scope, $uibModalInstance, items, appConstants, utilitySvc) {
+    .controller('editHolidaySchedularModalInstanceCtrl', function ($scope, $uibModalInstance, items, appConstants, utilitySvc, toaster) {
         $scope.editstarttimedropdown = appConstants.timedropdown;
         $scope.editendtimedropdown = appConstants.timedropdown;
 
@@ -310,12 +317,21 @@ app
         $scope.mindate = new Date(items.hs_start_date.date);
 
         $scope.ok = function () {
-
+            var start_date = $scope.editHolidayScheduleObj.hs_start_date;
+            var end_date = $scope.editHolidayScheduleObj.hs_end_date;
+            var status = $scope.editHolidayScheduleObj.hs_status;
             $scope.editHolidayScheduleObj.hs_start_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_start_date, $scope.editHolidayScheduleObj.hs_starttime) / 1000;
             $scope.editHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_end_date, $scope.editHolidayScheduleObj.hs_endtime) / 1000;
             $scope.editHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.editHolidayScheduleObj.hs_expiration) / 1000;
             $scope.editHolidayScheduleObj.hs_status = parseInt($scope.editHolidayScheduleObj.hs_status);
             $scope.editHolidayScheduleObj.hs_type = "holiday";
+            if($scope.editHolidayScheduleObj.hs_end_date < $scope.editHolidayScheduleObj.hs_start_date){
+                $scope.editHolidayScheduleObj.hs_start_date = start_date;
+                $scope.editHolidayScheduleObj.hs_end_date = end_date;
+                $scope.editHolidayScheduleObj.hs_status = status;
+                toaster.pop(appConstants.error, appConstants._errorholidayvalidatitime);
+                return false;
+            }
             delete $scope.editHolidayScheduleObj.hs_starttime;
             delete $scope.editHolidayScheduleObj.hs_endtime;
             $uibModalInstance.close($scope.editHolidayScheduleObj);
