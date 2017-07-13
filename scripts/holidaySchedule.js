@@ -237,8 +237,8 @@ app
             }
             var start_date = $scope.addHolidayScheduleObj.hs_start_date;
             var end_date = $scope.addHolidayScheduleObj.hs_end_date;
-            $scope.addHolidayScheduleObj.hs_start_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date, $scope.addHolidayScheduleObj.hs_starttime) / 1000;
-            $scope.addHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date, $scope.addHolidayScheduleObj.hs_endtime) / 1000;
+            $scope.addHolidayScheduleObj.hs_start_date = parseInt(utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date, $scope.addHolidayScheduleObj.hs_starttime) / 1000);
+            $scope.addHolidayScheduleObj.hs_end_date = parseInt(utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date, $scope.addHolidayScheduleObj.hs_endtime) / 1000);
             $scope.addHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_expiration) / 1000;
             $scope.addHolidayScheduleObj.hs_status = parseInt($scope.addHolidayScheduleObj.hs_status);
             $scope.addHolidayScheduleObj.hs_type = "holiday";

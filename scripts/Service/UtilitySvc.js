@@ -112,7 +112,7 @@ app
         factoryResp.convertDateToMilliecondTimeStamp = function(dateObj,timeObj){
             var convertableString='';
             if(dateObj){
-                convertableString=dateObj.getFullYear()+"-"+(dateObj.getMonth()+1)+"-"+dateObj.getDate();
+                convertableString=dateObj.getFullYear()+"/"+(dateObj.getMonth()+1)+"/"+dateObj.getDate();
             }
             if(timeObj){
                 convertableString+=' '+timeObj;

@@ -2487,7 +2487,7 @@ app
       }
       if (form_type == 'view') {
 
-        $(".modal-footer").css("display", "none");
+        $(".modal-footer .btn-success").css("display", "none");
       }
     };
 
@@ -2512,7 +2512,7 @@ app
           $(".disable_modal").css("pointer-events","none");
         });
         $timeout(function () {
-          $(".modal-footer").hide();
+          $(".modal-footer .btn-success").hide();
         });
       }
       
