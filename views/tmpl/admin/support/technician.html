@@ -189,7 +189,12 @@
 									<button md-button style="min-width:15px" ng-repeat="x in alphabateList" ng-click="searchByAlphabet(x)" ng-class="(x=='All' && searchAlphabet=='')?'md-raised':(searchAlphabet==x?'md-raised':'')">{{x}}</button>
 								</div>
 							</div>
-
+							<div ng-if="technicianList.length == 0">
+								<div layout="row" class="error" ng-class="statusclass">
+									<!--{{status}}-->
+									No Record Found
+								</div>
+							</div>
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>
