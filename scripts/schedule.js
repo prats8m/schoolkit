@@ -557,6 +557,7 @@ app
 		$scope.searchAlphabet = '';
 		$scope.searchByAlphabet = function (alphabet) {
 			$scope.searchText = '';
+			$scope.schedules = [];
 			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
 			$scope.pageNo = 1;
 			if (alphabet == 'All') {

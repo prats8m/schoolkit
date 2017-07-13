@@ -157,6 +157,13 @@ app
             startTime: new Date(),
             endTime: new Date()
         };
+        $scope.setMotionDetectionSettings = function () {
+            var data = new commonSetAPIDataObject();
+            data.module = appConstants.deviceSettings.motiondetection;
+            data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
+            data.value[appConstants.deviceSettings.motiondetection] = $scope.das_motion_detection['motion-detection'];
+            commonSetHTTPService(data, appConstants._successlockoutmodeconfigured);
+        }
         $scope.getAdvancedSettings = function () {
             $scope.commonGetAPIData.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
             devicesSvc.getAdvancedSettings(appConstants.devicegetsettings + '?device_id=' + $scope.commonGetAPIData.device_id + '&type=' + $scope.commonGetAPIData.type, appConstants.getMethod, {}, {}, function (succResponse) {

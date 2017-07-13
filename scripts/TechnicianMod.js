@@ -51,8 +51,9 @@ app
 		$scope.pageNo = 1;
 		$scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 		$scope.searchByAlphabet = function (alphabet) {
-			//	$scope.searchText = '';
+				$scope.searchText = '';
 			//	$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
+			$scope.technicianList = [];
 			$scope.pageNo = 1;
 			if (alphabet == 'All') {
 				$scope.searchAlphabet = '';

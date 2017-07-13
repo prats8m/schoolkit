@@ -229,6 +229,7 @@ app.constant("appConstants", {
         commonGetAPIData: { type: 'gen', typeadv: 'adv' },
         accessgrantkey: 'access-grant-key',
         lockoutmode: 'lockout-mode',
+        motiondetection:'motion-detection',
         videorecordingaccess: 'video-recording-access',
         picturesnapshotsaccess: 'picture-snapshot-access',
         camerasetup: 'camera-setup',
