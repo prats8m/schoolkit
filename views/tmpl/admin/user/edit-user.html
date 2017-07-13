@@ -64,82 +64,75 @@
 						<div class="hometabs">
 							<div ng-controller="ModalDemo2Ctrl">
 								<script type="text/ng-template" id="myModalContent2.html">
-														<form name="form1" role="form"  >
-															<div class="modal-header"><h4 class="modal-title custom-font">Add Credential Schedule</h4></div>
-															<div class="modal-body mt-5 pb-30">
-																<div class="row">
-																	<div class="col-sm-12 col-md-6 form-group disable_modal">
-																		<label for=""><strong>Schedule Type</strong></label><br/>
-																		<div class="row">
-																			<div class="pull-left ml-10 pl-5" ng-click="custom_schedular()">
-																				<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-																					<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-init="schedule.schedule_type='ONETIME'" ><i></i> One Time
-																				</label>
-																			</div>
-																			<div class="pull-left ml-40" ng-click="repetive_schedular()">
-																				<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-																					<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ><i></i> Repeating
-																				</label>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="row disable_modal" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
-																	<div class="col-sm-6 col-md-6 form-group">
-																		<label for="">Start Date</label>
-																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.date"  is-open="opened" datepicker-options="dateOptions" close-text="Close" name="date" onkeypress="return false;"/>
-																			<span class="input-group-btn">
-																				<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
-																			</span>
-																		</div>
-																	</div>
-																	<div class="form-group col-sm-6 col-md-6"  ng-init="schedule.no_expirations=1" >
-																	<label for="">&nbsp;</label><br/>
-																	<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;" ng-init="">
-																	<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
-																	</label>											
-																	</div>
-																	<div class="form-group col-sm-6 col-md-6"></div>
-																	<div class="form-group col-sm-6 col-md-6"  ng-controller="DatepickerDemoCtrl" ng-hide="schedule.no_expirations">
-																		<div class="input-group">
-																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
-																			<span class="input-group-btn">
-																			<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
-																			</span>
-																		</div>
-																	</div>
-																</div>
-
-																
-																<div class="row" >
-																	<div class="col-sm-12 col-md-12" >
-																	<div class="schedule_scroll">
-																		<div id="scheduler_here" class="dhx_cal_container" style='height:300px;' >
-																		<div class="dhx_cal_navline">
-																		<div class="dhx_cal_prev_button" >&nbsp;</div>
-																		<div class="dhx_cal_next_button" >&nbsp;</div>
-																		<div class="dhx_cal_today_button" ></div>
-																		<div class="dhx_cal_date" style="display: none;"></div>
-
-																		</div>
-																		<div class="dhx_cal_header">
-																		</div>
-																		<div class="dhx_cal_data">
-																		</div>
-																		</div>
-																		</div>
-
-																	</div>
-																</div>
+									<form name="form1" role="form"  >
+										<div class="modal-header"><h4 class="modal-title custom-font">Add Credential Schedule</h4></div>
+										<div class="modal-body p-30">
+											<div class="overflow check_view disable_modal">
+												<label for=""><strong>Schedule Type</strong></label>
+												<div class="row">
+													<div class="col-sm-6 col-md-6 form-group" ng-click="custom_schedular()">
+														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
+															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-init="schedule.schedule_type='ONETIME'" ><i></i> One Time
+														</label>
+													</div>
+													<div class="col-sm-6 col-md-6 form-group" ng-click="repetive_schedular()">
+														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
+															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ><i></i> Repeating
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="row check_view disable_modal" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
+												<div class="col-sm-6 col-md-6 pr-0 form-group">
+													<label for="">Start Date</label>
+													<div class="input-group" ng-controller="DatepickerDemoCtrl">
+														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.date"  is-open="opened" datepicker-options="dateOptions" close-text="Close" name="date" onkeypress="return false;"/>
+														<span class="input-group-btn">
+															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+														</span>
+													</div>
+												</div>
+												<div class="col-sm-1 col-md-1 form-group">&nbsp;</div>
+												<div class="form-group col-sm-6 col-md-5"  ng-init="schedule.no_expirations=1" >
+													<label for="">&nbsp;</label><br/>
+													<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;" ng-init="">
+														<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
+													</label>											
+												</div>
+												<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.no_expirations">
+													<label for="">Expiration Date</label>
+													<div class="input-group" ng-controller="DatepickerDemoCtrl">
+														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
+														<span class="input-group-btn">
+															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="row" >
+												<div class="col-sm-12 col-md-12" >
+													<div class="schedule_scroll">
+														<div id="scheduler_here" class="dhx_cal_container" style='height:300px;' >
+															<div class="dhx_cal_navline">
+																<div class="dhx_cal_prev_button" >&nbsp;</div>
+																<div class="dhx_cal_next_button" >&nbsp;</div>
+																<div class="dhx_cal_today_button" ></div>
+																<div class="dhx_cal_date" style="display: none;"></div>
 															</div>
-															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
-																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>	
-																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)" ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>	
-															</div>
-														</form>		
-													</script>
+														<div class="dhx_cal_header"></div>
+														<div class="dhx_cal_data"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>	
+											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)" ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>	
+										</div>
+									</form>		
+								</script>
 							</div>
 							<md-content class="md-padding tabsdemoDynamicHeight">
 								<md-tabs md-dynamic-height md-border-bottom>
@@ -168,27 +161,15 @@
 														<div class="form-group col-sm-6 col-md-6">
 															<label for="">Profile Photo</label>
 															<div class="profilephoto">
-																<!-- <input ui-jq="filestyle" type="file" class="filestyle profilep" ui-options="{ buttonText: 'Find file', iconName: 'fa fa-inbox' }" id="profilep-2" tabindex="-1"> -->
 																<div class="bootstrap-filestyle input-group">
-
-																	<!--<input type="text" class="form-control " disabled="">-->
-																	<!--<span class="group-span-filestyle input-group-btn" tabindex="0">-->
-																	<!--<label for="profilep-2" class="btn btn-default ">-->
-																	<!--<span class="glyphicon fa fa-inbox"></span>-->
-																	<!--Find file-->
-																	<!--</label>-->
-																	<!--</span>-->
-
 																	<input type="file" accept="image/*" file-model="myFile" id="profilePicAddUpdate" name="fileupload" style="display: none"
 																	 onchange="HandleInputTypeFilechange();" />
 																	<input type="text" class="form-control " id="profilePicFileName" readonly="true" />
-																	<!--<input type="button" value="Click to select file" id="fakeBrowse" onclick="HandleBrowseClick();"/>-->
 																	<span class="group-span-filestyle input-group-btn" tabindex="0" id="fakeBrowse" ng-click="HandleProfilePicAddUpdateClick();">
-															<label for="profilep-2" class="btn btn-default ">
-															<span class="glyphicon fa fa-inbox"></span> Find file
-																	</label>
+																		<label for="profilep-2" class="btn btn-default ">
+																			<span class="glyphicon fa fa-inbox"></span> Find file
+																		</label>
 																	</span>
-
 																</div>
 															</div>
 															<script>
@@ -223,22 +204,14 @@
 														</div>
 													</div>
 													<div class="row" ng-controller="ActivebtnCtrl">
-														<!--<div class="form-group col-sm-6 col-md-6">-->
-														<!--<label for="">Password</label>-->
-														<!--<input type="password" class="form-control" id="password" ng-model="editUser.password" ng-value="editUser.password" name="password" required>-->
-														<!--</div>-->
-														<!--<div class="form-group col-sm-6 col-md-6">-->
-														<!--<label for="">Confirm Password</label>-->
-														<!--<input type="password" name="cnf_pass" id="cnf_pass" ng-model="editUser.cnf_pass" name="cnf_pass" class="form-control">-->
-														<!--</div>-->
-														<div class="form-group col-sm-6 col-md-4">
+														<div class="form-group col-sm-6 col-md-4 pr-0">
 															<label for="">Status <span class="text-danger">*</span></label><br/>
 															<div class="btn-group btnrounded">
 																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="1">Active</label>
 																<label class="btn btn-default" ng-model="editUser.user_status" uib-btn-radio="0">Inactive</label>
 															</div>
 														</div>
-														<div class="form-group col-sm-6 col-md-2">
+														<div class="form-group col-sm-6 col-md-2 pl-0">
 															<label for=""> No Expirations</label><br/>
 															<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;" ng-init="editUser.no_expirations = (editUser.expirationdate=='0')?'1':'0'">
 															<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="editUser.no_expirations" ng-true-value="1" ng-false-value="0" ng-disabled="editUser.user_status == 0" ng-checked="editUser.user_status == 0"><i></i>
@@ -299,7 +272,6 @@
 																					<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="{{user_group.usergroup_id}}" name="" ng-model="usergroup.usergrouparr[user_group.usergroup_id]"><i></i> {{user_group.usergroupName}} <small>({{user_group.count}} Users)</small></label>
 																				</li>
 																			</ul>
-																			<!--<a ui-sref="app.admin.user.user-groups" ng-click="cancel()" class="pull-right mt-15 mb-20">Create User Group</a>-->
 																		</div>
 																	</div>
 																</div>
@@ -320,9 +292,12 @@
 															</thead>
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="assign_usergroup in userGroup">
-																	<td><a ui-sref="app.admin.user.user-groups-members({usergroup_id:assign_usergroup.usergroup_id,userGroupName:assign_usergroup.usergroup_name,userGroupUserCount:assign_usergroup.usergroup_user_count})" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
-																	<td><button type="button" ng-click="unassignUserGroupEdit($event,assign_usergroup.usergroup_id,usergroup.facility_id )"
-																		 class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
+																	<td>
+																		<a ui-sref="app.admin.user.user-groups-members({usergroup_id:assign_usergroup.usergroup_id,userGroupName:assign_usergroup.usergroup_name,userGroupUserCount:assign_usergroup.usergroup_user_count})" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a>
+																	</td>
+																	<td>
+																		<button type="button" ng-click="unassignUserGroupEdit($event,assign_usergroup.usergroup_id,usergroup.facility_id )" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b"><i class="fa fa-trash-o"></i> <span>Delete</span></button>
+																	</td>
 																</tr>
 															</tbody>
 														</table>
@@ -343,13 +318,15 @@
 														<div class="modal-body p-0">															
 															<form role="form" ng-submit="submitEditAccessCode(editAccess, access_edit_form)" ng-validate="validationOptions" name="access_edit_form">
 																<div class="row">
-																	<div class="form-group col-sm-6 col-md-4">
-																		<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editAccess.credential_id">
+																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editAccess.credential_id">
+																	<div class="form-group col-sm-6 col-md-7">
 																		<label for="">Access Code</label>
-																		<div style="position: relative">
-																			<input type="text" name="access_code" id="access_code" class="form-control access-code-disable"  ng-model="editAccess.access_code" required>
-																			<span class="refreshbtn" ng-click="generateAccessCode()"><i class="fa fa-refresh"></i></span>
-																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																		<div class="overflow">
+																			<div class="w-180 pull-left pos-r mr-10">
+																				<input type="text" name="access_code" id="access_code" class="form-control access-code-disable"  ng-model="editAccess.access_code" required>
+																				<span class="refreshbtn" ng-click="generateAccessCode()"><i class="fa fa-refresh"></i></span>
+																			</div>
+																			<div class="btn-numbers pull-left" role="toolbar" aria-label="Toolbar with button groups">
 																				<div class="btn-group" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="editAccess.accesscode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="editAccess.accesscode_size" uib-btn-radio=6>6</label>
@@ -359,25 +336,29 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-12 col-md-8">
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editAccess.door_id"
 																		 multiple required>
 																		</select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2 access_div" ng-hide="userGroup.length">
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-7 access_div" ng-hide="userGroup.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
-																</div>
-																<div class="row">
-																	<div class="form-group col-sm-12 col-md-12">
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="editAccess.status" uib-btn-radio=1>Active</label>
 																			<label class="btn btn-default" ng-model="editAccess.status" uib-btn-radio=0>Inactive</label>
 																		</div>
-																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12 mt-20">
+																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
 																	</div>
 																</div>
 															</form>
@@ -387,28 +368,23 @@
 																	<table class="table table-bordered">
 																		<thead>
 																			<tr>
-																				<th>Access Code</th>
-																				<th>Assigned Doors</th>
-																				<th>Schedules</th>
-																				<th>Status</th>
-																				<th width="75">Action</th>
+																				<th width="150">Access Code</th>
+																				<th width="250">Assigned Doors</th>
+																				<th width="75" class="ta-c">Schedules</th>
+																				<th width="75" class="ta-c">Status</th>
+																				<th width="75" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="accesscode in access_code_list">
 																				<td>{{accesscode.Access_Code}}</td>
 																				<td>{{accesscode.Door_Name}} </td>
-																				<td>
-																					<a ng-click="editviewopen(accesscode.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="accesscode.credential_schedule_id == 0">View</a> 
-																					<a ng-click="editviewopen(accesscode.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="accesscode.credential_schedule_id == 0">Edit</a>
+																				<td class="credintialicon ta-c">
+																					<a href="" uib-tooltip="View" ng-click="editviewopen(accesscode.credential_schedule_id, 'view')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(accesscode.credential_schedule_id, 'edit')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				</td>
-																				<td>{{accesscode.status == 1 ? 'Active' : 'Inactive'}}
-																					<!-- <select style="border: 0; width: 100%;">
-																			<option value="" ng-selected="{{accesscode.status == 1}}">Active</option>
-																			<option value="" ng-selected="{{accesscode.status == 0}}">Inactive</option>
-																		</select> -->
-																				</td>
-																				<td class="credintialicon">
+																				<td class="ta-c">{{accesscode.status == 1 ? 'Active' : 'Inactive'}}</td>
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(accesscode, 'access_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{accesscode.Credential_Id}}', 'access_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
@@ -428,12 +404,14 @@
 															<form ng-submit="submitEditPhoneCode(phoneedit, phone_edit_form)" ng-validate="validationOptions" name="phone_edit_form">																	
 																<div class="row">	
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="phoneedit.credential_id">
-																	<div class="form-group col-sm-3 col-md-4">
+																	<div class="form-group col-sm-6 col-md-7">
 																		<label for="">Phone Code</label>
-																		<div style="position: relative">
-																			<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneedit.phone_code">
-																			<span class="refreshbtn" ng-click="generatePhoneCode()"><i class="fa fa-refresh"></i></span>
-																			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+																		<div class="overflow">
+																			<div class="w-180 pull-left pos-r mr-10">
+																				<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneedit.phone_code">
+																				<span class="refreshbtn" ng-click="generatePhoneCode()"><i class="fa fa-refresh"></i></span>
+																			</div>
+																			<div class="btn-numbers pull-left" role="toolbar" aria-label="Toolbar with button groups">
 																				<div class="btn-group" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="phoneedit.phonecode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="phoneedit.phonecode_size" uib-btn-radio=6>6</label>
@@ -443,123 +421,116 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-3 col-md-8">
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneedit.door_id"
 																		 multiple required>
 																		</select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2 phone_div" ng-hide="userGroup.length">
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-7 phone_div" ng-hide="userGroup.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
-																</div>
-
-
-																<div class="row">
-
-																	<div class="form-group col-sm-6 col-md-4">
-																		
-																		<label for="">Phone Number 1</label>
-																		<input type="text" name="phone_numbers1" id="phone_numbers1" class="form-control form-group" ng-model="phoneedit.phone_numbers1" ui-mask="999 999 9999" required>
-
-																		<div class="row">
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time </label><br/>
-																				<select class="form-control" name="st1" ng-model="phoneedit.starttime1" ng-options="time as time for time in timeddl track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time </label><br/>
-																				<select name="et1" class="form-control" ng-model="phoneedit.endtime1" ng-options="time as time for time in timeddl track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																			<div class="form-group col-sm-12 col-md-12">
-																				<label for="">Type</label><br/>
-																				<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																					<label class="btn btn-default" ng-model="phoneedit.type1" uib-btn-radio=1>Hunting</label>
-																					<label class="btn btn-default" ng-model="phoneedit.type1" uib-btn-radio=0>Cascading</label>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group col-sm-6 col-md-4">
-																		<label for="">Phone Number 2</label>
-																		<input type="text" name="phone_numbers2" id="phone_numbers2" class="form-control form-group" ng-model="phoneedit.phone_numbers2" ui-mask="999 999 9999" required>
-																		<div class="row">
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time </label><br/>
-																				<select name="st2" class="form-control" ng-model="phoneedit.starttime2" ng-options="time as time for time in timeddl track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time </label><br/>
-																				<select name="et2" class="form-control" ng-model="phoneedit.endtime2" ng-options="time as time for time in timeddl track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																		<div class="form-group col-sm-12 col-md-12">
-																			<label for="">Type</label><br/>
-																			<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																				<label class="btn btn-default" ng-model="phoneedit.type2" uib-btn-radio=1>Hunting</label>
-																				<label class="btn btn-default" ng-model="phoneedit.type2" uib-btn-radio=0>Cascading</label>
-																			</div>
-																		</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group col-sm-6 col-md-4">
-																		<div class="form-group col-sm-12 col-md-12">
-																			<label for="">Phone Number 3</label>
-																			<input  type="text" name="phone_numbers3" id="phone_numbers3" class="form-control" ng-model="phoneedit.phone_numbers3" ui-mask="999 999 9999" required>
-																		</div>
-																		<div class="row">
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">Start Time </label><br/>
-																				<select name="st3" class="form-control" ng-model="phoneedit.starttime3" ng-options="time as time for time in timeddl track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																			<div class="col-sm-6 col-md-6 form-group">
-																				<label for="">End Time </label><br/>
-																				<select name="et3" class="form-control" ng-model="phoneedit.endtime3" ng-options="time as time for time in timeddl track by time" required>
-																				<option value="">Select Time</option>
-																			</select>
-																			</div>
-																		</div>
-																		<div class="row">
-																		<div class="form-group col-sm-12 col-md-12">
-																			<label for="">Type</label><br/>
-																			<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
-																				<label class="btn btn-default" ng-model="phoneedit.type3" uib-btn-radio=1>Hunting</label>
-																				<label class="btn btn-default" ng-model="phoneedit.type3" uib-btn-radio=0>Cascading</label>
-																			</div>
-																		</div>
-																		</div>
-																	</div>
-																</div>
-
-
-																<div class="row">
-																	<!-- <div class="form-group col-sm-3 col-md-4">
-																		<label for="">Phone Number</label>
-																		<input type="text" name="" id="" class="form-control" ng-model="phoneedit.phone_numbers">
-																	</div> -->
-																	<div class="form-group col-sm-3 col-md-8">
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneedit.status" uib-btn-radio=1>Active</label>
 																			<label class="btn btn-default" ng-model="phoneedit.status" uib-btn-radio=0>Inactive</label>
 																		</div>
-																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Phone Number 1</label>
+																		<input type="text" name="phone_numbers1" id="phone_numbers1" class="form-control w-180" ng-model="phoneedit.phone_numbers1" ui-mask="999 999 9999" required>
+																	</div>
+																	<div class="col-sm-6 col-md-4">
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 pl-0 form-group">
+																				<label for="">Start Time </label><br/>
+																				<select class="form-control" name="st1" ng-model="phoneedit.starttime1" ng-options="time as time for time in timeddl track by time" required>
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																			<div class="col-sm-6 col-md-6 pl-0 form-group">
+																				<label for="">End Time </label><br/>
+																				<select name="et1" class="form-control" ng-model="phoneedit.endtime1" ng-options="time as time for time in timeddl track by time" required>
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Type</label><br/>
+																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																			<label class="btn btn-default" ng-model="phoneedit.type1" uib-btn-radio=1>Hunting</label>
+																			<label class="btn btn-default" ng-model="phoneedit.type1" uib-btn-radio=0>Cascading</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Phone Number 2</label>
+																		<input type="text" name="phone_numbers2" id="phone_numbers2" class="form-control w-180" ng-model="phoneedit.phone_numbers2" ui-mask="999 999 9999" >
+																	</div>
+																	<div class="col-sm-6 col-md-4">
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 pl-0 form-group">
+																				<label for="">Start Time </label><br/>
+																				<select name="st2" class="form-control" ng-model="phoneedit.starttime2" ng-options="time as time for time in timeddl track by time" >
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																			<div class="col-sm-6 col-md-6 pl-0 form-group">
+																				<label for="">End Time </label><br/>
+																				<select name="et2" class="form-control" ng-model="phoneedit.endtime2" ng-options="time as time for time in timeddl track by time" >
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Type</label><br/>
+																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																			<label class="btn btn-default" ng-model="phoneedit.type2" uib-btn-radio=1>Hunting</label>
+																			<label class="btn btn-default" ng-model="phoneedit.type2" uib-btn-radio=0>Cascading</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Phone Number 3</label>
+																		<input  type="text" name="phone_numbers3" id="phone_numbers3" class="form-control w-180" ng-model="phoneedit.phone_numbers3" ui-mask="999 999 9999" >
+																	</div>
+																	<div class="col-sm-6 col-md-4">
+																		<div class="row">
+																			<div class="col-sm-6 col-md-6 pl-0 form-group">
+																				<label for="">Start Time </label><br/>
+																				<select name="st3" class="form-control" ng-model="phoneedit.starttime3" ng-options="time as time for time in timeddl track by time" >
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																			<div class="col-sm-6 col-md-6 pl-0 form-group">
+																				<label for="">End Time </label><br/>
+																				<select name="et3" class="form-control" ng-model="phoneedit.endtime3" ng-options="time as time for time in timeddl track by time" >
+																					<option value="">Select Time</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-4">
+																		<label for="">Type</label><br/>
+																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
+																			<label class="btn btn-default" ng-model="phoneedit.type3" uib-btn-radio=1>Hunting</label>
+																			<label class="btn btn-default" ng-model="phoneedit.type3" uib-btn-radio=0>Cascading</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12 mt-20">
+																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
 																	</div>
 																</div>
 															</form>															
@@ -568,12 +539,12 @@
 																	<table class="table table-bordered">
 																		<thead>
 																			<tr>
-																				<th>Phone Code</th>
-																				<th width="325">Assigned Doors</th>
-																				<th>Phone Number</th>
-																				<th>Schedules</th>
-																				<th>Status</th>
-																				<th width="75">Action</th>
+																				<th width="150">Phone Code</th>
+																				<th width="250">Assigned Doors</th>
+																				<th width="150">Phone Number</th>
+																				<th width="75" class="ta-c">Schedules</th>
+																				<th width="75" class="ta-c">Status</th>
+																				<th width="75" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
@@ -583,18 +554,12 @@
 																				<td>
 																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
 																				</td>
-																				<td>
-																					<a ng-click="editviewopen(phone_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="phone_code.credential_schedule_id == 0">View</a> 
-																					<a ng-click="editviewopen(phone_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="phone_code.credential_schedule_id == 0">Edit</a>
+																				<td class="credintialicon ta-c">
+																					<a href="" uib-tooltip="View"  ng-click="editviewopen(phone_code.credential_schedule_id, 'view')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit"  ng-click="editviewopen(phone_code.credential_schedule_id, 'edit')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				</td>
-																				<td>
-																					<!--<select style="border: 0; width: 100%;">-->
-																					<!--<option value="" ng-selected="phone_code.status == 1">Active</option>-->
-																					<!--<option value="" ng-selected="phone_code.status == 0">Inactive</option>-->
-																					<!--</select>-->
-																					{{phone_code.status==0?'Inactive':'Active'}}
-																				</td>
-																				<td class="credintialicon">
+																				<td class="ta-c">{{phone_code.status==0?'Inactive':'Active'}}</td>
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(phone_code, 'phone_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{phone_code.Credential_Id}}', 'phone_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
@@ -606,7 +571,7 @@
 														</div>
 													</uib-accordion-group>
 
-													<!--uib-accordion-group is-open="status.open2" class="panel-default">
+													<uib-accordion-group is-open="status.open2" class="panel-default">
 														<uib-accordion-heading>
 															<div ng-click="cleanAccordionFormObject('Edit User','editRfid')">RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></div>
 														</uib-accordion-heading>
@@ -614,31 +579,38 @@
 															<form ng-submit="submitEditRFIDCode(editRfid, rfid_form)" name="rfid_form" ng-validate="validationOptions">
 																<div class="row">
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editRfid.credential_id">
-																	<div class="form-group col-sm-3 col-md-4">
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Card Number</label>
-																		<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no"
-																		 required>
+																		<input type="text" class="form-control number" ng-keypress="onlyNumber($event)" id="" ng-model="editRfid.rfid_card_no" name="rfid_card_no" required>
 																	</div>
-																	<div class="form-group col-sm-3 col-md-8">
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Assign Doors</label><br/>
-																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editRfid.door_id"
-																		 multiple required>
+																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editRfid.door_id" multiple required>
 																		</select>
 																	</div>
 																</div>
 																<div class="row">
-																	<div class="form-group col-sm-3 col-md-4">
-																		<label for="">Facility Code</label>
-																		<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editRfid.rfid_facility_code"
-																		 name="rfid_facility_code" required>
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="">Add Schedule</label><br/>
+																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
-																	<div class="form-group col-sm-12 col-md-8">
+																	<div class="form-group col-sm-6 col-md-6">
+																		<label for="">Facility Code</label>
+																		<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editRfid.rfid_facility_code" name="rfid_facility_code" required>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="editRfid.status" uib-btn-radio=1>Active</label>
 																			<label class="btn btn-default" ng-model="editRfid.status" uib-btn-radio=0>Inactive</label>
 																		</div>
-																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12 mt-20">
+																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
 																	</div>
 																</div>
 															</form>															
@@ -647,23 +619,22 @@
 																	<table class="table table-bordered">
 																		<thead>
 																			<tr>
-																				<th>Card Number</th>
-																				<th>Facility Code</th>
-																				<th width="325">Assigned Doors</th>
-																				<th>Status</th>
-																				<th width="75">Action</th>
+																				<th width="200">Card Number</th>
+																				<th width="200">Assigned Doors</th>
+																				<th width="150">Facility Code</th>
+																				<th width="75" class="ta-c">Schedules</th>
+																				<th width="75" class="ta-c">Status</th>
+																				<th width="75" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="rfid_code in rfid_code_list">
-																				<td>{{rfid_code.Detail.rfid_card_no}}</td>
-																				<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																				<td>{{rfid_code.Detail.rfid_card_no}}</td>									
 																				<td>{{rfid_code.Door_Name}} </td>
-																				<td>
-																					
-																					{{rfid_code.status==0?'Inactive':'Active'}}
-																				</td>
-																				<td class="credintialicon">
+																				<td>{{rfid_code.Detail.rfid_facility_id}}</td>
+																				<td class="credintialicon ta-c"></td>
+																				<td class="ta-c">{{rfid_code.status==0?'Inactive':'Active'}}</td>
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(rfid_code, 'rfid_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{rfid_code.Credential_Id}}', 'rfid_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
@@ -673,7 +644,7 @@
 																</div>
 															</div>
 														</div>
-													</uib-accordion-group-->
+													</uib-accordion-group>
 
 													<uib-accordion-group is-open="status.open3" class="panel-default">
 														<uib-accordion-heading>
@@ -682,32 +653,37 @@
 														<div class="modal-body p-0">
 															<form ng-submit="submitEditWIEGANDCode(wiegand, wiegand_form)" ng-validate="validationOptions" name="wiegand_form">
 																<div class="row">
-																	<div class="form-group col-sm-3 col-md-4">
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Card Number</label>
 																		<input type="text" ng-model="wiegand.wiegand_card_number" name="" id="" class="form-control">
 																	</div>
-																	<div class="form-group col-sm-3 col-md-8">
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Assign Doors</label><br/>
-																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
-																		 multiple required></select>
-																	</div>
-																	<div class="form-group col-sm-6 col-md-2 wiegand_div" ng-hide="userGroup.length">
-																		<label for="">Add Schedule</label><br/>
-																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id" multiple required></select>
 																	</div>
 																</div>
 																<div class="row">
-																	<div class="form-group col-sm-3 col-md-4">
+																	<div class="form-group col-sm-6 col-md-6 wiegand_div" ng-hide="userGroup.length">
+																		<label for="">Add Schedule</label><br/>
+																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Facility Code</label>
 																		<input type="text" name="" ng-model="wiegand.wiegand_facility_code" ng-keypress="onlyNumber($event)" id="" class="form-control">
 																	</div>
-																	<div class="form-group col-sm-12 col-md-8">
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="wiegand.status" uib-btn-radio=1>Active</label>
 																			<label class="btn btn-default" ng-model="wiegand.status" uib-btn-radio=0>Inactive</label>
 																		</div>
-																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12 mt-20">
+																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
 																	</div>
 																</div>
 															</form>
@@ -717,28 +693,25 @@
 																<table class="table table-bordered">
 																	<thead>
 																		<tr>
-																			<th>Card Number</th>
-																			<th>Facility Code</th>
-																			<th width="400">Assigned Doors</th>
-																			<th>Schedules</th>
-																			<th>Status</th>
-																			<th width="75">Action</th>
+																			<th width="200">Card Number</th>
+																			<th width="200">Assigned Doors</th>
+																			<th width="150">Facility Code</th>
+																			<th width="75" class="ta-c">Schedules</th>
+																			<th width="75" class="ta-c">Status</th>
+																			<th width="75" class="ta-c">Action</th>
 																		</tr>
 																	</thead>
 																	<tbody style="font-size:14px;">
 																		<tr ng-repeat="wiegand_code in wiegand_code_list">
 																			<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
-																			<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
 																			<td>{{wiegand_code.Door_Name}} </td>
-																			<td>
-																					<a ng-click="editviewopen(wiegand_code.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="wiegand_code.credential_schedule_id == 0">View</a> 
-																					<a ng-click="editviewopen(wiegand_code.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="wiegand_code.credential_schedule_id == 0">Edit</a>
-																				</td>
-																			<td>
-																				{{wiegand_code.status==0?'Inactive':'Active'}}
-
+																			<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
+																			<td class="credintialicon ta-c">	
+																				<a href="" uib-tooltip="View" ng-click="editviewopen(wiegand_code.credential_schedule_id, 'view')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(wiegand_code.credential_schedule_id, 'edit')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																			</td>
-																			<td class="credintialicon">
+																			<td class="ta-c">{{wiegand_code.status==0?'Inactive':'Active'}}</td>
+																			<td class="credintialicon ta-c">
 																				<a href="" uib-tooltip="Edit" ng-click="editCredential(wiegand_code, 'wiegand_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				<a href="" ng-click="removeCredential('{{wiegand_code.Credential_Id}}', 'wiegand_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																			</td>
@@ -749,20 +722,20 @@
 														</div>
 													</uib-accordion-group>
 
-													<!--uib-accordion-group is-open="status.open4" class="panel-default">
+													<uib-accordion-group is-open="status.open4" class="panel-default">
 														<uib-accordion-heading>
 															<div ng-click="cleanAccordionFormObject('Edit User','editNfc')">NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></div>
 														</uib-accordion-heading>
 														<div class="modal-body p-0">															
 															<span class="form-group error">{{NfcCodeMessage}}</span>
 															<form ng-submit="submitEditNfcCode(editNfc, nfc_edit_form)" ng-validate="validationOptions" name="nfc_edit_form">
+																<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editNfc.credential_id">
 																<div class="row">
-																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editNfc.credential_id">
-																	<div class="form-group col-sm-3 col-md-4">
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">NFC Code</label>
 																		<input type="text" class="form-control w-md" id="" value="xxxxxx-xx" name="nfc_code" ng-model="editNfc.nfc_code" required>
 																	</div>
-																	<div class="form-group col-sm-3 col-md-8">
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editNfc.door_id"
 																		 multiple required>
@@ -770,18 +743,28 @@
 																	</div>
 																</div>
 																<div class="row">
-																	<div class="form-group col-sm-3 col-md-4">
+																	<div class="form-group col-sm-6 col-md-6" ng-hide="">
+																		<label for="">Add Schedule</label><br/>
+																		<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																	</div>
+																	<div class="form-group col-sm-6 col-md-6">
 																		<label for="">Facility Code</label>
 																		<input type="text" class="form-control number" id="" ng-keypress="onlyNumber($event)" ng-model="editNfc.nfc_facility_code"
 																		 name="editNfc" required>
-																	</div>																		
-																	<div class="form-group col-sm-12 col-md-8">
+																	</div>
+																</div>
+																<div class="row">																	
+																	<div class="form-group col-sm-12 col-md-12">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="editNfc.status" uib-btn-radio=1>Active</label>
 																			<label class="btn btn-default" ng-model="editNfc.status" uib-btn-radio=0>Inactive</label>
 																		</div>
-																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-sm-12 col-md-12 mt-20">
+																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
 																	</div>
 																</div>
 															</form>
@@ -790,21 +773,22 @@
 																	<table class="table table-bordered">
 																		<thead>
 																			<tr>
-																				<th>NFC Code</th>
-																				<th width="425">Assigned Doors</th>
-																				<th>Status</th>
-																				<th width="75">Action</th>
+																				<th width="200">NFC Code</th>
+																				<th width="200">Assigned Doors</th>
+																				<th width="150">Facility Code</th>
+																				<th width="75" class="ta-c">Schedules</th>
+																				<th width="75" class="ta-c">Status</th>
+																				<th width="75" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="nfccode in nfc_code_list">
 																				<td>{{nfccode.Detail.nfc_code}}</td>
 																				<td>{{nfccode.Door_Name}}</td>
-																				<td>
-																					
-																					{{nfccode.status==0?'Inactive':'Active'}}
-																				</td>
-																				<td class="credintialicon">
+																				<td></td>
+																				<td class="credintialicon ta-c"></td>
+																				<td>{{nfccode.status==0?'Inactive':'Active'}}</td>
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(nfccode, 'nfc_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{nfccode.Credential_Id}}', 'nfc_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
@@ -814,7 +798,7 @@
 																</div>
 															</div>
 														</div>
-													</uib-accordion-group-->
+													</uib-accordion-group>
 
 													<uib-accordion-group is-open="status.open5" class="panel-default">
 														<uib-accordion-heading>
@@ -823,36 +807,40 @@
 														<div class="modal-body p-0">															
 																<span class="error">{{ bleerror }}</span>
 																<form ng-submit="submitEditBLECode(editBle, ble_edit_form)" ng-validate="validationOptions" name="ble_edit_form">
+																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editBle.credential_id" autocomplete="off">
 																	<div class="row">
-																		<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="editBle.credential_id"
-																		 autocomplete="off">
-																		<div class="form-group col-sm-3 col-md-4">
+																		<div class="form-group col-sm-6 col-md-6">
 																			<label for="">Username</label>
 																			<input type="text" class="form-control" id="" ng-model="editBle.ble_name" name="ble_name" required autocomplete="off">
 																		</div>
-																		<div class="form-group col-sm-3 col-md-8">
+																		<div class="form-group col-sm-6 col-md-6">
+																			<label for="">Password</label>
+																			<input type="password" class="form-control" id="" ng-model="editBle.ble_pass" name="ble_pass" required autocomplete="off">
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="form-group col-sm-6 col-md-6">
 																			<label for="">Assign Doors</label><br/>
-																			<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editBle.door_id"
-																			 multiple required>
+																			<select Multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="editBle.door_id" multiple required>
 																			</select>
 																		</div>
-																		<div class="form-group col-sm-6 col-md-2 ble_div" ng-hide="userGroup.length">
+																		<div class="form-group col-sm-6 col-md-6 ble_div" ng-hide="userGroup.length">
 																			<label for="">Add Schedule</label><br/>
 																			<a ng-click="scheduleopen()" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																		</div>
 																	</div>
 																	<div class="row">
-																		<div class="form-group col-sm-3 col-md-4">
-																			<label for="">Password</label>
-																			<input type="password" class="form-control" id="" ng-model="editBle.ble_pass" name="ble_pass" required autocomplete="off">
-																		</div>
-																		<div class="form-group col-sm-3 col-md-8">
+																		<div class="form-group col-sm-12 col-md-12">
 																			<label for="">Status</label><br/>
 																			<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																				<label class="btn btn-default" ng-model="editBle.status" uib-btn-radio=1>Active</label>
 																				<label class="btn btn-default" ng-model="editBle.status" uib-btn-radio=0>Inactive</label>
 																			</div>
-																			<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a pull-right">Add/Save</button>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="form-group col-sm-12 col-md-12 mt-20">
+																			<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
 																		</div>
 																	</div>
 																</form>
@@ -862,12 +850,12 @@
 																	<table class="table table-bordered">
 																		<thead>
 																			<tr>
-																				<th>Username</th>
-																				<th>Password</th>
-																				<th width="325">Assigned Doors</th>
-																				<th>Schedules</th>
-																				<th>Status</th>
-																				<th width="75">Action</th>
+																				<th width="100">Username</th>
+																				<th width="100">Password</th>
+																				<th width="200">Assigned Doors</th>
+																				<th width="75" class="ta-c">Schedules</th>
+																				<th width="75" class="ta-c">Status</th>
+																				<th width="75" class="ta-c">Action</th>
 																			</tr>
 																		</thead>
 																		<tbody style="font-size:14px;">
@@ -875,18 +863,12 @@
 																				<td>{{blecode.Detail.ble_username}}</td>
 																				<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																				<td>{{blecode.Door_Name}}</td>
-																				<td>
-																					<a ng-click="editviewopen(blecode.credential_schedule_id, 'view')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="blecode.credential_schedule_id == 0">View</a> 
-																					<a ng-click="editviewopen(blecode.credential_schedule_id, 'edit')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-hide="blecode.credential_schedule_id == 0">Edit</a>
+																				<td class="credintialicon ta-c">
+																					<a href="" uib-tooltip="View" ng-click="editviewopen(blecode.credential_schedule_id, 'view')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(blecode.credential_schedule_id, 'edit')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				</td>
-																				<td>
-																					<!--<select style="border: 0; width: 100%;">-->
-																					<!--<option value="" ng-selected="blecode.status == 1">Active</option>-->
-																					<!--<option value="" ng-selected="blecode.status == 0">Inactive</option>-->
-																					<!--</select>-->
-																					{{blecode.status==0?'Inactive':'Active'}}
-																				</td>
-																				<td class="credintialicon">
+																				<td class="ta-c">{{blecode.status==0?'Inactive':'Active'}}</td>
+																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="Edit" ng-click="editCredential(blecode, 'ble_code')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																					<a href="" ng-click="removeCredential('{{blecode.Credential_Id}}', 'ble_code')" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
