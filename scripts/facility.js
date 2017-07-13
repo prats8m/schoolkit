@@ -42,6 +42,10 @@ app
             }
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
+                    if (facility.myFile) {
+                        var file = facility.myFile;
+                        $scope.uploadProfilePic(file,succResponse.data);
+                    }
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
                     $scope.refreshList();
@@ -55,8 +59,8 @@ app
 
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, facilityId) {
-            if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -126,6 +130,7 @@ app
         $scope.searchAlphabet = '';
         $scope.searchByAlphabet = function (alphabet) {
             $scope.searchText = '';
+            $scope.facilities = [];
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             if (alphabet == 'All') {
@@ -194,6 +199,24 @@ app
             $scope.dashboardInit();
         }*/
 
+        
+
+        $scope.HandleProfilePicAddUpdateClick = function () {
+            var fileinput = document.getElementById("profilePicAddUpdate");
+            fileinput.click();
+        };
+
+        $scope.uploadProfilePic = function (file, id) {
+            var fd = new FormData();
+            fd.append('facility_id', id);
+            fd.append('file', file);
+            facilitiesSvc.uploadFacilityPic(appConstants.facilityuploadpic, appConstants.postMethod, {}, fd, function (succResponse) {
+                if (succResponse.status) {
+                    //toaster.pop(appConstants.success,appConstants._successImageUpload);
+                }
+            });
+        };
+
     });
 
 
@@ -223,8 +246,8 @@ app
 
         $scope.result = '';
         $scope.showConfirm = function (ev) {
-             if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -364,8 +387,8 @@ app
         $scope.imagePath = baseURL + appConstants.imagePath;
 
         $scope.showConfirm = function (ev, facilityId) {
-             if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -381,7 +404,7 @@ app
                         $location.path('/app/admin/facility/facility');
                     }
                     else {
-                        toaster.pop('error',succResponse.msg);
+                        toaster.pop('error', succResponse.msg);
                         //$scope.result = succResponse.msg;
                         //$scope.statusclass = appConstants.dangerstatusClass;
                     }
@@ -457,6 +480,10 @@ app
             facility.status = facility.facility_status == appConstants.active ? 1 : 0;
             facilitiesSvc.edit_facility(appConstants.facilityedit, appConstants.putMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
+                    if (facility.myFile) {
+                        var file = facility.myFile;
+                        $scope.uploadProfilePic(file,$stateParams.facility_id);
+                    }
                     toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
                     $location.path('/app/admin/facility/facility');
                 }
@@ -467,8 +494,8 @@ app
         };
 
         $scope.showConfirm = function (ev, facilityId) {
-             if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -490,6 +517,22 @@ app
                 });
             }, function () {
                 toaster.pop('info', appConstants._cancelFacilityDelete);
+            });
+        };
+
+        $scope.HandleProfilePicAddUpdateClick = function () {
+            var fileinput = document.getElementById("profilePicAddUpdate");
+            fileinput.click();
+        };
+
+        $scope.uploadProfilePic = function (file, id) {
+            var fd = new FormData();
+            fd.append('facility_id', id);
+            fd.append('file', file);
+            facilitiesSvc.uploadFacilityPic(appConstants.facilityuploadpic, appConstants.postMethod, {}, fd, function (succResponse) {
+                if (succResponse.status) {
+                    //toaster.pop(appConstants.success,appConstants._successImageUpload);
+                }
             });
         };
 

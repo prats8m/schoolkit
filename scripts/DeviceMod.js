@@ -112,6 +112,7 @@ app
         // $scope.devicePageLimit = 8;
         $scope.searchAlphabet = '';
         $scope.searchByAlphabet = function (alphabet) {
+            $scope.data = [];
             $scope.searchText = '';
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
@@ -128,7 +129,7 @@ app
             if (!$scope.searchText) {
                 $scope.searchText = appConstants.empty;
             }
-            devicesSvc.deviceInit(appConstants.devicelistmaster + '?limit='+ appConstants.pageLimit +'&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet,
+            devicesSvc.deviceInit(appConstants.devicelistmaster + '?limit=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet,
                 appConstants.getMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         if ($scope.pageNo <= 1)
@@ -235,7 +236,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster, $rootScope, baseURL, errorHandler, $location, appConstants, devicesSvc, utilitySvc) {
+    .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster, $rootScope, baseURL, errorHandler, $location, appConstants, devicesSvc, utilitySvc,$state) {
         $scope.page = {
             title: appConstants.deviceviewUITitle,
             subtitle: appConstants.dashboardSubTitle
@@ -272,6 +273,7 @@ app
                 devicesSvc.deleteDevice(appConstants.devicedelete + '?device_id=' + parseInt($stateParams.device_id), appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         toaster.pop(appConstants.success, appConstants._successdeleteDevice);
+                        $state.go('app.admin.device.devices');
                     }
                 });
             }, function () {
@@ -830,7 +832,7 @@ app
                 if (succResponse.status) {
                     $scope.details = succResponse.data;
                     $scope.editDevice = succResponse.data;
-                
+
                     $scope.editDevice.technician_id = $scope.editDevice.device_technician_id;
                     var obj = $scope.editDevice.doors;
                     var tmpArray = [];

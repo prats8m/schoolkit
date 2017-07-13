@@ -11,7 +11,6 @@ app
             dashboardSvc.getDashboardData(appConstants.userDashboard + "?facility_id=" + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
-                    console.log($rootScope.dashboardData);
                     $scope.getShortCutList();
                 }
             });
@@ -51,14 +50,30 @@ app
         //($stateParams.facility_id) ? $cookies.put('current_facility_id',$stateParams.facility_id) : $cookies.put('current_facility_id',0);
 
         $scope.dashboardInit();
-    })
+        $scope.dashboard_facility_photo_constant = appConstants.dashboard_facility_photo;
+        $scope.getFacilityName = function(){
+            dashboardSvc.getFacilityName(appConstants.facilityview, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.dashboard_facility_name = succResponse.data.facility_name;
+                    $scope.dashboard_facility_quote = succResponse.data.facility_location;
+                    $scope.dashboard_facility_photo = succResponse.data.facility_photo;
+                } else {
+                    $scope.dashboard_facility_name = appConstants.dashboard_facility_name;
+                    $scope.dashboard_facility_quote = appConstants.dashboard_facility_quote;
+                    $scope.dashboard_facility_photo = appConstants.dashboard_facility_photo;
+                }
+            });
+        }
+        $scope.getFacilityName();
+
+    });
 
 
 
 
 
     //...................Add Short Cuts Popup Modal.................................................
-
+app
     .controller('addshortcutondashboardModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
 
         $scope.lstDashboardShortCuts = angular.copy(items);

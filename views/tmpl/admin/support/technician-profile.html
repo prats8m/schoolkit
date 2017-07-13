@@ -54,6 +54,7 @@
 												<p><label>E-mail</label> {{technician.technician_email}}</p>
 												<p><label>Phone</label> {{technician.technician_phone}}</p>
 												<p><label>Address</label> {{technician.technician_address}}</p>
+												<p><label>Expiration Date</label> {{technician.technician_expiration_date*1000 | date:'d MMM yyyy': 'UTC'}}</p>
 												<p><label>Status</label> {{(technician.technician_status == 1)?'Active':'Inactive'}}</p>
 												<!-- <p><label>Expiration Date</label> 15/06/2017</p> -->
 											</div>

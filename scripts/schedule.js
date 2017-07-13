@@ -41,6 +41,7 @@ app
 			scheduler.config.multi_day = true;
 			scheduler.config.date_step = "5";
 			scheduler.config.show_loading = true;
+			scheduler.config.readonly = false;
 			scheduler.init('scheduler_here', new Date(), "week");
 			scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
 		}
@@ -557,6 +558,7 @@ app
 		$scope.searchAlphabet = '';
 		$scope.searchByAlphabet = function (alphabet) {
 			$scope.searchText = '';
+			$scope.schedules = [];
 			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
 			$scope.pageNo = 1;
 			if (alphabet == 'All') {
@@ -961,6 +963,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				scheduler.config.multi_day = false;
 				scheduler.config.date_step = "5";
 				scheduler.config.show_loading = true;
+				scheduler.config.readonly = false;
 				scheduler.init('scheduler_here', week_date, "week");
 				$timeout(function () {
 					$scope.clearAllSchedule();

@@ -29,7 +29,7 @@ app
             HolidayScheduleSvc.deleteHolidaySchedule(appConstants.holidayscheduledelete + '?hs_id=' + holidayScheduleId, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successdeleteholidayschedule);
-                    $scope.getHolidayScheduleList();
+                    $scope.getEditHolidayScheduleList();
                 }
             });
         };
@@ -63,6 +63,7 @@ app
         $scope.searchAlphabet = '';
         $scope.searchByAlphabet = function (alphabet) {
             $scope.searchText = '';
+            $scope.lstHolidaySchedular = [];
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             if (alphabet == 'All') {
@@ -237,8 +238,8 @@ app
             }
             var start_date = $scope.addHolidayScheduleObj.hs_start_date;
             var end_date = $scope.addHolidayScheduleObj.hs_end_date;
-            $scope.addHolidayScheduleObj.hs_start_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date, $scope.addHolidayScheduleObj.hs_starttime) / 1000;
-            $scope.addHolidayScheduleObj.hs_end_date = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date, $scope.addHolidayScheduleObj.hs_endtime) / 1000;
+            $scope.addHolidayScheduleObj.hs_start_date = parseInt(utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_start_date, $scope.addHolidayScheduleObj.hs_starttime) / 1000);
+            $scope.addHolidayScheduleObj.hs_end_date = parseInt(utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_end_date, $scope.addHolidayScheduleObj.hs_endtime) / 1000);
             $scope.addHolidayScheduleObj.hs_expiration = utilitySvc.convertDateToMilliecondTimeStamp($scope.addHolidayScheduleObj.hs_expiration) / 1000;
             $scope.addHolidayScheduleObj.hs_status = parseInt($scope.addHolidayScheduleObj.hs_status);
             $scope.addHolidayScheduleObj.hs_type = "holiday";
