@@ -2,6 +2,11 @@
 @import url(http://fonts.googleapis.com/css?family=Dosis:300,700|Ubuntu+Mono|Lato:300,400,700,300italic,400italic&subset=latin,latin-ext);
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+a {
+	cursor: pointer;
+}
+
 .lh-38 {
     line-height: 33px;
     margin-bottom: 10px;
@@ -343,7 +348,7 @@ md-content {
 }
 
 .modal-lg {
-    width: 1300px!important
+    width: 815px!important;
 }
 
 .small,
@@ -4116,6 +4121,9 @@ span.edittxt {
 	}
 	.created_by {
 		display: none!important;
+	}
+	.modal-lg {
+		width: 80%!important;
 	}
 }
 
