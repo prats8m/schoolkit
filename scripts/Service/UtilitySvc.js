@@ -15,7 +15,6 @@ app
 
 
         factoryResp.callHttpService=function (url,method,params,data,cb) {
-
             $timeout(function(){
                 $http({
                     url: baseURL + url,
@@ -25,7 +24,7 @@ app
                     //timeout : 30000,
                     headers: {
                         Authorization: $cookies.get(appConstants.sessionTokenCookieID),
-                        "Content-type": url.indexOf('pic-upload') < 0 ? appConstants.contentType:undefined
+                        "Content-type":( url.indexOf('pic-upload') < 0 && url.indexOf('upload-pic') < 0) ? appConstants.contentType:undefined
                     },
                     params:params
                 })
@@ -112,7 +111,7 @@ app
         factoryResp.convertDateToMilliecondTimeStamp = function(dateObj,timeObj){
             var convertableString='';
             if(dateObj){
-                convertableString=dateObj.getFullYear()+"-"+(dateObj.getMonth()+1)+"-"+dateObj.getDate();
+                convertableString=dateObj.getFullYear()+"/"+(dateObj.getMonth()+1)+"/"+dateObj.getDate();
             }
             if(timeObj){
                 convertableString+=' '+timeObj;

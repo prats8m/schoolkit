@@ -42,6 +42,10 @@ app
             }
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
+                    if (facility.myFile) {
+                        var file = facility.myFile;
+                        $scope.uploadProfilePic(file,succResponse.data);
+                    }
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
                     $scope.refreshList();
@@ -194,6 +198,24 @@ app
         if (!$rootScope.hasOwnProperty('dashboardData')) {
             $scope.dashboardInit();
         }*/
+
+        
+
+        $scope.HandleProfilePicAddUpdateClick = function () {
+            var fileinput = document.getElementById("profilePicAddUpdate");
+            fileinput.click();
+        };
+
+        $scope.uploadProfilePic = function (file, id) {
+            var fd = new FormData();
+            fd.append('facility_id', id);
+            fd.append('file', file);
+            facilitiesSvc.uploadFacilityPic(appConstants.facilityuploadpic, appConstants.postMethod, {}, fd, function (succResponse) {
+                if (succResponse.status) {
+                    //toaster.pop(appConstants.success,appConstants._successImageUpload);
+                }
+            });
+        };
 
     });
 
@@ -423,7 +445,7 @@ app
  */
 app
     .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc) {
-
+        $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
         $scope.page = {
             title: $location.path().indexOf('view-facility') >= 0 ? appConstants.facilityDetailsTitle : appConstants.facilityedittitle,
             subtitle: appConstants.facilityDetailsSubTitle
@@ -458,6 +480,10 @@ app
             facility.status = facility.facility_status == appConstants.active ? 1 : 0;
             facilitiesSvc.edit_facility(appConstants.facilityedit, appConstants.putMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
+                    if (facility.myFile) {
+                        var file = facility.myFile;
+                        $scope.uploadProfilePic(file,$stateParams.facility_id);
+                    }
                     toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
                     $location.path('/app/admin/facility/facility');
                 }
@@ -491,6 +517,22 @@ app
                 });
             }, function () {
                 toaster.pop('info', appConstants._cancelFacilityDelete);
+            });
+        };
+
+        $scope.HandleProfilePicAddUpdateClick = function () {
+            var fileinput = document.getElementById("profilePicAddUpdate");
+            fileinput.click();
+        };
+
+        $scope.uploadProfilePic = function (file, id) {
+            var fd = new FormData();
+            fd.append('facility_id', id);
+            fd.append('file', file);
+            facilitiesSvc.uploadFacilityPic(appConstants.facilityuploadpic, appConstants.postMethod, {}, fd, function (succResponse) {
+                if (succResponse.status) {
+                    //toaster.pop(appConstants.success,appConstants._successImageUpload);
+                }
             });
         };
 

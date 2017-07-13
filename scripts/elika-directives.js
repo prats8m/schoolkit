@@ -236,7 +236,7 @@ app
 app
     .directive('elikaFacilityDashboard', function () {
         return {
-            template: `<span><strong>{{dashboard_facility_name}}</strong> {{dashboard_facility_quote}}</span>`,
+            template: `<div class="facility_name_location"><span class="facility_name">{{dashboard_facility_name}}</span><span class="facility_location">{{dashboard_facility_quote}}</span></div>`,
             restrict: 'C',
             controller: ['$scope', 'dashboardSvc', "appConstants", '$rootScope', '$cookies', function elikaFacility($scope, dashboardSvc, appConstants, $rootScope, $cookies) {
                 dashboardSvc.getFacilityName(appConstants.facilityview, appConstants.getMethod, {}, {}, function (succResponse) {

@@ -100,6 +100,7 @@ app.constant("appConstants", {
     openDoorCommand: 'open-door?door_id=',
     historylist: 'history/list',
     wizardadd: 'wizard',
+    facilityuploadpic: 'facility/upload-pic',
     //...........................................................................
 
     //........Constants............................................................
@@ -186,6 +187,9 @@ app.constant("appConstants", {
     dashboard_facility_name: "Dashboard",
     dashboard_facility_quote: "Welcome to elika",
     allfacilities: 'All Facilities',
+    facility_photo_error: 'Some error occured during image upload',
+    dashboard_facility_photo: '../images/crystalcove.jpg',
+
 
     //...........................................................................
 
@@ -431,6 +435,7 @@ app.constant("appConstants", {
     _cancelholidayscheduledeletion: 'You decided to keep holiday schedule',
     _successholidayscheduleadded: 'Holiday Schedule added successfully',
     _successholidayscheduleedited: 'Holiday Schedule edited successfully',
+    _errorholidayvalidatitime: "Endtime can't be less than starttime",
 
     //........................................................................................
 

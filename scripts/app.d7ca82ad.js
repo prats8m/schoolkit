@@ -2317,6 +2317,9 @@ app
       scheduler.config.show_loading = true;
       scheduler.config.readonly = false;
       scheduler.init('scheduler_here', new Date(), "week");
+      if(typeof InstallTrigger !== 'undefined')
+        $(".dhx_cal_today_button").click();
+
       scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
     }
 
@@ -2411,6 +2414,8 @@ app
           scheduler.config.date_step = "5";
           scheduler.config.show_loading = true;
           scheduler.init('scheduler_here', week_date, "week");
+          if(typeof InstallTrigger !== 'undefined')
+             $(".dhx_cal_today_button").click();
           $timeout(function () {
             $rootScope.clearAllSchedule();
           });
@@ -2482,7 +2487,7 @@ app
       }
       if (form_type == 'view') {
 
-        $(".modal-footer").css("display", "none");
+        $(".modal-footer .btn-success").css("display", "none");
       }
     };
 
@@ -2507,7 +2512,7 @@ app
           $(".disable_modal").css("pointer-events","none");
         });
         $timeout(function () {
-          $(".modal-footer").hide();
+          $(".modal-footer .btn-success").hide();
         });
       }
       
