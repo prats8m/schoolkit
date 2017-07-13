@@ -9,9 +9,15 @@
 			<div class="card-container col-sm-8 col-md-6">
 				<div class="card">
 					<div class="bg-dashboard dashboardbg">
-						<div class="bg-transparent">
+						<div class="bg-transparent" style="background: url('{{dashboard_facility_photo ? dashboard_facility_photo : dashboard_facility_photo_constant}}') right bottom no-repeat;background-size: cover;">
 							<div class="crystalcove">
-								<div class="covertext elika-facility-dashboard"></div>
+								<div class="covertext ">
+									<!-- <span>
+										<strong>Crystal Cove</strong> Newport Coast
+									</span> -->
+									<!-- <elika-facility></elika-facility> -->
+									<div class="facility_name_location"><span class="facility_name">{{dashboard_facility_name}}</span><span class="facility_location">{{dashboard_facility_quote}}</span></div>
+								</div>
 							</div>
 							<div class="myshortcuts">
 								<h3>My Shortcuts <span class="pull-right addsc"><i class="fa fa-plus" aria-hidden="true" ng-click="openShortCutPopup()"></i></span></h3>

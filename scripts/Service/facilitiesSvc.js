@@ -130,7 +130,7 @@ app
                     cb(succResponse);
                 }
                 else {
-                    toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
+                    toaster.pop(appConstants.error, appConstants.facility_photo_error);
                     cb(succResponse);
                 }
             });
