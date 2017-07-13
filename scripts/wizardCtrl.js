@@ -151,4 +151,10 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             }
         });
     }
+    $scope.trimModel = function (event, model) {
+        if (event.charCode == 32 && (model == undefined || model.length <= 0)) {
+            event.preventDefault();
+        }
+
+    }
 })

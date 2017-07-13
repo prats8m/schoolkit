@@ -34,7 +34,7 @@
 				<section class="tile tile-simple">
 					<div class="leftdetail tile-widget p-30 text-center">
 						<div class="thumb thumb-xxll mb-20">
-							<img class="img-circle" src="images/facility/1.jpg" alt="">
+							<img class="img-circle" ng-src="{{facility.facility_photo ? facility.facility_photo :'images/facility/1.jpg'}}" alt="">
 						</div>
 						<h3 class="mb-10"><strong>{{facility.facility_name}}</strong></h3>
 						<span class="text-muted">{{facility.facility_location}}</span>
