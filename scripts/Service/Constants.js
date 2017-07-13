@@ -100,6 +100,7 @@ app.constant("appConstants", {
     openDoorCommand: 'open-door?door_id=',
     historylist: 'history/list',
     wizardadd: 'wizard',
+    facilityuploadpic: 'facility/upload-pic',
     //...........................................................................
 
     //........Constants............................................................

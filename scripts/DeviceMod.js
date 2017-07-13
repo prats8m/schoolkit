@@ -235,7 +235,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster, $rootScope, baseURL, errorHandler, $location, appConstants, devicesSvc, utilitySvc) {
+    .controller('ViewDeviceCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, toaster, $rootScope, baseURL, errorHandler, $location, appConstants, devicesSvc, utilitySvc,$state) {
         $scope.page = {
             title: appConstants.deviceviewUITitle,
             subtitle: appConstants.dashboardSubTitle
@@ -272,6 +272,7 @@ app
                 devicesSvc.deleteDevice(appConstants.devicedelete + '?device_id=' + parseInt($stateParams.device_id), appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         toaster.pop(appConstants.success, appConstants._successdeleteDevice);
+                        $state.go('app.admin.device.devices');
                     }
                 });
             }, function () {
