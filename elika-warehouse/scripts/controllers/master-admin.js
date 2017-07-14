@@ -70,7 +70,6 @@ app
 	}, "Please enter a valid phone number.");
 
 	$rootScope.submitAddMasterAdmin = function(master,add_master_admin){
-		console.log();
 		if(!add_master_admin.validate({
 			  rules: {
 			    first_name: {
@@ -113,6 +112,7 @@ app
 	      return false;
 	    }
 		$rootScope.errorMessage = '';
+		master.zipcode = parseInt(master.zipcode);
 		
 		 dataService.postData(master,baseUrl+'warehouse/add-master-admin')
 		 .success(function(response){
@@ -239,7 +239,7 @@ app
 		 	phone:data.user_phone_no,
 	//	 	password:data.user_first_name,
 	//	 	confirm_password:data.user_first_name,
-		 	zipcode:data.user_zipcode,
+		 	zipcode:parseInt(data.user_zipcode),
 		 	user_status:data.user_status,
 		 	status:data.user_status,
 		 	address:' '
