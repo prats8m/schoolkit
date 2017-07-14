@@ -19,6 +19,7 @@ app
                     if (succResponse.msg == 'Login_Success') {
                         $rootScope.current_user = succResponse.data;
                         $cookies.put('userId', succResponse.data.userId);
+                        $cookies.put('userPhoto', succResponse.data.userPhoto); // for profile pic
                         if ($scope.rememberme) {
                             $cookies.put('username', $scope.user.username);
                             $cookies.put('password', $scope.user.password);
@@ -30,9 +31,7 @@ app
                         if (succResponse.data.isWizardUsed == 0) {
                             $cookies.put('isWizardUsed', succResponse.data.isWizardUsed);
                         }
-                        $state.go('app.admin.dashboard')
-                        //($cookies.get('facilityId').split(",").length == 1) ? $state.go('app.admin.dashboard',{facility_id:$cookies.get('facilityId')}) : $state.go('app.admin.dashboard',{facility_id:0})
-                        // $state.go('app.admin.dashboard');
+                        $state.go('app.admin.dashboard');
                     }
                 }
                 else {

@@ -199,7 +199,7 @@ app
                 userSvc.deleteUser(appConstants.userdelete + '?user_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         //toaster.pop('info', appConstants._successfullyuserdeletedmessage);
-                        toaster.pop(appConstants.success, succResponse.msg);
+                        toaster.pop(appConstants.success, succResponse.msg.replace(/_/g, " "));
                         var users = $scope.users;
                         var tempUser = [];
                         for (var i = 0; i < users.length; i++) {
@@ -1711,6 +1711,16 @@ app
                 }
             });
         };
+        $scope.selectExpiration = function (option) {
+            if (option == 0) {
+                var date = angular.copy(new Date($scope.userData.user_expiration_date != 0 ? ($scope.userData.user_expiration_date * 1000) : new Date()));
+                $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' + date.getUTCFullYear());
+            }
+            else {
+                $scope.editUser.expirationdate = '';
+            }
+        }
+        $scope.editUser.no_expirations = 1;
         $scope.facilityInit();
         //End Of Initialize Facility
         $scope.editAccess = {};
@@ -1739,8 +1749,12 @@ app
                     $scope.editUser.address = angular.copy($scope.userData.user_address);
                     $scope.editUser.email = angular.copy($scope.userData.user_email);
                     if ($scope.userData.user_expiration_date != 0) {
+                        $scope.editUser.no_expirations = 0;
                         var date = angular.copy(new Date($scope.userData.user_expiration_date * 1000));
                         $scope.editUser.expirationdate = (date.getUTCDate() + '/' + (date.getUTCMonth() + 1) + '/' + date.getUTCFullYear());
+                    }
+                    else {
+                        $scope.editUser.no_expirations = 1;
                     }
                     $scope.editUser.status = angular.copy($scope.userData.user_status);
                     $scope.editUser.user_name_on_lcd = angular.copy($scope.userData.user_name_on_lcd);

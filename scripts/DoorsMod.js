@@ -71,7 +71,7 @@ app
 
 					if (utilitySvc.getCurrentFacility() != '') {
 						$rootScope.door.facility_id = parseInt(utilitySvc.getCurrentFacility());
-						$rootScope.facility_disable = true;
+						//$rootScope.facility_disable = true;
 					}
 				}
 			});
