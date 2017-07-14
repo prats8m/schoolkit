@@ -2480,11 +2480,11 @@ app
           $('.check_view').find(':input').prop('disabled', true);
 
         });
-        $timeout(function () {
-          angular.forEach($('.checkbox-custom-alt[role=button]'), function (value, key) {
-            $(value).css('cursor', 'not-allowed');
-          });
-        })
+        // $timeout(function () {
+        //   angular.forEach($('.checkbox-custom-alt[role=button]'), function (value, key) {
+        //     $(value).css('cursor', 'not-allowed');
+        //   });
+        // })
       }
       if (form_type == 'view') {
 

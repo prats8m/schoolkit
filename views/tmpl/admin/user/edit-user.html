@@ -359,6 +359,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('access_code')" ng-if="editAccess.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>
@@ -531,6 +532,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('phone_code')" ng-if="phoneedit.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>															
@@ -571,7 +573,7 @@
 														</div>
 													</uib-accordion-group>
 
-													<uib-accordion-group is-open="status.open2" class="panel-default">
+													<!-- <uib-accordion-group is-open="status.open2" class="panel-default">
 														<uib-accordion-heading>
 															<div ng-click="cleanAccordionFormObject('Edit User','editRfid')">RFID Code <i class="pull-right fa" ng-class="{'fa-minus': status.open2, 'fa-plus': !status.open2}"></i></div>
 														</uib-accordion-heading>
@@ -644,7 +646,7 @@
 																</div>
 															</div>
 														</div>
-													</uib-accordion-group>
+													</uib-accordion-group> -->
 
 													<uib-accordion-group is-open="status.open3" class="panel-default">
 														<uib-accordion-heading>
@@ -684,6 +686,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('wiegand_code')" ng-if="wiegand.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>
@@ -722,7 +725,7 @@
 														</div>
 													</uib-accordion-group>
 
-													<uib-accordion-group is-open="status.open4" class="panel-default">
+													<!-- <uib-accordion-group is-open="status.open4" class="panel-default">
 														<uib-accordion-heading>
 															<div ng-click="cleanAccordionFormObject('Edit User','editNfc')">NFC Code <i class="pull-right fa" ng-class="{'fa-minus': status.open4, 'fa-plus': !status.open4}"></i></div>
 														</uib-accordion-heading>
@@ -798,7 +801,7 @@
 																</div>
 															</div>
 														</div>
-													</uib-accordion-group>
+													</uib-accordion-group> -->
 
 													<uib-accordion-group is-open="status.open5" class="panel-default">
 														<uib-accordion-heading>
@@ -841,6 +844,7 @@
 																	<div class="row">
 																		<div class="form-group col-sm-12 col-md-12 mt-20">
 																			<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																			<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('ble_code')" ng-if="editBle.credential_id">Cancel</a>
 																		</div>
 																	</div>
 																</form>

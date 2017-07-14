@@ -1925,6 +1925,29 @@ app
         }
         //End of credentials schedule edit
 
+        //Remove edit mode
+        $scope.removeEditmode =  function(code_type){
+            switch(code_type){
+                case 'access_code':
+                    $scope.editAccess = {};
+                    break;
+                case 'phone_code':
+                    $scope.phoneedit = {};
+                    break;
+                case 'wiegand_code':
+                    $scope.wiegand = {};
+                    break;
+                case 'ble_code':
+                    $scope.editBle = {};
+                    break;
+                default: 
+
+                
+            }
+
+        }
+        //End of remove edit mode
+
         //Edit credentials on edit page
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
@@ -1941,6 +1964,7 @@ app
                     $scope.editAccess.access_code = cred_data.Access_Code;
                     $scope.editAccess.credential_id = cred_data.Credential_Id;
                     $scope.editAccess.status = cred_data.status;
+                    $scope.editAccess.schedule_id = cred_data.credential_schedule_id;
                     var arr = [];
                     angular.forEach(cred_data.Door_Id.split(","), function (value, key) {
                         arr[key] = parseInt(value);
@@ -1956,6 +1980,7 @@ app
                         $(".phone_div").hide();
                     }
                     $scope.phoneedit = {};
+                    $scope.phoneedit.schedule_id = cred_data.credential_schedule_id;
                     $scope.phoneedit.phonecode_size = cred_data.Detail.phone_code.length;
                     $scope.phoneedit.credential_id = cred_data.Credential_Id;
                     $scope.phoneedit.phone_code = cred_data.Detail.phone_code;
@@ -1989,6 +2014,7 @@ app
                         $(".rfid_div").hide();
                     }
                     $scope.editRfid = {};
+                    $scope.editRfid.schedule_id = cred_data.credential_schedule_id;
                     $scope.editRfid.credential_id = cred_data.Credential_Id;
                     $scope.editRfid.rfid_card_no = cred_data.Detail.rfid_card_no;
                     $scope.editRfid.rfid_facility_code = cred_data.Detail.rfid_facility_id;
@@ -2005,6 +2031,7 @@ app
                         $(".wiegand_div").hide();
                     }
                     $scope.wiegand = {};
+                    $scope.wiegand.schedule_id = cred_data.credential_schedule_id;
                     $scope.wiegand.credential_id = cred_data.Credential_Id;
                     $scope.wiegand.wiegand_card_number = cred_data.Detail.wiegand_card_number;
                     $scope.wiegand.wiegand_facility_code = cred_data.Detail.wiegand_facility_code;
@@ -2021,6 +2048,7 @@ app
                         $(".nfc_div").hide();
                     }
                     $scope.editNfc = {};
+                    $scope.editNfc.schedule_id = cred_data.credential_schedule_id;
                     $scope.editNfc.credential_id = cred_data.Credential_Id;
                     $scope.editNfc.nfc_code = cred_data.Detail.nfc_code;
                     $scope.editNfc.nfc_facility_code = cred_data.Detail.nfc_facility_code;
@@ -2038,6 +2066,7 @@ app
                     }
                     $scope.editBle = {};
                     $scope.editBle.schedule = {};
+                    $scope.editBle.schedule_id = cred_data.credential_schedule_id;
                     $scope.editBle.credential_id = cred_data.Credential_Id;
                     $scope.editBle.ble_name = cred_data.Detail.ble_username;
                     $scope.editBle.ble_pass = cred_data.Detail.ble_password;
@@ -2329,6 +2358,8 @@ app
                 userSvc.submitEditAccessCode(url, meth, {}, submitData, function (succResponse) {
                     $scope.editAccess.credential_id = null;
                     if (succResponse.status) {
+                        $scope.editAccess = {};
+                        $(".access_div").show();
                         toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                         $scope.getAccessCodeList();
                     }
@@ -2531,7 +2562,9 @@ app
                 userSvc.submitEditPhoneCode(url, meth, {}, submitData, function (succResponse) {
                     $scope.phoneedit.credential_id = null;
                     if (succResponse.status) {
+                        $scope.phoneedit = {};
                         toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+                        $(".phone_div").show();
                         $scope.getPhoneList();
                     }
                     else {
@@ -2707,6 +2740,8 @@ app
                 userSvc.submitEditWiegandCode(url, meth, {}, submitData, function (succResponse) {
                     $scope.wiegand.credential_id = null;
                     if (succResponse.status) {
+                        $scope.wiegand = {};
+                        $(".wiegand_div").show();
                         toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                         $scope.getWiegandList();
                     }
@@ -2857,6 +2892,8 @@ app
                         userSvc.submitEditBLECode(url, meth, {}, submitData, function (succResponse) {
                             $scope.editBle.credential_id = null;
                             if (succResponse.status) {
+                                $scope.editBle = {};
+                                $(".ble_div").show();
                                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                                 $scope.getBleList();
                                 // $scope.bleerror = appConstants.empty;
