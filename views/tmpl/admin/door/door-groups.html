@@ -40,19 +40,19 @@
 												<div class="row">
 													<div class="form-group col-md-6">
 														<label for="">Group Name</label>
-														<input type="text" name="" id="" class="form-control" placeholder="" ng-model="doorGrp.name">
+														<input type="text" name="name" id="" class="form-control" maxlength="30" placeholder="" ng-model="doorGrp.name" required>
 													</div>
 													<div class="form-group col-md-6">
 														<label for="">Facility</label><br/>
-														<select name="mySelect" id="mySelect" class="form-control" chosen="{width: '100%'}" ng-options="item.facility_id as item.facility_name for item in facilityList"
-														 ng-model="doorGrp.facility_id" ng-init="doorGrp.facility_id = facilityId"></select>
+														<select name="facility" id="mySelect" class="form-control" ng-options="item.facility_id as item.facility_name for item in facilityList"
+														 ng-model="doorGrp.facility_id" ng-init="doorGrp.facility_id = facilityId" required><option value="">Select</option></select>
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="">Doors</label>
-													<select name="mySelect" id="mySelect" class="form-control" Multiple chosen="{width: '100%'}" ng-options="door.door_id as door.door_name for door in doorList"
-													 ng-model="doorGrp.door_id" ng-init="doorGrp.door_id = doorid"></select>
-													<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors">Add Door</a></small>
+													<select name="doors" id="mySelect" class="form-control" Multiple chosen="{width: '100%'}" ng-options="door.door_id as door.door_name for door in doorList"
+													 ng-model="doorGrp.door_id" ng-init="doorGrp.door_id = doorid" required></select>
+													<small class="pull-right mb-10"><a ng-click="cancel()" ui-sref="app.admin.door.doors" required>Add Door</a></small>
 												</div>
 												<div class="row" style="display:none;">
 													<div class="form-group col-sm-6 col-md-6 first">

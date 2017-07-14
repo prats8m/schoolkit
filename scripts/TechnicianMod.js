@@ -201,7 +201,7 @@ app
 				var date = Data.expiration_date;
 			}
 
-
+			Data.technician_zipcode = parseInt(Data.technician_zipcode);
 			Data.expiration_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 			//delete Data["expiration_date"];
 			technicianSvc.submitTechProfile(appConstants.edittechnician, appConstants.putMethod, {}, Data, function (succResponse) {

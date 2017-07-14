@@ -192,7 +192,7 @@ app
                     $rootScope.facilityList = succResponse.data.data;
                     if (utilitySvc.getCurrentFacility() != '') {
                         $rootScope.device.facility_id = parseInt(utilitySvc.getCurrentFacility());
-                        $('#facility_id').attr('disabled', 'disabled');
+                        //$('#facility_id').attr('disabled', 'disabled');
                         $rootScope.getDoorsList();
                     }
                 }

@@ -199,7 +199,7 @@ app
                 userSvc.deleteUser(appConstants.userdelete + '?user_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         //toaster.pop('info', appConstants._successfullyuserdeletedmessage);
-                        toaster.pop(appConstants.success, succResponse.msg);
+                        toaster.pop(appConstants.success, succResponse.msg.replace(/_/g, " "));
                         var users = $scope.users;
                         var tempUser = [];
                         for (var i = 0; i < users.length; i++) {

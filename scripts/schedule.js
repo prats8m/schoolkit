@@ -326,7 +326,7 @@ app
 					$rootScope.facilityList = succResponse.data.data;
 					if (utilitySvc.getCurrentFacility() != '') {
 						$scope.schedule.facility_id = parseInt(utilitySvc.getCurrentFacility());
-						$scope.facility_disable = true;
+						//$scope.facility_disable = true;
 						//$rootScope.getDoorsList();
 					}
 				}
