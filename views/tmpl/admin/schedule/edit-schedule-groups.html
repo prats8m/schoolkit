@@ -137,7 +137,7 @@
 														<div class="col-sm-12 col-md-12">
 															<ul class="hslist">
 																<li ng-repeat="e in exceptions">
-																	<span>{{e.type}} {{e.date| date:'dd-MMM-yyyy': 'UTC'}} from {{e.start_time}} to {{e.end_time}}</span> 
+																	<span>({{e.frequency}}){{e.type}} {{e.week}} {{e.day}} {{e.frequency == "Repeat" ? "" : e.date*1000| date:'dd-MMM-yyyy': 'UTC'}} from {{e.start_time}} to {{e.end_time}}</span> 
 																	<a ng-click="removeHolidaySchdule(e.key)" class="pull-right text-lightred">
 																		<i class="fa fa-trash-o" aria-hidden="true"></i>
 																	</a>
@@ -243,11 +243,11 @@
 											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_status==0 || $parent.schedule.schedule_cat == 1" ng-init="schedule.no_expirations=1">
 												<label for="">&nbsp;</label><br/>
 												<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
-													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0" ><i></i> No Expirations 
+													<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="$parent.schedule.no_expirations" ng-true-value="1" ng-false-value="0" ><i></i> No Expirations 
 												</label>											
 											</div>
-											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_cat == 1 || schedule.no_expirations == 1" ng-controller="DatepickerDemoCtrl">
-												<div class="input-group">
+											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_cat==1 || $parent.schedule.no_expirations==1" >
+												<div class="input-group" ng-controller="DatepickerDemoCtrl">
 													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
