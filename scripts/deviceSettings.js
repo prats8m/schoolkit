@@ -146,7 +146,7 @@ app
             data.value[appConstants.deviceSettings.lockoutperiod] = $scope.deviceGeneralSettingModals.dgs_lockout_mode[appConstants.deviceSettings.lockoutperiod];
             commonSetHTTPService(data, appConstants._successlockoutmodeconfigured);
         };
-
+       
         $scope.advanceClockSetting = {
             date: appConstants.empty,
             time: new Date()
@@ -161,8 +161,8 @@ app
             var data = new commonSetAPIDataObject();
             data.module = appConstants.deviceSettings.motiondetection;
             data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
-            data.value[appConstants.deviceSettings.motiondetection] = $scope.das_motion_detection['motion-detection'];
-            commonSetHTTPService(data, appConstants._successlockoutmodeconfigured);
+            data.value[appConstants.deviceSettings.motiondetection] = $scope.deviceAdvanceSettingModals.das_motion_detection['motion-detection'];
+            commonSetHTTPService(data, appConstants._successmotiondetectionmodeconfigured);
         }
         $scope.getAdvancedSettings = function () {
             $scope.commonGetAPIData.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
