@@ -659,6 +659,7 @@
 													<li><a href="#astab6" native-tab>History</a></li>
 													<li><a href="#astab7" native-tab>Factory Setup</a></li>
 													<li><a href="#astab8" native-tab>Data Backup &amp; Restore</a></li>
+													<li><a href="#astab9" native-tab>Motion Detection</a></li>
 												</ul>
 											</div>
 
@@ -946,7 +947,31 @@
 															</div>
 														</div>
 													</div>
-
+													<div class="tab-pane fade" id="astab9">
+														<h4><strong>Motion Detection</strong></h4>
+														<div class="row mt-20">
+															<div class="form-group col-md-3">
+																<div class="row">
+																	<div class="col-sm-12 col-md-6">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="customMotionEnabled" ng-model="deviceAdvanceSettingModals.das_motion_detection['motion-detection']" value="0" type="radio" checked="checked"><i></i> Audio
+																		</label>
+																	</div>
+																	<div class="col-sm-12 col-md-6">
+																		<label class="checkbox checkbox-custom-alt">
+																			<input name="customMotionDisabled" ng-model="deviceAdvanceSettingModals.das_motion_detection['motion-detection']" value="1" type="radio"><i></i> Audio and Video
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-md-12 legend">
+																<button ng-click="setMotionDetectionSettings();" class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Save</button>
+																<!--<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a mt-10">Cancel</button>-->
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>

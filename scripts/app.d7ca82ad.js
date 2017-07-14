@@ -2458,6 +2458,7 @@ app
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
+        size: 'lg',
         resolve: {
           items: function () {
             return $scope.items;
@@ -2495,6 +2496,7 @@ app
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
+        size: "lg",
         resolve: {
           items: function () {
             return $scope.items;

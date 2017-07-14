@@ -293,6 +293,7 @@ app
 			data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
 			// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.schedule_start_date))/1000;
 			delete data.schedule_start_date;
+
 			if (data.schedulestart_date != undefined) {
 				var start_date = data.schedulestart_date;
 				var date = new Date(data.schedulestart_date);
@@ -306,6 +307,7 @@ app
 
 			// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(new Date(data.expiration))/1000;
 			data.schedule_type = "usergroup";
+			angular.forEach(data.schedule_exception_array, function(v){ if(v.frequency == "repeat"){delete v.date;} })
 			scheduleSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod, {}, data, function (succResponse) {
 				data.schedulestart_date = start_date;
 				data.expiration = expiration_date;
@@ -558,6 +560,7 @@ app
 		$scope.searchAlphabet = '';
 		$scope.searchByAlphabet = function (alphabet) {
 			$scope.searchText = '';
+			$scope.schedules = [];
 			$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
 			$scope.pageNo = 1;
 			if (alphabet == 'All') {
@@ -1065,14 +1068,15 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				delete v.status;
 			});
 		}
-		if($scope.exceptions){
+		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
+		data.schedule_category = 0;
+		if($scope.exceptions && $scope.schedule.schedule_cat != 1){
 			data.schedule_exception_array = angular.copy($scope.exceptions);
 		}
 		else{
 			data.schedule_exception_array = [];
+			data.schedule_category = 1;
 		}
-		data.holiday_schedule_array = scheduleSvc.getHolidayIds($rootScope.holidaySchedules);
-		data.schedule_category = 0;
 		// data.schedule_start_date = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_start_date)/1000;
 		// data.expiration = utilitySvc.convertDateToMilliecondTimeStamp(data.selected_schedule_expiration_date)/1000;
 		var start_date = data.selected_schedule_start_time;

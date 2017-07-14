@@ -215,7 +215,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             var exceptions = [];
             for(var i=0;i<x.length;i++){
                 var exception = {
-                    type:x[i].se_schedule_exception.type,
+                    type:x[i].se_schedule_exception.type.charAt(0).toUpperCase() + x[i].se_schedule_exception.type.substr(1).toLowerCase(),
                     status:x[i].se_schedule_exception.status,
                     week:x[i].se_schedule_exception.week,
                     day:x[i].se_schedule_exception.day,
@@ -223,6 +223,7 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
                     start_time:x[i].se_schedule_exception.start_time,
                     end_time:x[i].se_schedule_exception.end_time,
                     key:x[i].se_schedule_exception.key,
+                    frequency:x[i].se_schedule_exception.frequency.charAt(0).toUpperCase() + x[i].se_schedule_exception.frequency.substr(1).toLowerCase()
                 };
                 exceptions.push(exception);
             }

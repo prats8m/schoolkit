@@ -59,8 +59,8 @@ app
 
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (ev, facilityId) {
-            if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -130,6 +130,7 @@ app
         $scope.searchAlphabet = '';
         $scope.searchByAlphabet = function (alphabet) {
             $scope.searchText = '';
+            $scope.facilities = [];
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             if (alphabet == 'All') {
@@ -245,8 +246,8 @@ app
 
         $scope.result = '';
         $scope.showConfirm = function (ev) {
-             if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -386,8 +387,8 @@ app
         $scope.imagePath = baseURL + appConstants.imagePath;
 
         $scope.showConfirm = function (ev, facilityId) {
-             if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()
@@ -403,7 +404,7 @@ app
                         $location.path('/app/admin/facility/facility');
                     }
                     else {
-                        toaster.pop('error',succResponse.msg);
+                        toaster.pop('error', succResponse.msg);
                         //$scope.result = succResponse.msg;
                         //$scope.statusclass = appConstants.dangerstatusClass;
                     }
@@ -493,8 +494,8 @@ app
         };
 
         $scope.showConfirm = function (ev, facilityId) {
-             if(facilityId == $cookies.get('current_facility_id')){
-                toaster.pop('error',appConstants._switchtootherfacility);
+            if (facilityId == $cookies.get('current_facility_id')) {
+                toaster.pop('error', appConstants._switchtootherfacility);
                 return false;
             }
             var confirm = $mdDialog.confirm()

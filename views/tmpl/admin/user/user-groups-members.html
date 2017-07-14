@@ -95,7 +95,7 @@
 								<div class="glview">
 									<md-content>
 										<md-card class="slaveusers" ng-repeat="userdetail in usergroupslist | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy"">
-											<a ui-sref="app.admin.user.user-profile"><img ng-src="{{userdetail.user_photo ? userdetail.user_photo : 'images/avatar.jpg'}}" class="md-card-image" alt="Washed Out"></a>
+											<a ui-sref="app.admin.user.view-user({user_id: userdetail.user.user_id})"><img ng-src="{{userdetail.user.user_photo ? userdetail.user.user_photo : 'images/avatar.jpg'}}" class="md-card-image" alt="Washed Out"></a>
 											<md-card-content>
 												<h2 class="md-title">{{ userdetail.user.user_first_name }}</h2>
 												<p>{{ userdetail.user.user_phone_no }}</p>

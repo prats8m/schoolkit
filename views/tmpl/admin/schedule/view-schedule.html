@@ -38,7 +38,7 @@
 									<div class="form-group col-sm-12 profiledetail">
 										<p><label>Schedule Name</label>{{ViewSchedule.schedule_name}}</p>
 										<p><label>Status</label>{{ViewSchedule.schedule_status | scheduleFilter}}</p>
-										<p><label>Start Date</label>{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
+										<p ng-show="ViewSchedule.schedule_start_time" style="display: none;"><label>Start Date</label>{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label>{{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</p>
 										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label>No Limits</p>
 										<p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">

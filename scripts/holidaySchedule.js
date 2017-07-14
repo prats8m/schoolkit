@@ -29,7 +29,7 @@ app
             HolidayScheduleSvc.deleteHolidaySchedule(appConstants.holidayscheduledelete + '?hs_id=' + holidayScheduleId, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successdeleteholidayschedule);
-                    $scope.getHolidayScheduleList();
+                    $scope.getEditHolidayScheduleList();
                 }
             });
         };
@@ -63,6 +63,7 @@ app
         $scope.searchAlphabet = '';
         $scope.searchByAlphabet = function (alphabet) {
             $scope.searchText = '';
+            $scope.lstHolidaySchedular = [];
             $(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
             $scope.pageNo = 1;
             if (alphabet == 'All') {
