@@ -66,7 +66,7 @@
 						<h4 class="mb-0"><strong>{{userData.user_first_name + " " + userData.user_last_name}}</strong></h4>
 						<span class="text-muted"> {{userData.user_phone_no}}</span>
 						<div class="mt-40">
-							<a ng-disabled="true" class="btn btn-rounded-20 btn-sm btn-lightred" dng-click="showConfirm($event,user_id)">Delete Admin</a>
+							<a ng-disabled="false" class="btn btn-rounded-20 btn-sm btn-lightred" ng-click="showConfirm($event,user_id)">Delete Admin</a>
 						</div>
 					</div>
 				</section>  

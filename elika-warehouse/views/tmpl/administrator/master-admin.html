@@ -189,7 +189,7 @@
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>			
-										<md-card ng-repeat="user in listData | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy">
+										<md-card ng-repeat="user in listData track by user.user_id">
 											<md-card-content>
 												<h2 class="md-title">{{ user.user_first_name + ' ' + user.user_last_name }}</h2>
 												<!-- <p class="ta-c">{{ user.access }}</p> -->
