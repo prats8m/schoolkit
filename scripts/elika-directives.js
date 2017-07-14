@@ -30,6 +30,7 @@ app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cooki
         element.bind('click', function () {
             $cookies.remove("token", { path: '/' });
             $cookies.remove("token", { path: '/elika-warehouse' });
+            $cookies.remove("isWizardUsed");
             $location.path('/core/login');
             scope.$apply();
         });
@@ -125,7 +126,7 @@ app
         return {
             templateUrl: 'views/header.html',
             restrict: 'E',
-            controller: ['$scope', 'dashboardSvc', "appConstants", '$rootScope', 'utilitySvc', '$cookies', '$state', 'dataService','$interval','$log', function elikaHeader($scope, dashboardSvc, appConstants, $rootScope, utilitySvc, $cookies, $state, dataService,$interval,$log) {
+            controller: ['$scope', 'dashboardSvc', "appConstants", '$rootScope', 'utilitySvc', '$cookies', '$state', 'dataService', '$interval', '$log', function elikaHeader($scope, dashboardSvc, appConstants, $rootScope, utilitySvc, $cookies, $state, dataService, $interval, $log) {
                 $scope.userFirstName = $cookies.get('userFirstName');
                 $scope.userLastName = $cookies.get('userLastName');
                 $scope.userPhoto = $cookies.get('userPhoto');
@@ -150,7 +151,7 @@ app
                     if (succResponse.status) {
                         $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
                         $scope.navbar_facilities_count = $rootScope.headerFacilityList.length;
-                        
+
                     }
                 });
 
@@ -162,8 +163,8 @@ app
                 } else {
                     $scope.facility_id = 0;
                 }
-                
-               
+
+
                 $scope.goFacilityList = function () {
                     $cookies.put('current_facility_id', 0);
                     $scope.facility_id = 0;
