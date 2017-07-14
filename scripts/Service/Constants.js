@@ -281,6 +281,7 @@ app.constant("appConstants", {
     _successrelayanddoorsetupconfigured: 'Relay & Door Setup configured successfully',
     _successspeakerandmicrophoneconfigured: 'Speaker and Microphone configured successfully',
     _successlockoutmodeconfigured: 'Lockout Mode Configured successfully',
+    _successmotiondetectionmodeconfigured: 'Motion Detection Mode Configured successfully',
     _successmastercodeconfigured: 'Master Code Configured successfully',
     _successclockconfigured: 'Clock Configured successfully',
     _successlatchcodeconfigured: 'Latch Code Configured successfully',
