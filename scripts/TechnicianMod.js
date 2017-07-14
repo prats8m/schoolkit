@@ -51,7 +51,7 @@ app
 		$scope.pageNo = 1;
 		$scope.alphabateList = ['All', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 		$scope.searchByAlphabet = function (alphabet) {
-				$scope.searchText = '';
+			$scope.searchText = '';
 			//	$(".f-wm:contains(" + appConstants.nomoredataavailable + ")").text('Load More').css("opacity", 1);
 			$scope.technicianList = [];
 			$scope.pageNo = 1;
@@ -66,18 +66,18 @@ app
 		}
 		$scope.technicianList = [];
 
-		$scope.searchFunction = function(e){
+		$scope.searchFunction = function (e) {
 			if (e)
-                if (e.keyCode != 13) { return false; }
-            if (!$scope.searchText) {
-                $scope.searchText = appConstants.empty;
-            }
-            $scope.pageNo = 1;
-            $scope.getTechnicians();
+				if (e.keyCode != 13) { return false; }
+			if (!$scope.searchText) {
+				$scope.searchText = appConstants.empty;
+			}
+			$scope.pageNo = 1;
+			$scope.getTechnicians();
 		}
 
 		$scope.getTechnicians = function () {
-			if($scope.searchText == undefined){$scope.searchText = '';}
+			if ($scope.searchText == undefined) { $scope.searchText = ''; }
 			technicianSvc.getTechnicians(appConstants.technicianlist + '?searchVal=' + $scope.searchText + '&limits=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					if ($scope.pageNo <= 1) {
@@ -87,7 +87,7 @@ app
 						$scope.technicianList.push(tech);
 					})
 					$scope.pageNo = $scope.pageNo + 1;
-				}else{
+				} else {
 					$scope.technicianList = [];
 				}
 			});
@@ -113,6 +113,7 @@ app
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants.submitSuccessfully);
 					setTimeout(function () { $("#close").click(); }, 10);
+					$scope.pageNo = 1;
 					$scope.getTechnicians();
 				}
 			});
@@ -122,6 +123,7 @@ app
 			technicianSvc.deleteTechnician(appConstants.deletetechnician + "?technician_id=" + technician_id, appConstants.deleteMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, appConstants._successfullytechniciandeletedmessage);
+					$scope.pageNo = 1;
 					$scope.getTechnicians();
 				}
 			});
