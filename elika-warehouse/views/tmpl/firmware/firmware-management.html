@@ -203,10 +203,16 @@
 									{{result}}
 								</div>
 							</div>
+							<div ng-if="firmwares.length == 0">
+								<div layout="row" class="error" ng-class="statusclass">
+									<!--{{status}}-->
+									No Record Found
+								</div>
+							</div>
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>
-										<md-card ng-repeat="firmware in firmwares | limitTo:totalDisplayed | filter:text | filter:component | filter:devicemodel | filter:hardware | filter:firmware | orderBy:myOrderBy track by firmware.firmware_id">
+										<md-card ng-repeat="firmware in firmwares track by firmware.firmware_id">
 											<md-card-content>
 												<h2 class="md-title">{{ firmware.firmware_component }}</h2>
 												<p><span>Device</span> : {{ firmware.firmware_model }}</p>
@@ -220,7 +226,7 @@
 											</div>
 										</md-card>
 									</md-content>
-									<button class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+									<button ng-if="firmwares.length>0" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
 								</div>
 							</div>
 						</div>
