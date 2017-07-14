@@ -149,7 +149,7 @@ app
                 dashboardSvc.getHeaderFacilityList(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         $rootScope.headerFacilityList = succResponse.data ? succResponse.data.data : [];
-
+                        $scope.navbar_facilities_count = $rootScope.headerFacilityList.length;
                         
                     }
                 });
