@@ -29,7 +29,7 @@ app
             HolidayScheduleSvc.deleteHolidaySchedule(appConstants.holidayscheduledelete + '?hs_id=' + holidayScheduleId, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop(appConstants.success, appConstants._successdeleteholidayschedule);
-                    $scope.getHolidayScheduleList();
+                    $scope.getEditHolidayScheduleList();
                 }
             });
         };

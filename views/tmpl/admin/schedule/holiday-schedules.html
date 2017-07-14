@@ -43,7 +43,7 @@
 															<div class="form-group row">
 																<div class="col-md-12">
 																	<label for="">Schedule Name <span class="text-danger">*</span></label>
-																	<input type="text" name="schedule_name" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" required>
+																	<input type="text" name="schedule_name" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" maxlength=30 required>
 																</div>
 															</div>
 															<div class="row">
@@ -221,7 +221,7 @@
 																			<div class="col-md-12">
 																				<label for="">Schedule Name <span class="text-danger">*</span></label>
 																				<input type="text" name="" id="" ng-model="editHolidayScheduleObj.hs_name" class="form-control" placeholder="Office-Weekdays"
-																				 required>
+																				 maxlength=30 required>
 																			</div>
 																		</div>
 																		<div class="row">
