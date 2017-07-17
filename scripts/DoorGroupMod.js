@@ -14,6 +14,7 @@ app
         };
         $scope.layout = appConstants.gridLayout;
         $scope.class = appConstants.gridviewClass;
+        $rootScope.doorGrp = {};
         $scope.changeClass = function () {
             if ($scope.class === appConstants.gridviewClass)
                 $scope.class = appConstants.listviewClass;
@@ -176,6 +177,11 @@ app
             doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.facilityList = succResponse.data.data;
+
+                    if (utilitySvc.getCurrentFacility() != '') {
+						$rootScope.doorGrp.facility_id = parseInt(utilitySvc.getCurrentFacility());
+						//$rootScope.facility_disable = true;
+					}
 
                 }
             });
