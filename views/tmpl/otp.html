@@ -10,7 +10,7 @@
 	<div class="page page-core page-login core-new">
 		<div id="hpopup" class="container w-450 p-40 bg-white text-center login-box-shadow borderradius6">
 			<h2 class="login-h2 text-greensea">OTP/Security Question</h2>
-			<form name="form" class="form-validation mt-20" ng-submit="formSubmit(user)" novalidate>
+			<form name="form" ng-validate class="form-validation mt-20" ng-submit="formSubmit(user,form)" novalidate>
 			
 				<!-- <div class="row text-left" >					
 					<div class="col-sm-12 col-md-6">
@@ -27,7 +27,7 @@
 				<div class="row" ng-init="visibiltyUserGroup=false">
 					<div class="col-sm-12 col-md-12 form-group">
 						<p class="help-block text-left mt-20" style="font-weight: 400; font-size: 14px; margin-bottom: 30px;">The OTP has been send on your e-mail address.</p>
-						<input type="text" class="form-control underline-input" placeholder="One Time Password" maxlength="6" ng-model="user.otp" required>
+						<input type="text" number name="otp" class="form-control underline-input" placeholder="One Time Password" maxlength="6" ng-model="user.otp" required>
 					</div>
 				</div>
 				<!-- <div class="row mt-20">

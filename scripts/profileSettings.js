@@ -45,7 +45,10 @@ app
             });
         };
 
-        $scope.updateLoggedInUserProfile = function () {
+        $scope.updateLoggedInUserProfile = function (form) {
+            if (!form.validate()) {
+                return false;
+            }
             profileSettingsSvc.updateLoggedInUserProfile(appConstants.manageaccount, appConstants.postMethod, {}, $scope.profileSettings.manageAccount, function (succResponse) {
                 if (succResponse.status) {
                     $scope.profileSettings.manageAccount = {};
@@ -56,7 +59,10 @@ app
             });
         };
 
-        $scope.changeSecurityQuestion = function () {
+        $scope.changeSecurityQuestion = function (form) {
+            if (!form.validate()) {
+                return false;
+            }
             profileSettingsSvc.changeSecurityQuestion(appConstants.updatesecretquestions, appConstants.postMethod, {}, $scope.profileSettings.changeSecurityQuestions, function (succResponse) {
                 if (succResponse.status) {
                     $scope.profileSettings.changeSecurityQuestions = {};
@@ -65,7 +71,10 @@ app
             });
         };
 
-        $scope.changeloggedInuserPassword = function () {
+        $scope.changeloggedInuserPassword = function (form1dd) {
+            if (!form1dd.validate()) {
+                return false;
+            }
             profileSettingsSvc.changeloggedInuserPassword(appConstants.userchangepassword, appConstants.postMethod, {}, $scope.profileSettings.changepassword, function (succResponse) {
                 if (succResponse.status) {
                     $scope.profileSettings.changepassword = {};

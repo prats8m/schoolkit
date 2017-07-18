@@ -264,8 +264,18 @@ tr[ng-show="::showSpinners"] {
     color: #fff
 }
 
+.backpage {
+	text-align: right;
+}
+
 .backpage a {
-    font-size: 18px
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    width: 49%;
+    text-align: left;
+    float: left;
 }
 
 .gridlistbar {
@@ -891,24 +901,24 @@ a.serplan:hover {
 	display: block;
 	line-height: normal;
 	position: relative;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	/*text-overflow: ellipsis;
+	white-space: nowrap;*/
 	overflow: hidden;
 	margin: 0 auto;
-	width: 375px;
+	width: 415px;
 }
 
 .covertext .facility_name_location span.facility_name {   
-    font-size: 40px;   
-    height: 46px;
-	margin-bottom: 15px;
+	font-size: 28px;
+    min-height: 32px;
+    margin-bottom: 10px;
     font-weight: 500;
     text-transform: uppercase;
 }
 
 .covertext .facility_name_location span.facility_location {
-    font-size: 28px;
-    height: 50px;
+    font-size: 24px;
+    height: 40px;
     font-weight: 300;
 }
 
@@ -1752,9 +1762,15 @@ md-card:hover .moreitemsondevice {
     color: #5f6060!important;
 }
 
+#header .topmenu .nav-right > li.active a span,
+#header .topmenu .nav-right > li.active span {
+    color: #16a086!important;
+	font-weight: 500;
+}
+
 #header .topmenu .nav-right > li a:hover span,
 #header .topmenu .nav-right > li span:hover,
-.dropdown-menu > li > a:hover {
+.dropdown-menu > li > a:hover{
     color: #16a086!important;
 }
 
@@ -2365,19 +2381,19 @@ span.error {
 }
 
 span.error {
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 400;
     color: #ff0000;
-    line-height: 22px;
 }
 
 label.error {
-    font-size: 14px;
-    font-weight: 100;
-    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
     color: #ff0000;
 }
 
-input.ng-invalid-required.error {
+input.ng-invalid-required.error,
+select.ng-invalid-required.error {
     border: 1px solid #ff0000;
 }
 
@@ -2551,7 +2567,7 @@ span.edittxt {
 }
 
 .signup .overflow {
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .signup form {
@@ -2800,8 +2816,10 @@ span.edittxt {
 }
 
 .facility-view {
-    float: right;
+    display: inline-block;
     font-size: 14px;
+    width: 49%;
+    text-align: right;
 }
 
 .backpage .facility-view span {
@@ -2809,20 +2827,20 @@ span.edittxt {
     font-weight: 500;
     cursor: pointer;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .backpage .dropdown-menu > li > a {
     cursor: pointer;
     font-size: 14px;
     text-transform: uppercase;
+	width: auto;
 }
 
 .cahtdiv {
     background: #ffffff;
     width: 350px;
     right: 0;
-    top: 100px;
     bottom: 0;
     z-index: 9999;
     position: fixed;
@@ -2832,6 +2850,7 @@ span.edittxt {
     -moz-transform: translateY(-moz-calc(100% - 54px));
     -webkit-transform: translateY(-webkit-calc(100% - 54px));
     transform: translateY(calc(100% - 54px));
+	transition: 0.5s;
 }
 
 .chat-title {
@@ -2841,16 +2860,32 @@ span.edittxt {
     padding: 15px;
 }
 
-.chat-title span {
+.chat-title span.close {
+    position: absolute;
+    right: 9px;
+    top: 12px;
+    cursor: pointer;
+    display: none;
+    color: #fff;
+    opacity: 1!important;
+}
+
+.chat-title span.open {
     position: absolute;
     right: 9px;
     top: 16px;
+	cursor: pointer;
 }
 
 .cahtdiv .chatbody {
-    min-height: 300px;
+    min-height: 460px;
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 100px;
+}
+
+.cahtdiv .chatbody .slimscrolls {
+    max-height: 355px;
+    min-height: 355px;
 }
 
 .cahtdiv .chatfooter {
@@ -2861,6 +2896,7 @@ span.edittxt {
     min-height: 100px;
     border-top: 1px solid #f1f1f1;
     padding: 6px 12px;
+	background: #fff;
 }
 
 .cahtdiv .chatuser {
@@ -2872,6 +2908,7 @@ span.edittxt {
     max-width: 90%;
     padding: 6px 12px;
     float: right;
+	margin-bottom: 7px;
 }
 
 .cahtdiv .chattext {
@@ -3026,7 +3063,8 @@ span.edittxt {
     margin-left: 0px;
 }
 
-.div-width input + label {
+.div-width input + label,
+.div-width select + label {
     position: absolute;
     left: 0px;
     top: 45px;
@@ -3034,6 +3072,16 @@ span.edittxt {
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
+}
+
+.div-width input.error,
+.div-width select.error {
+	border: 0!important;
+	border-bottom: 1px solid #ff0000!important;
+}
+.div-width input.error + label,
+.div-width select.error + label {
+	top: 60px;	
 }
 
 .btn-toolbar {
@@ -3134,10 +3182,6 @@ span.edittxt {
     cursor: pointer;
 }
 
-.appWrapper.header-fixed.modal-open #header {
-	right: 17px;
-}
-
 .btn-numbers .btn {
 	padding: 8px 12px;
 }
@@ -3203,7 +3247,7 @@ span.rightdetails {
         padding: 20px 30px 10px;
     }
     .page.page-dashboard {
-        padding: 30px 30px 20px;
+        padding: 15px 30px 15px;
     }
     #header .branding {
         width: 350px;
@@ -3244,7 +3288,8 @@ span.rightdetails {
     .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
         font-size: 16px;
     }
-    body {
+    body,
+	.backpage a,	{
         font-size: 17px;
     }
     .glview md-card md-card-content .md-title,
@@ -3254,7 +3299,6 @@ span.rightdetails {
         font-size: 18px;
     }
     .modal-header h4,
-    .backpage a,
     .leftdetail h4 {
         font-size: 20px;
     }
@@ -3540,6 +3584,10 @@ span.rightdetails {
     .map {
         height: 600px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 515px;
+	}
 }
 
 @media screen and (max-width:1679px) and (min-width:1400px) {
@@ -3547,7 +3595,7 @@ span.rightdetails {
         height: 432px!important;
     }
     .page.page-dashboard {
-        padding: 30px 30px 10px;
+        padding: 15px 30px 10px;
     }
     .page {
         padding: 20px 30px 10px;
@@ -3601,6 +3649,10 @@ span.rightdetails {
 	.filterorder button.list-icon {
 		width: 38px;
 		height: 38px;
+	}
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 415px;
 	}	
 }
 
@@ -3612,6 +3664,10 @@ span.rightdetails {
 		width: 38px;
 		height: 38px;
 	}
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 415px;
+	}	
 }
 
 @media only screen and (max-width: 1365px) {
@@ -3655,6 +3711,10 @@ span.rightdetails {
         max-height: 297px;
         min-height: 297px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 375px;
+	}	
 }
 
 @media only screen and (max-width: 1279px) {
@@ -3867,6 +3927,10 @@ span.rightdetails {
         max-height: 287px;
         min-height: 287px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 310px;
+	}
 }
 
 @media only screen and (max-width: 1139px) {
@@ -3955,6 +4019,18 @@ span.rightdetails {
     .table-responsive > .table-bordered {
         width: 1139px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 360px;
+	}
+	.covertext .facility_name_location span.facility_name {
+		font-size: 24px;
+		height: 26px;
+	}
+	.covertext .facility_name_location span.facility_location {
+		font-size: 22px;
+		height: 34px;
+	}
 }
 
 @media only screen and (max-width: 919px) {
@@ -4140,6 +4216,10 @@ span.rightdetails {
 	.modal-lg {
 		width: 80%!important;
 	}
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 250px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -4255,6 +4335,10 @@ span.rightdetails {
     .signup .negmargin40 {
         margin: 0px -30px -30px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 330px;
+	}
 }
 
 @media only screen and (max-width: 599px) {
@@ -4322,8 +4406,7 @@ span.rightdetails {
     }
     .crystalcove {
         width: 100%;
-        height: 85px;
-        margin-bottom: 15px;
+        height: 175px;
     }
     .covertext span strong {
         font-size: 26px;
@@ -4419,6 +4502,10 @@ span.rightdetails {
         float: left;
         width: 30%;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 350px;
+	}
 }
 
 @media only screen and (max-width: 399px) {
@@ -4447,4 +4534,8 @@ span.rightdetails {
     .listview .glview md-card md-card-content {
         width: 65%!important;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 280px;
+	}
 }

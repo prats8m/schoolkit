@@ -839,6 +839,7 @@ app
                 }
                 userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
                     if (succResponse.status) {
+                        $scope.phoneCode = {};
                         $timeout(function () {
                             $(".accordion-toggle")[2].click();
                         });
@@ -876,6 +877,7 @@ app
                         phoneCode.schedule_type = 2;
                         userSvc.submitPhoneCode(url, meth, {}, phoneCode, function (succResponse) {
                             if (succResponse.status) {
+                                $scope.phoneCode = {};
                                 $timeout(function () {
                                     $(".accordion-toggle")[2].click();
                                 });
