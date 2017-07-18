@@ -938,7 +938,7 @@ app
             weekday[5] = "Friday";
             weekday[6] = "Saturday";
             var ind = new Array();
-            $scope.ble_code = {};
+            // $scope.ble_code = {};
             var sched_json = $filter('orderBy')(JSON.parse(scheduler.toJSON()), 'start_date');
             sched_json.forEach(function (v) {
                 if (v.start_date != "NaN/NaN/NaN NaN:NaN") {
@@ -988,6 +988,7 @@ app
                 }
                 userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
                     if (succResponse.status) {
+                        $(".ble_div").show();
                         $timeout(function () {
                             $scope.getBleList();
                         });
@@ -1023,6 +1024,8 @@ app
                         ble_code.schedule_type = 2;
                         userSvc.saveBLEcode(url, meth, {}, ble_code, function (succResponse) {
                             if (succResponse.status) {
+                                $(".ble_div").show();
+                                $scope.ble_code = {};
                                 $timeout(function () {
                                     $scope.getBleList();
                                 });
@@ -1381,7 +1384,7 @@ app
                 }
                 userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
                     if (succResponse.status) {
-
+                        $(".access_div").show();
                         $timeout(function () {
                             $scope.getAccessCodeList();
                         });
@@ -1419,7 +1422,8 @@ app
                         accesscode.schedule_type = 2;
                         userSvc.saveAccessCode(url, meth, {}, accesscode, function (succResponse) {
                             if (succResponse.status) {
-
+                                $(".access_div").show();
+                                $scope.accesscode = {};
                                 $timeout(function () {
                                     $scope.getAccessCodeList();
                                 });
@@ -1519,23 +1523,66 @@ app
             });
         };
 
+        //Remove edit mode
+        $scope.removeEditmode =  function(code_type){
+            switch(code_type){
+                case 'access_code':
+                    $scope.accesscode = {};
+                    $(".access_div").show();
+                    break;
+                case 'phone_code':
+                    $scope.phoneCode = {};
+                    $(".phone_div").show();
+                    break;
+                case 'wiegand_code':
+                    $scope.wiegand = {};
+                    $(".wiegand_div").show();
+                    break;
+                case 'ble_code':
+                    $scope.ble_code = {};
+                    $(".ble_div").show();
+                    break;
+                default: 
+            }
+
+        }
+        //End of remove edit mode
+
+
+
         $scope.editCredential = function (cred_data, credential_type) {
             switch (credential_type) {
                 case 'access_code':
+
+                    if (cred_data.credential_schedule_id == 0) {
+                        $(".access_div").show();
+                    }
+                    else {
+                        $(".access_div").hide();
+                    }
                     $scope.accesscode = {};
+                    $scope.accesscode.accesscode_size = cred_data.Access_Code.length;
                     $scope.accesscode.access_code = cred_data.Access_Code;
                     $scope.accesscode.credential_id = cred_data.Credential_Id;
                     $scope.accesscode.status = cred_data.status;
+                    $scope.accesscode.schedule_id = cred_data.credential_schedule_id;
                     var arr = [];
                     angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
                     $scope.accesscode.door_id = arr;
                     break;
                 case 'phone_code':
+                    if (cred_data.credential_schedule_id == 0) {
+                        $(".phone_div").show();
+                    }
+                    else {
+                        $(".phone_div").hide();
+                    }
                     $scope.phoneCode = {};
                     $scope.phoneCode.credential_id = cred_data.Credential_Id;
                     $scope.phoneCode.phone_code = cred_data.Detail.phone_code;
                     $scope.phoneCode.phone_numbers = cred_data.Detail.phone_numbers[0];
                     $scope.phoneCode.status = cred_data.status;
+                    $scope.phoneCode.schedule_id = cred_data.credential_schedule_id;
                     var arr = [];
                     angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
                     $scope.phoneCode.door_id = arr;
@@ -1551,11 +1598,18 @@ app
                     $scope.rfid.door_id = arr;
                     break;
                 case 'wiegand_code':
+                    if (cred_data.credential_schedule_id == 0) {
+                        $(".wiegand_div").show();
+                    }
+                    else {
+                        $(".wiegand_div").hide();
+                    }
                     $scope.wiegand = {};
                     $scope.wiegand.credential_id = cred_data.Credential_Id;
                     $scope.wiegand.wiegand_card_number = cred_data.Detail.wiegand_card_number;
                     $scope.wiegand.wiegand_facility_code = cred_data.Detail.wiegand_facility_code;
                     $scope.wiegand.status = cred_data.status;
+                    $scope.wiegand.schedule_id = cred_data.credential_schedule_id;
                     var arr = [];
                     angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
                     $scope.wiegand.door_id = arr;
@@ -1571,11 +1625,18 @@ app
                     $scope.savenfc.door_id = arr;
                     break;
                 case 'ble_code':
+                    if (cred_data.credential_schedule_id == 0) {
+                        $(".ble_div").show();
+                    }
+                    else {
+                        $(".ble_div").hide();
+                    }
                     $scope.ble_code = {};
                     $scope.ble_code.credential_id = cred_data.Credential_Id;
                     $scope.ble_code.ble_name = cred_data.Detail.ble_username;
                     $scope.ble_code.ble_pass = cred_data.Detail.ble_password;
                     $scope.ble_code.status = cred_data.status;
+                    $scope.ble_code.schedule_id = cred_data.credential_schedule_id;
                     var arr = [];
                     angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
                     $scope.ble_code.door_id = arr;
