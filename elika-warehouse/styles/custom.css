@@ -1317,6 +1317,11 @@ md-card:hover .moreitemsondevice {
     color: #5f6060!important;
 }
 
+#header .topmenu .nav-right > li.active a span,
+#header .topmenu .nav-right > li.active span {
+    color: #16a086!important;
+}
+
 #header .topmenu .nav-right > li a:hover span,
 #header .topmenu .nav-right > li span:hover,
 .dropdown-menu > li > a:hover {
@@ -1606,19 +1611,17 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 }
 
 span.error {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    font-style: italic;
-    color: #bb0000;
+    color: #ff0000;
     margin: 0 0 -5px;
     display: block;
 }
 
 label.error {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    font-style: italic;
-    color: #bb0000;
+    color: #ff0000;
     margin: 0 0 -5px;
     display: block;
 }

@@ -1752,9 +1752,14 @@ md-card:hover .moreitemsondevice {
     color: #5f6060!important;
 }
 
+#header .topmenu .nav-right > li.active a span,
+#header .topmenu .nav-right > li.active span {
+    color: #16a086!important;
+}
+
 #header .topmenu .nav-right > li a:hover span,
 #header .topmenu .nav-right > li span:hover,
-.dropdown-menu > li > a:hover {
+.dropdown-menu > li > a:hover{
     color: #16a086!important;
 }
 
@@ -2365,15 +2370,14 @@ span.error {
 }
 
 span.error {
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 400;
     color: #ff0000;
-    line-height: 22px;
 }
 
 label.error {
-    font-size: 14px;
-    font-weight: 100;
-    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
     color: #ff0000;
 }
 
