@@ -265,7 +265,11 @@ tr[ng-show="::showSpinners"] {
 }
 
 .backpage a {
-    font-size: 18px
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    width: 49.75%;
 }
 
 .gridlistbar {
@@ -2806,8 +2810,10 @@ span.edittxt {
 }
 
 .facility-view {
-    float: right;
+    display: inline-block;
     font-size: 14px;
+    width: 50%;
+    text-align: right;
 }
 
 .backpage .facility-view span {
@@ -2822,6 +2828,7 @@ span.edittxt {
     cursor: pointer;
     font-size: 14px;
     text-transform: uppercase;
+	width: auto;
 }
 
 .cahtdiv {
@@ -3234,7 +3241,7 @@ span.rightdetails {
         padding: 20px 30px 10px;
     }
     .page.page-dashboard {
-        padding: 30px 30px 20px;
+        padding: 15px 30px 15px;
     }
     #header .branding {
         width: 350px;
@@ -3275,7 +3282,8 @@ span.rightdetails {
     .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
         font-size: 16px;
     }
-    body {
+    body,
+	.backpage a,	{
         font-size: 17px;
     }
     .glview md-card md-card-content .md-title,
@@ -3285,7 +3293,6 @@ span.rightdetails {
         font-size: 18px;
     }
     .modal-header h4,
-    .backpage a,
     .leftdetail h4 {
         font-size: 20px;
     }
@@ -3578,7 +3585,7 @@ span.rightdetails {
         height: 432px!important;
     }
     .page.page-dashboard {
-        padding: 30px 30px 10px;
+        padding: 15px 30px 10px;
     }
     .page {
         padding: 20px 30px 10px;

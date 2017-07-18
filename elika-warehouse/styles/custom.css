@@ -221,7 +221,11 @@ a.add.disconnect:hover {
 }
 
 .backpage a {
-    font-size: 18px
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    width: 49.75%;
 }
 
 .gridlistbar {
