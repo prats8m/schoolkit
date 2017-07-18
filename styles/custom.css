@@ -264,12 +264,18 @@ tr[ng-show="::showSpinners"] {
     color: #fff
 }
 
+.backpage {
+	text-align: right;
+}
+
 .backpage a {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 500;
     display: inline-block;
-    width: 49.75%;
+    width: 49%;
+    text-align: left;
+    float: left;
 }
 
 .gridlistbar {
@@ -895,24 +901,24 @@ a.serplan:hover {
 	display: block;
 	line-height: normal;
 	position: relative;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	/*text-overflow: ellipsis;
+	white-space: nowrap;*/
 	overflow: hidden;
 	margin: 0 auto;
-	width: 375px;
+	width: 415px;
 }
 
 .covertext .facility_name_location span.facility_name {   
-    font-size: 40px;   
-    height: 46px;
-	margin-bottom: 15px;
+	font-size: 28px;
+    min-height: 32px;
+    margin-bottom: 10px;
     font-weight: 500;
     text-transform: uppercase;
 }
 
 .covertext .facility_name_location span.facility_location {
-    font-size: 28px;
-    height: 50px;
+    font-size: 24px;
+    height: 40px;
     font-weight: 300;
 }
 
@@ -2812,7 +2818,7 @@ span.edittxt {
 .facility-view {
     display: inline-block;
     font-size: 14px;
-    width: 50%;
+    width: 49%;
     text-align: right;
 }
 
@@ -2821,7 +2827,7 @@ span.edittxt {
     font-weight: 500;
     cursor: pointer;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .backpage .dropdown-menu > li > a {
@@ -3578,6 +3584,10 @@ span.rightdetails {
     .map {
         height: 600px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 515px;
+	}
 }
 
 @media screen and (max-width:1679px) and (min-width:1400px) {
@@ -3639,6 +3649,10 @@ span.rightdetails {
 	.filterorder button.list-icon {
 		width: 38px;
 		height: 38px;
+	}
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 415px;
 	}	
 }
 
@@ -3650,6 +3664,10 @@ span.rightdetails {
 		width: 38px;
 		height: 38px;
 	}
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 415px;
+	}	
 }
 
 @media only screen and (max-width: 1365px) {
@@ -3693,6 +3711,10 @@ span.rightdetails {
         max-height: 297px;
         min-height: 297px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 375px;
+	}	
 }
 
 @media only screen and (max-width: 1279px) {
@@ -3905,6 +3927,10 @@ span.rightdetails {
         max-height: 287px;
         min-height: 287px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 310px;
+	}
 }
 
 @media only screen and (max-width: 1139px) {
@@ -3993,6 +4019,18 @@ span.rightdetails {
     .table-responsive > .table-bordered {
         width: 1139px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 360px;
+	}
+	.covertext .facility_name_location span.facility_name {
+		font-size: 24px;
+		height: 26px;
+	}
+	.covertext .facility_name_location span.facility_location {
+		font-size: 22px;
+		height: 34px;
+	}
 }
 
 @media only screen and (max-width: 919px) {
@@ -4178,6 +4216,10 @@ span.rightdetails {
 	.modal-lg {
 		width: 80%!important;
 	}
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 250px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -4293,6 +4335,10 @@ span.rightdetails {
     .signup .negmargin40 {
         margin: 0px -30px -30px;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 330px;
+	}
 }
 
 @media only screen and (max-width: 599px) {
@@ -4360,8 +4406,7 @@ span.rightdetails {
     }
     .crystalcove {
         width: 100%;
-        height: 85px;
-        margin-bottom: 15px;
+        height: 175px;
     }
     .covertext span strong {
         font-size: 26px;
@@ -4457,6 +4502,10 @@ span.rightdetails {
         float: left;
         width: 30%;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 350px;
+	}
 }
 
 @media only screen and (max-width: 399px) {
@@ -4485,4 +4534,8 @@ span.rightdetails {
     .listview .glview md-card md-card-content {
         width: 65%!important;
     }
+	.covertext .facility_name_location span.facility_name,
+	.covertext .facility_name_location span.facility_location {
+		width: 280px;
+	}
 }
