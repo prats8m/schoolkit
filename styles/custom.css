@@ -2822,7 +2822,6 @@ span.edittxt {
     background: #ffffff;
     width: 350px;
     right: 0;
-    top: 100px;
     bottom: 0;
     z-index: 9999;
     position: fixed;
@@ -2832,6 +2831,7 @@ span.edittxt {
     -moz-transform: translateY(-moz-calc(100% - 54px));
     -webkit-transform: translateY(-webkit-calc(100% - 54px));
     transform: translateY(calc(100% - 54px));
+	transition: 0.5s;
 }
 
 .chat-title {
@@ -2841,16 +2841,32 @@ span.edittxt {
     padding: 15px;
 }
 
-.chat-title span {
+.chat-title span.close {
+    position: absolute;
+    right: 9px;
+    top: 12px;
+    cursor: pointer;
+    display: none;
+    color: #fff;
+    opacity: 1!important;
+}
+
+.chat-title span.open {
     position: absolute;
     right: 9px;
     top: 16px;
+	cursor: pointer;
 }
 
 .cahtdiv .chatbody {
-    min-height: 300px;
+    min-height: 460px;
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 100px;
+}
+
+.cahtdiv .chatbody .slimscrolls {
+    max-height: 355px;
+    min-height: 355px;
 }
 
 .cahtdiv .chatfooter {
@@ -2861,6 +2877,7 @@ span.edittxt {
     min-height: 100px;
     border-top: 1px solid #f1f1f1;
     padding: 6px 12px;
+	background: #fff;
 }
 
 .cahtdiv .chatuser {
@@ -2872,6 +2889,7 @@ span.edittxt {
     max-width: 90%;
     padding: 6px 12px;
     float: right;
+	margin-bottom: 7px;
 }
 
 .cahtdiv .chattext {
@@ -3132,10 +3150,6 @@ span.edittxt {
     font-size: 15px;
     font-weight: 400;
     cursor: pointer;
-}
-
-.appWrapper.header-fixed.modal-open #header {
-	right: 17px;
 }
 
 .btn-numbers .btn {
