@@ -2377,7 +2377,8 @@ label.error {
     color: #ff0000;
 }
 
-input.ng-invalid-required.error {
+input.ng-invalid-required.error,
+select.ng-invalid-required.error {
     border: 1px solid #ff0000;
 }
 
