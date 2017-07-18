@@ -136,14 +136,14 @@
 				<section class="tile tile-simple activity">
 					<div class="tile-widget">
 						<div class="row">
-							<div ng-if="mediatype!='mp4'" class="form-group col-sm-12">
+							<div ng-if="mediatype!='mp4' && mediatype!='wav'" class="form-group col-sm-12">
 								<h3 class="mt-0">Screenshot</h3>					
 								<div class="tile-body p-0">
 									<img src="{{trustSrc(mediafile)}}" class="userimg" alt="">
 									
 								</div>
 							</div>
-							<div ng-if="mediatype=='mp4'" class="form-group col-sm-12">
+							<div ng-if="mediatype=='mp4'||mediatype=='wav'" class="form-group col-sm-12">
 								<h3 class="mt-40">Video</h3>					
 								<div class="tile-body p-0">
 									<!-- <video controls>
