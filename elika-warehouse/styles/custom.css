@@ -1821,6 +1821,15 @@ span.devicecamname {
 	right: 17px;
 }
 
+.gridview .glview md-card md-card-content .list-view.grid-hide {
+    display: none;
+}
+
+.listview .glview md-card md-card-content .list-view {
+    float: left;
+    width: 30%;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1,
     .profilephoto #profilep-2 {
