@@ -221,7 +221,11 @@ a.add.disconnect:hover {
 }
 
 .backpage a {
-    font-size: 18px
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    width: 49.75%;
 }
 
 .gridlistbar {
@@ -1317,6 +1321,12 @@ md-card:hover .moreitemsondevice {
     color: #5f6060!important;
 }
 
+#header .topmenu .nav-right > li.active a span,
+#header .topmenu .nav-right > li.active span {
+    color: #16a086!important;
+	font-weight: 500;
+}
+
 #header .topmenu .nav-right > li a:hover span,
 #header .topmenu .nav-right > li span:hover,
 .dropdown-menu > li > a:hover {
@@ -1606,19 +1616,17 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 }
 
 span.error {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    font-style: italic;
-    color: #bb0000;
+    color: #ff0000;
     margin: 0 0 -5px;
     display: block;
 }
 
 label.error {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    font-style: italic;
-    color: #bb0000;
+    color: #ff0000;
     margin: 0 0 -5px;
     display: block;
 }
