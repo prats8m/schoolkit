@@ -28,12 +28,12 @@ app
                     cb(succResponse);
                 }
                 else {
-                        toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     if(succResponse.msg == 'Invalid_Credentials'){
                         succResponse.msg = appConstants.invalidcredentials;
                     }
                     else{
                         succResponse.msg=succResponse.msg.replace(/_/g,' ');
+                        //toaster.pop(appConstants.error,succResponse.msg.replace(/_/g,' '));
                     }
                     cb(succResponse);
                 }

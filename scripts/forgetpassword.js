@@ -14,7 +14,10 @@ app
 
 
 
-    $scope.submitForgetPassword = function(requestData){
+    $scope.submitForgetPassword = function(requestData,form){
+        if (!form.validate()) {
+                return false;
+            }
         // requestData.type = 'otp';
     	dataService.postData(requestData,baseURL + 'user/forget-password')
     	.success(function(response){
@@ -56,16 +59,21 @@ app
 		$state.go('core.create-new-password');
     };
 
-    $scope.formSubmit = function(requestData){
-        
+    $scope.formSubmit = function(requestData,form){
+        if (!form.validate()) {
+            return false;
+        }
         if(requestData.type == 'secret_ques'){
             $scope.submitSecretQuestion(requestData);
         }else{
-             $scope.submitOTP(requestData);
+             $scope.submitOTP(requestData,form);
         }
     }
 
-    $scope.submitOTP = function(requestData){
+    $scope.submitOTP = function(requestData,form){
+        if (!form.validate()) {
+            return false;
+        }
     	requestData.email = $cookies.get('forgetpasswordemail');
     	requestData.otp = parseInt(requestData.otp);
     	dataService.postData(requestData,baseURL + 'user/check-otp')

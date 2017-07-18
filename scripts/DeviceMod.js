@@ -15,6 +15,7 @@ app
         };
 
         $rootScope.device = {};
+        $rootScope.doorList= [];
 
         $scope.result = appConstants.empty;
         $scope.showConfirm = function (id, facility_id, ev) {

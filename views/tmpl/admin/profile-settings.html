@@ -59,23 +59,23 @@
 									<div class="form-group legend">
 										<h4><strong>Change</strong> Password</h4>
 									</div>
-									<form name="form1" role="form" ng-submit="changeloggedInuserPassword()">
+									<form name="form1dd" role="form" ng-validate ng-submit="changeloggedInuserPassword(form1dd)">
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">Current Password</label>
-														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.current_password" class="form-control"
-														 value="">
+														<input type="password" name="sdfs" id="pass" required ng-model="profileSettings.changepassword.current_password" class="form-control"
+														 value="" required>
 													</div>
 													<div class="form-group overflow">
 														<label for="">New Password</label>
-														<input type="password" minlength="8" maxlength="16" name="" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control"
-														 value="">
+														<input type="password" name="dssd" minlength="8" maxlength="16" name="cpass" id="" required ng-model="profileSettings.changepassword.new_password" class="form-control"
+														 value="" required>
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Password</label>
-														<input type="password" name="" id="" required ng-model="profileSettings.changepassword.confirm_password" class="form-control"
+														<input type="password" name="dddd" id="" required ng-model="profileSettings.changepassword.confirm_password" class="form-control"
 														 value="">
 													</div>
 												</div>
@@ -97,22 +97,22 @@
 									<div class="form-group legend">
 										<h4><strong>Update</strong> Profile</h4>
 									</div>
-									<form name="form1" role="form" ng-submit="updateLoggedInUserProfile()">
+									<form name="form123" role="form" ng-validate ng-submit="updateLoggedInUserProfile(form123)">
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
 													<div class="form-group overflow">
 														<label for="">New Email</label>
-														<input type="email" name="" id="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-model="profileSettings.manageAccount.new_email"
+														<input type="email" name="newemail" id="" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ng-model="profileSettings.manageAccount.new_email"
 														 class="form-control" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Confirm New Email</label>
-														<input type="email" name="" id="" required class="form-control" ng-model="profileSettings.manageAccount.confirm_email" value="">
+														<input type="email" name="confirmnewemail" id="" required class="form-control" ng-model="profileSettings.manageAccount.confirm_email" value="">
 													</div>
 													<div class="form-group overflow">
 														<label for="">Current password</label>
-														<input type="password" name="" id="" required class="form-control" ng-model="profileSettings.manageAccount.current_password"
+														<input type="password" name="currentpassword" id="" required class="form-control" ng-model="profileSettings.manageAccount.current_password"
 														 value="">
 													</div>
 												</div>
@@ -134,7 +134,7 @@
 									<div class="form-group legend">
 										<h4><strong>Security</strong> Questions</h4>
 									</div>
-									<form name="form1" role="form" ng-submit="changeSecurityQuestion()" autocomplete="false">
+									<form name="form333" role="form" ng-validate ng-submit="changeSecurityQuestion(form333)" autocomplete="false">
 										<div class="modal-body">
 											<div class="row">
 												<div class="col-xs-12 col-sm-6 col-md-6">
