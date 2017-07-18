@@ -47,16 +47,14 @@
 					</div>
 				</div>
 				
-				<div class="overflow">
-					<div style="margin-left: 30px;">
-						<select id="selectedQuestion1" ng-model="user.secret_question" name="selectedQuestion1" class="form-control underline-input" required="required" ng-options="item.sq_id as item.sq_question for item in lstSecurityQuestions track by item.sq_id" ng-init="getSecurityQuestion()">
-							<option value="">Select Secret Question</option>
-						</select>
-					</div>
+				<div class="overflow div-width" style="width: 95%;">
+					<select id="selectedQuestion1" ng-model="user.secret_question" name="selectedQuestion1" class="form-control underline-input" required="required" ng-options="item.sq_id as item.sq_question for item in lstSecurityQuestions track by item.sq_id" ng-init="getSecurityQuestion()">
+						<option value="">Select Secret Question</option>
+					</select>
 				</div>
 				
-				<div class="overflow mb-40">
-					<input type="text" name="answer" maxlength="30" class="form-control underline-input" placeholder="Answer" ng-model="user.secret_ans" required>
+				<div class="overflow div-width" style="width: 95%;">
+					<input type="text" name="answer" maxlength="30" class="form-control underline-input" style="width: 100%;" placeholder="Answer" ng-model="user.secret_ans" required>
 				</div>
 				
 				<div class="form-group text-left signuplabel" style="margin-left: 30px; margin-top: -15px;">        

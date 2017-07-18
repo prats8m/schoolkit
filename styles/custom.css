@@ -2552,7 +2552,7 @@ span.edittxt {
 }
 
 .signup .overflow {
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .signup form {
@@ -3045,7 +3045,8 @@ span.edittxt {
     margin-left: 0px;
 }
 
-.div-width input + label {
+.div-width input + label,
+.div-width select + label {
     position: absolute;
     left: 0px;
     top: 45px;
@@ -3053,6 +3054,16 @@ span.edittxt {
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
+}
+
+.div-width input.error,
+.div-width select.error {
+	border: 0!important;
+	border-bottom: 1px solid #ff0000!important;
+}
+.div-width input.error + label,
+.div-width select.error + label {
+	top: 60px;	
 }
 
 .btn-toolbar {
