@@ -65,6 +65,10 @@ app
 			return regexpr.test(value);
 		}, "Please enter a valid phone number.");
 
+		$.validator.addMethod("emailregx", function (value, element, regexpr) {
+			return regexpr.test(value);
+		}, "Please enter a valid phone email.");
+
 		$rootScope.submitAddMasterAdmin = function (master, add_master_admin) {
 			if (!add_master_admin.validate({
 				rules: {
@@ -76,7 +80,8 @@ app
 					},
 					email: {
 						minlength: 6,
-						maxlength: 35
+						maxlength: 35,
+						emailregx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 					},
 					password: {
 						minlength: 8
@@ -95,7 +100,8 @@ app
 					},
 					email: {
 						minlength: "Email can't be more than 6 characters",
-						maxlength: "Email can't be more than 35 characters"
+						maxlength: "Email can't be more than 35 characters",
+						emailregx: "Please enter a valid email1"
 					},
 					password: {
 						minlength: "Password can't be less than 8 characters"
