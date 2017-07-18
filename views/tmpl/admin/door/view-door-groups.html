@@ -61,10 +61,10 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-12">
 										<div class="form-group profiledetail">											
-											<p><label>Name</label> {{doorGrpData.doorgroup_name}}</p>
-											<p><label>Facility</label> {{doorGrpData.facility_name}}</p>
-											<p><label>No Of Doors</label> {{doorGrpData.doorgroup_door_count}}</p>
-											<p><label>Doors</label> <span ng-repeat="item in doorGrpData.door_name track by $index">{{item.door_name}}<i ng-if="!$index">,</i></span></p>
+											<p><label>Name</label><span class="rightdetails">{{doorGrpData.doorgroup_name}}</span></p>
+											<p><label>Facility</label><span class="rightdetails">{{doorGrpData.facility_name}}</span></p>
+											<p><label>No Of Doors</label><span class="rightdetails">{{doorGrpData.doorgroup_door_count}}</span></p>
+											<p><label>Doors</label><span class="rightdetails"><span ng-repeat="item in doorGrpData.door_name track by $index">{{item.door_name}}<i ng-if="!$index">,</i></span></span></p>
 										</div>
 									</div>
 								</div>
