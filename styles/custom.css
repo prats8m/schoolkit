@@ -3142,6 +3142,21 @@ span.edittxt {
 	padding: 8px 12px;
 }
 
+.emptyMsg {
+	font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #ff0000;
+	line-height: 26px;
+}
+
+span.rightdetails {
+	display: inline-block;
+    width: 80%;
+    vertical-align: top;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1,
     .profilephoto #profilep-2 {

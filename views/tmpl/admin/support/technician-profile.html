@@ -50,13 +50,12 @@
 												<h4><strong>Account</strong> Details</h4>
 											</div>
 											<div class="form-group profiledetail">
-												<p><label>Name</label> {{technician.technician_first_name + " "+ technician.technician_last_name}}</p>
-												<p><label>E-mail</label> {{technician.technician_email}}</p>
-												<p><label>Phone</label> {{technician.technician_phone}}</p>
-												<p><label>Address</label> {{technician.technician_address}}</p>
-												<p><label>Expiration Date</label> {{technician.technician_expiration_date*1000 | date:'d MMM yyyy': 'UTC'}}</p>
-												<p><label>Status</label> {{(technician.technician_status == 1)?'Active':'Inactive'}}</p>
-												<!-- <p><label>Expiration Date</label> 15/06/2017</p> -->
+												<p><label>Name</label><span class="rightdetails">{{technician.technician_first_name + " "+ technician.technician_last_name}}</span></p>
+												<p><label>E-mail</label><span class="rightdetails">{{technician.technician_email}}</span></p>
+												<p><label>Phone</label><span class="rightdetails">{{technician.technician_phone}}</span></p>
+												<p><label>Address</label><span class="rightdetails">{{technician.technician_address}}</span></p>
+												<p><label>Expiration Date</label><span class="rightdetails">{{technician.technician_expiration_date*1000 | date:'d MMM yyyy': 'UTC'}}</span></p>
+												<p><label>Status</label><span class="rightdetails">{{(technician.technician_status == 1)?'Active':'Inactive'}}</span></p>
 											</div>
 										</div>
 									</div>
