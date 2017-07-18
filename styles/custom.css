@@ -1755,6 +1755,7 @@ md-card:hover .moreitemsondevice {
 #header .topmenu .nav-right > li.active a span,
 #header .topmenu .nav-right > li.active span {
     color: #16a086!important;
+	font-weight: 500;
 }
 
 #header .topmenu .nav-right > li a:hover span,
