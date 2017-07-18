@@ -43,7 +43,7 @@
 															<div class="form-group row">
 																<div class="col-md-12">
 																	<label for="">Schedule Name <span class="text-danger">*</span></label>
-																	<input type="text" name="schedule_name" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" maxlength=30 required>
+																	<input type="text" name="schedule_name" id="" ng-model="addHolidayScheduleObj.hs_name" class="form-control" maxlength=30 trim-elem required>
 																</div>
 															</div>
 															<div class="row">
@@ -81,7 +81,7 @@
 
 																	<label for="">End Time </label><br/>
 
-																	<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time">
+																	<select class="form-control" ng-model="addHolidayScheduleObj.hs_endtime" ng-options="time as time for time in endtimedropdown track by time" ng-change="checktimediff(addHolidays)">
 																	<option value="">Select Time</option>
 																</select>
 																</div>
