@@ -1596,6 +1596,15 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
     border-color: #0eba8c!important;
 }
 
+.error.layout {
+    text-align: center;
+    display: block;
+    margin: 75px 0 50px;
+    color: #e60000;
+    font-size: 18px;
+    font-weight: 500;
+}
+
 span.error {
     font-size: 13px;
     font-weight: 400;
@@ -1819,6 +1828,15 @@ span.devicecamname {
 
 .modal-open .appWrapper.header-fixed #header {
 	right: 17px;
+}
+
+.gridview .glview md-card md-card-content .list-view.grid-hide {
+    display: none;
+}
+
+.listview .glview md-card md-card-content .list-view {
+    float: left;
+    width: 30%;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
