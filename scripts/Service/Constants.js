@@ -450,8 +450,8 @@ app.constant("appConstants", {
 
     //............................SignUp.......................................
 
-    _successsignup: 'You are successfully signed in.',
-    _chktnc: 'Please agree Term and Conditions',
+    _successsignup: 'You have successfully registered.',
+    _chktnc: 'Please agree Terms and conditions.',
 
 
     //........................................................................................

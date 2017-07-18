@@ -13,10 +13,10 @@
 			<form class="form-validation mt-20" ng-validate="validationOptions" id="signup_form" name="signup_form" ng-submit="submitSignUpForm(user,signup_form)">
 				<div class="overflow">
 					<div class="div-width">
-					<input type="text" name="firstname" class="form-control underline-input" placeholder="First Name" maxlength="15" ng-model="user.first_name" required>
+					<input type="text" name="firstname" replace="[^a-zA-Z]" with="" class="form-control underline-input" placeholder="First Name" maxlength="15" ng-model="user.first_name" required>
 					</div>
 					<div class="div-width">
-					<input type="text" name="lastname" class="form-control underline-input" placeholder="Last Name" maxlength="15" ng-model="user.last_name" required>		
+					<input type="text" name="lastname" replace="[^a-zA-Z]" with="" class="form-control underline-input" placeholder="Last Name" maxlength="15" ng-model="user.last_name" required>		
 					</div>			
 				</div>
 				
@@ -31,7 +31,7 @@
 				
 				<div class="overflow">
 					<div class="div-width">
-					<input type="text" name="address" class="form-control underline-input" maxlength="127" placeholder="Address" ng-model="user.address" required>
+					<input type="text" name="address" with="" class="form-control underline-input" maxlength="127" placeholder="Address" ng-model="user.address" required>
 					</div>
 					<div class="div-width">	
 					<input type="text" name="zipcode" minlength="4" maxlength="6" class="form-control underline-input" placeholder="Zip Code" ng-model="user.zipcode" required>
