@@ -30,17 +30,17 @@
 			<li ng-if="navbar_facilities_count == 1" class="dropdown" uib-dropdown>
 				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
 			</li> -->
-			<li class="dropdown" uib-dropdown>
-				<span class="dropdown-toggle" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
+			<li class="dropdown" ng-class="(active == 'facility') ? 'active' : ''" uib-dropdown>
+				<span class="dropdown-toggle" ng-class="(active == 'facility') ? 'active' : ''" ui-sref="app.admin.facility.facility" uib-dropdown-toggle>Facilities </span>
 			</li>
-			<li class="dropdown" uib-dropdown>
+			<li class="dropdown" ng-class="(active == 'device') ? 'active' : ''" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Devices &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.device.devices">Primary Devices</a></li>
 					<!-- <li><a ui-sref="app.admin.device.dependent-devices">Dependent Devices</a></li> -->
 				</ul>
 			</li>
-			<li class="dropdown" uib-dropdown>
+			<li class="dropdown" ng-class="(active == 'user') ? 'active' : ''" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Users &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.user.users">Users</a></li>
@@ -49,14 +49,14 @@
 					<li><a ui-sref="app.admin.support.technician">Technician</a></li>
 				</ul>
 			</li>
-			<li class="dropdown" uib-dropdown>
+			<li class="dropdown" ng-class="(active == 'door') ? 'active' : ''" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Doors &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.door.doors">Doors</a></li>
 					<li><a ui-sref="app.admin.door.door-groups">Door Groups</a></li>
 				</ul>
 			</li>
-			<li class="dropdown" uib-dropdown>
+			<li class="dropdown" ng-class="(active == 'schedule') ? 'active' : ''" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Schedules &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.schedule.schedules">Schedules</a></li>
@@ -64,7 +64,7 @@
 					<li><a ui-sref="app.admin.schedule.holiday-schedules">Holiday Schedules</a></li>
 				</ul>
 			</li>
-			<li class="dropdown" uib-dropdown>
+			<li class="dropdown" ng-class="(active == 'administrator') ? 'active' : ''" uib-dropdown>
 				<!-- <span class="dropdown-toggle" uib-dropdown-toggle>Administrator &nbsp;<fa name="angle-down"></fa></span> -->
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.administrator.roles">Roles</a></li>
@@ -72,7 +72,7 @@
 					<li><a ui-sref="app.admin.administrator.admin">Admin</a></li>
 				</ul>
 			</li>
-			<li class="dropdown" uib-dropdown>
+			<li class="dropdown" ng-class="(active == 'camera') ? 'active' : ''" uib-dropdown>
 				<span class="dropdown-toggle" uib-dropdown-toggle>Camera DVR &nbsp;<fa name="angle-down"></fa></span>
 				<ul class="dropdown-menu panel panel-default animated littleFadeInDown" role="menu">
 					<li><a ui-sref="app.admin.camera.camera-dvr">Live and Recorded Feeds</a></li>
@@ -82,8 +82,8 @@
 					<!--li><a ui-sref="app.admin.setup.eagle-eye-directory">Eagle Eye Directory</a></li-->
 				</ul>
 			</li>
-			<li><a ui-sref="app.admin.activity"><span>Activity</span></a></li>
-			<li><a ui-sref="app.admin.contact"><span>Contact Us</span></a></li>
+			<li ng-class="(active == 'activity') ? 'active' : ''"><a ui-sref="app.admin.activity"><span>Activity</span></a></li>
+			<li  ng-class="(active == 'contact') ? 'active' : ''"><a ui-sref="app.admin.contact"><span>Contact Us</span></a></li>
 			<!-- <li><a href=""><span>Reports</span></a></li> -->			
 		</ul>
 	</div> 
@@ -158,7 +158,7 @@
 		
 		<li class="dropdown nav-profile" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
-				<img ng-src="{{userPhoto ? userPhoto : 'images/avatar.jpg'}}" alt="" class="img-circle size-30x30">
+				<img ng-src="{{(userPhoto && (userPhoto != 'null')) ? userPhoto : 'images/avatar.jpg'}}" alt="" class="img-circle size-30x30">
 				<span><span class="uname">{{userFirstName}}</span> <fa name="angle-down"></fa></span>
 			</a>
 			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">

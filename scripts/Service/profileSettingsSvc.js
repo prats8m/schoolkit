@@ -65,5 +65,23 @@ app
             });
         };
 
+        profileSettingsSvcResp.validateImage = function(file){
+            console.log(file);
+            var imageTypeObj = ['image/jpeg'];
+            if(imageTypeObj.indexOf(file.type) > -1){
+                return true;
+            }else{
+                toaster.pop('error',appConstants.providevalidimagefile);
+                return false;
+            }
+            if(file.size < appConstants.maxprofileimagesize){
+                return true;
+            }else{
+                toaster.pop('error',appConstants.imageistoolarge);
+                return false;
+            }
+            return false;
+        }
+
         return profileSettingsSvcResp;
     }]);

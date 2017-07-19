@@ -586,7 +586,8 @@ app
 
 
         };
-
+        $scope.wiegand = {};
+        $scope.wiegand.status = 1;
         $scope.saveWiegand = function (wiegand, wiegand_form) {
             if (!wiegand_form.validate()) {
                 return false;
@@ -637,7 +638,7 @@ app
             wiegand.user_id = parseInt($cookies.get("newUserId"));
             wiegand.credential_type = "wiegand_code";
 
-            $scope.wiegand = {};
+            // $scope.wiegand = {};
             wiegand.details = {};
             wiegand.details.wiegand_facility_code = wiegand.wiegand_facility_code;
             wiegand.details.wiegand_card_number = wiegand.wiegand_card_number;
@@ -2743,10 +2744,10 @@ app
         };
 
 
-        $scope.submitEditWIEGANDCode = function (submitData, rfid_form) {
-            // if(!wiegand_form.validate()){
-            //  return false;
-            // }
+        $scope.submitEditWIEGANDCode = function (submitData, wiegand_form) {
+            if(!wiegand_form.validate()){
+             return false;
+            }
             if ($scope.schedule.schedule_type == "REPEATING") {
                 if ($scope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
@@ -2821,6 +2822,9 @@ app
                         $(".wiegand_div").show();
                         toaster.pop(appConstants.success, appConstants.submitSuccessfully);
                         $scope.getWiegandList();
+                    }
+                    else{
+                      
                     }
                 });
             }

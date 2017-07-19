@@ -424,6 +424,9 @@ app.constant("appConstants", {
     //...............Profile Settings................................................
 
     titileProfileSettings: 'Profile Settings',
+    providevalidimagefile : 'Please provide valid image file.',
+    maxprofileimagesize: 1024*50,
+    imageistoolarge:'Image is too large.',
     _successemailIDchangesconfirmationmessage: 'your email ID has been changed successfully, you will get a varification email shortly with email varificationon link on your new registered email id. Please click on the link to login into the Facility Web Application ',
 
     //...............................................................................

@@ -114,6 +114,9 @@ app
         })
         $scope.uploadProfilePic = function (file, user_id) {
             // return;
+            if(!profileSettingsSvc.validateImage(file)){
+                return false;
+            }
             var fd = new FormData();
             fd.append('user_id', user_id);
             fd.append('file', file);
@@ -135,6 +138,7 @@ app
         };
         $scope.myFile = "";
         $scope.getFile = function () {
+            console.log($scope.myFile)
             if ($scope.myFile.compressed) {
                 var blob = dataURItoBlob($scope.myFile.compressed.dataURL);
                 $scope.myFile._file = blob;
