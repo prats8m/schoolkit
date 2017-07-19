@@ -158,7 +158,7 @@
 		
 		<li class="dropdown nav-profile" uib-dropdown>
 			<a href class="dropdown-toggle" uib-dropdown-toggle>
-				<img ng-src="{{userPhoto ? userPhoto : 'images/avatar.jpg'}}" alt="" class="img-circle size-30x30">
+				<img ng-src="{{(userPhoto && (userPhoto != 'null')) ? userPhoto : 'images/avatar.jpg'}}" alt="" class="img-circle size-30x30">
 				<span><span class="uname">{{userFirstName}}</span> <fa name="angle-down"></fa></span>
 			</a>
 			<ul class="dropdown-menu pull-right panel panel-default animated littleFadeInDown" role="menu">
