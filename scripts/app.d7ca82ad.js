@@ -68,7 +68,8 @@ var app = angular
     "com.2fdevs.videogular",
     "ngImageCompress",
     "dcbImgFallback",
-    'mgo-angular-wizard'
+    'mgo-angular-wizard',
+    'ui.router.state'
   ])
   .run(['$rootScope', '$state', '$stateParams', '$location', '$cookies', function ($rootScope, $state, $stateParams, $location, $cookies) {
     $rootScope.$state = $state;
@@ -108,9 +109,7 @@ var app = angular
 
 
 
-    $rootScope.$on('$locationChangeStart', function (event, toUrl, fromUrl) {
-      console.log(toUrl);
-    });
+    
 
   }])
 

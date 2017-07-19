@@ -130,6 +130,14 @@ app
                 $scope.userFirstName = $cookies.get('userFirstName');
                 $scope.userLastName = $cookies.get('userLastName');
                 $scope.userPhoto = $cookies.get('userPhoto');
+
+                $rootScope.$on('$stateChangeStart', 
+                function(event, toState, toParams, fromState, fromParams){ 
+                    //console.log(toState);
+                    var stateArr = toState.name.split('.');
+                    console.log(stateArr[2]);
+                    $scope.active = stateArr[2];
+                })
             }]
         };
     });
