@@ -45,7 +45,71 @@
 				</section>
 			</div>
 			
-			<div class="col-sm-12 col-md-8"> 
+			<div class="col-sm-12 col-md-8">
+				<section class="tile tile-simple">
+					<div class="tile-body p-0">
+						<uib-tabset class="tabs-dark">
+
+							<uib-tab heading="User Group Members">
+								<div class="wrap-reset">
+									<div class="row">
+										<div class="col-sm-12 col-md-12">
+											<div class="row pos-r mb-40">
+												<div class="col-sm-4 col-md-4 filterorder"></div>
+												<div class="col-sm-4 col-md-4 search">
+													<input type="text" class="form-control" maxlength="50" placeholder="Search by text....">
+													<button class="btn btn-default br-2-r" type="button">Search</button>
+												</div>
+												<div class="col-sm-4 col-md-4"></div>
+											</div>
+											
+											<div ng-class="class">
+												<div class="glview">
+													<md-content>
+														<md-card class="slaveusers" ng-repeat="userdetail in usergroupslist | limitTo:totalDisplayed | filter:text | filter:title | filter:group | orderBy:myOrderBy"">
+															<a ui-sref="app.admin.user.view-user({user_id: userdetail.user.user_id})"><img ng-src="{{userdetail.user.user_photo ? userdetail.user.user_photo : 'images/avatar.jpg'}}" class="md-card-image" alt="Washed Out"></a>
+															<md-card-content>
+																<h2 class="md-title">{{ userdetail.user.user_first_name }}</h2>
+																<p>{{ userdetail.user.user_phone_no }}</p>
+															</md-card-content>
+															<div class="md-actions" layout="row" layout-align="center center">
+																<a class="btn btn-orange btn-border btn-rounded" ui-sref="app.admin.user.view-user({user_id: userdetail.user.user_id})">View</a>
+																<a class="btn btn-danger btn-border btn-rounded" ng-click="unassignUserGroupDetail($event,userdetail.user.user_id)">Remove</a>
+															</div>
+														</md-card>
+													</md-content>
+													<button ng-if="usergroupslist && usergroupslist.length > 8" class="btn btn-success btn-border btn-rounded m-0-auto f-wm" ng-click="loadMore()" ng-style="lmbtn">Load more</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+							<uib-tab heading="Doors Schedule">
+								<div class="wrap-reset">
+									<div class="row">
+										<div class="form-group col-sm-5 col-md-5">
+											<p style="border-bottom: 1px dashed #d5d5d5; padding: 0 0 10px; margin: 0 0 20px;"><strong>Door/Door Groups</strong></p>
+											<p>dfsdfs</p>
+											<p>dfsdfssd</p>
+										</div>
+										<div class="form-group col-sm-1 col-md-1">
+											&nbsp;
+										</div>
+										<div class="form-group col-sm-6 col-md-6">
+											<p style="border-bottom: 1px dashed #d5d5d5; padding: 0 0 10px; margin: 0 0 20px;"><strong>Schedule Groups</strong></p>
+											<p>Full Access</p>
+											<p>No Access</p>
+										</div>
+									</div>
+								</div>
+							</uib-tab>
+						</uib-tabset>
+					</div>
+				</section>
+			</div>
+			
+			<!--div class="col-sm-12 col-md-8"> 
 				<section class="tile tile-simple"> 
 					<div class="tile-body p-0"> 
 						<div class="tile-header dvd dvd-btm">
@@ -53,7 +117,7 @@
 						</div>
 						<div class="wrap-reset m-0 pt-20"> 
 							<div class="row pos-r mb-40">
-								<div class="col-sm-4 col-md-4 filterorder">
+								<div class="col-sm-4 col-md-4 filterorder"-->
 									<!-- <label class="control-label" ng-init="filtershow=true">
 										<a href="javascript:void()"><input type="checkbox" ng-model="filtershow" class="hideshowfilter"/>Filter by</a>
 									</label>
@@ -64,18 +128,18 @@
 											<li><a href="" ng-click="orderByMe('group')">Group</a></li>
 										</ul>
 									</label> -->
-								</div>
+								<!--/div>
 								<div class="col-sm-4 col-md-4 search">
 									<input type="text" class="form-control" maxlength="50" placeholder="Search by text....">
 									<button class="btn btn-default br-2-r" type="button">Search</button>
 								</div>
-								<div class="col-sm-4 col-md-4">
+								<div class="col-sm-4 col-md-4"-->
 									<!-- <div class="gridlistbar ta-r pull-right">
 										<label class="control-label">View by</label>
 										<a href="" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="changeClass()"><i class="fa fa-th-list" aria-hidden="true"></i></a>
 										<a href="" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="changeaClass()"><i class="fa fa-th" aria-hidden="true"></i></a>
 									</div> -->
-								</div>
+								<!--/div-->
 								<!-- <div class="filterfields" ng-hide="filtershow">
 									<div class="col-sm-4 col-md-4">
 										<label for="fbtext" class="control-label">Search by text</label> 
@@ -90,7 +154,7 @@
 										<input type="text" class="form-control" id="fblocation" ng-model="group">
 									</div>
 								</div> -->
-							</div>
+							<!--/div>
 							<div ng-class="class">
 								<div class="glview">
 									<md-content>
@@ -112,7 +176,7 @@
 						</div>
 					</div>
 				</section>
-			</div>
+			</div-->
 		</div>
 	</div>
 </div>
