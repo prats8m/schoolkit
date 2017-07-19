@@ -220,10 +220,8 @@
 														</div>
 														<div class="col-sm-6 col-md-6 form-group">
 															<label for="">Enable or Disable</label><br/>
-															<select class="form-control" ng-model="exception.status">
-																<option value="">Select</option>
-																<option value="Enabled">Enabling Exception</option>
-																<option value="Disabled">Disabling Exception</option>
+															<select ng-init="exception.status = 'Enabled'" class="form-control" ng-model="exception.status" ng-options="option as v for (option, v) in {Enabled: 'Enabling Exception', Disabled: 'Disabling Exception'}" >
+																
 															</select>
 														</div>
 													</div>
@@ -252,7 +250,7 @@
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="schedule.no_expirations == 1 || schedule.schedule_cat == 1" ng-controller="DatepickerDemoCtrl">
 												<div class="input-group">
-													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
+													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.schedule.expiration" is-open="opened" min-date="schedule.schedulestart_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>

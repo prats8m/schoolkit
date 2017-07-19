@@ -928,7 +928,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 						week_date = new Date();
 						var sch = {};
 						var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
-						if (week_date.getDay() > get_diff) {
+						if (week_date.getDay() > weekday[v.day]) {
 							var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
 						}
 						else {
