@@ -2340,6 +2340,8 @@ app
       angular.forEach(eventId, function (value, key) {
         scheduler.deleteEvent(value);
       });
+      $rootScope.schedule = {};
+      $rootScope.schedule.schedule_type = 'ONETIME';
       $timeout(function () {
         $(".close_add").click();
       });
