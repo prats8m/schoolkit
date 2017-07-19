@@ -114,10 +114,10 @@
 
 											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a': 'UTC'}}</td>
 
-											<td>{{active['user/event']}}</td>
-											<td>{{active['access_mode']}}</td>
-											<td>{{active['facility']}}</td>
-											<td>{{active['door/device']}}</td>
+											<td>{{active['user/event'] ? active['user/event'] : 'N/A' }}</td>
+											<td>{{active['access_mode'] ? active['user/event'] : 'N/A' }}</td>
+											<td>{{active['facility'] ? active['user/event'] : 'N/A' }}</td>
+											<td>{{active['door/device'] ? active['user/event'] : 'N/A' }}</td>
 											
 											<td class="customicon ta-c">
 												<a href="" ng-click="viewActivity(active['device_id'],active.media_file,active.event_id)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
