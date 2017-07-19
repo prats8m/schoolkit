@@ -1715,7 +1715,7 @@ app
         $scope.editUser = {};
         $("#mask02").datepicker();
         $rootScope.schedule = {};
-
+       
         $scope.alldoorList = function () {
             userSvc.alldoorList(appConstants.doorlist, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -1731,9 +1731,13 @@ app
                     switch (objectType) {
                         case 'editAccess':
                             $scope.editAccess = {};
+                            $scope.editAccess.status = 1;
+                            $scope.editAccess.accesscode_size = 5;
                             break;
                         case 'phoneedit':
                             $scope.phoneedit = {};
+                            $scope.phoneedit.status = 1;
+                            $scope.phoneedit.phonecode_size = 5;
                             break;
                         case 'editRfid':
                             $scope.editRfid = {};
@@ -1743,9 +1747,11 @@ app
                             break;
                         case 'Wiegand_code':
                             $scope.wiegand = {};
+                            $scope.wiegand.status = 1;
                             break;
                         case 'editBle':
                             $scope.editBle = {};
+                            $scope.editBle.status = 1;
                             break;
                         default:
                             break;
@@ -1789,8 +1795,10 @@ app
         //End Of Initialize Facility
         $scope.editAccess = {};
         $scope.editAccess.status = 1;
+        $scope.editAccess.accesscode_size = 5;
         $scope.phoneedit = {};
         $scope.phoneedit.status = 1;
+        $scope.phoneedit.phonecode_size = 5;
         $scope.editRfid = {};
         $scope.editRfid.status = 1;
         $scope.wiegand = {};
@@ -1985,6 +1993,9 @@ app
                 userSvc.submitEditSchedule(appConstants.scheduleEdit, appConstants.putMethod, {}, schedule, function (succResponse) {
                     if (succResponse.status) {
                         $scope.schedule = {}
+                        $timeout(function () {
+                          $rootScope.clearAllSchedule();
+                        });
                         // schedule.expiration =  set_exp;
                         // schedule.schedule_type = sch_type;
 
@@ -2008,15 +2019,21 @@ app
             switch(code_type){
                 case 'access_code':
                     $scope.editAccess = {};
+                    $scope.editAccess.status = 1;
+                    $scope.editAccess.accesscode_size = 5;
                     break;
                 case 'phone_code':
                     $scope.phoneedit = {};
+                    $scope.phoneedit.status = 1;
+                    $scope.phoneedit.phonecode_size = 5;
                     break;
                 case 'wiegand_code':
                     $scope.wiegand = {};
+                    $scope.wiegand.status = 1;
                     break;
                 case 'ble_code':
                     $scope.editBle = {};
+                    $scope.editBle.status = 1;
                     break;
                 default: 
 

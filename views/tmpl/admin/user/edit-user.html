@@ -66,7 +66,7 @@
 								<script type="text/ng-template" id="myModalContent2.html">
 									<form name="form1" role="form">
 										<div class="modal-header">
-											<h4 class="modal-title custom-font">Add Credential Schedule</h4>
+											<h4 class="modal-title custom-font">Edit Credential Schedule</h4>
 										</div>
 										<div class="modal-body p-30">
 											<div class="overflow check_view disable_modal">
@@ -132,7 +132,7 @@
 											</div>
 										</div>
 										<div class="modal-footer">
-											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cleareditdataSchedule()"><i class="fa fa-arrow-left"></i> Cancel</button>
 											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>
 											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)"
 											 ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>
@@ -418,7 +418,7 @@
 																		<label for="">Phone Code</label>
 																		<div class="overflow">
 																			<div class="w-180 pull-left pos-r mr-10">
-																				<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneedit.phone_code">
+																				<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneedit.phone_code" required>
 																				<span class="refreshbtn" ng-click="generatePhoneCode()"><i class="fa fa-refresh"></i></span>
 																			</div>
 																			<div class="btn-numbers pull-left" role="toolbar" aria-label="Toolbar with button groups">
@@ -475,13 +475,13 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
+																	<!-- <div class="form-group col-sm-6 col-md-4">
 																		<label for="">Type</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneedit.type1" uib-btn-radio=1>Hunting</label>
 																			<label class="btn btn-default" ng-model="phoneedit.type1" uib-btn-radio=0>Cascading</label>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-4">
@@ -505,13 +505,13 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
+																	<!-- <div class="form-group col-sm-6 col-md-4">
 																		<label for="">Type</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneedit.type2" uib-btn-radio=1>Hunting</label>
 																			<label class="btn btn-default" ng-model="phoneedit.type2" uib-btn-radio=0>Cascading</label>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-4">
@@ -535,13 +535,13 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
+																	<!-- <div class="form-group col-sm-6 col-md-4">
 																		<label for="">Type</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneedit.type3" uib-btn-radio=1>Hunting</label>
 																			<label class="btn btn-default" ng-model="phoneedit.type3" uib-btn-radio=0>Cascading</label>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">

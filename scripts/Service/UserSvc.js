@@ -22,7 +22,8 @@ app
             data.facility_id = data.schedule_facility_id;
             if (data.schedule_category == 0) {
                 data.schedule_start_date = data.schedule_start_date.toString();
-                data.schedule_end_date = data.expiration.toString();
+                // data.schedule_end_date = data.expiration.toString();
+                if(data.expiration)
                 data.expiration = data.expiration.toString();
             }
 

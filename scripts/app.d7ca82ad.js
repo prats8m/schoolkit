@@ -2383,11 +2383,24 @@ app
               var sch = {};
               var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
               if (week_date.getDay() > weekday[v.day]) {
-                var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+                if(weekday[v.day] == 0){
+                  var d = new Date(week_date.setDate(week_date.getDate() - get_diff + 7));
+                }
+                else{
+                  var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+                }
               }
               else {
-                var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
+                if(weekday[v.day] == 0){
+                  var d = new Date(week_date.setDate(week_date.getDate() + get_diff + 7 ));
+                }
+                else{
+                  var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
+                }
+                
               }
+              
+
               sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.starttime;
               sch.end_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.endtime;
               arr.push(sch);
@@ -2510,12 +2523,27 @@ app
       }
     };
 
+    $rootScope.cleareditdataSchedule = function () {
+      var eventId = new Array();
+      angular.forEach($(".dhx_cal_event"), function (value, key) {
+        eventId.push(value.getAttribute("event_id"));
+      });
+      angular.forEach(eventId, function (value, key) {
+        scheduler.deleteEvent(value);
+      });
+      $timeout(function () {
+        $(".close_add").click();
+      });
+    }
+
 
     $rootScope.editviewopen = function (schedule_id, form_type) {
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
         size: "lg",
+        keyboard: false,
+        backdrop: 'static',
         resolve: {
           items: function () {
             return $scope.items;
@@ -2564,9 +2592,6 @@ app
 
       $timeout(function () {
         $rootScope.initSchedule();
-      });
-      $timeout(function () {
-        $rootScope.clearAllSchedule();
       });
     };
 
