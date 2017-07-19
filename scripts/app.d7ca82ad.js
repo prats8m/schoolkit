@@ -2333,6 +2333,20 @@ app
       });
     }
 
+    $rootScope.cleardataSchedule = function () {
+      var eventId = new Array();
+      angular.forEach($(".dhx_cal_event"), function (value, key) {
+        eventId.push(value.getAttribute("event_id"));
+      });
+      angular.forEach(eventId, function (value, key) {
+        scheduler.deleteEvent(value);
+      });
+      $timeout(function () {
+        $(".close_add").click();
+      });
+    }
+
+    
     $scope.custom_schedular = function () {
       $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
       $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
@@ -2459,6 +2473,8 @@ app
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
         size: 'lg',
+        keyboard: false,
+        backdrop: 'static',
         resolve: {
           items: function () {
             return $scope.items;
@@ -2478,6 +2494,8 @@ app
       if (form_type == 'view') {
         $timeout(function () {
           $('.check_view').find(':input').prop('disabled', true);
+          $(".disable_modal").css("pointer-events","none");
+          $(".btn-success").hide();
 
         });
         // $timeout(function () {
@@ -2491,6 +2509,7 @@ app
         $(".modal-footer .btn-success").css("display", "none");
       }
     };
+
 
     $rootScope.editviewopen = function (schedule_id, form_type) {
       var modalInstance = $uibModal.open({
@@ -2529,6 +2548,8 @@ app
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
         size: size,
+        keyboard: false,
+        backdrop: 'static',
         resolve: {
           items: function () {
             return $scope.items;

@@ -293,7 +293,7 @@
 														<form name="form1" role="form"  >
 															<div class="modal-header"><h4 class="modal-title custom-font">Add Schedule</h4></div>
 															<div class="modal-body p-30">
-																<div class="overflow check_view">
+																<div class="overflow check_view disable_modal">
 																	<label for=""><strong>Schedule Type</strong></label>
 																	<div class="row">
 																		<div class="col-sm-6 col-md-6 form-group" ng-click="custom_schedular()">
@@ -328,7 +328,7 @@
 																	<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.no_expirations">
 																		<label for="">Expiration Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
-																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.schedule_start_date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
+																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
 																			<span class="input-group-btn">
 																				<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																			</span>
@@ -353,7 +353,7 @@
 																</div>
 															</div>
 															<div class="modal-footer">
-																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+																<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cleardataSchedule()"><i class="fa fa-arrow-left"></i> Cancel</button>
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>	
 																<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)" ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>	
 															</div>
@@ -392,7 +392,7 @@
 																		 multiple required>
 																		</select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2" ng-hide="assingned_usergroups.length">
+																	<div class="form-group col-sm-6 col-md-2 access_div" ng-hide="assingned_usergroups.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -407,6 +407,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('access_code')" ng-if="accesscode.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>															
@@ -427,8 +428,8 @@
 																				<td>{{accesscode.Access_Code}}</td>
 																				<td>{{accesscode.Door_Name}}</td>
 																				<td class="credintialicon ta-c">
-																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'view')" ng-hide="schedule.schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
-																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'edit')" ng-hide="schedule.schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'view')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(accesscode.credential_schedule_id, 'edit')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
 																				</td>
 																				<td>
 																					<select style="border:0; width:100%;">
@@ -479,7 +480,7 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id"
 																		 multiple required></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2">
+																	<div class="form-group col-sm-6 col-md-2 phone_div">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -512,13 +513,13 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3">
+																	<!-- <div class="form-group col-sm-6 col-md-3">
 																		<label for="">Type</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneCode.type1" ng-init="phoneCode.type1 = 1" uib-btn-radio=1>Hunting</label>
 																			<label class="btn btn-default" ng-model="phoneCode.type1" uib-btn-radio=0>Cascading</label>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-4">
@@ -541,13 +542,13 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3">
+																	<!-- <div class="form-group col-sm-6 col-md-3">
 																		<label for="">Type</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneCode.type2" ng-init="phoneCode.type2 = 1" uib-btn-radio=1>Hunting</label>
 																			<label class="btn btn-default" ng-model="phoneCode.type2" uib-btn-radio=0>Cascading</label>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-4">
@@ -570,17 +571,18 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3">
+																	<!-- <div class="form-group col-sm-6 col-md-3">
 																		<label for="">Type</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
 																			<label class="btn btn-default" ng-model="phoneCode.type3" ng-init="phoneCode.type3 = 1" uib-btn-radio=1>Hunting</label>
 																			<label class="btn btn-default" ng-model="phoneCode.type3" uib-btn-radio=0>Cascading</label>
 																		</div>
-																	</div>
+																	</div> -->
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('phone_code')" ng-if="phoneCode.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>
@@ -606,8 +608,8 @@
 																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
 																				</td>
 																				<td class="credintialicon ta-c"> 
-																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'view')"><i class="fa fa-eye" aria-hidden="true"></i></a> 
-																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'edit')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'view')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(phone_code.credential_schedule_id, 'edit')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				</td>
 																				<td>
 																					<select style="border:0; width:100%;">
@@ -728,20 +730,20 @@
 																<div class="row">
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Card Number</label>
-																		<input type="text" ng-model="wiegand.wiegand_card_number" name="" id="" class="form-control">
+																		<input type="number" ng-model="wiegand.wiegand_card_number" name="" id="" class="form-control" required>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-4">
 																		<label for="">Assign Doors</label><br/>
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
-																		 multiple required></select>
+																		 multiple></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2">
+																	<div class="form-group col-sm-6 col-md-2 wiegand_div">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Facility Code</label>
-																		<input type="text" name="" ng-model="wiegand.wiegand_facility_code" id="" class="form-control">
+																		<input type="text" name="facility_code" ng-model="wiegand.wiegand_facility_code" id="" class="form-control" required>
 																	</div>
 																</div>
 																<div class="row">
@@ -756,6 +758,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('wiegand_code')" ng-if="wiegand.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>
@@ -778,8 +781,8 @@
 																				<td>{{wiegand_code.Door_Name}} </td>
 																				<td class="ta-c">{{wiegand_code.Detail.wiegand_facility_code}}</td>
 																				<td class="credintialicon ta-c">
-																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(wiegand_code.credential_schedule_id, 'view')"><i class="fa fa-eye" aria-hidden="true"></i></a> 
-																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(wiegand_code.credential_schedule_id, 'edit')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(wiegand_code.credential_schedule_id, 'view')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(wiegand_code.credential_schedule_id, 'edit')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				</td>					
 																				<td>{{wiegand_code.status==0?'Inactive':'Active'}}</td>
 																				<td class="credintialicon ta-c">
@@ -913,7 +916,7 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="ble_code.door_id"
 																		 multiple required></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2">
+																	<div class="form-group col-sm-6 col-md-2 ble_div">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -930,6 +933,7 @@
 																<div class="row">
 																	<div class="form-group col-sm-12 col-md-12 mt-20">
 																		<button class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add/Save</button>
+																		<a class="btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a" ng-click="removeEditmode('ble_code')" ng-if="ble_code.credential_id">Cancel</a>
 																	</div>
 																</div>
 															</form>
@@ -952,8 +956,8 @@
 																				<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																				<td>{{blecode.Door_Name}}</td>
 																				<td class="credintialicon ta-c">
-																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(blecode.credential_schedule_id, 'view')"><i class="fa fa-eye" aria-hidden="true"></i></a> 
-																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(blecode.credential_schedule_id, 'edit')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="View" ng-click="scheduleviewopen(blecode.credential_schedule_id, 'view')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a> 
+																					<a href="" uib-tooltip="Edit" ng-click="scheduleviewopen(blecode.credential_schedule_id, 'edit')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 																				</td>
 																				<td>
 																					<select style="border: 0; width: 100%;">
