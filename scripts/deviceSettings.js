@@ -161,7 +161,7 @@ app
             var data = new commonSetAPIDataObject();
             data.module = appConstants.deviceSettings.motiondetection;
             data.type = appConstants.deviceSettings.commonGetAPIData.typeadv;
-            data.value[appConstants.deviceSettings.motiondetection] = $scope.deviceAdvanceSettingModals.das_motion_detection['motion-detection'];
+            data.value[appConstants.deviceSettings.motiondetection] = parseInt($scope.deviceAdvanceSettingModals.das_motion_detection['motion-detection']);
             commonSetHTTPService(data, appConstants._successmotiondetectionmodeconfigured);
         }
         $scope.getAdvancedSettings = function () {

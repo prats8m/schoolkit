@@ -248,7 +248,7 @@
 											</div>
 											<div class="form-group col-sm-12 col-md-6" ng-hide="$parent.schedule.schedule_cat==1 || $parent.schedule.no_expirations==1" >
 												<div class="input-group" ng-controller="DatepickerDemoCtrl">
-													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_date" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
+													<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="$parent.$parent.schedule.selected_schedule_expiration_date" min-date="$parent.$parent.schedule.selected_schedule_start_time" is-open="opened" datepicker-options="dateOptions" close-text="Close" onkeypress="return false;"/>
 													<span class="input-group-btn">
 														<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 													</span>
