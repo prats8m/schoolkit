@@ -298,7 +298,7 @@
 																	<div class="row">
 																		<div class="col-sm-6 col-md-6 form-group" ng-click="custom_schedular()">
 																			<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-																				<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-init="schedule.schedule_type='ONETIME'" ><i></i> One Time
+																				<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio"><i></i> One Time
 																			</label>
 																		</div>
 																		<div class="col-sm-6 col-md-6 form-group" ng-click="repetive_schedular()">
@@ -308,7 +308,7 @@
 																		</div>
 																	</div>
 																</div>
-																<div class="row check_view" ng-init="visibiltyUserGroup=true"  ng-hide="visibiltyUserGroup">
+																<div class="row check_view"  ng-hide="schedule.schedule_type == 'ONETIME'">
 																	<div class="col-sm-6 col-md-6 pr-0 form-group">
 																		<label for="">Start Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
@@ -319,10 +319,10 @@
 																		</div>
 																	</div>
 																	<div class="col-sm-1 col-md-1 form-group">&nbsp;</div>
-																	<div class="form-group col-sm-6 col-md-5"  ng-init="schedule.no_expirations=1" >
+																	<div class="form-group col-sm-6 col-md-5">
 																		<label for="">&nbsp;</label><br/>
 																		<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;">
-																			<input name="customRadioAlt" type="checkbox" checked="checked" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
+																			<input name="customRadioAlt" type="checkbox" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
 																		</label>											
 																	</div>
 																	<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.no_expirations">
@@ -377,7 +377,7 @@
 																				<span class="refreshbtn" ng-click="generateAddAccessCode()"><i class="fa fa-refresh"></i></span>
 																			</div>
 																			<div class="btn-numbers pull-left" role="toolbar" aria-label="Toolbar with button groups">
-																				<div class="btn-group" ng-init="accesscode.accesscode_size=6" role="group" aria-label="1">
+																				<div class="btn-group" ng-init="accesscode.accesscode_size=5" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=6>6</label>
 																					<label class="btn btn-default" ng-model="accesscode.accesscode_size" uib-btn-radio=7>7</label>
@@ -462,11 +462,11 @@
 																		<label for="">Access Code</label>
 																		<div class="overflow">
 																			<div class="w-240 pull-left pos-r mr-10">
-																				<input type="text" name="access_code" id="phone_code" class="form-control" disabled ng-model="phoneCode.phone_code">
+																				<input type="text" name="phone_code" id="phone_code" class="form-control" disabled ng-model="phoneCode.phone_code">
 																				<span class="refreshbtn" ng-click="generateAddPhoneCode()"><i class="fa fa-refresh"></i></span>
 																			</div>
 																			<div class="btn-numbers pull-left" role="toolbar" aria-label="Toolbar with button groups">
-																				<div class="btn-group" ng-init="phoneCode.phoneCode_size=6" role="group" aria-label="1">
+																				<div class="btn-group" ng-init="phoneCode.phoneCode_size=5" role="group" aria-label="1">
 																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=5>5</label>
 																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=6>6</label>
 																					<label class="btn btn-default" ng-model="phoneCode.phoneCode_size" uib-btn-radio=7>7</label>
