@@ -3201,6 +3201,18 @@ span.rightdetails {
     vertical-align: top;
 }
 
+span.doorname {
+	width: 30%;
+    display: inline-block;
+    margin-right: 2.5%;
+	vertical-align: top;
+}
+
+span.schedulename {
+	width: 65%;
+    display: inline-block;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1,
     .profilephoto #profilep-2 {
