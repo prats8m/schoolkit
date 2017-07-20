@@ -3299,10 +3299,11 @@ app
             }
             userSvc.addDoorScheduleUserGroup(appConstants.usergroupeditdoorschedule, appConstants.putMethod, {}, { ud_id: ud_id, is_access_allowed: is_access_allowed, schedule_id: schedule_id, type: userGroupBehaviour }, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.user_group_success = succResponse.msg;
+                    //$rootScope.user_group_success = succResponse.msg;
+                    toaster.pop('success',succResponse.msg.replace(/_/g, ' '));
                 }
                 else {
-                    $rootScope.user_group_success = succResponse.msg;
+                    toaster.pop('error',succResponse.msg.replace(/_/g, ' '));
                 }
                 $timeout(function () {
                     $("#" + ud_id).css("display", appConstants.none);

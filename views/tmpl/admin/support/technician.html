@@ -46,19 +46,19 @@
 													<div class="form-group row">
 														<div class="col-sm-6 col-md-6">
 															<label for="">First Name <span class="text-danger">*</span></label>
-															<input type="text" name="first_name" id="" class="form-control" maxlength="15" placeholder="" ng-model="addTechnician.first_name"
+															<input type="text" name="first_name" id="" front-space class="form-control" maxlength="15" placeholder="" ng-model="addTechnician.first_name"
 															 required="required">
 														</div>
 														<div class="col-sm-6 col-md-6">
 															<label for="">Last Name <span class="text-danger">*</span></label>
-															<input type="text" name="last_name" maxlength="15" id="" class="form-control" placeholder="" ng-model="addTechnician.last_name"
+															<input type="text" name="last_name" front-space maxlength="15" id="" class="form-control" placeholder="" ng-model="addTechnician.last_name"
 															 required="required">
 														</div>
 													</div>
 													<div class="form-group row">
 														<div class="col-sm-6 col-md-6">
 															<label for="">Email Address <span class="text-danger">*</span></label>
-															<input type="email" name="email" id="" class="form-control" placeholder="" ng-model="addTechnician.email" maxlength="64"
+															<input type="email" name="email" id="" no-space class="form-control" placeholder="" ng-model="addTechnician.email" minlength="6" maxlength="40"
 															 required="required">
 														</div>
 														<div class="col-sm-6 col-md-6">
@@ -70,11 +70,11 @@
 													<div class="form-group row">
 														<div class="col-sm-6 col-md-6">
 															<label for="">Address <span class="text-danger">*</span></label>
-															<input type="text" name="address" id="" class="form-control" placeholder="" ng-model="addTechnician.address" required="required">
+															<input type="text" name="address" front-space id="" class="form-control" placeholder="" ng-model="addTechnician.address" required="required">
 														</div>
 														<div class="col-sm-6 col-md-6">
 															<label for="">Zip Code <span class="text-danger">*</span></label>
-															<input type="text" maxlength="6" name="zip_code" id="" class="form-control" placeholder="" ng-model="addTechnician.zipcode"
+															<input type="text" minlength="4" maxlength="6" no-space name="zip_code" id="" class="form-control" placeholder="" ng-model="addTechnician.zipcode"
 															 number required="required">
 														</div>
 													</div>

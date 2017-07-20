@@ -68,18 +68,18 @@
 											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="first-name">First Name <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" maxlength="15" ng-model="addTechnician.technician_first_name" id="first-name" name="first_name"
+													<input type="text" class="form-control" front-space maxlength="15" ng-model="addTechnician.technician_first_name" id="first-name" name="first_name"
 													 required="required">
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="last-name">Last Name <span class="text-danger">*</span></label>
-													<input type="text" ng-model="addTechnician.technician_last_name" class="form-control" maxlength="15" id="last-name" name="last_name" required="required">
+													<input type="text" front-space ng-model="addTechnician.technician_last_name" class="form-control" maxlength="15" id="last-name" name="last_name" required="required">
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-6 col-sm-6">
 													<label for="email">Email Address <span class="text-danger">*</span></label>
-													<input type="email" ng-model="addTechnician.technician_email" class="form-control" id="email" maxlength="64" 
+													<input type="email" no-space ng-model="addTechnician.technician_email" class="form-control" id="email" maxlength="64" 
 													 name="email" required="required" readonly>
 												</div>
 												<div class="col-sm-6 col-sm-6">
@@ -96,7 +96,7 @@
 												</div>
 												<div class="col-sm-6 col-sm-6">
 													<label for="address1">Zip Code <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" id="address1" ng-model="addTechnician.technician_zipcode" maxlength="6" required="required">
+													<input type="text" no-space class="form-control" id="address1" ng-model="addTechnician.technician_zipcode" number minlength="4" maxlength="6" required="required">
 												</div>
 											</div>
 											<div class="form-group row">

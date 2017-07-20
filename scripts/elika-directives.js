@@ -25,6 +25,19 @@ app.directive("noSpace", function () {
     }
 });
 
+app.directive("frontSpace", function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('keypress', function (e) {
+                if ((e.keyCode == 32 || e.charCode == 32) && !element[0].value.length) {
+                    e.preventDefault();
+                }
+            });
+        }
+    }
+});
+
 app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
     function link(scope, element, attrs) {
         element.bind('click', function () {
