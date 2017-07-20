@@ -88,19 +88,17 @@
 							<uib-tab heading="Doors Schedule">
 								<div class="wrap-reset">
 									<div class="row">
-										<div class="form-group col-sm-5 col-md-5">
-											<p style="border-bottom: 1px dashed #d5d5d5; padding: 0 0 10px; margin: 0 0 20px;"><strong>Door/Door Groups</strong></p>
-											<p>dfsdfs</p>
-											<p>dfsdfssd</p>
+										<div class="form-group col-sm-12 col-md-12">
+											<p ng-repeat="x in listDoorGroup track by $index"><span class="doorname">{{x.door_name}}</span> <span class="schedulename">{{x.schedule_name}}</span></p>
 										</div>
-										<div class="form-group col-sm-1 col-md-1">
+										<!-- <div class="form-group col-sm-1 col-md-1">
 											&nbsp;
 										</div>
 										<div class="form-group col-sm-6 col-md-6">
 											<p style="border-bottom: 1px dashed #d5d5d5; padding: 0 0 10px; margin: 0 0 20px;"><strong>Schedule Groups</strong></p>
 											<p>Full Access</p>
 											<p>No Access</p>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</uib-tab>

@@ -303,18 +303,18 @@ var app = angular
       })
 
       //administrator master admin
-      .state('app.administrator.master-admin', {
-        url: '/master-admin',
-        controller: 'MasterAdminCtrl',
-        templateUrl: 'views/tmpl/administrator/master-admin.html'
-      })
+      // .state('app.administrator.master-admin', {
+      //   url: '/master-admin',
+      //   controller: 'MasterAdminCtrl',
+      //   templateUrl: 'views/tmpl/administrator/master-admin.html'
+      // })
 
       //administrator master-admin-profile
-      .state('app.administrator.master-admin-profile', {
-        url: '/master-admin-profile/:user_id',
-        controller: 'MasterAdminProfileCtrl',
-        templateUrl: 'views/tmpl/administrator/master-admin-profile.html'
-      })
+      // .state('app.administrator.master-admin-profile', {
+      //   url: '/master-admin-profile/:user_id',
+      //   controller: 'MasterAdminProfileCtrl',
+      //   templateUrl: 'views/tmpl/administrator/master-admin-profile.html'
+      // })
 
 
   }]);
