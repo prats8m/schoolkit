@@ -38,6 +38,12 @@ app.directive("frontSpace", function () {
     }
 });
 
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
+
 app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
     function link(scope, element, attrs) {
         element.bind('click', function () {

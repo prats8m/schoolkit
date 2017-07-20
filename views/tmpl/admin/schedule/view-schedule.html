@@ -56,7 +56,7 @@
 											<span class="rightdetails" ng-if="ViewSchedule.schedule_exceptions.length == 0"> No Exception</span>
 											<span class="rightdetails">
 													<span style="display: block;" ng-repeat="e in ViewSchedule.schedule_exceptions">
-													{{e.se_schedule_exception.frequency}}
+													{{e.se_schedule_exception.frequency | capitalize}}
 													{{e.se_schedule_exception.day}} 
 													<span ng-hide="e.se_schedule_exception.date == 0">
 													{{e.se_schedule_exception.date * 1000| date:'dd-MMM-yyyy': 'UTC'}} </span>
