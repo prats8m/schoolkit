@@ -14,6 +14,7 @@ app
         $scope.camgroup = {
             name: appConstants.cameraGroupButtonTitle
         };
+        $scope.camera = {};
 
         $scope.recordedFeedsSearchObj = {}
 
@@ -421,17 +422,18 @@ app
         };
         $scope.searchSection = appConstants.reset;
         $scope.getCamerasOnSearchItems = function () {
-            if ($scope.recordedFeedsSearchObj.facility) {
+            //if ($scope.recordedFeedsSearchObj.facility) {
                 $scope.recordedCameraFeedsAfterSearch = [];
                 $scope.searchSection = appConstants.search;
-
+                if(!$scope.recordedFeedsSearchObj.facility){$scope.recordedFeedsSearchObj.facility='';}
+                $scope.recordedFeedCameraPlayerHeader = '';
                 cameraDVRSvc.getCamerasOnSearchItems(appConstants.cameralist + '?facility_id=' + $scope.recordedFeedsSearchObj.facility, appConstants.getMethod, {}, {}, function (succResponse) {
                     if (succResponse.status) {
                         $scope.recordedCameraFeedsAfterSearch = succResponse.data ? succResponse.data.data : [];
-                        toaster.pop(appConstants.success, succResponse.msg);
+                        toaster.pop(appConstants.success, succResponse.msg.replace(/_/g ,' '));
                     }
                 });
-            }
+            //}
         };
 
         $scope.resetRecordedCamSearchCriteria = function () {
