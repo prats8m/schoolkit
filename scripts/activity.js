@@ -27,7 +27,12 @@ app
 	$scope.getFacilityList();
 
     $scope.getDoorsList = function(){
-        if(!$scope.facility_id){$scope.doors = [];return false;}
+        if(!$scope.facility_id){
+            $scope.doors = [];
+            $scope.facility_id = '';
+            if(typeof $scope.eventFetch === "function"){$scope.eventFetch();}
+            return false;
+        }
         activitiesSvc.getDoorsList(appConstants.doorlist+'?facility_id='+$scope.facility_id,appConstants.getMethod,{},{},function (succResponse) {
             $scope.doors = [];
         	if(succResponse.status){
@@ -64,9 +69,9 @@ app
 		if($scope.event_id){params += '&event_id='+$scope.event_id;}else{params += '&event_id='+appConstants.null;}
 		        
 		if($scope.time){
-            var d = new Date($scope.time); console.log(d);
+            var d = new Date($scope.time); // console.log(d);
             //var t = d.setHours(00,00,00,0000); console.log(t); return false;
-            var time = Date.UTC(d.getUTCFullYear(),(d.getUTCMonth()),(d.getUTCDate()+1)); console.log(time);
+            var time = Date.UTC(d.getUTCFullYear(),(d.getUTCMonth()),(d.getUTCDate()+1)); // console.log(time);
             //time.setHours(00,00,00);
             time = time/1000;
             params += '&time=' + time;
@@ -79,6 +84,7 @@ app
             $scope.activities = [];
             if(succResponse.status){
                 $scope.activities = succResponse.data.data;
+                $scope.dataTableInit();
             }
 			$scope.date = $scope.date;
         });
@@ -96,14 +102,17 @@ app
     }, 30000);
     */
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap().withOption('order', [3, 'desc']);
-	$scope.dtColumnDefs = [
-		DTColumnDefBuilder.newColumnDef(0),
-		DTColumnDefBuilder.newColumnDef(1),
-		DTColumnDefBuilder.newColumnDef(2),
-		DTColumnDefBuilder.newColumnDef(3),
-		DTColumnDefBuilder.newColumnDef(4).notSortable()
-	];
+    $scope.dataTableInit = function(){
+        $scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap().withOption('order', [0, 'desc']);
+        $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1),
+            DTColumnDefBuilder.newColumnDef(2),
+            DTColumnDefBuilder.newColumnDef(3),
+            DTColumnDefBuilder.newColumnDef(4),
+            DTColumnDefBuilder.newColumnDef(5).notSortable()
+        ];
+    }
 
     $scope.mediafile = 'images/avatar.jpg';
     $scope.mediatype = 'jpeg';
