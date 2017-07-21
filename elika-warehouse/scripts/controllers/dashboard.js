@@ -85,3 +85,25 @@ app
 				});
 		}
 	});
+
+
+app
+    .directive('elikaHeader', function () {
+        return {
+            templateUrl: 'views/header.html',
+            restrict: 'E',
+            controller: ['$scope','$rootScope','$cookies','$state', function elikaHeader($scope,$rootScope,$cookies,$state) {
+                $scope.userFirstName = $cookies.get('userFirstName');
+                $scope.userLastName = $cookies.get('userLastName');
+				$scope.userPhoto = $cookies.get('userPhoto');
+				var stateArr = $state.$current.name.split('.');
+                $scope.active = stateArr[1];
+
+                $rootScope.$on('$stateChangeStart', 
+                function(event, toState, toParams, fromState, fromParams){
+                    var stateArr = toState.name.split('.');
+                    $scope.active = stateArr[1];
+                })
+            }]
+        };
+    });

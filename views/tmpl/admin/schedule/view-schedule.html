@@ -46,20 +46,23 @@
 										<p><label>Schedule Type</label><span class="rightdetails">{{ViewSchedule.schedule_category == 'repeat' ? 'Repeatetive' : 'Custom'}}</span></p>
 										<p class="mt-20"><label><b>Schedules</b></label></p>
 										<p ng-repeat="schedule_inp in ViewSchedule.schedule_input"><label>{{schedule_inp.day}}</label><span>{{schedule_inp.starttime + ' - '+ schedule_inp.endtime + ' ' + schedule_inp.date}}</span><span ng-if="ViewSchedule.schedule_input.length == 0"> No Schedule</span></p>
-										<p class="mt-20"><label><b>Holidays</b></label><span ng-repeat="x in ViewSchedule.holiday_observed">{{x.hs_name}}<span ng-if="!$last">&nbsp;|&nbsp;</span></span><span ng-if="ViewSchedule.holiday_observed.length == 0"> No Holiday</span></p>
-										<p class="mt-20"><label><b>Exceptions</b></label><span ng-if="ViewSchedule.schedule_exceptions.length == 0"> No Exception</span>
-											<span>
-											 <ul class="" style="list-style: none; padding: 0;">
-												<li ng-repeat="e in ViewSchedule.schedule_exceptions">
-													{{e.se_schedule_exception.frequency}}
+										<p class="mt-20"><label><b>Holidays</b></label>
+											<span class="rightdetails">
+												<span style="text-transform: capitalize;" ng-repeat="x in ViewSchedule.holiday_observed">{{x.hs_name}}<span ng-if="!$last">,&nbsp;</span></span>
+											</span>
+											<span class="rightdetails" ng-if="ViewSchedule.holiday_observed.length == 0"> No Holiday</span>
+										</p>
+										<p class="mt-20"><label><b>Exceptions</b></label>
+											<span class="rightdetails" ng-if="ViewSchedule.schedule_exceptions.length == 0"> No Exception</span>
+											<span class="rightdetails">
+													<span style="display: block;" ng-repeat="e in ViewSchedule.schedule_exceptions">
+													{{e.se_schedule_exception.frequency | capitalize}}
 													{{e.se_schedule_exception.day}} 
 													<span ng-hide="e.se_schedule_exception.date == 0">
 													{{e.se_schedule_exception.date * 1000| date:'dd-MMM-yyyy': 'UTC'}} </span>
 													from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
-													</li>
-												</ul>
-											</span> 
-											
+													</span>
+											</span>
 										</p>
 									</div>												
 								</div>							

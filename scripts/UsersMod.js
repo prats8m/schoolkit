@@ -3324,10 +3324,11 @@ app
             }
             userSvc.addDoorScheduleUserGroup(appConstants.usergroupeditdoorschedule, appConstants.putMethod, {}, { ud_id: ud_id, is_access_allowed: is_access_allowed, schedule_id: schedule_id, type: userGroupBehaviour }, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.user_group_success = succResponse.msg;
+                    //$rootScope.user_group_success = succResponse.msg;
+                    toaster.pop('success',succResponse.msg.replace(/_/g, ' '));
                 }
                 else {
-                    $rootScope.user_group_success = succResponse.msg;
+                    toaster.pop('error',succResponse.msg.replace(/_/g, ' '));
                 }
                 $timeout(function () {
                     $("#" + ud_id).css("display", appConstants.none);
@@ -3514,7 +3515,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc, utilitySvc) {
+    .controller('UserGroupsDetailCtrl', function ($scope, $mdDialog, $http, $rootScope, $cookies, arrayPushService, $location, toaster, baseURL, $timeout, $stateParams, appConstants, userSvc, utilitySvc,schedul) {
 
         $scope.page = {
             title: appConstants._titleUserGroups,
@@ -3528,17 +3529,40 @@ app
         $scope.CurrentUserGroupUserCount = $stateParams.userGroupUserCount;
 
 
-        $scope.dashboardInit = function () {
-            userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+        // $scope.dashboardInit = function () {
+        //     userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
+        //         if (succResponse.status) {
+        //             $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
+        //         }
+        //     });
+        // };
+
+        // if (!$rootScope.hasOwnProperty('dashboardData')) {
+        //     $scope.dashboardInit();
+        // };
+
+        $scope.listDoorSchedule = function (usergroup_id, facility_id) {
+            userSvc.listDoorSchedule(appConstants.usergrouplistdoorschedule + '?usergroup_id=' + $stateParams.usergroup_id, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
-                    $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
+                    $scope.listDoorGroup = [];
+                    $scope.x = schedul.getScheduleByFacility(facility_id);
+                    angular.forEach(succResponse.data, function (value, key) {
+                        $scope.listDoorGroup[key] = value;
+                        $scope.listDoorGroup[key].schedulelist = [];
+                        $scope.x.success(function (resp) {
+                            angular.forEach(resp.data, function (val, k) {
+                                var obj = { name: val.schedule_name, id: val.schedule_id, is_access_allowed: val.is_access_allowed };
+                                $scope.listDoorGroup[key].schedulelist.push(obj);
+                            });
+                            if ($scope.listDoorGroup[key].schedule_id)
+                                $scope.listDoorGroup[key].tempSchedulerId = $scope.listDoorGroup[key].schedule_id.toString();
+                        });
+                    });
+                    console.log($scope.listDoorGroup);
                 }
             });
         };
-
-        if (!$rootScope.hasOwnProperty('dashboardData')) {
-            $scope.dashboardInit();
-        };
+        $scope.listDoorSchedule();
 
         $scope.usergroupDetail = function () {
             userSvc.usergroupDetail(appConstants.listuserbyusergroup + '?usergroup_id=' + $stateParams.usergroup_id, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -3569,7 +3593,7 @@ app
             userSvc.userGroupDetailDelete(appConstants.usergroupdelete + '?usergroup_id=' + id, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     toaster.pop('info', appConstants._successDeleteUserGroup);
-                    $location.path('/app/admin/user/user-groups');
+                   // $location.path('/app/admin/user/user-groups');
                 }
             });
         };
@@ -3595,7 +3619,15 @@ app
                         $timeout(function () {
                             $rootScope.userNotAssignedGroup(facility_id);
                         })
-                        $location.path('/app/admin/user/user-groups');
+                        //$scope.usergroupDetail();
+                        var tmp = [];
+                        for(var i=0;i<$scope.usergroupslist.length;i++){
+                            if($scope.usergroupslist[i].user.user_id != user_id){
+                                tmp.push($scope.usergroupslist[i]);
+                            }
+                        }
+                        $scope.usergroupslist = tmp;
+                        //$location.path('/app/admin/user/user-groups');
                     }
                 });
             }, function () {

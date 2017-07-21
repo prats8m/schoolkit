@@ -266,6 +266,7 @@ tr[ng-show="::showSpinners"] {
 
 .backpage {
 	text-align: right;
+	height: 35px;
 }
 
 .backpage a {
@@ -2191,6 +2192,7 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 .copybtn {
     text-align: center;
     padding: 25px 0;
+	border-top: 1px solid #CECECE;
 }
 
 .copybtn a {
@@ -3199,6 +3201,18 @@ span.rightdetails {
 	display: inline-block;
     width: 80%;
     vertical-align: top;
+}
+
+span.doorname {
+	width: 30%;
+    display: inline-block;
+    margin-right: 2.5%;
+	vertical-align: top;
+}
+
+span.schedulename {
+	width: 65%;
+    display: inline-block;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {

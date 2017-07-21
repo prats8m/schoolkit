@@ -25,6 +25,25 @@ app.directive("noSpace", function () {
     }
 });
 
+app.directive("frontSpace", function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.on('keypress', function (e) {
+                if ((e.keyCode == 32 || e.charCode == 32) && !element[0].value.length) {
+                    e.preventDefault();
+                }
+            });
+        }
+    }
+});
+
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
+});
+
 app.directive('logoutBtn', ['$location', '$cookies', function ($location, $cookies) {
     function link(scope, element, attrs) {
         element.bind('click', function () {
@@ -130,12 +149,12 @@ app
                 $scope.userFirstName = $cookies.get('userFirstName');
                 $scope.userLastName = $cookies.get('userLastName');
                 $scope.userPhoto = $cookies.get('userPhoto');
+                var stateArr = $state.$current.name.split('.');
+                $scope.active = stateArr[2];
 
                 $rootScope.$on('$stateChangeStart', 
                 function(event, toState, toParams, fromState, fromParams){ 
-                    //console.log(toState);
                     var stateArr = toState.name.split('.');
-                    console.log(stateArr[2]);
                     $scope.active = stateArr[2];
                 })
             }]

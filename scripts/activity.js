@@ -5,7 +5,8 @@ app
     $scope.page = {
 		title: appConstants.activitiesTitle
     };
-	$scope.date = new Date();
+    $scope.date = new Date();
+    $scope.facility_id = parseInt( utilitySvc.getCurrentFacility() );
 
     $scope.trustSrc = function(src) {
         return $sce.trustAsResourceUrl(src);
@@ -16,7 +17,7 @@ app
             if(succResponse.status){
                 $scope.facility = succResponse.data.data;
                 if(utilitySvc.getCurrentFacility() != ''){
-                    $rootScope.facility_id = parseInt( utilitySvc.getCurrentFacility() );
+                    $scope.facility_id = parseInt( utilitySvc.getCurrentFacility() );
                     $rootScope.facility_disable = true;
                     $scope.eventFetch();
                 }
@@ -27,7 +28,7 @@ app
 
     $scope.getDoorsList = function(){
         if(!$scope.facility_id){$scope.doors = [];return false;}
-        activitiesSvc.getDoorsList(appConstants.doorlist+'?facilityId='+$scope.facility_id,appConstants.getMethod,{},{},function (succResponse) {
+        activitiesSvc.getDoorsList(appConstants.doorlist+'?facility_id='+$scope.facility_id,appConstants.getMethod,{},{},function (succResponse) {
             $scope.doors = [];
         	if(succResponse.status){
                 $scope.doors = succResponse.data.data;
@@ -83,7 +84,8 @@ app
         });
 	};
 
-	$scope.eventFetch();
+    $scope.eventFetch();
+    /*
     var setEvent = setInterval(function(){ 
         //console.log($location.path());
         if($location.path() != '/app/admin/activity'){
@@ -92,7 +94,7 @@ app
         }
         $scope.eventFetch();
     }, 30000);
-    
+    */
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap().withOption('order', [3, 'desc']);
 	$scope.dtColumnDefs = [

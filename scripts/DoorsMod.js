@@ -68,7 +68,6 @@ app
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.facilityList = succResponse.data.data;
-
 					if (utilitySvc.getCurrentFacility() != '') {
 						$rootScope.door.facility_id = parseInt(utilitySvc.getCurrentFacility());
 						//$rootScope.facility_disable = true;
@@ -120,6 +119,7 @@ app
 					$scope.pageNo = 1;
 					$scope.listDoors();
 					$rootScope.dashboardData.door++;
+					$rootScope.door = {};
 					$timeout(function () {
 						$("#close").click();
 					});
