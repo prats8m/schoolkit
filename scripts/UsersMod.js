@@ -1764,6 +1764,10 @@ app
         };
         $scope.timeddl = appConstants.timedropdown;
 
+        //Initialize one time on edit credential schedule popup
+        $rootScope.schedule.schedule_type = 'ONETIME';
+        //End of initialize one time on edit credential schedule popup
+
         $scope.cleanAccordionFormObject = function (UI, objectType) {
             switch (UI) {
                 case appConstants._titleEditUser:
@@ -1772,11 +1776,13 @@ app
                             $scope.editAccess = {};
                             $scope.editAccess.status = 1;
                             $scope.editAccess.accesscode_size = 5;
+                            $rootScope.schedule.schedule_type = 'ONETIME';
                             break;
                         case 'phoneedit':
                             $scope.phoneedit = {};
                             $scope.phoneedit.status = 1;
                             $scope.phoneedit.phonecode_size = 5;
+                            $rootScope.schedule.schedule_type = 'ONETIME';
                             break;
                         case 'editRfid':
                             $scope.editRfid = {};
@@ -1787,10 +1793,12 @@ app
                         case 'Wiegand_code':
                             $scope.wiegand = {};
                             $scope.wiegand.status = 1;
+                            $rootScope.schedule.schedule_type = 'ONETIME';
                             break;
                         case 'editBle':
                             $scope.editBle = {};
                             $scope.editBle.status = 1;
+                            $rootScope.schedule.schedule_type = 'ONETIME';
                             break;
                         default:
                             break;
@@ -2489,12 +2497,19 @@ app
                 else {
                     submitData.schedule_type = 0;
                 }
+                $timeout(function () {
+                  $rootScope.cleardataSchedule();
+                });
+                $scope.schedule = {};
                 userSvc.submitEditAccessCode(url, meth, {}, submitData, function (succResponse) {
                     $scope.editAccess.credential_id = null;
                     if (succResponse.status) {
                         $scope.editAccess = {};
                         $(".access_div").show();
                         toaster.pop(appConstants.success, appConstants.submitSuccessfully);
+                        $scope.editAccess = {};
+                        $scope.editAccess.accesscode_size = 5;
+                        $scope.editAccess.status = 1;
                         $scope.getAccessCodeList();
                     }
                     else {
@@ -2522,7 +2537,17 @@ app
                             $scope.editAccess.credential_id = null;
                             if (succResponse.status) {
                                 toaster.pop(appConstants.success, appConstants.submitSuccessfully);
-                                $scope.getAccessCodeList();
+                                $timeout(function () {
+                                  $rootScope.clearAllSchedule();
+                                });
+
+                                $scope.schedule = {};
+                                $scope.editAccess = {};
+                                $scope.editAccess.accesscode_size = 5;
+                                $scope.editAccess.status = 1;
+                                $timeout(function () {
+                                  $scope.getAccessCodeList();
+                                });
                             }
                             else {
                                 $scope.getAccessCodeList();
