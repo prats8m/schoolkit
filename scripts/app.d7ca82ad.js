@@ -2535,6 +2535,8 @@ app
       $timeout(function () {
         $(".close_add").click();
       });
+      $rootScope.schedule = {};
+      $rootScope.schedule.schedule_type = 'ONETIME';
     }
 
 

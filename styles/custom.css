@@ -2192,6 +2192,7 @@ input.input-sm.input-unstyled::-webkit-input-placeholder {
 .copybtn {
     text-align: center;
     padding: 25px 0;
+	border-top: 1px solid #CECECE;
 }
 
 .copybtn a {
