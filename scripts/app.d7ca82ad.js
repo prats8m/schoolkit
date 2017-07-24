@@ -2482,6 +2482,34 @@ app
       });
     }
 
+    $rootScope.viewschedule = function (schedule_id) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContentView.html',
+        controller: 'ModalInstanceCtrl',
+        keyboard: false,
+        backdrop: 'static',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        $scope.viewScheduleForm = {};
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+
+      scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod, { schedule_id: schedule_id }, {}, function (succResponse) {
+        if (succResponse.status) {
+          $rootScope.scheduleview = succResponse.data;
+        }        
+      })
+      
+    };
+
     $scope.scheduleviewopen = function (schedule_id, form_type) {
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',

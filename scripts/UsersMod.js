@@ -946,6 +946,7 @@ app
         $scope.ble_code = {};
         $scope.ble_code.status = 1;
         $scope.saveBLEcode = function (ble_code, ble_form) {
+            $rootScope.blecode_error = "";
             if (!ble_form.validate()) {
                 return false;
             }
