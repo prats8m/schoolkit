@@ -275,6 +275,7 @@ app
 
         }
         $scope.usersInit = function () {
+            userSvc.clearSchedule();
 
             userSvc.usersInit(appConstants.userlist + '?limit=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -945,6 +946,7 @@ app
         $scope.ble_code = {};
         $scope.ble_code.status = 1;
         $scope.saveBLEcode = function (ble_code, ble_form) {
+            $rootScope.blecode_error = "";
             if (!ble_form.validate()) {
                 return false;
             }
@@ -1821,6 +1823,7 @@ app
         };
 
         $scope.dashboardInit = function () {
+            userSvc.clearSchedule();
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
@@ -2449,7 +2452,7 @@ app
                 return false;
             }
             if ($rootScope.schedule.schedule_type == "REPEATING") {
-                if ($scope.schedule.date == undefined) {
+                if ($rootScope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
