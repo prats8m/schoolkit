@@ -146,9 +146,7 @@ app
             templateUrl: 'views/header.html',
             restrict: 'E',
             controller: ['$scope', 'dashboardSvc', "appConstants", '$rootScope', 'utilitySvc', '$cookies', '$state', 'dataService', '$interval', '$log', function elikaHeader($scope, dashboardSvc, appConstants, $rootScope, utilitySvc, $cookies, $state, dataService, $interval, $log) {
-                $scope.userFirstName = $cookies.get('userFirstName');
-                $scope.userLastName = $cookies.get('userLastName');
-                $scope.userPhoto = $cookies.get('userPhoto');
+                
                 var stateArr = $state.$current.name.split('.');
                 $scope.active = stateArr[2];
 
@@ -156,7 +154,21 @@ app
                 function(event, toState, toParams, fromState, fromParams){ 
                     var stateArr = toState.name.split('.');
                     $scope.active = stateArr[2];
-                })
+                });
+
+                $scope.userFirstName = $cookies.get('userFirstName');
+                $scope.userLastName = $cookies.get('userLastName');
+                $scope.userPhoto = $cookies.get('userPhoto');
+
+                var tokenIntervel = setInterval(function(){ 
+                    var d = new Date();
+                    var n = d.getTime();
+                    $scope.userPhoto = $cookies.get('userPhoto')+'?n='+n;
+                    if( ! $cookies.get('token') ){
+                        $state.go('core.login');
+                        clearInterval(tokenIntervel);
+                    }
+                }, 1000);
             }]
         };
     });
