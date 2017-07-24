@@ -142,7 +142,6 @@ app
             $(".dhx_cal_prev_button").hide();
             $(".dhx_cal_next_button").hide();
             $(".dhx_cal_today_button").hide();
-            $rootScope.schedule.no_expirations=1;
         }
 
         $rootScope.custom_schedular = function () {
@@ -276,6 +275,7 @@ app
 
         }
         $scope.usersInit = function () {
+            userSvc.clearSchedule();
 
             userSvc.usersInit(appConstants.userlist + '?limit=' + appConstants.pageLimit + '&pageNo=' + $scope.pageNo + '&searchVal=' + $scope.searchText + '&facility_id=' + utilitySvc.getCurrentFacility() + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -434,6 +434,7 @@ app
                     $("md-tab-item[aria-controls^=tab-content]:contains('Account')").css("pointer-events", "none").css("opacity", "0.7");
                     $timeout(function () {
                         $(".ng-scope:contains(User Groups)").trigger("click");
+                        if($rootScope.dashboardData)
                         $rootScope.dashboardData.user++;
                     });
                     $timeout(function () {
@@ -442,6 +443,12 @@ app
                     $timeout(function () {
                         $scope.assignedGroup();
                     });
+                    $scope.accesscode = {};
+                    $scope.accesscode.status = 1;
+                    $scope.accesscode.accesscode_size = 5;
+                    $rootScope.schedule = {};
+                    $rootScope.schedule.schedule_type = 'ONETIME';
+
                 }
                 else {
                     $scope.user_error = succResponse.msg;
@@ -939,6 +946,7 @@ app
         $scope.ble_code = {};
         $scope.ble_code.status = 1;
         $scope.saveBLEcode = function (ble_code, ble_form) {
+            $rootScope.blecode_error = "";
             if (!ble_form.validate()) {
                 return false;
             }
@@ -1448,6 +1456,8 @@ app
                             if (succResponse.status) {
                                 $(".access_div").show();
                                 $scope.accesscode = {};
+                                $scope.accesscode.status = 1;
+                                $scope.accesscode.accesscode_size = 5;
                                 $timeout(function () {
                                     $scope.getAccessCodeList();
                                 });
@@ -1813,6 +1823,7 @@ app
         };
 
         $scope.dashboardInit = function () {
+            userSvc.clearSchedule();
             userSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
@@ -1947,7 +1958,6 @@ app
             $(".dhx_cal_prev_button").hide();
             $(".dhx_cal_next_button").hide();
             $(".dhx_cal_today_button").hide();
-            $rootScope.schedule.no_expirations=1;
 
         }
 
@@ -2047,7 +2057,7 @@ app
                           $rootScope.clearAllSchedule();
                         });
                         // schedule.expiration =  set_exp;
-                        // schedule.schedule_type = sch_type;
+                        schedule.schedule_type = 1;
 
                         $timeout(function () {
                             $(".close_add").click();
@@ -2071,19 +2081,23 @@ app
                     $scope.editAccess = {};
                     $scope.editAccess.status = 1;
                     $scope.editAccess.accesscode_size = 5;
+                    $(".access_div").show();
                     break;
                 case 'phone_code':
                     $scope.phoneedit = {};
                     $scope.phoneedit.status = 1;
                     $scope.phoneedit.phonecode_size = 5;
+                    $(".phone_div").show();
                     break;
                 case 'wiegand_code':
                     $scope.wiegand = {};
                     $scope.wiegand.status = 1;
+                    $(".wiegand_div").show();
                     break;
                 case 'ble_code':
                     $scope.editBle = {};
                     $scope.editBle.status = 1;
+                    $(".ble_div").show();
                     break;
                 default: 
 
@@ -2437,8 +2451,8 @@ app
             if (!access_edit_form.validate()) {
                 return false;
             }
-            if ($scope.schedule.schedule_type == "REPEATING") {
-                if ($scope.schedule.date == undefined) {
+            if ($rootScope.schedule.schedule_type == "REPEATING") {
+                if ($rootScope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
@@ -2465,7 +2479,7 @@ app
                     v.day = weekday[new Date(v.start_date).getDay()];
                     v.starttime = split_date[1];
                     v.endtime = v.end_date.split(" ")[1];
-                    if ($scope.schedule.schedule_type == "ONETIME") {
+                    if ($rootScope.schedule.schedule_type == "ONETIME") {
                         v.date = split_date[0].replace("/", "-").replace("/", "-");
                         $scope.edit_access_schedule.schedule_category = 1;
                     }
@@ -2650,8 +2664,8 @@ app
             if (!phone_edit_form.validate()) {
                 return false;
             }
-            if ($scope.schedule.schedule_type == "REPEATING") {
-                if ($scope.schedule.date == undefined) {
+            if ($rootScope.schedule.schedule_type == "REPEATING") {
+                if ($rootScope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
@@ -2678,7 +2692,7 @@ app
                     v.day = weekday[new Date(v.start_date).getDay()];
                     v.starttime = split_date[1];
                     v.endtime = v.end_date.split(" ")[1];
-                    if ($scope.schedule.schedule_type == "ONETIME") {
+                    if ($rootScope.schedule.schedule_type == "ONETIME") {
                         v.date = split_date[0].replace("/", "-").replace("/", "-");
                         $scope.edit_phone_schedule.schedule_category = 1;
                     }
@@ -2842,8 +2856,8 @@ app
             if(!wiegand_form.validate()){
              return false;
             }
-            if ($scope.schedule.schedule_type == "REPEATING") {
-                if ($scope.schedule.date == undefined) {
+            if ($rootScope.schedule.schedule_type == "REPEATING") {
+                if ($rootScope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
@@ -2870,7 +2884,7 @@ app
                     v.day = weekday[new Date(v.start_date).getDay()];
                     v.starttime = split_date[1];
                     v.endtime = v.end_date.split(" ")[1];
-                    if ($scope.schedule.schedule_type == "ONETIME") {
+                    if ($rootScope.schedule.schedule_type == "ONETIME") {
                         v.date = split_date[0].replace("/", "-").replace("/", "-");
                         $scope.edit_wiegand_schedule.schedule_category = 1;
                     }
@@ -2971,8 +2985,8 @@ app
             if (!ble_edit_form.validate()) {
                 return false;
             }
-            if ($scope.schedule.schedule_type == "REPEATING") {
-                if ($scope.schedule.date == undefined) {
+            if ($rootScope.schedule.schedule_type == "REPEATING") {
+                if ($rootScope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
@@ -2999,7 +3013,7 @@ app
                     v.day = weekday[new Date(v.start_date).getDay()];
                     v.starttime = split_date[1];
                     v.endtime = v.end_date.split(" ")[1];
-                    if ($scope.schedule.schedule_type == "ONETIME") {
+                    if ($rootScope.schedule.schedule_type == "ONETIME") {
                         v.date = split_date[0].replace("/", "-").replace("/", "-");
                         $scope.edit_ble_schedule.schedule_category = 1;
                     }

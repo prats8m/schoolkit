@@ -951,22 +951,21 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				scheduler.config.icons_select = ['icon_edit', 'icon_delete'];
 				window.resizeTo(950, 700);
 				scheduler.config.day_date = "%D, %F %d";
-				if ($scope.schedule.schedule_category == 'repeat') {
-					$timeout(function () {
-						$scope.repetive_schedular();
-					});
-				}
-				else {
-					$timeout(function () {
-						$scope.custom_schedular();
-					});
-				}
 				scheduler.config.first_hour = 0;
 				scheduler.config.multi_day = false;
 				scheduler.config.date_step = "5";
 				scheduler.config.show_loading = true;
 				scheduler.config.readonly = false;
 				scheduler.init('scheduler_here', week_date, "week");
+				if ($scope.schedule.schedule_category == 'repeat') {
+					$timeout(function () {
+						$scope.repetive_schedular();
+					});
+				}
+				else {
+					if(typeof InstallTrigger !== 'undefined')
+        			$(".dhx_cal_today_button").click();
+				}
 				$timeout(function () {
 					$scope.clearAllSchedule();
 				});

@@ -2422,7 +2422,7 @@ app
           if ($scope.schedule.schedule_category == 'repeat') {
             $rootScope.visibiltyUserGroup = true;
             $timeout(function () {
-              $scope.repetive_schedular();
+              $scope.repetive_without_ex_schedular();
             });
           }
           else {
@@ -2481,6 +2481,34 @@ app
         }
       });
     }
+
+    $rootScope.viewschedule = function (schedule_id) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContentView.html',
+        controller: 'ModalInstanceCtrl',
+        keyboard: false,
+        backdrop: 'static',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+        $scope.viewScheduleForm = {};
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+
+      scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod, { schedule_id: schedule_id }, {}, function (succResponse) {
+        if (succResponse.status) {
+          $rootScope.scheduleview = succResponse.data;
+        }        
+      })
+      
+    };
 
     $scope.scheduleviewopen = function (schedule_id, form_type) {
       var modalInstance = $uibModal.open({
@@ -2573,8 +2601,21 @@ app
       });
     };
 
+    $scope.repetive_without_ex_schedular = function () {
+      angular.forEach($(".dhx_scale_bar"), function (value, key) {
+          value.innerHTML = value.innerHTML.split(",")[0];
+      });
+      $(".dhx_cal_prev_button").hide();
+      $(".dhx_cal_next_button").hide();
+      $(".dhx_cal_today_button").hide();
+
+    }
+
     $rootScope.scheduleopen = function (size) {
       delete $rootScope.schedule.schedule_id;
+      if(!$scope.schedule.length){
+        $scope.schedule.schedule_type = 'ONETIME';
+      }
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -2596,6 +2637,11 @@ app
       $timeout(function () {
         $rootScope.initSchedule();
       });
+      if($rootScope.schedule.schedule_type == "REPEATING"){
+        $timeout(function () {
+          $scope.repetive_without_ex_schedular();
+        });
+      }
     };
 
     $scope.open = function (size) {
