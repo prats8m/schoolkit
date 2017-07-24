@@ -173,6 +173,23 @@ app
             
         };
 
+        factoryResp.validateImage = function(file){
+            var imageTypeObj = ['image/jpeg','image/png'];
+            if(imageTypeObj.indexOf(file.type) > -1){
+                return true;
+            }else{
+                toaster.pop('error',appConstants.providevalidimagefile);
+                return false;
+            }
+            if(file.size < appConstants.maxprofileimagesize){
+                return true;
+            }else{
+                toaster.pop('error',appConstants.imageistoolarge);
+                return false;
+            }
+            return false;
+        }
+
         return factoryResp;
     }]);
 
