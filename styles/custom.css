@@ -14,6 +14,7 @@ a {
 
 .schedule_scroll {
     overflow-x: auto;
+	border-bottom: 1px solid #cecece;
 }
 
 #scheduler_here {
@@ -944,6 +945,10 @@ a.serplan:hover {
 
 .myshortcuts .slimScrollDiv .slimScrollBar {
     background: rgb(255, 255, 255) !important;
+}
+
+.doorgroupslist .slimScrollDiv .slimScrollBar {
+    background: rgba(0, 0, 0,0.5) !important;
 }
 
 .card-container .card .bg-dashboard.dashboardbg .bg-transparent {
@@ -3346,6 +3351,24 @@ span.schedulename {
 	word-break: break-all;
 }
 
+.doorgroupslist ul {
+	list-style: none;
+    padding: 0;
+}
+
+.doorgroupslist ul li {
+	float: left;
+	width: 100%;
+}
+
+.doorgroupslist ul.doorslist li {
+	width: 50%;
+}
+
+.doorgroupslist .doorsscrollbars {
+	max-height: 350px;
+    min-height: 350px;
+}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1,
