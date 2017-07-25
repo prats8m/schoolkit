@@ -3144,33 +3144,42 @@ app
         //Delete user on detail page
 
         //Remove user  credentials
-        $scope.removeCredential = function (id, type) {
-            userSvc.removeCredential(appConstants.userdeletecredential + '?credential_id=' + id + '&type=' + type, appConstants.deleteMethod, {}, {}, function (succResponse) {
-                if (succResponse.status) {
-                    toaster.pop(appConstants.success, succResponse.msg.replace(/_/g, ' '));
-                    switch (type) {
-                        case 'access_code':
-                            $scope.getAccessCodeList();
-                            break;
-                        case 'phone_code':
-                            $scope.getPhoneList();
-                            break;
-                        case 'rfid_code':
-                            $scope.getRfidList();
-                            break;
-                        case 'wiegand_code':
-                            $scope.getWiegandList();
-                            break;
-                        case 'nfc_code':
-                            $scope.getNfcCodeList();
-                            break;
-                        case 'ble_code':
-                            $scope.getBleList();
-                            break;
-                        default:
-                            break;
-                    }
-                }
+        $scope.removeCredential = function (id, type, ev) {
+
+            var confirm = $mdDialog.confirm()
+                .title('Would you like to remove this credential?')
+                .content('')
+                .ok('Yes')
+                .cancel('No')
+                .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
+              userSvc.removeCredential(appConstants.userdeletecredential + '?credential_id=' + id + '&type=' + type, appConstants.deleteMethod, {}, {}, function (succResponse) {
+                  if (succResponse.status) {
+                      toaster.pop(appConstants.success, succResponse.msg.replace(/_/g, ' '));
+                      switch (type) {
+                          case 'access_code':
+                              $scope.getAccessCodeList();
+                              break;
+                          case 'phone_code':
+                              $scope.getPhoneList();
+                              break;
+                          case 'rfid_code':
+                              $scope.getRfidList();
+                              break;
+                          case 'wiegand_code':
+                              $scope.getWiegandList();
+                              break;
+                          case 'nfc_code':
+                              $scope.getNfcCodeList();
+                              break;
+                          case 'ble_code':
+                              $scope.getBleList();
+                              break;
+                          default:
+                              break;
+                      }
+                  }
+              });
             });
         };
         //End remove user credentials
