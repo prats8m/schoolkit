@@ -500,7 +500,7 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id"
 																		 multiple required></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2 phone_div">
+																	<div class="form-group col-sm-6 col-md-2 phone_div" ng-hide="assingned_usergroups.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -757,7 +757,7 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
 																		 multiple></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2 wiegand_div">
+																	<div class="form-group col-sm-6 col-md-2 wiegand_div" ng-hide="assingned_usergroups.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
@@ -936,7 +936,7 @@
 																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="ble_code.door_id"
 																		 multiple required></select>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2 ble_div">
+																	<div class="form-group col-sm-6 col-md-2 ble_div" ng-hide="assingned_usergroups.length">
 																		<label for="">Add Schedule</label><br/>
 																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
 																	</div>
