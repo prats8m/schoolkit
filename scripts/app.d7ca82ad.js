@@ -2315,6 +2315,7 @@ app
       scheduler.config.date_step = "5";
       scheduler.config.show_loading = true;
       scheduler.config.readonly = false;
+      scheduler.config.time_step = "1";
       scheduler.init('scheduler_here', new Date(), "week");
       if(typeof InstallTrigger !== 'undefined')
         $(".dhx_cal_today_button").click();
@@ -2441,6 +2442,7 @@ app
           scheduler.config.multi_day = false;
           scheduler.config.date_step = "5";
           scheduler.config.show_loading = true;
+          scheduler.config.time_step = "1";
           scheduler.init('scheduler_here', week_date, "week");
           if(typeof InstallTrigger !== 'undefined')
              $(".dhx_cal_today_button").click();

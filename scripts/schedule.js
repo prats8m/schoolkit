@@ -42,6 +42,7 @@ app
 			scheduler.config.date_step = "5";
 			scheduler.config.show_loading = true;
 			scheduler.config.readonly = false;
+			scheduler.config.time_step = "1";
 			scheduler.init('scheduler_here', new Date(), "week");
 			scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
 		}
@@ -956,6 +957,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				scheduler.config.date_step = "5";
 				scheduler.config.show_loading = true;
 				scheduler.config.readonly = false;
+				scheduler.config.time_step = "1";
 				scheduler.init('scheduler_here', week_date, "week");
 				if ($scope.schedule.schedule_category == 'repeat') {
 					$timeout(function () {
