@@ -977,6 +977,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				$scope.schedule.schedule_cat = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
 				if ($scope.schedule.schedule_exceptions != undefined)
 					$scope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
+				if($scope.schedule.schedule_start_time)
 				$scope.schedule.selected_schedule_start_time = new Date($scope.schedule.schedule_start_time * 1000);
 				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
 				var newDate = new Date();
