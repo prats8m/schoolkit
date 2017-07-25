@@ -35,8 +35,6 @@ app
                 .cancel(appConstants.cancel)
                 .targetEvent(ev);
             $mdDialog.show(confirm).then(function () {
-                //$scope.result = 'Your Doors has been deleted successfully.';
-                //$scope.statusclass = 'alert alert-danger alert-dismissable';
                 $scope.doorGroupDelete(id);
             }, function () {
                 toaster.pop('success', appConstants._messageoncanceltodeletedoorGroup);
@@ -48,7 +46,6 @@ app
                 if (succResponse.status) {
                     $scope.getDoorGroupList();
                     toaster.pop('info', appConstants._successfuldoorsdelete);
-
                 }
             });
         };
@@ -147,8 +144,8 @@ app
         };
         $scope.getDoorGroupList();
 
-        $scope.getDoorsList = function () {
-            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=1000&pageNo=1&facility_id='+utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+        $rootScope.getDoorsList = function () {
+            doorsSvc.getDoorsList(appConstants.doorlist + '?limits=1000&pageNo=1&facility_id='+$rootScope.doorGrp.facility_id, appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $rootScope.doorList = succResponse.data.data;
 
@@ -157,7 +154,7 @@ app
                 }
             });
         };
-        $scope.getDoorsList();
+        
 
         $rootScope.doorGroupSubmit = function (doorGroup) {
 
@@ -179,7 +176,8 @@ app
                     $rootScope.facilityList = succResponse.data.data;
 
                     if (utilitySvc.getCurrentFacility() != '') {
-						$rootScope.doorGrp.facility_id = parseInt(utilitySvc.getCurrentFacility());
+                        $rootScope.doorGrp.facility_id = parseInt(utilitySvc.getCurrentFacility());
+                        $rootScope.getDoorsList();
 						//$rootScope.facility_disable = true;
 					}
 

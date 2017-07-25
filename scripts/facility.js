@@ -40,6 +40,10 @@ app
             if (!addFacility.validate()) {
                 return false;
             }
+            if(facility.myFile){
+                if(!utilitySvc.validateImage(facility.myFile))
+                    return false; 
+            }
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
                     if (facility.myFile) {
@@ -188,19 +192,7 @@ app
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
-        /* $scope.dashboardInit = function () {
-            dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
-                if (succResponse.status) {
-                    $scope.dashboardData = succResponse.data ? succResponse.data : [];
-                }
-            });
-        };
-        if (!$rootScope.hasOwnProperty('dashboardData')) {
-            $scope.dashboardInit();
-        }*/
-
         
-
         $scope.HandleProfilePicAddUpdateClick = function () {
             var fileinput = document.getElementById("profilePicAddUpdate");
             fileinput.click();
@@ -444,7 +436,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc) {
+    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc,utilitySvc) {
         $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
         $scope.page = {
             title: $location.path().indexOf('view-facility') >= 0 ? appConstants.facilityDetailsTitle : appConstants.facilityedittitle,
@@ -474,6 +466,10 @@ app
         $scope.edit_facility = function (facility, editfacility) {
             if (!editfacility.validate()) {
                 return false;
+            }
+            if(facility.myFile){
+                if(!utilitySvc.validateImage(facility.myFile))
+                    return false; 
             }
             facility.timeZone = facility.facility_timezone;
             facility.zip_code = appConstants.empty + facility.facility_zipcode;
