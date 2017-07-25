@@ -167,6 +167,10 @@ app
             return date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
         };
 
+        factoryResp.dateToStringmmddyyyyFormat = function(expiration_date){
+            return (expiration_date.getMonth()+1)+"-"+expiration_date.getDate()+"-"+expiration_date.getFullYear();
+        };
+
         factoryResp.getCurrentFacility = function(){
             var current_facility_id = $cookies.get('current_facility_id');
             return (!(current_facility_id == 0 || current_facility_id == '0')) ? current_facility_id : '' ;
