@@ -690,6 +690,10 @@ table.dstatus tr td.online {
     color: #3c8719
 }
 
+.fa-calendar-check-o.online {
+    color: #3c8719
+}
+
 table.dstatus tr td.offline {
     color: #c9302c
 }
