@@ -1032,9 +1032,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 	}
 	$scope.exceptions = [];
 	$scope.addException = function (exception) {
-
 		var key = angular.copy($scope.exceptions.length + 1);
-		if(exception.date && !isNaN(exception.date))
+		if(exception.date && !isNaN(exception.date) && exception.type != "REPEATING")
 		exception.date = (exception.date.getMonth() + 1) + "-" + exception.date.getDate() + "-" + exception.date.getFullYear();
 		var obj = angular.copy(exception);
 		obj.key = key;
@@ -1055,7 +1054,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 
 		if ($scope.exceptions){
 			$scope.exceptions.forEach(function (v) {
-				if (v.type == 'ONETIME') {
+				if (v.type == 'ONETIME' || v.frequency=='One-time' ) {
 					v.frequency = "one-time";
 				}
 				else {

@@ -536,12 +536,12 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3 access_div">
+																	<div class="form-group col-sm-6 col-md-3 ">
 																		<label for="">Doors and Schedule</label><br/>
 																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id" multiple required> </select-->
 																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>																	
 																		<!--label for="">Add Schedule</label><br/-->
-																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add Schedule</a>
+																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a access_div">Add Schedule</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
@@ -622,12 +622,12 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3 phone_div">
+																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Doors and Schedule</label><br/>
 																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id" multiple required></select-->
 																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>
 																		<!--label for="">Add Schedule</label><br/-->
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add Schedule</a>
+																		<a ng-click="scheduleopen('lg')"  ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a phone_div">Add Schedule</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
@@ -881,12 +881,12 @@
 																		<label for="">Facility Code</label>
 																		<input type="text" name="facility_code" ng-model="wiegand.wiegand_facility_code" id="" class="form-control" required>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3 wiegand_div">
+																	<div class="form-group col-sm-6 col-md-3" >
 																		<label for="">Doors and Schedule</label><br/>
 																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id" multiple></select-->
 																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>
 																		<!--label for="">Add Schedule</label><br/-->
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add Schedule</a>
+																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a wiegand_div">Add Schedule</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Status</label><br/>
@@ -1052,12 +1052,12 @@
 																		<label for="">Password</label>
 																		<input type="password" name="ble_pass" id="" class="form-control mb-10" maxlength="20" placeholder="" ng-model="ble_code.ble_pass" required>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3 ble_div">
+																	<div class="form-group col-sm-6 col-md-3" >
 																		<label for="">Doors and Schedule</label><br/>
 																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="ble_code.door_id" multiple required></select-->
 																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>
 																		<!--label for="">Add Schedule</label><br/-->
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add Schedule</a>
+																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a ble_div">Add Schedule</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Status</label><br/>
