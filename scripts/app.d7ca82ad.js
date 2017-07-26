@@ -2645,6 +2645,27 @@ app
         });
       }
     };
+	
+	$rootScope.doorsopen = function (size) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'addDoorsModal.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        keyboard: false,
+        backdrop: 'static',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+
+    };
 
     $scope.open = function (size) {
       var modalInstance = $uibModal.open({

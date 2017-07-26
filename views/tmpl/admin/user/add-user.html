@@ -289,6 +289,136 @@
 										<md-content>
 											<div class="credintials clckevent mt-20" ng-controller="AccordionDemoCtrl">
 												<div ng-controller="ModalDemo2Ctrl">
+													<script type="text/ng-template" id="addDoorsModal.html">
+														<div class="modal-header"><h4 class="modal-title custom-font">Assign Doors</h4></div>
+														<div class="modal-body doorgroupslist p-30">
+															<div class="row">
+																<div class="col-sm-4 col-md-4 form-group" style="border-right: 1px solid #f1f1f1;">
+																	<label for=""><strong>Door Groups</strong></label><br/>
+																	<div class="doorsscrollbars" style="overflow:auto;" slimscroll="{height: '100%'}">
+																		<ul>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 1</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 2</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 3</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 4</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 5</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 6</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 7</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 8</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 9</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 10</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 11</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 12</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 13</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 14</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door Group 15</label>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+																<div class="col-sm-8 col-md-8 form-group">
+																	<label for=""><strong>Doors</strong></label><br/>
+																	<div class="doorsscrollbars" style="overflow:auto;" slimscroll="{height: '100%'}">
+																		<ul class="doorslist">
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 1</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 2</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 3</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 4</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 5</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 6</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 7</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 8</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 9</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 10</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 11</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 12</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 13</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 14</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 15</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 16</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 17</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 18</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 19</label>
+																			</li>
+																			<li>
+																				<label class="checkbox checkbox-custom-alt checkbox-custom-sm"> <input type="checkbox" value="1" name=""><i></i> Door 20</label>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+															<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click=""><i class="fa fa-arrow-right"></i> Save</button>
+														</div>
+													</script>
 													<script type="text/ng-template" id="myModalContentView.html">
 														<div class="modal-header"><h4 class="modal-title custom-font">View Schedule</h4></div>
 														<div class="modal-body p-30" >
@@ -345,7 +475,7 @@
 																			<input name="customRadioAlt" type="checkbox" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
 																		</label>											
 																	</div>
-																	<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.no_expirations">
+																	<div class="form-group col-sm-6 col-md-6 pr-0" ng-hide="schedule.no_expirations">
 																		<label for="">Expiration Date</label>
 																		<div class="input-group" ng-controller="DatepickerDemoCtrl">
 																			<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy"  ng-model="schedule.expiration" is-open="opened" min-date="schedule.date" datepicker-options="dateOptions"  close-text="Close" onkeypress="return false;"/>
@@ -389,7 +519,7 @@
 															<form ng-submit="saveAccessCode(accesscode, access_code)" name="access_code" id="access_code" ng-validate="validationOptions">
 																<div class="row">
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="accesscode.credential_id">
-																	<div class="form-group col-sm-6 col-md-5">
+																	<div class="form-group col-sm-12 col-md-7">
 																		<label for="">Access Code</label>
 																		<div class="overflow">
 																			<div class="w-240 pull-left pos-r mr-10">
@@ -406,15 +536,12 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-3">
-																		<label for="">Assign Doors</label><br/>
-																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id"
-																		 multiple required>
-																		</select>
-																	</div>
-																	<div class="form-group col-sm-6 col-md-2 access_div" ng-hide="assingned_usergroups.length">
-																		<label for="">Add Schedule</label><br/>
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																	<div class="form-group col-sm-6 col-md-3 ">
+																		<label for="">Doors and Schedule</label><br/>
+																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="accesscode.door_id" multiple required> </select-->
+																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>																	
+																		<!--label for="">Add Schedule</label><br/-->
+																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a access_div">Add Schedule</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
@@ -478,7 +605,7 @@
 															<form ng-submit="submitPhoneCode(phoneCode, phone_form)" name="phone_form" id="phone_code" ng-validate="validationOptions">
 																<div class="row mb-20">
 																	<input type="hidden" name="credential_id" id="credential_id" class="form-control" disabled ng-model="phoneCode.credential_id">
-																	<div class="form-group col-sm-6 col-md-5">
+																	<div class="form-group col-sm-7 col-md-7">
 																		<label for="">Access Code</label>
 																		<div class="overflow">
 																			<div class="w-240 pull-left pos-r mr-10">
@@ -496,13 +623,11 @@
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-3">
-																		<label for="">Assign Doors</label><br/>
-																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id"
-																		 multiple required></select>
-																	</div>
-																	<div class="form-group col-sm-6 col-md-2 phone_div" ng-hide="assingned_usergroups.length">
-																		<label for="">Add Schedule</label><br/>
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
+																		<label for="">Doors and Schedule</label><br/>
+																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="phoneCode.door_id" multiple required></select-->
+																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>
+																		<!--label for="">Add Schedule</label><br/-->
+																		<a ng-click="scheduleopen('lg')"  ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a phone_div">Add Schedule</a>
 																	</div>
 																	<div class="form-group col-sm-6 col-md-2">
 																		<label for="">Status</label><br/>
@@ -752,21 +877,17 @@
 																		<label for="">Card Number</label>
 																		<input type="number" ng-model="wiegand.wiegand_card_number" name="" id="" class="form-control" required>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
-																		<label for="">Assign Doors</label><br/>
-																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id"
-																		 multiple></select>
-																	</div>
-																	<div class="form-group col-sm-6 col-md-2 wiegand_div" ng-hide="assingned_usergroups.length">
-																		<label for="">Add Schedule</label><br/>
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
-																	</div>
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Facility Code</label>
 																		<input type="text" name="facility_code" ng-model="wiegand.wiegand_facility_code" id="" class="form-control" required>
 																	</div>
-																</div>
-																<div class="row">
+																	<div class="form-group col-sm-6 col-md-3" >
+																		<label for="">Doors and Schedule</label><br/>
+																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="wiegand.door_id" multiple></select-->
+																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>
+																		<!--label for="">Add Schedule</label><br/-->
+																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a wiegand_div">Add Schedule</a>
+																	</div>
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
@@ -931,17 +1052,13 @@
 																		<label for="">Password</label>
 																		<input type="password" name="ble_pass" id="" class="form-control mb-10" maxlength="20" placeholder="" ng-model="ble_code.ble_pass" required>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-4">
-																		<label for="">Assign Doors</label><br/>
-																		<select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="ble_code.door_id"
-																		 multiple required></select>
+																	<div class="form-group col-sm-6 col-md-3" >
+																		<label for="">Doors and Schedule</label><br/>
+																		<!--select Multipng-options=le chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in door_lists" ng-model="ble_code.door_id" multiple required></select-->
+																		<a ng-click="doorsopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Assign Doors</a>
+																		<!--label for="">Add Schedule</label><br/-->
+																		<a ng-click="scheduleopen('lg')" ng-hide="assingned_usergroups.length" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a ble_div">Add Schedule</a>
 																	</div>
-																	<div class="form-group col-sm-6 col-md-2 ble_div" ng-hide="assingned_usergroups.length">
-																		<label for="">Add Schedule</label><br/>
-																		<a ng-click="scheduleopen('lg')" class="group-span-filestyle btn btn-default btn-rounded btn-ef btn-ef-6 btn-ef-6a">Add</a>
-																	</div>
-																</div>
-																<div class="row">
 																	<div class="form-group col-sm-6 col-md-3">
 																		<label for="">Status</label><br/>
 																		<div class="btn-group btnrounded status" ng-controller="ActivebtnCtrl">
