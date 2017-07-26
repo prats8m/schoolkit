@@ -87,7 +87,7 @@ var app = angular
     $rootScope.logoutSessionExpiredMassageCount = 0;
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-     
+
       event.targetScope.$watch('$viewContentLoaded', function () {
 
         angular.element('html, body, #content').animate({ scrollTop: 0 }, 200);
@@ -109,7 +109,7 @@ var app = angular
 
 
 
-    
+
 
   }])
 
@@ -151,7 +151,7 @@ var app = angular
       .state('app', {
         abstract: true,
         url: '/app',
-        controller:'appCtrl',
+        controller: 'appCtrl',
         templateUrl: 'views/tmpl/app.html'
       })
 
@@ -2316,7 +2316,7 @@ app
       scheduler.config.show_loading = true;
       scheduler.config.readonly = false;
       scheduler.init('scheduler_here', new Date(), "week");
-      if(typeof InstallTrigger !== 'undefined')
+      if (typeof InstallTrigger !== 'undefined')
         $(".dhx_cal_today_button").click();
 
       scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
@@ -2347,7 +2347,7 @@ app
       });
     }
 
-    
+
     $scope.custom_schedular = function () {
       $(".dhx_scale_bar")[0].innerHTML = $(".dhx_scale_bar:eq(0)").attr("aria-label");
       $(".dhx_scale_bar")[1].innerHTML = $(".dhx_scale_bar:eq(1)").attr("aria-label");
@@ -2384,23 +2384,23 @@ app
               var sch = {};
               var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
               if (week_date.getDay() > weekday[v.day]) {
-                if(weekday[v.day] == 0){
+                if (weekday[v.day] == 0) {
                   var d = new Date(week_date.setDate(week_date.getDate() - get_diff + 7));
                 }
-                else{
+                else {
                   var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
                 }
               }
               else {
-                if(weekday[v.day] == 0){
-                  var d = new Date(week_date.setDate(week_date.getDate() + get_diff + 7 ));
+                if (weekday[v.day] == 0) {
+                  var d = new Date(week_date.setDate(week_date.getDate() + get_diff + 7));
                 }
-                else{
+                else {
                   var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
                 }
-                
+
               }
-              
+
 
               sch.start_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.starttime;
               sch.end_date = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + " " + v.endtime;
@@ -2442,8 +2442,8 @@ app
           scheduler.config.date_step = "5";
           scheduler.config.show_loading = true;
           scheduler.init('scheduler_here', week_date, "week");
-          if(typeof InstallTrigger !== 'undefined')
-             $(".dhx_cal_today_button").click();
+          if (typeof InstallTrigger !== 'undefined')
+            $(".dhx_cal_today_button").click();
           $timeout(function () {
             $rootScope.clearAllSchedule();
           });
@@ -2465,7 +2465,7 @@ app
             $rootScope.schedule.no_expirations = 1;
           }
 
-          
+
 
           if ($scope.schedule.schedule_category == "repeat") {
             $timeout(function () {
@@ -2505,9 +2505,9 @@ app
       scheduleSvc.viewSchedule(appConstants.credentialscheduleView, appConstants.getMethod, { schedule_id: schedule_id }, {}, function (succResponse) {
         if (succResponse.status) {
           $rootScope.scheduleview = succResponse.data;
-        }        
+        }
       })
-      
+
     };
 
     $scope.scheduleviewopen = function (schedule_id, form_type) {
@@ -2536,7 +2536,7 @@ app
       if (form_type == 'view') {
         $timeout(function () {
           $('.check_view').find(':input').prop('disabled', true);
-          $(".disable_modal").css("pointer-events","none");
+          $(".disable_modal").css("pointer-events", "none");
           $(".btn-success").hide();
 
         });
@@ -2589,13 +2589,13 @@ app
       });
       if (form_type == 'view') {
         $timeout(function () {
-          $(".disable_modal").css("pointer-events","none");
+          $(".disable_modal").css("pointer-events", "none");
         });
         $timeout(function () {
           $(".modal-footer .btn-success").hide();
         });
       }
-      
+
       $timeout(function () {
         $rootScope.setScheduler(schedule_id, form_type);
       });
@@ -2603,7 +2603,7 @@ app
 
     $scope.repetive_without_ex_schedular = function () {
       angular.forEach($(".dhx_scale_bar"), function (value, key) {
-          value.innerHTML = value.innerHTML.split(",")[0];
+        value.innerHTML = value.innerHTML.split(",")[0];
       });
       $(".dhx_cal_prev_button").hide();
       $(".dhx_cal_next_button").hide();
@@ -2613,7 +2613,7 @@ app
 
     $rootScope.scheduleopen = function (size) {
       delete $rootScope.schedule.schedule_id;
-      if(!$scope.schedule.length){
+      if (!$scope.schedule.length) {
         $scope.schedule.schedule_type = 'ONETIME';
       }
       var modalInstance = $uibModal.open({
@@ -2637,7 +2637,7 @@ app
       $timeout(function () {
         $rootScope.initSchedule();
       });
-      if($rootScope.schedule.schedule_type == "REPEATING"){
+      if ($rootScope.schedule.schedule_type == "REPEATING") {
         $timeout(function () {
           $scope.repetive_without_ex_schedular();
         });

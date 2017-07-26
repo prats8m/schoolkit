@@ -40,15 +40,15 @@ app
             if (!addFacility.validate()) {
                 return false;
             }
-            if(facility.myFile){
-                if(!utilitySvc.validateImage(facility.myFile))
-                    return false; 
+            if (facility.myFile) {
+                if (!utilitySvc.validateImage(facility.myFile))
+                    return false;
             }
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
                     if (facility.myFile) {
                         var file = facility.myFile;
-                        $scope.uploadProfilePic(file,succResponse.data);
+                        $scope.uploadProfilePic(file, succResponse.data);
                     }
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
@@ -192,7 +192,6 @@ app
 
         $scope.imagePath = baseURL + appConstants.imagePath;
 
-        
         $scope.HandleProfilePicAddUpdateClick = function () {
             var fileinput = document.getElementById("profilePicAddUpdate");
             fileinput.click();
@@ -436,7 +435,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc,utilitySvc) {
+    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc, utilitySvc) {
         $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
         $scope.page = {
             title: $location.path().indexOf('view-facility') >= 0 ? appConstants.facilityDetailsTitle : appConstants.facilityedittitle,
@@ -467,9 +466,9 @@ app
             if (!editfacility.validate()) {
                 return false;
             }
-            if(facility.myFile){
-                if(!utilitySvc.validateImage(facility.myFile))
-                    return false; 
+            if (facility.myFile) {
+                if (!utilitySvc.validateImage(facility.myFile))
+                    return false;
             }
             facility.timeZone = facility.facility_timezone;
             facility.zip_code = appConstants.empty + facility.facility_zipcode;
@@ -478,7 +477,8 @@ app
                 if (succResponse.status) {
                     if (facility.myFile) {
                         var file = facility.myFile;
-                        $scope.uploadProfilePic(file,$stateParams.facility_id);
+
+                        $scope.uploadProfilePic(file, $stateParams.facility_id);
                     }
                     toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
                     $location.path('/app/admin/facility/facility');
