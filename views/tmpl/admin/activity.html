@@ -120,7 +120,7 @@
 											<td>{{active['door/device'] ? active['door/device'] : 'N/A' }}</td>
 											
 											<td class="customicon ta-c">
-												<a href="" ng-click="viewActivity(active['device_id'],active.media_file,active.event_id)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+												<a ng-hide="active.media_file=='NA'" href="" ng-click="viewActivity(active['device_id'],active.media_file,active.event_id)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
 											</td>
 										</tr>
 									</tbody>

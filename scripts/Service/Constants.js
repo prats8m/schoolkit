@@ -454,7 +454,8 @@ app.constant("appConstants", {
 
     //............................SignUp.......................................
 
-    _successsignup: 'You have successfully registered.',
+    _successsignup: 'Your account has been successfully registered.',
+    _emailverification: 'An email has been sent to your registered email, please verify your account.',
     _chktnc: 'Please agree Terms and conditions.',
 
 
