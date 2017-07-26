@@ -412,6 +412,7 @@
 																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="View" ng-click="viewschedule(accesscode.credential_schedule_id)" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
 																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(accesscode.credential_schedule_id, 'edit')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(accesscode, 'access_code')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
 																				<td class="ta-c">{{accesscode.status == 1 ? 'Active' : 'Inactive'}}</td>
 																				<td class="credintialicon ta-c">
@@ -593,6 +594,7 @@
 																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="View" ng-click="viewschedule(phone_code.credential_schedule_id)" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
 																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(phone_code.credential_schedule_id, 'edit')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(phone_code, 'phone_code')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
 																				<td class="ta-c">{{phone_code.status==0?'Inactive':'Active'}}</td>
 																				<td class="credintialicon ta-c">
@@ -750,6 +752,7 @@
 																			<td class="credintialicon ta-c">
 																				<a href="" uib-tooltip="View" ng-click="viewschedule(wiegand_code.credential_schedule_id)" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
 																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(wiegand_code.credential_schedule_id, 'edit')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(wiegand_code, 'wiegand_code')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																			</td>
 																			<td class="ta-c">{{wiegand_code.status==0?'Inactive':'Active'}}</td>
 																			<td class="credintialicon ta-c">
@@ -911,6 +914,7 @@
 																			<td class="credintialicon ta-c">
 																				<a href="" uib-tooltip="View" ng-click="viewschedule(blecode.credential_schedule_id)" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
 																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(blecode.credential_schedule_id, 'edit')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(blecode, 'ble_code')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																			</td>
 																			<td class="ta-c">{{blecode.status==0?'Inactive':'Active'}}</td>
 																			<td class="credintialicon ta-c">
