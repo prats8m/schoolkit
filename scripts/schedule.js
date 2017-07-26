@@ -42,6 +42,7 @@ app
 			scheduler.config.date_step = "5";
 			scheduler.config.show_loading = true;
 			scheduler.config.readonly = false;
+			scheduler.config.time_step = "1";
 			scheduler.init('scheduler_here', new Date(), "week");
 			scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
 		}
@@ -956,6 +957,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				scheduler.config.date_step = "5";
 				scheduler.config.show_loading = true;
 				scheduler.config.readonly = false;
+				scheduler.config.time_step = "1";
 				scheduler.init('scheduler_here', week_date, "week");
 				if ($scope.schedule.schedule_category == 'repeat') {
 					$timeout(function () {
@@ -975,6 +977,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				$scope.schedule.schedule_cat = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
 				if ($scope.schedule.schedule_exceptions != undefined)
 					$scope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
+				if($scope.schedule.schedule_start_time)
 				$scope.schedule.selected_schedule_start_time = new Date($scope.schedule.schedule_start_time * 1000);
 				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
 				var newDate = new Date();
