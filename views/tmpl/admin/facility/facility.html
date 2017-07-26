@@ -1,6 +1,6 @@
 <div class="page subadmin">
 	<div class="pageheader backpage">
-		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<a ui-sref="app.admin.dashboard"><i class="fa fa-arrow-left"></i> Back</a>
 		<div class="facility-view elika-facility-name"></div>
 	</div>
 
@@ -210,6 +210,28 @@
             var fileinput = document.getElementById("profilePicAddUpdate");
 			var textinput = document.getElementById("profilePicFileName");
             textinput.value = fileinput.value;
-            
+			
+			
+			// file = fileinput.files && fileinput.files[0];
+
+			// if( file ) {
+			// 	var img = new Image();
+
+			// 	img.src = window.URL.createObjectURL( file );
+
+			// 	img.onload = function() {
+			// 		var width = img.naturalWidth,
+			// 			height = img.naturalHeight;
+
+			// 		window.URL.revokeObjectURL( img.src );
+			// 		var ratio = width / height;
+			// 		if( ratio > 1.75 && ratio < 1.80 ) {
+			// 			console.log('resolution is fine.');
+			// 		}
+			// 		else {
+			// 			console.log('resolution should be 16:9');
+			// 		}
+			// 	};
+			// }
         };
 </script>

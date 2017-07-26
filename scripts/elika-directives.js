@@ -3,7 +3,6 @@ app.directive("number", function () {
         restrict: 'A',
         link: function (scope, element, attrs) {
             element.on('keypress', function (e) {
-                console.log(e);
                 if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
                     e.preventDefault();
                 }
@@ -166,7 +165,9 @@ app
                     $scope.userPhoto = $cookies.get('userPhoto')+'?n='+n;
                     if( ! $cookies.get('token') ){
                         $state.go('core.login');
-                        clearInterval(tokenIntervel);
+                        //clearInterval(tokenIntervel);
+                    }else if($cookies.get('token') && ($state.is('core.login') || $state.is('core.signup') || $state.is('core.forgot-password') || $state.is('core.otp') ) ){
+                        $state.go('app.admin.dashboard');
                     }
                 }, 1000);
             }]
