@@ -117,8 +117,10 @@ app
             user.secret_question = parseInt(user.secret_question);
             dashboardSvc.submitSignUpForm(appConstants.addmasteradmin, appConstants.postMethod, {}, user, function (succResponse) {
                 if (succResponse.status) {
-                    if (succResponse.msg == 'Success')
+                    if (succResponse.msg == 'Success'){
                         toaster.pop('success', appConstants._successsignup);
+                        toaster.pop('info', appConstants._emailverification);
+                    }
                     $state.go('core.login');
                 }
             });
