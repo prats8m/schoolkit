@@ -162,6 +162,7 @@ app
                 var tokenIntervel = setInterval(function(){ 
                     var d = new Date();
                     var n = d.getTime();
+                    if($cookies.get('userPhoto') != 'null')
                     $scope.userPhoto = $cookies.get('userPhoto')+'?n='+n;
                     if( ! $cookies.get('token') ){
                         $state.go('core.login');
