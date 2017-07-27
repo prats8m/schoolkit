@@ -85,6 +85,9 @@ app
             if(succResponse.status){
                 $scope.activities = succResponse.data.data;
                 $scope.dataTableInit();
+            }else{
+                $scope.activities = [];
+                $scope.dataTableInit();
             }
 			$scope.date = $scope.date;
         });
