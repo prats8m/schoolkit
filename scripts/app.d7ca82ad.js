@@ -2618,7 +2618,7 @@ app
 
     $rootScope.scheduleopen = function (size) {
       delete $rootScope.schedule.schedule_id;
-      if (!$scope.schedule.length) {
+      if ($scope.schedule.schedule_type != 'REPEATING') {
         $scope.schedule.schedule_type = 'ONETIME';
       }
       var modalInstance = $uibModal.open({

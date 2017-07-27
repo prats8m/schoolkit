@@ -318,12 +318,12 @@
 																	<div class="row">
 																		<div class="col-sm-6 col-md-6 form-group" ng-click="custom_schedular()">
 																			<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-																				<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio"><i></i> One Time
+																				<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-click="schedule.no_expirations=1" ><i></i> One Time
 																			</label>
 																		</div>
 																		<div class="col-sm-6 col-md-6 form-group" ng-click="repetive_schedular()">
 																			<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-																				<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ><i></i> Repeating
+																				<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ng-click="schedule.no_expirations=1" ><i></i> Repeating
 																			</label>
 																		</div>
 																	</div>
