@@ -2310,6 +2310,9 @@ span.devicecamname {
 		width: 100%;
 		float: left;
 	}
+	.gridview .glview md-card md-card-content .list-view.grid-hide {
+		display: block;
+	}
 }
 
 @media only screen and (max-width: 399px) {
