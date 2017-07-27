@@ -2175,6 +2175,13 @@ span.devicecamname {
         content: "";
         z-index: 99;
     }
+	.listview .glview md-card md-card-content {
+		padding-bottom: 60px;
+	}
+	.listview .glview md-card md-card-content .list-view {
+		float: left;
+		width: 50%;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -2196,6 +2203,18 @@ span.devicecamname {
         width: 41.66666667%;
         float: left;
     }
+	.formobile .col-sm-9 {
+		width: 60%;
+		float: left;
+	}
+	.formobile .col-sm-9 .col-sm-7 {
+		width: 80%;
+		float: left;
+	}
+	.col-sm-3 {
+		width: 40%;
+		float: left;
+	}
 }
 
 @media only screen and (max-width: 599px) {
@@ -2279,6 +2298,18 @@ span.devicecamname {
     .gridlistbar599 {
         display: none;
     }
+	.listview .glview md-card md-card-content .list-view {
+		float: left;
+		width: 100%;
+	}
+	.formobile .col-sm-9 {
+		width: 100%;
+		float: left;
+	}
+	.formobile .col-sm-9 .col-sm-7 {
+		width: 100%;
+		float: left;
+	}
 }
 
 @media only screen and (max-width: 399px) {
