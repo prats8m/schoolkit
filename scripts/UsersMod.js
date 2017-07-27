@@ -36,7 +36,7 @@ app
 
         //pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 
-        $rootScope.check_submit = function (schedule_id, schedule) {
+        $rootScope.check_submit = function (schedule_id, schedule, form_data, form_name) {
             if (schedule_id == undefined) {
                 $mdDialog.cancel();
             }
@@ -116,6 +116,9 @@ app
                         $rootScope.schedule = {};
                         $rootScope.schedule.schedule_type = 'ONETIME';
                         $timeout(function () {
+                          $scope.editCredentialAfterSchuduleUpdate(form_data, form_name);
+                        });
+                        $timeout(function () {
                           $rootScope.clearAllSchedule();
                         });
                         // schedule.expiration =  set_exp;
@@ -134,6 +137,141 @@ app
 
             }
         }
+
+        //Update credential after schedule add page
+        $scope.editCredentialAfterSchuduleUpdate = function (cred_data, credential_type, ev) {
+          switch (credential_type) {
+            case 'access_code':
+                $scope.submitData = {};
+                $scope.submitData.details = {};
+                $scope.submitData.uc_id = cred_data.Credential_Id;
+                $scope.submitData.status = cred_data.status;
+                $scope.submitData.schedule_id = cred_data.credential_schedule_id;
+                $scope.submitData.user_id = parseInt($cookies.get("newUserId"));
+                $scope.submitData.credential_type = "access_code";
+                $scope.submitData.details.access_code = JSON.stringify(parseInt(cred_data.Access_Code));
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function (value, key) {
+                    arr[key] = parseInt(value);
+                });
+                $scope.submitData.door_id = arr;
+                userSvc.submitEditAccessCode(appConstants.usereditcredential, appConstants.putMethod, {}, $scope.submitData, function (succResponse) {
+                  // if (succResponse.status) {
+                      
+                  // }
+                  // else {
+                  // }
+                });
+
+                break;
+            case 'phone_code':
+                $scope.submitData = {};
+                $scope.submitData.details = {};
+                $scope.submitData.details.phone_numbers = [];
+                $scope.submitData.user_id = parseInt($cookies.get("newUserId"));
+                $scope.submitData.schedule_id = cred_data.credential_schedule_id;
+                $scope.submitData.credential_type = "phone_code";
+                $scope.submitData.uc_id = cred_data.Credential_Id;
+                $scope.submitData.details.phone_code = JSON.stringify(parseInt(cred_data.Detail.phone_code));
+                $scope.submitData.details.phone_numbers[0] = {};
+                $scope.submitData.details.phone_numbers[0].phone_number = cred_data.Detail.phone_numbers[0].phone_number;
+                $scope.submitData.details.phone_numbers[0].starttime = cred_data.Detail.phone_numbers[0].starttime;
+                $scope.submitData.details.phone_numbers[0].endtime = cred_data.Detail.phone_numbers[0].endtime;
+                $scope.submitData.details.phone_numbers[1] = {};
+                $scope.submitData.details.phone_numbers[1].phone_number = cred_data.Detail.phone_numbers[1].phone_number;
+                $scope.submitData.details.phone_numbers[1].starttime = cred_data.Detail.phone_numbers[1].starttime;
+                $scope.submitData.details.phone_numbers[1].endtime = cred_data.Detail.phone_numbers[1].endtime;
+                $scope.submitData.details.phone_numbers[2] = {};
+                $scope.submitData.details.phone_numbers[2].phone_number = cred_data.Detail.phone_numbers[2].phone_number;
+                $scope.submitData.details.phone_numbers[2].starttime = cred_data.Detail.phone_numbers[2].starttime;
+                $scope.submitData.details.phone_numbers[2].endtime = cred_data.Detail.phone_numbers[2].endtime;
+
+                $scope.submitData.status = cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function (value, key) {
+                    arr[key] = parseInt(value);
+                });
+                $scope.submitData.door_id = arr;
+                userSvc.submitEditAccessCode(appConstants.usereditcredential, appConstants.putMethod, {}, $scope.submitData, function (succResponse) {
+                  // if (succResponse.status) {
+                  // }
+                  // else {
+                  // }
+                });
+                break;
+            case 'rfid_code':
+                $scope.editRfid = {};
+                $scope.editRfid.schedule_id = cred_data.credential_schedule_id;
+                $scope.editRfid.credential_id = cred_data.Credential_Id;
+                $scope.editRfid.rfid_card_no = cred_data.Detail.rfid_card_no;
+                $scope.editRfid.rfid_facility_code = cred_data.Detail.rfid_facility_id;
+                $scope.editRfid.status = cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
+                $scope.editRfid.door_id = arr;
+                break;
+            case 'wiegand_code':
+                $scope.submitData = {};
+                $scope.submitData.details = {};
+                $scope.submitData.user_id = parseInt($cookies.get("newUserId"));
+                $scope.submitData.schedule_id = cred_data.credential_schedule_id;
+                $scope.submitData.credential_type = "wiegand_code";
+                $scope.submitData.uc_id = cred_data.Credential_Id;
+                $scope.submitData.details.wiegand_card_number = cred_data.Detail.wiegand_card_number;
+                $scope.submitData.details.wiegand_facility_code = cred_data.Detail.wiegand_facility_code;
+                $scope.submitData.status = cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
+                $scope.submitData.door_id = arr;
+                userSvc.submitEditAccessCode(appConstants.usereditcredential, appConstants.putMethod, {}, $scope.submitData, function (succResponse) {
+                  // if (succResponse.status) {
+                  // }
+                  // else {
+                  // }
+                });
+                break;
+            case 'nfc_code':
+                if (cred_data.credential_schedule_id == 0) {
+                    $(".nfc_div").show();
+                }
+                else {
+                    $(".nfc_div").hide();
+                }
+                $scope.editNfc = {};
+                $scope.editNfc.schedule_id = cred_data.credential_schedule_id;
+                $scope.editNfc.credential_id = cred_data.Credential_Id;
+                $scope.editNfc.nfc_code = cred_data.Detail.nfc_code;
+                $scope.editNfc.nfc_facility_code = cred_data.Detail.nfc_facility_code;
+                $scope.editNfc.status = cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
+                $scope.editNfc.door_id = arr;
+                break;
+            case 'ble_code':
+                $scope.submitData = {};
+                $scope.submitData.details = {};
+                $scope.submitData.user_id = parseInt($cookies.get("newUserId"));
+                $scope.submitData.schedule_id = cred_data.credential_schedule_id;
+                $scope.submitData.credential_type = "ble_code";
+                $scope.submitData.schedule = {};
+                $scope.submitData.uc_id = cred_data.Credential_Id;
+                $scope.submitData.details.ble_username = cred_data.Detail.ble_username;
+                $scope.submitData.details.ble_password = cred_data.Detail.ble_password;
+                $scope.submitData.status = cred_data.status;
+                var arr = [];
+                angular.forEach(cred_data.Door_Id.split(","), function (value, key) { arr[key] = parseInt(value); });
+                $scope.submitData.door_id = arr;
+                userSvc.submitEditAccessCode(appConstants.usereditcredential, appConstants.putMethod, {}, $scope.submitData, function (succResponse) {
+                  // if (succResponse.status) {
+                  // }
+                  // else {
+                  // }
+                });
+                break;
+            default:
+          }
+        };
+        //Edit credential after schedule edit 
 
         $rootScope.repetive_schedular = function () {
             angular.forEach($(".dhx_scale_bar"), function (value, key) {
