@@ -150,6 +150,7 @@ doorsSvcResp.createDoorGrp = function (url, method, params, data, cb) {
                     cb(succResponse);
                 }
                 else {
+                    if(succResponse.msg != 'No_Records_Found')
                     toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
                     cb(succResponse);
                 }
