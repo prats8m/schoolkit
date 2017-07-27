@@ -930,7 +930,13 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 						var sch = {};
 						var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
 						if (week_date.getDay() > weekday[v.day]) {
-							var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+							// var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+							if (weekday[v.day] == 0) {
+                  var d = new Date(week_date.setDate(week_date.getDate() - get_diff + 7));
+                }
+                else {
+                  var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+                }
 						}
 						else {
 							var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
