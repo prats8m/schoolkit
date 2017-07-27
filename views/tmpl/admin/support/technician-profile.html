@@ -56,6 +56,7 @@
 												<p><label>Address</label><span class="rightdetails">{{technician.technician_address}}</span></p>
 												<p><label>Expiration Date</label><span class="rightdetails">{{technician.technician_expiration_date*1000 | date:'d MMM yyyy': 'UTC'}}</span></p>
 												<p><label>Status</label><span class="rightdetails">{{(technician.technician_status == 1)?'Active':'Inactive'}}</span></p>
+												<p><label>Devices</label><span class="rightdetails"><span ng-repeat="device in technician.devices">{{device}}<span ng-if="!$last">,&nbsp</span></span></span></p>
 											</div>
 										</div>
 									</div>
