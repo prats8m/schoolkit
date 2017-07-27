@@ -407,7 +407,7 @@
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="accesscode in access_code_list">
-																				<td>{{accesscode.Access_Code}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential"></i></td>
+																				<td>{{accesscode.Access_Code}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="accesscode.schedule_credential == 1"></i></td>
 																				<td>{{accesscode.Door_Name}} </td>
 																				<td class="credintialicon ta-c">
 																					<a href="" uib-tooltip="View" ng-click="viewschedule(accesscode.credential_schedule_id)" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -586,7 +586,7 @@
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="phone_code in phone_code_list">
-																				<td>{{phone_code.Detail.phone_code}}</td>
+																				<td>{{phone_code.Detail.phone_code}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="phone_code.schedule_credential == 1"></i></td>
 																				<td>{{phone_code.Door_Name}}</td>
 																				<td>
 																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
@@ -746,7 +746,7 @@
 																	</thead>
 																	<tbody style="font-size:14px;">
 																		<tr ng-repeat="wiegand_code in wiegand_code_list">
-																			<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
+																			<td>{{wiegand_code.Detail.wiegand_card_number}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="wiegand_code.schedule_credential == 1"></i></td>
 																			<td>{{wiegand_code.Door_Name}} </td>
 																			<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
 																			<td class="credintialicon ta-c">
@@ -908,7 +908,7 @@
 																	</thead>
 																	<tbody style="font-size:14px;">
 																		<tr ng-repeat="blecode in ble_code_list">
-																			<td>{{blecode.Detail.ble_username}}</td>
+																			<td>{{blecode.Detail.ble_username}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="blecode.schedule_credential == 1"></i></td>
 																			<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																			<td>{{blecode.Door_Name}}</td>
 																			<td class="credintialicon ta-c">
