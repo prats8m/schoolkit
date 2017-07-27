@@ -125,6 +125,7 @@
 										</tr>
 									</tbody>
 								</table>
+								<div style="text-align:center;color:#e60000;" ng-if="activities.length == 0">No Record Found</div>
 								<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" ng-change="pageChanged(bigCurrentPage)"></ul>
 							</div>
 						</div>
