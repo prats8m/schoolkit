@@ -1880,7 +1880,14 @@ app
             }
         };
 
-        $scope.removeCredential = function (id, type) {
+        $scope.removeCredential = function (id, type, ev) {
+          var confirm = $mdDialog.confirm()
+            .title('Would you like to remove this credential?')
+            .content('')
+            .ok('Yes')
+            .cancel('No')
+            .targetEvent(ev);
+            $mdDialog.show(confirm).then(function () {
             userSvc.removeCredential(appConstants.userdeletecredential + '?credential_id=' + id + '&type=' + type, appConstants.deleteMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     switch (type) {
@@ -1907,6 +1914,7 @@ app
                     }
                 }
             });
+          });
         };
 
         /*$scope.dashboardInit = function () {
