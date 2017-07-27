@@ -2570,7 +2570,7 @@ app
     }
 
 
-    $rootScope.editviewopen = function (schedule_id, form_type) {
+    $rootScope.editviewopen = function (schedule_id, form_type, form_data, form_name) {
       var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent2.html',
         controller: 'ModalInstanceCtrl',
@@ -2597,7 +2597,8 @@ app
           $(".modal-footer .btn-success").hide();
         });
       }
-
+      $rootScope.form_data = form_data;
+      $rootScope.form_name = form_name;
       $timeout(function () {
         $rootScope.setScheduler(schedule_id, form_type);
       });
