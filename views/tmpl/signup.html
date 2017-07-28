@@ -47,17 +47,17 @@
 					</div>
 				</div>
 				
-				<div class="overflow div-width" style="width: 95%;">
+				<div class="overflow" style="margin-left: 30px; width: 95%;">
 					<select id="selectedQuestion1" ng-model="user.secret_question" name="selectedQuestion1" class="form-control underline-input" required="required" ng-options="item.sq_id as item.sq_question for item in lstSecurityQuestions track by item.sq_id" ng-init="getSecurityQuestion()">
 						<option value="">Select Secret Question</option>
 					</select>
 				</div>
 				
-				<div class="overflow div-width" style="width: 95%;">
+				<div class="overflow">
 					<input type="text" name="answer" maxlength="30" class="form-control underline-input" style="width: 100%;" placeholder="Answer" ng-model="user.secret_ans" required>
 				</div>
 				
-				<div class="form-group text-left signuplabel" style="margin-left: 30px; margin-top: -15px;">        
+				<div class="form-group text-left signuplabel" style="margin-left: 30px;">        
 					<label class="checkbox checkbox-custom-alt inline-block" style="font-weight: 400; font-size: 16px;">
 						<input type="checkbox" ng-model="user.tnc"><i></i> I agree to the <a href="javascript:;">Terms of Service</a> & <a href="javascript:;">Privacy Policy</a>
 					</label>

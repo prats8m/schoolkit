@@ -84,10 +84,12 @@ app
             $scope.activities = [];
             if(succResponse.status){
                 $scope.activities = succResponse.data.data;
-                $scope.dataTableInit();
+                 $scope.bigTotalItems = succResponse.data.count;
+                //$scope.dataTableInit();
             }else{
                 $scope.activities = [];
-                $scope.dataTableInit();
+                $scope.bigTotalItems = 0;
+               // $scope.dataTableInit();
             }
 			$scope.date = $scope.date;
         });
@@ -138,6 +140,24 @@ app
                 }
             }
         });
+    }
+
+    $scope.itemsPerPage = 10;
+    $scope.count= 0;
+    $scope.maxSize = 10;
+    $scope.bigTotalItems = 0;
+    $scope.bigCurrentPage = 1;
+
+    $scope.pageChanged = function(bigCurrentPage) {
+      $scope.bigCurrentPage = bigCurrentPage;
+      $scope.historyList();
+    };
+
+    $scope.resetHistory = function(){
+      // $scope.bigCurrentPage = 1;
+      // $scope.historyList();
+      // $scope.setPage($scope.bigCurrentPage);
+      $state.reload();
     }
    
 });

@@ -162,12 +162,15 @@ app
                 var tokenIntervel = setInterval(function(){ 
                     var d = new Date();
                     var n = d.getTime();
+                    if($cookies.get('userPhoto') != 'null')
                     $scope.userPhoto = $cookies.get('userPhoto')+'?n='+n;
-                    if( ! $cookies.get('token') ){
+                    if( ! $cookies.get('token') && !($state.is('core.login') || $state.is('core.signup') || $state.is('core.forgot-password') || $state.is('core.otp') ) ){
                         $state.go('core.login');
                         //clearInterval(tokenIntervel);
                     }else if($cookies.get('token') && ($state.is('core.login') || $state.is('core.signup') || $state.is('core.forgot-password') || $state.is('core.otp') ) ){
                         $state.go('app.admin.dashboard');
+                    }else{
+                        
                     }
                 }, 1000);
             }]

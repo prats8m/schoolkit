@@ -1,4 +1,4 @@
-app.controller('appCtrl', function ($scope, $cookies) {
+app.controller('appCtrl', function ($scope, $cookies,$rootScope,dashboardSvc,appConstants,utilitySvc) {
     $scope.checkForWizard = function () {
         if ($cookies.get("isWizardUsed")) {
             $scope.showWizard = true;
@@ -8,6 +8,11 @@ app.controller('appCtrl', function ($scope, $cookies) {
     $scope.checkForWizard();
     $scope.wizardCompleted = function () {
         $scope.showWizard = false;
+        dashboardSvc.getDashboardData(appConstants.userDashboard + '?facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+            if (succResponse.status) {
+                $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
+            }
+        });
         // alert('hi');
         // $(header).css("z-index", "9");
     }
@@ -72,6 +77,9 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
         }
         $scope.validDevice = true;
         return false;
+    }
+    $scope.WizardBack = function(){
+        WizardHandler.wizard().previous();
     }
     $scope.doorname = "";
     $scope.door_description = "";
