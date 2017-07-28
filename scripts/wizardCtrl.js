@@ -78,6 +78,9 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
         $scope.validDevice = true;
         return false;
     }
+    $scope.WizardBack = function(){
+        WizardHandler.wizard().previous();
+    }
     $scope.doorname = "";
     $scope.door_description = "";
     $scope.validateDoorForm = function (form) {
