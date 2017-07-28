@@ -3123,22 +3123,22 @@ letter-spacing: 0.025em;	  }
   .form-control::-webkit-input-placeholder {
     transition: color 0.2s linear;
     color: #777777;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px; }
   .form-control::-moz-placeholder {
     transition: color 0.2s linear;
     color: #777777;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px; }
   .form-control:-moz-placeholder {
     transition: color 0.2s linear;
     color: #777777;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px; }
   .form-control:-ms-input-placeholder {
     transition: color 0.2s linear;
     color: #777777;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px; }
   .form-control.input-lg::-webkit-input-placeholder {
     font-size: 18px; }

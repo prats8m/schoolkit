@@ -3158,7 +3158,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_access_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
@@ -3190,10 +3190,14 @@ app
                     var start_date = new Date($scope.schedule.date);
                     $scope.edit_access_schedule.schedule_start_date = (start_date.getMonth() + 1) + "-" + start_date.getDate() + "-" + start_date.getFullYear();
                 }
-                $scope.edit_access_schedule.no_expirations = $scope.schedule.no_expirations;
+                // $scope.edit_access_schedule.no_expirations = $scope.schedule.no_expirations;
                 if ($scope.schedule.expiration != undefined) {
+                    $scope.edit_access_schedule.no_expirations = 0;
                     var exp_date = new Date($scope.schedule.expiration);
                     $scope.edit_access_schedule.expiration = (exp_date.getMonth() + 1) + "-" + exp_date.getDate() + "-" + exp_date.getFullYear();
+                }
+                else{
+                  $scope.edit_access_schedule.no_expirations = 1;
                 }
                 $scope.edit_access_schedule.schedule_type = "credential";
                 userSvc.submitSchedule(appConstants.scheduleadd, appConstants.postMethod, {}, $scope.edit_access_schedule, function (success) {
@@ -3209,7 +3213,7 @@ app
                                   $rootScope.cleareditdataSchedule();
                                 });
 
-                                $scope.schedule = {};
+                                // $scope.schedule = {};
                                 $scope.editAccess = {};
                                 $scope.editAccess.accesscode_size = 5;
                                 $scope.editAccess.status = 1;
@@ -3378,7 +3382,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_phone_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
@@ -3426,7 +3430,7 @@ app
                                   $rootScope.cleareditdataSchedule();
                                 });
 
-                                $scope.schedule = {};
+                                // $scope.schedule = {};
                                 $scope.phoneedit = {};
                                 $scope.phoneedit.phonecode_size = 5;
                                 $scope.phoneedit.status = 1;
@@ -3567,7 +3571,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_wiegand_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
@@ -3695,6 +3699,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_ble_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
