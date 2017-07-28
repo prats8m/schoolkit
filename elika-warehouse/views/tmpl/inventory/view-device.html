@@ -151,7 +151,7 @@
 											<p><label>Camera</label> {{device.device_camera|warehouseDeviceFeatures}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><!--strong>Reset</strong--></a></span></p>
 											<p><label>Wiegand</label> {{device.device_wiegand|warehouseDeviceFeatures}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><!--strong>Reset</strong--></a></span></p>
 											<p><label>Bluetooth Mac Id</label> {{device.device_mac_address}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><!--strong>Reset</strong--></a></span></p>
-											<p><label>Firmware version</label> {{device.device_firmware}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><!--strong>Reset</strong--></a></span></p>
+											<p><label>Firmware version</label> {{(device.device_firmware == '0.0'? '' : device.device_firmware)}} <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><!--strong>Reset</strong--></a></span></p>
 											<!--p><label>Main Board</label> F.W. Rev No. <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p>
 											<p><label>Front Board</label> F.W. Rev No. <span class="pull-right w-60"><a href="" class="text-danger text-sm" style="cursor: no-drop;"><strong>Reset</strong></a></span></p-->
 										</div>

@@ -74,7 +74,7 @@
 												<p><label>Serial No.</label><span class="rightdetails">{{details.device_serial_no}}</span></p>
 												<p><label>Device Type</label><span class="rightdetails">{{details.device_type}}</span></p>
 												<p><label>Technician</label><span class="rightdetails">{{details.technician_name}}</span></p>
-												<p><label>Firmware version</label><span class="rightdetails">{{details.device_firmware}}</span></p>
+												<p><label>Firmware version</label><span class="rightdetails">{{(details.device_firmware == '0.0') ? '' : details.device_firmware}}</span></p>
 											</div>
 										</div>
 									</div>
