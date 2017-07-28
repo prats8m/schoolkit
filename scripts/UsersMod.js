@@ -3158,7 +3158,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_access_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
@@ -3382,7 +3382,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_phone_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
@@ -3571,7 +3571,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
-
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_wiegand_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
@@ -3699,6 +3699,7 @@ app
                 var meth = appConstants.putMethod;
                 var url = appConstants.usereditcredential;
             }
+            $scope.schedule = $rootScope.schedule;
             if ($scope.edit_ble_schedule.schedule.length == 0) {
                 if ($scope.usergroups == undefined) {
                     submitData.schedule_type = 1;
