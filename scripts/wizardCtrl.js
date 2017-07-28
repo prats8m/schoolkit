@@ -82,7 +82,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
         WizardHandler.wizard().previous();
     }
     $scope.doorname = "";
-    $scope.door_description = "";
+    $scope.door_description = " ";
     $scope.validateDoorForm = function (form) {
         $scope.error = false;
         if (!form)

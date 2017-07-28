@@ -135,18 +135,18 @@
 									<div class="col-sm-12 col-md-12">
 										<label for="">Choose Options</label><br/>
 										<div class="row" ng-init="value = 'off'">
-											<div class="form-group col-sm-12 col-md-3">
-												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_cell" ng-true-value="1" ng-true-value="0"><i></i> Cell</label> 
+											<div class="form-group col-sm-12 col-md-4">
+												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_cell" ng-true-value="1" ng-false-value="0"><i></i> Cell</label> 
 											</div>
-											<div class="form-group col-sm-12 col-md-3">
-												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_voip" ng-true-value="1" ng-true-value="0"><i></i> VoIP</label> 
+											<div class="form-group col-sm-12 col-md-4">
+												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_voip" ng-true-value="1" ng-false-value="0"><i></i> VoIP</label> 
 											</div>
-											<div class="form-group col-sm-12 col-md-3">
-												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_camera" ng-true-value="1" ng-true-value="0"><i></i> Camera</label>
+											<div class="form-group col-sm-12 col-md-4">
+												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_camera" ng-true-value="1" ng-false-value="0"><i></i> Camera</label>
 											</div>
-											<div class="form-group col-sm-12 col-md-3">
-												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_wiegand" ng-true-value="1" ng-true-value="0"><i></i> Wiegand</label>
-											</div>
+											<!-- <div class="form-group col-sm-12 col-md-3">
+												<label class="checkbox checkbox-custom-alt m-0"><input type="checkbox" ng-model="device.device_wiegand" ng-true-value="1" ng-false-value="0"><i></i> Wiegand</label>
+											</div> -->
 										</div>
 									</div>
 								</div>
