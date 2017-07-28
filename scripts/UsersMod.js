@@ -2102,6 +2102,13 @@ app
         };
         $scope.timeddl = appConstants.timedropdown;
 
+        $scope.allgroupdoorList = function () {
+            userSvc.alldoorList(appConstants.doorlist, appConstants.getMethod, {}, {}, function (succResponse) {
+                if (succResponse.status) {
+                    $scope.door_lists = succResponse.data.data;
+                }
+            });
+        };
         //Initialize one time on edit credential schedule popup
         $rootScope.schedule.schedule_type = 'ONETIME';
         //End of initialize one time on edit credential schedule popup
@@ -2895,6 +2902,13 @@ app
             userSvc.editdoorList(appConstants.userlistdoorcredential + parseInt($stateParams.user_id), appConstants.getMethod, {}, {}, function (succResponse) {
                 if (succResponse.status) {
                     $scope.door_lists = succResponse.data;
+                }
+                else{
+                  if(succResponse.msg == "No Usergroup Assigned"){
+                    $timeout(function () {
+                      $scope.allgroupdoorList();
+                    }); 
+                  }
                 }
             });
         };
@@ -3770,7 +3784,10 @@ app
                         toaster.pop(appConstants.success, appConstants._successUserGroupRemoved);
                     }
                     $timeout(function () {
-                        $scope.editassignedGroup();
+                      $scope.editdoorList();
+                    });
+                    $timeout(function () {
+                      $scope.editassignedGroup();
                     });
                     $timeout(function () { $rootScope.userNotAssignedGroup(facility_id); })
                 });
