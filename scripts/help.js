@@ -57,7 +57,7 @@ app
 
     $scope.limit = 10;
     $scope.count= 0;
-    $scope.maxSize = 5;
+    $scope.maxSize = 10;
     $scope.bigTotalItems = 0;
     $scope.bigCurrentPage = 1;
 

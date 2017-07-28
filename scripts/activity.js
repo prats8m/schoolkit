@@ -107,32 +107,23 @@ app
     }, 30000);
     */
 
-    $scope.dataTableInit = function(){
-        $scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap().withOption('order', [0, 'desc']);
-        $scope.dtColumnDefs = [
-            DTColumnDefBuilder.newColumnDef(0),
-            DTColumnDefBuilder.newColumnDef(1),
-            DTColumnDefBuilder.newColumnDef(2),
-            DTColumnDefBuilder.newColumnDef(3),
-            DTColumnDefBuilder.newColumnDef(4),
-            DTColumnDefBuilder.newColumnDef(5).notSortable()
-        ];
-    }
+    // $scope.dataTableInit = function(){
+    //     $scope.dtOptions = DTOptionsBuilder.newOptions().withBootstrap().withOption('order', [0, 'desc']);
+    //     $scope.dtColumnDefs = [
+    //         DTColumnDefBuilder.newColumnDef(0),
+    //         DTColumnDefBuilder.newColumnDef(1),
+    //         DTColumnDefBuilder.newColumnDef(2),
+    //         DTColumnDefBuilder.newColumnDef(3),
+    //         DTColumnDefBuilder.newColumnDef(4),
+    //         DTColumnDefBuilder.newColumnDef(5).notSortable()
+    //     ];
+    // }
 
     $scope.mediafile = 'images/avatar.jpg';
     $scope.mediatype = 'jpeg';
     $scope.viewActivity = function(device_id,mediafile,event_id){
         var url = appConstants.geteventmediaurl + '?device_id='+device_id+'&media_file='+mediafile+'&event_id='+event_id;
         activitiesSvc.viewActivity(url ,appConstants.getMethod,{},{},function (succResponse) {
-            // succResponse = {
-            //     "status":true,
-            //     "msg":"success",
-            //     "data":{
-            //         "fileType":"wav",	"url":"https://s3-us-west-2.amazonaws.com/elika-v2-devices/ELIKA/voice_msg/recorded/voice_message_2147483647_1500033482.wav"
-            //     },
-            //     "error":null
-            // };
-
             if(succResponse.status){
                 if(succResponse.data != null){
                     $scope.mediafile = (succResponse.data.url != null || succResponse.data.url != "") ? succResponse.data.url:'images/avatar.jpg';

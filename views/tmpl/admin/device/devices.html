@@ -215,7 +215,7 @@
 									           <div class="list-view grid-hide">
 									            <h2 class="md-title"> Type</h2>
 									            <p>  {{ device.device_type | uppercase }} </p>
-									            <p>  Device Uptime : {{ device.device_uptime ? device.device_uptime : 0}} </p>
+									            <p>  Device Uptime : <span ng-if="device.device_uptime">{{ device.device_uptime ? device.device_uptime : 0 | date:'medium' }}</span><span ng-if="!device.device_uptime">N/A</span> </p>
 									            <!-- <p> 302342</p> -->
 									           </div>
 
