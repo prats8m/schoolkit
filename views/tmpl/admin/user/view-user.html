@@ -228,7 +228,7 @@
 																			<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number|tel}}</div>
 																		</td>
 																		<td class="credintialicon ta-c">
-																			<a href="" uib-tooltip="View" ng-controller="ModalDemo2Ctrl" ng-click="viewschedule(phone.credential_schedule_id)" ng-if="phone.credential_schedule_id" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+																			<a href="" uib-tooltip="View" ng-controller="ModalDemo2Ctrl" ng-click="viewschedule(phone_code.credential_schedule_id)" ng-if="phone_code.credential_schedule_id" ><i class="fa fa-eye" aria-hidden="true"></i></a>
 																		</td>
 																		<td class="ta-c">{{phone_code.status==0?'Inactive':'Active'}}</td>
 																	</tr>
