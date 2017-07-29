@@ -274,7 +274,8 @@
 															</thead>
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="assign_usergroup in assingned_usergroups">
-																	<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
+
+																	<td><a ui-sref="app.admin.user.user-groups-members({usergroup_id:assign_usergroup.usergroup_id,userGroupName:assign_usergroup.usergroup_name,userGroupUserCount:assign_usergroup.usergroup_user_count})"" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
 																	<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="unassignUserToUsergroup(assign_usergroup.usergroup_id, usergroup.facility_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 																</tr>
 															</tbody>
