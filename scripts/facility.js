@@ -110,6 +110,7 @@ app
             if (!$scope.search) {
                 $scope.search = appConstants.empty;
             }
+            $scope.searchAlphabet = '';
             var current_facility = utilitySvc.getCurrentFacility();
             facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search, facility_id: current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
