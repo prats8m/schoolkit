@@ -185,7 +185,7 @@
 																	<div id="expirationDateInnerDiv" class="input-group userexp" ng-controller="DatepickerDemoCtrl">
 																		<input type="text" id="expirationdate" name="expirationdate" ng-disabled="userData.no_expirations || userData.status == 0" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
 																		is-open="opened" min-date="mindate" datepicker-options="dateOptions" ng-required="true"
-																		close-text="Close" ng-model="userData.expirationdate" />
+																		close-text="Close" ng-model="userData.expirationdate" onkeypress="return false;" />
 																		<span class="input-group-btn">
 																		<button  ng-disabled="userData.no_expirations || userData.status == 0" type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 																		</span>
@@ -218,7 +218,7 @@
 													<div class="tile-header mb-0 mt-20" ng-controller="ModalDemoCtrl">
 														<div class="row">
 															<div class="form-group col-sm-3 col-md-3">
-																<label for="">Firstly Select facility</label><br/>
+																<label for="">Select facility</label><br/>
 																<select class="form-control" ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id"
 																 ng-change="unassignedGroup(facility)">
 															<option value="">Select</option>
@@ -274,7 +274,8 @@
 															</thead>
 															<tbody style="font-size:14px;">
 																<tr ng-repeat="assign_usergroup in assingned_usergroups">
-																	<td><a ui-sref="app.admin.user.user-groups-members" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
+
+																	<td><a ui-sref="app.admin.user.user-groups-members({usergroup_id:assign_usergroup.usergroup_id,userGroupName:assign_usergroup.usergroup_name,userGroupUserCount:assign_usergroup.usergroup_user_count})"" ng-click="cancel()">{{assign_usergroup.usergroup_name}} <small>({{assign_usergroup.usergroup_user_count}} Users)</small></a></td>
 																	<td><button type="button" class="btn btn-danger btn-rounded btn-ef btn-ef-5 btn-ef-5b" ng-click="unassignUserToUsergroup(assign_usergroup.usergroup_id, usergroup.facility_id)"><i class="fa fa-trash-o"></i> <span>Delete</span></button></td>
 																</tr>
 															</tbody>

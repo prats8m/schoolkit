@@ -767,6 +767,10 @@ app
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
+                if($scope.schedule.no_expirations == 0 && !$scope.schedule.expiration){
+                  toaster.pop('error', "Please Add Expiration Date In Schedule");
+                    return false;
+                }
             }
             //Add scheduler
             var weekday = new Array(7);
@@ -941,6 +945,10 @@ app
                     toaster.pop('error', "Please Add Start Date In Schedule");
                     return false;
                 }
+                if($scope.schedule.no_expirations == 0 && !$scope.schedule.expiration){
+                  toaster.pop('error', "Please Add Expiration Date In Schedule");
+                    return false;
+                }
             }
 
             //Add scheduler
@@ -1095,6 +1103,10 @@ app
             if ($scope.schedule.schedule_type == "REPEATING") {
                 if ($scope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
+                    return false;
+                }
+                if($scope.schedule.no_expirations == 0 && !$scope.schedule.expiration){
+                  toaster.pop('error', "Please Add Expiration Date In Schedule");
                     return false;
                 }
             }
@@ -1493,6 +1505,10 @@ app
             if ($scope.schedule.schedule_type == "REPEATING") {
                 if ($scope.schedule.date == undefined) {
                     toaster.pop('error', "Please Add Start Date In Schedule");
+                    return false;
+                }
+                if($scope.schedule.no_expirations == 0 && !$scope.schedule.expiration){
+                  toaster.pop('error', "Please Add Expiration Date In Schedule");
                     return false;
                 }
             }

@@ -1,7 +1,7 @@
 <div class="wizpopup">
     <div class="submitwizard">
         <div class="submit_wizard login-box-shadow borderradius6">
-			<span class="pop-out" logout-btn><i class="fa fa-power-off" aria-hidden="true"></i></span>
+			<span class="pop-out" logout-btn><i class="fa fa-times" aria-hidden="true"></i></span>
             <wizard on-finish="submitWizard()">
 				<wz-step wz-title="Add Device" ng-form="device_form">
 					<div class="wizpopup-form">
@@ -20,7 +20,7 @@
 										<label for="">Serial Number <span class="text-danger">*</span></label>
 										<input type="text" maxlength="32" name="serial_no" id="" ng-model="wizard_setup.device.serial_no" class="form-control" placeholder=""
 											required>
-										<span class="text-danger mandate">Can not proceed without this.</span>
+										<span class="text-danger mandate"></span>
 										<span class="error" ng-if="validDevice && device_form.serial_no.$invalid">Please Enter Serial Number</span>
 									</div>
 								</div>
@@ -229,7 +229,7 @@
 										<div ng-controller="DatepickerDemoCtrl">
 											<label for="">Expiration Date <span class="text-danger">*</span></label>
 											<div class="input-group userexp">
-												<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$parent.wizard_setup.technician.expirationdate"
+												<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="$parent.wizard_setup.technician.expiration_date
 													min-date="mindate" is-open="opened" datepicker-options="dateOptions" ng-required="true"
 													close-text="Close" onkeypress="return false;" name="expirationDate" />
 												<span class="input-group-btn">
