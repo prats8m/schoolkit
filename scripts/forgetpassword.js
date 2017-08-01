@@ -114,7 +114,7 @@ app
     $scope.login = function() {
 		$state.go('core.login');
     };
-
+    
     $scope.submitNewPassword = function(requestData){
     	requestData.email = $cookies.get('forgetpasswordemail');
     	dataService.postData(requestData,baseURL + 'user/reset-password')

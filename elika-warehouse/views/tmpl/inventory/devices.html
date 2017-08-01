@@ -200,7 +200,7 @@
 													<div class="list-view grid-hide">
 														<p><span>Reg Code</span><span class="devicelengths">: {{ device.device_registration_code }}</span></p>
 														<p><span>Mac Id</span><span class="devicelengths">: {{ device.device_mac_address }}</span></p>
-														<p><span>Create Date</span><span class="devicelengths">: {{ device.device_created_on | date :  "dd.MM.y"  }}</span></p>
+														<p><span>Create Date</span><span class="devicelengths">: {{ device.device_created_on *1000 | date :  "dd.MM.y"  }}</span></p>
 													</div>
 												</div>
 											</md-card-content>

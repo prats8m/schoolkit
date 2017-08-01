@@ -148,8 +148,8 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             $scope.error = true;
     }
     $scope.submitWizard = function () {
-        var ex_date = $scope.wizard_setup.technician.expirationdate;
-        $scope.wizard_setup.technician.expirationdate = utilitySvc.dateToStringmmddyyyyFormat($scope.wizard_setup.technician.expirationdate);
+        var ex_date = $scope.wizard_setup.technician.expiration_date;
+        $scope.wizard_setup.technician.expiration_date = utilitySvc.dateToStringmmddyyyyFormat($scope.wizard_setup.technician.expiration_date);
         userSvc.addStartingWizard(appConstants.wizardadd, appConstants.postMethod, {}, $scope.wizard_setup, function (succResponse) {
             if (succResponse.status) {
                 toaster.pop(appConstants.success, appConstants.successFullAdd);
@@ -157,7 +157,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
                 $scope.callback();
             }
             else {
-                $scope.wizard_setup.technician.expirationdate = ex_date;
+                $scope.wizard_setup.technician.expiration_date = ex_date;
                 toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
             }
         });
