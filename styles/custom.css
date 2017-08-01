@@ -2027,9 +2027,7 @@ md-card:hover .moreitemsondevice {
     font-size: 18px;
 }
 
-.page-login.core-new input::-webkit-input-placeholder,
-.page-login.core-new input::-moz-placeholder,
-.page-login.core-new input:-moz-placeholder {
+.page-login.core-new input::-webkit-input-placeholder {
     font-size: 18px;
     font-style: normal;
     -webkit-transition: all 0.3s ease;
@@ -2052,9 +2050,7 @@ input.input-sm.input-unstyled:focus {
     padding-left: 10px;
 }
 
-input.input-sm.input-unstyled::-webkit-input-placeholder,
-input.input-sm.input-unstyled::-moz-placeholder,
-input.input-sm.input-unstyled:-moz-placeholder {
+input.input-sm.input-unstyled::-webkit-input-placeholder {
     font-size: 15px;
     font-style: normal;
 }
@@ -2081,11 +2077,7 @@ input.input-sm.input-unstyled:-moz-placeholder {
 }
 
 .page-login.core-new input:focus::-webkit-input-placeholder,
-.page-login.core-new input:valid::-webkit-input-placeholder,
-.page-login.core-new input:focus::-moz-placeholder,
-.page-login.core-new input:valid::-moz-placeholder,
-.page-login.core-new input:focus:-moz-placeholder,
-.page-login.core-new input:valid:-moz-placeholder {
+.page-login.core-new input:valid::-webkit-input-placeholder {
     color: #777777;
     font-size: 18px;
     -webkit-transform: translateY(-25px);
