@@ -907,6 +907,7 @@ a.serplan:hover {
     height: 100%;
     vertical-align: middle;
 	color: #fff;
+	background: linear-gradient(141deg, rgba(15, 184, 173, 0.5) 0%, rgba(31, 200, 219, 0.5) 50%, rgba(44, 181, 232, 0.5) 80%);
 }
 
 .covertext .facility_name_location span.facility_name,
