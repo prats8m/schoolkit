@@ -1,6 +1,6 @@
 <div class="page page-users">
 	<div class="pageheader backpage">
-		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<a ui-sref="app.admin.dashboard"><i class="fa fa-arrow-left"></i> Back</a>
 		<div class="facility-view elika-facility-name"></div>
 	</div>
 
@@ -44,8 +44,18 @@
 													</div>
 													<div class="form-group col-sm-6 col-md-6 last">
 														<label for="">Facility <span class="text-danger">*</span></label><br/>
-														<select class="form-control" ng-disabled="facility_disable" ng-model="door.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList"
-														 required>
+														<select class="form-control" ng-model="door.facility_id" ng-options="item.facility_id as item.facility_name for item in facilityList"
+														 required ng-change="getDevice()">
+															<option value="">Select</option>
+														</select>
+													</div>
+												</div>
+												<div class="row">
+													<div class="form-group col-sm-6 col-md-6 first">
+														<label for="">Device <span class="text-danger">*</span></label>
+														<br/>
+														<select class="form-control" ng-model="door.device_id" ng-options="item.device_id as item.device_name for item in door.devices"
+														 required ng-change="check_relay_count(item.remaining_relay_count)" ng-disabled="!door.devices">
 															<option value="">Select</option>
 														</select>
 													</div>

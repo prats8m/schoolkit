@@ -40,11 +40,15 @@ app
             if (!addFacility.validate()) {
                 return false;
             }
+            if (facility.myFile) {
+                if (!utilitySvc.validateImage(facility.myFile))
+                    return false;
+            }
             facilitiesSvc.addfacility(appConstants.facilityAdd, appConstants.postMethod, {}, facility, function (succResponse) {
                 if (succResponse.status) {
                     if (facility.myFile) {
                         var file = facility.myFile;
-                        $scope.uploadProfilePic(file,succResponse.data);
+                        $scope.uploadProfilePic(file, succResponse.data);
                     }
                     toaster.pop(appConstants.success, appConstants._successfacilityAdd);
                     $scope.addFacilityModal.dismiss(appConstants.cancel);
@@ -106,6 +110,7 @@ app
             if (!$scope.search) {
                 $scope.search = appConstants.empty;
             }
+            $scope.searchAlphabet = '';
             var current_facility = utilitySvc.getCurrentFacility();
             facilitiesSvc.searchfacility(appConstants.facilitylist, appConstants.getMethod, { limit: 20, page_no: 1, search_val: $scope.search, facility_id: current_facility }, {}, function (succResponse) {
                 if (succResponse.status) {
@@ -187,19 +192,6 @@ app
         };
 
         $scope.imagePath = baseURL + appConstants.imagePath;
-
-        /* $scope.dashboardInit = function () {
-            dashboardSvc.getDashboardData(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
-                if (succResponse.status) {
-                    $scope.dashboardData = succResponse.data ? succResponse.data : [];
-                }
-            });
-        };
-        if (!$rootScope.hasOwnProperty('dashboardData')) {
-            $scope.dashboardInit();
-        }*/
-
-        
 
         $scope.HandleProfilePicAddUpdateClick = function () {
             var fileinput = document.getElementById("profilePicAddUpdate");
@@ -444,7 +436,7 @@ app
  * Controller of the minovateApp
  */
 app
-    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc) {
+    .controller('EditFacilityCtrl', function ($scope, $mdDialog, $http, $stateParams, $cookies, $uibModal, baseURL, toaster, $rootScope, $location, appConstants, facilitiesSvc, dashboardSvc, utilitySvc) {
         $scope.usTimeZonesForFacility = appConstants.availableTimeZoneOptions;
         $scope.page = {
             title: $location.path().indexOf('view-facility') >= 0 ? appConstants.facilityDetailsTitle : appConstants.facilityedittitle,
@@ -475,6 +467,10 @@ app
             if (!editfacility.validate()) {
                 return false;
             }
+            if (facility.myFile) {
+                if (!utilitySvc.validateImage(facility.myFile))
+                    return false;
+            }
             facility.timeZone = facility.facility_timezone;
             facility.zip_code = appConstants.empty + facility.facility_zipcode;
             facility.status = facility.facility_status == appConstants.active ? 1 : 0;
@@ -482,7 +478,8 @@ app
                 if (succResponse.status) {
                     if (facility.myFile) {
                         var file = facility.myFile;
-                        $scope.uploadProfilePic(file,$stateParams.facility_id);
+
+                        $scope.uploadProfilePic(file, $stateParams.facility_id);
                     }
                     toaster.pop(appConstants.success, appConstants._editFacilitySuccess);
                     $location.path('/app/admin/facility/facility');

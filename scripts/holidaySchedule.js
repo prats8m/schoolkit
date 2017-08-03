@@ -123,8 +123,6 @@ app
             if (!date) {
                 debugger;
             }
-            console.log(date);
-            console.log(time);
             $scope.datetimeStr = date + ' ' + time;
             return $scope.datetimeStr;
         }
@@ -140,6 +138,37 @@ app
                 };
             }
         };
+
+        $scope.searchFunction = function (e) {
+			if (e)
+				if (e.keyCode != 13) { return false; }
+			if (!$scope.searchText) {
+				$scope.searchText = appConstants.empty;
+			}
+			$scope.pageNo = 1;
+			$scope.users = [];
+			$scope.searchAlphabet = '';
+            
+			HolidayScheduleSvc.getHolidayScheduleList(appConstants.holidayschedulelist + '?limit=' + $scope.schedularLimit + '&pageNo=' + $scope.pageNo + '&search_val=' + $scope.searchText + '&albhabet=' + $scope.searchAlphabet, appConstants.getMethod, {}, {}, function (succResponse) {
+                console.log(succResponse);
+                if (succResponse.status) {
+                    if ($scope.pageNo == 1)
+                        $scope.lstHolidaySchedular = [];
+                    angular.forEach(succResponse.data.data, function (holidayschedule, index) {
+                        $scope.lstHolidaySchedular.push(holidayschedule);
+                    });
+                    $scope.pageNo = $scope.pageNo + 1;
+                    $scope.count = succResponse.data.count;
+                } else {
+                    if (succResponse.msg == 'No_Records_Found') {
+                        $scope.lstHolidaySchedular = [];
+                        $scope.manageHolidayScheduleListLoadMoreButton(0);
+                        $scope.status = succResponse.msg.replace(/_/g, ' ');;
+                        $scope.statusclass = appConstants.error;
+                    }
+                }
+            });
+		};
 
         $scope.loadMoreScheduleList = function () {
             $scope.pageNo++;

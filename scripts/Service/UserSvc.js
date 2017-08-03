@@ -17,6 +17,16 @@ app
             });
         };
 
+        userSvcSvcResp.clearSchedule = function () {
+          var eventId = new Array();
+          angular.forEach($(".dhx_cal_event"), function (value, key) {
+            eventId.push(value.getAttribute("event_id"));
+          });
+          angular.forEach(eventId, function (value, key) {
+            scheduler.deleteEvent(value);
+          });
+        };
+
         userSvcSvcResp.submitEditSchedule = function (url, method, params, data, cb) {
             // data.block = "  ";
             data.facility_id = data.schedule_facility_id;

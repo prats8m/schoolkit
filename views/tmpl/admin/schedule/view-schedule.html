@@ -38,8 +38,8 @@
 									<div class="form-group col-sm-12 profiledetail">
 										<p><label>Schedule Name</label><span class="rightdetails">{{ViewSchedule.schedule_name}}</span></p>
 										<p><label>Status</label><span class="rightdetails">{{ViewSchedule.schedule_status | scheduleFilter}}</span></p>
-										<p ng-show="ViewSchedule.schedule_start_time" style="display: none;"><label>Start Date</label><span class="rightdetails">{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</span></p>
-										<p ng-if="ViewSchedule.no_expirations == 0"><label>End Date</label><span class="rightdetails">{{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</span></p>
+										<p ng-if="ViewSchedule.schedule_start_time"><label>Start Date</label><span class="rightdetails">{{ViewSchedule.schedule_start_time * 1000 | date :  "dd/MMM/y": 'UTC'}}</span></p>
+										<p ng-if="ViewSchedule.schedule_expiration_date"><label>Expiration Date</label><span class="rightdetails">{{ViewSchedule.schedule_expiration_date * 1000 | date :  "dd/MMM/y": 'UTC'}}</span></p>
 										<p ng-if="ViewSchedule.no_expirations == 1"><label>End Date</label><span class="rightdetails">No Limits</span></p>
 										<p ng-repeat="facility in ViewSchedule.facilityList | filter : {facility_id: ViewSchedule.schedule_facility_id}:true">
 									 	<label>Facility Name</label><span class="rightdetails">{{facility.facility_name}}</span></p>
@@ -57,8 +57,9 @@
 											<span class="rightdetails">
 													<span style="display: block;" ng-repeat="e in ViewSchedule.schedule_exceptions">
 													{{e.se_schedule_exception.frequency | capitalize}}
-													{{e.se_schedule_exception.day}} 
-													<span ng-hide="e.se_schedule_exception.date == 0">
+													{{e.se_schedule_exception.type | capitalize}}
+													 {{e.se_schedule_exception.week}} {{e.se_schedule_exception.day}}
+													<span ng-hide="e.se_schedule_exception.date == 0 || e.se_schedule_exception.frequency == 'repeat'">
 													{{e.se_schedule_exception.date * 1000| date:'dd-MMM-yyyy': 'UTC'}} </span>
 													from {{e.se_schedule_exception.start_time}} to {{e.se_schedule_exception.end_time}}
 													</span>

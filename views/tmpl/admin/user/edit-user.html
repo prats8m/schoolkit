@@ -63,6 +63,26 @@
 						</div>
 						<div class="hometabs">
 							<div ng-controller="ModalDemo2Ctrl">
+								<script type="text/ng-template" id="myModalContentView.html">
+									<div class="modal-header"><h4 class="modal-title custom-font">View Schedule</h4></div>
+									<div class="modal-body p-30" >
+										<p class="ng-scope"><label class="ng-binding"><strong>Schedule Type: </strong></label>
+										<span>{{scheduleview.schedule_category}}</span>
+										</p>
+										<p ng-if="scheduleview.schedule_category == 'repeat'">
+										<label><strong>Start Date: </strong></label><span> 
+										{{scheduleview.schedule_start_time*1000 | date:'dd/MM/yyyy': 'UTC'}}</span>
+										</p>
+										<p ng-if="scheduleview.schedule_category == 'repeat'">
+										<label><strong>Expiration Date: </strong></label><span ng-if="scheduleview.schedule_expiration_date != null"> {{scheduleview.schedule_expiration_date*1000 | date:'dd/MM/yyyy': 'UTC'}}</span><span ng-if="scheduleview.schedule_expiration_date == null"> No Expiration</span>
+										</p>
+										<label class="ng-binding"><strong>Schedule: </strong></label>
+										<p ng-repeat="schedule_inp in scheduleview.schedule_input" class="ng-scope">{{schedule_inp.day}} <span> {{schedule_inp.starttime + ' - '+ schedule_inp.endtime + ' ' + schedule_inp.date}}</span><span ng-if="scheduleview.schedule_input.length == 0"> No Schedule</span></p>
+									</div>
+									<div class="modal-footer">
+									<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+									</div>
+								</script>
 								<script type="text/ng-template" id="myModalContent2.html">
 									<form name="form1" role="form">
 										<div class="modal-header">
@@ -74,12 +94,12 @@
 												<div class="row">
 													<div class="col-sm-6 col-md-6 form-group" ng-click="custom_schedular()">
 														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
-															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ><i></i> One Time
+															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-click="schedule.no_expirations=0"><i></i> One Time
 														</label>
 													</div>
 													<div class="col-sm-6 col-md-6 form-group" ng-click="repetive_schedular()">
 														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
-															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ><i></i> Repeating
+															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ng-click="schedule.no_expirations=1"><i></i> Repeating
 														</label>
 													</div>
 												</div>
@@ -89,7 +109,7 @@
 													<label for="">Start Date</label>
 													<div class="input-group" ng-controller="DatepickerDemoCtrl">
 														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="schedule.date" is-open="opened" datepicker-options="dateOptions"
-														 close-text="Close" name="date" onkeypress="return false;" />
+														 close-text="Close" name="date" onkeypress="return false;" min-date="mindate"/>
 														<span class="input-group-btn">
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
@@ -134,7 +154,7 @@
 										<div class="modal-footer">
 											<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" ng-click="cleareditdataSchedule()"><i class="fa fa-arrow-left"></i> Cancel</button>
 											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c close_add" ng-click="cancel()" ng-hide="schedule.schedule_id"><i class="fa fa-arrow-right" ></i> Save</button>
-											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule)"
+											<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-click="check_submit(schedule.schedule_id, schedule, form_data, form_name)"
 											 ng-show="schedule.schedule_id"><i class="fa fa-arrow-right"></i> Save</button>
 										</div>
 									</form>
@@ -250,7 +270,7 @@
 												<section class="tile">
 													<div class="row">
 														<div class="form-group col-sm-3 col-md-3">
-															<label for="">Firstly Select facility</label><br/>
+															<label for="">Select facility</label><br/>
 															<select class="form-control" ng-model="facility" ng-options="item.facility_id as item.facility_name for item in facilityList  track by item.facility_id"
 															 ng-change="userNotAssignedGroup(facility)">
 															<option value="">Select Facility</option>
@@ -387,11 +407,12 @@
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="accesscode in access_code_list">
-																				<td>{{accesscode.Access_Code}}</td>
+																				<td>{{accesscode.Access_Code}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="accesscode.schedule_credential == 1"></i></td>
 																				<td>{{accesscode.Door_Name}} </td>
 																				<td class="credintialicon ta-c">
-																					<a href="" uib-tooltip="View" ng-click="editviewopen(accesscode.credential_schedule_id, 'view')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
-																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(accesscode.credential_schedule_id, 'edit')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="View" ng-click="viewschedule(accesscode.credential_schedule_id)" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(accesscode.credential_schedule_id, 'edit', accesscode, 'access_code')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(accesscode, 'access_code')" ng-hide="accesscode.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
 																				<td class="ta-c">{{accesscode.status == 1 ? 'Active' : 'Inactive'}}</td>
 																				<td class="credintialicon ta-c">
@@ -565,14 +586,15 @@
 																		</thead>
 																		<tbody style="font-size:14px;">
 																			<tr ng-repeat="phone_code in phone_code_list">
-																				<td>{{phone_code.Detail.phone_code}}</td>
+																				<td>{{phone_code.Detail.phone_code}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="phone_code.schedule_credential == 1"></i></td>
 																				<td>{{phone_code.Door_Name}}</td>
 																				<td>
 																					<div ng-repeat="phone in phone_code.Detail.phone_numbers">{{phone.phone_number}}</div>
 																				</td>
 																				<td class="credintialicon ta-c">
-																					<a href="" uib-tooltip="View" ng-click="editviewopen(phone_code.credential_schedule_id, 'view')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
-																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(phone_code.credential_schedule_id, 'edit')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="View" ng-click="viewschedule(phone_code.credential_schedule_id)" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="Edit" ng-click="editviewopen(phone_code.credential_schedule_id, 'edit', phone_code, 'phone_code')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																					<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(phone_code, 'phone_code')" ng-hide="phone_code.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																				</td>
 																				<td class="ta-c">{{phone_code.status==0?'Inactive':'Active'}}</td>
 																				<td class="credintialicon ta-c">
@@ -724,12 +746,13 @@
 																	</thead>
 																	<tbody style="font-size:14px;">
 																		<tr ng-repeat="wiegand_code in wiegand_code_list">
-																			<td>{{wiegand_code.Detail.wiegand_card_number}}</td>
+																			<td>{{wiegand_code.Detail.wiegand_card_number}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="wiegand_code.schedule_credential == 1"></i></td>
 																			<td>{{wiegand_code.Door_Name}} </td>
 																			<td>{{wiegand_code.Detail.wiegand_facility_code}}</td>
 																			<td class="credintialicon ta-c">
-																				<a href="" uib-tooltip="View" ng-click="editviewopen(wiegand_code.credential_schedule_id, 'view')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
-																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(wiegand_code.credential_schedule_id, 'edit')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="View" ng-click="viewschedule(wiegand_code.credential_schedule_id)" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(wiegand_code.credential_schedule_id, 'edit', wiegand_code, 'wiegand_code')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(wiegand_code, 'wiegand_code')" ng-hide="wiegand_code.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																			</td>
 																			<td class="ta-c">{{wiegand_code.status==0?'Inactive':'Active'}}</td>
 																			<td class="credintialicon ta-c">
@@ -885,12 +908,13 @@
 																	</thead>
 																	<tbody style="font-size:14px;">
 																		<tr ng-repeat="blecode in ble_code_list">
-																			<td>{{blecode.Detail.ble_username}}</td>
+																			<td>{{blecode.Detail.ble_username}}<i class="fa fa-calendar-check-o online pull-right" aria-hidden="true" uib-tooltip="Special Credential" ng-if="blecode.schedule_credential == 1"></i></td>
 																			<td><input type="password" style="border: 0px;" readonly value="{{blecode.Detail.ble_password}}"></td>
 																			<td>{{blecode.Door_Name}}</td>
 																			<td class="credintialicon ta-c">
-																				<a href="" uib-tooltip="View" ng-click="editviewopen(blecode.credential_schedule_id, 'view')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
-																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(blecode.credential_schedule_id, 'edit')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="View" ng-click="viewschedule(blecode.credential_schedule_id)" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-eye" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="Edit" ng-click="editviewopen(blecode.credential_schedule_id, 'edit', blecode, 'ble_code')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+																				<a href="" uib-tooltip="Remove" ng-click="deleteSchedule(blecode, 'ble_code')" ng-hide="blecode.credential_schedule_id == 0"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 																			</td>
 																			<td class="ta-c">{{blecode.status==0?'Inactive':'Active'}}</td>
 																			<td class="credintialicon ta-c">

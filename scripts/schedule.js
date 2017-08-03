@@ -42,6 +42,7 @@ app
 			scheduler.config.date_step = "5";
 			scheduler.config.show_loading = true;
 			scheduler.config.readonly = false;
+			scheduler.config.time_step = "1";
 			scheduler.init('scheduler_here', new Date(), "week");
 			scheduler.templates.event_class = function (s, e, ev) { return ev.custom ? "custom" : ""; };
 		}
@@ -929,7 +930,13 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 						var sch = {};
 						var get_diff = Math.abs(weekday[v.day] - week_date.getDay());
 						if (week_date.getDay() > weekday[v.day]) {
-							var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+							// var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+							if (weekday[v.day] == 0) {
+                  var d = new Date(week_date.setDate(week_date.getDate() - get_diff + 7));
+                }
+                else {
+                  var d = new Date(week_date.setDate(week_date.getDate() - get_diff));
+                }
 						}
 						else {
 							var d = new Date(week_date.setDate(week_date.getDate() + get_diff));
@@ -956,6 +963,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				scheduler.config.date_step = "5";
 				scheduler.config.show_loading = true;
 				scheduler.config.readonly = false;
+				scheduler.config.time_step = "1";
 				scheduler.init('scheduler_here', week_date, "week");
 				if ($scope.schedule.schedule_category == 'repeat') {
 					$timeout(function () {
@@ -975,6 +983,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 				$scope.schedule.schedule_cat = ($scope.schedule.schedule_category == 'repeat' ? 0 : 1)
 				if ($scope.schedule.schedule_exceptions != undefined)
 					$scope.exceptions = scheduleSvc.setExceptions($scope.schedule.schedule_exceptions);
+				if($scope.schedule.schedule_start_time)
 				$scope.schedule.selected_schedule_start_time = new Date($scope.schedule.schedule_start_time * 1000);
 				$scope.minDate = angular.copy($scope.schedule.selected_schedule_start_date);
 				var newDate = new Date();
@@ -984,8 +993,10 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 					$scope.minStartDate = angular.copy($scope.minDate);
 				}
 
-				if($scope.schedule.schedule_expiration_date)
-				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" : $scope.schedule.selected_schedule_expiration_date = new Date($scope.schedule.schedule_expiration_date * 1000);
+				if($scope.schedule.schedule_expiration_date){
+					var sc_ex_date = new Date($scope.schedule.schedule_expiration_date * 1000);
+				($scope.schedule.no_expirations == 1) ? $scope.schedule.selected_schedule_expiration_date = "" : $scope.schedule.selected_schedule_expiration_date = new Date(sc_ex_date.getUTCFullYear(), sc_ex_date.getUTCMonth(), sc_ex_date.getUTCDate())
+				}
 				// $scope.blocks = scheduleSvc.autoPopulateBlocks();
 			}
 		});
@@ -1029,9 +1040,8 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 	}
 	$scope.exceptions = [];
 	$scope.addException = function (exception) {
-
 		var key = angular.copy($scope.exceptions.length + 1);
-		if(exception.date && !isNaN(exception.date))
+		if(exception.date && !isNaN(exception.date) && exception.type != "REPEATING")
 		exception.date = (exception.date.getMonth() + 1) + "-" + exception.date.getDate() + "-" + exception.date.getFullYear();
 		var obj = angular.copy(exception);
 		obj.key = key;
@@ -1052,7 +1062,7 @@ app.controller('EditScheduleCtrl', function ($scope, appConstants, scheduleSvc, 
 
 		if ($scope.exceptions){
 			$scope.exceptions.forEach(function (v) {
-				if (v.type == 'ONETIME') {
+				if (v.type == 'ONETIME' || v.frequency=='One-time' ) {
 					v.frequency = "one-time";
 				}
 				else {

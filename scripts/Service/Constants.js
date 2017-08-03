@@ -101,6 +101,7 @@ app.constant("appConstants", {
     historylist: 'history/list',
     wizardadd: 'wizard',
     facilityuploadpic: 'facility/upload-pic',
+    deviceByFacility: 'device/list-device-for-doors',
     //...........................................................................
 
     //........Constants............................................................
@@ -425,8 +426,9 @@ app.constant("appConstants", {
 
     titileProfileSettings: 'Profile Settings',
     providevalidimagefile : 'Please provide valid image file.',
-    maxprofileimagesize: 1024*50,
+    maxprofileimagesize: 1024*1024*5,
     imageistoolarge:'Image is too large.',
+    imageresolutionerror:'Image resolution should be 16:9.',
     _successemailIDchangesconfirmationmessage: 'your email ID has been changed successfully, you will get a varification email shortly with email varificationon link on your new registered email id. Please click on the link to login into the Facility Web Application ',
 
     //...............................................................................
@@ -453,7 +455,8 @@ app.constant("appConstants", {
 
     //............................SignUp.......................................
 
-    _successsignup: 'You have successfully registered.',
+    _successsignup: 'Your account has been successfully registered.',
+    _emailverification: 'An email has been sent to your registered email, please verify your account.',
     _chktnc: 'Please agree Terms and conditions.',
 
 

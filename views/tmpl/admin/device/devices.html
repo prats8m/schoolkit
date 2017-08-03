@@ -1,6 +1,6 @@
 <div class="page admin">
 	<div class="pageheader backpage">
-		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<a ui-sref="app.admin.dashboard"><i class="fa fa-arrow-left"></i> Back</a>
 		<!-- <div class="facility-view elika-facility-name"></div> -->
 		<div class="facility-view elika-facility-name"></div>
 		
@@ -91,7 +91,7 @@
 													</div>
 												</div>
 												
-												<div class="row">
+												<!-- <div class="row">
 													<div class="form-group col-sm-6 col-md-6">
 														<label for="">SIP Username <span class="text-danger">*</span></label>
 														<input type="text" front-space maxlength="32" name="sip_username" id="" ng-model="device.sip_username" class="form-control" placeholder="" required>
@@ -100,16 +100,16 @@
 														<label for="">SIP Password <span class="text-danger">*</span></label>
 														<input type="password" front-space name="sip_password" maxlength="32" id="" ng-model="device.sip_password" class="form-control" placeholder="" required>
 													</div>
-												</div>
+												</div> -->
 
-												<div class="row">
+												<!-- <div class="row">
 													<div class="col-md-12">
-														<label for="">Doors <span class="text-danger">*</span></label><br/>
+														<label for="">Doors <span class="text-danger">*</span></label><br/> -->
 														<!--doorList-->
-														<select ng-model="device.door_id" multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
+														<!-- <select ng-model="device.door_id" multiple chosen="{width: '100%'}" ng-options="item.door_id as item.door_name for item in doorList">
 														</select>
 													</div>
-												</div>
+												</div> -->
 											</div>
 											<div class="modal-footer">
 												<button class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c" id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</button>
@@ -209,20 +209,20 @@
 									           <div class="list-view">
 									            <h2 class="md-title">{{ device.device_name }} </h2>
 									            <p> {{ device.device_facility_name | uppercase }}</p>
-									            <p> {{ device.device_slave_count }} Dependent Device </p>
+									            <!-- <p> {{ device.device_slave_count }} Dependent Device </p> -->
 									            
 									           </div>
 									           <div class="list-view grid-hide">
 									            <h2 class="md-title"> Type</h2>
 									            <p>  {{ device.device_type | uppercase }} </p>
-									            <p>  Device Uptime : {{ device.device_uptime ? device.device_uptime : 0}} </p>
+									            <p>  Device Uptime : <span ng-if="device.device_uptime">{{ device.device_uptime ? device.device_uptime : 0 | date:'medium' }}</span><span ng-if="!device.device_uptime">N/A</span> </p>
 									            <!-- <p> 302342</p> -->
 									           </div>
 
 									           <div class="list-view grid-hide created_by">
 									            <h2 class="md-title"> Created By</h2>
 									            <p> {{ device.device_created_by_name }} </p>
-									            <!-- <p> Door Name </p> -->
+									            <!-- <p> Firmware Version :  </p> -->
 									            
 									            
 									           </div>

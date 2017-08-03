@@ -1,6 +1,6 @@
 <div class="page page-profile">
 	<div class="pageheader backpage">		
-		<a href back-button><i class="fa fa-arrow-left"></i> Back</a>
+		<a ui-sref="app.admin.dashboard"><i class="fa fa-arrow-left"></i> Back</a>
 		<div class="facility-view elika-facility-name"></div>
 	</div>
 	
@@ -44,7 +44,10 @@
 												<option>15 min</option>
 												<option>30 min</option>
 											</select> -->
-											<button class="form-control w-240" ng-click="eventFetch()">Auto Refresh</button>
+											<!-- <button class="form-control w-240" ng-click="eventFetch()">Refresh</button> -->
+											<div class="col-sm-3 col-md-3 refresh_btn">
+									<button class="list-icon" ng-click="eventFetch()"><i class="fa fa-refresh"></i></button>
+								</div>
 										</div>
 										
 									</div>
@@ -96,7 +99,7 @@
 					<div class="hometabs">
 						<div class="tile-body table-custom">
 							<div class="table-responsive">
-								<table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-custom">
+								<table class="table table-custom">
 									<thead>
 										<tr>
 											<th><span>Date/Time</span></th>
@@ -110,7 +113,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="active in activities">
+										<tr ng-repeat="active in activities.slice(((bigCurrentPage-1)*itemsPerPage), ((bigCurrentPage)*itemsPerPage)) ">
 
 											<td>{{active.time*1000 | date:'d MMM yyyy, h:mm a': 'UTC'}}</td>
 
@@ -120,11 +123,13 @@
 											<td>{{active['door/device'] ? active['door/device'] : 'N/A' }}</td>
 											
 											<td class="customicon ta-c">
-												<a href="" ng-click="viewActivity(active['device_id'],active.media_file,active.event_id)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
+												<a ng-hide="active.media_file=='NA'" href="" ng-click="viewActivity(active['device_id'],active.media_file,active.event_id)" uib-tooltip="View"><i class="fa fa-eye" aria-hidden="true"></i></a>
 											</td>
 										</tr>
 									</tbody>
 								</table>
+								<div style="text-align:center;color:#e60000;" ng-if="activities.length == 0">No Record Found</div>
+								<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" ng-change="pageChanged(bigCurrentPage)"></ul>
 							</div>
 						</div>
 					</div>

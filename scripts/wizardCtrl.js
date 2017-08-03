@@ -1,4 +1,4 @@
-app.controller('appCtrl', function ($scope, $cookies) {
+app.controller('appCtrl', function ($scope, $cookies,$rootScope,dashboardSvc,appConstants,utilitySvc) {
     $scope.checkForWizard = function () {
         if ($cookies.get("isWizardUsed")) {
             $scope.showWizard = true;
@@ -8,6 +8,11 @@ app.controller('appCtrl', function ($scope, $cookies) {
     $scope.checkForWizard();
     $scope.wizardCompleted = function () {
         $scope.showWizard = false;
+        dashboardSvc.getDashboardData(appConstants.userDashboard + '?facility_id=' + utilitySvc.getCurrentFacility(), appConstants.getMethod, {}, {}, function (succResponse) {
+            if (succResponse.status) {
+                $rootScope.dashboardData = succResponse.data ? succResponse.data : [];
+            }
+        });
         // alert('hi');
         // $(header).css("z-index", "9");
     }
@@ -73,8 +78,11 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
         $scope.validDevice = true;
         return false;
     }
+    $scope.WizardBack = function(){
+        WizardHandler.wizard().previous();
+    }
     $scope.doorname = "";
-    $scope.door_description = "";
+    $scope.door_description = " ";
     $scope.validateDoorForm = function (form) {
         $scope.error = false;
         if (!form)
@@ -140,6 +148,8 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             $scope.error = true;
     }
     $scope.submitWizard = function () {
+        var ex_date = $scope.wizard_setup.technician.expiration_date;
+        $scope.wizard_setup.technician.expiration_date = utilitySvc.dateToStringmmddyyyyFormat($scope.wizard_setup.technician.expiration_date);
         userSvc.addStartingWizard(appConstants.wizardadd, appConstants.postMethod, {}, $scope.wizard_setup, function (succResponse) {
             if (succResponse.status) {
                 toaster.pop(appConstants.success, appConstants.successFullAdd);
@@ -147,6 +157,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
                 $scope.callback();
             }
             else {
+                $scope.wizard_setup.technician.expiration_date = ex_date;
                 toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
             }
         });

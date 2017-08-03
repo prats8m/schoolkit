@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc, utilitySvc) {
+	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc, utilitySvc, $filter) {
 		$scope.page = {
 			title: appConstants.doorsUITitle,
 			subtitle: appConstants.dashboardSubTitle
@@ -103,7 +103,27 @@ app
 			});
 		};
 		$scope.dashboardInit();*/
+		//Device list for device select box
+		$rootScope.getDevice = function(){			
+			doorsSvc.getDevice(appConstants.deviceByFacility+"?facility_id="+$scope.door.facility_id, appConstants.getMethod, {}, {}, function(succResponse){
+				if(succResponse.status){
+					var device_data = succResponse.data;
+					angular.forEach(device_data, function(v){ v.device_name = v.device_name + " (Remaining relay " + v.remaining_relay_count + ")";});
+					$rootScope.door.devices = device_data;
+				}
+				else{
 
+				}
+			}); 
+		}
+
+		$rootScope.check_relay_count = function(relay){
+			// var found = $filter('filter')($scope.door.devices, {device_id: $scope.door.device_id}, true);
+			// console.log(found);
+			// if (found.length) {   
+   //      return false;
+   //   	}
+		}
 
 		//Create Doors
 		$rootScope.doormsg = appConstants.empty;
@@ -315,7 +335,20 @@ app
 
 		$scope.imagePath = baseURL + appConstants.imagePath;
 
-		
+		//Device list for device select box
+		$rootScope.getDevice = function(facility_id){			
+			doorsSvc.getDevice(appConstants.deviceByFacility+"?facility_id="+facility_id, appConstants.getMethod, {}, {}, function(succResponse){
+				if(succResponse.status){
+					var device_data = succResponse.data;
+					angular.forEach(device_data, function(v){ v.device_name = v.device_name + " (Remaining relay " + v.remaining_relay_count + ")";});
+					$scope.doorData.devices = device_data;
+
+				}
+				else{
+
+				}
+			}); 
+		}
 
 		$scope.facilityInit = function () {
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -356,6 +389,8 @@ app
 				if (succResponse.status) {
 					$scope.doorData = succResponse.data;
 					$scope.field.facility = $scope.doorData;
+					$rootScope.getDevice($scope.field.facility.facility_id);
+					// $scope.doorData.device_id = 36;
 					console.log($scope.field.facility);
 				}
 			});

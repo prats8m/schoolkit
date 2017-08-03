@@ -103,26 +103,26 @@
 													<div class="col-sm-12 col-md-12">
 														<label for="">Choose Options </label><br/>
 														<div class="row" ng-init="value = 'off'">
-															<div class="form-group col-sm-12 col-md-3">
+															<div class="form-group col-sm-12 col-md-4">
 																<label class="checkbox checkbox-custom-alt m-0">
-																	<input type="checkbox" ng-model="device.device_cell" ng-true-value="1" ng-true-value="0"><i></i> Cell
+																	<input type="checkbox" ng-model="device.device_cell" ng-true-value="1" ng-false-value="0"><i></i> Cell
 																</label> 
 															</div>
-															<div class="form-group col-sm-12 col-md-3">
+															<div class="form-group col-sm-12 col-md-4">
 																<label class="checkbox checkbox-custom-alt m-0">
-																	<input type="checkbox" ng-model="device.device_voip" ng-true-value="1" ng-true-value="0"><i></i> VoIP
+																	<input type="checkbox" ng-model="device.device_voip" ng-true-value="1" ng-false-value="0"><i></i> VoIP
 																</label> 
 															</div>
-															<div class="form-group col-sm-12 col-md-3">
+															<div class="form-group col-sm-12 col-md-4">
 																<label class="checkbox checkbox-custom-alt m-0">
-																	<input type="checkbox" ng-model="device.device_camera" ng-true-value="1" ng-true-value="0"><i></i> Camera
+																	<input type="checkbox" ng-model="device.device_camera" ng-true-value="1" ng-false-value="0"><i></i> Camera
 																</label>
 															</div>
-															<div class="form-group col-sm-12 col-md-3">
+															<!-- <div class="form-group col-sm-12 col-md-3">
 																<label class="checkbox checkbox-custom-alt m-0">
-																	<input type="checkbox" ng-model="device.device_wiegand" ng-true-value="1" ng-true-value="0"><i></i> Wiegand
+																	<input type="checkbox" ng-model="device.device_wiegand" ng-true-value="1" ng-false-value="0"><i></i> Wiegand
 																</label>
-															</div>
+															</div> -->
 														</div>
 													</div>
 												</div>
@@ -141,7 +141,7 @@
 					
 					<div class="hometabs">
 						<div class="tile-body table-custom">
-							<div class="row pos-r mb-10 pb-20">								
+							<div class="row pos-r mb-10 pb-20 formobile">								
 								<div class="col-sm-9 col-md-6">
 									<div class="row">
 										<div class="col-sm-7 col-md-9 search">
@@ -195,12 +195,12 @@
 													<div class="list-view">
 														<p><span>Model No</span><span class="devicelengths">: {{ device.device_model}}</span></p>
 														<p><span>Client</span><span class="devicelengths">: {{ device.facility_name | warehouseClientNameInList}}</span></p>
-														<p><span>Serial No.</span> : {{ device.device_serial_no }}</p>
+														<p><span>Serial No.</span><span class="devicelengths">: {{ device.device_serial_no }}</span></p>
 													</div>
 													<div class="list-view grid-hide">
 														<p><span>Reg Code</span><span class="devicelengths">: {{ device.device_registration_code }}</span></p>
-														<p><span>Mac Id</span> : {{ device.device_mac_address }}</p>
-														<p><span>Create Date</span> : {{ device.device_created_on | date :  "dd.MM.y"  }}</p>
+														<p><span>Mac Id</span><span class="devicelengths">: {{ device.device_mac_address }}</span></p>
+														<p><span>Create Date</span><span class="devicelengths">: {{ device.device_created_on *1000 | date :  "dd.MM.y"  }}</span></p>
 													</div>
 												</div>
 											</md-card-content>

@@ -3,7 +3,6 @@ app.directive("number", function () {
         restrict: 'A',
         link: function (scope, element, attrs) {
             element.on('keypress', function (e) {
-                console.log(e);
                 if (!((e.charCode >= 48 && e.charCode <= 57) || e.charCode == 0)) {
                     e.preventDefault();
                 }
@@ -146,9 +145,7 @@ app
             templateUrl: 'views/header.html',
             restrict: 'E',
             controller: ['$scope', 'dashboardSvc', "appConstants", '$rootScope', 'utilitySvc', '$cookies', '$state', 'dataService', '$interval', '$log', function elikaHeader($scope, dashboardSvc, appConstants, $rootScope, utilitySvc, $cookies, $state, dataService, $interval, $log) {
-                $scope.userFirstName = $cookies.get('userFirstName');
-                $scope.userLastName = $cookies.get('userLastName');
-                $scope.userPhoto = $cookies.get('userPhoto');
+                
                 var stateArr = $state.$current.name.split('.');
                 $scope.active = stateArr[2];
 
@@ -156,7 +153,26 @@ app
                 function(event, toState, toParams, fromState, fromParams){ 
                     var stateArr = toState.name.split('.');
                     $scope.active = stateArr[2];
-                })
+                });
+
+                $scope.userFirstName = $cookies.get('userFirstName');
+                $scope.userLastName = $cookies.get('userLastName');
+                $scope.userPhoto = $cookies.get('userPhoto');
+
+                var tokenIntervel = setInterval(function(){ 
+                    var d = new Date();
+                    var n = d.getTime();
+                    if($cookies.get('userPhoto') != 'null')
+                    $scope.userPhoto = $cookies.get('userPhoto')+'?n='+n;
+                    if( ! $cookies.get('token') && !($state.is('core.login') || $state.is('core.signup') || $state.is('core.forgot-password') || $state.is('core.otp') ) ){
+                        $state.go('core.login');
+                        //clearInterval(tokenIntervel);
+                    }else if($cookies.get('token') && ($state.is('core.login') || $state.is('core.signup') || $state.is('core.forgot-password') || $state.is('core.otp') ) ){
+                        $state.go('app.admin.dashboard');
+                    }else{
+                        
+                    }
+                }, 1000);
             }]
         };
     });

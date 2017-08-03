@@ -216,10 +216,10 @@ app.factory('scheduleSvc',['toaster','utilitySvc','appConstants','$rootScope',fu
             for(var i=0;i<x.length;i++){
                 var exception = {
                     type:x[i].se_schedule_exception.type.charAt(0).toUpperCase() + x[i].se_schedule_exception.type.substr(1).toLowerCase(),
-                    status:x[i].se_schedule_exception.status,
+                    status:x[i].se_schedule_exception.type.charAt(0).toUpperCase() + x[i].se_schedule_exception.type.substr(1).toLowerCase()+'d',
                     week:x[i].se_schedule_exception.week,
                     day:x[i].se_schedule_exception.day,
-                    date:x[i].se_schedule_exception.date,
+                    date:((new Date(x[i].se_schedule_exception.date*1000)).getMonth() + 1) + "-" + (new Date(x[i].se_schedule_exception.date*1000)).getDate() + "-" + (new Date(x[i].se_schedule_exception.date*1000)).getFullYear(),
                     start_time:x[i].se_schedule_exception.start_time,
                     end_time:x[i].se_schedule_exception.end_time,
                     key:x[i].se_schedule_exception.key,
