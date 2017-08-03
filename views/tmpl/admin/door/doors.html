@@ -55,7 +55,7 @@
 														<label for="">Device <span class="text-danger">*</span></label>
 														<br/>
 														<select class="form-control" ng-model="door.device_id" ng-options="item.device_id as item.device_name for item in door.devices"
-														 required ng-change="check_relay_count(item.remaining_relay_count)" ng-disabled="!door.devices">
+														 required ng-change="check_relay_count()" ng-disabled="!door.devices" name="door_device">
 															<option value="">Select</option>
 														</select>
 													</div>
@@ -74,7 +74,7 @@
 											</div>
 											<div class="modal-footer">
 												<div class="btn btn-lightred btn-rounded btn-ef btn-ef-4 btn-ef-4c door_close" id="close" ng-click="cancel()"><i class="fa fa-arrow-left"></i> Close</div>
-												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c"><i class="fa fa-arrow-right"></i> Submit</button>
+												<button type="submit" class="btn btn-success btn-rounded btn-ef btn-ef-3 btn-ef-3c" ng-disabled="noDevice"><i class="fa fa-arrow-right"></i> Submit</button>
 											</div>
 										</form>
 									</script>

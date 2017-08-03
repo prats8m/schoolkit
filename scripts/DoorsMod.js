@@ -71,6 +71,7 @@ app
 					if (utilitySvc.getCurrentFacility() != '') {
 						$rootScope.door.facility_id = parseInt(utilitySvc.getCurrentFacility());
 						//$rootScope.facility_disable = true;
+						$rootScope.getDevice();
 					}
 				}
 			});
@@ -104,7 +105,8 @@ app
 		};
 		$scope.dashboardInit();*/
 		//Device list for device select box
-		$rootScope.getDevice = function(){			
+		$rootScope.getDevice = function(){
+			$rootScope.door.devices = {};			
 			doorsSvc.getDevice(appConstants.deviceByFacility+"?facility_id="+$scope.door.facility_id, appConstants.getMethod, {}, {}, function(succResponse){
 				if(succResponse.status){
 					var device_data = succResponse.data;
@@ -118,11 +120,15 @@ app
 		}
 
 		$rootScope.check_relay_count = function(relay){
-			// var found = $filter('filter')($scope.door.devices, {device_id: $scope.door.device_id}, true);
-			// console.log(found);
-			// if (found.length) {   
-   //      return false;
-   //   	}
+			$rootScope.noDevice = false;
+			var result = Object.keys($scope.door.devices).map(function(key) {
+				return [$scope.door.devices[key]];
+			});
+			var found = $filter('filter')(result, {device_id: $scope.door.device_id}, true);
+			if (found[0][0].remaining_relay_count == 0) {   
+        toaster.pop("error", "You can't select device with no relay");
+        $rootScope.noDevice = true;
+     	}
 		}
 
 		//Create Doors
