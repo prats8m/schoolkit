@@ -67,7 +67,13 @@
 									</div>
 									<div class="form-group col-sm-6 col-md-4 last">
 										<label for="">Facility <br/>
-										<select class="form-control" name="facilit_name" ng-model="field.facility" ng-options="field.facility_name for field in facilityList track by field.facility_id" disabled="disabled" required>
+										<select class="form-control" name="facilit_name" ng-model="field.facility" ng-options="field.facility_name for field in facilityList track by field.facility_id" disabled="disabled" required ng-change="getDevice()">
+											<option value="" disabled>Select</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-6 col-md-4 last">
+										<label for="">Device <br/>
+										<select class="form-control" name="device" ng-model="doorData.device_id" ng-options="item.device_id as item.device_name for item in doorData.devices" required ng-change="check_relay_count(item.remaining_relay_count)">
 											<option value="" disabled>Select</option>
 										</select>
 									</div>
