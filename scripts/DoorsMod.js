@@ -204,7 +204,6 @@ app
 				else {
 					$rootScope.facilityList = {};
 				}
-				console.log("facilitylist" + JSON.stringify($rootScope.facilityList));
 			});
 		};
 		$scope.facilityInit();
@@ -307,7 +306,7 @@ app
 	});
 
 app
-	.controller('EditDoorCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, appConstants, doorsSvc) {
+	.controller('EditDoorCtrl', function ($scope, $http, $cookies, $stateParams, baseURL, $rootScope, $location, toaster, $timeout, $mdDialog, appConstants, doorsSvc,$state) {
 
 		$scope.page = {
 			title: appConstants.editdoorUiTitle
@@ -315,7 +314,7 @@ app
 
 		$scope.imagePath = baseURL + appConstants.imagePath;
 
-		
+		var preventDefaultFlag = false;
 
 		$scope.facilityInit = function () {
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -339,6 +338,7 @@ app
 				doorsSvc.deletedoors(appConstants.doordelete + door_id, appConstants.deleteMethod, {}, {}, function (succResponse) {
 					if (succResponse.status) {
 						$rootScope.dashboardData.door--;
+						preventDefaultFlag = true;
 						$location.path('/app/admin/door/doors');
 					}
 				});
@@ -354,9 +354,9 @@ app
 			};
 			doorsSvc.doorInit(appConstants.doorview + '?doorId=' + $stateParams.door_id, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
-					$scope.doorData = succResponse.data;
+					$scope.doorData = angular.copy(succResponse.data);
+					$scope.realDoorData = angular.copy(succResponse.data);
 					$scope.field.facility = $scope.doorData;
-					console.log($scope.field.facility);
 				}
 			});
 		};
@@ -364,6 +364,7 @@ app
 		$scope.facilityInit();
 
 		$scope.editDoordata = function (doorData, door_data) {
+			
 			if (!door_data.validate()) {
 				return false;
 			}
@@ -373,12 +374,33 @@ app
 			doorsSvc.editDoordata(appConstants.dooredit, appConstants.putMethod, {}, doorData, function (succResponse) {
 				if (succResponse.status) {
 					toaster.pop(appConstants.success, succResponse.msg);
+					preventDefaultFlag = true;
 					$location.path('/app/admin/door/doors');
 				}
 			});
 		};
+		/*
+		$scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+			var door_data = angular.copy($scope.door_data);
+			if( door_data.door_name.$dirty || door_data.facilit_name.$dirty ){
+				if(preventDefaultFlag)return;
+				event.preventDefault();
+				var confirm = $mdDialog.confirm()
+					.title("Do you want to save changes.")
+					.content(appConstants.empty)
+					.ok("Yes")
+					.cancel("No")
+					.targetEvent(event);
+				$mdDialog.show(confirm).then(function () {
+					$scope.editDoordata($scope.doorData,door_data);
+				}, function () {
+					preventDefaultFlag = true;
+					$state.go(toState);
+				});
+			}
+		});
 
-		/*$scope.dashboardInit = function () {
+		$scope.dashboardInit = function () {
 			doorsSvc.dashboardInit(appConstants.userDashboard, appConstants.getMethod, {}, {}, function (succResponse) {
 				if (succResponse.status) {
 					$rootScope.dashboardData = succResponse.data;
