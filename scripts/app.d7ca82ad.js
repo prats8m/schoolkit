@@ -462,9 +462,10 @@ var app = angular
 
       //admin administrator view-roles
       .state('app.admin.administrator.view-roles', {
-        url: '/view-roles',
-        controller: 'ViewRoleCtrl',
-        templateUrl: 'views/tmpl/admin/administrator/view-roles.html'
+        url: '/view-roles/:role_id',
+        controller: 'RoleViewCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/view-roles.html',
+        params: {role_id: null}
       })
 
       //admin administrator edit-roles
