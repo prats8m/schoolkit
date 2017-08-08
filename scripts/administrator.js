@@ -11,22 +11,21 @@ app
      $scope.page = {
       title: 'Add Roles',
     };
-
     $scope.roleAdd = {};
-    //var moduleRole = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-	   $scope.roleAdd.facility = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.device = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.user = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.usergroup = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.technician = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.door = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.doorgroup = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.schedule = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.holiday_schedule = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.role = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.live_feed = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.activity = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
-     $scope.roleAdd.reports = {"add" : 0 , "view" : 0 , "delete" : 0, "edit" : 0};
+    var moduleRole = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+	   $scope.roleAdd.facility = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.device = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.user = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.usergroup = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.technician = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.door = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.doorgroup = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.schedule = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.holiday_schedule = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.role = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.live_feed = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.activity = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+     $scope.roleAdd.reports = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
 	 
     $scope.submitData = function(roleAdd){
     	administratorSvc.submitData(appConstants.roleadd, appConstants.postMethod, {}, roleAdd, function(succResponse){
@@ -84,6 +83,29 @@ app
         }, function() {
             $scope.result = 'You decided to keep admin.';
             $scope.statusclass = 'alert alert-success alert-dismissable';
+        });
+    };
+
+
+    $scope.roleDelete = function(ev, role_id) {
+        var confirm = $mdDialog.confirm()       
+        .title('Would you like to delete this role?')
+        .content('')
+        .ok('Delete')
+        .cancel('Cancel')
+        .targetEvent(ev);
+        $mdDialog.show(confirm).then(function() {
+          administratorSvc.rolesInit(appConstants.roleDelete+"?role_id=" + role_id, appConstants.deleteMethod, {}, {}, function(succResponse){
+            if(succResponse.status){
+              $scope.rolesInit();
+              toaster.pop(appConstants.success, "Role deleated successfully");
+            } else{
+
+            }
+          });
+        }, function() {
+          $scope.result = 'You decided to keep admin.';
+          $scope.statusclass = 'alert alert-success alert-dismissable';
         });
     };
     
@@ -252,3 +274,21 @@ app
   $scope.imagePath = 'http://elikastaging.ml/images'; 
   
 });
+
+'use strict';
+app
+  .controller('RoleViewCtrl', function ($scope, $http, $mdDialog, $rootScope, toaster, $timeout, $location, baseURL, $uibModal, appConstants, administratorSvc, dashboardSvc, $stateParams) { 
+
+
+      $scope.page = {
+        title: 'View Roles',
+      };
+
+      administratorSvc.rolesInit(appConstants.roleview+"?role_id=" + $stateParams.role_id, appConstants.getMethod, {}, {}, function(succResponse){
+        if(succResponse.status){
+          $scope.role = succResponse.data;
+        } else{
+          
+        }
+      });
+  });
