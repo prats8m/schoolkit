@@ -101,6 +101,7 @@ app.constant("appConstants", {
     historylist: 'history/list',
     wizardadd: 'wizard',
     facilityuploadpic: 'facility/upload-pic',
+    deviceByFacility: 'device/list-device-for-doors',
     //...........................................................................
 
     //........Constants............................................................

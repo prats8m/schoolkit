@@ -7,7 +7,7 @@
  * Controller of the minovateApp
  */
 app
-	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc, utilitySvc) {
+	.controller('DoorCtrl', function ($scope, $mdDialog, $http, $rootScope, baseURL, $cookies, toaster, arrayPushService, $timeout, $location, appConstants, doorsSvc, utilitySvc, $filter) {
 		$scope.page = {
 			title: appConstants.doorsUITitle,
 			subtitle: appConstants.dashboardSubTitle
@@ -71,6 +71,7 @@ app
 					if (utilitySvc.getCurrentFacility() != '') {
 						$rootScope.door.facility_id = parseInt(utilitySvc.getCurrentFacility());
 						//$rootScope.facility_disable = true;
+						$rootScope.getDevice();
 					}
 				}
 			});
@@ -103,7 +104,32 @@ app
 			});
 		};
 		$scope.dashboardInit();*/
+		//Device list for device select box
+		$rootScope.getDevice = function(){
+			$rootScope.door.devices = {};			
+			doorsSvc.getDevice(appConstants.deviceByFacility+"?facility_id="+$scope.door.facility_id, appConstants.getMethod, {}, {}, function(succResponse){
+				if(succResponse.status){
+					var device_data = succResponse.data;
+					angular.forEach(device_data, function(v){ v.device_name = v.device_name + " (Remaining relay " + v.remaining_relay_count + ")";});
+					$rootScope.door.devices = device_data;
+				}
+				else{
 
+				}
+			}); 
+		}
+
+		$rootScope.check_relay_count = function(relay){
+			$rootScope.noDevice = false;
+			var result = Object.keys($scope.door.devices).map(function(key) {
+				return [$scope.door.devices[key]];
+			});
+			var found = $filter('filter')(result, {device_id: $scope.door.device_id}, true);
+			if (found[0][0].remaining_relay_count == 0) {   
+        toaster.pop("error", "You can't select device with no relay");
+        $rootScope.noDevice = true;
+     	}
+		}
 
 		//Create Doors
 		$rootScope.doormsg = appConstants.empty;
@@ -315,6 +341,20 @@ app
 		$scope.imagePath = baseURL + appConstants.imagePath;
 
 		var preventDefaultFlag = false;
+		//Device list for device select box
+		$rootScope.getDevice = function(facility_id){			
+			doorsSvc.getDevice(appConstants.deviceByFacility+"?facility_id="+facility_id, appConstants.getMethod, {}, {}, function(succResponse){
+				if(succResponse.status){
+					var device_data = succResponse.data;
+					angular.forEach(device_data, function(v){ v.device_name = v.device_name + " (Remaining relay " + v.remaining_relay_count + ")";});
+					$scope.doorData.devices = device_data;
+
+				}
+				else{
+
+				}
+			}); 
+		}
 
 		$scope.facilityInit = function () {
 			doorsSvc.facilityInit(appConstants.facilitylist, appConstants.getMethod, {}, {}, function (succResponse) {
@@ -357,6 +397,9 @@ app
 					$scope.doorData = angular.copy(succResponse.data);
 					$scope.realDoorData = angular.copy(succResponse.data);
 					$scope.field.facility = $scope.doorData;
+					$rootScope.getDevice($scope.field.facility.facility_id);
+					// $scope.doorData.device_id = 36;
+					console.log($scope.field.facility);
 				}
 			});
 		};

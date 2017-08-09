@@ -90,8 +90,8 @@
 										<label for="">Time Zone <span class="text-danger">*</span></label>
 										<select class="form-control" name="timezone" ng-model="wizard_setup.facility.timezone" ng-options="tz.name as tz.name for tz in usTimeZonesForFacility track by tz.id"
 											required>
-										<option value="">Select</option>
-									</select>
+											<option value="">Select</option>
+										</select>
 										<span class="error" ng-if="validFacility && addFacility.timezone.$invalid">Please Select Timezone</span>
 									</div>
 									<div class="form-group col-sm-6 col-md-6">
@@ -111,7 +111,7 @@
 						</div>
 					</div>
 				</wz-step>
-
+				<!--
                 <wz-step wz-title="Add Door" ng-form="door">
 					<div class="wizpopup-form">
 						<div class="df-left">
@@ -152,7 +152,7 @@
 												</tr>
 											</thead>
 											<tbody style="font-size:15px;">
-												<tr ng-repeat="door in wizard_setup.door track by $index">
+												<tr ng-repeat="door in wizard_setup.doors track by $index">
 													<td>{{door.name}}</td>
 													<td class="ta-c">
 														<a href="" ng-click="deleteDoor($index)" uib-tooltip="Remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -165,14 +165,14 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-12 ta-c">
 										<button type="submit" ng-click="WizardBack()" class="btn btn-grey">Back</button>
-										<button type="submit" ng-click="navigateNextForm()" class="btn btn-grey">Next</button>
+										<button type="submit" ng-click="navigateNextForm()" class="btn btn-grey">Done</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</wz-step>
-
+				</wz-step>-->
+				<!--
                 <wz-step wz-title="Add Technician" ng-form="add_technician">
 					<div class="wizpopup-form">
 						<div class="df-left">
@@ -250,7 +250,7 @@
 						</div>
 					</div>
 				</wz-step>     
-
+				-->
 								
 
             </wizard>

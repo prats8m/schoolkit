@@ -32,7 +32,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
     $scope.checkIfValid = function () {
         if (!$cookies.get("isWizardUsed")) {
             $scope.callback();
-        }
+        }   
     }
 
     $scope.checkIfValid();
@@ -44,23 +44,16 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
             status: 1,
             zip_code: ''
         },
-        door: [],
+        doors: [],
+        door:{
+            
+        },
         device: {
             device_name: '',
             serial_no: '',
             registration_code: '',
             sip_username: '',
             sip_password: ''
-        },
-        technician: {
-            first_name: '',
-            last_name: '',
-            email: '',
-            address: '',
-            zipcode: '',
-            phone_number: '',
-            status: 1,
-            expiration_date: ''
         }
     };
     $scope.doorlist = {
@@ -108,10 +101,11 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
                 door_description: document.getElementById("door_description").value,
                 status: 1
             }
-            $scope.wizard_setup.door.push(doors);
+            $scope.wizard_setup.doors.push(doors);
+            //$scope.wizard_setup.door = doors;
             form.door_name = null;
             form.door_description = null;
-            form.$valid = false
+            form.$valid = false;
             document.getElementById("door_name").value = '';
             document.getElementById("door_description").value = '';
             return true;
@@ -138,18 +132,20 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
         return false;
     }
     $scope.deleteDoor = function (index) {
-        $scope.wizard_setup.door.splice(index, 1);
+        $scope.wizard_setup.doors.splice(index, 1);
     }
     $scope.navigateNextForm = function () {
-        if ($scope.wizard_setup.door.length > 0) {
-            WizardHandler.wizard().next();
+        if ($scope.wizard_setup.doors.length > 0) {
+            // $scope.submitWizard();
+            // WizardHandler.wizard().next();
         }
         else
             $scope.error = true;
     }
     $scope.submitWizard = function () {
-        var ex_date = $scope.wizard_setup.technician.expiration_date;
-        $scope.wizard_setup.technician.expiration_date = utilitySvc.dateToStringmmddyyyyFormat($scope.wizard_setup.technician.expiration_date);
+        //var ex_date = $scope.wizard_setup.technician.expiration_date;
+        // $scope.wizard_setup.technician.expiration_date = utilitySvc.dateToStringmmddyyyyFormat($scope.wizard_setup.technician.expiration_date);
+        $scope.wizard_setup.door
         userSvc.addStartingWizard(appConstants.wizardadd, appConstants.postMethod, {}, $scope.wizard_setup, function (succResponse) {
             if (succResponse.status) {
                 toaster.pop(appConstants.success, appConstants.successFullAdd);
@@ -157,7 +153,7 @@ app.controller('wizardCtrl', function (WizardHandler, $scope, $mdDialog, $state,
                 $scope.callback();
             }
             else {
-                $scope.wizard_setup.technician.expiration_date = ex_date;
+                //$scope.wizard_setup.technician.expiration_date = ex_date;
                 toaster.pop(appConstants.error, succResponse.msg.replace(/_/g, ' '));
             }
         });
