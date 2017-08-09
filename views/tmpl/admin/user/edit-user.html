@@ -88,24 +88,24 @@
 										<div class="modal-header">
 											<h4 class="modal-title custom-font">Edit Credential Schedule</h4>
 										</div>
-										<div class="modal-body p-30">
+										<div class="modal-body p-15">
 											<div class="overflow check_view disable_modal">
 												<label for=""><strong>Schedule Type</strong></label>
 												<div class="row">
-													<div class="col-sm-6 col-md-6 form-group" ng-click="custom_schedular()">
+													<div class="col-sm-4 col-md-4" ng-click="custom_schedular()">
 														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=true">
 															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="ONETIME" type="radio" ng-click="schedule.no_expirations=0"><i></i> One Time
 														</label>
 													</div>
-													<div class="col-sm-6 col-md-6 form-group" ng-click="repetive_schedular()">
+													<div class="col-sm-4 col-md-4" ng-click="repetive_schedular()">
 														<label class="checkbox checkbox-custom-alt mb-0" ng-click="visibiltyUserGroup=false">
 															<input name="customRadioAlt" ng-model="schedule.schedule_type" value="REPEATING" type="radio" ng-click="schedule.no_expirations=1"><i></i> Repeating
 														</label>
 													</div>
 												</div>
 											</div>
-											<div class="row check_view disable_modal" ng-hide="schedule.schedule_type == 'ONETIME'">
-												<div class="col-sm-6 col-md-6 pr-0 form-group">
+											<div class="row check_view disable_modal mt-10" ng-hide="schedule.schedule_type == 'ONETIME'">
+												<div class="form-group col-sm-4 col-md-4">
 													<label for="">Start Date</label>
 													<div class="input-group" ng-controller="DatepickerDemoCtrl">
 														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="schedule.date" is-open="opened" datepicker-options="dateOptions"
@@ -114,15 +114,14 @@
 															<button type="button" class="btn btn-default" ng-click="open($event)" style="padding: 8px 14px;"><i class="glyphicon glyphicon-calendar"></i></button>
 														</span>
 													</div>
-												</div>
-												<div class="col-sm-1 col-md-1 form-group">&nbsp;</div>
-												<div class="form-group col-sm-6 col-md-5" >
+												</div>												
+												<div class="form-group pull-left w-150 ml-15">
 													<label for="">&nbsp;</label><br/>
-													<label class="checkbox checkbox-custom-alt" style="margin-bottom:8px;" ng-init="">
+													<label class="checkbox checkbox-custom-alt mb-5 mt-5" ng-init="">
 														<input name="customRadioAlt" type="checkbox" ng-model="schedule.no_expirations" ng-true-value="1" ng-false-value="0"><i></i> No Expirations
 													</label>
 												</div>
-												<div class="form-group col-sm-6 col-md-6" ng-hide="schedule.no_expirations">
+												<div class="form-group col-sm-4 col-md-4" ng-hide="schedule.no_expirations">
 													<label for="">Expiration Date</label>
 													<div class="input-group" ng-controller="DatepickerDemoCtrl">
 														<input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="schedule.expiration" is-open="opened"

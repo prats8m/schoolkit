@@ -23,7 +23,7 @@
 			<flip-header></flip-header>			
 		</div>
 		
-		<div class="row" ng-controller="AddRolesCtrl">
+		<div class="row">
 			<div class="col-md-12">
 				<section class="tile box-shadow" fullscreen="isFullscreen06">
 					<div class="tile-header dvd dvd-btm">
@@ -65,90 +65,90 @@
 											<tbody>
 												<tr>
 													<td>Facility</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.facility.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.facility.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.facility.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.facility.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.facility.delete || roleAdd.facility.edit || roleAdd.facility.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.facility.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.facility.delete || roleAdd.facility.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.facility.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.facility.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0" > <input type="checkbox" ng-model="roleAdd.facility.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Device</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.device.delete || roleAdd.device.add || roleAdd.device.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.device.delete || roleAdd.device.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.device.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.device.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Users</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.user.delete || roleAdd.user.add || roleAdd.user.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.user.delete"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.user.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.user.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>User Groups</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.usergroup.delete || roleAdd.usergroup.add || roleAdd.usergroup.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.usergroup.delete || roleAdd.usergroup.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.usergroup.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.usergroup.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Technician</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.technician.delete || roleAdd.technician.edit || roleAdd.technician.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.technician.delete || roleAdd.technician.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.technician.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.technician.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Doors</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.door.delete || roleAdd.door.edit || roleAdd.door.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.door.delete || roleAdd.door.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.door.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.door.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Door Groups</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.doorgroup.delete || roleAdd.doorgroup.edit || roleAdd.doorgroup.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.doorgroup.delete || roleAdd.doorgroup.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.doorgroup.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.doorgroup.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Schedule</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.schedule.delete || roleAdd.schedule.edit || roleAdd.schedule.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.schedule.delete || roleAdd.schedule.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.schedule.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.schedule.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Holiday Schedule</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.holiday_schedule.delete || roleAdd.holiday_schedule.edit || roleAdd.holiday_schedule.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.holiday_schedule.delete || roleAdd.holiday_schedule.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.holiday_schedule.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.holiday_schedule.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>
 												</tr>
 												<tr>
 													<td>Roles</td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.view" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.add" ng-true-value="1" ng-false-value="0"><i></i></label></td>
-													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.edit" ng-true-value="1" ng-false-value="0"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.view" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.role.delete || roleAdd.role.edit || roleAdd.role.add"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.add" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.role.delete || roleAdd.role.edit"><i></i></label></td>
+													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.edit" ng-true-value="1" ng-false-value="0" ng-checked="roleAdd.role.delete"><i></i></label></td>
 													<td class="ta-c"><label class="checkbox checkbox-custom-alt checkbox-custom-sm m-0"> <input type="checkbox" ng-model="roleAdd.role.delete" ng-true-value="1" ng-false-value="0"><i></i></label></td>
 													<td class="ta-c">&nbsp;</td>
 													<td class="ta-c">&nbsp;</td>

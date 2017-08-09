@@ -462,9 +462,10 @@ var app = angular
 
       //admin administrator view-roles
       .state('app.admin.administrator.view-roles', {
-        url: '/view-roles',
-        controller: 'ViewRoleCtrl',
-        templateUrl: 'views/tmpl/admin/administrator/view-roles.html'
+        url: '/view-roles/:role_id',
+        controller: 'RoleViewCtrl',
+        templateUrl: 'views/tmpl/admin/administrator/view-roles.html',
+        params: {role_id: null}
       })
 
       //admin administrator edit-roles
@@ -991,6 +992,13 @@ var app = angular
         url: '/camera-dvr',
         controller: 'CameraDVRCtrl',
         templateUrl: 'views/tmpl/admin/camera/camera-dvr.html'
+      })
+	  
+	  //admin camera motion-detector
+      .state('app.admin.camera.motion-detector', {
+        url: '/motion-detector',
+        controller: 'MotionDetectorCtrl',
+        templateUrl: 'views/tmpl/admin/camera/motion-detector.html'
       })
 
     /*-----------------------------------------------------------------
@@ -2044,9 +2052,7 @@ angular.module('lazyModel', [])
       ]
     };
   });
-'use strict';
-
-
+  
 'use strict';
 /**
  * @ngdoc function
@@ -2061,8 +2067,25 @@ app
       title: 'Contact Us',
     };
 
+});
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:MotionDetectorCtrl
+ * @description
+ * # MotionDetectorCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('MotionDetectorCtrl', function ($scope) {
+    $scope.page = {
+      title: 'Motion Detector',
+    };
+	$scope.motion = {};
   });
 
+'use strict';
 /**
  * @ngdoc function
  * @name minovateApp.controller:ButtonsiconsCtrl

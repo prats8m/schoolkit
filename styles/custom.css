@@ -18,7 +18,7 @@ a {
 }
 
 #scheduler_here {
-    width: 750px;
+    width: 783px;
 }
 
 .refreshbtn {
@@ -130,6 +130,10 @@ span.loader {
 
 .pl-5 {
     padding-left: 5px
+}
+
+.ml-15 {
+    margin-left: 15px
 }
 
 .ff-rc {
@@ -3383,6 +3387,30 @@ span.schedulename {
 	max-height: 350px;
     min-height: 350px;
 }
+
+table#our_table {
+    width: 451px;
+    height: 301px;
+}
+
+table#our_table td {
+    width:25px;
+    height:25px;
+    text-align:center;
+    vertical-align:middle;
+    border:1px solid #fff;
+	cursor: pointer;
+	font-size: 0;
+}
+
+table#our_table td.highlighted {
+  background: rgba(154, 0, 0, 0.5) none repeat scroll 0 0;
+}
+
+.motiononoff {
+	margin-right: 0!important;	
+}
+
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .profilephoto #profilep-1,

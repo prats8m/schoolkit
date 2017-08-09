@@ -48,9 +48,9 @@
 					<div class="tile-body"> 
 						<div class="row">
 							<div class="form-group col-sm-12 profiledetail">
-								<p><label>Roles Name</label><span class="rightdetails">Data Operator Administrator</span></p>
-								<p><label>Status</label><span class="rightdetails">Active</span></p>
-								<p><label>Access</label><span class="rightdetails">Restricted Access</span></p>
+								<p><label>Roles Name</label><span class="rightdetails">{{role.role_name}}</span></p>
+								<p><label>Status</label><span class="rightdetails">{{role.role_status}}</span></p>
+								<p><label>Access</label><span class="rightdetails"></span></p>
 							</div>											
 						</div>
 						
@@ -61,14 +61,62 @@
 									<table class="table table-bordered">
 										<thead>
 											<tr>
-												<th>Facility Name</th>
-												<th width="200">administrator</th>
+												<th>Name</th>
+												<th width="200">Access</th>
 											</tr>
 										</thead>
 										<tbody style="font-size:14px;">
 											<tr>
-												<td>USA Corporate Services</td>
-												<td>View, Active Devices</td>
+												<td>Facility</td>
+												<td><b ng-if="role.role_facility.view == 1">View</b><b ng-if="role.role_facility.add == 1">, Add</b><b ng-if="role.role_facility.edit == 1">, Edit</b><b ng-if="role.role_facility.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Device</td>
+												<td><b ng-if="role.role_device.view == 1">View</b><b ng-if="role.role_device.add == 1">, Add</b><b ng-if="role.role_device.edit == 1">, Edit</b><b ng-if="role.role_device.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Users</td>
+												<td><b ng-if="role.role_user.view == 1">View</b><b ng-if="role.role_user.add == 1">, Add</b><b ng-if="role.role_user.edit == 1">, Edit</b><b ng-if="role.role_user.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>User Groups</td>
+												<td><b ng-if="role.role_usergroup.view == 1">View</b><b ng-if="role.role_usergroup.add == 1">, Add</b><b ng-if="role.role_usergroup.edit == 1">, Edit</b><b ng-if="role.role_usergroup.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Technician</td>
+												<td><b ng-if="role.role_technician.view == 1">View</b><b ng-if="role.role_technician.add == 1">, Add</b><b ng-if="role.role_technician.edit == 1">, Edit</b><b ng-if="role.role_technician.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Doors</td>
+												<td><b ng-if="role.role_door.view == 1">View</b><b ng-if="role.role_door.add == 1">, Add</b><b ng-if="role.role_door.edit == 1">, Edit</b><b ng-if="role.role_door.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Door Groups</td>
+												<td><b ng-if="role.role_doorgroup.view == 1">View</b><b ng-if="role.role_doorgroup.add == 1">, Add</b><b ng-if="role.role_doorgroup.edit == 1">, Edit</b><b ng-if="role.role_doorgroup.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Schedule</td>
+												<td><b ng-if="role.role_schedule.view == 1">View</b><b ng-if="role.role_schedule.add == 1">, Add</b><b ng-if="role.role_schedule.edit == 1">, Edit</b><b ng-if="role.role_schedule.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Holiday Schedule</td>
+												<td><b ng-if="role.role_holiday_schedule.view == 1">View</b><b ng-if="role.role_holiday_schedule.add == 1">, Add</b><b ng-if="role.role_holiday_schedule.edit == 1">, Edit</b><b ng-if="role.role_holiday_schedule.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Roles</td>
+												<td><b ng-if="role.role_live_feeds.view == 1">View</b><b ng-if="role.role_live_feeds.add == 1">, Add</b><b ng-if="role.role_live_feeds.edit == 1">, Edit</b><b ng-if="role.role_live_feeds.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Live Feeds and Recording</td>
+												<td><b ng-if="role.role_report.view == 1">View</b><b ng-if="role.role_report.add == 1">, Add</b><b ng-if="role.role_report.edit == 1">, Edit</b><b ng-if="role.role_report.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Activity</td>
+												<td><b ng-if="role.role_activity.view == 1">View</b><b ng-if="role.role_activity.add == 1">, Add</b><b ng-if="role.role_activity.edit == 1">, Edit</b><b ng-if="role.role_activity.delete == 1">, Delete</b></td>
+											</tr>
+											<tr>
+												<td>Reports</td>
+												<td><b ng-if="role.role_facility.view == 1">View</b><b ng-if="role.role_facility.add == 1">, Add</b><b ng-if="role.role_facility.edit == 1">, Edit</b><b ng-if="role.role_facility.delete == 1">, Delete</b></td>
 											</tr>
 										</tbody>
 									</table>
@@ -76,7 +124,7 @@
 							</div>											
 						</div>
 						
-						<div class="row mt-20">
+						<!-- <div class="row mt-20">
 							<div class="form-group col-sm-12 profiledetail">
 								<h4 class="greenseatx">Groups administrator</h4>
 								<div class="tile-body p-0 table-responsive">
@@ -100,9 +148,9 @@
 									</table>
 								</div>
 							</div>											
-						</div>
+						</div> -->
 						
-						<div class="row mt-20">
+						<!-- <div class="row mt-20">
 							<div class="form-group col-sm-12 profiledetail">
 								<h4 class="greenseatx">Reports administrator</h4>
 								<div class="tile-body p-0 table-responsive">
@@ -122,7 +170,7 @@
 									</table>
 								</div>
 							</div>											
-						</div>
+						</div> -->
 						
 					</div>
 				</section>
