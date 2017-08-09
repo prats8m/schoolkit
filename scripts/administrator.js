@@ -12,20 +12,20 @@ app
       title: 'Add Roles',
     };
     $scope.roleAdd = {};
-    var moduleRole = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-	   $scope.roleAdd.facility = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.device = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.user = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.usergroup = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.technician = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.door = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.doorgroup = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.schedule = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.holiday_schedule = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.role = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.live_feed = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.activity = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
-     $scope.roleAdd.reports = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    // var moduleRole = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+	   // $scope.roleAdd.facility = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.device = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.user = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.usergroup = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.technician = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.door = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.doorgroup = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.schedule = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.holiday_schedule = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.role = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.live_feed = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.activity = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
+    //  $scope.roleAdd.reports = {"view" : 0 , "add" : 0 , "edit" : 0, "delete" : 0};
 	 
     $scope.submitData = function(roleAdd){
     	administratorSvc.submitData(appConstants.roleadd, appConstants.postMethod, {}, roleAdd, function(succResponse){
