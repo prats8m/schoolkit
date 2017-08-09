@@ -993,6 +993,13 @@ var app = angular
         controller: 'CameraDVRCtrl',
         templateUrl: 'views/tmpl/admin/camera/camera-dvr.html'
       })
+	  
+	  //admin camera motion-detector
+      .state('app.admin.camera.motion-detector', {
+        url: '/motion-detector',
+        controller: 'MotionDetectorCtrl',
+        templateUrl: 'views/tmpl/admin/camera/motion-detector.html'
+      })
 
     /*-----------------------------------------------------------------
           End code for admin
@@ -2045,9 +2052,7 @@ angular.module('lazyModel', [])
       ]
     };
   });
-'use strict';
-
-
+  
 'use strict';
 /**
  * @ngdoc function
@@ -2062,8 +2067,25 @@ app
       title: 'Contact Us',
     };
 
+});
+
+'use strict';
+/**
+ * @ngdoc function
+ * @name minovateApp.controller:MotionDetectorCtrl
+ * @description
+ * # MotionDetectorCtrl
+ * Controller of the minovateApp
+ */
+app
+  .controller('MotionDetectorCtrl', function ($scope) {
+    $scope.page = {
+      title: 'Motion Detector',
+    };
+	$scope.motion = {};
   });
 
+'use strict';
 /**
  * @ngdoc function
  * @name minovateApp.controller:ButtonsiconsCtrl
