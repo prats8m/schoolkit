@@ -1614,16 +1614,16 @@ ul.callbacks_tabs.callbacks2_tabs {
     left: 30%;
 }
 .banner-text1{
-	background: url(../images/slider1.jpg) no-repeat 0px 0px;
+	background: url(../images/s7.png) no-repeat 0px 0px;
 }
 .banner-text2{
-	background: url(../images/slider2.jpg) no-repeat 0px 0px;
+	background: url(../images/s2.jpg) no-repeat 0px 0px;
 }
 .banner-text3{
-	background: url(../images/slider3.jpg) no-repeat 0px 0px;
+	background: url(../images/s6.jpg) no-repeat 0px 0px;
 }
 .banner-text4{
-	background: url(../images/slider4.jpg) no-repeat 0px 0px;
+	background: url(../images/s5.jpg) no-repeat 0px 0px;
 }
 .banner-text1,.banner-text2,.banner-text3,.banner-text4{
 	 background-size: cover;
