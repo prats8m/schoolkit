@@ -11,9 +11,9 @@
             target: 'body'
         });
     });;
-    var baseURL = "http://localhost/schoolkit-UI/app/school";
-    
-    app.controller('loginCtrl', function ($scope, $http, $location, $rootScope, toastr) {
+    var baseURL = "http://localhost/school_kit/index.php/";
+
+    app.controller('loginCtrl', function ($scope, $http, $rootScope, toastr) {
 
         //1:command set ajax calling function
         var commonSetHTTPService = function (method, data, url, callback) {
@@ -23,17 +23,17 @@
                 dataType: 'JSON',
                 data: data,
                 headers: {
-                    "Content-type": "application/json"
+                    'Content-Type': undefined
                 }
             }).then(function (response) {
-                console.log(response);
                 if (response.data.status == true) {
-                    toastr.success(response.data.message, 'Success');
+                    console.log(response);
+
+                    toastr.success(response.data.msg, 'Success');
                     callback(1);
                 }
                 if (response.data.status == false) {
-                    console.log(',,,');
-                    toastr.error(response.data.message, 'Error');
+                    showError(response.data);
                 }
                 $('#loader').hide();
             }, function (error) {
@@ -68,11 +68,39 @@
         };
         //end of 1; 
 
+        var showError = function (data) {
+            toastr.error(data.msg, 'Oops !');
+
+        }
 
         $scope.schoolLogin = function () {
             toastr.success("Welcome " + $scope.username, 'Success');
-            window.location.href = baseURL+ '/#!/';
-          }
+            window.location.href = baseURL + '/#!/';
+        }
 
+        $scope.signup = function () {
+            console.log($scope);
+            var fd = new FormData();
+            fd.append('name', $scope.school_name);
+            fd.append('email', $scope.school_email);
+            fd.append('password', $scope.school_password);
+            fd.append('confirm_password', $scope.school_confirm_password);
+            fd.append('mobile1', $scope.school_mobile1);
+            fd.append('mobile2', $scope.school_mobile2);
+            fd.append('address', $scope.school_address);
+            fd.append('landmark', $scope.school_landmark);
+            fd.append('address', $scope.school_address);
+            fd.append('city', $scope.school_city);
+            fd.append('state', $scope.school_state);
+            fd.append('country', $scope.school_country);
+            fd.append('pincode', $scope.school_pincode);
+            fd.append('secret_key', $scope.school_secret_key);
+            fd.append('referal_admin_id', $scope.school_referal_admin_id);
+            fd.append('nos', $scope.number_of_student);
+            fd.append('nom', $scope.number_of_months);
+            fd.append('amount', $scope.amount);
+
+            commonSetHTTPService('Post', fd, 'school/signup', function (result) {});
+        }
     });
 })();
