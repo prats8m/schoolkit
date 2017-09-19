@@ -103,7 +103,9 @@
             fd.append('nom', $scope.number_of_months);
             fd.append('amount', $scope.amount);
 
-            commonSetHTTPService('Post', fd, 'school/signup', function (result) {});
+            commonSetHTTPService('Post', fd, 'school/signup', function (result) {
+                window.location = "http://www.schoolkitapp.com/schoolkit/app/school/login.html#signin";
+            });
         }
 
         $scope.login = function () {
@@ -150,5 +152,9 @@
 
         $scope.isSchoolLoggedIn();
 
+
+        $scope.calculateAmount = function(){
+            $scope.totalAmount = $scope.amount*$scope.number_of_student*$scope.number_of_months;
+        }
     });
 })();
