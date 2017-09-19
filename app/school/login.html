@@ -1,96 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>School Kit | </title>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+  <title>School Kit | </title>
+  <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
 
-  <body class="login" style="background-image:url('images/background.jpg'); background-size: 100% ">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
+<body ng-app="schoolKitAppLogin" ng-controller="loginCtrl" class="login" style="background-image:url('images/background.jpg'); background-size: 100% ">
+  <div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+    <a class="hiddenanchor" id="forgetPassword"></a>
+   <a class="hiddenanchor" id="changePassword"></a>
 
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form>
-              <h1> School Login Form</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="http://www.schoolkitapp.com/app/school/#!/">Log in</a>
-                <a class="reset_pass" href="#">Lost your password?</a>
-              </div>
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form>
+            <h1> School Login Form</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Username" ng-model="email" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" ng-model="password" />
+            </div>
+            <div>
+              <a ng-click="login()" class="btn btn-default submit">Log in</a>
+              <a class="reset_pass" href="#forgetPassword">Lost your password?</a>
+            </div>
 
-              <div class="clearfix"></div>
+            <div class="clearfix"></div>
 
-              <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-                <img src="images/bg.png">
-
-                </div>
-            </form>
-          </section>
-        </div>
-
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
-              </div>
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="#signup" class="to_register"> Create Account </a>
+              </p>
 
               <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
 
-              <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
-                </p>
+            </div>
+          </form>
+        </section>
+      </div>
 
-                <div class="clearfix"></div>
-                <br />
-                  <img src="images/bg.png">
+<div class="login_wrapper">
+      <div id="#forgetPassword" class="animate form forget_form">
+        <section class="login_content">
+          <form>
+            <h1>Forget Password </h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" />
+            </div>
+            <div>
+              <a ng-click="generateOtp()" class="btn btn-default submit">Generate OTP</a>
+              <a class="reset_pass" href="#signin">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="#signup" class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+
+            </div>
+          </form>
+        </section>
+      </div>
+      </div>
+
+<div class="login_wrapper">
+      <div id="#changePassword" class="animate form change_form">
+        <section class="login_content">
+          <form>
+            <h1>Change Password</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" ng-disabled="true" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="OTP" ng-model="otp" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Password" ng-model="password" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Confirm Password" ng-model="confirm_password" />
+            </div>
+            <div>
+              <a ng-click="checkOtp()" class="btn btn-default submit">Change Password</a>
+              Go Back to <a class="reset_pass" href="#signin">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="#signup" class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+
+            </div>
+          </form>
+        </section>
+      </div>
+      </div>
+
+
+
+      <div id="register" class="animate form registration_form">
+        <section class="login_content">
+          <form>
+            <h2>Register | School Kit</h2>
+            <!-- Tabs -->
+            <div id="wizard_verticle" class="form_wizard wizard_verticle">
+              <ul class="list-unstyled wizard_steps">
+                <li>
+                  <a href="#step-11">
+                    <span class="step_no">1</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#step-22">
+                    <span class="step_no">2</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#step-33">
+                    <span class="step_no">3</span>
+                  </a>
+                </li>
+              </ul>
+
+              <div id="step-11">
+                <h2 class="StepTitle">Step 1 | General Information</h2>
+                <form class="form-horizontal form-label-left">
+                  <div>
+                    <input type="text" class="form-control" placeholder="Name" ng-model="school_name" />
+                  </div>
+                  <div>
+                    <input type="text" class="form-control" placeholder="Email" ng-model="school_email" />
+                  </div>
+                  <div>
+                    <input type="number" class="form-control" placeholder="Mobile 1" ng-model="school_mobile1" />
+                  </div>
+                  <br>
+                  <div>
+                    <input type="number" class="form-control" placeholder="Mobile 2" ng-model="school_mobile2" />
+                  </div>
+                  <br>
+                  <div>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="school_password" />
+                  </div>
+                  <div>
+                    <input type="password" class="form-control" placeholder="Confirm Password" ng-model="school_confirm_password" />
+                  </div>
+              </div>
+              <div id="step-22">
+                <h2 class="StepTitle">Step 2 | Location Information</h2>
+                <div>
+                  <input type="text" class="form-control" placeholder="Address" ng-model="school_address" />
                 </div>
-            </form>
-          </section>
-        </div>
+                <div>
+                  <input type="text" class="form-control" placeholder="Landmark" ng-model="school_landmark" />
+                </div>
+                <div>
+                  <input type="text" class="form-control" placeholder="City" ng-model="school_city" />
+                </div>
+                <div>
+                  <input type="text" class="form-control" placeholder="State" ng-model="school_state" />
+                </div>
+                <div>
+                  <input type="number" class="form-control" placeholder="Pincode" ng-model="school_pincode" />
+                </div>
+                <br>
+                <div>
+                  <input type="text" class="form-control" placeholder="Country" value="India" ng-model="school_country" />
+                </div>
+              </div>
+              <div id="step-33">
+                <h2 class="StepTitle">Step 3 Content</h2>
+                <div>
+                  <input type="password" class="form-control" placeholder="Secrete Key" ng-model="school_secret_key" />
+                </div>
+                <div>
+                  <input type="text" class="form-control" placeholder="Referal Admin ID" ng-model="school_referal_admin_id" />
+                </div>
+                <div>
+                  <input type="number" class="form-control" placeholder="Number of student" ng-model="number_of_student" />
+                </div>
+                <div>
+                  <input type="number" class="form-control" placeholder="Number Of months" ng-model="number_of_months" />
+                </div>
+                <div>
+                  <input type="number" class="form-control" placeholder="Amount" ng-model="amount" />
+                </div>
+                <div>
+                  <input type="submit" ng-click="signup()" value="Signup" />
+                </div>
+                </form>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="separator">
+              <p class="change_link">Already a member ?
+                <a href="#signin" class="to_register"> Log in </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+            </div>
+          </form>
+        </section>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- jQuery Smart Wizard -->
+<script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js"></script>
+
+<!--Angular files-->
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular/angular-route.min.js"></script>
+<!--<script type="text/javascript" src="angular/app.js"></script>-->
+<script type="text/javascript" src="angular/login.js"></script>
+<script type="text/javascript" src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
