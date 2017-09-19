@@ -122,6 +122,9 @@
             var fd = new FormData();
             fd.append('email', $scope.email);
             commonGetHTTPService('Post', fd, 'school/forget_password', function (result) {
+                $scope.otp = "";
+                $scope.password = "";
+                $scope.confirm_password = "";
                 toastr.info("An Email or SMS ha been sent with OTP!", 'Check your Email/Mobile');
                 window.location = "http://www.schoolkitapp.com/app/school/login.html#changePassword";
             });
