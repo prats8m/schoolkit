@@ -23,10 +23,12 @@
   <link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body ng-app="schoolKitApp" ng-controller="loginCtrl" class="login" style="background-image:url('images/background.jpg'); background-size: 100% ">
+<body ng-app="schoolKitAppLogin" ng-controller="loginCtrl" class="login" style="background-image:url('images/background.jpg'); background-size: 100% ">
   <div>
     <a class="hiddenanchor" id="signup"></a>
     <a class="hiddenanchor" id="signin"></a>
+    <a class="hiddenanchor" id="forgetPassword"></a>
+   <a class="hiddenanchor" id="changePassword"></a>
 
     <div class="login_wrapper">
       <div class="animate form login_form">
@@ -34,14 +36,14 @@
           <form>
             <h1> School Login Form</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" />
+              <input type="text" class="form-control" placeholder="Username" ng-model="email" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" />
+              <input type="password" class="form-control" placeholder="Password" ng-model="password" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="http://www.schoolkitapp.com/app/school/#!/">Log in</a>
-              <a class="reset_pass" href="#">Lost your password?</a>
+              <a ng-click="login()" class="btn btn-default submit">Log in</a>
+              <a class="reset_pass" href="#forgetPassword">Lost your password?</a>
             </div>
 
             <div class="clearfix"></div>
@@ -59,6 +61,77 @@
           </form>
         </section>
       </div>
+
+<div class="login_wrapper">
+      <div id="#forgetPassword" class="animate form forget_form">
+        <section class="login_content">
+          <form>
+            <h1>Forget Password </h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" />
+            </div>
+            <div>
+              <a ng-click="generateOtp()" class="btn btn-default submit">Generate OTP</a>
+              <a class="reset_pass" href="#signin">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="#signup" class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+
+            </div>
+          </form>
+        </section>
+      </div>
+      </div>
+
+<div class="login_wrapper">
+      <div id="#changePassword" class="animate form change_form">
+        <section class="login_content">
+          <form>
+            <h1>Change Password</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" ng-disabled="true" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="OTP" ng-model="otp" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Password" ng-model="password" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="Confirm Password" ng-model="confirm_password" />
+            </div>
+            <div>
+              <a ng-click="checkOtp()" class="btn btn-default submit">Change Password</a>
+              Go Back to <a class="reset_pass" href="#signin">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="#signup" class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+
+            </div>
+          </form>
+        </section>
+      </div>
+      </div>
+
+
 
       <div id="register" class="animate form registration_form">
         <section class="login_content">

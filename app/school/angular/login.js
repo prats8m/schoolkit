@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('schoolKitApp', ['ngRoute', 'toastr']).config(function (toastrConfig) {
+    var app = angular.module('schoolKitAppLogin', ['ngRoute', 'toastr']).config(function (toastrConfig) {
         angular.extend(toastrConfig, {
             autoDismiss: true,
             containerId: 'toast-container',
@@ -11,7 +11,7 @@
             target: 'body'
         });
     });;
-    var baseURL = "http://localhost/school_kit/index.php/";
+    var baseURL = "http://18.220.128.189/school_kit/index.php/";
 
     app.controller('loginCtrl', function ($scope, $http, $rootScope, toastr) {
 
@@ -51,7 +51,7 @@
                 dataType: 'JSON',
                 data: data,
                 headers: {
-                    "Content-type": "application/json"
+                    "Content-type": undefined
                 }
             }).then(function (response) {
                 if (response.data.status == true) {
@@ -69,7 +69,11 @@
         //end of 1; 
 
         var showError = function (data) {
-            toastr.error(data.msg, 'Oops !');
+            if (data.errors.length) {
+                toastr.error('Error', data.errors);
+            } else {
+                toastr.error('Error', data.msg.replace(/_/g, " "));
+            }
 
         }
 
@@ -79,7 +83,6 @@
         }
 
         $scope.signup = function () {
-            console.log($scope);
             var fd = new FormData();
             fd.append('name', $scope.school_name);
             fd.append('email', $scope.school_email);
@@ -102,5 +105,50 @@
 
             commonSetHTTPService('Post', fd, 'school/signup', function (result) {});
         }
+
+        $scope.login = function () {
+            var fd = new FormData();
+            fd.append('email', $scope.email);
+            fd.append('password', $scope.password);
+            commonSetHTTPService('Post', fd, 'school/login', function (result) {
+                window.location = "http://18.220.128.189/schoolkit/app/school/#!/";
+            });
+        }
+
+
+        $scope.generateOtp = function () {
+            var fd = new FormData();
+            fd.append('email', $scope.email);
+            commonGetHTTPService('Post', fd, 'school/forget_password', function (result) {
+                toastr.info("An Email or SMS ha been sent with OTP!", 'Check your Email/Mobile');
+                window.location = "http://18.220.128.189/schoolkit/app/school/login.html#changePassword";
+            });
+        }
+
+
+        $scope.checkOtp = function () {
+            var fd = new FormData();
+            fd.append('email', $scope.email);
+            fd.append('password', $scope.password);
+            fd.append('confirm_password', $scope.confirm_password);
+            fd.append('otp', $scope.otp);
+
+            commonSetHTTPService('Post', fd, 'school/check_otp', function (result) {
+                window.location = "http://18.220.128.189/schoolkit/app/school/login.html";
+            });
+        }
+
+
+        $scope.isSchoolLoggedIn = function () {
+            commonGetHTTPService('Get', '', 'school/is_school_logged_in', function (result) {
+                if (result.length) {
+                    toastr.success("Authomatic Session Retrived!", 'Congratulation');
+                    window.location = "http://18.220.128.189/schoolkit/app/school/#!/";
+                }
+            });
+        }
+
+        $scope.isSchoolLoggedIn();
+
     });
 })();

@@ -1,8 +1,8 @@
-app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location,$window) {
+app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location, $window) {
 
 
     //0:variable decalration
-    var baseURL = "http://localhost/meri_kitaab/index.php/";
+    var baseURL = "http://18.220.128.189/school_kit/index.php/";
     $scope.loginData = {}; //info of school data
     $rootScope.isLoggedIn = 0;
     //end of 0
@@ -61,30 +61,24 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
     };
     //end of 1; 
 
-
-    $rootScope.logout = function () {
-        console.log('logout function called');
-        $('#loader').show();
-        commonSetHTTPService('Post', $scope.customer, 'customer/logout', function (result) {
-            if (result) {
-                $window.location.reload();
+    $scope.isSchoolLoggedIn = function () {
+        commonGetHTTPService('Get', '', 'school/is_school_logged_in', function (result) {
+            console.log(result);
+            if (result.length) {
+            } else {
+                toastr.error("Please Login First !", 'Error');
+                window.location = "http://18.220.128.189/schoolkit/app/school/login.html";
             }
         });
+    }
 
-    } 
+    $scope.isSchoolLoggedIn();
 
-
-    commonGetHTTPService('Get', '', 'customer/is_logged_in', function (result) {
-        $('#loader').show();
-        console.log('app ctrl is logged n called');
-        if (result['customer_name']) {
-            $scope.isLoggedIn = 1;
-            $scope.customer_name = result['customer_name'];
-            console.log('logged in status: ' + $scope.isLoggedIn);
-
-
-        }
-    });
+    $scope.logout = function () {
+        commonSetHTTPService('Post', '', 'school/school_logout', function (result) {
+            window.location = "http://18.220.128.189/schoolkit/app/school/login.html";
+        });
+    }
 
 
 

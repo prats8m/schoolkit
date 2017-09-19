@@ -11,7 +11,7 @@
             target: 'body'
         });
     });;
-    var baseURL = "http://localhost/schoolkit-UI/app";
+    var baseURL = "http://18.220.128.189/schoolkit-UI/app";
     
     app.controller('loginCtrl', function ($scope, $http, $location, $rootScope, toastr) {
 
