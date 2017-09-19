@@ -11,7 +11,7 @@
             target: 'body'
         });
     });;
-    var baseURL = "http://18.220.128.189/school_kit/index.php/";
+    var baseURL = "http://www.schoolkitapp.com/school_kit/index.php/";
 
     app.controller('loginCtrl', function ($scope, $http, $rootScope, toastr) {
 
@@ -111,7 +111,7 @@
             fd.append('email', $scope.email);
             fd.append('password', $scope.password);
             commonSetHTTPService('Post', fd, 'school/login', function (result) {
-                window.location = "http://18.220.128.189/schoolkit/app/school/#!/";
+                window.location = "http://www.schoolkitapp.com/schoolkit/app/school/#!/";
             });
         }
 
@@ -121,7 +121,7 @@
             fd.append('email', $scope.email);
             commonGetHTTPService('Post', fd, 'school/forget_password', function (result) {
                 toastr.info("An Email or SMS ha been sent with OTP!", 'Check your Email/Mobile');
-                window.location = "http://18.220.128.189/schoolkit/app/school/login.html#changePassword";
+                window.location = "http://www.schoolkitapp.com/schoolkit/app/school/login.html#changePassword";
             });
         }
 
@@ -134,7 +134,7 @@
             fd.append('otp', $scope.otp);
 
             commonSetHTTPService('Post', fd, 'school/check_otp', function (result) {
-                window.location = "http://18.220.128.189/schoolkit/app/school/login.html";
+                window.location = "http://www.schoolkitapp.com/schoolkit/app/school/login.html";
             });
         }
 
@@ -143,7 +143,7 @@
             commonGetHTTPService('Get', '', 'school/is_school_logged_in', function (result) {
                 if (result.length) {
                     toastr.success("Authomatic Session Retrived!", 'Congratulation');
-                    window.location = "http://18.220.128.189/schoolkit/app/school/#!/";
+                    window.location = "http://www.schoolkitapp.com/schoolkit/app/school/#!/";
                 }
             });
         }
