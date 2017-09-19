@@ -67,7 +67,7 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
             if (result.length) {
             } else {
                 toastr.error("Please Login First !", 'Error');
-                window.location = "http://www.schoolkitapp.com/schoolkit/app/school/login.html";
+                window.location = "http://www.schoolkitapp.com/app/school/login.html";
             }
         });
     }
@@ -76,7 +76,7 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
 
     $scope.logout = function () {
         commonSetHTTPService('Post', '', 'school/school_logout', function (result) {
-            window.location = "http://www.schoolkitapp.com/schoolkit/app/school/login.html";
+            window.location = "http://www.schoolkitapp.com/app/school/login.html";
         });
     }
 
