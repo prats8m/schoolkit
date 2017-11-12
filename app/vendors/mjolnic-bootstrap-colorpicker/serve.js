@@ -1,6 +1,6 @@
 /*
  Script for serving index.html and other static content with Node.
- Run it using `node serve` from your terminal and navigate to http://localhost:5000
+ Run it using `node serve` from your terminal and navigate to http://www.merikitab.in:5000
  in order to test your changes in the browser.
  */
 

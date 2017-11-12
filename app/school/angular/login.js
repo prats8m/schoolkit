@@ -11,9 +11,24 @@
             target: 'body'
         });
     });;
-    var baseURL = "http://www.schoolkitapp.com/school_kit/index.php/";
+    var baseURL = "http://www.merikitab.in/school_kit/index.php/";
+
+
+
+
 
     app.controller('loginCtrl', function ($scope, $http, $rootScope, toastr) {
+ 
+
+
+
+
+         //Variabels
+        $scope.school_country = 'India';
+        $scope.school_state = 'Uttar Pradesh';
+
+
+
 
         //1:command set ajax calling function
         var commonSetHTTPService = function (method, data, url, callback) {
@@ -38,7 +53,7 @@
                 $('#loader').hide();
             }, function (error) {
                 $('#loader').hide();
-                toastr.error(error.data.message, 'Error');
+                toastr.error(error, 'Error');
             });
         };
         //end of 1; 
@@ -58,7 +73,7 @@
                     callback(response.data.data);
                 }
                 if (response.data.status == false) {
-                    toastr.error(response.data.message, 'Error');
+                  showError(response.data);
                 }
                 $('#loader').hide();
             }, function (error) {
@@ -102,9 +117,9 @@
             fd.append('nos', $scope.number_of_student);
             fd.append('nom', $scope.number_of_months);
             fd.append('amount', $scope.amount);
-
+            console.log($scope);
             commonSetHTTPService('Post', fd, 'school/signup', function (result) {
-                window.location = "http://www.schoolkitapp.com/app/school/login.html#signin";
+                window.location = "http://www.merikitab.in/schoolkit/app/school/login.html#signin";
             });
         }
 
@@ -113,7 +128,7 @@
             fd.append('email', $scope.email);
             fd.append('password', $scope.password);
             commonSetHTTPService('Post', fd, 'school/login', function (result) {
-                window.location = "http://www.schoolkitapp.com/app/school/#!/";
+                window.location = "http://www.merikitab.in/schoolkit/app/school/#!/";
             });
         }
 
@@ -126,7 +141,7 @@
                 $scope.password = "";
                 $scope.confirm_password = "";
                 toastr.info("An Email or SMS ha been sent with OTP!", 'Check your Email/Mobile');
-                window.location = "http://www.schoolkitapp.com/app/school/login.html#changePassword";
+                window.location = "http://www.merikitab.in/schoolkit/app/school/login.html#changePassword";
             });
         }
 
@@ -139,7 +154,7 @@
             fd.append('otp', $scope.otp);
 
             commonSetHTTPService('Post', fd, 'school/check_otp', function (result) {
-                window.location = "http://www.schoolkitapp.com/app/school/login.html";
+                window.location = "http://www.merikitab.in/schoolkit/app/school/login.html";
             });
         }
 
@@ -148,7 +163,7 @@
             commonGetHTTPService('Get', '', 'school/is_school_logged_in', function (result) {
                 if (result.length) {
                     toastr.success("Authomatic Session Retrived!", 'Congratulation');
-                    window.location = "http://www.schoolkitapp.com/app/school/#!/";
+                    window.location = "http://www.merikitab.in/schoolkit/app/school/#!/";
                 }
             });
         }
@@ -159,5 +174,8 @@
         $scope.calculateAmount = function(){
             $scope.totalAmount = $scope.amount*$scope.number_of_student*$scope.number_of_months;
         }
+
+
+
     });
 })();

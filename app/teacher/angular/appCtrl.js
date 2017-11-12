@@ -1,10 +1,12 @@
-app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location,$window) {
+app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location, $window) {
 
 
     //0:variable decalration
-    var baseURL = "http://localhost/meri_kitaab/index.php/";
+    var baseURL = "http://www.merikitab.in/school_kit/index.php/";
     $scope.loginData = {}; //info of school data
     $rootScope.isLoggedIn = 0;
+    $rootScope.classes = [];
+    $rootScope.selectedClass = 0;
     //end of 0
 
     //1:command set ajax calling function
@@ -61,30 +63,33 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
     };
     //end of 1; 
 
-
-    $rootScope.logout = function () {
-        console.log('logout function called');
-        $('#loader').show();
-        commonSetHTTPService('Post', $scope.customer, 'customer/logout', function (result) {
-            if (result) {
-                $window.location.reload();
+    $scope.isTeacherLoggedIn = function () {
+        commonGetHTTPService('Get', '', 'teacher/is_teacher_logged_in', function (result) {
+            console.log(result);
+            if (result.length) {
+                $rootScope.classes = result;
+                $rootScope.selectedClass = result[0];
+                console.log('selected_class ' + $rootScope.selectedClass);
+            } else {
+                toastr.error("Please Login First !", 'Error');
+                window.location = "http://www.merikitab.in/schoolkit/app/teacher/login.html";
             }
         });
+    }
 
-    } 
+    $scope.isTeacherLoggedIn();
 
+    $scope.logout = function () {
+        commonSetHTTPService('Post', '', 'teacher/teacher_logout', function (result) {
+            window.location = "http://www.merikitab.in/schoolkit/app/teacher/login.html";
+        });
+    }
 
-    commonGetHTTPService('Get', '', 'customer/is_logged_in', function (result) {
-        $('#loader').show();
-        console.log('app ctrl is logged n called');
-        if (result['customer_name']) {
-            $scope.isLoggedIn = 1;
-            $scope.customer_name = result['customer_name'];
-            console.log('logged in status: ' + $scope.isLoggedIn);
-
-
-        }
-    });
+    $scope.callFunctions = function (classData) {
+        $rootScope.selectedClass = classData;
+        console.log('selected_class ' + JSON.stringify($rootScope.selectedClass));
+        $rootScope.listStudent();
+    }
 
 
 

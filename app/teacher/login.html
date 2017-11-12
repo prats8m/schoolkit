@@ -1,96 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>School Kit | </title>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+  <title>School Kit | Teacher</title>
+  <link rel="stylesheet" href="../css/angular-toastr.css" />
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
-  </head>
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
 
-  <body class="login" style="background-image:url('images/background.jpg'); background-size: 100% ">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
+<body ng-app="schoolKitApp" ng-controller="loginCtrl" class="login" style="background-image:url('images/background.jpg'); background-size: 100% ">
+  <div>
+    <a class="hiddenanchor" id="signin"></a>
+    <a class="hiddenanchor" id="forgetPassword"></a>
+   <a class="hiddenanchor" id="changePassword"></a>
 
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form>
-              <h1> Teacher Login Form</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
-                <a class="reset_pass" href="#">Lost your password?</a>
-              </div>
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form>
+            <h1> Teacher Login Form</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Username" ng-model="email" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" ng-model="password" />
+            </div>
+            <div>
+              <a ng-click="login()" class="btn btn-default submit">Log in</a>
+              <a class="reset_pass" href="#forgetPassword">Lost your password?</a>
+            </div>
 
+            <div class="clearfix"></div>
+
+            <div class="separator">
               <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
 
-              <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-                <img src="images/bg.png">
-
-                </div>
-            </form>
-          </section>
-        </div>
-
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-                  <img src="images/bg.png">
-                </div>
-            </form>
-          </section>
-        </div>
+            </div>
+          </form>
+        </section>
       </div>
-    </div>
-  </body>
+
+<div class="login_wrapper">
+      <div id="#forgetPassword" class="animate form forget_form">
+        <section class="login_content">
+          <form>
+            <h1>Forget Password </h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" />
+            </div>
+            <div>
+              <a ng-click="generateOtp()" class="btn btn-default submit">Generate OTP</a>
+              <a class="reset_pass" href="#signin">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+            
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+
+            </div>
+          </form>
+        </section>
+      </div>
+      </div>
+
+<div class="login_wrapper">
+      <div id="#changePassword" class="animate form change_form">
+        <section class="login_content">
+          <form>
+            <h1>Change Password</h1>
+            <div>
+              <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" ng-disabled="true" />
+            </div>
+            <div>
+              <input type="text" class="form-control" placeholder="OTP" ng-model="otp" /><a class="resend_otp" ng-click="generateOtp()" >Click Here</a> to resend OTP
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" ng-model="password" />
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Confirm Password" ng-model="confirm_password" />
+            </div>
+            <div>
+              <a ng-click="checkOtp()" class="btn btn-default submit">Change Password</a>
+              Go Back to <a class="reset_pass" href="#signin">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+         
+              <div class="clearfix"></div>
+              <br />
+              <img src="images/bg.png">
+
+            </div>
+          </form>
+        </section>
+      </div>
+      </div>
+
+
+
+     
+</body>
+
 </html>
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!--validator js-->
+<script src="../vendors/validator/validator.js"></script>
+<!-- jQuery Smart Wizard -->
+<script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js"></script>
+
+<!--Angular files-->
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular/angular-route.min.js"></script>
+<!--<script type="text/javascript" src="angular/app.js"></script>-->
+<script type="text/javascript" src="angular/login.js"></script>
+<script type="text/javascript" src="../js/angular-toastr.js"></script>

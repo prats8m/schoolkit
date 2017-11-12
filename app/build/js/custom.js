@@ -2506,10 +2506,13 @@ if (typeof NProgress != 'undefined') {
 		/* DATA TABLES */
 			
 			function init_DataTables() {
-				
+	
 				console.log('run_datatables');
 				
-				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+				if( typeof ($.fn.DataTable) === 'undefined'){ 
+					console.log('datatable not found');
+				
+					return; }
 				console.log('init_DataTables');
 				
 				var handleDataTableButtons = function() {

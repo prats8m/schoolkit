@@ -11,7 +11,7 @@
             target: 'body'
         });
     });;
-    var baseURL = "http://www.schoolkitapp.com/-UI/app";
+    var baseURL = "http://www.merikitab.in/-UI/app";
     
     app.controller('loginCtrl', function ($scope, $http, $location, $rootScope, toastr) {
 

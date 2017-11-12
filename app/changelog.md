@@ -1,4 +1,4 @@
-# Gentelella Changelog
+# School Kit App Changelog
 
 ### Note
 

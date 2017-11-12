@@ -2,7 +2,7 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
 
 
     //0:variable decalration
-    var baseURL = "http://www.schoolkitapp.com/school_kit/index.php/";
+    var baseURL = "http://www.merikitab.in/school_kit/index.php/";
     $scope.loginData = {}; //info of school data
     $rootScope.isLoggedIn = 0;
     //end of 0
@@ -65,9 +65,10 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
         commonGetHTTPService('Get', '', 'school/is_school_logged_in', function (result) {
             console.log(result);
             if (result.length) {
+                $scope.schoolName = result;
             } else {
                 toastr.error("Please Login First !", 'Error');
-                window.location = "http://www.schoolkitapp.com/app/school/login.html";
+                window.location = "http://www.merikitab.in/schoolkit/app/school/login.html";
             }
         });
     }
@@ -76,7 +77,7 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
 
     $scope.logout = function () {
         commonSetHTTPService('Post', '', 'school/school_logout', function (result) {
-            window.location = "http://www.schoolkitapp.com/app/school/login.html";
+            window.location = "http://www.merikitab.in/schoolkit/app/school/login.html";
         });
     }
 

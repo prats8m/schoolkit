@@ -8,8 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>School Kit | </title>
-  <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+  <title>School Kit | School</title>
+  <link rel="stylesheet" href="../css/angular-toastr.css" />
   <!-- Bootstrap -->
   <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -101,7 +101,7 @@
               <input type="text" class="form-control" placeholder="Email/Mobile" ng-model="email" ng-disabled="true" />
             </div>
             <div>
-              <input type="text" class="form-control" placeholder="OTP" ng-model="otp" />
+              <input type="text" class="form-control" placeholder="OTP" ng-model="otp" /><a class="resend_otp" ng-click="generateOtp()" >Click Here</a> to resend OTP
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" ng-model="password" />
@@ -135,7 +135,6 @@
 
       <div id="register" class="animate form registration_form">
         <section class="login_content">
-          <form>
             <h2>Register | School Kit</h2>
             <!-- Tabs -->
             <div id="wizard_verticle" class="form_wizard wizard_verticle">
@@ -161,10 +160,10 @@
                 <h2 class="StepTitle">Step 1 | General Information</h2>
                 <form class="form-horizontal form-label-left">
                   <div>
-                    <input type="text" class="form-control" placeholder="Name" ng-model="school_name" />
+                    <input type="text" class="form-control" placeholder=" School Name" ng-model="school_name" />
                   </div>
                   <div>
-                    <input type="text" class="form-control" placeholder="Email" ng-model="school_email" />
+                    <input type="email" id="email" name="email" required="required" class="form-control item" placeholder="Login Email" ng-model="school_email"  />
                   </div>
                   <div>
                     <input type="number" class="form-control" placeholder="Mobile 1" ng-model="school_mobile1" />
@@ -185,16 +184,22 @@
                 <h2 class="StepTitle">Step 2 | Location Information</h2>
                 <div>
                   <input type="text" class="form-control" placeholder="Address" ng-model="school_address" />
-                </div>
+                </div><br>
                 <div>
                   <input type="text" class="form-control" placeholder="Landmark" ng-model="school_landmark" />
-                </div>
+                </div><br>
                 <div>
                   <input type="text" class="form-control" placeholder="City" ng-model="school_city" />
-                </div>
+                </div><br>
                 <div>
-                  <input type="text" class="form-control" placeholder="State" ng-model="school_state" />
-                </div>
+                  <input type="text" class="form-control" placeholder="State" value= "Delhi NCR" ng-model="school_state" />
+                    <!--<select id="heard" class="form-control"  ng-model="school_state" required>
+                            <option value="">Choose..</option>
+                            <option value="press">Uttar Pradesh</option>
+                            <option value="net">Delhi</option>
+                            <option value="mouth">Other</option>
+                          </select>-->
+                </div><br>
                 <div>
                   <input type="number" class="form-control" placeholder="Pincode" ng-model="school_pincode" />
                 </div>
@@ -207,13 +212,13 @@
                 <h2 class="StepTitle">Step 3 Content</h2>
                 <div>
                   <input type="password" class="form-control" placeholder="Secrete Key" ng-model="school_secret_key" />
-                </div>
+                </div><br>
                 <div>
-                  <input type="text" class="form-control" placeholder="Referal Admin ID" ng-model="school_referal_admin_id" />
-                </div>
+                  <input type="text" class="form-control" placeholder="School Kit Executive Name" ng-model="school_referal_admin_id" />
+                </div><br>
                 <div>
                   <input type="number" class="form-control" placeholder="Number of student" ng-model="number_of_student" />
-                </div>
+                </div><br>
                 <br>
                 <div>
                   <input type="number" class="form-control" placeholder="Number Of months" ng-model="number_of_months" />
@@ -243,7 +248,6 @@
               <br />
               <img src="images/bg.png">
             </div>
-          </form>
         </section>
       </div>
     </div>
@@ -259,6 +263,8 @@
 <script src="../vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
 <script src="../vendors/nprogress/nprogress.js"></script>
+<!--validator js-->
+<script src="../vendors/validator/validator.js"></script>
 <!-- jQuery Smart Wizard -->
 <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
 <!-- Custom Theme Scripts -->
@@ -269,4 +275,4 @@
 <script type="text/javascript" src="angular/angular-route.min.js"></script>
 <!--<script type="text/javascript" src="angular/app.js"></script>-->
 <script type="text/javascript" src="angular/login.js"></script>
-<script type="text/javascript" src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script type="text/javascript" src="../js/angular-toastr.js"></script>

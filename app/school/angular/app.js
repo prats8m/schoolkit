@@ -30,15 +30,19 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
             templateUrl: "./views/index.html",
-            // controller: "schoolCtrl"
+            controller: "dashCtrl"
         })
         .when("/teacher", {
             templateUrl: "./views/teacher.html",
-            // controller: "schoolCtrl"
+            controller: "teacherCtrl"
         })
          .when("/student", {
             templateUrl: "./views/student.html",
-            // controller: "schoolCtrl"
+            controller: "studentCtrl"
+        })
+        .when("/class", {
+            templateUrl: "./views/class.html",
+            controller: "classCtrl"
         })
          .when("/result", {
             templateUrl: "./views/result.html",
@@ -55,6 +59,10 @@ app.config(function ($routeProvider) {
          .when("/login", {
             templateUrl: "./views/login.html",
             // controller: "schoolCtrl"
+        })
+        .when("/holidays", {
+            templateUrl: "./views/holiday.html",
+            controller: "holidayCtrl"
         })
         .otherwise({
             templateUrl: "./views/404.html",

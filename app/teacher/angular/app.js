@@ -12,7 +12,7 @@
 
 var baseUrl = 'http://127.0.0.1/';
 console.log(baseUrl);
-var app = angular.module("schoolKitApp", ['ngRoute','toastr']).config(function (toastrConfig) {
+var app = angular.module("schoolKitApp", ['ngRoute','toastr','ui.grid']).config(function (toastrConfig) {
   angular.extend(toastrConfig, {
     autoDismiss: true,
     containerId: 'toast-container',
@@ -28,16 +28,28 @@ var app = angular.module("schoolKitApp", ['ngRoute','toastr']).config(function (
 
 app.config(function($routeProvider) {
     $routeProvider
-    .when("/school", {
-        templateUrl : "./views/school/index.html",
-        controller : "schoolCtrl"
+    .when("/", {
+        templateUrl : "./views/index.html",
+        controller : "dashCtrl"
     })
     .when("/student", {
-        templateUrl : "./views/student/index.html",
+        templateUrl : "./views/students.html",
         controller : "studentCtrl"
     })
-    .when("/teacher", {
-        templateUrl : "./views/teacher/index.html",
+    .when("/attendence", {
+        templateUrl : "./views/attendence.html",
+        controller : "attendenceCtrl"
+    })
+    .when("/fee", {
+        templateUrl : "./views/fee.html",
+        controller : "teacherCtrl"
+    })
+    .when("/result", {
+        templateUrl : "./views/result.html",
+        controller : "teacherCtrl"
+    })
+    .when("/inbox", {
+        templateUrl : "./views/inbox.html",
         controller : "teacherCtrl"
     })
     .otherwise({

@@ -8,7 +8,6 @@
 */
 
 $(function ($) {
-
     /*-----------------------------------------------------------------*/
     /* ANIMATE SLIDER CAPTION
     /* Demo Scripts for Bootstrap Carousel and Animate.css article on SitePoint by Maria Antonietta Perna
