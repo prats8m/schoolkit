@@ -1,4 +1,4 @@
-app.controller('holidayCtrl', function ($scope, $http, $rootScope, toastr, $location, $window) {
+app.controller('holidayCtrl', function ($scope, $http, $rootScope, toastr, $location, $window, DTOptionsBuilder, DTColumnBuilder) {
 
 
     //0:variable decalration
@@ -7,6 +7,8 @@ app.controller('holidayCtrl', function ($scope, $http, $rootScope, toastr, $loca
     $rootScope.isLoggedIn = 0;
     $scope.holiday = {};
     //end of 0
+    $scope.vm = {};
+    $scope.vm.dtOptions = DTOptionsBuilder.newOptions();
 
     console.log('holiday ctrl loaded');
 

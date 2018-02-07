@@ -1,0 +1,176 @@
+<link href="../build/css/custom.min.css" rel="stylesheet">
+<script src="../build/js/custom.min.js">
+</script>
+<style>
+    .marks {
+        display: block;
+        width: 50%;
+        max-width: 50%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+    }
+
+    .date-sm {
+        width: 20%;
+    }
+</style>
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="row">
+        <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Create New Exam<small></small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <i class="fa fa-plus" data-toggle="modal" data-target="#addExamModal"></i>&nbsp&nbsp
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" ng-repeat="exam in examData">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{exam.exam_name}}<small></small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <i class="fa fa-eye" ng-click="viewExam(exam.exam_id)" data-toggle="modal" data-target="#viewExamModal"></i>&nbsp&nbsp
+                        </li>
+                        <i class="fa fa-trash" ng-click="deleteExam(exam.exam_id)"></i>&nbsp&nbsp
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="viewExamModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                <h4 class="modal-title" id="myModalLabel2">{{singleExamData.exam.exam_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <form id="demo-form" data-parsley-validate ng-submit="editExam(singleExamData.exam.exam_id)">
+                    <label for="examname">Exam Name* :</label>
+                    <input type="text" id="name" class="form-control" name="name" ng-model="singleExamData.exam.exam_name" ng-required="true"
+                        minlength="3" />
+                    <br>
+                    <label for="examname">Start Date* :</label>
+                    <input type="date" class="form-control" ng-model="singleExamData.exam.exam_start_date" ng-required="true" />
+                    <br>
+                    <label for="examname">End Date* :</label>
+                    <input type="date" class="form-control" ng-model="singleExamData.exam.exam_end_date" ng-required="true" />
+                    <br>
+                    <label for="examname">Result Date* :</label>
+                    <input type="date" class="form-control" ng-model="singleExamData.exam.exam_result_date" ng-required="true" />
+                    <br>
+                    <div ng-repeat="idx in  ">
+                    </div>
+                    <fieldset data-ng-repeat="subject in subjects track by $index">
+                        <input type="text" class="form-control" ng-model="subject[$index]['es_subject']" name="" placeholder="Subject">
+                        <br>
+                        <label>Marks Type *:</label>
+                        <select ng-model="subject[$index]['es_marks_type']" class="form-control">
+                            <option value="Number">Number</option>
+                            <option value="Grade">Grade</option>
+                          </select>
+                        <br>
+                        <input type="text" class="form-control" ng-model="subject[$index]['es_max_marks']" name="" placeholder="Max Marks">
+                        <label for="examname">Start Date* :</label>
+                        <input type="date" class="form-control" ng-model="subject[$index]['es_date']" />
+                        <br>
+                        <button class="remove" ng-show="$last" ng-click="removeSubject()">Remove</button>
+                        <br><br>
+                    </fieldset>
+                    <span ng-click="addSubject()" tabindex="0"><i class="fa fa-plus" aria-hidden="true"></i>  Subject</span>
+                    <br><br>
+                    <input type="submit" class="btn btn-primary" value="Add Exam" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="addExamModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                <h4 class="modal-title" id="myModalLabel2">{{exam.exam_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <form id="demo-form" data-parsley-validate ng-submit="addExam()">
+                    <label for="examname">Exam Name* :</label>
+                    <input type="text" id="name" class="form-control" name="name" ng-model="exam.name" ng-required="true"
+                        minlength="3" />
+                    <br>
+                    <label for="examname">Start Date* :</label>
+                    <input type="date" class="form-control" ng-model="exam.start_date" ng-required="true" />
+                    <br>
+                    <label for="examname">End Date* :</label>
+                    <input type="date" class="form-control" ng-model="exam.end_date" ng-required="true" />
+                    <br>
+                    <label for="examname">Result Date* :</label>
+                    <input type="date" class="form-control" ng-model="exam.result_date" ng-required="true" />
+                    <br>
+                    <div ng-repeat="idx in  ">
+                    </div>
+                    <fieldset data-ng-repeat="subject in subjects track by $index">
+                        <input type="text" class="form-control" ng-model="subject[$index]['name']" name="" placeholder="Subject">
+                        <br>
+                        <label>Marks Type *:</label>
+                        <select ng-model="subject[$index]['marks_type']" class="form-control">
+                            <option value="Number">Number</option>
+                            <option value="Grade">Grade</option>
+                          </select>
+                        <br>
+                        <input type="text" class="form-control" ng-model="subject[$index]['max_marks']" name="" placeholder="Max Marks">
+                        <label for="examname">Start Date* :</label>
+                        <input type="date" class="form-control" ng-model="subject[$index]['date']" />
+                        <br>
+                        <button class="remove" ng-show="$last" ng-click="removeSubject()">Remove</button>
+                        <br><br>
+                    </fieldset>
+                    <span ng-click="addSubject()" tabindex="0"><i class="fa fa-plus" aria-hidden="true"></i>  Subject</span>
+                    <br><br>
+                    <input type="submit" class="btn btn-primary" value="Add Exam" />
+                </form>
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- /page content -->

@@ -1,4 +1,4 @@
-app.controller('classCtrl', function ($scope, $http, $rootScope, toastr, $location, $window) {
+app.controller('classCtrl', function ($scope, $http, $rootScope, toastr, $location, $window, DTOptionsBuilder, DTColumnBuilder) {
 
 
     //0:variable decalration
@@ -6,6 +6,8 @@ app.controller('classCtrl', function ($scope, $http, $rootScope, toastr, $locati
     $scope.loginData = {}; //info of school data
     $rootScope.isLoggedIn = 0;
     $scope.class = {};
+    $scope.vm = {};
+    $scope.vm.dtOptions = DTOptionsBuilder.newOptions();
     //end of 0
 
     console.log('class ctrl loaded');

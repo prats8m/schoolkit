@@ -1,4 +1,4 @@
-app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $location, $window) {
+app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $location, $window, DTOptionsBuilder, DTColumnBuilder) {
 
 
     //0:variable decalration
@@ -6,6 +6,9 @@ app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $loca
     $scope.loginData = {}; //info of school data
     $rootScope.isLoggedIn = 0;
     $scope.student = {};
+    $scope.vm = {};
+
+    $scope.vm.dtOptions = DTOptionsBuilder.newOptions();
     //end of 0
 
 
@@ -110,6 +113,7 @@ app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $loca
     $scope.isTeacherLoggedIn();
     $scope.addStudent = function () {
         var fd = new FormData();
+        fd.append('roll_no', $scope.student.roll_no);
         fd.append('name', $scope.student.name);
         fd.append('dob', $scope.student.dob);
         fd.append('email', $scope.student.email);
@@ -123,7 +127,7 @@ app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $loca
             $scope.student = {};
             $scope.initialseVariables();
             $rootScope.listStudent();
-          
+
         });
     }
 
@@ -153,6 +157,7 @@ app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $loca
 
     $scope.editStudent = function (studentId) {
         var fd = new FormData();
+        fd.append('roll_no', $scope.student.roll_no);
         fd.append('student_id', studentId);
         fd.append('name', $scope.student.name);
         fd.append('dob', $scope.student.dob);
@@ -175,15 +180,25 @@ app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $loca
         });
     }
 
-  $scope.deleteStudent = function(studentId){
+    $scope.deleteStudent = function (studentId) {
         var fd = new FormData();
         fd.append('student_id', studentId);
-         commonSetHTTPService('Post', fd, 'teacher/delete_student', function (result) {
+        commonSetHTTPService('Post', fd, 'teacher/delete_student', function (result) {
             $scope.student = {};
             $scope.initialseVariables();
             $scope.listStudent();
         });
     }
+
+
+    $rootScope.listExam = function () {
+        var classId = $rootScope.selectedClass.class_id;
+        commonGetHTTPService('Get', '', 'exam/list_exam_name/' + classId, function (result) {
+            $scope.examData = result;
+        });
+    }
+
+
 
 
 });

@@ -17,6 +17,9 @@
             </div>
             <div class="x_content" style="display: none">
                 <form id="demo-form" data-parsley-validate ng-submit="addStudent()">
+                    <label for="fullname">Roll No * :</label>
+                    <input type="text" id="rollno" class="form-control" name="rollno" ng-model="student.roll_no" required />
+
                     <label for="fullname">Full Name * :</label>
                     <input type="text" id="fullname" class="form-control" name="fullname" ng-model="student.name" required />
 
@@ -68,173 +71,178 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <div ui-grid="{ data: listStudentData }" class="myGrid"></div>
-            <!--<div class="x_content" style="display: block">
-                <table  class="table table-striped table-bordered">
+            <div class="container">
+                <table class="table table-striped table-bordered" datatable="ng" dt-options="vm.dtOptions">
                     <thead>
                         <tr>
-                            <th>Roll No.</th>
+                            <th>Roll No</th>
                             <th>Name</th>
-                            <th>Fathers Name</th>
+                            <th>Father Name</th>
                             <th>Mobile</th>
-                            <th>Email</th>
                             <th>Address</th>
+                            <th>Email</th>
                             <th>Date of Birth</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-
-
-                    <tbody>
-                        <tr ng-repeat="data in listStudentData">
-                            <td>1</td>
-                            <td>{{data.name}}</td>
-                            <td>{{data.father_name}}</td>
-                            <td>{{data.mobile}}</td>
-                            <td>{{data.email}}</td>
-                            <td>{{data.address}}</td>
-                            <td>{{data.dob}}</td>
-                            <td>
-                                <i class="fa fa-eye " ng-click="viewStudent(data.id)" data-toggle="modal" data-target="#viewStudentModal"></i>&nbsp&nbsp
-                                <i class="fa fa-pencil" ng-click="viewStudent(data.id)" data-toggle="modal" data-target="#editStudentModal"></i>&nbsp&nbsp
-                                <i class="fa fa-trash" ng-click="deleteStudent(data.id)"></i>&nbsp&nbsp
-                                <i class="fa fa-envelope" data-toggle="modal" data-target=".bs-example-modal-sm"></i>&nbsp&nbsp
-                            </td>
-                        </tr>
-                      </tbody>
+                    <tr ng-repeat="data in listStudentData">
+                        <td>{{data.roll_no}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.father_name}}</td>
+                        <td>{{data.mobile}}</td>
+                        <td>{{data.address}}</td>
+                        <td>{{data.email}}</td>
+                        <td>{{data.dob}}</td>
+                        <td>
+                            <i class="fa fa-eye" ng-click="viewStudent(data.id)" data-toggle="modal" data-target="#viewStudentModal"></i>&nbsp&nbsp
+                            <i class="fa fa-pencil" ng-click="viewStudent(data.id)" data-toggle="modal" data-target="#editStudentModal"></i>&nbsp&nbsp
+                            <i class="fa fa-trash" ng-click="deleteStudent(data.id)"></i>&nbsp&nbsp
+                            <i class="fa fa-envelope" data-toggle="modal" data-target=".bs-example-modal-sm"></i>&nbsp&nbsp
+                        </td>
+                    </tr>
                 </table>
-            </div>-->
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                          </button>
-                <h4 class="modal-title" id="myModalLabel2">Send Message to Hemant Pathak</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3" placeholder='Enter Your Message'></textarea>
+                <div class="container">
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send Message</button>
-            </div>
-
         </div>
-    </div>
-</div>
 
 
-<!-- Modal -->
-<div id="editStudentModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-
-                <form id="demo-form" data-parsley-validate ng-submit="editStudent(student.id)">
-                 <label for="fullname">Full Name * :</label>
-                    <input type="text" id="fullname" class="form-control" name="fullname" ng-model="student.name" required />
-
-                    <label for="fullname">Fathers Name * :</label>
-                    <input type="text" id="fathername" class="form-control" name="fathername" ng-model="student.father_name" required />
-
-                    <label for="fullname">Address * :</label>
-                    <input type="text" id="address" class="form-control" name="address" ng-model="student.address" required />
-
-                    <label for="fullname">Date Of Birth* :</label>
-                    <input type="text" class="form-control" ng-model="student.dob" data-inputmask="'mask': '99/99/9999'">
-
-                    <label for="fullname">Mobile Number* : </label>
-                    <input type="text" class="form-control" ng-model="student.mobile" data-inputmask="'mask' : '(999) 999-9999'">
-
-                    <label for="email">Email * :</label>
-                    <input type="email" id="email" class="form-control" name="email" ng-model="student.email" data-parsley-trigger="change" required
-                    />
-
-                    <label for="email">Password * :</label>
-                    <input type="text" id="pass" class="form-control" name="pass" ng-model="student.password" required />
-
-                    <label>Gender *:</label>
-                    <p>
-                        <div class="radio">
-                            <input ng-model="var.gender" type="radio" name="rdoResult" ng-value="'M'"> Male
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                        <h4 class="modal-title" id="myModalLabel2">Send Message to Hemant Pathak</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" placeholder='Enter Your Message'></textarea>
                         </div>
-                        <div class="radio">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send Message</button>
+                    </div>
 
-                            <input ng-model="var.gender" type="radio" name="rdoResult" ng-value="'F'"> Female
-                        </div>
-                    </p>
-
-                    <input type="submit" class="btn btn-primary" value="Edit Student" />
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
 
-    </div>
-</div>
 
+        <!-- Modal -->
+        <div id="editStudentModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-<!-- Modal -->
-<div id="viewStudentModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{student.name}}</h4>
-            </div>
-            <div class="modal-body">
+                        <form id="demo-form" data-parsley-validate ng-submit="editStudent(student.id)">
+                            <label for="fullname">Roll No * :</label>
+                            <input type="text" id="rollno" class="form-control" name="rollno" ng-model="student.roll_no" required />
 
-                <form id="demo-form" data-parsley-validate >
-                 <label for="fullname">Full Name * :</label>
-                    <input type="text" id="fullname" class="form-control" name="fullname" ng-model="student.name" ng-disabled="true" required />
+                            <label for="fullname">Full Name * :</label>
+                            <input type="text" id="fullname" class="form-control" name="fullname" ng-model="student.name" required />
 
-                    <label for="fullname">Fathers Name * :</label>
-                    <input type="text" id="fathername" class="form-control" name="fathername" ng-model="student.father_name" ng-disabled="true" required />
+                            <label for="fullname">Fathers Name * :</label>
+                            <input type="text" id="fathername" class="form-control" name="fathername" ng-model="student.father_name" required />
 
-                    <label for="fullname">Address * :</label>
-                    <input type="text" id="address" class="form-control" name="address" ng-model="student.address" ng-disabled="true" required />
+                            <label for="fullname">Address * :</label>
+                            <input type="text" id="address" class="form-control" name="address" ng-model="student.address" required />
 
-                    <label for="fullname">Date Of Birth* :</label>
-                    <input type="text" class="form-control" ng-model="student.dob" data-inputmask="'mask': '99/99/9999'" ng-disabled="true">
+                            <label for="fullname">Date Of Birth* :</label>
+                            <input type="text" class="form-control" ng-model="student.dob" data-inputmask="'mask': '99/99/9999'">
 
-                    <label for="fullname">Mobile Number* : </label>
-                    <input type="text" class="form-control" ng-model="student.mobile" data-inputmask="'mask' : '(999) 999-9999'" ng-disabled="true">
+                            <label for="fullname">Mobile Number* : </label>
+                            <input type="text" class="form-control" ng-model="student.mobile" data-inputmask="'mask' : '(999) 999-9999'">
 
-                    <label for="email">Email * :</label>
-                    <input type="email" id="email" class="form-control" name="email" ng-model="student.email"  ng-disabled="true" data-parsley-trigger="change" required
-                    />
+                            <label for="email">Email * :</label>
+                            <input type="email" id="email" class="form-control" name="email" ng-model="student.email" data-parsley-trigger="change" required
+                            />
 
-                    <label for="email">Password * :</label>
-                    <input type="text" id="pass" class="form-control" name="pass" ng-model="student.password" ng-disabled="true" required />
+                            <label for="email">Password * :</label>
+                            <input type="text" id="pass" class="form-control" name="pass" ng-model="student.password" required />
 
-                    <label>Gender *: {{student.gender}}</label>                
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <label>Gender *:</label>
+                            <p>
+                                <div class="radio">
+                                    <input ng-model="var.gender" type="radio" name="rdoResult" ng-value="'M'"> Male
+                                </div>
+                                <div class="radio">
+
+                                    <input ng-model="var.gender" type="radio" name="rdoResult" ng-value="'F'"> Female
+                                </div>
+                            </p>
+
+                            <input type="submit" class="btn btn-primary" value="Edit Student" />
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-    </div>
-</div>
 
+        <!-- Modal -->
+        <div id="viewStudentModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{student.name}}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form id="demo-form" data-parsley-validate>
+
+                            <label for="fullname">Roll No * :</label>
+                            <input type="text" id="rollno" class="form-control" name="rollno" ng-model="student.roll_no" required ng-disabled="true"
+                            />
+
+                            <label for="fullname">Full Name * :</label>
+                            <input type="text" id="fullname" class="form-control" name="fullname" ng-model="student.name" ng-disabled="true" required
+                            />
+
+                            <label for="fullname">Fathers Name * :</label>
+                            <input type="text" id="fathername" class="form-control" name="fathername" ng-model="student.father_name" ng-disabled="true"
+                                required />
+
+                            <label for="fullname">Address * :</label>
+                            <input type="text" id="address" class="form-control" name="address" ng-model="student.address" ng-disabled="true" required
+                            />
+
+                            <label for="fullname">Date Of Birth* :</label>
+                            <input type="text" class="form-control" ng-model="student.dob" data-inputmask="'mask': '99/99/9999'" ng-disabled="true">
+
+                            <label for="fullname">Mobile Number* : </label>
+                            <input type="text" class="form-control" ng-model="student.mobile" data-inputmask="'mask' : '(999) 999-9999'" ng-disabled="true">
+
+                            <label for="email">Email * :</label>
+                            <input type="email" id="email" class="form-control" name="email" ng-model="student.email" ng-disabled="true" data-parsley-trigger="change"
+                                required />
+
+                            <label for="email">Password * :</label>
+                            <input type="text" id="pass" class="form-control" name="pass" ng-model="student.password" ng-disabled="true" required />
+
+                            <label>Gender *: {{student.gender}}</label>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>

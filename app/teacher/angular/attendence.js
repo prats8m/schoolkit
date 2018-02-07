@@ -89,7 +89,7 @@ app.controller('attendenceCtrl', function ($scope, $http, $rootScope, toastr, $l
                 if (response.data.data.length) {
                     callback(response.data.data);
                 } else {
-                    toastr.success(response.data.message, 'Success');
+                    toastr.success(response.data.msg, 'Success');
                     callback();
                 }
             }

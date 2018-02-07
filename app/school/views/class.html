@@ -54,15 +54,14 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content" style="display: block">
-                <table id="datatable-buttons" class="table table-striped table-bordered">
-                    <tr>
+                <table class="table table-striped table-bordered" datatable="ng" dt-options="vm.dtOptions">
+                    <thead>
                         <th>class Id</th>
                         <th>Name</th>
                         <th>Number Of Student</th>
                         <th>Status</th>
                         <th>Class Teacher </th>
                         <th>Action</th>
-                    </tr>
                     </thead>
 
 
@@ -73,7 +72,8 @@
                             <td>{{data.nos}}</td>
                             <td>{{data.status}}</td>
                             <td>
-                                <select class="form-control" ng-model="data2"  ng-options="teacherData.name for teacherData in listTeacherData track by teacherData.teacher_id" ng-change="mapTeacher(data.id,data2.teacher_id)">
+                                <select class="form-control" ng-model="data2" ng-options="teacherData.name for teacherData in listTeacherData track by teacherData.teacher_id"
+                                    ng-change="mapTeacher(data.id,data2.teacher_id)">
                           </select>
                                 <!--<select class="form-control" ng-change="mapTeacher(data.id,teacherData.id)" >
                                     <option ng-selected="map.id==item.id" ng-repeat="teacherData in listTeacherData" ng-value="teacherData.id">{{teacherData.name}}</option>

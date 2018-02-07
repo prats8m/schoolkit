@@ -12,7 +12,7 @@
 
 var baseUrl = 'http://127.0.0.1/';
 console.log(baseUrl);
-var app = angular.module("schoolKitApp", ['ngRoute', 'toastr']).config(function (toastrConfig) {
+var app = angular.module("schoolKitApp", ['ngRoute', , 'datatables','toastr']).config(function (toastrConfig) {
     angular.extend(toastrConfig, {
         autoDismiss: true,
         containerId: 'toast-container',
@@ -24,7 +24,7 @@ var app = angular.module("schoolKitApp", ['ngRoute', 'toastr']).config(function 
         target: 'body'
     });
 });
-
+ 
 
 app.config(function ($routeProvider) {
     $routeProvider

@@ -89,7 +89,19 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
         $rootScope.selectedClass = classData;
         console.log('selected_class ' + JSON.stringify($rootScope.selectedClass));
         $rootScope.listStudent();
+        $rootScope.listExam();
     }
+
+    $rootScope.listStudent = function () {
+        var fd = new FormData();
+        $scope.listStudentData = {};
+        fd.append('class_id', $rootScope.selectedClass.class_id);
+        commonSetHTTPService('POST', fd, 'teacher/list_student', function (result) {
+            $scope.listStudentData = result;
+            console.log($scope.listStudentData);
+        });
+    }
+
 
 
 

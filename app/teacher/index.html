@@ -14,7 +14,7 @@
   <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!--datatables style
   <link rel="stylesheet" href="../css/datatable.css">-->
-  <link rel="styleSheet" href="angular/bower_components/angular-ui-grid/ui-grid.min.css"/>
+  <link rel="styleSheet" href="angular/bower_components/angular-ui-grid/ui-grid.min.css" />
   <!-- Font Awesome -->
   <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- NProgress -->
@@ -28,10 +28,9 @@
   <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
   <!-- bootstrap-daterangepicker -->
   <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
   <!-- Custom Theme Style -->
   <link href="../build/css/custom.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="../css/datatables.bootstrap.css">
 
 </head>
 
@@ -73,12 +72,12 @@
                 </li>
                 <li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/attendence"><i class="fa fa-users"></i> Attendence</a>
                 </li>
-                <li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/result"><i class="fa fa-graduation-cap"></i> Results </a>
+                <li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/exam"><i class="fa fa-graduation-cap"></i> Exam </a>
                 </li>
-                <!--<li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/fee"><i class="fa fa-money"></i> Fee </a>
+                <li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/fee"><i class="fa fa-money"></i> Fee </a>
                 </li>
-                <li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/inbox"><i class="fa fa-envelope"></i> Inbox</a>
-                </li>-->
+                <li><a href="http://www.merikitab.in/schoolkit/app/teacher/#!/result"><i class="fa fa-envelope"></i> Result</a>
+                </li>
             </div>
           </div>
           <!-- /sidebar menu -->
@@ -197,17 +196,19 @@
   <script src="../vendors/jquery/dist/jquery.min.js"></script>
   <!--datatables-->
   <!--<script src="../js/jquery.datatable.js"></script>Angular files-->
- 
+
   <script type="text/javascript" src="angular/angular.min.js"></script>
   <!--<script src="../js/angular.datatable.js"></script>-->
   <script type="text/javascript" src="angular/angular-route.min.js"></script>
   <!--angular-datatables-->
-  <script src="angular/bower_components/angular-ui-grid/ui-grid.min.js"></script>
   <script type="text/javascript" src="angular/app.js"></script>
   <script type="text/javascript" src="angular/appCtrl.js"></script>
   <script type="text/javascript" src="angular/dash.js"></script>
   <script type="text/javascript" src="angular/student.js"></script>
+  <script type="text/javascript" src="angular/fee.js"></script>
   <script type="text/javascript" src="angular/attendence.js"></script>
+  <script type="text/javascript" src="angular/exam.js"></script>
+  <script type="text/javascript" src="angular/result.js"></script>
   <script type="text/javascript" src="../js/angular-toastr.js"></script>
 
   <!-- Bootstrap -->
@@ -249,9 +250,10 @@
   <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
   <!-- jQuery Knob -->
   <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
-
-
-
+  
+  <!--Data table-->
+  <script src="../js/angular-datatables.min.js"></script>
+  <script src="../js/jquery.dataTables.min.js"></script>
   <!-- Custom Theme Scripts -->
   <script src="../build/js/custom.min.js">
   </script>
