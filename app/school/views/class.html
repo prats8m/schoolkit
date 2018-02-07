@@ -22,6 +22,9 @@
                     <label for="fullname">Class Name* :</label>
                     <input type="text" id="name" class="form-control" name="name" ng-model="class.name" name="fullname" required />
 
+                    <label for="fullname">Fee Amount* :</label>
+                    <input type="number" id="name" class="form-control" name="name" ng-model="class.fee" name="fullname" required />
+
                     <label for="fullname">Number Of Student* :</label>
                     <input type="text" id="name" class="form-control" name="name" ng-model="class.nos" name="fullname" required />
 
@@ -106,20 +109,23 @@
                 <form id="demo-form" data-parsley-validate ng-submit="editclass(class.id)">
                     <label for="fullname">Full Name * :</label>
                     <input type="text" id="name" class="form-control" name="name" ng-model="class.name" name="fullname" required />
-                    <label for="fullname">Number Of Student* :</label>
-                    <input type="text" id="name" class="form-control" name="name" ng-model="class.nos" name="fullname" required />
+                    <label for="fullname">Fee Amount * :</label>
+                    <input type="number" id="name" class="form-control" name="name" ng-model="class.fee" name="fullname" required />
+                    <label
+                        for="fullname">Number Of Student* :</label>
+                        <input type="text" id="name" class="form-control" name="name" ng-model="class.nos" name="fullname" required />
 
-                    <label>Status *:</label>
-                    <div>
-                        <div class="radio">
-                            <input ng-model="school.status" type="radio" name="rdoResult" ng-value="'1'"> Male
-                        </div>
-                        <div class="radio">
+                        <label>Status *:</label>
+                        <div>
+                            <div class="radio">
+                                <input ng-model="school.status" type="radio" name="rdoResult" ng-value="'1'"> Active
+                            </div>
+                            <div class="radio">
 
-                            <input ng-model="school.status" type="radio" name="rdoResult" ng-value="'0'"> Female
+                                <input ng-model="school.status" type="radio" name="rdoResult" ng-value="'0'"> In Active
+                            </div>
                         </div>
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Edit class" />
+                        <input type="submit" class="btn btn-primary" value="Edit class" />
 
                 </form>
             </div>

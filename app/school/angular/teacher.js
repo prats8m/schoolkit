@@ -88,12 +88,12 @@ app.controller('teacherCtrl', function ($scope, $http, $rootScope, toastr, $loca
 
     $scope.initialseVariables = function () {
         $scope.teacher.password = $scope.generatePassword();
-        $scope.teacher.state = "Uttar Pradesh";
+        $scope.teacher.state = "Delhi";
         $scope.teacher.country = "India";
     }
 
     $scope.addTeacher = function () {
-        var fd = new FormData();
+        var fd = new FormData(); 
         console.log($scope.teacher);
         fd.append('name', $scope.teacher.name);
         fd.append('dob', $scope.teacher.dob);

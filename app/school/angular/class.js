@@ -96,6 +96,7 @@ app.controller('classCtrl', function ($scope, $http, $rootScope, toastr, $locati
         console.log($scope.class);
         fd.append('name', $scope.class.name);
         fd.append('status', $scope.school.status);
+        fd.append('fee', $scope.class.fee);
         fd.append('nos', $scope.class.nos);
         commonSetHTTPService('Post', fd, 'school/add_class', function (result) {
             $scope.class = {};
@@ -151,6 +152,7 @@ app.controller('classCtrl', function ($scope, $http, $rootScope, toastr, $locati
         fd.append('class_id', classId);
         commonGetHTTPService('Post', fd, 'school/view_class', function (result) {
             $scope.class = result;
+            $scope.class.fee = parseInt($scope.class.fee);
             // $scope.initialseVariables();
             // $scope.listclass();
         });
@@ -163,6 +165,7 @@ app.controller('classCtrl', function ($scope, $http, $rootScope, toastr, $locati
         fd.append('class_id', classId);
         fd.append('name', $scope.class.name);
         fd.append('nos', $scope.class.nos);
+        fd.append('fee', $scope.class.fee);
         fd.append('status', $scope.school.status);
         commonSetHTTPService('Post', fd, 'school/edit_class', function (result) {
             $scope.class = {};

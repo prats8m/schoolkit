@@ -1,5 +1,5 @@
 <link href="../build/css/custom.min.css" rel="stylesheet">
-<script src="../vendors/validator/validator.js"></script>
+<!--<script src="../vendors/validator/validator.js"></script>-->
 
 <script src="../build/js/custom.min.js">
 </script>
@@ -13,13 +13,13 @@
             <div class="x_title">
                 <h2>Add Teacher <small></small></h2>
                 <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content" style="display: none">
-                <form id="demo-form" data-parsley-validate ng-submit="addTeacher()">
+                <form id="demo-form2" data-parsley-validate ng-submit="addTeacher()">
                     <label for="fullname">Full Name * :</label>
                     <input type="text" id="name" class="form-control" name="name" ng-model="teacher.name" name="fullname" data-validate-length-range="6"
                         required="required" />
@@ -31,7 +31,7 @@
                     <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" ng-model="teacher.dob" placeholder="DD/MM/YYYY">
 
                     <label for="fullname">Mobile Number* : </label>
-                    <input type="text" class="form-control" ng-model="teacher.mobile" data-inputmask="'mask' : '9999-999-999'">
+                    <input type="text" class="form-control" ng-model="teacher.mobile" >
 
                     <label for="fullname">Address* :</label>
                     <input type="text" id="address" name="address" ng-model="teacher.address" class="form-control" required />
@@ -51,8 +51,7 @@
                     <input type="text" value="India" id="country" name="country" ng-model="teacher.country" class="form-control" required />
 
                     <label for="email">Password * :</label>
-                    <input type="text" id="password" class="form-control" ng-model="teacher.password" name="password" data-parsley-trigger="change"
-                        required />
+                    <input type="text" id="password" class="form-control" ng-model="teacher.password" name="password" required />
 
                     <label>Gender *:</label>
                     <p>
@@ -168,7 +167,7 @@
                     <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" ng-model="teacher.dob" placeholder="DD/MM/YYYY">
 
                     <label for="fullname">Mobile Number* : </label>
-                    <input type="text" class="form-control" ng-model="teacher.mobile" data-inputmask="'mask' : '(999) 999-9999'">
+                    <input type="text" class="form-control" ng-model="teacher.mobile" >
 
                     <label for="fullname">Address* :</label>
                     <input type="text" id="address" name="address" ng-model="teacher.address" class="form-control" required />
