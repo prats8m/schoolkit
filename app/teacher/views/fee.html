@@ -18,7 +18,7 @@
             <div class="x_content" style="display: none">
                 <form id="demo-form" data-parsley-validate ng-submit="addFee()">
                     <label for="fullname">Student Roll No. * :</label>
-                    <select class="form-control" ng-model="fee.student" ng-options="studentData.id for studentData   in listStudentData">
+                    <select class="form-control" ng-model="fee.student" ng-options="studentData.roll_no for studentData   in listStudentData">
                     </select>
                     <label for="fullname">Amount* :</label>
                     <input type="number" id="amount" class="form-control" name="amount" ng-model="fee.amount" required />

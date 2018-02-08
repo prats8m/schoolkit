@@ -75,9 +75,9 @@ app.controller('dashCtrl', function ($scope, $http, $rootScope, toastr, $locatio
     $scope.isTeacherLoggedIn = function () {
         commonGetHTTPService('Get', '', 'teacher/is_teacher_logged_in', function (result) {
             console.log(result);
-            if (result.length) {
-                $rootScope.classes = result;
-                $rootScope.selectedClass = result[0];
+            if (result['class'].length) {
+                $rootScope.classes = result['class'];
+                $rootScope.selectedClass = result['class'][0];
                 var fd = new FormData();
                 fd.append('class_id', $rootScope.selectedClass.class_id);
                 commonGetHTTPService('Post', fd, 'teacher/get_dashboard', function (result) {

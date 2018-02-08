@@ -66,9 +66,11 @@ app.controller('appCtrl', function ($scope, $http, $rootScope, toastr, $location
     $scope.isTeacherLoggedIn = function () {
         commonGetHTTPService('Get', '', 'teacher/is_teacher_logged_in', function (result) {
             console.log(result);
-            if (result.length) {
-                $rootScope.classes = result;
-                $rootScope.selectedClass = result[0];
+            if (result['class'].length) {
+                $rootScope.classes = result['class'];
+                $rootScope.selectedClass = result['class'][0];
+                $rootScope.teacherName = result['name']['name'];
+                $rootScope.schoolName = result['school_name']['school_name'];
                 console.log('selected_class ' + $rootScope.selectedClass);
             } else {
                 toastr.error("Please Login First !", 'Error');

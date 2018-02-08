@@ -76,8 +76,8 @@ app.controller('dashCtrl', function ($scope, $http, $rootScope, toastr, $locatio
     //     commonGetHTTPService('Get', '', 'student/is_student_logged_in', function (result) {
     //         console.log(result);
     //         if (result.length) {
-    //             $rootScope.classes = result;
-    //             $rootScope.selectedClass = result[0];
+    //             $rootScope.classes = result['class'];
+    //             $rootScope.selectedClass = result['class'][0];
     //             var fd = new FormData();
     //             fd.append('class_id', $rootScope.selectedClass.class_id);
     //             commonGetHTTPService('Post', fd, 'student/get_dashboard', function (result) {

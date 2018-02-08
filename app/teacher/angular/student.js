@@ -100,8 +100,8 @@ app.controller('studentCtrl', function ($scope, $http, $rootScope, toastr, $loca
     $scope.isTeacherLoggedIn = function () {
         commonGetHTTPService('Get', '', 'teacher/is_teacher_logged_in', function (result) {
             console.log(result);
-            if (result.length) {
-                $rootScope.selectedClass = result[0];
+            if (result['class'].length) {
+                $rootScope.selectedClass = result['class'][0];
                 $scope.listStudent();
             } else {
                 toastr.error("Please Login First !", 'Error');
